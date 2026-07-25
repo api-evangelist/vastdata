@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vtasks API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: vtasks
+paths:
+  /vtasks/:
+    get:
+      description: Get the list of async tasks.
+      operationId: tasks_list
+      parameters:
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Task name
+        in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: start_time__gte
+        schema:
+          type: string
+      - in: query
+        name: end_time__lte
+        schema:
+          type: string
+      - description: Task state
+        in: query
+        name: state
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VTask'
+                title: Tasks
+                type: array
+          description: Tasks information
+      summary: List vtasks
+      tags:
+      - vtasks
+  /vtasks/{id}/:
+    get:
+      description: This endpoint returns details of a vtask.
+      operationId: tasks_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VTask'
+          description: ''
+      summary: Return Task Details
+      tags:
+      - vtasks
+    patch:
+      description: This endpoint partially modifies a vtask.
+      operationId: tasks_partial_update
+      parameters:
+      - description: Vtask ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                state:
+                  description: task state in RUNNING/COMPLETED/FAILED/UNKNOWN
+                  type: string
+              type: object
+        x-originalParamName: VTaskModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify Vtask
+      tags:
+      - vtasks
+  /vtasks/{id}/retry/:
+    patch:
+      description: This endpoint reruns a vtask.
+      operationId: task_retry
+      parameters:
+      - description: VTask ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        x-originalParamName: VTaskRetryParams
+      responses:
+        '200':
+          description: ''
+      summary: Retry/Rerun VTask
+      tags:
+      - vtasks
+components:
+  schemas:
+    VTask:
+      properties:
+        end_time:
+          description: Task end time
+          type: string
+        execution_time:
+          description: Task execution time in seconds
+          type: integer
+        id:
+          type: integer
+          x-cli-header: ID
+        info:
+          description: Extra task relate information passed to polling clients.
+          type: object
+        messages:
+          description: Messages passed to polling clients.
+          type: object
+        name:
+          description: Task name
+          type: string
+        start_time:
+          description: Task start time
+          type: string
+        state:
+          description: Task state
+          enum:
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - UNKNOWN
+          - TIMEOUT
+          - PARTIALLY_COMPLETED
+          type: string
+        timeout_in_seconds:
+          description: Task should timeout after X seconds.
+          type: integer
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

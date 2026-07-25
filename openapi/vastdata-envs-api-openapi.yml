@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory envs API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: envs
+paths:
+  /envs/:
+    get:
+      description: This endpoint lists envs.
+      operationId: envs_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Env'
+                title: Envs
+                type: array
+          description: Envs information
+      summary: List Envs
+      tags:
+      - envs
+  /envs/{id}/:
+    get:
+      description: This endpoint lists details of an env.
+      operationId: envs_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Env'
+          description: ''
+      summary: Return Details of an Env
+      tags:
+      - envs
+components:
+  schemas:
+    Env:
+      properties:
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          type: integer
+        cnode:
+          description: Parent CNode
+          type: string
+          x-cli-header: CNode
+        dnode:
+          description: Parent DNode
+          type: string
+          x-cli-header: DNode
+        env_id:
+          description: Env ID
+          type: integer
+          x-cli-header: Env-ID
+        env_type:
+          description: env type
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          type: string
+          x-cli-header: Name
+        port:
+          description: Port Number
+          type: integer
+          x-cli-header: Port
+        silo_count:
+          description: Number of Silos
+          type: integer
+          x-cli-header: Silos
+        title:
+          type: string
+        url:
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,373 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory groups API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: 'Groups are user groups that can be authorized to access any data on the cluster via any supported client protocol. The groups path provides: management of groups on the cluster''s local provider, querying of external provider groups, and S3 access management for both local and external groups.'
+  name: groups
+paths:
+  /groups/:
+    get:
+      description: This endpoint lists groups.
+      operationId: groups_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Group'
+                title: group
+                type: array
+          description: group information
+      summary: List Groups
+      tags:
+      - groups
+    post:
+      description: This endpoint adds a group to the local provider.
+      operationId: group_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                gid:
+                  description: group GID
+                  type: integer
+                local_provider_id:
+                  description: Local provider ID
+                  type: integer
+                name:
+                  description: group name
+                  type: string
+                s3_policies_ids:
+                  description: list of s3 policy ids
+                  items:
+                    type: integer
+                  type: array
+                sid:
+                  description: group SID
+                  type: string
+              required:
+              - name
+              - gid
+              - local_provider_id
+              type: object
+        x-originalParamName: GroupCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+      summary: Create Group
+      tags:
+      - groups
+  /groups/names/:
+    get:
+      description: This endpoint queries a group by prefix and domain from ActiveDirectory domains
+      operationId: groups_names
+      parameters:
+      - description: Prefix to find the group
+        in: query
+        name: prefix
+        schema:
+          type: string
+      - description: 'Domain details to find the group (ALL by default). Format: BASE_DN|FQDN|SID'
+        in: query
+        name: domain
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TenantIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupData'
+          description: ''
+      summary: Find Group by prefix and domain details
+      tags:
+      - groups
+  /groups/query/:
+    get:
+      description: This endpoint queries a specified provider for a group based on a group identifier attribute
+      operationId: groups_query
+      parameters:
+      - description: Group GID
+        in: query
+        name: gid
+        schema:
+          type: integer
+      - description: Groupname
+        in: query
+        name: groupname
+        schema:
+          type: string
+      - description: Group SID
+        in: query
+        name: sid
+        schema:
+          type: string
+      - description: Group VAID (a VAST identifier for groups)
+        in: query
+        name: vaid
+        schema:
+          type: string
+      - description: The provider to query
+        in: query
+        name: context
+        schema:
+          enum:
+          - local
+          - udb
+          - ad
+          - ldap
+          - nis
+          - aggregated
+          type: string
+      - $ref: '#/components/parameters/TenantIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupData'
+          description: ''
+      summary: Query Group
+      tags:
+      - groups
+    patch:
+      description: This endpoint modifies a non-local group's S3 permissions. Specify the user by either NFS UID or SMB user SID.
+      operationId: groups_query_modify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                gid:
+                  description: Group GID
+                  type: integer
+                groupname:
+                  description: Group name
+                  type: string
+                s3_policies_ids:
+                  description: list of s3 policy ids
+                  items:
+                    type: integer
+                  type: array
+                sid:
+                  description: Group SID
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                vaid:
+                  description: Group vast ID
+                  type: string
+              type: object
+        x-originalParamName: GroupQueryModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupData'
+          description: ''
+      summary: Modify non-Local Group
+      tags:
+      - groups
+  /groups/{id}/:
+    delete:
+      description: This endpoint deletes a group from the local provider.
+      operationId: group_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete Group
+      tags:
+      - groups
+    get:
+      description: This endpoint returns details of a group defined on the local provider
+      operationId: group_read
+      parameters:
+      - description: Group ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+      summary: Return Details of a Group
+      tags:
+      - groups
+    patch:
+      description: This endpoint modifies a group on the local provider.
+      operationId: group_partial_update
+      parameters:
+      - description: Group ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                gid:
+                  description: group GID
+                  type: integer
+                local_provider_id:
+                  description: Local provider ID
+                  type: integer
+                name:
+                  description: group name
+                  type: string
+                s3_policies_ids:
+                  description: list of s3 policy ids
+                  items:
+                    type: integer
+                  type: array
+                sid:
+                  description: group SID
+                  type: string
+              required:
+              - name
+              type: object
+        x-originalParamName: GroupModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+      summary: Modify Group
+      tags:
+      - groups
+components:
+  schemas:
+    LocalProviderData:
+      properties:
+        id:
+          description: ID of the local provider
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of the local provider
+          type: string
+      type: object
+    GroupData:
+      properties:
+        gid:
+          type: integer
+        name:
+          type: string
+        provider_type:
+          type: string
+        s3_policies:
+          items:
+            type: string
+          type: array
+        s3_policies_ids:
+          items:
+            type: integer
+          type: array
+        sid:
+          type: string
+      type: object
+    Group:
+      properties:
+        gid:
+          type: integer
+          x-cli-header: GID
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        local_provider:
+          $ref: '#/components/schemas/LocalProviderData'
+        name:
+          type: string
+          x-cli-header: Name
+        s3_policies:
+          items:
+            $ref: '#/components/schemas/PartialS3PolicyInfo'
+          type: array
+        s3_policies_ids:
+          description: S3 policies IDs
+          items:
+            type: integer
+          type: array
+        sid:
+          type: string
+          x-cli-header: SID
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      - gid
+      type: object
+    PartialS3PolicyInfo:
+      properties:
+        id:
+          description: Identity Policy ID
+          type: integer
+        name:
+          description: Identity Policy name
+          type: string
+      type: object
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

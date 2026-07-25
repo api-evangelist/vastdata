@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory cnodegroups API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: CNode groups are groups of CNodes that managed applications can run on. See also Managed Applications.
+  name: cnodegroups
+paths:
+  /cnodegroups/:
+    get:
+      description: This endpoint lists CNode Groups
+      operationId: cnodegroups_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CNodeGroup'
+                title: CNode Group
+                type: array
+          description: CNode Group information
+      summary: Get all existing CNode Groups
+      tags:
+      - cnodegroups
+    post:
+      description: This endpoint creates a CNode Group.
+      operationId: cnodegroups_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                application_type:
+                  description: Specify application_type
+                  type: string
+                cnode_ids:
+                  description: Specify CNodes. Specify as a comma separated array of CNode IDs.
+                  type: string
+                name:
+                  description: CNode Group name
+                  type: string
+                resources_percentage:
+                  description: Resources percentage, dedicated to CNode Group
+                  format: float
+                  type: number
+              type: object
+        x-originalParamName: CNodeGroupCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncCNodeGroup'
+          description: ''
+      summary: Create a CNode Group
+      tags:
+      - cnodegroups
+      x-cli-command: cnodegroup
+      x-cli-subcommand: create
+  /cnodegroups/{id}/:
+    delete:
+      description: Delete CNode Group.
+      operationId: cnodegroups_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Delete CNodeGroup
+      tags:
+      - cnodegroups
+    get:
+      description: This endpoint returns information about a specific CNode Group.
+      operationId: cnodegroups_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CNodeGroup'
+          description: ''
+      summary: Return Details of a CNode Group
+      tags:
+      - cnodegroups
+    patch:
+      operationId: cnodegroups_update
+      parameters:
+      - description: CNodeGroup ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cnode_ids:
+                  description: Specify CNodes. Specify as a comma separated array of CNode IDs.
+                  type: string
+                name:
+                  description: Name of CNodeGroup
+                  type: string
+                resources_percentage:
+                  description: Resources percentage, dedicated to CNode Group
+                  format: float
+                  type: number
+              type: object
+        x-originalParamName: CNodeGroupModifyParams
+      responses:
+        '204':
+          description: OK
+      summary: Modify CNode Group
+      tags:
+      - cnodegroups
+components:
+  schemas:
+    CNodeGroup:
+      properties:
+        application_type:
+          description: Application that will run on CNode Group
+          type: string
+        cnode_ids:
+          description: Comma separated IDs
+          items:
+            type: integer
+          type: array
+        cnodes:
+          description: Names of cnodes comprising cnode group
+          items:
+            type: string
+          type: array
+          x-cli-header: CNodes
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          description: CNode Group name
+          type: string
+        resources_percentage:
+          description: Resources percentage, dedicated to CNode Group
+          type: number
+        state:
+          description: CNode Group state
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    AsyncCNodeGroup:
+      allOf:
+      - $ref: '#/components/schemas/CNodeGroup'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

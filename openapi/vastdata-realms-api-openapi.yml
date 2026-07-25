@@ -1,0 +1,224 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory realms API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Realms are user defined customized permission realms for VMS manager users. They define sets of object types and can be granted to managers and roles for VMS permissions.
+  name: realms
+paths:
+  /realms/:
+    get:
+      description: This endpoint lists the user defined realms configured.
+      operationId: realms_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Realm'
+                title: Realms
+                type: array
+          description: Realm information
+      summary: List Realms
+      tags:
+      - realms
+    post:
+      operationId: realms_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: Realm name
+                  type: string
+                object_types:
+                  items:
+                    type: string
+                  type: array
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              required:
+              - name
+              type: object
+        x-originalParamName: RealmCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+          description: ''
+      summary: Create Realm
+      tags:
+      - realms
+  /realms/{id}/:
+    delete:
+      description: This endpoint deletes a realm.
+      operationId: realms_delete
+      parameters:
+      - description: Realm ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Delete Realm
+      tags:
+      - realms
+    get:
+      description: This endpoint returns details of a realm.
+      operationId: realms_read
+      parameters:
+      - description: Realm ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+          description: ''
+      summary: Return Details of a Realm.
+      tags:
+      - realms
+    patch:
+      description: This endpoint modifies realm.
+      operationId: realms_modify
+      parameters:
+      - description: Realm ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: Name
+                  type: string
+              type: object
+        x-originalParamName: RealmModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify realm
+      tags:
+      - realms
+  /realms/{id}/assign/:
+    patch:
+      description: This endpoint assign object to realm.
+      operationId: realms_assign
+      parameters:
+      - description: Realm ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                object_type:
+                  description: Object
+                  type: string
+              type: object
+        x-originalParamName: RealmAssignParams
+      responses:
+        '200':
+          description: ''
+      summary: Assign object type to realm
+      tags:
+      - realms
+  /realms/{id}/unassign/:
+    patch:
+      description: This endpoint unassign object from realm.
+      operationId: realms_unassign
+      parameters:
+      - description: Realm ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                object_type:
+                  description: Object
+                  type: string
+              type: object
+        x-originalParamName: RealmUnassignParams
+      responses:
+        '200':
+          description: ''
+      summary: Unassign object type from realm
+      tags:
+      - realms
+components:
+  schemas:
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+    Realm:
+      properties:
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          description: The name of the realm
+          type: string
+        object_types:
+          items:
+            type: string
+          type: array
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      required:
+      - name
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

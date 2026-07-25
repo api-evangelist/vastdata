@@ -1,0 +1,211 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Certificates API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Certificates
+paths:
+  /certificates/validate_compute_cluster_certificates/:
+    post:
+      description: 'Validates a compute cluster RKE2 certificate chain without creating any objects.
+
+        Checks PEM format, expiration, key-pair matching, chain signature, and CA constraints.
+
+        '
+      operationId: certificates_validate_compute_cluster_certificates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                intermediate_certificate:
+                  description: PEM-encoded intermediate CA certificate
+                  type: string
+                intermediate_key:
+                  description: PEM-encoded intermediate private key
+                  type: string
+                root_certificate:
+                  description: PEM-encoded root CA certificate
+                  type: string
+              required:
+              - root_certificate
+              - intermediate_certificate
+              - intermediate_key
+              type: object
+        x-originalParamName: ValidateComputeClusterCertificatesParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                type: object
+          description: ''
+        '400':
+          description: Validation error
+      summary: Validate compute cluster RKE2 certificates
+      tags:
+      - Certificates
+  /certificates/:
+    get:
+      operationId: certificates_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Certificate'
+                title: Certificate
+                type: array
+          description: ''
+      summary: List certificates
+      tags:
+      - Certificates
+    post:
+      operationId: certificates_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ca_certificate:
+                  type: string
+                cert_type:
+                  description: Certificate type
+                  enum:
+                  - WEBHOOK
+                  - KAFKA
+                  - KAFKA_MTLS
+                  type: string
+                certificate:
+                  type: string
+                name:
+                  description: Certificate name
+                  type: string
+                private_key:
+                  type: string
+              required:
+              - name
+              type: object
+        x-originalParamName: CertificateCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+          description: ''
+      summary: Creates certificates
+      tags:
+      - Certificates
+  /certificates/{id}/:
+    delete:
+      operationId: certificates_delete
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Certificates
+    get:
+      operationId: certificates_read
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+          description: ''
+      tags:
+      - Certificates
+    patch:
+      operationId: certificates_partial_update
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ca_certificate:
+                  type: string
+                cert_type:
+                  description: Certificate type
+                  enum:
+                  - WEBHOOK
+                  - KAFKA
+                  - KAFKA_MTLS
+                  type: string
+                certificate:
+                  type: string
+                name:
+                  description: Certificate name
+                  type: string
+                private_key:
+                  type: string
+              type: object
+        x-originalParamName: CertificateModifyParams
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Certificates
+components:
+  schemas:
+    Certificate:
+      properties:
+        ca_certificate:
+          format: password
+          type: string
+        cert_type:
+          description: Certificate type
+          enum:
+          - WEBHOOK
+          - KAFKA
+          - KAFKA_MTLS
+          type: string
+        certificate:
+          format: password
+          type: string
+        created:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          type: string
+        private_key:
+          format: password
+          type: string
+        state:
+          type: string
+      type: object
+  parameters:
+    PathId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

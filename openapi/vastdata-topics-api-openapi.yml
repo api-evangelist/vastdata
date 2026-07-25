@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory topics API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Topics store categories of events collected by VAST Event Broker.
+  name: topics
+paths:
+  /topics/:
+    get:
+      description: This endpoint lists Kafka Topics.
+      operationId: topics_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/TabularPageSize'
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TabularDatabaseNameQP'
+      - $ref: '#/components/parameters/TabularNameQP'
+      - $ref: '#/components/parameters/TabularCountOnlyQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TabularTopicHierarchy'
+                title: Topics
+                type: array
+          description: Kafka Topics
+      summary: List Kafka Topics
+      tags:
+      - topics
+    patch:
+      description: This endpoint modifies a Kafka Topic
+      operationId: topics_modify
+      requestBody:
+        $ref: '#/components/requestBodies/TopicModifyParamsBody'
+      responses:
+        '201':
+          description: OK
+      summary: Modify a Kafka Topic
+      tags:
+      - topics
+    post:
+      description: This endpoint creates a Kafka Topic
+      operationId: topics_create
+      requestBody:
+        $ref: '#/components/requestBodies/TopicCreateParamsBody'
+      responses:
+        '201':
+          description: OK
+      summary: Create a Kafka Topic
+      tags:
+      - topics
+  /topics/delete/:
+    delete:
+      description: This endpoint deletes a Kafka Topic.
+      operationId: topics_delete
+      requestBody:
+        $ref: '#/components/requestBodies/TableDeleteParamsBody'
+      responses:
+        '204':
+          description: OK
+      summary: Delete a Kafka Topic
+      tags:
+      - topics
+  /topics/show/:
+    get:
+      description: This endpoint shows a Kafka Topic.
+      operationId: topics_show
+      parameters:
+      - $ref: '#/components/parameters/TabularDatabaseNameQP'
+      - $ref: '#/components/parameters/TabularNameRequiredQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+          description: Kafka Topic
+      summary: Show a Kafka Topic
+      tags:
+      - topics
+components:
+  schemas:
+    Topic:
+      allOf:
+      - $ref: '#/components/schemas/TabularTopicHierarchy'
+      - properties:
+          capacity:
+            description: Capacity of the Topic
+            type: integer
+          message_timestamp_after_max_ms:
+            description: If the message timestamp type is set to ?CreateTime??, this option determines how much later the message timestamp can be than the broker timestamp. If this value is exceeded, the message is rejected.
+            format: int64
+            type: integer
+          message_timestamp_before_max_ms:
+            description: If the message timestamp type is set to ?CreateTime??, this option determines how much earlier the message timestamp can be than the broker timestamp. If this value is exceeded, the message is rejected.
+            format: int64
+            type: integer
+          message_timestamp_type:
+            description: Determines how the event timestamp is set. CreateTime (default)=The timestamp is based on the time when the event was encountered at the event producer. LogAppendTime=The timestamp is based on the time when the event record was added to the log at the event broker.
+            enum:
+            - LogAppendTime
+            - CreateTime
+            type: string
+          num_events:
+            description: Total number of events
+            type: integer
+          retention_ms:
+            description: The amount of time, in milliseconds, to keep an event record in the topic. When the retention period for a record expires, the records is deleted from the topic.
+            format: int64
+            type: integer
+          topic_partitions:
+            description: The number of partitions in the Kafka topic to be created.Each partition can hold up to 1000 topics. The number of partitions in a topic cannot be changed after the topic has been created.
+            type: integer
+        required:
+        - num_events
+        - capacity
+        type: object
+    TabularSchemaHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - name
+      type: object
+    TopicModifyParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularTopicHierarchy'
+      - properties:
+          message_timestamp_after_max_ms:
+            description: Message timestamp 'after' threshold in milli-seconds
+            format: int64
+            type: integer
+          message_timestamp_before_max_ms:
+            description: Message timestamp 'before' threshold in milli-seconds
+            format: int64
+            type: integer
+          message_timestamp_type:
+            description: Message timestamp type
+            enum:
+            - LogAppendTime
+            - CreateTime
+            type: string
+          new_name:
+            description: New name of the topic
+            type: string
+          retention_ms:
+            description: Retention period in milli-seconds
+            format: int64
+            type: integer
+        type: object
+    TableDeleteParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularSchemaHierarchy'
+      - properties:
+          is_imports_table:
+            description: Is table actually a sub-table to track imported .parquet files.
+            type: boolean
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
+    TabularTopicHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the Topic
+          type: string
+      required:
+      - database_name
+      - name
+      type: object
+    TopicCreateParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularTopicHierarchy'
+      - properties:
+          message_timestamp_after_max_ms:
+            description: Message timestamp 'after' threshold in milli-seconds
+            format: int64
+            type: integer
+          message_timestamp_before_max_ms:
+            description: Message timestamp 'before' threshold in milli-seconds
+            format: int64
+            type: integer
+          message_timestamp_type:
+            description: Message timestamp type
+            enum:
+            - LogAppendTime
+            - CreateTime
+            type: string
+          retention_ms:
+            description: Retention period in milli-seconds
+            format: int64
+            type: integer
+          topic_partitions:
+            description: Amount of Kafka Topic partitions
+            type: integer
+        required:
+        - topic_partitions
+        type: object
+  parameters:
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  requestBodies:
+    TableDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TableDeleteParams'
+      x-originalParamName: TableDeleteParamsBody
+    TopicCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TopicCreateParams'
+      x-originalParamName: TopicCreateParamsBody
+    TopicModifyParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TopicModifyParams'
+      x-originalParamName: TopicModifyParamsBody
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

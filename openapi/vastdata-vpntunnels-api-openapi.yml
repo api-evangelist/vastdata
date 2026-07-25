@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vpntunnels API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: vpntunnels
+paths:
+  /vpntunnels/:
+    get:
+      description: This endpoint lists VPN tunnels.
+      operationId: vpntunnels_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VpnTunnel'
+                title: Vpn Tunnels
+                type: array
+          description: List of VPN tunnels
+      summary: List VPN Tunnels
+      tags:
+      - vpntunnels
+    post:
+      description: This endpoint creates a VPN tunnel.
+      operationId: vpntunnels_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cnode:
+                  description: The ID of one CNode. The tunnel will enable the support engineer to open an SSH session to the specified CNode.
+                  type: integer
+                password:
+                  description: The password for the specified VAST-Support tunnel service user
+                  type: string
+                ttl:
+                  description: The duration to allow the tunnel to remain open, in minutes
+                  type: integer
+                username:
+                  description: A username for the VAST-Support tunnel service
+                  type: string
+                vpn_config:
+                  description: The content of a VAST-support VPN configuration file
+                  type: string
+              required:
+              - cnode
+              - username
+              - password
+              - ttl
+              type: object
+        x-originalParamName: VpnTunnelCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VpnTunnel'
+          description: ''
+      summary: Create VPN Tunnel
+      tags:
+      - vpntunnels
+  /vpntunnels/delete_all/:
+    delete:
+      description: This endpoint closes and deletes all open VPN tunnels
+      operationId: vpntunnels_delete_all
+      responses:
+        '204':
+          description: ''
+      summary: Close and Delete all available VPN Tunnels
+      tags:
+      - vpntunnels
+  /vpntunnels/{id}/:
+    delete:
+      description: This endpoint closes and deletes an open VPN tunnel
+      operationId: vpntunnels_delete
+      parameters:
+      - description: VPN tunnel ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Close and Delete VPN Tunnel
+      tags:
+      - vpntunnels
+    get:
+      description: This endpoint returns details of a VPN tunnel.
+      operationId: vpntunnels_read
+      parameters:
+      - description: VPN tunnel ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VpnTunnel'
+          description: ''
+      summary: Return Details of a VPN Tunnel
+      tags:
+      - vpntunnels
+components:
+  schemas:
+    VpnTunnel:
+      properties:
+        cnode:
+          type: integer
+        cnode_id:
+          description: The node id on which the tunnel is running
+          type: integer
+          x-cli-header: CNode-ID
+        cnode_ip:
+          description: The host ip adress on which the tunnel is running
+          type: string
+          x-cli-header: CNode-IP
+        created_at:
+          description: The addresses of the ip tunnels
+          format: date-time
+          type: string
+          x-cli-header: Creation-Date
+          x-format: datetime2display
+        hostname:
+          description: The hostname on which the tunnel is running
+          type: string
+        id:
+          description: The tunnel id
+          type: integer
+          x-cli-header: ID
+        tunnel_end_date:
+          description: The addresses of the ip tunnels
+          format: date-time
+          type: string
+          x-cli-header: End-Date
+          x-format: datetime2display
+        tunnels_ips:
+          description: The addresses of the ip tunnels
+          type: string
+          x-cli-header: Tunnel-IP
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

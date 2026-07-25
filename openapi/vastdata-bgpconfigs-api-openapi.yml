@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory bgpconfigs API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: BGP Configs are Border Gateway Protocol (BGP) configurations. You can configure a virtual IP pool to use layer 3 connectivity, instead of the default layer 2 connectivity, by attaching a BGP configuration to the Virtual IP pool.
+  name: bgpconfigs
+paths:
+  /bgpconfigs/:
+    get:
+      description: This endpoint lists BGP configurations.
+      operationId: bgp_configs_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BGPConfig'
+                title: BGPConfigs
+                type: array
+          description: BGP configurations
+      summary: List BGP Configurations
+      tags:
+      - bgpconfigs
+    post:
+      description: This endpoint creates a BGP configuration.
+      operationId: bgp_configs_create
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/BGPConfig'
+        x-originalParamName: BgpConfigsCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BGPConfig'
+          description: ''
+      summary: Create BGP Config
+      tags:
+      - bgpconfigs
+  /bgpconfigs/{id}/:
+    delete:
+      description: This endpoint deletes a BGP configuration.
+      operationId: bgp_configs_delete
+      parameters:
+      - description: BGP Config ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Delete BGP Config
+      tags:
+      - bgpconfigs
+    get:
+      description: This endpoint returns details of a BGP configuration.
+      operationId: bgp_configs_read
+      parameters:
+      - description: BGP configuration ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BGPConfig'
+          description: ''
+      summary: Return Details of a BGP Configuration
+      tags:
+      - bgpconfigs
+    patch:
+      description: This endpoint modifies a BGP configuration.
+      operationId: bgp_configs_partial_update
+      parameters:
+      - description: BGP Config ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/BGPConfig'
+        x-originalParamName: BgpConfigsModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BGPConfig'
+          description: ''
+      summary: Modify a BGP Configuration
+      tags:
+      - bgpconfigs
+components:
+  schemas:
+    BGPConfig:
+      properties:
+        any_external_asn:
+          description: If true, allow CNodes to peer with any ASN. Supercedes specified external_asn.
+          type: boolean
+        bfd_enabled:
+          type: boolean
+        external_asn:
+          description: The ASN expected to be presented to CNodes by upstream routers.
+          type: integer
+        guid:
+          type: string
+        id:
+          description: The ID of the BGP layer 3 connectivity configuration.
+          type: integer
+          x-cli-header: ID
+        ips_represent:
+          description: IP address representation (odd/even)
+          enum:
+          - odd
+          - even
+          type: string
+        md5_password:
+          description: A password used for BGP and BFD authentication.
+          type: string
+        method:
+          type: string
+        name:
+          description: The name of the BGP layer 3 connectivity configuration.
+          type: string
+          x-cli-header: Name
+        racks:
+          items:
+            properties:
+              ip_ranges:
+                items:
+                  type: string
+                type: array
+              rack_id:
+                type: integer
+            type: object
+          type: array
+        self_asn:
+          description: The Autonomous System number(s) presented by CNodes to the upstream/customer routers.
+          type: integer
+        status:
+          type: string
+          x-cli-header: Status
+        subnet_bits:
+          description: The number of bits in the subnet. For IPv4, this should be 32, for IPv6, 128 (i.e., a single address in the subnet)
+          type: integer
+        vip_migration_grace_period_sec:
+          description: The period of time after a BGP session is dropped before the virtual IPs advertised in the session link are moved to another CNode, in seconds
+          type: integer
+        vlan:
+          type: integer
+      required:
+      - name
+      - self_asn
+      - external_asn
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

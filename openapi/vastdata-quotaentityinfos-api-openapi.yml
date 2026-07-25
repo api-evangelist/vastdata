@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory quotaentityinfos API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: QuotaEntityInfo objects contain details of all users and groups that wrote to quota directories. Provides VAST-internal ID from the VAST Cluster user database and email address.
+  name: quotaentityinfos
+paths:
+  /quotaentityinfos/:
+    get:
+      description: This endpoint returns user/group names, emails and VAST ids for user/group quotas.
+      operationId: quota_entity_infos_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      - description: Filter list by user or group name
+        in: query
+        name: identifier_type
+        schema:
+          enum:
+          - username
+          - groupname
+          type: string
+      - description: Filter list by user or group name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: Filter list by user/group's vast ID
+        in: query
+        name: vast_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/QuotaEntityInfo'
+                title: Quota entity info
+                type: array
+          description: ''
+      summary: List User and Group Information Associated with User and Group Quotas
+      tags:
+      - quotaentityinfos
+components:
+  schemas:
+    PartialQuotaEntityInfo:
+      properties:
+        email:
+          description: The email used to send the user or group notifications of exceeding quota limits.
+          type: string
+        identifier:
+          type: string
+        identifier_type:
+          type: string
+        is_group:
+          description: True for a group quota. False for a user quota.
+          type: boolean
+        is_iam_role:
+          type: boolean
+        name:
+          description: A user or group name
+          type: string
+        vast_id:
+          description: VAST ID of the user or group with the listed user/group quota
+          type: integer
+      type: object
+    QuotaEntityInfo:
+      allOf:
+      - $ref: '#/components/schemas/PartialQuotaEntityInfo'
+      - properties:
+          id:
+            type: integer
+            x-cli-header: ID
+        type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

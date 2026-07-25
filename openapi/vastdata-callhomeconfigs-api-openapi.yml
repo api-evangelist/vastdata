@@ -1,0 +1,391 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory callhomeconfigs API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The callhomeconfigs path provides access to the cluster's Call Home configuration. Call Home is a service that sends non-sensitive data from your VAST Cluster to our central support server to enable us to provide proactive analysis and fast response on critical issues.
+  name: callhomeconfigs
+paths:
+  /callhomeconfigs/:
+    get:
+      description: This endpoint lists Call Home configurations.
+      operationId: callhomeconfigs_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallhomeConfig'
+                title: Call Home
+                type: array
+          description: Call Home configuration details
+      summary: List Call Home Configurations
+      tags:
+      - callhomeconfigs
+  /callhomeconfigs/{id}/:
+    get:
+      description: This endpoint returns Call Home Configuration details.
+      operationId: callhomeconfigs_read
+      parameters:
+      - description: Callhomeconfig ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallhomeConfig'
+          description: ''
+      summary: Return Call Home Configuration Details
+      tags:
+      - callhomeconfigs
+    patch:
+      description: This endpoint modifies the Call Home configuration.
+      operationId: callhomeconfigs_partial_update
+      parameters:
+      - description: Call Home Configuration ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                aggregated:
+                  description: If true, send aggregated callhome logs, otherwise upload logs from each node
+                  type: boolean
+                alt_s3_host_port:
+                  description: 'Specifies alternative S3 service host and port for upload. For example: 10.10.10.10:443.'
+                  type: string
+                aws_s3_ak:
+                  description: S3 Bucket access key
+                  type: string
+                aws_s3_bucket_name:
+                  description: S3 Bucket for upload
+                  type: string
+                aws_s3_bucket_subdir:
+                  description: Sub-Directory in support bucket
+                  type: string
+                aws_s3_sk:
+                  description: S3 Bucket secret key
+                  type: string
+                bundle_enabled:
+                  description: Set to true to enable periodic sending of bundles to the Support server (deprecated)
+                  type: boolean
+                bundle_interval:
+                  description: The frequency for sending bundles to the Support server (deprecated)
+                  type: integer
+                cloud_api_domain:
+                  description: Uplink API domain name
+                  type: string
+                cloud_api_key:
+                  description: Uplink API key
+                  type: string
+                cloud_enabled:
+                  description: 'Set to true to enable reporting to Uplink, VAST''s cloud-based SaaS that enables you to manage all VAST Clusters deployed by your organization anywhere in the world through a single cloud portal. '
+                  type: boolean
+                cloud_subdomain:
+                  description: Uplink subdomain, unique per customer and shared by all clusters reporting to the customer's Uplink.
+                  type: string
+                compress_method:
+                  description: Compression method for callhome bundles (by default zstd)
+                  enum:
+                  - zstd
+                  - gzip
+                  type: string
+                customer:
+                  description: Company name
+                  type: string
+                customer_id:
+                  description: The ID issued to the customer
+                  type: string
+                location:
+                  description: Site location
+                  type: string
+                log_enabled:
+                  description: Set to true to enable system state data to be logged to the Support server
+                  type: boolean
+                log_interval:
+                  description: The frequency for sending system state data to the Support server.
+                  type: integer
+                luna_analyze_period:
+                  description: Analyzed period size, minutes
+                  type: integer
+                luna_on_alarm_enabled:
+                  description: Enabled/disabled luna analyzing tool on specific alarms
+                  type: boolean
+                luna_on_alarm_interval:
+                  description: Maximum allowed frequency in hours for alarm-triggered luna
+                  type: integer
+                max_upload_bandwidth:
+                  description: The maximum upload bandwidth in bytes.
+                  type: integer
+                max_upload_concurrency:
+                  description: The maximum number of parts of a file to upload simultaneously.
+                  type: integer
+                obfuscated:
+                  description: If true, call home data is obfuscated.
+                  type: boolean
+                proxy_host:
+                  description: Proxy IP/hostname
+                  type: string
+                proxy_password:
+                  description: Proxy password
+                  type: string
+                proxy_port:
+                  description: Proxy Port
+                  type: string
+                proxy_scheme:
+                  enum:
+                  - http
+                  - https
+                  - socks5
+                  - socks5h
+                  type: string
+                proxy_username:
+                  description: Proxy username
+                  type: string
+                site:
+                  description: Site name
+                  type: string
+                support_channel:
+                  description: Set to true to enable the VAST Support channel.
+                  type: boolean
+                test_mode:
+                  description: Set to true to enable test mode
+                  type: boolean
+                upload_via_vms:
+                  description: If true, upload non-aggregated Callhome Bundle via VMS (requires proxy). Otherwise, upload from each node.
+                  type: boolean
+                verify_ssl:
+                  description: Set to true to enable SSL verification. Set to false to disable. VAST Cluster recognizes SSL certificates from a large range of widely recognized certificate authorities (CAs). VAST Cluster may not recognize an SSL certificate signed by your own in-house CA.
+                  type: boolean
+              type: object
+        x-originalParamName: CallhomeConfigModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify the Call Home Configuration
+      tags:
+      - callhomeconfigs
+  /callhomeconfigs/{id}/register-cluster/:
+    patch:
+      description: This endpoint registers a cluster with Uplink.
+      operationId: callhomeconfigs_register_cluster
+      parameters:
+      - description: The ID issued to the customer as customer_id. This is part of the Call Home configuration.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                email:
+                  description: VAST Uplink super user login email
+                  type: string
+                password:
+                  description: VAST Uplink super user password
+                  type: string
+                token:
+                  description: VAST Uplink cluster registration token
+                  type: string
+              type: object
+        x-originalParamName: CallhomeConfigRegisterClusterParams
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Register Cluster with Uplink
+      tags:
+      - callhomeconfigs
+  /callhomeconfigs/{id}/send/:
+    patch:
+      description: This endpoint sends a callhome message to the Support server to test the Call Home configuration.
+      operationId: callhomeconfigs_send
+      parameters:
+      - description: Call Home Configuration ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Send a Call Home Message
+      tags:
+      - callhomeconfigs
+components:
+  schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    CallhomeConfig:
+      properties:
+        aggregated:
+          description: If true, send aggregated callhome logs, otherwise upload logs from each node (deprecated)
+          type: boolean
+        alt_s3_host_port:
+          description: Alternative S3 service host for upload.
+          type: string
+        aws_s3_ak:
+          description: S3 Bucket access key
+          type: string
+        aws_s3_bucket_name:
+          description: S3 Bucket for upload
+          type: string
+        aws_s3_bucket_subdir:
+          description: Sub-Directory in support bucket
+          type: string
+        aws_s3_sk:
+          description: S3 Bucket secret key
+          type: string
+        bundle_enabled:
+          description: Enabled/disabled periodic bundle callhome
+          type: boolean
+        bundle_interval:
+          description: Interval in seconds for periodic bundle
+          type: integer
+          x-display-units: Minutes
+          x-format: seconds2minutes
+          x-raw-units: Seconds
+        callhome_upload_destination:
+          description: Callhome upload destination
+          enum:
+          - Matar
+          - Mars
+          type: string
+        cloud_api_domain:
+          description: The domain name for the Cloud API
+          type: string
+        cloud_api_key:
+          description: The API Key for the Cloud API
+          type: string
+        cloud_enabled:
+          description: Is Cloud reporting modules enabled
+          type: boolean
+        cloud_registered:
+          description: Is the cluster registered with VAST Cloud Services
+          type: boolean
+        cloud_subdomain:
+          description: The Customer's subdomain in Vast Cloud Services
+          type: string
+        compress_method:
+          description: Compression method for callhome bundles (by default zstd)
+          type: string
+        customer:
+          description: Customer/Company name
+          type: string
+        customer_id:
+          description: The id issued to the customer
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        location:
+          description: Site location
+          type: string
+        log_enabled:
+          description: Enabled/disabled periodic log callhome
+          type: boolean
+        log_interval:
+          description: Interval in seconds for periodic log
+          type: integer
+          x-display-units: Minutes
+          x-format: seconds2minutes
+          x-raw-units: Seconds
+        luna_analyze_period:
+          description: Analyzed period size, minutes
+          type: integer
+        luna_on_alarm_enabled:
+          description: Enabled/disabled luna analyzing tool on specific alarms
+          type: boolean
+        luna_on_alarm_interval:
+          description: Maximum allowed frequency in hours for alarm-triggered luna
+          type: integer
+          x-display-units: Hours
+          x-format: seconds2hours
+          x-raw-units: Seconds
+        max_upload_bandwidth:
+          description: Maximum upload bandwidth in bytes
+          type: integer
+        max_upload_concurrency:
+          description: Maximum upload concurrency
+          type: integer
+        obfuscated:
+          description: If true, callhome data is obfuscated
+          type: boolean
+        proxy_host:
+          description: Proxy IP/hostname
+          type: string
+        proxy_password:
+          description: Proxy password
+          type: string
+        proxy_port:
+          description: Proxy Port
+          type: string
+        proxy_scheme:
+          description: http, https, socks5, socks5h
+          type: string
+        proxy_username:
+          description: Proxy username
+          type: string
+        site:
+          description: Site name
+          type: string
+        ssl_certificate:
+          description: SSL Certificate file content, including the BEGIN CERTIFICATE and END CERTIFICATE lines
+          type: string
+        support_channel:
+          description: Enable/disable the VAST support channel
+          type: boolean
+        test_mode:
+          description: enable/disable test mode
+          type: boolean
+        upload_via_vms:
+          description: If true, upload non-aggregated Callhome Bundle via VMS. Otherwise, upload from each node.
+          type: boolean
+        verify_ssl:
+          description: Enable/disable ssl certificate verification
+          type: boolean
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

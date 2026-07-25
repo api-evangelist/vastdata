@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Health API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Health
+paths:
+  /health/:
+    get:
+      description: This endpoint reports VMS health state.
+      operationId: health
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: Health state 'ok' or 'warning'.
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: Health state 'error'.
+      summary: Health check
+      tags:
+      - Health
+components:
+  schemas:
+    Health:
+      properties:
+        cache:
+          $ref: '#/components/schemas/HealthEntry'
+        db:
+          $ref: '#/components/schemas/HealthEntry'
+        status:
+          enum:
+          - ok
+          - warning
+          - error
+          type: string
+      type: object
+    HealthEntry:
+      properties:
+        info:
+          description: Additional info regarding service status
+          type: string
+        status:
+          enum:
+          - ok
+          - warning
+          - error
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

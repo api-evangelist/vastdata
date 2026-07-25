@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory token API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Tokens are JSON Web Tokens (JWTs), which can be used instead of Apitokens to authenticate requests to the VMS REST API.
+  name: token
+paths:
+  /token/:
+    post:
+      description: This endpoint generates and obtains a pair of JSON Web Tokens (JWTs). The response provides an access token and a refresh token. The access token is a digitally encoded signature that can be used to authenticate and authorize access requests on a requested API path. It is designed to have a minimal lifetime, to ensure minimum time for the requesting user's identity to be exploited. The refresh token must have a longer lifetime than the access token. It can be used to request new tokens. The new access token can then be used to authenticate further requests.
+      operationId: token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  description: The password for login
+                  type: string
+                username:
+                  description: The username for login
+                  type: string
+              required:
+              - username
+              - password
+              type: object
+        x-originalParamName: TokenParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  access:
+                    description: A short-lived access token.
+                    type: string
+                  refresh:
+                    description: Longer-lived access token, used to request new tokens.
+                    type: string
+                required:
+                - access
+                - refresh
+                type: object
+          description: ''
+      security: []
+      summary: Obtain Json Web Tokens
+      tags:
+      - token
+  /token/refresh/:
+    post:
+      description: This endpoint refreshes JWT tokens using the last generated refresh token.
+      operationId: token_refresh
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                refresh:
+                  description: Last generated refresh token
+                  type: string
+              required:
+              - refresh
+              type: object
+        x-originalParamName: TokenRefreshParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  access:
+                    description: Short lived access token
+                    type: string
+                  refresh:
+                    description: Long lived access token
+                    type: string
+                type: object
+          description: ''
+      summary: Refresh JWT Tokens
+      tags:
+      - token
+components:
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

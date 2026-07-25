@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory encryptedpaths API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: An encrypted path is a path that is encrypted with a dedicated encryption group which is a subgroup of the encryption group of the tenant on which the path resides. Encrypted paths can be created on a cluster that has EKM (external key manager) encryption enabled. It is not possible to encrypt an existing path with its own encryption group.
+  name: encryptedpaths
+paths:
+  /encryptedpaths/:
+    get:
+      description: This endpoint lists encrypted paths.
+      operationId: encryptedpaths_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EncryptedPath'
+                title: Encrypted Paths
+                type: array
+          description: Encrypted Paths information
+      summary: List Encrypted Paths
+      tags:
+      - encryptedpaths
+    post:
+      description: This endpoint creates an encrypted path.
+      operationId: encryptedpaths_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: The name of the encrypted path.
+                  type: string
+                path:
+                  description: The path to encrypt.
+                  type: string
+                tenant_id:
+                  description: The ID of the tenant on which the path resides.
+                  type: integer
+              required:
+              - name
+              - path
+              type: object
+        x-originalParamName: EncryptedPathCreateParams
+      responses:
+        '201':
+          description: OK
+      summary: Create an Encrypted Path
+      tags:
+      - encryptedpaths
+      x-cli-command: encryptedpaths
+      x-cli-subcommand: create
+  /encryptedpaths/{id}/:
+    delete:
+      description: This endpoint deletes an encrypted path.
+      operationId: encryptedpaths_delete
+      parameters:
+      - $ref: '#/components/parameters/EncryptedPathId'
+      responses:
+        '204':
+          description: OK
+      summary: Delete Encrypted Path
+      tags:
+      - encryptedpaths
+    get:
+      description: This endpoint returns information about a specific encrypted path.
+      operationId: encryptedpaths_read
+      parameters:
+      - $ref: '#/components/parameters/EncryptedPathId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EncryptedPath'
+          description: ''
+      summary: Return Details of a Encrypted Path
+      tags:
+      - encryptedpaths
+    patch:
+      description: This endpoint modifies the name of an encrypted path.
+      operationId: encryptedpaths_update
+      parameters:
+      - $ref: '#/components/parameters/EncryptedPathId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: The new name for the encrypted path
+                  type: string
+              required:
+              - name
+              type: object
+        x-originalParamName: EncryptedPathModifyParams
+      responses:
+        '204':
+          description: OK
+      summary: Modify Encrypted Path Name
+      tags:
+      - encryptedpaths
+components:
+  parameters:
+    EncryptedPathId:
+      description: Encrypted Path ID
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
+  schemas:
+    EncryptionGroup:
+      properties:
+        crn:
+          description: Encryption Group Cloud Resource Name
+          example: INTERNAL_ENCRYPTION_GROUP_CRN
+          type: string
+        guid:
+          example: 9f0bf0bf-7b36-413b-8278-9dd47b3f7cdb
+          type: string
+        id:
+          type: integer
+        state:
+          description: Encryption Group State
+          enum:
+          - INIT
+          - ACTIVE
+          - REVOKE_IN_PROGRESS
+          - REVOKE_UPDATING_AGENTS
+          - REVOKED
+          - REINSTATE_IN_PROGRESS
+          - REINSTATE_UPDATING_AGENTS
+          - EKM_REVOKE_IN_PROGRESS
+          - EKM_REVOKE_UPDATING_AGENTS
+          - EKM_REVOKED
+          - EKM_REVOKE_FAILED
+          - EKM_REVOKING_KEYS
+          type: string
+      required:
+      - id
+      - guid
+      - state
+      - crn
+      type: object
+    EncryptedPath:
+      properties:
+        encryption_group:
+          $ref: '#/components/schemas/EncryptionGroup'
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of Encrypted Path
+          type: string
+        path:
+          description: Encrypted path
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_name:
+          description: Tenant name
+          type: string
+      required:
+      - name
+      - path
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

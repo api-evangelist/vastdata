@@ -1,0 +1,627 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory quotagroups API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: quotagroups
+paths:
+  /quotagroups/:
+    get:
+      description: This endpoint lists quota groups. The parameters enable you to filter the list.
+      operationId: quotagroups_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      - in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: hard_limit
+        schema:
+          type: string
+      - in: query
+        name: soft_limit
+        schema:
+          type: string
+      - in: query
+        name: soft_limit_inodes
+        schema:
+          type: string
+      - in: query
+        name: hard_limit_inodes
+        schema:
+          type: string
+      - in: query
+        name: system_id
+        schema:
+          type: string
+      - in: query
+        name: show_user_rules
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TenantNameIContainsQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/QuotaGroup'
+                title: Quota Groups
+                type: array
+          description: Quota Group information
+      summary: List Quota Groups
+      tags:
+      - quotagroups
+    post:
+      description: This endpoint creates a new quota group that can aggregate multiple quotas.
+      operationId: quotagroups_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                default_email:
+                  description: The default Email if there is no suffix and no address in the providers
+                  type: string
+                default_group_quota:
+                  type: object
+                default_user_quota:
+                  type: object
+                enable_alarms:
+                  description: Enable alarms when users or groups are exceeding their limit
+                  type: boolean
+                enable_email_providers:
+                  type: boolean
+                grace_period:
+                  description: 'Quota enforcement grace period. An alarm is triggered and write operations are blocked if storage usage continues to exceed the soft limit for the grace period. Format: [DD] [HH:[MM:]]ss'
+                  type: string
+                group_quotas:
+                  items:
+                    type: object
+                  type: array
+                hard_limit:
+                  description: Storage usage limit beyond which no writes will be allowed.
+                  type: integer
+                hard_limit_inodes:
+                  description: Number of directories and unique files under the path beyond which no writes will be allowed. A file with multiple hardlinks is counted only once.
+                  type: integer
+                is_user_quota:
+                  type: boolean
+                name:
+                  description: A name for the quota group
+                  type: string
+                soft_limit:
+                  description: Storage usage limit at which warnings of exceeding the quota are issued.
+                  type: integer
+                soft_limit_inodes:
+                  description: Number of directories and unique files under the path at which warnings of exceeding the quota will be issued. A file with multiple hardlinks is counted only once.
+                  type: integer
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                user_quotas:
+                  items:
+                    type: object
+                  type: array
+              type: object
+        x-originalParamName: QuotaGroupCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaGroup'
+          description: ''
+      summary: Create a Quota Group
+      tags:
+      - quotagroups
+  /quotagroups/{id}/:
+    delete:
+      description: This endpoint deletes a quota group.
+      operationId: quotagroups_delete
+      parameters:
+      - description: Quota Group ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Quota group deleted successfully
+      summary: Delete Quota Group
+      tags:
+      - quotagroups
+    get:
+      description: This endpoint returns details of a specified quota group.
+      operationId: quotagroups_read
+      parameters:
+      - description: Quota Group ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaGroup'
+          description: ''
+      summary: Return details of a quota group
+      tags:
+      - quotagroups
+    patch:
+      description: This endpoint modifies a quota group.
+      operationId: quotagroups_partial_update
+      parameters:
+      - description: Quota Group ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                default_email:
+                  description: The default Email if there is no suffix and no address in the providers
+                  type: string
+                default_group_quota:
+                  type: object
+                default_user_quota:
+                  type: object
+                enable_alarms:
+                  description: Enable alarms when users or groups are exceeding their limit
+                  type: boolean
+                enable_email_providers:
+                  type: boolean
+                grace_period:
+                  description: 'Quota enforcement grace period. An alarm is triggered and write operations are blocked if storage usage continues to exceed the soft limit for the grace period. Format: [DD] [HH:[MM:]]s'
+                  type: string
+                group_quotas:
+                  items:
+                    type: object
+                  type: array
+                hard_limit:
+                  description: Storage usage limit beyond which no writes will be allowed.
+                  type: string
+                hard_limit_inodes:
+                  description: Number of directories and unique files under the path beyond which no writes will be allowed. A file with multiple hardlinks is counted only once.
+                  type: integer
+                is_user_quota:
+                  type: boolean
+                name:
+                  description: Quota group name
+                  type: string
+                soft_limit:
+                  description: Storage usage limit at which warnings of exceeding the quota are issued.
+                  type: string
+                soft_limit_inodes:
+                  description: Number of directories and unique files under the path at which warnings of exceeding the quota will be issued. A file with multiple hardlinks is counted only once.
+                  type: integer
+                user_quotas:
+                  items:
+                    type: object
+                  type: array
+              type: object
+        x-originalParamName: QuotaGroupModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaGroup'
+          description: ''
+      summary: Modify Quota Group
+      tags:
+      - quotagroups
+  /quotagroups/{id}/assign_quotas/:
+    patch:
+      description: This endpoint assigns quotas to a quota group
+      operationId: quotagroups_assign_quotas
+      parameters:
+      - description: Quota Group ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                quotas_ids:
+                  description: Quotas IDs
+                  items:
+                    type: integer
+                  type: array
+              type: object
+        x-originalParamName: QuotaGroupAssignQuotasParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+        '204':
+          description: No changes are required
+      summary: Assign quotas to quota group
+      tags:
+      - quotagroups
+  /quotagroups/{id}/refresh_user_quotas/:
+    patch:
+      description: This endpoint refreshes the user quota rules for all quotas within the quota group.
+      operationId: quotagroup_refresh_user_quotas
+      parameters:
+      - description: Quota Group ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: User quotas refresh initiated
+      summary: Refresh user quotas of a quota group
+      tags:
+      - quotagroups
+  /quotagroups/{id}/reset_grace_period/:
+    patch:
+      description: This endpoint resets the countdown for a quota group whose soft limit was exceeded.
+      operationId: quotagroups_reset_grace_period
+      parameters:
+      - description: Quota Group ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Grace period reset successfully
+      summary: Reset the grace period countdown after soft limit is exceeded
+      tags:
+      - quotagroups
+components:
+  schemas:
+    QuotaGroup:
+      allOf:
+      - $ref: '#/components/schemas/BaseQuota'
+      - properties:
+          quotas:
+            items:
+              $ref: '#/components/schemas/PartialGenericInfo'
+            type: array
+            x-format: names_only
+          quotas_count:
+            type: integer
+        type: object
+    PartialGenericInfo:
+      properties:
+        id:
+          description: ID
+          type: integer
+        name:
+          description: Name
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    PartialUserQuota:
+      allOf:
+      - $ref: '#/components/schemas/DefaultQuota'
+      - properties:
+          email:
+            description: The email used to send the user or group notifications of exceeding quota limits.
+            type: string
+          identifier:
+            type: string
+          identifier_type:
+            type: string
+          is_accountable:
+            type: boolean
+          is_group:
+            description: True for a group quota. False for a user quota.
+            type: boolean
+          is_iam_role:
+            type: boolean
+          name:
+            description: A user or group name
+            type: string
+          percent_capacity:
+            type: integer
+          percent_inodes:
+            description: Percentage of files and directories limit in use
+            type: integer
+          state:
+            type: string
+          time_to_block:
+            description: Grace period expiration time
+            type: string
+            x-cli-header: Grace Period Expiration
+          used_capacity:
+            description: Used capacity in bytes
+            format: int64
+            type: integer
+            x-cli-header: Used-Capacity
+            x-display-base-type: capacity
+            x-display-units: TB
+            x-display-units-alt: TiB
+            x-format: bytes2tbext
+            x-metric: null
+            x-raw-units: Bytes
+            x-source-module: C
+          used_inodes:
+            description: Used inodes
+            type: integer
+            x-cli-header: Used Files/Directories
+          vast_id:
+            description: VAST ID of the user or group with the listed user/group quota
+            type: integer
+        type: object
+    DefaultQuota:
+      properties:
+        grace_period:
+          description: 'Quota enforcement grace period in seconds, minutes, hours or days. Example: 90m'
+          type: string
+          x-example: 30d
+        hard_limit:
+          description: Hard quota limit
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        hard_limit_inodes:
+          description: Hard inodes quota limit
+          type: integer
+          x-cli-header: Hard limit Files/Directories
+        quota_system_id:
+          type: integer
+        soft_limit:
+          description: Soft quota limit
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        soft_limit_inodes:
+          description: Soft inodes quota limit
+          type: integer
+          x-cli-header: Soft limit Files/Directories
+      type: object
+    BaseQuota:
+      properties:
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          description: Parent Cluster ID
+          type: integer
+        default_email:
+          description: The default email for sending user quota alert emails. This is used if no suffix is set and no address is found on providers.
+          type: string
+        default_group_quota:
+          $ref: '#/components/schemas/DefaultQuota'
+        default_user_quota:
+          $ref: '#/components/schemas/DefaultQuota'
+        enable_alarms:
+          description: Enable alarms when users or groups are exceeding their limit
+          type: boolean
+        enable_email_providers:
+          description: Enable this setting to query Active Directory and LDAP services for user emails when sending userquota alert emails. If enabled, the provider query is the first priority source for a user's email. If a user's email is not found on the provider, a global email suffix is used if configured in cluster settings. If no suffix is set, default_email is used.
+          type: boolean
+        grace_period:
+          description: 'Quota enforcement grace period in seconds, minutes, hours or days. Example: 90m'
+          type: string
+          x-example: 30d
+        group_quotas:
+          items:
+            $ref: '#/components/schemas/PartialUserQuota'
+          type: array
+        guid:
+          description: Quota guid
+          type: string
+        hard_limit:
+          description: Storage space usage limit beyond which no writes are allowed.
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tbext
+          x-raw-units: Bytes
+        hard_limit_inodes:
+          description: Number of directories and unique files under the path beyond which no writes will be allowed. A file with multiple hardlinks is counted only once.
+          type: integer
+          x-cli-header: Hard limit Files/Directories
+        id:
+          type: integer
+          x-cli-header: ID
+        internal:
+          type: boolean
+        is_physical_quota:
+          description: Set to true to Limit by Physical Capacity. Cannot be updated.
+          type: boolean
+          x-cli-header: Limit by Physical Capacity
+        is_user_quota:
+          description: Set to true to enable user and group quotas. False by default.
+          type: boolean
+        last_user_quotas_update:
+          description: Time of last user quota update
+          format: date-time
+          type: string
+          x-format: datetime2display
+        name:
+          description: The name
+          type: string
+        num_blocked_users:
+          description: The number of users that are blocked from writing to the quota path due to exceeding a hard user/group quota limit.
+          type: integer
+        num_exceeded_users:
+          description: The number of users that have exceeded a user quota
+          type: integer
+        percent_capacity:
+          description: Percentage in use of the capacity hard limit
+          type: integer
+        percent_inodes:
+          description: Percentage in use of the hard limit on directories and unique files
+          type: integer
+        pretty_grace_period:
+          description: 'Quota enforcement grace period expressed in human readable format as seconds, minutes, hours or days. Example: 12 days 43 minutes 43 seconds'
+          type: string
+          x-cli-header: Grace Period
+        pretty_grace_period_expiration:
+          description: The time remaining until the end of the grace period, in human readable format. Displayed when soft limit is exceeded.
+          type: string
+        pretty_state:
+          type: string
+          x-cli-header: State
+        soft_limit:
+          description: Storage usage limit at which warnings of exceeding the quota are issued.
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tbext
+          x-raw-units: Bytes
+        soft_limit_inodes:
+          description: Number of directories and unique files under the path at which warnings of exceeding the quota will be issued. A file with multiple hardlinks is counted only once.
+          type: integer
+          x-cli-header: Soft limit Files/Directories
+        state:
+          description: Quota state
+          enum:
+          - SOFT_BOTH_EXCEEDED
+          - INODE_SOFT_EXCEEDED
+          - SOFT_EXCEEDED
+          - HARD_BOTH_EXCEEDED
+          - INODE_HARD_EXCEEDED
+          - HARD_EXCEEDED
+          - GRACE_EXPIRED
+          - OK
+          - FAILED
+          type: string
+        sync_state:
+          type: string
+        system_id:
+          type: integer
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_name:
+          description: Tenant Name
+          type: string
+          x-cli-header: Tenant
+        time_to_block:
+          description: The time remaining until the end of the grace period. Displayed when soft limit is exceeded.
+          type: string
+          x-cli-header: Grace Period Expiration
+        title:
+          description: Quota name
+          type: string
+        url:
+          description: Endpoint URL for API operations on the quota
+          type: string
+        used_capacity:
+          description: Used capacity in bytes
+          format: int64
+          type: integer
+          x-cli-header: Used-Capacity
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tbext
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        used_capacity_tb:
+          description: Used capacity in TB
+          format: float
+          type: number
+          x-cli-header: Used-Capacity
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        used_effective_capacity:
+          description: Used effective capacity in bytes
+          format: int64
+          type: integer
+          x-cli-header: Used-Effective-Capacity
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        used_effective_capacity_tb:
+          description: Used effective capacity in TB
+          format: float
+          type: number
+          x-cli-header: Used-Effective-Capacity
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        used_inodes:
+          description: Number of directories and unique files under the path
+          type: integer
+          x-cli-header: Used Files/Directories
+        used_limited_capacity:
+          format: int64
+          type: integer
+        user_quotas:
+          description: An array of user quota rule objects. A user quota rule overrides a default user quota rule for the specified user.
+          items:
+            $ref: '#/components/schemas/PartialUserQuota'
+          type: array
+      type: object
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TenantNameIContainsQP:
+      description: Tenant name to filter by
+      in: query
+      name: tenant_name__icontains
+      schema:
+        type: string
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

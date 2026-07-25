@@ -1,0 +1,260 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory iamroles API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: iamroles
+paths:
+  /iamroles/:
+    get:
+      description: This endpoint lists IAM Roles
+      operationId: iamroles_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - in: query
+        name: qos_policies__id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IAMRole'
+                title: IAM Role
+                type: array
+          description: IAMRole information
+      summary: List Identity and Access Management Roles
+      tags:
+      - iamroles
+    post:
+      description: This endpoint creates an IAM Role.
+      operationId: iamroles_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  type: string
+                max_session_duration:
+                  description: Maximum session duration for temporary access keys (seconds). Default - 129600 (36 hours).
+                  type: integer
+                name:
+                  type: string
+                s3_policies:
+                  description: List of Identity Policy IDs
+                  items:
+                    type: integer
+                  type: array
+                tenant_id:
+                  type: integer
+                trust_policy:
+                  description: JSON Policy
+                  type: string
+              required:
+              - name
+              - trust_policy
+              type: object
+        x-originalParamName: IAMRoleCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IAMRole'
+          description: ''
+      summary: Create IAM Role
+      tags:
+      - iamroles
+  /iamroles/{id}/:
+    delete:
+      description: This endpoint deletes a specified IAM Role.
+      operationId: iamroles_delete
+      parameters:
+      - description: IAM Role ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: ''
+      summary: Delete IAM Role
+      tags:
+      - iamroles
+    get:
+      description: This endpoint returns details of a specified IAM Role.
+      operationId: iamroles_read
+      parameters:
+      - description: IAM Role ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IAMRole'
+          description: IAM Role information
+      summary: Return Details of a IAM Role
+      tags:
+      - iamroles
+    patch:
+      description: This endpoint modifies a specified IAM Role.
+      operationId: iamroles_partial_update
+      parameters:
+      - description: IAM Role ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  type: string
+                max_session_duration:
+                  description: Maximum session duration for temporary access keys (seconds). Default - 129600 (36 hours).
+                  type: integer
+                s3_policies:
+                  description: List of Identity Policy IDs
+                  items:
+                    type: integer
+                  type: array
+                trust_policy:
+                  description: JSON Policy
+                  type: string
+              type: object
+        x-originalParamName: IAMRoleModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IAMRole'
+          description: ''
+      summary: Modify IAM Role
+      tags:
+      - iamroles
+  /iamroles/{id}/credentials:
+    get:
+      description: This endpoint returns information about STS credentials of specified IAM Role.
+      operationId: iamroles_get_credentials
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      - in: query
+        name: access_key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IAMRoleCredentialsInfo'
+          description: IAM Role information
+      summary: Get STS credentials of specified IAM Role.
+      tags:
+      - iamroles
+  /iamroles/{id}/revoke_access_keys:
+    patch:
+      description: This endpoint revoke access keys of a specified IAM Role.
+      operationId: iamroles_revoke_access_keys
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '204':
+          description: ''
+      summary: Revoke access keys of  specified IAM Role. Keys will be revoked by the revoke_time on the IAM Role.
+      tags:
+      - iamroles
+components:
+  schemas:
+    IAMRole:
+      description: Identity and Access Management Role
+      properties:
+        description:
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        max_session_duration:
+          description: Maximum session duration for temporary access keys (seconds). Default - 129600 (36 hours).
+          type: integer
+          x-cli-header: Max Session Duration (seconds)
+          x-format: display_time
+        name:
+          type: string
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        trust_policy:
+          type: string
+        vid:
+          type: integer
+      type: object
+    IAMRoleCredentialsInfo:
+      properties:
+        key_expiration_sec:
+          type: integer
+          x-cli-header: Key Expiration Datetime
+          x-format: timestamp2datetime
+        session_policy:
+          type: string
+        username:
+          type: string
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+  parameters:
+    PathId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

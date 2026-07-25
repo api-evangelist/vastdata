@@ -1,0 +1,176 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory managedapplications API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Managed applications is a feature that enables you to run 3D applications on CNodes by distributing an image across a group of CNodes.
+  name: managedapplications
+paths:
+  /managedapplications/:
+    get:
+      description: This endpoint lists Managed Applications
+      operationId: managedapplications_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ManagedApplication'
+                title: Managed Application
+                type: array
+          description: Managed Application information
+      summary: Get all existing Managed Applications
+      tags:
+      - managedapplications
+    post:
+      description: This endpoint creates a Managed Application.
+      operationId: managedapplications_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cnode_group_id:
+                  description: CNode Group where Managed Application should work on
+                  type: integer
+                configuration:
+                  description: Managed Application user configuration
+                  type: object
+                metadata:
+                  description: Managed Application metadata
+                  type: object
+                name:
+                  description: The name of the application.
+                  type: string
+              type: object
+        x-originalParamName: ManagedApplicationCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncManagedApplication'
+          description: ''
+      summary: Create a Managed Application
+      tags:
+      - managedapplications
+      x-cli-command: managedapplication
+      x-cli-subcommand: create
+  /managedapplications/{id}/:
+    delete:
+      description: Delete Managed Application.
+      operationId: managedapplications_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Delete Managed Application
+      tags:
+      - managedapplications
+    get:
+      description: This endpoint returns information about a specific Managed Application.
+      operationId: managedapplications_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedApplication'
+          description: ''
+      summary: Return Details of a Managed Application
+      tags:
+      - managedapplications
+    patch:
+      operationId: managedapplications_update
+      parameters:
+      - description: Managed Application ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cnode_group_id:
+                  description: CNode Group where Managed Application should work on
+                  type: integer
+                configuration:
+                  description: Managed Application user configuration
+                  type: object
+                metadata:
+                  description: Managed Application metadata
+                  type: object
+                name:
+                  description: Managed Application name
+                  type: string
+              type: object
+        x-originalParamName: ManagedApplicationModifyParams
+      responses:
+        '204':
+          description: OK
+      summary: Modify Managed Application
+      tags:
+      - managedapplications
+components:
+  schemas:
+    AsyncManagedApplication:
+      allOf:
+      - $ref: '#/components/schemas/ManagedApplication'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    ManagedApplication:
+      properties:
+        cnode_group_id:
+          description: Managed Application CNode Group
+          type: integer
+        configuration:
+          description: Managed Application user configuration
+          type: object
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        metadata:
+          description: Managed Application metadata
+          type: object
+        name:
+          description: Managed Application name
+          type: string
+        state:
+          description: Managed Application state
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

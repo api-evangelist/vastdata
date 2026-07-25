@@ -1,0 +1,204 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory webhooks API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Webhooks send event information to external applications. Once defined, you can set them to be triggered by specific events.
+  name: webhooks
+paths:
+  /webhooks/:
+    get:
+      description: This endpoint lists webhooks.
+      operationId: webhooks_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Webhook'
+                title: Webhooks
+                type: array
+          description: Webhooks list
+      summary: List Webhooks
+      tags:
+      - webhooks
+    post:
+      description: This endpoint creates a webhook.
+      operationId: webhooks_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                certificate_id:
+                  description: ID of certificate used to secure the webhook. Use the /certificates/ endpoint to manage webhook certificates.
+                  type: integer
+                data:
+                  description: Webhook data
+                  type: string
+                enabled:
+                  description: Webhook is enabled
+                  type: boolean
+                headers:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+                method:
+                  description: The method used by the webhook
+                  enum:
+                  - GET
+                  - POST
+                  - PUT
+                  - PATCH
+                  - DELETE
+                  type: string
+                name:
+                  description: Webhook name
+                  type: string
+                url:
+                  description: The URL to which the webhook points
+                  type: string
+              required:
+              - url
+              type: object
+        x-originalParamName: WebhooksCreateParams
+      responses:
+        '200':
+          description: Webhook was created
+      summary: Create Webhook
+      tags:
+      - webhooks
+  /webhooks/{id}/:
+    delete:
+      description: This endpoint deletes a webhook.
+      operationId: webhooks_delete
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '204':
+          description: Webhook was deleted
+      summary: Delete a Webhook
+      tags:
+      - webhooks
+    get:
+      description: This endpoint returns the details of a webhook.
+      operationId: webhooks_read
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: Webhook details
+      summary: Return Details of a webhook
+      tags:
+      - webhooks
+    patch:
+      description: This endpoint modifies a webhook.
+      operationId: webhooks_partial_update
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                certificate_id:
+                  description: ID of a certificate used to secure the webhook.
+                  type: integer
+                data:
+                  description: Webhook data
+                  type: string
+                enabled:
+                  description: Webhook is enabled
+                  type: boolean
+                headers:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+                method:
+                  description: Webhook method
+                  enum:
+                  - GET
+                  - POST
+                  - PUT
+                  - PATCH
+                  - DELETE
+                  type: string
+                name:
+                  description: Webhook name
+                  type: string
+                url:
+                  description: Webhook URL
+                  type: string
+              type: object
+        x-originalParamName: WebhooksUpdateParams
+      responses:
+        '200':
+          description: Webhook was modified
+      summary: Modify Webhook
+      tags:
+      - webhooks
+components:
+  schemas:
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
+    Webhook:
+      properties:
+        certificate_id:
+          description: ID of certificate used to secure the webhook
+          type: integer
+        certificate_name:
+          description: Name of the certificate used to secure the webhook
+          type: string
+        data:
+          description: Webhook data
+          type: string
+        enabled:
+          description: If true, the webhook is enabled.
+          type: boolean
+        headers:
+          $ref: '#/components/schemas/ArbitraryStringsObject'
+        id:
+          description: Webhook ID
+          type: integer
+        method:
+          description: Webhook compress_method
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          type: string
+        name:
+          description: Name of the webhook
+          type: string
+        url:
+          description: Webhook URL
+          type: string
+      required:
+      - name
+      type: object
+  parameters:
+    PathId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

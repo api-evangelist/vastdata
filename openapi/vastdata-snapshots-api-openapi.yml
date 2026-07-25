@@ -1,0 +1,477 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory snapshots API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A snapshot is an image of the data existing at a point in time under a specific Element Store path. Snapshots can be created on a one off basis or scheduled using a protected path. Scheduled snapshots can be retained locally, and/or backed up either to an S3 replication peer or to a replication peer.
+  name: snapshots
+paths:
+  /snapshots/:
+    get:
+      description: This endpoint list snapshots. The list can be filtered.
+      operationId: snapshots_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - description: Filter by snapshot path
+        in: query
+        name: path
+        schema:
+          type: string
+      - description: Filter by part of snapshot name
+        in: query
+        name: name__contains
+        schema:
+          type: string
+      - description: Filter by expiration time
+        in: query
+        name: expiration_time
+        schema:
+          type: string
+      - description: Filter by snapshot policy name
+        in: query
+        name: protection_policy__name
+        schema:
+          type: string
+      - description: Filter by snapshot policy ID
+        in: query
+        name: protection_policy__id
+        schema:
+          type: integer
+      - description: Filter by state
+        in: query
+        name: state
+        schema:
+          enum:
+          - SUCCEED
+          - CREATING
+          - DELETING
+          - FAILED
+          - INIT
+          - RETRYING
+          - RETRY_DELETE
+          type: string
+      - description: Filter by creation time
+        in: query
+        name: created
+        schema:
+          type: string
+      - description: Filter for locked snapshots
+        in: query
+        name: locked
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TenantNameIContainsQP'
+      - $ref: '#/components/parameters/VolumeIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Snapshot'
+                title: Snapshots
+                type: array
+          description: Snapshot details
+      summary: List Snapshots
+      tags:
+      - snapshots
+    post:
+      description: This endpoint creates a snapshot.
+      operationId: snapshots_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cluster_id:
+                  description: Cluster ID
+                  type: integer
+                expiration_time:
+                  description: Snapshot expiration time
+                  example: '2021-06-18T08:57:09.000Z'
+                  type: string
+                indestructible:
+                  description: 'Set to true to protect the snapshot from accidental or malicious deletion with the indestructibility feature. If this setting is enabled, authorized unlocking of the cluster''s indestructibility mechanism is required to do any of the following: deleting the snapshot, shortening its expiration time or disabling this setting.'
+                  type: boolean
+                locked:
+                  description: Not in use.
+                  type: boolean
+                name:
+                  description: Snapshot name
+                  type: string
+                path:
+                  description: The path to take a snapshot on
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              required:
+              - path
+              - name
+              type: object
+        x-originalParamName: SnapshotCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+          description: ''
+      summary: Create Snapshot
+      tags:
+      - snapshots
+  /snapshots/{id}/:
+    delete:
+      description: This endpoint deletes a snapshot.
+      operationId: snapshots_delete
+      parameters:
+      - description: Specify the ID of the snapshot.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The snapshot was deleted
+      summary: Delete a Snapshot
+      tags:
+      - snapshots
+    get:
+      description: This endpoint returns details of a snapshot.
+      operationId: snapshots_read
+      parameters:
+      - description: Snapshot ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+          description: ''
+      summary: Return Details of a Snapshot
+      tags:
+      - snapshots
+    patch:
+      description: This endpoint modifies a snapshot.
+      operationId: snapshots_partial_update
+      parameters:
+      - description: Snapshot ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                expiration_time:
+                  description: Snapshot expiration time. Cannot be shortened if the snapshot is indestructible.
+                  type: string
+                indestructible:
+                  description: 'Set to true to protect the snapshot from accidental or malicious deletion with the indestructibility feature. If this setting is enabled, authorized unlocking of the cluster''s indestructibility mechanism is required to do any of the following: deleting the snapshot, shortening its expiration time or disabling this setting.'
+                  type: boolean
+                locked:
+                  description: Not in use.
+                  type: boolean
+                name:
+                  description: Snapshot name
+                  type: string
+              type: object
+        x-originalParamName: SnapshotModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a Snapshot
+      tags:
+      - snapshots
+  /snapshots/{id}/clone/:
+    post:
+      description: This endpoint creates a clone of a specified snapshot at a specified path on a specified tenant.
+      operationId: snapshots_clone
+      parameters:
+      - description: Snapshot ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                enabled:
+                  description: Enabled
+                  type: boolean
+                loanee_root_path:
+                  description: Target path for the clone
+                  type: string
+                loanee_tenant_id:
+                  description: Target tenant's ID
+                  type: integer
+                name:
+                  description: Name for the clone
+                  type: string
+                  x-cli-header: Stream Name
+              type: object
+        x-originalParamName: SnapshotCloneParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncGlobalSnapStream'
+          description: ''
+      summary: Clone a Snapshot
+      tags:
+      - snapshots
+components:
+  schemas:
+    GlobalSnapStream:
+      properties:
+        bw:
+          description: BW
+          type: integer
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-raw-units: Bytes/s
+        direction:
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+          x-cli-header: Background sync
+        eta:
+          description: ETA
+          type: string
+        external_state:
+          description: Global Snapshot Clone state
+          type: string
+        guid:
+          description: unique identifier
+          type: string
+        health:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        loanee_root_path:
+          description: Target path
+          type: string
+          x-cli-header: Target path
+        loanee_snapshot:
+          description: Loanee snapshot name
+          type: string
+        loanee_snapshot_id:
+          type: integer
+        loanee_tenant:
+          properties:
+            guid:
+              description: Loanee tenant guid
+              type: string
+            name:
+              description: Loanee tenant name
+              type: string
+          type: object
+        name:
+          type: string
+        owner_root_snapshot:
+          description: Owner root snapshot details
+          type: object
+        owner_tenant:
+          properties:
+            guid:
+              description: Owner tenant guid
+              type: string
+            name:
+              description: Owner tenant name
+              type: string
+          type: object
+        remote_target:
+          description: Remote cluster name
+          type: string
+          x-cli-header: Remote Cluster
+        remote_target_id:
+          type: integer
+        restore_task:
+          type: integer
+        source_cluster:
+          description: Source cluster
+          type: string
+        source_path:
+          description: Source path
+          type: string
+        source_snapshot:
+          description: Source snapshot
+          type: string
+        state:
+          type: string
+        status:
+          description: Status
+          type: object
+        sync_progress:
+          type: integer
+        target_cluster:
+          description: Target cluster
+          type: string
+        view_replication_enabled:
+          description: Whether view replication is enabled
+          type: boolean
+      type: object
+    Snapshot:
+      properties:
+        aggr_phys_estimation:
+          description: The usable capacity reclaimable by deleting the snapshot and all older snapshots on the protected path
+          format: int64
+          type: integer
+          x-cli-header: Aggregated Usage
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        created:
+          description: Snapshot created time
+          type: string
+        eta_sec:
+          description: Time until completion, in seconds
+          type: number
+        expiration_time:
+          description: Snapshot expiration time UTC
+          type: string
+          x-format: expirationtime
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        indestructible:
+          description: 'Protected from accidental or malicious deletion by the indestructibility feature. Authorized unlocking of the cluster''s indestructibility mechanism is required to do any of the following: deleting the snapshot, shortening its expiration time or disabling this setting.'
+          type: boolean
+        locked:
+          description: Lock the snapshot from being deleted by cleanup
+          type: boolean
+        name:
+          type: string
+          x-cli-header: Name
+        path:
+          description: Snapshot path
+          type: string
+          x-cli-header: Path
+        policy:
+          description: Associated snapshot policy
+          type: string
+          x-cli-header: Policy
+        policy_id:
+          description: Associated snapshot policy ID
+          type: integer
+        protection_policy:
+          description: Protection Policy Name
+          type: string
+          x-cli-header: Policy
+        protection_policy_id:
+          type: integer
+          x-cli-header: Protection Policy ID
+        state:
+          description: Snapshot stats
+          type: string
+          x-cli-header: State
+        subsystem_related:
+          description: If true, the snapshot path is above or below a subsystem view path or exactly on a subsystem view path.
+          type: boolean
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_name:
+          description: Tenant Name
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        unique_phys_estimation:
+          description: The usable capacity reclaimable by deleting the snapshot without deleting other snapshots on the path
+          format: int64
+          type: integer
+          x-cli-header: Unique Usage
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        url:
+          description: Endpoint URL for API operations on the snapshot
+          type: string
+      required:
+      - name
+      - path
+      type: object
+    AsyncGlobalSnapStream:
+      allOf:
+      - $ref: '#/components/schemas/GlobalSnapStream'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    TenantNameIContainsQP:
+      description: Tenant name to filter by
+      in: query
+      name: tenant_name__icontains
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    VolumeIdQP:
+      description: Mapped volume id to filter by.
+      in: query
+      name: volume_id
+      schema:
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

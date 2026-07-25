@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory ports API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Ports represent switch ports.
+  name: ports
+paths:
+  /ports/:
+    get:
+      description: This endpoint lists switch ports.
+      operationId: ports_list
+      parameters:
+      - description: Filter by port state
+        in: query
+        name: state
+        schema:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          type: string
+      - description: Filter by port model
+        in: query
+        name: model
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Port'
+                title: Ports
+                type: array
+          description: Port information
+      summary: List Switch Ports
+      tags:
+      - ports
+  /ports/{id}/:
+    get:
+      description: This endpoint returns details of a specific switch port.
+      operationId: ports_read
+      parameters:
+      - description: Port ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Port'
+          description: ''
+      summary: Return Details of One Switch Port
+      tags:
+      - ports
+components:
+  schemas:
+    Port:
+      properties:
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          type: integer
+        display_name:
+          type: string
+        fw_version:
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        model:
+          description: Port role
+          type: string
+        mtu:
+          description: Port MTU
+          type: string
+          x-cli-header: MTU
+        name:
+          type: string
+        sn:
+          type: string
+        speed:
+          description: Port speed
+          type: string
+        state:
+          description: Port state
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          type: string
+        switch:
+          description: Parent Switch
+          type: string
+        title:
+          description: Port title
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

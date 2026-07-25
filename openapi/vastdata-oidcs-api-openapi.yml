@@ -1,0 +1,209 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory oidcs API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: oidcs
+paths:
+  /oidcs/:
+    get:
+      description: This endpoint lists OIDC Providers
+      operationId: oidcs_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OIDC'
+                title: OIDC
+                type: array
+          description: OIDC information
+      summary: List OIDC Providers
+      tags:
+      - oidcs
+    post:
+      description: This endpoint creates an OIDC Provider.
+      operationId: oidcs_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                certificate:
+                  type: string
+                discovery_url:
+                  type: string
+                name:
+                  type: string
+                user_jwt_attribute:
+                  type: string
+                verify_peer:
+                  type: boolean
+              required:
+              - name
+              - discovery_url
+              type: object
+        x-originalParamName: OIDCCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OIDC'
+          description: ''
+      summary: Create OIDC Provider
+      tags:
+      - oidcs
+  /oidcs/{id}/:
+    delete:
+      description: This endpoint deletes a specified OIDC Provider.
+      operationId: oidcs_delete
+      parameters:
+      - description: OIDC Provider ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: ''
+      summary: Delete OIDC Provider
+      tags:
+      - oidcs
+    get:
+      description: This endpoint returns details of a specified OIDC Provider.
+      operationId: oidcs_read
+      parameters:
+      - description: OIDC ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OIDC'
+          description: OIDC information
+      summary: Return Details of a OIDC Provider
+      tags:
+      - oidcs
+    patch:
+      description: This endpoint modifies a specified OIDC.
+      operationId: oidcs_partial_update
+      parameters:
+      - description: OIDC ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                certificate:
+                  type: string
+                discovery_url:
+                  type: string
+                name:
+                  type: string
+                user_jwt_attribute:
+                  type: string
+                verify_peer:
+                  type: boolean
+              type: object
+        x-originalParamName: OIDCModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OIDC'
+          description: ''
+      summary: Modify OIDC
+      tags:
+      - oidcs
+  /oidcs/{id}/refresh_keys:
+    patch:
+      description: This endpoint refreshes the keys from OIDC provider.
+      operationId: oidc_refresh_keys
+      parameters:
+      - description: OIDC ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OIDC'
+          description: ''
+      summary: Refresh the keys from OIDC provider
+      tags:
+      - oidcs
+components:
+  schemas:
+    OIDC:
+      description: OpenID Connect
+      properties:
+        assigned_tenants_preview:
+          type: string
+          x-cli-header: Assigned Tenants Preview
+        certificate:
+          type: string
+        discovery_url:
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        last_keys_refresh_time:
+          type: string
+        name:
+          type: string
+        state:
+          type: string
+        user_jwt_attribute:
+          type: string
+        verify_peer:
+          type: boolean
+      type: object
+  parameters:
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

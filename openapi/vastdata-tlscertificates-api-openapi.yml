@@ -1,0 +1,310 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory tlscertificates API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: tlscertificates
+paths:
+  /tlscertificates/:
+    get:
+      operationId: tlscertificates_list
+      parameters:
+      - description: The tenant to show
+        in: query
+        name: tenant__id
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/NoneTenant'
+      - $ref: '#/components/parameters/ProtocolsContain'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TLSCertificate'
+                title: TlLCertificate
+                type: array
+          description: ''
+      summary: List of TLS certificates
+      tags:
+      - tlscertificates
+    post:
+      operationId: tlscertificates_create
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                ca_certificate_file:
+                  description: The CA certificate file to upload.
+                  format: binary
+                  type: string
+                  x-formData-name: ca_certificate_file
+                ca_certificate_name:
+                  description: Certificate name (default - the file name).
+                  type: string
+                  x-formData-name: ca_certificate_name
+                protocols:
+                  items:
+                    enum:
+                    - NFS
+                    - KAFKA
+                    type: string
+                  type: array
+                  x-formData-name: protocols
+                revocation_file:
+                  description: The certificate revocation list file to upload.
+                  format: binary
+                  type: string
+                  x-formData-name: revocation_file
+                revocations_name:
+                  description: Revocation name (default - the file name).
+                  type: string
+                  x-formData-name: revocations_name
+                tenant_associate_param:
+                  type: string
+                  x-formData-name: tenant_associate_param
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                  x-formData-name: tenant_id
+              required:
+              - ca_certificate_file
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TLSCertificate'
+          description: ''
+      summary: Creates TLS certificates
+      tags:
+      - tlscertificates
+  /tlscertificates/is_operation_healthy:
+    post:
+      operationId: tlscertificates_is_operation_healthy
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                ca_certificate_file:
+                  description: The CA certificate file to upload.
+                  format: binary
+                  type: string
+                  x-formData-name: ca_certificate_file
+                revocation_file:
+                  description: The certificate revocation list file to upload.
+                  format: binary
+                  type: string
+                  x-formData-name: revocation_file
+              required:
+              - ca_certificate_file
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warnings'
+          description: ''
+      summary: Check whether an operation may be successfully performed
+      tags:
+      - tlscertificates
+  /tlscertificates/{id}/:
+    delete:
+      operationId: tlscertificates_delete
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - tlscertificates
+    get:
+      operationId: tlscertificates_read
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TLSCertificate'
+          description: ''
+      tags:
+      - tlscertificates
+    patch:
+      operationId: tlscertificates_partial_update
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                ca_certificate_file:
+                  description: The new CA certificate file to upload.
+                  format: binary
+                  type: string
+                  x-formData-name: ca_certificate_file
+                ca_certificate_name:
+                  description: Certificate name (default - the file name).
+                  type: string
+                  x-formData-name: ca_certificate_name
+                protocols:
+                  items:
+                    enum:
+                    - NFS
+                    - KAFKA
+                    type: string
+                  type: array
+                  x-formData-name: protocols
+                revocation_file:
+                  description: The new certificate revocation list file to upload.
+                  format: binary
+                  type: string
+                  x-formData-name: revocation_file
+                revocations_name:
+                  description: Revocation name (default - the file name).
+                  type: string
+                  x-formData-name: revocations_name
+                tenant_associate_param:
+                  type: string
+                  x-formData-name: tenant_associate_param
+              type: object
+      responses:
+        '200':
+          description: ''
+      tags:
+      - tlscertificates
+  /tlscertificates/{id}/crl/:
+    delete:
+      operationId: tlscertificates_delete_crl
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - tlscertificates
+components:
+  parameters:
+    ProtocolsContain:
+      description: Protocol to see
+      in: query
+      name: protocols__icontains
+      schema:
+        enum:
+        - NFS
+        - KAFKA
+        type: string
+    PathId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    NoneTenant:
+      description: Filter by global certificate
+      in: query
+      name: tenant__isnull
+      schema:
+        type: boolean
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  schemas:
+    TLSCertificate:
+      properties:
+        ca_certificate_name:
+          type: string
+          x-cli-header: Certificate_name
+        ca_certificate_uploaded:
+          format: date-time
+          type: string
+          x-cli-header: CA-certificate-uploaded
+          x-format: datetime2display
+        created:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        expires_on:
+          format: date-time
+          type: string
+          x-cli-header: CA-certificate-expires-on
+          x-format: datetime2display
+        id:
+          type: integer
+          x-cli-header: ID
+        protocols:
+          description: Protocols for this tls certificate.
+          items:
+            enum:
+            - NFS
+            - KAFKA
+            type: string
+          type: array
+        revocations_exist:
+          type: boolean
+        revocations_expire_on:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        revocations_name:
+          type: string
+        revocations_uploaded:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        tenant_associate_param:
+          type: string
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+    Warnings:
+      properties:
+        warnings:
+          items:
+            example: 'Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant=''default'', path=''/test'')'
+            type: string
+          type: array
+      required:
+      - warnings
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

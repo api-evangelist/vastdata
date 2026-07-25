@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory locals3keys API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Local S3 Keys are S3 access keys created for and owned by users on local providers.
+  name: locals3keys
+paths:
+  /locals3keys/:
+    get:
+      description: This endpoint lists local S3 access keys.
+      operationId: locals3keys_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/UserIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/S3Key'
+                title: Local S3 Key
+                type: array
+          description: Local S3 Keys information
+      summary: List Local S3 Keys
+      tags:
+      - locals3keys
+components:
+  schemas:
+    PartialUserInfo:
+      properties:
+        id:
+          description: User ID
+          type: integer
+        name:
+          description: User Name
+          type: string
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+    S3Key:
+      properties:
+        access_key:
+          description: S3 access key
+          type: string
+        creation_time:
+          description: The time at which the access key pair was created
+          type: string
+        enabled:
+          description: If true, the access key pair to which the access key belongs is enabled
+          type: boolean
+        id:
+          type: integer
+          x-cli-header: ID
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        user:
+          $ref: '#/components/schemas/PartialUserInfo'
+      type: object
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    UserIdQP:
+      description: User id to filter by.
+      in: query
+      name: user_id
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

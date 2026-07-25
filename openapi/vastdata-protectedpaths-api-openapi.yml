@@ -1,0 +1,1096 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory protectedpaths API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A protected path is a data path in the Element Store (file/object system) that is protected by snapshots which may be replicated to an S3 replication peer or to an async replication peer. Scheduling and replication is controlled by an associated protection policy.
+  name: protectedpaths
+paths:
+  /protectedpaths/:
+    get:
+      description: This endpoint lists protected paths.
+      operationId: protectedpaths_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - in: query
+        name: state
+        schema:
+          type: string
+      - in: query
+        name: role
+        schema:
+          type: string
+      - in: query
+        name: source_dir
+        schema:
+          type: string
+      - in: query
+        name: replication_policy__name
+        schema:
+          type: string
+      - in: query
+        name: name
+        schema:
+          type: string
+      - description: start/pause protected path
+        in: query
+        name: enabled
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProtectedPath'
+                title: Protected path
+                type: array
+          description: Protected path information
+      summary: List Protected Paths
+      tags:
+      - protectedpaths
+    post:
+      description: This endpoint creates a protected path.
+      operationId: protectedpaths_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                capabilities:
+                  description: Indicates if the protected path supports global access streams ("STARED_GLOBAL_NAMESPACE") or async replication streams ("ASYNC_REPLICATION") or a single stream for synchronous replication ("SYNC_REPLICATION") or both global access and async replication ("REPLICATION_AND_GN").
+                  type: string
+                enabled:
+                  description: Enables/pauses the protected path
+                  type: boolean
+                lease_expiry_time:
+                  description: The lease expiry time, in seconds, for a global access protected path. This is the duration for which data that was already requested at the destination path can be read locally from cache without the destination peer requesting it from the source peer. When the lease expires, the cache is invalidated and the next read request for the data is requested again from the source peer.
+                  type: integer
+                name:
+                  type: string
+                  x-cli-header: Name
+                policy_id:
+                  description: Protection policy ID
+                  type: string
+                protection_policy_id:
+                  description: Specifies whcih protection policy to use
+                  type: string
+                remote_target_id:
+                  description: Remote target ID for streams with global namespace or synchronous replication capability.
+                  type: integer
+                remote_tenant_guid:
+                  description: Tenant GUID of the remote peer tenant to which to replicate
+                  type: string
+                remote_tenant_name:
+                  description: remote tenant name
+                  type: string
+                source_dir:
+                  description: A path on the local cluster to protect. A snapshot of the specified path will be taken periodically on the schedule configured in the specified protection policy.
+                  type: string
+                source_member_capabilities:
+                  description: Stream capabilities for the source member
+                  type: string
+                sync_disconnect_time:
+                  description: A period of time, in seconds, without communication between sync replication peers, after which the peers are disconnected.
+                  type: integer
+                sync_interval:
+                  description: Replication group sync interval
+                  type: integer
+                target_exported_dir:
+                  description: A path on a remote peer to which to replicate.
+                  type: string
+                tenant_id:
+                  description: Tenant ID of the tenant on the local cluster to which the source_dir belongs.
+                  type: integer
+                view_replication_enabled:
+                  description: Manages view replication
+                  type: boolean
+              required:
+              - name
+              - source_dir
+              - target_exported_dir
+              - tenant_id
+              type: object
+        x-originalParamName: ProtectedPathCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtectedPath'
+          description: ''
+      summary: Create a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/:
+    delete:
+      description: This endpoint deletes a protected path.If the protected path has replication streams, it deletes all streams and all streams between members of the replication group.
+      operationId: protectedpaths_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: this endpoint deletes a protected path with its group and related streams.
+        '204':
+          description: Deleted
+      summary: Delete a Protected Path
+      tags:
+      - protectedpaths
+    get:
+      description: This endpoint returns details of a protected path.
+      operationId: protectedpaths_read
+      parameters:
+      - description: index of protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtectedPath'
+          description: ''
+      summary: Return Details of a Protected Path
+      tags:
+      - protectedpaths
+    patch:
+      description: This endpoint modifies a protected path.
+      operationId: protectedpaths_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                abort:
+                  description: abort the failover process
+                  type: boolean
+                enabled:
+                  description: enable/pause protected path
+                  type: boolean
+                failover:
+                  description: Trigger failover command
+                  type: boolean
+                graceful:
+                  description: graceful failover
+                  type: boolean
+                lease_expiry_time:
+                  description: The lease expiry time, in seconds, for a global access protected path. This is the duration for which data that was already requested at the destination path can be read locally from cache without the destination peer requesting it from the source peer. When the lease expires, the cache is invalidated and the next read request for the data is requested again from the source peer.
+                  type: integer
+                name:
+                  type: string
+                  x-cli-header: Name
+                protection_policy_id:
+                  description: protection policy id
+                  type: string
+                replication_policy_id:
+                  description: replication policy id
+                  type: string
+                source_dir:
+                  description: path to replicate
+                  type: string
+                state:
+                  description: state
+                  type: string
+                sync_disconnect_time:
+                  description: A period of time, in seconds, without communication between sync replication peers, after which the peers are disconnected."
+                  type: integer
+                sync_interval:
+                  description: Minimal duration since the last snapshot shared between all destination peers in a replication group. Applicable if the protected path has more than one replication stream.
+                  type: integer
+                target_exported_dir:
+                  description: where to replicate on the remote
+                  type: string
+              type: object
+        x-originalParamName: ProtectedPathModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/add_stream/:
+    patch:
+      description: This endpoint adds a replication stream to a protected path.
+      operationId: protectedpaths_add_stream
+      parameters:
+      - description: The ID of the protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                capabilities:
+                  description: Indicates if the protected path supports global access streams ("STARED_GLOBAL_NAMESPACE") or async replication streams ("ASYNC_REPLICATION").
+                  type: string
+                lease_expiry_time:
+                  description: The lease expiry time, in seconds, for a global access protected path stream. This is the duration for which data that was already requested at the destination path can be read locally from cache without the destination peer requesting it from the source peer. When the lease expires, the cache is invalidated and the next read request for the data is requested again from the source peer.
+                  type: integer
+                name:
+                  description: A name for the replication stream
+                  type: string
+                protection_policy_id:
+                  description: The ID of the protection policy that defines the replicaiton peer and schedule
+                  type: string
+                remote_target_id:
+                  description: Remote target ID for streams with global namespace or synchronous replication capability.
+                  type: integer
+                remote_tenant_guid:
+                  description: The GUID of the tenant on the remote target where the target directory should be created
+                  type: string
+                remote_tenant_name:
+                  description: remote tenant name
+                  type: string
+                source_member_capabilities:
+                  description: Source member capabilities
+                  enum:
+                  - ASYNC_REPLICATION
+                  - REPLICATION_AND_GN
+                  type: string
+                sync_disconnect_time:
+                  description: For a synchronous replication, a period of time, in seconds, without communication between sync replication peers, after which the peers are disconnected.
+                  type: integer
+                sync_interval:
+                  description: Minimal duration, in seconds, since the last snapshot shared between all destination peers in the replication group.
+                  type: integer
+                target_exported_dir:
+                  description: The directory to which to replicate the local path on the remote peer
+                  type: string
+                view_replication_enabled:
+                  description: Manages view replication
+                  type: boolean
+              required:
+              - name
+              - target_exported_dir
+              type: object
+        x-originalParamName: ProtectedPathAddStreamParams
+      responses:
+        '200':
+          description: ''
+      summary: Add a Replication Stream to a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/commit:
+    patch:
+      description: This endpoint commits a path restore. Before calling This endpoint, call the /protectedpaths/{id}/restore operation to create a clone from a snapshot.
+      operationId: protectedpaths_commit
+      parameters:
+      - description: The ID of the protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        x-originalParamName: ProtectedPathCommitParams
+      responses:
+        '200':
+          description: ''
+      summary: Commit a Restored Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/force_failover:
+    patch:
+      description: This endpoint forces ungraceful fail-over of a group replication protected path. Run the operation from the cluster that you want to become the source peer.
+      operationId: protectedpaths_force_failover
+      parameters:
+      - description: The ID of the protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Force failover on a protected path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/modify_member/:
+    patch:
+      description: This endpoint modifies the capability of a specified stream of a protected path.
+      operationId: protectedpaths_modify_member
+      parameters:
+      - description: The ID of the protected path to which the stream belongs
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                capabilities:
+                  description: The type of protection capability to apply to the stream. If ASYNC_REPLICATION, the stream replicates the path from source peer to destination peer periodically. If SYNC_REPLICATION, the stream replicates the path from source peer to destination peer continuously.
+                  enum:
+                  - ASYNC_REPLICATION
+                  - SYNC_REPLICATION
+                  type: string
+                source_member_capabilities:
+                  description: Source member capabilities
+                  enum:
+                  - ASYNC_REPLICATION
+                  - REPLICATION_AND_GN
+                  type: string
+                stream_id:
+                  description: The ID of a stream that belongs to the protected path
+                  type: string
+              required:
+              - capabilities
+              - stream_id
+              type: object
+        x-originalParamName: ProtectedPathModifyMemberParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify Capability of a Replication Stream that Belongs to a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/pause:
+    patch:
+      description: This endpoint pauses a restore operation on a protected path.
+      operationId: protectedpaths_pause
+      parameters:
+      - description: The ID of the protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  default: false
+                  description: Set to False to pause snapshot restore
+                  type: boolean
+              type: object
+        x-originalParamName: ProtectedPathPauseParams
+      responses:
+        '200':
+          description: ''
+      summary: Pause Restore on a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/prefetch_path:
+    delete:
+      description: This endpoint deletes a prefetch task from the prefetch history.
+      operationId: protectedpaths_prefetch_folder_delete
+      parameters:
+      - description: Protected path ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                stop_running_prefetch:
+                  description: If true, stops the prefetch task running if it's still running.
+                  type: boolean
+                task_id:
+                  description: ID of the prefetch task to delete.
+                  type: integer
+              required:
+              - task_id
+              - stop_running_prefetch
+              type: object
+        x-originalParamName: ProtectedPathPrefetchFolderDeleteParams
+      responses:
+        '204':
+          description: Prefetch delete succeeded
+      summary: Delete Path Prefetch Task
+      tags:
+      - protectedpaths
+    get:
+      description: This endpoint returns status for a prefetch path.
+      operationId: protectedpaths_get_prefetch_folder_status
+      parameters:
+      - description: Protected path ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: ID of task for which to get the prefetch status
+        in: query
+        name: task_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefetchFolderStatusResponse'
+          description: Prefetch path status
+      summary: Return Status for Prefetch Path
+      tags:
+      - protectedpaths
+    post:
+      description: This endpoint prefetches data from a specified path under a global access protected path. The data is copied from the source peer to the cache on the destination peer. The operation is initiated from the destination peer. It improves performance for accessing the cached data.
+      operationId: protectedpaths_prefetch_folder_to_cache
+      parameters:
+      - description: Protected path ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Force prefetch even if it is already running
+        in: query
+        name: force
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                path:
+                  description: The path on the destination peer for which to prefetch data from the equivalent source path to the global access cache. The path can be the entire protected path or a subdirectory.
+                  type: string
+                prefetch_type:
+                  description: Whether to prefetch full data or only metadata.
+                  enum:
+                  - META_DATA_ONLY
+                  - FULL
+                  type: string
+              required:
+              - path
+              - prefetch_type
+              type: object
+        x-originalParamName: ProtectedPathPrefetchFolderToCacheParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefetchFolderResponse'
+          description: Prefetch folder succeeded
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictResponse'
+          description: Prefetch is already running
+      summary: Prefetch a Path to Global Access Cache
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/reattach_stream/:
+    patch:
+      description: This endpoint re-attaches a replication stream to a protected path.
+      operationId: protectedpaths_reattach_stream
+      parameters:
+      - description: The ID of the protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                stream_id:
+                  description: The ID of the replication stream
+                  type: string
+              type: object
+        x-originalParamName: ProtectedPathReattachStreamParams
+      responses:
+        '200':
+          description: ''
+      summary: Reattach a Stream to a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/remove_stream/:
+    patch:
+      description: This endpoint removes a replication stream from the specified protected path.
+      operationId: protectedpaths_remove_stream
+      parameters:
+      - description: The ID of the protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                stream_id:
+                  description: The ID of the replication stream
+                  type: string
+              type: object
+        x-originalParamName: ProtectedPathRemoveStreamParams
+      responses:
+        '204':
+          description: Removed
+      summary: Remove a Stream from a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/replicate_now/:
+    patch:
+      description: This endpoint triggers replication on all streams of a protected path.
+      operationId: protectedpaths_replicate_now
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                time_expires_local:
+                  type: string
+                time_expires_target:
+                  type: string
+              required:
+              - time_expires_local
+              - time_expires_target
+              type: object
+        x-originalParamName: ProtectedPathReplicateNowParams
+      responses:
+        '200':
+          description: ''
+      summary: Trigger Replication on all the Streams of a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/restore:
+    post:
+      description: This endpoint creates a cloned directory of a path from a selected snapshot of a protected path, for the purpose of restoring the path. To complete the restore process, call the /protectedpaths/{id}/commit operation.
+      operationId: protectedpaths_restore
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                loanee_snapshot_id:
+                  description: Id of Snapshot to restore
+                  type: integer
+                name:
+                  type: string
+                  x-cli-header: Stream Name
+              type: object
+        x-originalParamName: ProtectedPathRestoreParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncGlobalSnapStream'
+          description: ''
+      summary: Create a Clone to Restore a Path.
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/resume:
+    patch:
+      description: This endpoint resumes a restore operation that was paused on a protected path.
+      operationId: protectedpaths_resume
+      parameters:
+      - description: The ID of the protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  default: false
+                  description: Set to False to resume restore
+                  type: boolean
+              type: object
+        x-originalParamName: ProtectedPathResumeParams
+      responses:
+        '200':
+          description: ''
+      summary: Resume Restore on a Protected Path
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/stop:
+    patch:
+      description: 'This endpoint stops a restore on a protected path. It removes the snapshot clone created by the restore operation. It is available until the restore is committed. '
+      operationId: protectedpaths_stop
+      parameters:
+      - description: The ID of the protected path
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Stops snapshot restore on protected path.
+      tags:
+      - protectedpaths
+  /protectedpaths/{id}/validate:
+    get:
+      description: This endpoint returns validation results for a protected path. The results returned can be used to warn users if a protected path has s3_versioning enabled and that restoring the path may lead to losing versions that aren't part of the restored snapshot.
+      operationId: protectedpaths_validate
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  has_gn_streams:
+                    description: True if the protected Path has global access streams
+                    type: boolean
+                  is_dest_ppath:
+                    description: True if the protected path or one of its descendants is a replication destination
+                    type: boolean
+                  is_multi_tenant_system:
+                    description: True if the protected path is on a multi-tenant cluster.
+                    type: boolean
+                  is_source_ppath:
+                    description: True if the protected path or one of its descendants is a replication source
+                    type: boolean
+                  s3_versioning:
+                    description: View paths with s3_versioning enabled.
+                    items:
+                      type: string
+                    type: array
+                type: object
+          description: Validations results
+      summary: Returns validations results for Protected Path.
+      tags:
+      - protectedpaths
+components:
+  schemas:
+    AsyncGlobalSnapStream:
+      allOf:
+      - $ref: '#/components/schemas/GlobalSnapStream'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    ConflictResponse:
+      properties:
+        code:
+          example: Conflict reason code.
+          type: string
+        detail:
+          example: The request could not be completed due to a conflict with the current state of the target resource.
+          type: string
+      type: object
+    PrefetchFolderResponse:
+      properties:
+        code:
+          description: Result code
+          type: string
+        task_id:
+          description: Prefetch task ID
+          type: integer
+      type: object
+    GlobalSnapStream:
+      properties:
+        bw:
+          description: BW
+          type: integer
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-raw-units: Bytes/s
+        direction:
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+          x-cli-header: Background sync
+        eta:
+          description: ETA
+          type: string
+        external_state:
+          description: Global Snapshot Clone state
+          type: string
+        guid:
+          description: unique identifier
+          type: string
+        health:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        loanee_root_path:
+          description: Target path
+          type: string
+          x-cli-header: Target path
+        loanee_snapshot:
+          description: Loanee snapshot name
+          type: string
+        loanee_snapshot_id:
+          type: integer
+        loanee_tenant:
+          properties:
+            guid:
+              description: Loanee tenant guid
+              type: string
+            name:
+              description: Loanee tenant name
+              type: string
+          type: object
+        name:
+          type: string
+        owner_root_snapshot:
+          description: Owner root snapshot details
+          type: object
+        owner_tenant:
+          properties:
+            guid:
+              description: Owner tenant guid
+              type: string
+            name:
+              description: Owner tenant name
+              type: string
+          type: object
+        remote_target:
+          description: Remote cluster name
+          type: string
+          x-cli-header: Remote Cluster
+        remote_target_id:
+          type: integer
+        restore_task:
+          type: integer
+        source_cluster:
+          description: Source cluster
+          type: string
+        source_path:
+          description: Source path
+          type: string
+        source_snapshot:
+          description: Source snapshot
+          type: string
+        state:
+          type: string
+        status:
+          description: Status
+          type: object
+        sync_progress:
+          type: integer
+        target_cluster:
+          description: Target cluster
+          type: string
+        view_replication_enabled:
+          description: Whether view replication is enabled
+          type: boolean
+      type: object
+    PrefetchFolderStatusResponse:
+      properties:
+        code:
+          description: Result code
+          type: string
+        inodes_retrieved:
+          description: Number of retrieved inodes (files and directories)
+          type: integer
+        path:
+          description: Prefetched path
+          type: string
+        prefetch_type:
+          description: Prefetch type
+          type: string
+        size_retrieved:
+          description: Retrieved size
+          type: integer
+        task_id:
+          description: Prefetch task ID
+          type: integer
+      type: object
+    ProtectedPath:
+      properties:
+        aggr_phys_estimation:
+          description: The usable capacity reclaimable by deleting all of its snapshots
+          format: int64
+          type: integer
+          x-cli-header: Aggregated Usage
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        bucket_name:
+          type: string
+        bw:
+          description: Replication Bandwidth
+          format: int64
+          type: integer
+          x-cli-header: Bandwidth
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-raw-units: Bytes/s
+        capabilities:
+          description: Indicates if the protected path supports global access streams or async replication streams or sync replication.
+          type: string
+          x-cli-header: Mode
+        enabled:
+          description: start/pause replication
+          type: boolean
+        estimated_read_only_time:
+          format: float
+          type: number
+        eta:
+          type: string
+          x-cli-header: Eta
+        failback_allowed:
+          type: string
+        failover:
+          description: Trigger failover command
+          type: boolean
+        failure_reason:
+          type: string
+        guid:
+          description: guid
+          type: string
+        health:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        inode_count:
+          type: string
+          x-cli-header: Inode Count
+        internal:
+          type: boolean
+        is_gn_enabled:
+          description: Indicates whether the Protected Path is enabled for Global Access
+          type: boolean
+          x-cli-header: Global Access
+        is_local:
+          type: boolean
+        last_restore_point_creation_time:
+          type: string
+          x-cli-header: Last Restore Point Creation Time
+        last_restore_point_time:
+          type: string
+        last_snapshot_creation_time:
+          type: string
+        last_uploading_restore_point_logical_size:
+          type: string
+          x-cli-header: Last Uploading Restore Point Logical Size
+        last_uploading_restore_point_physical_size:
+          type: string
+          x-cli-header: Last Uploading Restore Point Physical Size
+        last_uploading_restore_point_progress:
+          type: integer
+        last_uploading_restore_point_state:
+          type: string
+          x-cli-header: Last Uploading Restore Point State
+        lease_expiry_time:
+          description: The lease expiry time, in seconds, for a global access protected path. This is the duration for which data that was already requested at the destination path can be read locally from cache without the destination peer requesting it from the source peer. When the lease expires, the cache is invalidated and the next read request for the data is requested again from the source peer.
+          type: integer
+          x-cli-header: Lease expiration time
+          x-display-units: Seconds
+        logical_size:
+          type: integer
+        members_info:
+          additionalProperties:
+            $ref: '#/components/schemas/ReplicationMemberInfo'
+          description: Members info per Replication Peer
+          type: object
+        name:
+          type: string
+          x-cli-header: Name
+        peer_cluster_name:
+          type: string
+        peer_connection_state:
+          type: string
+        physical_size:
+          type: integer
+        progress:
+          type: string
+          x-cli-header: Progress
+        protection_policy_id:
+          description: protection policy id
+          type: string
+        protection_policy_name:
+          description: protection policy name
+          type: string
+        remote_tenant_guid:
+          description: remote tenant guid
+          type: string
+        remote_tenant_name:
+          description: remote tenant name
+          type: string
+        replication_policy:
+          description: replication policy id
+          type: string
+        replication_stream_roles:
+          type: object
+        replication_streams:
+          items:
+            type: object
+          type: array
+          x-format: pretty_replication_streams
+        replication_target_name:
+          type: string
+        restore_progress:
+          type: object
+        restore_task:
+          description: link to restore task
+          type: string
+        role:
+          description: current role in the replication
+          type: string
+        role_change_eta_sec:
+          type: integer
+        role_change_progress_promil:
+          type: integer
+        source_dir:
+          description: path to replicate
+          type: string
+          x-cli-header: Path
+        state:
+          description: state
+          enum:
+          - Failed
+          - DELETED_ON_PEER
+          - N/A
+          - INVALID
+          - DELETE_PENDING
+          - Active
+          - Suspended
+          - Syncing
+          - Finalizing
+          - Initializing
+          - Initial Scan
+          - Initial Sync
+          - Initial Sync Suspended
+          - Writable
+          - Blocked
+          - Sync Failed
+          - UNKNOWN
+          - Calculating...
+          - Local
+          - Error
+          - Degraded
+          - INITIAL_SYNC
+          - INCREMENTAL_SYNC
+          - INCREMENTAL_SYNC_SUSPENDED
+          - ERROR_DEPRECATED
+          - LOCAL_ACTIVE
+          - INITIAL_SCAN
+          - DELETE_READY
+          - INITIAL_SYNC_SUSPENDED
+          - LOCAL_SUSPENDED
+          - PENDING_SYNC
+          - PENDING_CLEANUP
+          type: string
+        state_description:
+          type: string
+        sync_disconnect_time:
+          description: Replication group sync replication disconnect time, in seconds
+          type: integer
+          x-cli-header: Sync replication connection timeout
+          x-display-units: Seconds
+        sync_interval:
+          description: sync point assurance in seconds
+          type: integer
+          x-cli-header: Sync Interval
+          x-display-units: Seconds
+        target_exported_dir:
+          description: where to replicate on the remote
+          type: string
+          x-cli-header: Path On Remote
+        tenant_id:
+          description: Local Tenant ID
+          type: integer
+        tenant_name:
+          description: Local Tenant name
+          type: string
+      required:
+      - name
+      - source_dir
+      type: object
+    ReplicationMemberInfo:
+      properties:
+        capabilities:
+          type: string
+        role:
+          type: string
+        state:
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  parameters:
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

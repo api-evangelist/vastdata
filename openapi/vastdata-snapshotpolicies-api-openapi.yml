@@ -1,0 +1,233 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory snapshotpolicies API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: snapshotpolicies
+paths:
+  /snapshotpolicies/:
+    get:
+      description: This endpoint returns the list of snapshot policies. The list can be filtered. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.
+      operationId: snapshotpolicies_list
+      parameters:
+      - description: Filter by snapshot path
+        in: query
+        name: path
+        schema:
+          type: string
+      - description: Filter by last operation state
+        in: query
+        name: last_operation_state
+        schema:
+          type: string
+      - description: Filter by schedule
+        in: query
+        name: schedule
+        schema:
+          type: string
+      - description: Filter to return only enabled snapshots
+        in: query
+        name: enabled
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SnapshotPolicy'
+                title: SnapshotPolicies
+                type: array
+          description: Snapshot policy information
+      summary: List Snapshot Policies (deprecated from VAST Cluster 3.4)
+      tags:
+      - snapshotpolicies
+    post:
+      description: This endpoint creates a snapshot policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.
+      operationId: snapshotpolicies_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cluster_id:
+                  description: Cluster ID
+                  type: integer
+                enabled:
+                  description: Enable the policy
+                  type: boolean
+                max_created_snapshots:
+                  description: The maximum number of snapshots that will be retained locally
+                  type: integer
+                name:
+                  description: Snapshot policy name
+                  type: string
+                path:
+                  description: The source to create the snapshots
+                  type: string
+                prefix:
+                  description: The prefix of the snapshot that will be create
+                  type: string
+                schedule:
+                  description: The schedule to take the snapshot
+                  type: string
+                snapshot_expiration:
+                  description: Snapshot expiration time
+                  type: string
+              required:
+              - path
+              - name
+              - schedule
+              - max_created_snapshots
+              type: object
+        x-originalParamName: SnapshotpolicyCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotPolicy'
+          description: ''
+      summary: Create a Snapshot Policy (deprecated from VAST Cluster 3.4)
+      tags:
+      - snapshotpolicies
+  /snapshotpolicies/{id}/:
+    delete:
+      description: This endpoint deletes a snapshot policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.
+      operationId: snapshotpolicies_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Delete a Snapshot Policy (deprecated from VAST Cluster 3.4)
+      tags:
+      - snapshotpolicies
+    get:
+      description: This endpoint returns details of a snapshot policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.
+      operationId: snapshotpolicies_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotPolicy'
+          description: ''
+      summary: Return Details of a Snapshot Policy (deprecated from VAST Cluster 3.4)
+      tags:
+      - snapshotpolicies
+    patch:
+      description: This endpoint modifies a snapshot policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.
+      operationId: snapshotpolicies_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: Enable the policy
+                  type: boolean
+                max_created_snapshots:
+                  description: The maximum number of snapshots that will be retained locally
+                  type: integer
+                name:
+                  description: Snapshot policy name
+                  type: string
+                prefix:
+                  description: The prefix of the snapshot that will be created
+                  type: string
+                schedule:
+                  description: The schedule to take the snapshot
+                  type: string
+                snapshot_expiration:
+                  description: Snapshot expiration time
+                  type: string
+              type: object
+        x-originalParamName: SnapshotpolicyModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a Snapshot Policy (deprecated from VAST Cluster 3.4)
+      tags:
+      - snapshotpolicies
+components:
+  schemas:
+    SnapshotPolicy:
+      properties:
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        enabled:
+          description: Enable the policy
+          type: boolean
+        guid:
+          type: string
+        humanize_schedule:
+          description: Humanize readable schedule
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        last_operation_state:
+          description: The state of the last policy operation
+          type: string
+        max_created_snapshots:
+          description: The maximum number of snapshots that will be retained locally
+          type: integer
+        name:
+          type: string
+          x-cli-header: Name
+        path:
+          description: Snapshot source path
+          type: string
+          x-cli-header: Path
+        prefix:
+          description: The prefix of the snapshot that will be create
+          type: string
+        schedule:
+          description: The schedule to take the snapshot
+          type: string
+        snapshot_expiration:
+          description: 'm: minutes, D:days, W:weeks, M:months'
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - path
+      - name
+      - schedule
+      - max_created_snapshots
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

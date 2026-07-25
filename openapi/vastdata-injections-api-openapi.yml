@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory injections API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: injections
+paths:
+  /injections/:
+    delete:
+      description: This endpoint deletes all injections.
+      operationId: injections_delete
+      responses:
+        '204':
+          description: ''
+      summary: Delete Injections
+      tags:
+      - injections
+    get:
+      description: This endpoint list injections with the option to filter by type.
+      operationId: injections_get
+      parameters:
+      - description: Injection type
+        in: query
+        name: injection_type
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Injection'
+                title: Injections
+                type: array
+          description: Injections
+      summary: List injections
+      tags:
+      - injections
+    post:
+      operationId: injections_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                params:
+                  type: object
+                persistent:
+                  type: boolean
+                type:
+                  type: string
+              type: object
+        x-originalParamName: InjectionCreateParams
+      responses:
+        '201':
+          description: ''
+      tags:
+      - injections
+components:
+  schemas:
+    Injection:
+      properties:
+        name:
+          description: Injection name
+          type: string
+        values:
+          description: Injection values
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

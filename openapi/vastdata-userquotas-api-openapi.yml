@@ -1,0 +1,320 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory userquotas API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A userquota object defines a user or group quota. A user or group quota limits the capacity and number of files or directories that a specified user or group can own within a directory. A userquota object doesn't specify any directory. A userquota object is effective when specified in a quota object.
+  name: userquotas
+paths:
+  /userquotas/:
+    get:
+      description: This endpoint lists user and group quotas.
+      operationId: user_quotas_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      - description: Set to true to list only user and group quotas for users and groups that have defined user quotas. Set to false to list only user quotas for users and groups that wrote to the directory but have no defined user/group quota rules.
+        in: query
+        name: is_accountable
+        schema:
+          type: boolean
+      - description: Filters the list to show only user quotas that belong to a quota with a specified system_id number. This is different to quota ID
+        in: query
+        name: quota_system_id
+        schema:
+          type: integer
+      - description: Filter by specific directory quota
+        in: query
+        name: quota_id
+        schema:
+          type: integer
+      - description: Set to true to list only group quotas. Set to false to list user and group quotas.
+        in: query
+        name: entity__is_group
+        schema:
+          type: boolean
+      - description: Set to true to list only IAM role quotas.
+        in: query
+        name: entity__is_iam_role
+        schema:
+          type: boolean
+      - description: Set to true to refresh data before returning a response, hence guaranteeing fresh data. If false, the data is fetched from the VMS database without refreshing. Response may be quicker with this parameter set to false.
+        in: query
+        name: refresh_data
+        schema:
+          type: boolean
+      - description: Quota Group ID
+        in: query
+        name: quota_group_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserQuota'
+                title: User Quotas
+                type: array
+          description: User Quota information
+      summary: List User Quotas
+      tags:
+      - userquotas
+    post:
+      operationId: user_quotas_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                grace_period:
+                  description: 'Quota enforcement grace period for the user/group. An alarm is triggered and write operations are blocked if storage usage continues to exceed the soft limit for the grace period. Format: [DD] [HH:[MM:]]ss'
+                  type: string
+                hard_limit:
+                  description: Storage usage limit beyond which no writes will be allowed in the quota directory for the user/group.
+                  type: integer
+                hard_limit_inodes:
+                  description: Number of directories and unique files under the quota path beyond which no writes will be allowed for the user/group. A file with multiple hardlinks is counted only once.
+                  type: integer
+                identifier:
+                  type: string
+                identifier_type:
+                  description: Set to True for a group. Set to false for a user.
+                  type: string
+                is_group:
+                  description: Set to True for a group. Set to false for a user.
+                  type: boolean
+                name:
+                  description: A user name or group name.
+                  type: string
+                quota_group_id:
+                  description: The ID of the quota group to which the user/group quota should be added.
+                  type: integer
+                quota_id:
+                  description: The ID of the quota to which the user/group quota should be added.
+                  type: integer
+                soft_limit:
+                  description: Storage usage limit at which warnings of exceeding the quota are issued for the user/group.
+                  type: integer
+                soft_limit_inodes:
+                  description: Number of directories and unique files under the path at which warnings of exceeding the quota will be issued for the user/group. A file with multiple hardlinks is counted only once.
+                  type: integer
+              type: object
+        x-originalParamName: UserQuotaCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserQuota'
+          description: ''
+      summary: Create a User Quota
+      tags:
+      - userquotas
+  /userquotas/{id}/:
+    delete:
+      description: This endpoint deletes a user quota.
+      operationId: user_quotas_delete
+      parameters:
+      - description: User Quota ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete User Quota
+      tags:
+      - userquotas
+    get:
+      description: This endpoint returns details of a specified user quota.
+      operationId: user_quotas_read
+      parameters:
+      - description: User Quota ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserQuota'
+          description: ''
+      summary: Return Details of a User Quota
+      tags:
+      - userquotas
+    patch:
+      description: This endpoint modifies a user quota.
+      operationId: user_quotas_partial_update
+      parameters:
+      - description: User Quota ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                grace_period:
+                  description: 'Quota enforcement grace period. An alarm is triggered and write operations are blocked if storage usage continues to exceed the soft limit for the grace period. Format: [DD] [HH:[MM:]]s'
+                  type: string
+                hard_limit:
+                  description: Storage usage limit beyond which no writes will be allowed.
+                  type: integer
+                hard_limit_inodes:
+                  description: Number of directories and unique files under the path beyond which no writes will be allowed. A file with multiple hardlinks is counted only once.
+                  type: integer
+                soft_limit:
+                  description: Storage usage limit at which warnings of exceeding the quota are issued.
+                  type: integer
+                soft_limit_inodes:
+                  description: Number of directories and unique files under the path at which warnings of exceeding the quota will be issued. A file with multiple hardlinks is counted only once.
+                  type: integer
+              type: object
+        x-originalParamName: UserQuotaModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify User Quota
+      tags:
+      - userquotas
+components:
+  schemas:
+    PartialUserQuota:
+      allOf:
+      - $ref: '#/components/schemas/DefaultQuota'
+      - properties:
+          email:
+            description: The email used to send the user or group notifications of exceeding quota limits.
+            type: string
+          identifier:
+            type: string
+          identifier_type:
+            type: string
+          is_accountable:
+            type: boolean
+          is_group:
+            description: True for a group quota. False for a user quota.
+            type: boolean
+          is_iam_role:
+            type: boolean
+          name:
+            description: A user or group name
+            type: string
+          percent_capacity:
+            type: integer
+          percent_inodes:
+            description: Percentage of files and directories limit in use
+            type: integer
+          state:
+            type: string
+          time_to_block:
+            description: Grace period expiration time
+            type: string
+            x-cli-header: Grace Period Expiration
+          used_capacity:
+            description: Used capacity in bytes
+            format: int64
+            type: integer
+            x-cli-header: Used-Capacity
+            x-display-base-type: capacity
+            x-display-units: TB
+            x-display-units-alt: TiB
+            x-format: bytes2tbext
+            x-metric: null
+            x-raw-units: Bytes
+            x-source-module: C
+          used_inodes:
+            description: Used inodes
+            type: integer
+            x-cli-header: Used Files/Directories
+          vast_id:
+            description: VAST ID of the user or group with the listed user/group quota
+            type: integer
+        type: object
+    UserQuota:
+      allOf:
+      - $ref: '#/components/schemas/PartialUserQuota'
+      - type: object
+      properties:
+        entity_identifier:
+          type: string
+          x-cli-header: Identifier
+        guid:
+          description: Quota guid
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        identifier:
+          type: string
+        identifier_type:
+          type: string
+        is_group:
+          type: boolean
+        name:
+          description: The name
+          type: string
+        path:
+          type: string
+    DefaultQuota:
+      properties:
+        grace_period:
+          description: 'Quota enforcement grace period in seconds, minutes, hours or days. Example: 90m'
+          type: string
+          x-example: 30d
+        hard_limit:
+          description: Hard quota limit
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        hard_limit_inodes:
+          description: Hard inodes quota limit
+          type: integer
+          x-cli-header: Hard limit Files/Directories
+        quota_system_id:
+          type: integer
+        soft_limit:
+          description: Soft quota limit
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        soft_limit_inodes:
+          description: Soft inodes quota limit
+          type: integer
+          x-cli-header: Soft limit Files/Directories
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

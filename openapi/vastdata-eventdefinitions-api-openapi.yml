@@ -1,0 +1,238 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory eventdefinitions API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Event definitions define the conditions that trigger events, the raising of alarms, alarm severity, and which actions are triggered on events, such as email notifications, webhooks and sending to syslog.
+  name: eventdefinitions
+paths:
+  /eventdefinitions/:
+    get:
+      description: This endpoint lists event definitions. The parameters filter the list.
+      operationId: eventdefinitions_list
+      parameters:
+      - in: query
+        name: object_type
+        schema:
+          type: string
+      - in: query
+        name: event_type
+        schema:
+          type: string
+      - in: query
+        name: metadata__property
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EventDefinition'
+                title: Eventdefinitions
+                type: array
+          description: Event Definition Information
+      summary: List Event Definitions
+      tags:
+      - eventdefinitions
+  /eventdefinitions/{id}/:
+    get:
+      description: This endpoint returns details of a specified event definition.
+      operationId: eventdefinitions_read
+      parameters:
+      - description: Event Definition ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDefinition'
+          description: ''
+      summary: Return Details of an Event Definition
+      tags:
+      - eventdefinitions
+    patch:
+      description: This endpoint modifies an event definition.
+      operationId: eventdefinitions_partial_update
+      parameters:
+      - description: Event Definition ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                alarm_only:
+                  description: Set to true for only alarms to trigger configured actions such as email and webhook. Set to false for all events of the definition to trigger the configured actions.
+                  type: boolean
+                cooldown:
+                  description: Minimal time to wait between two consecutive events
+                  type: integer
+                disable_actions:
+                  description: Set to true to disable alert actions for the event definition.
+                  type: boolean
+                email_recipients:
+                  description: Comma separated list of email recipients for alarms
+                  items:
+                    type: string
+                  type: array
+                enabled:
+                  description: Set to true to enable events, alarms and actions.
+                  type: boolean
+                internal:
+                  type: boolean
+                raise_at_count:
+                  description: Raise an alarm after a specific number of recurrences
+                  type: integer
+                severity:
+                  description: The severity of an alarm triggered by this event. INFO means no alarm is triggered.
+                  enum:
+                  - INFO
+                  - MINOR
+                  - MAJOR
+                  - CRITICAL
+                  type: string
+                time_frame:
+                  description: For rate alarms, the The time frame over which to monitor the property.
+                  type: string
+                trigger_off:
+                  description: 'For ''Object Modified'' alarms: a list of values.'
+                  type: string
+                trigger_on:
+                  description: 'For ''Object Modified'' alarms: a list of values | For ''Threshold/Rate'' alarms: a list of 2 members. The first is an operator like gt/ge/lte and the second is a number'
+                  type: string
+                webhooks:
+                  description: List of webhooks IDs
+                  items:
+                    type: integer
+                  type: array
+              type: object
+        x-originalParamName: EventdefinitionModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify Event Definition
+      tags:
+      - eventdefinitions
+  /eventdefinitions/{id}/test/:
+    patch:
+      description: This endpoint tests an event definition.
+      operationId: eventdefinitions_test
+      parameters:
+      - description: Event Definition ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Test Event Definition
+      tags:
+      - eventdefinitions
+components:
+  schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    EventDefinition:
+      properties:
+        action_definitions:
+          description: Actions triggered by the event
+          type: string
+        alarm_definitions:
+          description: A collection of properties of the alarm definition associated with the event.
+          type: string
+        alarm_only:
+          description: When this is enabled, only alarms will lead to email and webhook actions
+          type: boolean
+        cooldown:
+          description: Minimal time to wait between two consecutive events
+          type: integer
+        disable_actions:
+          description: If true, actions are disabled.
+          type: boolean
+        email_recipients:
+          description: List of emails you want to notify in case this event occurs
+          items:
+            type: string
+          type: array
+        enabled:
+          description: If true, the event definition is enabled.
+          type: boolean
+        event_message:
+          description: Message text.
+          type: string
+        event_type:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        internal:
+          type: boolean
+        metadata:
+          description: A collection of properties of the event definition.
+          type: object
+        name:
+          type: string
+        object_type:
+          type: string
+        property:
+          description: Monitored property
+          type: string
+        raise_at_count:
+          description: Raise an alarm after a specific number of recurrences
+          type: integer
+        severity:
+          description: The severity of the alarm
+          type: string
+        trigger_off:
+          description: 'For ''Object Modified'' alarms: a list of values'
+          type: string
+        trigger_on:
+          description: 'For ''Object Modified'' alarms: a list of values | For ''Threshold/Rate'' alarms: a list of 2
+
+            members. The first is an operator like gt/ge/lte and the second is a number
+
+            '
+          type: string
+        user_modified:
+          description: Did a user modify this event definition
+          type: boolean
+        webhooks:
+          description: List of IDs of webhooks to be triggered by the event.
+          items:
+            type: integer
+          type: array
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

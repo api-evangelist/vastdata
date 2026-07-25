@@ -1,0 +1,383 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory nativereplicationremotetargets API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A replication peer is a remote cluster configured as a peer for async replication. A replication peer  also represents a configured and mirrored async replication relationship between two clusters.
+  name: nativereplicationremotetargets
+paths:
+  /nativereplicationremotetargets/:
+    get:
+      description: This endpoint presents async replication peers.
+      operationId: nativereplicationremotetargets_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: Filter by leading remote VIP, a VIP that is specified when creating the peer. It is one of the VIPs in the remote peer's replication VIP Pool.
+        in: query
+        name: leading_vip
+        schema:
+          type: string
+      - description: Filter by the name of the local cluster's replication VIP pool
+        in: query
+        name: pool
+        schema:
+          type: string
+      - description: Filter by local cluster's software version
+        in: query
+        name: version
+        schema:
+          type: string
+      - description: Filter by remote peer's software version
+        in: query
+        name: remote_version
+        schema:
+          type: string
+      - description: Filter by last heartbeat, the time of the last successful message sent, arrived and acknowledged by the peer.
+        in: query
+        name: last_heart_beat
+        schema:
+          type: string
+      - description: 'Filter by logical capacity remaining available on the remote peer. '
+        in: query
+        name: space_left
+        schema:
+          type: string
+      - description: remote vips
+        in: query
+        name: remote_vips
+        schema:
+          type: string
+      - description: Filter by state
+        in: query
+        name: state
+        schema:
+          enum:
+          - CONNECTED
+          - DELETE_PENDING
+          - CONNECTING
+          - DELETING
+          - ERROR
+          - UNKNOWN
+          type: string
+        x-cli-header: State
+      - description: Filter by secure_mode
+        in: query
+        name: secure_mode
+        schema:
+          type: string
+        x-cli-header: Secure-mode
+      - description: Filter by transport_mode
+        in: query
+        name: transport_mode
+        schema:
+          type: string
+        x-cli-header: Transport-mode
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NativeReplicationRemoteTarget'
+                title: Native Replication Remote Target
+                type: array
+          description: Replication Peer information
+      summary: List Async Replication Peers
+      tags:
+      - nativereplicationremotetargets
+    post:
+      description: 'This endpoint creates an async replication peer configuration between the local cluster and a remote cluster. Prerequisite: a VIP pool on each cluster with role=replication.'
+      operationId: nativereplicationremotetargets_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                leading_vip:
+                  description: Any one of the IP addresses that belong to the remote peer's replication VIP pool. This IP is used for the initial connection between the peers. Once the connection is established, the peers share their external network topology and form multiple connections between the VIPs.
+                  type: string
+                mss:
+                  description: Maximum segment size (MSS), in bytes, that the peer can receive in a single TCP segment.
+                  type: integer
+                name:
+                  type: string
+                  x-cli-header: Name
+                password:
+                  description: Not in use
+                  type: string
+                peer_certificate:
+                  description: Not in use
+                  type: string
+                pool_id:
+                  description: The ID of the local replication VIP Pool to use for the replication connection with the remote peer.
+                  type: integer
+                  x-cli-header: VIP POOL ID
+                secure_mode:
+                  description: 'Secure mode: NONE=no encryption on the replication connection. SECURE=Replication to this peer will be encrypted over the wire with mTLS. Requires a certificate, key and root certificate to be uploaded to VMS on each peer cluster. Upload mTLS certificates with PATCH /clusters/{id}/.'
+                  enum:
+                  - NONE
+                  - SECURE
+                  type: string
+                transport_mode:
+                  description: 'Transport mode: TCP for FIPS compliance, QUIC is not FIPS compliance but good for lower latency in high-latency networks.'
+                  enum:
+                  - TCP
+                  - QUIC
+                  type: string
+              required:
+              - name
+              - leading_vip
+              - pool_id
+              type: object
+        x-originalParamName: NativeReplicationRemoteTargetCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NativeReplicationRemoteTarget'
+          description: ''
+      summary: Create an Async Replication Peer
+      tags:
+      - nativereplicationremotetargets
+  /nativereplicationremotetargets/get_remote_mapping/:
+    get:
+      description: This endpoint returns a remote mapping between replication peers and remote view policies
+      operationId: get_remote_mapping
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      summary: Get the mapping between replication peers and remote view policies
+      tags:
+      - nativereplicationremotetargets
+  /nativereplicationremotetargets/{id}/:
+    delete:
+      description: This endpoint deletes an async replication peer.
+      operationId: nativereplicationremotetargets_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete a Native Replication Peer
+      tags:
+      - nativereplicationremotetargets
+    get:
+      description: This endpoint returns details of an async replication peer, also known as a replication target.
+      operationId: nativereplicationremotetargets_read
+      parameters:
+      - description: index of replication target
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NativeReplicationRemoteTarget'
+          description: ''
+      summary: Return Details of an Async Replication Peer
+      tags:
+      - nativereplicationremotetargets
+    patch:
+      description: This endpoint modifies an async replication peer.
+      operationId: nativereplicationremotetargets_partial_update
+      parameters:
+      - description: NativeReplicationRemoteTarget ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  description: Native Replication Remote Target ID
+                  type: integer
+                  x-cli-header: VIP POOL ID
+                leading_vip:
+                  description: Any one of the IP addresses that belong to the remote peer's replication VIP pool. This IP is used for the initial connection between the peers.
+                  type: string
+                mss:
+                  description: Maximum segment size (MSS), in bytes, that the peer can receive in a single TCP segment.
+                  type: integer
+                name:
+                  description: Name of the peer configuration, reflected also on the remote cluster.
+                  type: string
+                  x-cli-header: Name
+                password:
+                  description: Not in use
+                  type: string
+                peer_certificate:
+                  description: Not in use
+                  type: string
+                pool_id:
+                  description: The ID of the local replication VIP Pool
+                  type: integer
+                  x-cli-header: VIP POOL ID
+                remote_vips:
+                  description: The IP addresses that belong to the remote peer's replication VIP pool. This IP is used for the initial connection between the peers. Once the connection is established, the peers share their external network topology and form multiple connections between the VIPs.
+                  items:
+                    type: string
+                  type: array
+                secure_mode:
+                  description: 'Secure mode: NONE=no encryption on the replication connection. SECURE=Replication to this peer will be encrypted over the wire with mTLS. Requires a certificate, key and root certificate to be uploaded to VMS on each peer cluster. Upload mTLS certificates with PATCH /clusters/{id}/.'
+                  enum:
+                  - NONE
+                  - SECURE
+                  type: string
+                transport_mode:
+                  description: 'Transport mode: TCP for FIPS compliance, QUIC is not FIPS compliance but good for lower latency in high-latency networks.'
+                  enum:
+                  - TCP
+                  - QUIC
+                  type: string
+                version:
+                  type: string
+              type: object
+        x-originalParamName: NativeReplicationRemoteTargetModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify an Async Replication Peer
+      tags:
+      - nativereplicationremotetargets
+components:
+  schemas:
+    NativeReplicationRemoteTarget:
+      properties:
+        address_count:
+          type: integer
+        created:
+          type: string
+        guid:
+          description: unique identifier
+          type: string
+        health:
+          description: Reflects health of connection between peers.
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        is_local:
+          type: boolean
+          x-cli-header: Local
+        last_heart_beat:
+          description: The time of the last successful message sent, arrived and acknowledged by the peer.
+          type: string
+          x-cli-header: Last Heart Beat
+        leading_vip:
+          description: A VIP belonging to the remote peer's replication VIP Pool, used for connecting to the remote peer.
+          type: string
+          x-cli-header: Remote VIP
+        mss:
+          description: Maximum segment size (MSS), in bytes, that the peer can receive in a single TCP segment.
+          type: integer
+          x-cli-header: MSS
+        name:
+          type: string
+          x-cli-header: Name
+        password:
+          description: password for authentication
+          type: string
+        peer_certificate:
+          description: A certificate to use for authentication with the peer.
+          type: string
+        peer_name:
+          description: Name of remote peer
+          type: string
+          x-cli-header: Remote Peer Name
+        pool:
+          type: string
+        pool_id:
+          description: The ID of the VIP pool on the local cluster configured with the replication role
+          type: integer
+          x-cli-header: Local VIP Pool ID
+        pool_name:
+          type: string
+          x-cli-header: Local VIP Pool
+        remote_version:
+          description: The VAST software version running on the remote peer.
+          type: string
+          x-cli-header: Remote Version
+        remote_vip_range:
+          description: VIP range of the remote peer's replication VIP Pool
+          type: string
+          x-cli-header: Remote VIP Ranges
+        remote_vips:
+          items:
+            type: string
+          type: array
+        secret:
+          description: Not yet implemented
+          type: string
+        secure_mode:
+          description: Secure mode
+          type: string
+          x-cli-header: Secure Mode
+        space_left:
+          description: The logical capacity remaining available on the remote peer.
+          type: string
+          x-cli-header: Remote Space Left
+        state:
+          description: State of peer connectivity
+          enum:
+          - CONNECTED
+          - DELETE_PENDING
+          - CONNECTING
+          - DELETING
+          - ERROR
+          - UNKNOWN
+          type: string
+          x-cli-header: State
+        state_description:
+          type: string
+        status:
+          type: string
+        sync_state:
+          type: string
+        transport_mode:
+          description: Transport mode
+          type: string
+          x-cli-header: Transport Mode
+        url:
+          type: string
+        version:
+          description: The VAST software version running on the local peer.
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

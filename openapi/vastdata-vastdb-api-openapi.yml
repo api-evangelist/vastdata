@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vastdb API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: vastdb
+paths:
+  /vastdb/vips/:
+    get:
+      description: This endpoint gets a list of DB access VIPs
+      operationId: vastdb_vips
+      parameters:
+      - $ref: '#/components/parameters/TenantIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VastDBVip'
+                type: array
+          description: ''
+      summary: Get a list of DB access VIPs
+      tags:
+      - vastdb
+components:
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+  schemas:
+    VastDBVip:
+      properties:
+        port:
+          description: DB access port
+          type: integer
+        vip:
+          description: DB access VIP
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

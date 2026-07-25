@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory events API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: VMS logs system driven events, such as changes to object states and properties, and user driven events, such as the creation, modification or deletion of any object in the system.
+  name: events
+paths:
+  /events/:
+    get:
+      description: This endpoint lists events. The parameters filter the list.
+      operationId: events_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      - in: query
+        name: timestamp__gte
+        schema:
+          type: string
+      - in: query
+        name: timestamp__lte
+        schema:
+          type: string
+      - in: query
+        name: event_type
+        schema:
+          type: string
+      - in: query
+        name: event_type__in
+        schema:
+          type: string
+      - in: query
+        name: event_origin
+        schema:
+          type: string
+      - in: query
+        name: event_origin__in
+        schema:
+          type: string
+      - in: query
+        name: event_message__contains
+        schema:
+          type: string
+      - in: query
+        name: object_guid
+        schema:
+          type: string
+      - in: query
+        name: object_type
+        schema:
+          type: string
+      - in: query
+        name: object_type__in
+        schema:
+          type: string
+      - in: query
+        name: object_id
+        schema:
+          type: string
+      - in: query
+        name: severity
+        schema:
+          type: string
+      - in: query
+        name: severity__in
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Event'
+                title: Events
+                type: array
+          description: events information
+      summary: List Events
+      tags:
+      - events
+    post:
+      description: This endpoint creates an event.
+      operationId: events_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                event_message:
+                  description: A description of the event.
+                  type: string
+                event_type:
+                  description: The type of event. 'Object modified' events go on and off when an object property reaches specified values. 'Threshold' events occur when a property value crosses a specified threshold. 'Rate' events occur if a property value exceeds a threshold within a given time frame.
+                  type: string
+                object_id:
+                  type: integer
+                object_type:
+                  description: 'The type of object involved in the event. '
+                  type: string
+              required:
+              - object_type
+              - object_id
+              type: object
+        x-originalParamName: EventAddParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+      summary: Create Event
+      tags:
+      - events
+  /events/{id}/:
+    get:
+      description: This endpoint returns details of a specified event.
+      operationId: events_read
+      parameters:
+      - description: The Event ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+      summary: Return Details of an Event
+      tags:
+      - events
+components:
+  schemas:
+    Event:
+      properties:
+        cluster:
+          type: string
+        event_definition:
+          type: string
+        event_message:
+          description: A description of the event.
+          type: string
+        event_name:
+          description: The event definition name
+          type: string
+        event_origin:
+          description: 'The initiator of the event. '
+          type: string
+        event_type:
+          description: The type of event that occurred.
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        metadata:
+          type: object
+        object_guid:
+          type: string
+        object_id:
+          description: The object involved in the event.
+          type: integer
+        object_name:
+          type: string
+        object_type:
+          description: 'The type of object involved in the event. '
+          type: string
+        severity:
+          description: The severity of alarm raised by the event. If 'Info' no alarm was raised. If 'Minor', Major', or 'Critical', an alarm of that severity was raised by the event.
+          type: string
+        timestamp:
+          description: The date and time of the event.
+          format: date-time
+          type: string
+          x-format: datetime2display
+      type: object
+      x-cli-pagination: true
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

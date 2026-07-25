@@ -1,0 +1,433 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory dboxes API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A DBox is an NVMe-oF JBOF, otherwise known as a VAST enclosure, or an enclosure containing NVMe-oF controller cards and flash SSDs. The dboxes path represents the DBoxes in the cluster, exposes information about the DBoxes and maintenance operations. There are two types of DBoxes. The legacy type DBox has two DNodes. The CERES Dbox, newly introduced in some deployments, has two DTrays and four DNodes.
+  name: dboxes
+paths:
+  /dboxes/:
+    get:
+      description: This endpoint lists the DBoxes that belong to the cluster.
+      operationId: dboxes_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by Rack
+        in: query
+        name: rack_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DBox'
+                title: DBoxes
+                type: array
+          description: DBox information
+      summary: List DBoxes
+      tags:
+      - dboxes
+  /dboxes/add/:
+    post:
+      description: This endpoint adds a DBox to the cluster.
+      operationId: dboxes_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cluster_id:
+                  description: The cluster ID
+                  type: integer
+                dnode_ips:
+                  description: Specify the internal bond IPs of both DNodes in the DNodes as an array.
+                  items:
+                    type: string
+                  type: array
+                drive_size:
+                  description: Optional drive size (for tests)
+                  type: integer
+                empty_box:
+                  description: Without SSD, NVRAM devices (for dbox replacement)
+                  type: boolean
+                lab_deploy:
+                  description: Execute in lab deploy mode (lab only!)
+                  type: boolean
+                migrate_target:
+                  description: DBox will act as a DBox Migration target, has SSDs and NVRAMs
+                  type: boolean
+                nvram_size:
+                  description: Optional NVRAM size (for tests)
+                  type: integer
+                rack_name:
+                  description: Rack name
+                  type: string
+                rack_unit:
+                  description: Rack unit name
+                  type: string
+              required:
+              - dnode_ips
+              type: object
+        x-originalParamName: DboxAddParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Add DBox
+      tags:
+      - dboxes
+  /dboxes/decommission/:
+    post:
+      description: This endpoint removes multiple DBoxes from the cluster
+      operationId: dbox_decommission
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ids:
+                  description: List of DBox IDs to remove
+                  items:
+                    type: integer
+                  type: array
+                skip_raid_health_checks:
+                  default: false
+                  description: Skip RAID health checks during removal
+                  type: boolean
+              required:
+              - ids
+              type: object
+        required: true
+        x-originalParamName: DBoxDecommissionParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+      summary: DBox Removal
+      tags:
+      - dboxes
+  /dboxes/decommission/dry-run/:
+    post:
+      description: This endpoint validates a DBox removal operation without executing it
+      operationId: dbox_decommission_dry_run
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ids:
+                  description: List of DBox IDs to remove
+                  items:
+                    type: integer
+                  type: array
+                skip_raid_health_checks:
+                  default: false
+                  description: Skip RAID health checks during removal
+                  type: boolean
+              required:
+              - ids
+              type: object
+        required: true
+        x-originalParamName: DBoxDecommissionParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    description: Success message
+                    type: string
+                  success:
+                    description: Whether validation passed
+                    type: boolean
+                type: object
+          description: Validation successful
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    description: Error message
+                    type: string
+                  success:
+                    description: Whether validation passed
+                    type: boolean
+                type: object
+          description: Validation failed
+      summary: Validate DBox Removal
+      tags:
+      - dboxes
+  /dboxes/decommission/resume/:
+    post:
+      description: This endpoint resumes a failed/stalled DBox removal operation
+      operationId: dbox_decommission_resume
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+      summary: Resume DBox Removal
+      tags:
+      - dboxes
+  /dboxes/{id}/:
+    delete:
+      description: This endpoint deletes a DBox.
+      operationId: dboxes_delete
+      parameters:
+      - description: DBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Delete a DBox
+      tags:
+      - dboxes
+    get:
+      description: This endpoint returns details of a DBox.
+      operationId: dboxes_read
+      parameters:
+      - description: DBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBox'
+          description: ''
+      summary: Return Details of a DBox
+      tags:
+      - dboxes
+    patch:
+      description: This endpoint modifies a DBox description.
+      operationId: dboxes_partial_update
+      parameters:
+      - description: DBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                conclude:
+                  description: True to conclude replacement
+                  type: boolean
+                description:
+                  description: DBox description
+                  type: string
+                force:
+                  description: 'In case of concluding: do not verify that all devices have been moved. In case of replacing: support moving device while getting to degraded state during replacement'
+                  type: boolean
+                name:
+                  description: The new name of the DBox
+                  type: string
+                replace:
+                  description: True to start replacement
+                  type: boolean
+              type: object
+        x-originalParamName: DboxesModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a DBox Description
+      tags:
+      - dboxes
+  /dboxes/{id}/control_led/:
+    patch:
+      description: This endpoint controls DBox LEDs (on/off)
+      operationId: control_led
+      parameters:
+      - description: DBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  enum:
+                  - true
+                  - false
+                  type: string
+              type: object
+        x-originalParamName: DBoxControlLed
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Control DBox LEDs
+      tags:
+      - dboxes
+  /dboxes/{id}/reset_dp_i2c/:
+    patch:
+      description: This endpoint resets the dp i2c
+      operationId: reset_dp_i2c
+      parameters:
+      - description: DBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Reset dp i2c
+      tags:
+      - dboxes
+components:
+  schemas:
+    DBox:
+      properties:
+        arch_type:
+          type: string
+        box_vendor:
+          description: Shows DBox vendor and model.
+          type: string
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          type: integer
+        description:
+          description: Description
+          type: string
+          x-cli-header: Description
+        drive_type:
+          type: string
+        dtray:
+          type: string
+        guid:
+          type: string
+        hardware_type:
+          description: Hardware type (e.x. sanmina/ceres/ceres_v2)
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        index_in_rack:
+          minimum: 1
+          type: integer
+        is_conclude_possible:
+          description: True if all of the DBox's NVRAM and SSD slots are empty and therefore 'replacement conclude' function can be run, which removes the DBox and its DNodes from the cluster. This is the final step in the replacement of a DBox.
+          type: boolean
+        is_migrate_source:
+          description: Flag that indicates source DBox for migration
+          type: boolean
+        is_migrate_target:
+          description: Flag that indicates target DBox for migration
+          type: boolean
+        is_replace_possible:
+          description: True if DBox replacement is currently an available option
+          type: boolean
+        name:
+          type: string
+          x-cli-header: Name
+        rack_id:
+          minimum: 1
+          type: integer
+        rack_name:
+          type: string
+        state:
+          type: string
+        subsystem:
+          minimum: 0
+          type: integer
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          type: string
+        uid:
+          description: Unique h/w identifier
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

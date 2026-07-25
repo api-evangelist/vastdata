@@ -1,0 +1,308 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory roles API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Roles are sets of VMS permissions. They can specify one or more LDAP groups. Mapping roles to LDAP groups gives LDAP group members the ability to log into VMS and be authorized with the aggregate of permissions belonging to all mapped roles.
+  name: roles
+paths:
+  /roles/:
+    get:
+      description: This endpoint lists the roles configured for manager users.
+      operationId: roles_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Role'
+                title: Roles
+                type: array
+          description: Role information
+      summary: List Roles
+      tags:
+      - roles
+    post:
+      operationId: roles_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ldap_groups:
+                  description: Optionally specify LDAP group(s) to associate with the role. A group can be any user group on an LDAP-based provider, including Active Directory. The provider must be connected to the cluster. If the role is for tenant admins, the provider must be connected to the specific tenant. Members of the specified groups can access VMS and are granted whichever permissions are included in the role. A group can be associated with multiple roles.
+                  items:
+                    type: string
+                  type: array
+                name:
+                  description: Role name
+                  type: string
+                object_id:
+                  description: Object ID. Used to specify a particular object to limit the role to.
+                  type: integer
+                object_type:
+                  description: Object type. Used to specify a particular object to limit the role to.
+                  type: string
+                permissions:
+                  description: 'Permission type. Used to assign all the permissions of given type to a role.
+
+                    Can be used together with `realm` to narrow resulting permissions list (logical AND).
+
+                    Ignored if provided along with `permissions_list`.
+
+                    Note, that this is a legacy name, which does not correspond to the output schema''s `permissions`.
+
+                    '
+                  enum:
+                  - view
+                  - create
+                  - edit
+                  - delete
+                  items:
+                    type: string
+                  type: array
+                permissions_list:
+                  description: To list permission codenames, run /permissions/get. Takes precedence over `permissions` or `realm`.
+                  example: create_applications
+                  items:
+                    type: string
+                  type: array
+                realm:
+                  description: 'Realm name. Used to assigned all the permissions of given realm to a role.
+
+                    Can be used together with `permissions` to narrow resulting permissions list (logical AND).
+
+                    Ignored if provided along with `permissions_list`.
+
+                    '
+                  type: string
+                tenant_id:
+                  description: Pass this parameter to create a role for managers with user_type=TENANT_ADMIN (tenant admin users). Specifies the ID of a single tenant to associate with the role. If not specified, the role is a cluster admin role.  Corresponds to `tenant` in the output schema.
+                  type: integer
+                tenant_ids:
+                  description: Specifies IDs of tenants to associate with the role. Corresponds to `tenants` in the output schema.
+                  items:
+                    type: integer
+                  type: array
+              required:
+              - name
+              type: object
+        x-originalParamName: RoleCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: ''
+      summary: Create Manager Role
+      tags:
+      - roles
+  /roles/{id}/:
+    delete:
+      description: This endpoint deletes a role.
+      operationId: roles_delete
+      parameters:
+      - description: Role ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The role was deleted successfully.
+      summary: Delete Role
+      tags:
+      - roles
+    get:
+      description: This endpoint returns details of a manager role.
+      operationId: roles_read
+      parameters:
+      - description: Role ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: ''
+      summary: Return Details of a Role
+      tags:
+      - roles
+    patch:
+      description: This endpoint modifies a manager role.
+      operationId: roles_partial_update
+      parameters:
+      - description: Role ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ldap_groups:
+                  description: Associates group(s) with the role. A group can be any user group on an LDAP-based provider, including Active Directory. The provider must be connected to the cluster. Members of the specified groups can access VMS and are granted whichever permissions are included in the role. A group can be associated with multiple roles.
+                  items:
+                    type: string
+                  type: array
+                name:
+                  description: Role name
+                  type: string
+                object_id:
+                  description: Object ID. Used to specify a particular object to limit the role to.
+                  type: integer
+                object_type:
+                  description: Object type. Used to specify a particular object to limit the role to.
+                  type: string
+                permissions:
+                  description: 'Permission type. Used to assign all the permissions of given type to a role.
+
+                    Can be used together with `realm` to narrow resulting permissions list (logical AND).
+
+                    Ignored if provided along with `permissions_list`.
+
+                    Note, that this is a legacy name, which does not correspond to the output schema''s `permissions`.
+
+                    '
+                  enum:
+                  - view
+                  - create
+                  - edit
+                  - delete
+                  items:
+                    type: string
+                  type: array
+                permissions_list:
+                  description: 'Specify permissions list as an array of permission codenames in the format <permission>-<realm>.
+
+                    To list permission codenames, run /permissions/get. Takes precedence over `permissions` or `realm`.
+
+                    '
+                  example: create_applications
+                  items:
+                    description: Specify permissions list as an array of permission codenames in the format <permission>-<realm>. To list permission codenames, run /permissions/get. Takes precedence over `permissions` or `realm`. Permission codename in the format <permission>-<realm>. To list permission codenames, run /permissions/get. Takes precedence over `permissions` or `realm`.
+                    type: string
+                  type: array
+                realm:
+                  description: 'Realm name. Used to assigned all the permissions of given realm to a role.
+
+                    Can be used together with `permissions` to narrow resulting permissions list (logical AND).
+
+                    Ignored if provided along with `permissions_list`.
+
+                    '
+                  type: string
+                tenant_ids:
+                  description: IDs of tenants to assign to the role. Corresponds to `tenants` on the output schema.
+                  items:
+                    type: integer
+                  type: array
+              type: object
+        x-originalParamName: RoleModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify Role
+      tags:
+      - roles
+components:
+  schemas:
+    Role:
+      properties:
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        is_admin:
+          description: Is the role is an admin role
+          type: boolean
+          x-cli-header: Is Admin
+        is_default:
+          description: True if default role. Default role cannot be deleted.
+          type: boolean
+          x-cli-header: Default
+        ldap_groups:
+          description: LDAP group(s) associated with the role. Members of the specified groups on a connected LDAP/Active Directory provider can access VMS and are granted whichever permissions are included in the role. A group can be associated with multiple roles.
+          items:
+            type: string
+          type: array
+        managers:
+          description: Managers to which the role is granted
+          items:
+            properties:
+              id:
+                type: integer
+              username:
+                type: string
+            type: object
+          type: array
+          x-format: usernames_only
+        name:
+          description: The name of the role.
+          type: string
+        permissions:
+          description: 'A list of permission codenames (<permission_type>_<realm>).
+
+            Note, that this does not correspond to provided in POST/PATCH schema''s `permissions`, which is a legacy name.
+
+            '
+          items:
+            example: create_applications
+            type: string
+          type: array
+          x-format: roles
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_names:
+          description: Tenant names for the role
+          type: string
+        tenants:
+          description: Tenants for the role
+          items:
+            type: integer
+          type: array
+      required:
+      - name
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

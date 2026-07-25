@@ -1,0 +1,396 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory eboxes API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: An EBox is a VAST enclosure that contains a server and SSDs. The server runs a CNode and two DNodes in containers.
+  name: eboxes
+paths:
+  /eboxes/:
+    get:
+      description: This endpoint lists the EBoxes that belong to the cluster.
+      operationId: eboxes_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EBox'
+                title: EBoxes
+                type: array
+          description: EBox information
+      summary: List EBoxes
+      tags:
+      - eboxes
+  /eboxes/add/:
+    post:
+      description: This endpoint adds a EBox to the cluster.
+      operationId: eboxes_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cluster_id:
+                  description: The cluster ID
+                  type: integer
+                enode_ip:
+                  description: Specify the internal bond IP of ENode.
+                  type: string
+                rack_name:
+                  description: Rack name
+                  type: string
+                rack_unit:
+                  description: Rack unit name
+                  type: string
+                skip_everything:
+                  description: skip discovery and os upgrade
+                  type: boolean
+              required:
+              - enode_ip
+              type: object
+        x-originalParamName: EboxAddParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Add EBox
+      tags:
+      - eboxes
+  /eboxes/decommission/:
+    post:
+      description: This endpoint removes multiple EBoxes from the cluster
+      operationId: ebox_decommission
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ids:
+                  description: List of EBox IDs to remove
+                  items:
+                    type: integer
+                  type: array
+                skip_raid_health_checks:
+                  default: false
+                  description: Skip RAID health checks during removal
+                  type: boolean
+              required:
+              - ids
+              type: object
+        required: true
+        x-originalParamName: EBoxDecommissionParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+      summary: EBox Removal
+      tags:
+      - eboxes
+  /eboxes/decommission/dry-run/:
+    post:
+      description: This endpoint validates an EBox removal operation without executing it
+      operationId: ebox_decommission_dry_run
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ids:
+                  description: List of EBox IDs to remove
+                  items:
+                    type: integer
+                  type: array
+                skip_raid_health_checks:
+                  default: false
+                  description: Skip RAID health checks during removal
+                  type: boolean
+              required:
+              - ids
+              type: object
+        required: true
+        x-originalParamName: EBoxDecommissionParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  success:
+                    type: boolean
+                type: object
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+      summary: Validate EBox Removal
+      tags:
+      - eboxes
+  /eboxes/decommission/resume/:
+    post:
+      description: This endpoint resumes a failed/stalled EBox removal operation
+      operationId: ebox_decommission_resume
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+      summary: Resume EBox Removal
+      tags:
+      - eboxes
+  /eboxes/{id}/:
+    delete:
+      description: This endpoint deletes a EBox.
+      operationId: eboxes_delete
+      parameters:
+      - description: EBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Delete an EBox
+      tags:
+      - eboxes
+    get:
+      description: This endpoint returns details of a EBox.
+      operationId: eboxes_read
+      parameters:
+      - description: EBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EBox'
+          description: ''
+      summary: Return Details of a EBox.
+      tags:
+      - eboxes
+    patch:
+      operationId: eboxes_modify
+      parameters:
+      - description: EBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: True for activate, False for deactivate
+                  type: boolean
+                host_sn:
+                  description: SN of the EBox
+                  type: string
+                immediate_shutdown:
+                  description: True to power off an EBox immediately without waiting for phaseout or deactivation
+                  type: boolean
+                power_off:
+                  description: True to power off an EBox
+                  type: boolean
+                power_on:
+                  description: True to power on an EBox
+                  type: boolean
+                replace:
+                  description: True to start replacement
+                  type: boolean
+              type: object
+        x-originalParamName: EboxesModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify an EBox
+      tags:
+      - eboxes
+  /eboxes/{id}/control_led/:
+    patch:
+      description: This endpoint controls EBox LEDs (on/off)
+      operationId: control_led
+      parameters:
+      - description: EBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  enum:
+                  - true
+                  - false
+                  type: string
+              type: object
+        x-originalParamName: EBoxControlLed
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Control EBox LEDs
+      tags:
+      - eboxes
+components:
+  schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    EBox:
+      properties:
+        arch_type:
+          description: System architecture. e.g. x86_64
+          type: string
+        box_vendor:
+          description: EBox vendor and model.
+          type: string
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          description: ID of parent cluster
+          type: integer
+        description:
+          description: Description
+          type: string
+          x-cli-header: Description
+        drive_type:
+          description: Type of installed drives
+          type: string
+        dtray:
+          type: string
+        guid:
+          description: Globally unique identifier
+          type: string
+        id:
+          description: ID of the EBox.
+          type: integer
+          x-cli-header: ID
+        index_in_rack:
+          description: Index of unit position in rack.
+          minimum: 1
+          type: integer
+        is_conclude_possible:
+          description: Flag that indicates a replacement conclude possibility
+          type: boolean
+        is_replace_possible:
+          description: Flag that indicates DBox replacement availability
+          type: boolean
+        led_status:
+          description: LED Status
+          type: string
+        name:
+          description: Name
+          type: string
+          x-cli-header: Name
+        rack_id:
+          description: ID of a rack to which the EBox is assigned.
+          minimum: 1
+          type: integer
+        rack_name:
+          description: Name of assigned rack
+          type: string
+        sn:
+          description: The host serial number
+          type: string
+        state:
+          description: State. e.g. ACTIVE
+          type: string
+        subsystem:
+          description: Subsystem assigned to rack. Subsystem is an index used in the formation of IP addresses allocated on the cluster's internal network. Each subsystem enables allocation of 254 IPs. Default is 0.
+          minimum: 0
+          type: integer
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          description: Title
+          type: string
+        uid:
+          description: Unique h/w identifier
+          type: string
+        url:
+          description: REST API endpoint
+          type: string
+      required:
+      - name
+      type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

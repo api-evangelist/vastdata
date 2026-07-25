@@ -1,0 +1,224 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Support Bundles API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Support Bundles
+paths:
+  /supportbundlesqueue/:
+    get:
+      description: This endpoint lists queued supportbundles
+      operationId: supportbundlesqueue_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SupportBundle'
+                title: Support Bundle Queue
+                type: array
+          description: Support Bundle information
+      summary: List queued supportbundles
+      tags:
+      - Support Bundles
+  /supportbundlesqueue/{id}/move:
+    patch:
+      description: This endpoint moves a supportbundle to a new position in a queue.
+      operationId: supportbundlesqueue_move
+      parameters:
+      - description: Support Bundle ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                position:
+                  description: New Support Bundle position in a queue
+                  minimum: 1
+                  type: integer
+              required:
+              - position
+              type: object
+        x-originalParamName: SupportBundleQueueMoveParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportBundle'
+          description: ''
+      summary: Move Support Bundle to a new position in a queue
+      tags:
+      - Support Bundles
+components:
+  schemas:
+    SupportBundle:
+      properties:
+        access_key:
+          description: S3 Bucket access key
+          type: string
+        aggregated:
+          description: Aggregate harvests into final bundle (deprecated)
+          type: boolean
+        astron_args:
+          type: string
+        bucket_name:
+          description: S3 Bucket for upload
+          type: string
+        bucket_subdir:
+          description: Sub-directory in support bucket
+          type: string
+        bundle_file:
+          type: string
+        bundle_size:
+          description: Bundle size in bytes
+          type: integer
+        bundle_url:
+          description: URL to access/download support bundle file
+          type: string
+        callhome:
+          type: boolean
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          type: integer
+        cnode_ids:
+          description: Array of IDs of specific CNodes from which logs are collected. If not specified, logs are collected from all CNodes.
+          items:
+            type: integer
+          type: array
+        cnode_ids_array:
+          description: Resolved CNode IDs included in the bundle harvest
+          items:
+            type: integer
+          type: array
+        cnodes_only:
+          type: boolean
+        core:
+          type: boolean
+        create_datetime:
+          type: string
+        created:
+          description: Bundle creation time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        delete_after_send:
+          description: Delete the bundle immediately after successfully uploading
+          type: boolean
+        dnode_ids:
+          description: Array of IDs of specific DNodes from which logs are collected. If not specified, logs are collected from all DNodes.
+          items:
+            type: integer
+          type: array
+        dnode_ids_array:
+          description: Resolved DNode IDs included in the bundle harvest
+          items:
+            type: integer
+          type: array
+        dnodes_only:
+          type: boolean
+        end_time:
+          description: End time of logs in UTC+3
+          type: string
+          x-format: datetime2display
+        guid:
+          type: string
+        hubble_args:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        level:
+          description: Bundle level e.g. small, medium, large
+          type: string
+        luna_args:
+          type: string
+        management:
+          type: boolean
+        max_size:
+          description: Trace files bundle size limit in GB for each node
+          format: float
+          type: number
+          x-display-units: GB
+        mem_traces:
+          type: boolean
+        metrics:
+          type: boolean
+        name:
+          type: string
+        obfuscated:
+          description: 'True if the bundle is obfuscated. If obfuscated, all bundled objects are converted to text and obfuscated. Any data that cannot be converted to text is not included in the bundle. The following types of information are replaced with a non-reversible hash: file and directory names, IP addresses, host names, user names, passwords, MAC addresses.'
+          type: boolean
+        on_nfs:
+          description: True if the bundle is stored on NFS
+          type: boolean
+        performance:
+          type: boolean
+        platform:
+          type: boolean
+        position_in_queue:
+          description: Position of the support bundle in the queue
+          type: integer
+        prefix:
+          description: Identifying label included in the bundle file name as a prefix
+          type: string
+        preset:
+          description: Type of predefined preset bundle
+          type: string
+        secret_key:
+          description: S3 Bucket secret key
+          type: string
+        send_now:
+          description: Upload support bundle after creation
+          type: boolean
+        start_time:
+          description: Start time of logs in UTC+3
+          type: string
+          x-format: datetime2display
+        state:
+          description: State of the bundle
+          enum:
+          - UNKNOWN
+          - CREATING
+          - CREATED
+          - FAILED
+          - DELETING
+          - DELETED
+          - MODIFYING
+          - MODIFIED
+          - PARTIALLY_CREATED
+          - COMPLETING
+          type: string
+        text:
+          description: True if only textual logs are included in the bundle
+          type: boolean
+        traces:
+          type: boolean
+        upload_via_vms:
+          type: boolean
+        url:
+          type: string
+        volume_size:
+          type: integer
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

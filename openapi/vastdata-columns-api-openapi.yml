@@ -1,0 +1,305 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory columns API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The columns endpoint enables you to manage the columns in tables in a schema in a VAST database.
+  name: columns
+paths:
+  /columns/:
+    get:
+      description: This endpoint lists Database Table Columns.
+      operationId: columns_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/TabularPageSize'
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TabularDatabaseNameQP'
+      - $ref: '#/components/parameters/TabularSchemaNameQP'
+      - $ref: '#/components/parameters/TabularTableNameQP'
+      - $ref: '#/components/parameters/TabularIsImportsTableQP'
+      - $ref: '#/components/parameters/TabularListSortedColumnsQP'
+      - $ref: '#/components/parameters/TabularNameQP'
+      - $ref: '#/components/parameters/TabularNameStartswithQP'
+      - $ref: '#/components/parameters/TabularCountOnlyQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Column'
+                title: Columns
+                type: array
+          description: Database Table Columns
+      summary: List Database Table Columns
+      tags:
+      - columns
+  /columns/delete/:
+    delete:
+      description: This endpoint deletes a Database Table Column.
+      operationId: columns_delete
+      requestBody:
+        $ref: '#/components/requestBodies/ColumnDeleteParamsBody'
+      responses:
+        '204':
+          description: OK
+      summary: Delete a Database Table Column
+      tags:
+      - columns
+  /columns/rename/:
+    patch:
+      description: This endpoint renames column.
+      operationId: columns_rename
+      requestBody:
+        $ref: '#/components/requestBodies/ColumnRenameParamsBody'
+      responses:
+        '204':
+          description: OK
+      summary: Rename a Database Table Column
+      tags:
+      - columns
+  /columns/show/:
+    get:
+      description: This endpoint shows a Database Table Column.
+      operationId: columns_show
+      parameters:
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TabularDatabaseNameQP'
+      - $ref: '#/components/parameters/TabularSchemaNameQP'
+      - $ref: '#/components/parameters/TabularTableNameQP'
+      - $ref: '#/components/parameters/TabularIsImportsTableQP'
+      - $ref: '#/components/parameters/TabularNameRequiredQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Column'
+          description: Database Table Column
+      summary: Show a Database Table Column
+      tags:
+      - columns
+components:
+  parameters:
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    TabularListSortedColumnsQP:
+      description: List only columns that are sorted.
+      in: query
+      name: list_sorted_columns
+      schema:
+        type: boolean
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameStartswithQP:
+      description: Getting list of objects by prefix match
+      in: query
+      name: name__startswith
+      schema:
+        type: string
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    TabularIsImportsTableQP:
+      description: Is table actually a sub-table to track imported .parquet files.
+      in: query
+      name: is_imports_table
+      schema:
+        type: boolean
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularSchemaNameQP:
+      description: Getting list of objects by schema_name
+      in: query
+      name: schema_name
+      required: true
+      schema:
+        type: string
+  schemas:
+    TabularColumnArrowSchema:
+      properties:
+        field:
+          description: Column type
+          example:
+            column_type: map
+            key_type:
+              column_type: bool
+            value_type:
+              column_type: bool
+          properties:
+            column_type:
+              type: string
+            key_type:
+              description: Column type for the map key (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the key (e.g., "string", "bool")
+                  type: string
+              type: object
+            value_type:
+              description: Column type for the map value (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the value (e.g., "string", "bool")
+                  type: string
+              type: object
+          type: object
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - name
+      - field
+      type: object
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
+    ColumnDeleteParams:
+      properties:
+        arrow_schema:
+          $ref: '#/components/schemas/TabularColumnArrowSchema'
+        database_name:
+          description: Name of the Database
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - arrow_schema
+      type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+    ColumnRenameParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          new_column_name:
+            description: New Name of the Column (deprecated since 5.0)
+            type: string
+          new_name:
+            description: New name of the Column
+            type: string
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        required:
+        - new_name
+        type: object
+  requestBodies:
+    ColumnDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ColumnDeleteParams'
+      x-originalParamName: ColumnDeleteParamsBody
+    ColumnRenameParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ColumnRenameParams'
+      x-originalParamName: ColumnRenameParamsBody
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

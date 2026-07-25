@@ -1,0 +1,84 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory objectpermissions API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Object permissions reflect the access types, permission realms and managers associated with each object type. They can be listed but not modified.
+  name: objectpermissions
+paths:
+  /permissions/objects/:
+    get:
+      description: This endpoint lists object permissions.
+      operationId: objectpermissions_list
+      parameters:
+      - in: query
+        name: object_type
+        schema:
+          type: string
+      - in: query
+        name: object_id
+        schema:
+          type: string
+      - in: query
+        name: realm
+        schema:
+          type: string
+      - in: query
+        name: permissions
+        schema:
+          type: string
+      - in: query
+        name: manager_id
+        schema:
+          type: string
+      - in: query
+        name: role_id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ObjectPermission'
+                title: ObjectPermissions
+                type: array
+          description: Permission information
+      summary: List Object Permissions
+      tags:
+      - objectpermissions
+components:
+  schemas:
+    ObjectPermission:
+      properties:
+        manager_id:
+          type: integer
+        object_id:
+          type: integer
+        object_type:
+          type: string
+        permissions:
+          type: string
+        realm:
+          type: string
+        role_id:
+          type: integer
+        role_name:
+          type: string
+        username:
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

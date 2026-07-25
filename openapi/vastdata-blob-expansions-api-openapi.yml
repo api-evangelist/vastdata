@@ -1,0 +1,353 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Blob Expansions API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Blob Expansions
+paths:
+  /blobexpansions/:
+    post:
+      description: This endpoint creates a Blob Expansion on a Kafka Topic.
+      operationId: blobexpansions_create
+      requestBody:
+        $ref: '#/components/requestBodies/BlobExpansionCreateParamsBody'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlobExpansionOutput'
+          description: OK
+      summary: Create a Blob Expansion
+      tags:
+      - Blob Expansions
+  /blobexpansions/add_columns/:
+    patch:
+      description: This endpoint adds columns to an existing Blob Expansion.
+      operationId: blobexpansions_add_columns
+      requestBody:
+        $ref: '#/components/requestBodies/BlobExpansionAddColumnsParamsBody'
+      responses:
+        '204':
+          description: OK
+      summary: Add columns to a Blob Expansion
+      tags:
+      - Blob Expansions
+  /blobexpansions/delete/:
+    delete:
+      description: This endpoint deletes a Blob Expansion.
+      operationId: blobexpansions_delete
+      requestBody:
+        $ref: '#/components/requestBodies/BlobExpansionDeleteParamsBody'
+      responses:
+        '204':
+          description: OK
+      summary: Delete a Blob Expansion
+      tags:
+      - Blob Expansions
+  /blobexpansions/drop_columns/:
+    patch:
+      description: This endpoint drops columns from an existing Blob Expansion.
+      operationId: blobexpansions_drop_columns
+      requestBody:
+        $ref: '#/components/requestBodies/BlobExpansionDropColumnsParamsBody'
+      responses:
+        '204':
+          description: OK
+      summary: Drop columns from a Blob Expansion
+      tags:
+      - Blob Expansions
+  /blobexpansions/show/:
+    get:
+      description: This endpoint shows a Blob Expansion.
+      operationId: blobexpansions_show
+      parameters:
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TabularDatabaseNameQP'
+      - $ref: '#/components/parameters/TabularTableNameQP'
+      - $ref: '#/components/parameters/TabularSourceColumnNameQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlobExpansionOutput'
+          description: Blob Expansion
+      summary: Show a Blob Expansion
+      tags:
+      - Blob Expansions
+components:
+  schemas:
+    BlobExpansionDeleteParams:
+      allOf:
+      - $ref: '#/components/schemas/BlobExpansionHierarchy'
+    TabularColumnArrowSchema:
+      properties:
+        field:
+          description: Column type
+          example:
+            column_type: map
+            key_type:
+              column_type: bool
+            value_type:
+              column_type: bool
+          properties:
+            column_type:
+              type: string
+            key_type:
+              description: Column type for the map key (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the key (e.g., "string", "bool")
+                  type: string
+              type: object
+            value_type:
+              description: Column type for the map value (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the value (e.g., "string", "bool")
+                  type: string
+              type: object
+          type: object
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - name
+      - field
+      type: object
+    BlobExpansionDropColumnsParams:
+      allOf:
+      - $ref: '#/components/schemas/BlobExpansionHierarchy'
+      - properties:
+          arrow_schema:
+            description: Schema of the columns to drop
+            items:
+              $ref: '#/components/schemas/TabularColumnArrowSchema'
+            type: array
+          remove_copy_source_column:
+            description: Remove copy of the raw source column from target table
+            type: boolean
+          remove_excessive_values_output:
+            description: Remove the excessive-values output column from the target table
+            type: boolean
+          remove_missing_values_output:
+            description: Remove the missing-values output column from the target table
+            type: boolean
+        required:
+        - arrow_schema
+        type: object
+    BlobExpansionCreateParams:
+      allOf:
+      - $ref: '#/components/schemas/BlobExpansionHierarchy'
+      - properties:
+          add_excessive_values_output:
+            description: Add an output column tracking source-blob fields not declared in the schema (defaults to false)
+            type: boolean
+          add_missing_values_output:
+            description: Add an output column tracking schema fields missing from the source blob (defaults to false)
+            type: boolean
+          arrow_schema:
+            description: Schema of the columns to parse from the blob
+            items:
+              $ref: '#/components/schemas/TabularColumnArrowSchema'
+            type: array
+          copy_source_column:
+            description: Whether to copy the raw source column to the target table
+            type: boolean
+          expansion_format:
+            description: Expansion format
+            enum:
+            - json
+            type: string
+          flatten_delimiter:
+            description: Delimiter for flattened path column names (default "__")
+            type: string
+          flatten_path:
+            description: Whether to flatten nested struct columns
+            type: boolean
+          target_table_name:
+            description: Target table name for expanded data
+            type: string
+          target_table_schema:
+            description: Target table schema (defaults to source table's schema)
+            type: string
+        required:
+        - target_table_name
+        - expansion_format
+        - arrow_schema
+        type: object
+    BlobExpansionOutput:
+      properties:
+        add_excessive_values_output:
+          description: Whether the excessive-values output column is present in the target table
+          type: boolean
+        add_missing_values_output:
+          description: Whether the missing-values output column is present in the target table
+          type: boolean
+        columns:
+          description: List of expanded columns
+          items:
+            $ref: '#/components/schemas/Column'
+          type: array
+        copy_source_column:
+          description: Whether the source column is copied to the target table
+          type: boolean
+        expansion_format:
+          description: Expansion format
+          enum:
+          - json
+          type: string
+        source_column_name:
+          description: Source column name
+          type: string
+        target_table_name:
+          description: Target table name for expanded data
+          type: string
+      type: object
+    BlobExpansionHierarchy:
+      properties:
+        database_name:
+          description: Kafka bucket name containing the source topic
+          type: string
+        source_column_name:
+          description: Source column name (defaults to "value" for Kafka topics)
+          type: string
+        table_name:
+          description: Source Kafka topic name
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      required:
+      - database_name
+      - table_name
+      type: object
+    BlobExpansionAddColumnsParams:
+      allOf:
+      - $ref: '#/components/schemas/BlobExpansionHierarchy'
+      - properties:
+          add_copy_source_column:
+            description: Add copy of the raw source column to target table
+            type: boolean
+          add_excessive_values_output:
+            description: Add an output column tracking source-blob fields not declared in the schema
+            type: boolean
+          add_missing_values_output:
+            description: Add an output column tracking schema fields missing from the source blob
+            type: boolean
+          arrow_schema:
+            description: Schema of the columns to add
+            items:
+              $ref: '#/components/schemas/TabularColumnArrowSchema'
+            type: array
+        required:
+        - arrow_schema
+        type: object
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+  requestBodies:
+    BlobExpansionCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionCreateParams'
+      x-originalParamName: BlobExpansionCreateParamsBody
+    BlobExpansionDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionDeleteParams'
+      x-originalParamName: BlobExpansionDeleteParamsBody
+    BlobExpansionAddColumnsParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionAddColumnsParams'
+      x-originalParamName: BlobExpansionAddColumnsParamsBody
+    BlobExpansionDropColumnsParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionDropColumnsParams'
+      x-originalParamName: BlobExpansionDropColumnsParamsBody
+  parameters:
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TabularSourceColumnNameQP:
+      description: Source column name for blob expansion (defaults to "value" for Kafka topics)
+      in: query
+      name: source_column_name
+      schema:
+        type: string
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

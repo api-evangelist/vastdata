@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory metrics API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Metrics available to be included in analytics reports (using the /monitors/ endpoint) can be listed using either the /metrics/ endpoint or the /analytics/ endpoint.
+  name: metrics
+paths:
+  /analytics/:
+    get:
+      description: This endpoint queries the cluster for all available analytics metrics. The response is identical to that of the /metrics/ endpoint. To create report featuring any of the metrics, use the /monitors/ endpoint.
+      operationId: analytics_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metric'
+          description: ''
+      summary: Query System Metrics
+      tags:
+      - metrics
+  /metrics/:
+    get:
+      description: This endpoint queries the cluster for all available analytics metrics. The response is identical to that of the /analytics/ endpoint. To create report featuring any of the metrics, use the /monitors/ endpoint.
+      operationId: metrics_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metric'
+          description: ''
+      summary: Query System Metrics
+      tags:
+      - metrics
+components:
+  schemas:
+    Metric:
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

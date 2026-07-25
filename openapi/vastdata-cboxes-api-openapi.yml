@@ -1,0 +1,197 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory cboxes API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A CBox is a server chassis containing four CNodes. The cboxes path represents the CBoxes in the cluster, exposes information about the cBoxes and maintenance operations.
+  name: cboxes
+paths:
+  /cboxes/:
+    get:
+      description: This endpoint lists the CBoxes that belong to the cluster.
+      operationId: cboxes_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by Rack
+        in: query
+        name: rack_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CBox'
+                title: CBoxes
+                type: array
+          description: CBox information
+      summary: List CBoxes
+      tags:
+      - cboxes
+  /cboxes/{id}/:
+    get:
+      description: This endpoint returns details of a CBox.
+      operationId: cboxes_read
+      parameters:
+      - description: CBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CBox'
+          description: ''
+      summary: Return Details of a CBox
+      tags:
+      - cboxes
+    patch:
+      description: This endpoint modifies a CBox description.
+      operationId: cboxes_partial_update
+      parameters:
+      - description: CBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  description: CBox description
+                  type: string
+              type: object
+        x-originalParamName: CboxesModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify CBox
+      tags:
+      - cboxes
+  /cboxes/{id}/control_led/:
+    patch:
+      description: This endpoint controls CBox LEDs (on/off)
+      operationId: control_led
+      parameters:
+      - description: CBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  enum:
+                  - true
+                  - false
+                  type: string
+              type: object
+        x-originalParamName: CBoxControlLed
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Control CBox LEDs
+      tags:
+      - cboxes
+  /cboxes/{id}/refresh_uid:
+    patch:
+      description: This endpoint refreshes cbox uid to match it's cnodes chassis serial.
+      operationId: refresh_uid
+      parameters:
+      - description: CBox ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Refreshes cbox uid to match it's cnodes chassis serial
+      tags:
+      - cboxes
+components:
+  schemas:
+    CBox:
+      properties:
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          type: integer
+        description:
+          description: Description
+          type: string
+          x-cli-header: Description
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        index_in_rack:
+          minimum: 1
+          type: integer
+        name:
+          type: string
+          x-cli-header: Name
+        rack_id:
+          minimum: 1
+          type: integer
+        rack_name:
+          type: string
+        state:
+          type: string
+        subsystem:
+          minimum: 0
+          type: integer
+        title:
+          type: string
+        uid:
+          description: Unique h/w identifier
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

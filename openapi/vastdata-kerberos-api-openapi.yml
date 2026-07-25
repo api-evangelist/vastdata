@@ -1,0 +1,391 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Kerberos API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Kerberos
+paths:
+  /kerberos/:
+    get:
+      description: This endpoint lists Kerberos Providers.
+      operationId: kerberos_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Kerberos'
+                type: array
+          description: A list of Kerberos Providers
+        '400':
+          description: Bad request
+      summary: List Kerberos Providers
+      tags:
+      - Kerberos
+    post:
+      description: This endpoint creates a Kerberos Provider.
+      operationId: kerberos_create
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                kadmin_servers:
+                  items:
+                    type: string
+                  type: array
+                kdc:
+                  items:
+                    type: string
+                  type: array
+                realm:
+                  type: string
+                service_principals:
+                  description: Kerberos Provider Service Principals
+                  items:
+                    type: string
+                  type: array
+              required:
+              - realm
+              - kdc
+              - kadmin_servers
+              - service_principals
+              type: object
+        description: Kerberos object that needs to be added
+        required: true
+        x-originalParamName: KerberosCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Kerberos'
+          description: Kerberos created successfully
+        '400':
+          description: Bad request
+      summary: Create a new Kerberos provider
+      tags:
+      - Kerberos
+  /kerberos/{id}/:
+    delete:
+      description: This endpoint deletes a specified Kerberos Provider.
+      operationId: kerberos_delete
+      parameters:
+      - $ref: '#/components/parameters/KrbProviderId'
+      responses:
+        '204':
+          description: Kerberos provider deleted successfully
+        '404':
+          description: Kerberos provider not found
+      summary: Delete an existing Kerberos Provider
+      tags:
+      - Kerberos
+    get:
+      description: This endpoint returns details of a specified Kerberos Provider.
+      operationId: kerberos_show
+      parameters:
+      - $ref: '#/components/parameters/KrbProviderId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Kerberos'
+          description: Kerberos Provider details
+        '404':
+          description: Kerberos Provider not found
+      summary: Return Details of a Kerberos Provider
+      tags:
+      - Kerberos
+    patch:
+      description: This endpoint modifies a specified Kerberos Provider.
+      operationId: kerberos_modify
+      parameters:
+      - $ref: '#/components/parameters/KrbProviderId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  type: boolean
+                kadmin_servers:
+                  items:
+                    type: string
+                  type: array
+                kdc:
+                  items:
+                    type: string
+                  type: array
+                realm:
+                  type: string
+                service_principals:
+                  description: Kerberos Provider Service Principals
+                  items:
+                    type: string
+                  type: array
+              type: object
+        required: true
+        x-originalParamName: KerberosModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Kerberos'
+          description: KerberosProvider updated successfully
+        '400':
+          description: Bad request
+        '404':
+          description: KerberosProvider not found
+      summary: Modify Kerberos Provider
+      tags:
+      - Kerberos
+  /kerberos/{id}/keytab:
+    post:
+      description: This endpoint generates a keytab file for the Kerberos Provider service principals.
+      operationId: kerberos_keytab
+      parameters:
+      - $ref: '#/components/parameters/KrbProviderId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                admin_password:
+                  description: The password for the Kerberos admin user specified as admin_username
+                  type: string
+                admin_username:
+                  description: A user name for a Kerberos admin user
+                  type: string
+              required:
+              - admin_password
+              - admin_username
+              type: object
+        required: true
+        x-originalParamName: KerberosKeytabParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  service_principals:
+                    $ref: '#/components/schemas/KerberosPrincipalsInfo'
+                type: object
+          description: Keytab file was generated
+        '400':
+          description: Bad request No admin username or\and passowrd given
+      summary: Generate keytab for the Kerberos Provider
+      tags:
+      - Kerberos
+    put:
+      description: This endpoint uploads a keytab file for specified Kerberos Provider.
+      operationId: kerberos_upload_keytab
+      parameters:
+      - $ref: '#/components/parameters/KrbProviderId'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                keytab_file:
+                  description: Keytab file
+                  format: binary
+                  type: string
+                  x-formData-name: keytab_file
+              required:
+              - keytab_file
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  service_principals:
+                    $ref: '#/components/schemas/KerberosPrincipalsInfo'
+                type: object
+          description: Keytab file was uploaded
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Keytab file too large (max 8192 bytes).
+                    type: string
+                type: object
+          description: The request contains invalid data.
+      summary: Upload keytab for the Kerberos Provider
+      tags:
+      - Kerberos
+  /kerberos/{id}/keytab/:
+    post:
+      description: This endpoint generates keytab for specified Kerberos Provider.
+      operationId: kerberos_keytab
+      parameters:
+      - $ref: '#/components/parameters/KrbProviderId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                admin_password:
+                  type: string
+                admin_username:
+                  type: string
+              required:
+              - admin_password
+              - admin_username
+              type: object
+        required: true
+        x-originalParamName: KerberosKeytabParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  service_principals:
+                    $ref: '#/components/schemas/KerberosPrincipalsInfo'
+                type: object
+          description: Keytab file was generated
+        '400':
+          description: Bad request No admin username or\and passowrd given
+      summary: Generate keytab for the Kerberos Provider
+      tags:
+      - Kerberos
+    put:
+      description: This endpoint uploads keytab for specified Kerberos Provider.
+      operationId: kerberos_upload_keytab
+      parameters:
+      - $ref: '#/components/parameters/KrbProviderId'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                keytab_file:
+                  description: Keytab file
+                  format: binary
+                  type: string
+                  x-formData-name: keytab_file
+              required:
+              - keytab_file
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  service_principals:
+                    $ref: '#/components/schemas/KerberosPrincipalsInfo'
+                type: object
+          description: Keytab file was generated
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Keytab file too large (max 8192 bytes).
+                    type: string
+                type: object
+          description: The request contains invalid data.
+      summary: Upload keytab for the Kerberos Provider
+      tags:
+      - Kerberos
+components:
+  parameters:
+    KrbProviderId:
+      description: Kerberos Provider ID
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
+  schemas:
+    Kerberos:
+      properties:
+        enabled:
+          type: boolean
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        kadmin_servers:
+          items:
+            type: string
+          type: array
+        kdc:
+          items:
+            type: string
+          type: array
+        realm:
+          type: string
+        service_principals:
+          items:
+            description: Kerberos Provider Service Principals
+            type: string
+          type: array
+        state:
+          $ref: '#/components/schemas/KerberosStateInfo'
+      type: object
+    KerberosStateInfo:
+      properties:
+        kadmin_servers:
+          $ref: '#/components/schemas/KerberosServersInfo'
+        kdc:
+          $ref: '#/components/schemas/KerberosServersInfo'
+        service_principals:
+          $ref: '#/components/schemas/KerberosPrincipalsInfo'
+      type: object
+    KerberosPrincipalsInfo:
+      items:
+        properties:
+          message:
+            type: string
+          name:
+            type: string
+          status:
+            enum:
+            - SUCCESS
+            - NO_KEYTAB_ENTRY
+            - NOT_AUTHENTICATED
+            - FAILURE
+            type: string
+        type: object
+      type: array
+    KerberosServersInfo:
+      items:
+        properties:
+          location:
+            type: string
+          message:
+            type: string
+          status:
+            enum:
+            - SUCCESS
+            - PINGED_ONLY
+            - PARSED_ONLY
+            - FAILURE
+            type: string
+        type: object
+      type: array
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

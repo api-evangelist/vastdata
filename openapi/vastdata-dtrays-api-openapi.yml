@@ -1,0 +1,408 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory dtrays API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A DTray is a component of the CERES DBox. It is a canister that has two DNodes installed within. The DTray is a component of the CERES DBox. There are two Dtrays in each CERES DBox.
+  name: dtrays
+paths:
+  /dtrays/:
+    get:
+      description: This endpoint lists the all DTrays.
+      operationId: dtrays_list
+      parameters:
+      - description: Display specified page of results
+        in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter list by DTray state
+        in: query
+        name: state
+        schema:
+          type: string
+      - description: Filter list by DTray name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: Filter by enabled state
+        in: query
+        name: enabled
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DTray'
+                title: DTray
+                type: array
+          description: DTray information
+      summary: List DTrays
+      tags:
+      - dtrays
+  /dtrays/{id}/:
+    get:
+      description: This endpoint returns details of a DTray.
+      operationId: dtrays_read
+      parameters:
+      - description: DTray ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTray'
+          description: ''
+      summary: Return Details of a DTray
+      tags:
+      - dtrays
+    patch:
+      description: This endpoint activates, deactivates a DTray.
+      operationId: dtrays_partial_update
+      parameters:
+      - description: DTray ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: True for activate, False for deactivate
+                  type: boolean
+                power_off:
+                  description: True for power off
+                  type: boolean
+                power_on:
+                  description: True for power on
+                  type: boolean
+                replace:
+                  description: True for replacement
+                  type: boolean
+                skip_network_validation:
+                  description: If true, skips internal network validation. Allows FRU to proceed if another node is in failed state.
+                  type: boolean
+              type: object
+        x-originalParamName: DtrayModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Activate/Deactivate DTray
+      tags:
+      - dtrays
+  /dtrays/{id}/control_led/:
+    patch:
+      description: This endpoint controls the DTray (DNode) LEDs
+      operationId: control_led
+      parameters:
+      - description: DTray ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  enum:
+                  - blink
+                  - false
+                  type: string
+              type: object
+        x-originalParamName: DtrayControlLed
+      responses:
+        '204':
+          description: OK
+      summary: Control DTray (DNode) LEDs
+      tags:
+      - dtrays
+  /dtrays/{id}/rename/:
+    patch:
+      description: This endpoint renames a Dtray.
+      operationId: rename
+      parameters:
+      - description: Dtray ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: New DTray name
+                  type: string
+              type: object
+        x-originalParamName: DtrayRename
+      responses:
+        '204':
+          description: The DTray was renamed successfully
+      summary: Rename Dtray
+      tags:
+      - dtrays
+components:
+  schemas:
+    DTray:
+      properties:
+        bmc_fw_version:
+          description: BMC FW version
+          type: string
+          x-cli-header: BMC-FW-Version
+        bmc_ip:
+          description: BMC IP
+          type: string
+          x-cli-header: BMC IP
+        bmc_state:
+          type: string
+        bmc_state_reason:
+          type: string
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cpld_version:
+          description: CPLD version
+          type: string
+          x-cli-header: CPLD version
+        dbox:
+          description: Parent DBox
+          type: string
+          x-cli-header: DBox
+        dbox_id:
+          type: integer
+        dnodes:
+          items:
+            $ref: '#/components/schemas/DNode'
+          type: array
+        enabled:
+          description: dtray enabled
+          type: boolean
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        led_status:
+          type: string
+        mcu_state:
+          description: MCU state
+          type: string
+          x-cli-header: MCU state
+        mcu_version:
+          description: MCU version
+          type: string
+          x-cli-header: MCU version
+        name:
+          type: string
+          x-cli-header: Name
+        pcie_switch_firmware_version:
+          description: PCIE switch firmware version
+          type: string
+          x-cli-header: PCIE switch firmware version
+        pcie_switch_mfg_version:
+          description: PCIE MFG version
+          type: string
+          x-cli-header: PCIE MFG version
+        position:
+          description: Position
+          type: string
+          x-cli-header: Position
+        serial_number:
+          description: DTray Serial Number
+          type: string
+          x-cli-header: Serial Number
+        state:
+          type: string
+        sync:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      - dnodes
+      type: object
+    DNode:
+      properties:
+        arch_type:
+          type: string
+        bios_version:
+          type: string
+          x-cli-header: BIOS Version
+        bmc_fw_version:
+          description: BMC FW version
+          type: string
+          x-cli-header: BMC FW version
+        bmc_state:
+          type: string
+        bmc_state_reason:
+          type: string
+        box_rdma_port:
+          description: port for internal use
+          type: integer
+        build:
+          type: string
+          x-cli-header: Build
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          type: integer
+        cpld:
+          type: string
+        data_rdma_port:
+          description: port for internal use
+          type: integer
+        data_tcp_port:
+          description: port for internal use
+          type: integer
+        dbox:
+          description: Parent DBox
+          type: string
+          x-cli-header: DBox
+        dbox_id:
+          type: integer
+        display_name:
+          type: string
+        dtray:
+          description: Parent DTray
+          type: string
+          x-cli-header: DTray
+        ebox:
+          description: Parent EBox
+          type: string
+          x-cli-header: EBox
+        ebox_id:
+          type: integer
+        enabled:
+          description: True if Dnode is enabled
+          type: boolean
+        guid:
+          type: string
+        host_label:
+          description: Host label, used to label container, e.g. 11.0.0.1-4000
+          type: string
+        hostname:
+          description: Host Name
+          type: string
+          x-cli-header: Hostname
+        id:
+          type: integer
+          x-cli-header: ID
+        ip:
+          description: The IP of the bond interface of ip1 and ip2.
+          type: string
+          x-cli-header: IP
+        ip1:
+          description: 1st of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP1
+        ip2:
+          description: 2nd of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP2
+        ipmi_ip:
+          description: IPMI IP
+          type: string
+          x-cli-header: IPMI IP
+        ipv6:
+          description: External IPv6 Address
+          type: string
+          x-cli-header: IPv6
+        is_primary:
+          description: Indicates if node is the primary, aka master, dnode.
+          type: boolean
+          x-cli-header: Primary
+        led_status:
+          type: string
+          x-cli-header: LED Status
+        mgmt_ip:
+          description: IP address for management access
+          type: string
+          x-cli-header: MGMT IP
+        name:
+          type: string
+          x-cli-header: Name
+        new_name:
+          type: string
+        os_version:
+          description: Node OS version
+          type: string
+          x-cli-header: OS
+        platform_rdma_port:
+          description: port for internal use
+          type: integer
+        platform_tcp_port:
+          description: port for internal use
+          type: integer
+        position:
+          type: string
+        rpm:
+          description: VAST Utils Version
+          type: string
+          x-cli-header: VAST Utils Version
+        sn:
+          description: The host serial number
+          type: string
+          x-cli-header: Serial
+        state:
+          type: string
+          x-cli-header: State
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vips API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A VIP is a virtual IP address that belongs to a VIP pool.
+  name: vips
+paths:
+  /vips/:
+    get:
+      description: This endpoint lists VIPs.
+      operationId: vips_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by IP
+        in: query
+        name: ip
+        schema:
+          type: string
+      - description: Filter IP by case-insensitive containment
+        in: query
+        name: ip__icontains
+        schema:
+          type: string
+      - description: Filter by VIP Pool ID
+        in: query
+        name: vippool__id
+        schema:
+          type: string
+      - description: Filter by VIP Pool name
+        in: query
+        name: vippool__name
+        schema:
+          type: string
+      - description: Filter by CNode name
+        in: query
+        name: cnode__name
+        schema:
+          type: string
+      - description: Filter by CNode ID
+        in: query
+        name: cnode__id
+        schema:
+          type: string
+      - in: query
+        name: cluster__name
+        schema:
+          type: string
+      - in: query
+        name: cluster__id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VIP'
+                title: VIPs
+                type: array
+          description: VIP information
+      summary: List VIPs
+      tags:
+      - vips
+  /vips/{id}/:
+    get:
+      description: This endpoint returns information about a specified VIP.
+      operationId: vips_read
+      parameters:
+      - description: VIP ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VIP'
+          description: ''
+      summary: Return Details of a VIP
+      tags:
+      - vips
+components:
+  schemas:
+    VIP:
+      properties:
+        cluster:
+          description: Parent Cluster
+          type: string
+        cnode:
+          description: Parent CNode
+          type: string
+          x-cli-header: CNode
+        guid:
+          type: string
+        hostname:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        ip:
+          description: Virtual IP Address
+          type: string
+          x-cli-header: Virtual-IP
+        name:
+          type: string
+          x-cli-header: Name
+        title:
+          type: string
+        url:
+          type: string
+        vippool:
+          description: Parent VIP Pool
+          type: string
+          x-cli-header: VIP-Pool
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

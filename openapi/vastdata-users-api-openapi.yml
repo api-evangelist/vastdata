@@ -1,0 +1,958 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory users API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: 'Users who can be authorized to access any data on the cluster via any supported client protocol can be created on a local provider. They are more typically stored on external authorization providers (AD, LDAP and NIS). The users path provides: management of local provider users, querying of external provider users, and S3 access management for both local and external users.'
+  name: users
+paths:
+  /users/:
+    get:
+      description: This endpoint lists users on the cluster's local provider.
+      operationId: users_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                title: Users
+                type: array
+          description: Local Provider User information
+      summary: List Users
+      tags:
+      - users
+    post:
+      description: This endpoint adds a user to a local provider.
+      operationId: users_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                allow_create_bucket:
+                  description: Set to true to give the user permission to create S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                allow_delete_bucket:
+                  description: Set to true to give the user permission to delete S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                gids:
+                  description: List of group GIDs of all groups to which the user should belong.
+                  items:
+                    type: integer
+                  type: array
+                leading_gid:
+                  description: Leading GID
+                  type: integer
+                local:
+                  description: Not in use
+                  type: boolean
+                local_provider_id:
+                  description: The ID of the local provider to which to add the user
+                  type: integer
+                name:
+                  description: User name
+                  type: string
+                password:
+                  description: Password
+                  type: string
+                s3_policies_ids:
+                  description: Specify S3 policies to attach to the user.
+                  items:
+                    type: integer
+                  type: array
+                s3_superuser:
+                  description: Set to true to give the user S3 superuser permission. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                uid:
+                  description: NFS UID
+                  type: integer
+              required:
+              - name
+              - local_provider_id
+              type: object
+        x-originalParamName: UserAddParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User details
+      summary: Add User to a Local Provider
+      tags:
+      - users
+  /users/copy/:
+    post:
+      description: This endpoint copies users with S3 access key pairs from one local provider to another.
+      operationId: users_copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                destination_provider_id:
+                  description: ID of the local provider to which to copy users
+                  type: integer
+                tenant_id:
+                  description: ID of the tenant to which the users belong. Required if user_ids are not provided.
+                  type: integer
+                user_ids:
+                  description: IDs of the users to copy. Required if tenant_id is not provided.
+                  items:
+                    type: integer
+                  type: array
+              required:
+              - destination_provider_id
+              type: object
+        x-originalParamName: UsersCopyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Either `tenant_id` or `user_ids` can be given for copy.
+                    type: string
+                type: object
+          description: The request contains invalid data.
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: 'Did not find users with following ids: 5, 2.'
+                    type: string
+                type: object
+          description: Not found.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: 'Cannot copy users. Destination Local Provider has users with colliding names: Ido, Roy.'
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+      summary: Copy Users with S3 Keys from one Local Provider to Another
+      tags:
+      - users
+  /users/names/:
+    get:
+      description: This endpoint queries a user by prefix and domain from ActiveDirectory domains
+      operationId: users_names
+      parameters:
+      - description: Prefix to find the user
+        in: query
+        name: prefix
+        schema:
+          type: string
+      - description: 'Domain details to find the user (ALL by default). Format: BASE_DN|FQDN|SID'
+        in: query
+        name: domain
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TenantIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+          description: ''
+      summary: Find User by prefix and domain details
+      tags:
+      - users
+  /users/non_local_keys/:
+    delete:
+      description: This endpoint removes an S3 access key pair for a non local user whose attributes were already retrieved from an external provider. Specify the user by either NFS UID or SMB user SID.
+      operationId: users_non_local_remove_key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_key:
+                  description: The access key
+                  type: string
+                sid:
+                  description: User SID
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                uid:
+                  description: User UID
+                  type: integer
+              required:
+              - access_key
+              type: object
+        x-originalParamName: UserNonLocalRemoveKeyParams
+      responses:
+        '204':
+          description: ''
+      summary: Remove S3 Access Key Pair (Non-Local User)
+      tags:
+      - users
+    patch:
+      description: This endpoint enables or disables an S3 access key pair for a non local user whose attributes were already retrieved from an external provider.
+      operationId: users_non_local_modify_key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_key:
+                  description: The access key
+                  type: string
+                enabled:
+                  description: Set to true to enable the S3 access key pair. Set to false to disable the S3 access key pair.
+                  type: boolean
+                sid:
+                  description: User SID
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                uid:
+                  description: User UID
+                  type: integer
+              required:
+              - access_key
+              - enabled
+              - uid
+              type: object
+        x-originalParamName: UserNonLocalModifyKeyParams
+      responses:
+        '204':
+          description: Done
+      summary: Enable or Disable S3 Access Key Pair (Non-Local User)
+      tags:
+      - users
+    post:
+      description: This endpoint generates an S3 access key pair for a non local user
+      operationId: users_non_local_generate_key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                login_name:
+                  description: User login name
+                  type: string
+                sid:
+                  description: User SID. Required if UID is not provided
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                uid:
+                  description: NFS UID. Required if SID is not provided
+                  type: integer
+                username:
+                  description: Username
+                  type: string
+              type: object
+        x-originalParamName: GenerateKeyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserKeyPair'
+          description: ''
+      summary: Generate S3 Access Key Pair (Non-Local User)
+      tags:
+      - users
+  /users/query/:
+    get:
+      description: This endpoint queries a user by an identifier. By default the query is aggregated across all contexts. Optionally, the query can be against any connected provider, against the local provider, or against the user database.
+      operationId: users_query
+      parameters:
+      - description: NFS UID
+        in: query
+        name: uid
+        schema:
+          type: integer
+      - description: User legal name
+        in: query
+        name: username
+        schema:
+          type: string
+      - description: User SID
+        in: query
+        name: sid
+        schema:
+          type: string
+      - description: Vast user ID
+        in: query
+        name: vid
+        schema:
+          type: integer
+      - description: "Specify the context for the user query. 'local' restricts the search to the local provider. 'udb' searches the cluster's user database for the user. The output in this case includes the VID (VAST ID) for the user, which can be used when specifying a grantee in S3 ACLs. 'aggregated' (default) searches all providers and returns a merged user entry. In case of conflicts between providers, attributes are resolved according to the following rules:\n  * In case of conflict between local and non local providers, the local provider's attributes override those of the other providers.\n  * In case of conflicting POSIX attributes on external providers, the POSIX primary provider overrules the other external provider.\n  * Users are merged if their match user attributes match. The match user attribute is configurable in that you can set which attribute on the POSIX primary provider is used to match the users.\n  * All groups found for the user on all providers with distinct group names are treated as distinct groups to which the user belongs. Groups are merged if they match according to a non-configurable group name attribute.\n'ad', 'nis' or 'ldap' searches the specific provider only. Each of these options appears only if a provider of that type is connected to the cluster.\n"
+        in: query
+        name: context
+        schema:
+          enum:
+          - local
+          - udb
+          - ad
+          - ldap
+          - nis
+          - aggregated
+          type: string
+      - description: User login name
+        in: query
+        name: login_name
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TenantIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserQueryData'
+          description: Retrieved User Data
+      summary: Query User
+      tags:
+      - users
+    patch:
+      description: This endpoint modifies a non-local user's S3 permissions. Specify the user by either NFS UID or SMB user SID.
+      operationId: users_query_modify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                allow_create_bucket:
+                  description: Set to true to give the user permission to create S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                allow_delete_bucket:
+                  description: Set to true to give the user permission to delete S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                login_name:
+                  description: Login name
+                  type: string
+                s3_policies_ids:
+                  description: Specify S3 policies to attach to the user.
+                  items:
+                    type: integer
+                  type: array
+                s3_superuser:
+                  description: Set to true for S3 superuser. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                sid:
+                  description: User SID
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                uid:
+                  description: User UID
+                  type: integer
+                username:
+                  description: User legal name
+                  type: string
+              type: object
+        x-originalParamName: UserQueryModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserQueryData'
+          description: ''
+      summary: Modify non-Local User
+      tags:
+      - users
+  /users/refresh/:
+    patch:
+      description: This endpoint triggers a fresh query of the user from external providers.
+      operationId: users_refresh
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                login_name:
+                  type: string
+                sid:
+                  description: SMB user SID
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                uid:
+                  description: NFS UID
+                  type: integer
+                username:
+                  type: string
+              type: object
+        x-originalParamName: UserRefreshParams
+      responses:
+        '200':
+          description: ''
+      summary: Refresh User
+      tags:
+      - users
+  /users/{id}/:
+    delete:
+      description: This endpoint deletes a specified user from the local provider.
+      operationId: users_delete
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete Local User
+      tags:
+      - users
+    get:
+      description: This endpoint returns details of a specified user on the local provider.
+      operationId: users_read
+      parameters:
+      - description: user ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User details
+      summary: Return Local User Details
+      tags:
+      - users
+    patch:
+      description: This endpoint modifies a user on a local provider.
+      operationId: users_partial_update
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                allow_create_bucket:
+                  description: Set to true to give the user permission to create S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                allow_delete_bucket:
+                  description: Set to true to give the user permission to delete S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                gids:
+                  description: List of group GIDs of all groups to which the user should belong.
+                  items:
+                    type: integer
+                  type: array
+                leading_gid:
+                  description: Leading GID
+                  type: integer
+                local:
+                  description: Not in use.
+                  type: boolean
+                local_provider_id:
+                  description: The ID of the local provider to which to add the user
+                  type: integer
+                password:
+                  description: Password
+                  type: string
+                s3_policies_ids:
+                  description: Specify S3 policies to attach to the user.
+                  items:
+                    type: integer
+                  type: array
+                s3_superuser:
+                  description: Set to true to give the user S3 superuser permission. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                uid:
+                  description: NFS UID
+                  type: integer
+              type: object
+        x-originalParamName: UserModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify Local User
+      tags:
+      - users
+  /users/{id}/access_keys/:
+    delete:
+      description: This endpoint removes a specified S3 access key pair from a user on the local provider.
+      operationId: users_remove_key
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_key:
+                  description: The access key to remove
+                  type: string
+              required:
+              - access_key
+              type: object
+        x-originalParamName: UserRemoveKeyParams
+      responses:
+        '204':
+          description: Removed
+      summary: Remove S3 Access Key Pair (Local User)
+      tags:
+      - users
+    patch:
+      description: This endpoint enables/disables a specified S3 access key pair for a user on the local provider.
+      operationId: users_modify_key
+      parameters:
+      - description: user ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                access_key: FXhvIdHZRhKHJdVnOawtHg==
+                enabled: false
+              properties:
+                access_key:
+                  description: The access key to enable
+                  type: string
+                enabled:
+                  description: Set to true to enable access key pair. Set to false to disable access key pair
+                  type: boolean
+              required:
+              - access_key
+              - enabled
+              type: object
+        x-originalParamName: UserModifyKeyParams
+      responses:
+        '204':
+          description: Done
+      summary: Enable/Disable S3 Access Key Pair (Local User)
+      tags:
+      - users
+    post:
+      description: This endpoint generates an S3 access key pair for a user on a local provider.
+      operationId: users_generate_key
+      parameters:
+      - description: user ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              type: object
+        x-originalParamName: GenerateAccessKeysParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserKeyPair'
+          description: ''
+      summary: Generate S3 Access Key Pair (Local User)
+      tags:
+      - users
+  /users/{id}/tenant_data/:
+    get:
+      description: This endpoint returns tenant data for a User.
+      operationId: users_get_tenant_data
+      parameters:
+      - description: user ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TenantIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTenantData'
+          description: ''
+      summary: Get tenant data for a User
+      tags:
+      - users
+    patch:
+      description: This endpoint updates tenant data for a User.
+      operationId: users_update_tenant_data
+      parameters:
+      - description: user ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                allow_create_bucket:
+                  description: Grants the user permission to create S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                allow_delete_bucket:
+                  description: Grants the user permission to delete S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                s3_policies_ids:
+                  description: IDs of S3 policies to attach to the user
+                  items:
+                    type: integer
+                  type: array
+                s3_superuser:
+                  description: Grants the user S3 super user permission, which enables the user to override S3 ACLs. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+                  type: boolean
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              type: object
+        x-originalParamName: UpdateTenantDataForUserParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTenantData'
+          description: ''
+      summary: Update Tenant Data for a User
+      tags:
+      - users
+components:
+  schemas:
+    LocalProviderData:
+      properties:
+        id:
+          description: ID of the local provider
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of the local provider
+          type: string
+      type: object
+    UserData:
+      type: object
+    UserKeyPair:
+      properties:
+        access_key:
+          description: S3 access key, needed to authenticate S3 client requests
+          type: string
+        secret_key:
+          description: S3 secret key, needed to authenticate S3 client requests
+          type: string
+      type: object
+    User:
+      properties:
+        access_keys:
+          description: S3 Access Keys
+          items:
+            properties:
+              access_key:
+                type: string
+              creation_time:
+                type: string
+              enabled:
+                type: boolean
+              tenant_id:
+                type: integer
+            type: object
+          type: array
+        allow_create_bucket:
+          description: If enabled, the user has permission to create S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a elevant group, this setting is overridden.
+          type: boolean
+          x-cli-header: Create-Bucket
+        allow_delete_bucket:
+          description: If enabled, the user has permission to delete S3 buckets. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden
+          type: boolean
+          x-cli-header: Delete-Bucket
+        gids:
+          description: List of GIDs of groups to which the user belongs
+          items:
+            type: integer
+          type: array
+          x-cli-header: GIDs
+        group_count:
+          description: Group Count
+          type: integer
+        groups:
+          description: List of groups to which the user belongs
+          items:
+            type: string
+          type: array
+          x-cli-header: Groups
+        guid:
+          description: Global unique ID
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        is_temporary_password:
+          description: Password is temporary
+          type: boolean
+          x-cli-header: Temporary password
+        leading_gid:
+          description: Leading GID
+          type: integer
+          x-cli-header: Leading-GID
+        leading_group_gid:
+          description: Leading Group GID
+          type: integer
+          x-cli-header: Leading-Group-GID
+        leading_group_name:
+          description: Leading Group
+          type: string
+          x-cli-header: Leading-Group
+        local:
+          description: not in use
+          type: boolean
+        local_provider:
+          $ref: '#/components/schemas/LocalProviderData'
+        name:
+          description: The name of the user
+          type: string
+        password_is_set:
+          description: Password is set
+          type: boolean
+          x-cli-header: Password is set
+        primary_group_sid:
+          description: Primary group SID
+          type: string
+        s3_policies:
+          items:
+            $ref: '#/components/schemas/PartialS3PolicyInfo'
+          type: array
+        s3_policies_ids:
+          description: S3 policies IDs, denoting which S3 identity policies are associated with the user. The user is granted and denied S3 permissions according to the associated S3 identity policies
+          items:
+            type: integer
+          type: array
+        s3_superuser:
+          description: If enabled, the user has S3 superuser permission, which overrides S3 ACLs. In case of conflict with an S3 identity policy attached to the user or to a relevant group, this setting is overridden.
+          type: boolean
+          x-cli-header: S3-Superuser
+        sid:
+          description: SID
+          type: string
+          x-cli-header: SID
+        sids:
+          description: SID list
+          items:
+            type: string
+          type: array
+        title:
+          type: string
+        uid:
+          description: UID
+          type: integer
+          x-cli-header: UID
+        url:
+          description: Endpoint URL for API operations on the user
+          type: string
+        vid:
+          description: User's VAST ID
+          type: integer
+      required:
+      - name
+      type: object
+    UserQueryData:
+      properties:
+        access_keys:
+          items:
+            properties:
+              access_key:
+                type: string
+              creation_time:
+                type: string
+              enabled:
+                type: boolean
+              remote:
+                type: boolean
+            type: object
+          type: array
+        allow_create_bucket:
+          type: boolean
+        allow_delete_bucket:
+          type: boolean
+        group_count:
+          type: integer
+        groups:
+          items:
+            type: string
+          type: array
+        historical_sids:
+          items:
+            type: string
+          type: array
+        leading_group:
+          type: object
+        leading_group_gid:
+          type: integer
+        leading_group_name:
+          type: string
+        login_name:
+          type: string
+        name:
+          type: string
+        object_type:
+          type: string
+        origins:
+          type: object
+        primary_group_name:
+          type: string
+        primary_group_sid:
+          type: string
+        quotas:
+          items:
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+            type: object
+          type: array
+          x-format: names_only
+        s3_connections_count:
+          type: integer
+        s3_policies:
+          items:
+            type: string
+          type: array
+        s3_policies_ids:
+          items:
+            type: integer
+          type: array
+        s3_remote_policies:
+          items:
+            type: string
+          type: array
+        s3_superuser:
+          type: boolean
+        s3_vid:
+          type: integer
+        sid:
+          type: string
+        uid:
+          type: integer
+        user_qos_policies:
+          items:
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+            type: object
+          type: array
+          x-format: names_only
+        vid:
+          type: integer
+        vids:
+          description: VAST IDs
+          items:
+            type: integer
+          type: array
+      type: object
+    UserTenantData:
+      properties:
+        allow_create_bucket:
+          type: boolean
+        allow_delete_bucket:
+          type: boolean
+        s3_policies:
+          items:
+            $ref: '#/components/schemas/PartialS3PolicyInfo'
+          type: array
+          x-format: names_only
+        s3_policies_ids:
+          items:
+            type: integer
+          type: array
+        s3_superuser:
+          type: boolean
+      type: object
+    PartialS3PolicyInfo:
+      properties:
+        id:
+          description: Identity Policy ID
+          type: integer
+        name:
+          description: Identity Policy name
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

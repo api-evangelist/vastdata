@@ -1,0 +1,254 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vastauditlog API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The VAST audit log is a database that can store VAST cluster protocol audits. If protocol auditing is enabled and configured to be logged to VAST audit log, the endpoint can be used to query the VAST audit log.
+  name: vastauditlog
+paths:
+  /vastauditlog/columns/:
+    get:
+      operationId: vastauditlog_columns
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Column'
+                type: array
+          description: OK
+      summary: Returns VAST Audit Log columns
+      tags:
+      - vastauditlog
+  /vastauditlog/query_data/:
+    get:
+      operationId: vastauditlog_get_query_data
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Ordering'
+      - $ref: '#/components/parameters/VastAuditLogFieldsQP'
+      - $ref: '#/components/parameters/VastDBFiltersQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryDataOutputSchema'
+          description: OK
+      summary: Queries data based on provided params
+      tags:
+      - vastauditlog
+    post:
+      operationId: vastauditlog_query_data
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Ordering'
+      requestBody:
+        $ref: '#/components/requestBodies/VastAuditLogQueryDataParamsBody'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryDataOutputSchema'
+          description: OK
+      summary: Queries the VAST Audit log.
+      tags:
+      - vastauditlog
+  /vastauditlog/stats/:
+    get:
+      operationId: vastauditlog_stats
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats'
+          description: OK
+      summary: Returns information about VAST Audit Log stats
+      tags:
+      - vastauditlog
+components:
+  schemas:
+    QueryDataOutputSchema:
+      properties:
+        count:
+          description: Number of rows in data
+          type: integer
+        next:
+          description: Link to the next page
+          type: string
+        prop_list:
+          description: List of column names
+          items:
+            type: string
+          type: array
+        results:
+          description: List of query data rows
+          items:
+            type: string
+          type: array
+      type: object
+    BaseQueryDataInputSchema:
+      properties:
+        fields:
+          description: Defines which fields should be displayed
+          items:
+            type: string
+          type: array
+        filters:
+          description: Defines the filters
+          type: object
+      required:
+      - filters
+      type: object
+    Stats:
+      properties:
+        count_columns:
+          type: integer
+        count_rows:
+          type: integer
+      type: object
+    VastAuditLogQueryDataInputSchema:
+      allOf:
+      - $ref: '#/components/schemas/BaseQueryDataInputSchema'
+      - properties:
+          fields:
+            default:
+            - time
+            - client_ip
+            - cluster_vip
+            - tenant
+            - protocol
+            - rpc_type
+            - path
+            - view_path
+            - name
+            - s3_bucket_name
+            - login_name
+            - uid
+            - sid
+            - s3_access_keys
+            - status
+            - num_ops
+            - num_bytes
+            description: Defines which fields should be displayed
+            items:
+              type: string
+            type: array
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+  parameters:
+    VastAuditLogFieldsQP:
+      description: Defines which fields should be displayed
+      in: query
+      name: fields
+      schema:
+        default:
+        - time
+        - client_ip
+        - cluster_vip
+        - tenant
+        - protocol
+        - rpc_type
+        - path
+        - view_path
+        - name
+        - s3_bucket_name
+        - login_name
+        - uid
+        - sid
+        - s3_access_keys
+        - status
+        - num_ops
+        - num_bytes
+        items:
+          type: string
+        type: array
+    Limit:
+      in: query
+      name: limit
+      schema:
+        default: 1000
+        type: integer
+    Ordering:
+      in: query
+      name: ordering
+      schema:
+        items:
+          type: string
+        type: array
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    VastDBFiltersQP:
+      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+      in: query
+      name: filters
+      schema:
+        type: string
+  requestBodies:
+    VastAuditLogQueryDataParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/VastAuditLogQueryDataInputSchema'
+      x-originalParamName: VastAuditLogQueryDataParamsBody
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,288 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory replicationtargets API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: An S3 replication peer represents a specific S3 destination to which snapshots can be replicated or were replicated. S3 replication peers can be configured in order to enable replication of data to a specific S3 destination or to enable users to access restore points on the S3 replication peer via client mounts of the cluster's file system. The accessible data on the S3 replication peer may have been replicated from the local cluster or from another cluster.
+  name: replicationtargets
+paths:
+  /replicationtargets/:
+    get:
+      description: This endpoint lists S3 replication peers.
+      operationId: replicationtargets_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: Filter by target bucket name
+        in: query
+        name: bucket_name
+        schema:
+          type: string
+      - description: Filter by protocol used to connect to the bucket (http or https)
+        in: query
+        name: http_protocol
+        schema:
+          type: string
+      - description: Filter by the URL of a custom target bucket
+        in: query
+        name: custom_bucket_url
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ReplicationTarget'
+                title: Replication target
+                type: array
+          description: Replication target information
+      summary: List S3 Replication Peers
+      tags:
+      - replicationtargets
+    post:
+      description: This endpoint creates an S3 replication peer.
+      operationId: replicationtargets_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_key:
+                  description: Access key of a valid key pair for accessing the named S3 bucket
+                  type: string
+                aws_account_id:
+                  description: Not in use
+                  type: string
+                aws_region:
+                  description: If the target is an AWS S3 bucket, use this parameter to specify the AWS region of the bucket
+                  type: string
+                aws_role:
+                  description: Not in use
+                  type: string
+                bucket_name:
+                  description: The S3 bucket name of an existing S3 bucket that you want to configure as the replication target
+                  type: string
+                custom_bucket_url:
+                  description: If the target is a custom S3 bucket, use this parameter to specify the URL of the bucket
+                  type: string
+                http_protocol:
+                  description: For custom S3 buckets (not AWS), specifies which protocol to use to connect to the bucket
+                  enum:
+                  - http
+                  - https
+                  type: string
+                name:
+                  type: string
+                  x-cli-header: Name
+                proxies:
+                  description: 'If configured, replication traffic is routed via proxies. Separate with commas. Format: http://USERNAME:PASSWORD@IP:PORT'
+                  items:
+                    type: string
+                  type: array
+                secret_key:
+                  description: The secret key of a valid key pair for accessing the destination S3 bucket
+                  type: string
+                type:
+                  description: Specify AWS_S3 for an AWS S3 bucket. Specify CUSTOM_S3 for a custom S3 bucket.
+                  enum:
+                  - AWS_S3
+                  - CUSTOM_S3
+                  type: string
+              required:
+              - name
+              - bucket_name
+              - http_protocol
+              - type
+              - access_key
+              type: object
+        x-originalParamName: ReplicationTargetCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationTarget'
+          description: ''
+      summary: Create an S3 Replication Peer
+      tags:
+      - replicationtargets
+  /replicationtargets/{id}/:
+    delete:
+      description: This endpoint deletes an S3 replication peer.
+      operationId: replicationtargets_delete
+      parameters:
+      - description: Replication Target ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete an S3 Replication Peer
+      tags:
+      - replicationtargets
+    get:
+      description: This endpoint returns details of a specified S3 replication peer.
+      operationId: replicationtargets_read
+      parameters:
+      - description: Replication Target ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationTarget'
+          description: ''
+      summary: Return Details of a Single S3 Replication Peer.
+      tags:
+      - replicationtargets
+    patch:
+      description: This endpoint modifies an S3 replication peer.
+      operationId: replicationtargets_partial_update
+      parameters:
+      - description: ReplicationTarget ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_key:
+                  description: Access key of a valid key pair for accessing the named S3 bucket
+                  type: string
+                aws_account_id:
+                  description: Not in use
+                  type: string
+                aws_region:
+                  description: If the target is an AWS S3 bucket, use this parameter to specify the AWS region of the bucket
+                  type: string
+                aws_role:
+                  description: Not in use
+                  type: string
+                bucket_name:
+                  description: The S3 bucket name of an existing S3 bucket that you want to configure as the replication target
+                  type: string
+                custom_bucket_url:
+                  description: custom bucket url
+                  type: string
+                http_protocol:
+                  description: For custom S3 buckets (not AWS), the protocol to use to connect to the bucket. Can be http or https.
+                  type: string
+                name:
+                  description: Name
+                  type: string
+                  x-cli-header: Name
+                proxies:
+                  description: 'If configured, replication traffic is routed via proxies. Separate with commas. Format: http://USERNAME:PASSWORD@IP:PORT'
+                  items:
+                    type: string
+                  type: array
+                secret_key:
+                  description: The secret key of a valid key pair for accessing the destination S3 bucket
+                  type: string
+              type: object
+        x-originalParamName: ReplicationTargetModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify an S3 Replication Peer
+      tags:
+      - replicationtargets
+components:
+  schemas:
+    ReplicationTarget:
+      properties:
+        access_key:
+          description: Authentication access key
+          type: string
+        aws_account_id:
+          description: Not yet implemented
+          type: string
+        aws_region:
+          description: Amazon only field for region
+          type: string
+        aws_role:
+          description: Not yet implemented
+          type: string
+        bucket_name:
+          description: Bucket name
+          type: string
+        created:
+          type: string
+        custom_bucket_url:
+          description: Custom bucket url
+          type: string
+        decoded_access_key:
+          type: string
+        guid:
+          description: unique identifier
+          type: string
+        http_protocol:
+          description: http/https
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          type: string
+          x-cli-header: Name
+        proxies:
+          description: A list of canonical urls separated by a comma.
+          items:
+            type: string
+          type: array
+        state:
+          enum:
+          - ACTIVE
+          - ERROR
+          - COUNT
+          - UNKNOWN
+          - INIT
+          type: string
+          x-cli-header: State
+        state_description:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      - bucket_name
+      - http_protocol
+      - type
+      - access_key
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

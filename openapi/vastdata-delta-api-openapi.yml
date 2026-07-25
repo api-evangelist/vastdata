@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory delta API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: delta
+paths:
+  /delta/:
+    get:
+      operationId: delta_storage_read
+      parameters:
+      - $ref: '#/components/parameters/Sequence'
+      - $ref: '#/components/parameters/Generation'
+      - $ref: '#/components/parameters/OpType'
+      - $ref: '#/components/parameters/ObjectType'
+      - $ref: '#/components/parameters/ObjectGuid'
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeltaStorage'
+          description: ''
+      summary: Returns Delta Protocol records.
+      tags:
+      - delta
+  /delta/config:
+    get:
+      operationId: delta_config_read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeltaConfig'
+          description: ''
+      summary: Returns Delta Storage config.
+      tags:
+      - delta
+    patch:
+      operationId: delta_config_partial_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: enable/disable delta
+                  type: boolean
+                ignored_objects_prefix:
+                  default: __ignore_
+                  description: set prefix to ignore objects in delta
+                  type: boolean
+              type: object
+        x-originalParamName: ModifyDeltaConfigParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeltaConfig'
+          description: ''
+      summary: Update Delta config
+      tags:
+      - delta
+components:
+  schemas:
+    DeltaConfig:
+      properties:
+        enabled:
+          description: enable/disable delta
+          type: boolean
+        ignored_objects_prefix:
+          default: ''
+          description: prefix to ignore objects in delta
+          example: __ignore_
+          type: string
+      required:
+      - enabled
+      - ignored_objects_prefix
+      type: object
+    DeltaStorage:
+      properties:
+        current_generation:
+          minimum: 0
+          type: integer
+        current_sequence:
+          description: Runtime sequence id for delta. Reset if HA happened.
+          example: 8f021a67-cfd6-4896-ad67-3e32a376c6f4
+          type: string
+        records:
+          items:
+            $ref: '#/components/schemas/DeltaRecord'
+          type: array
+        status:
+          description: ok - all ok, reset - journal was reset
+          enum:
+          - ok
+          - reset
+          type: string
+      required:
+      - current_sequence
+      - current_generation
+      - records
+      - status
+      type: object
+    DeltaRecord:
+      properties:
+        changes:
+          description: on modify operation, list of changes
+          type: object
+        data:
+          description: Arbitrary object in format similar to response from object's uri.
+          type: object
+        generation:
+          minimum: 1
+          type: integer
+        object:
+          $ref: '#/components/schemas/DeltaRecordObject'
+        op_type:
+          enum:
+          - created
+          - modified
+          - deleted
+          type: string
+      required:
+      - generation
+      - object
+      - op_type
+      type: object
+    DeltaRecordObject:
+      properties:
+        guid:
+          type: string
+        id:
+          minimum: 1
+          type: integer
+        type:
+          example: cluster
+          type: string
+      required:
+      - type
+      - id
+      type: object
+  parameters:
+    ObjectGuid:
+      in: query
+      name: object__guid
+      schema:
+        type: string
+    ObjectId:
+      in: query
+      name: object__id
+      schema:
+        minimum: 0
+        type: integer
+    OpType:
+      description: Operation type
+      in: query
+      name: op_type
+      schema:
+        enum:
+        - created
+        - modified
+        - deleted
+        type: string
+    Generation:
+      in: query
+      name: generation
+      required: true
+      schema:
+        minimum: 0
+        type: integer
+    ObjectType:
+      description: 'Example: ''cluster'''
+      in: query
+      name: object__type
+      schema:
+        type: string
+    Sequence:
+      description: 'Runtime sequence id for delta. Reset if HA happened. Example: ''8f021a67-cfd6-4896-ad67-3e32a376c6f4'' '
+      in: query
+      name: sequence
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

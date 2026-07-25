@@ -1,0 +1,5043 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory clusters API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: VMS manages configuration of a single VAST cluster. The clusters path provides access to many configurations and settings that apply to the cluster.
+  name: clusters
+paths:
+  /clusters/:
+    get:
+      operationId: clusters_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Cluster'
+                title: Clusters
+                type: array
+          description: Clusters information
+      summary: List Clusters
+      tags:
+      - clusters
+    post:
+      description: This endpoint creates the cluster.\ Ideally, VMS will auto-discover the nodes and its logic will be able to decide on\ exact C/D nodes assignment for the cluster.\ Therefore, in ideal case this command gets no node-related arguments.\ Optionally specific C/D nodes list or C/D nodes number can be provided.
+      operationId: clusters_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                audit_dir_name:
+                  description: Audit directory name, located under root directory. Protocol audit logs are saved to this directory.
+                  type: string
+                auto_drive_fw_upgrade:
+                  description: Enable/disable auto drives FW upgrade
+                  type: boolean
+                bmc_upgrade:
+                  description: BMC upgrade
+                  type: boolean
+                build:
+                  description: The build to be installed on the cluster
+                  type: string
+                cloud_lb:
+                  description: vast on cloud installation flag (default is False)
+                  type: boolean
+                cluster_guid:
+                  description: Guid of the system
+                  type: string
+                cnode_cores:
+                  description: Number of cnode cores
+                  type: integer
+                cnode_ips:
+                  description: The list of cnode ips, optional
+                  items:
+                    type: string
+                  type: array
+                cnode_ipv6_pool:
+                  description: The list of cnode ipv6 addresses, optional
+                  items:
+                    type: string
+                  type: array
+                composite_table_enable:
+                  description: Enable composite table configuration during system format
+                  type: boolean
+                dbox_ha_support:
+                  description: DBox HA support
+                  type: boolean
+                deep_stripe:
+                  description: Is deep stripe system
+                  type: boolean
+                default_others_share_level_perm:
+                  description: Default Share level permissions for Others. (deprecated since 4.6)
+                  enum:
+                  - READ
+                  - CHANGE
+                  - FULL
+                  type: string
+                defrag_threshold:
+                  description: Defrag Threshold
+                  type: integer
+                delete_snap_blocks_threshold:
+                  description: Threshold limiting the number of content blocks handled in a single execution of a delete-snap fiber
+                  type: integer
+                deny_cnode_system_access:
+                  description: 'Flag for disabling cnode access to the system, default: False'
+                  type: boolean
+                disable_dboxes_slots:
+                  description: List of dboxes slots to disable, optional
+                  example: '[<dbox-name>:<slot_number>, ...] (e.g. dbox-1:1,dbox-2:1)'
+                  items:
+                    description: DBOX-NAME:SLOT_NUMBER
+                    type: string
+                  type: array
+                disable_default_micro_shards:
+                  description: Set the micro shards values to equal the mega shards values
+                  type: boolean
+                disable_dirsnap:
+                  description: Disable directory snapshots
+                  type: boolean
+                disable_metrics:
+                  description: Disable internal metrics collection
+                  type: boolean
+                disable_mgmt_ha:
+                  description: Disable management HA
+                  type: boolean
+                disable_restrict_user:
+                  description: Ignore user restriction on raider clusters
+                  type: boolean
+                dmsetup:
+                  description: Mock NVMeoF devices with dmsetup devices
+                  type: boolean
+                dnode_cores:
+                  description: Number of dnode cores
+                  type: integer
+                dnode_ips:
+                  description: The list of D-Boxes
+                  items:
+                    type: string
+                  type: array
+                dnode_ipv6_pool:
+                  description: The list of dnode ipv6 addresses, optional
+                  items:
+                    type: string
+                  type: array
+                double_value_micro_shards:
+                  description: Set the micro shards values to double the mega shards values
+                  type: boolean
+                dr_hash_size:
+                  description: DR hash size in buckets
+                  type: integer
+                dr_shards:
+                  description: Number of DR shards
+                  type: integer
+                dr_wb_shards:
+                  description: Number of DR write buffer shards
+                  type: integer
+                drive_size:
+                  description: Drive size for mocked devices
+                  type: integer
+                ekm_address:
+                  description: IP address or DNS name of External Key Manager. Applicable if encryption is enabled and encryption type is one of the external key management types.
+                  type: string
+                ekm_auth_domain:
+                  description: EKM auth domain (Thales)
+                  type: string
+                ekm_bypass_validation:
+                  description: Bypass key and certificate validation
+                  type: boolean
+                ekm_ca_certificate:
+                  description: The CA certificate for the connection to the EKM servers
+                  type: string
+                ekm_certificate:
+                  description: The SSL certificate for the connection to the EKM servers
+                  type: string
+                ekm_domain:
+                  description: EKM domain (Thales)
+                  type: string
+                ekm_port:
+                  description: 'Port number for connections to an External Key Manager. Applicable if encryption is enabled and encryption type is one of the external key management types. Valid range: 1024 - 65535. Default: 5696'
+                  type: integer
+                ekm_private_key:
+                  description: The private key of the SSL certificate for the connection to the EKM servers.
+                  type: string
+                ekm_proxy_address:
+                  description: 'Thales EKM proxy address: https://proxy-address:port'
+                  type: string
+                ekm_servers:
+                  description: 'List of EKM server IPs, additional to ekm_address. Up to five servers may be specified in total. For example: 10.0.0.1:5696,11.0.0.1:5697'
+                  type: string
+                enable_dr:
+                  description: Enable data reduction
+                  type: boolean
+                enable_encryption:
+                  description: Enable data encryption
+                  type: boolean
+                enable_rack_level_resiliency:
+                  description: Enable rack level resiliency
+                  type: boolean
+                enable_similarity:
+                  description: Enable similarity
+                  type: boolean
+                enable_smb:
+                  description: Enable support for SMB
+                  type: boolean
+                encryption_type:
+                  description: Encryption type. INTERNAL = keys are managed internally. CIPHER_TRUST_KMIP=Keys are stored and managed on Thales Group CipherTrust Data Security Platform, FORTANIX_KMIP=Keys are stored and managed on Fortanix DSM, HASHICORP_KMIP=Keys are stored and managed on HashiCorp Vault Enterprise.
+                  type: string
+                external_managed_dpu:
+                  description: 'Cluster has externally managed DPUs. Default: False'
+                  type: boolean
+                failing_components_cnodes_failure_to_fail_percentage:
+                  description: Percentage of all CNodes that are allowed to fail
+                  type: integer
+                failing_components_enabled:
+                  description: Enable failing components feature
+                  type: boolean
+                failure_domains_support:
+                  description: Failure domains support
+                  type: boolean
+                format_drives:
+                  description: Format drives
+                  type: boolean
+                half_system:
+                  description: Is half system
+                  type: boolean
+                ib_mode:
+                  description: Mode of Infiniband network
+                  example: Connected
+                  type: string
+                ipv6_gateway:
+                  description: External ipv6 gateway
+                  type: string
+                ipv6_mgmt_vip:
+                  description: IPV6 Management VIP
+                  type: string
+                ipv6_prefix:
+                  description: IPV6 Prefix
+                  type: integer
+                lab_deploy:
+                  description: 'Flag for lab deploy only, default: False'
+                  type: boolean
+                large_object_scale:
+                  description: Flag for large object scale system
+                  type: boolean
+                loopback:
+                  description: Loopback (single node) installation
+                  type: boolean
+                loopback_conf:
+                  description: Loopback Configuration
+                  type: string
+                max_file_size:
+                  description: Maximum audit file size for each CNode core
+                  type: integer
+                  x-display-base-type: capacity
+                  x-display-units: GB
+                  x-display-units-alt: GiB
+                  x-format: bytes2gb
+                  x-raw-units: Bytes
+                max_nvram_capacity_percent:
+                  description: Max NVRAM capacity percent
+                  type: integer
+                max_nvram_replication_factor:
+                  description: Max NVRAM replication factor
+                  type: integer
+                max_retention_period:
+                  description: Max retention period for audit files. Units of measurement set by max_renention_timeunit.
+                  type: integer
+                max_retention_timeunit:
+                  description: Unit of measurement for the period specified as max_retention_period
+                  type: string
+                max_ssd_capacity_percent:
+                  description: Max SSD capacity percent
+                  type: integer
+                mega_dr_shards:
+                  description: Number of DR shards
+                  type: integer
+                mega_dr_wb_shards:
+                  description: Number of DR write buffer shards
+                  type: integer
+                mega_shards:
+                  description: Number of shards
+                  type: integer
+                mega_stripe_groups:
+                  description: Number of stripe groups
+                  type: integer
+                micro_dr_shards:
+                  description: Number of DR shards
+                  type: integer
+                micro_dr_wb_shards:
+                  description: Number of DR write buffer shards
+                  type: integer
+                micro_shards:
+                  description: Number of shards
+                  type: integer
+                micro_stripe_groups:
+                  description: Number of stripe groups
+                  type: integer
+                mixed_media:
+                  description: 'Flag for mixed media systems (NVRAMs and SSDs on same device), default: False'
+                  type: boolean
+                mock_raider_gui_availability:
+                  description: Creates mock for HPE Raider GUI availability, default is False
+                  type: boolean
+                name:
+                  description: Cluster name
+                  type: string
+                nb_eth_mtu:
+                  description: Ethernet Northbound MTU, optional
+                  example: '9216'
+                  type: integer
+                nb_ib_mtu:
+                  description: Infiniband Northbound MTU, optional
+                  example: '2044'
+                  type: integer
+                no_perf_check:
+                  description: Don't check cluster performance (default is False, i.e. perform check)
+                  type: boolean
+                nvram_section_layout:
+                  description: NVRAM Section Layout
+                  type: string
+                nvram_size:
+                  description: NVRAM size for mocked devices
+                  type: integer
+                prefill_devices:
+                  description: prefill the mocked devices with zeroes at install
+                  type: boolean
+                protocols:
+                  description: Protocols to audit for all views.
+                  items:
+                    type: string
+                  type: array
+                protocols_audit:
+                  description: Specify audit options to enable them globally for all views. Options can be disabled here and enabled in the viewpolicy.
+                  type: object
+                psnt:
+                  description: Cluster PSNT
+                  type: string
+                rack_config:
+                  description: Rack config for vcli install
+                  type: object
+                rack_pools:
+                  additionalProperties:
+                    $ref: '#/components/schemas/ClusterCreateRackUpdate'
+                  type: object
+                read_access_users:
+                  description: Enter users here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+                  items:
+                    type: string
+                  type: array
+                read_access_users_groups:
+                  description: Enter groups here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+                  items:
+                    type: string
+                  type: array
+                restrict_user:
+                  description: Flag for restrict vastdata user, default is False
+                  type: boolean
+                s3_block_v2_authentication:
+                  description: Manage s3 blocks v2 authentication
+                  type: boolean
+                secondary_ekm_address:
+                  description: EKM address
+                  type: string
+                secondary_ekm_port:
+                  description: 'EKM port. Valid range: 1024 - 65535.'
+                  type: integer
+                shards:
+                  description: Number of shards
+                  type: integer
+                stripe_groups:
+                  description: Number of stripe groups
+                  type: integer
+                supported_drives:
+                  type: object
+                sw_defined:
+                  description: Enable sw_defined (only for SDS setup)
+                  type: boolean
+                system_expansion_hack:
+                  description: Hack for expansions tests in CI
+                  type: boolean
+                use_spdk:
+                  description: Should install spdk
+                  type: boolean
+                virtual:
+                  description: virtual hardware deployment (default is False)
+                  type: boolean
+                voc:
+                  description: vast on cloud installation flag (default is False)
+                  type: boolean
+                vsettings:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+                wb_raid_layout:
+                  description: WB Raid layout
+                  type: string
+              required:
+              - name
+              type: object
+        x-originalParamName: ClusterCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncCluster'
+          description: ''
+      summary: Create Cluster
+      tags:
+      - clusters
+      x-cli-command: cluster
+      x-cli-subcommand: create
+  /clusters/add_boxes/:
+    patch:
+      operationId: add_boxes
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/AddBoxesParams'
+        x-originalParamName: AddBoxesParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Start Add Boxes procedure
+      tags:
+      - clusters
+  /clusters/bgp_table/:
+    get:
+      description: This endpoint returns the BGP connections table.
+      operationId: bgp_table
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  count:
+                    description: Number of results
+                    type: integer
+                  results:
+                    items:
+                      $ref: '#/components/schemas/BGPTableItem'
+                    type: array
+                type: object
+          description: BGP connections table
+      summary: Return BGP Connections Table
+      tags:
+      - clusters
+  /clusters/block_providers/:
+    patch:
+      description: This endpoint temporarily blocks all authentication providers
+      operationId: cluster_block_providers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                blocked:
+                  type: boolean
+              type: object
+        x-originalParamName: ClusterBlockProvidersParams
+      responses:
+        '200':
+          description: ''
+      summary: Block Authentication Providers
+      tags:
+      - clusters
+  /clusters/close_open_files/:
+    post:
+      description: This endpoint closes specified files.
+      operationId: close_open_files
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                paths:
+                  description: Files paths
+                  type: object
+                protocol:
+                  description: Protocol type
+                  enum:
+                  - SMB
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              required:
+              - paths
+              - tenant_id
+              - protocol
+              type: object
+        x-originalParamName: CloseOpenFilesParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  async_task_ids:
+                    items:
+                      type: integer
+                    type: array
+                type: object
+          description: Close files tasks
+      summary: Close open files
+      tags:
+      - clusters
+  /clusters/close_protocol_handle/:
+    delete:
+      description: This endpoint closes open protocol filehandles.
+      operationId: close_protocol_handle
+      parameters:
+      - description: File path
+        in: query
+        name: file_path
+        required: true
+        schema:
+          type: string
+      - description: Session ID
+        in: query
+        name: session_id
+        required: true
+        schema:
+          type: string
+      - description: Handle ID
+        in: query
+        name: session_handle_unique_id
+        required: true
+        schema:
+          type: string
+      - description: Tenant GUID
+        in: query
+        name: tenant_guid
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolHandle'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service temporarily unavailable, try again later.
+      summary: Close open protocol filehandles
+      tags:
+      - clusters
+  /clusters/dbox_migration/:
+    post:
+      description: This endpoint runs DBox migration.
+      operationId: dbox_migration_start
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                allow_unhealthy_raid:
+                  description: Allow unhealthy RAID state
+                  type: boolean
+                dbox_ids:
+                  description: Source DBox ids
+                  items:
+                    minimum: 1
+                    type: integer
+                  type: array
+                nvram_section_layout:
+                  description: Optional NVRAM section layout for DBox expansion
+                  type: string
+                use_spare_mem:
+                  description: Use spare mem
+                  type: boolean
+              type: object
+        x-originalParamName: DboxMigrationParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBoxMigrationResponse'
+          description: ''
+      summary: Dbox migration
+      tags:
+      - clusters
+  /clusters/dbox_migration_status/:
+    get:
+      description: This endpoint returns the status of DBox migration.
+      operationId: dbox_migration_status
+      parameters:
+      - description: The flag to show the migration status with capacity
+        in: query
+        name: with_capacity
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBoxMigrationStatusResponse'
+          description: ''
+      summary: DBox migration status
+      tags:
+      - clusters
+  /clusters/dbox_migration_update_source_target:
+    get:
+      description: This endpoint returns the status of DBox migration validation
+      operationId: dbox_migration_update_source_target
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBoxMigrationUpdateSourceTargetResponse'
+          description: ''
+      summary: Dbox migration update source target info
+      tags:
+      - clusters
+    patch:
+      description: This endpoint runs DBox migration.
+      operationId: dbox_migration_update_source_target
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                source_ids:
+                  description: Source DBox ids
+                  items:
+                    minimum: 1
+                    type: integer
+                  type: array
+                target_ids:
+                  description: Target DBox ids
+                  items:
+                    minimum: 1
+                    type: integer
+                  type: array
+              type: object
+        x-originalParamName: DboxMigrationUpdateSourceTargetParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBoxMigrationResponse'
+          description: ''
+      summary: Dbox migration update source target
+      tags:
+      - clusters
+  /clusters/dbox_migration_validate/:
+    get:
+      description: This endpoint run DBox validation.
+      operationId: dbox_migration_validate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBoxMigrationValidateResponse'
+          description: ''
+      summary: DBox migration validate
+      tags:
+      - clusters
+  /clusters/dbox_migration_validate_state/:
+    get:
+      description: This endpoint returns the status of DBox validation.
+      operationId: dbox_migration_validate_state
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBoxMigrationValidateResponse'
+          description: ''
+      summary: DBox migration validate state
+      tags:
+      - clusters
+  /clusters/dboxes_total_capacity/:
+    get:
+      description: This endpoint returns the total capacity with given dboxes ids
+      operationId: dboxes_total_capacity
+      parameters:
+      - description: DBox ids separated by comma
+        in: query
+        name: ids
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DBoxTotalCapacity'
+          description: ''
+      summary: DBoxes total capacity
+      tags:
+      - clusters
+  /clusters/get_shard_expansion_status/:
+    get:
+      description: This endpoint returns the status of system shard expansion.
+      operationId: get_shard_expansion_status
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemShardExpandResponse'
+          description: ''
+      summary: System shard expansion status
+      tags:
+      - clusters
+  /clusters/get_snapshoted_paths/:
+    get:
+      description: This endpoint returns a list of paths that are protected by snapshots.
+      operationId: get_snapshoted_paths
+      parameters:
+      - description: Tenant ID
+        in: query
+        name: tenant_id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      summary: Return Paths that have Snapshots
+      tags:
+      - clusters
+  /clusters/list_clone_snapshoted_paths_remote/:
+    get:
+      description: This endpoint returns a list of snapshots for a path on a remote replication peer.
+      operationId: list_clone_snapshoted_paths_remote
+      parameters:
+      - description: remote target GUID
+        in: query
+        name: remote_target_guid
+        required: true
+        schema:
+          type: string
+      - description: Provide the handle from a GET /cluster/list_snapshoted_paths_remote/ response
+        in: query
+        name: handle
+        required: true
+        schema:
+          type: string
+      - description: Start snapshot ID
+        in: query
+        name: start_snapshot_id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ''
+      summary: List snapshots on a remote replication peer
+      tags:
+      - clusters
+  /clusters/list_open_protocol_handles/:
+    get:
+      description: This endpoint queries open protocol filehandles.
+      operationId: list_open_protocol_handles
+      parameters:
+      - description: File path
+        in: query
+        name: file_path
+        required: true
+        schema:
+          type: string
+      - description: Tenant GUID
+        in: query
+        name: tenant_guid
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolHandle'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service temporarily unavailable, try again later.
+      summary: Query open protocol filehandles
+      tags:
+      - clusters
+  /clusters/list_prefetch_paths_info/:
+    get:
+      description: This endpoint lists information about prefetch paths.
+      operationId: list_prefetch_folders_info
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  prefetch_data:
+                    items:
+                      $ref: '#/components/schemas/ListPrefetchItem'
+                    type: array
+                  stale_tasks:
+                    items:
+                      type: integer
+                    type: array
+                type: object
+          description: Prefetches info
+      summary: List Prefetch Path Information
+      tags:
+      - clusters
+  /clusters/list_smb_client_connections/:
+    get:
+      operationId: list_smb_client_connections
+      parameters:
+      - description: Client IP
+        in: query
+        name: client_ip
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TenantIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmbClientConnection'
+          description: ''
+      summary: Query SMB client connections
+      tags:
+      - clusters
+  /clusters/list_smb_open_files/:
+    get:
+      operationId: list_smb_open_files
+      parameters:
+      - description: File path
+        in: query
+        name: file_path
+        required: true
+        schema:
+          type: string
+      - description: Tenant GUID
+        in: query
+        name: tenant_guid
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ''
+      summary: Query SMB open files
+      tags:
+      - clusters
+  /clusters/list_snapshoted_paths_remote/:
+    get:
+      description: This endpoint returns a list of paths that have snapshots on a remote replication peer.
+      operationId: list_snapshoted_paths_remote
+      parameters:
+      - description: The GUID of the remote target, which you can obtain from a GET /replicationtargets/ request
+        in: query
+        name: remote_target_guid
+        required: true
+        schema:
+          type: string
+      - description: The GUID of the remote tenant
+        in: query
+        name: remote_tenant_guid
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ''
+      summary: List snapshoted paths on remote target
+      tags:
+      - clusters
+  /clusters/list_tenants_remote/:
+    get:
+      description: This endpoint returns the list of tenants.
+      operationId: list_tenants_remote
+      parameters:
+      - description: remote target GUID
+        in: query
+        name: remote_target_guid
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ''
+      summary: List tenants on remote target
+      tags:
+      - clusters
+  /clusters/rotate_master_encryption_group_key/:
+    post:
+      description: This endpoint rotates the master encryption group key, if encryption is enabled with encryption type CIPHER_TRUST_KMIP, in which  encryption keys are managed externally on Thales Group CipherTrust Data Security Platform. This command generates a new version of the master key. The master key is used by the cluster to encrypt the data encryption keys when they are retrieved from the EKM and distributed by the cluster node that hosts the encryption service client to other cluster nodes. The master key is generated by the cluster and should not be rotated from the EKM itself.
+      operationId: rotate_master_encryption_group_key
+      responses:
+        '204':
+          description: Master encryption group key was rotated successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Master encryption group was not found by its crn <MASTER_KEY_ENCRYPTION_GROUP_CRN>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to rotate encryption group key.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Rotate master encryption group key.
+      tags:
+      - clusters
+  /clusters/run_hardware_check/:
+    patch:
+      description: This endpoint runs the hardware upgrade validations.
+      operationId: run_hardware_check
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                bmc_upgrade:
+                  description: is bmc upgrade
+                  type: boolean
+                force:
+                  description: force
+                  type: boolean
+                skip_hw_check:
+                  description: Skip hardware related checks
+                  type: boolean
+                skip_os_upgrade:
+                  description: skip os upgrade related checks
+                  type: boolean
+                skip_sw_validations:
+                  description: Skip SW validations
+                  type: boolean
+              type: object
+        x-originalParamName: RunClusterValidationsParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: cluster upgrade validations async response
+      summary: Run Hardware Validations
+      tags:
+      - clusters
+  /clusters/shard_expand/:
+    post:
+      description: This endpoint runs system shard expansion.
+      operationId: shard_expand
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                dr_shard_count:
+                  description: DR shard count
+                  type: integer
+                dr_wb_shard_count:
+                  description: DR WB shard count
+                  type: integer
+                estore_shard_count:
+                  description: EStore shard count
+                  type: integer
+                force:
+                  description: Force shard expansion. Use if you want to run shard expansion even though shards are denylisted (indicated by MAINTENANCE_DENYLIST_EXISTS in error code when running without 'force').
+                  type: boolean
+              type: object
+        x-originalParamName: SystemShardExpandParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemShardExpandResponse'
+          description: ''
+      summary: Shard expansion
+      tags:
+      - clusters
+  /clusters/wipe/:
+    post:
+      description: This endpoint stops the cluster s/w on all nodes.
+      operationId: clusters_wipe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cnode_list:
+                  description: The list of C-Nodes
+                  items:
+                    $ref: '#/components/schemas/CNode'
+                  type: array
+                dnode_list:
+                  description: The list of DNodes
+                  items:
+                    $ref: '#/components/schemas/DNode'
+                  type: array
+                loopback:
+                  description: Loopback (single node) installation
+                  type: boolean
+                loopback_ip:
+                  description: Loopback IP
+                  type: string
+                loopback_user:
+                  description: Loopback User
+                  type: string
+              type: object
+        x-originalParamName: ClusterWipeParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Cluster wipe async response
+      summary: Stop Cluster s/w on All Nodes
+      tags:
+      - clusters
+  /clusters/{id}/:
+    delete:
+      description: This endpoint deletes the cluster.
+      operationId: clusters_delete
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete Cluster
+      tags:
+      - clusters
+    get:
+      description: This endpoint returns details of the cluster.
+      operationId: clusters_read
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+          description: ''
+      summary: Detail Cluster Properties
+      tags:
+      - clusters
+    patch:
+      description: This endpoint can be used to change global settings on the cluster.
+      operationId: clusters_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_ip_ranges:
+                  items:
+                    type: string
+                  type: array
+                allow_nfs3_over_udp:
+                  description: Allow/deny NFS3 over UDP
+                  type: boolean
+                audit_dir_name:
+                  description: Audit directory name, located under root directory. Protocol audit logs are saved to this directory.
+                  type: string
+                auth_provider_refresh_interval:
+                  description: Auth provider refresh interval (seconds)
+                  type: integer
+                auto_logout_timeout:
+                  description: Inactivity period for auto logout for VAST OS on all nodes (seconds)
+                  type: integer
+                build:
+                  description: The build to be installed on the cluster
+                  type: string
+                cert_pass:
+                  description: Provides the password that protects the private key of the replication certificate uploaded as cluster_private_key, if password protected. The password must be supplied when uploading cluster_private_key and must be re-entered when modifying the certificate.
+                  type: string
+                clear_system_status_delay:
+                  description: Clear system status delay
+                  type: boolean
+                cluster_certificate:
+                  description: Certificate (public key) file content of a CA signed certificate for mTLS encryption. When a certificate and private key are installed on each participating replication peer cluster, and the CA's root certificate is installed on each peer, mTLS encryption can be enabled on replication connections between peer clusters.
+                  type: string
+                cluster_private_key:
+                  description: Private Key file content of a CA signed certificate for mTLS encryption.  When a certificate and private key are installed on each participating replication peer cluster, and the CA's root certificate is installed on each peer, mTLS encryption can be enabled on replication connections between peer clusters.
+                  type: string
+                cnode_cores:
+                  description: Number of cnode cores
+                  type: integer
+                cnode_metrics:
+                  description: VAST internal control for testing purposes
+                  type: boolean
+                dbox_ha_support:
+                  description: DBox HA support
+                  type: boolean
+                default_others_share_level_perm:
+                  description: Default Share-level permissions for Others. (deprecated since 4.6)
+                  enum:
+                  - READ
+                  - CHANGE
+                  - FULL
+                  type: string
+                disable_metrics:
+                  description: Disable internal metrics collection
+                  type: boolean
+                disable_module_metrics:
+                  description: Should the system collect module level metrics
+                  type: boolean
+                efficient_rewrite:
+                  description: Efficient Rewrite
+                  type: boolean
+                enable_bucket_db_replication:
+                  description: True if bucket DB replication is enabled
+                  type: boolean
+                enable_bucket_replication:
+                  description: True if bucket replication is enabled
+                  type: boolean
+                enable_composite_table_rewrite:
+                  description: Enables composite table rewrite
+                  type: boolean
+                enable_dr:
+                  description: Enables data reduction
+                  type: boolean
+                enable_encryption:
+                  description: Enables data encryption
+                  type: boolean
+                enable_json_audit:
+                  type: boolean
+                enable_rewrite:
+                  description: Rewrite data
+                  type: boolean
+                enable_similarity:
+                  description: Enables Similarity
+                  type: boolean
+                enable_trash:
+                  description: Enable the trash folder
+                  type: boolean
+                enable_turbo_boost:
+                  description: Enable Turbo Boost
+                  type: boolean
+                enable_vast_db_audit:
+                  type: boolean
+                enable_write_buffer_raid:
+                  description: Enables write buffer raid
+                  type: boolean
+                enabled:
+                  description: start/stop cluster
+                  type: boolean
+                failure_domains_support:
+                  description: Failure domains support
+                  type: boolean
+                force_wbr_rewrite:
+                  description: Force write buffer raid rewrite
+                  type: boolean
+                format:
+                  description: format cluster
+                  type: boolean
+                gn_max_inode_count:
+                  description: 'Quota limit on the number of files and directories in the cluster''s global namespace. The limit is shared between all global access source paths on the cluster. Valid range: 0-9223372036854775807'
+                  type: string
+                gn_max_size:
+                  description: Quota capacity limit for the cluster's global namespace. The limit is shared between all global access source paths on the cluster. Specify in the format 1MB, 1GB, and so on.
+                  type: string
+                gn_used_inode_count:
+                  description: GN used inode count
+                  type: integer
+                gn_used_size:
+                  description: GN used size
+                  type: string
+                guid:
+                  description: Cluster GUID
+                  type: string
+                max_audit_dir_size:
+                  description: Max audit directory size
+                  type: string
+                max_cluster_read_bw_mb:
+                  description: Maximum cluster read bandwidth in MB/s
+                  type: integer
+                max_cluster_write_bw_mb:
+                  description: Maximum cluster write bandwidth in MB/s
+                  type: integer
+                max_file_size:
+                  description: Maximum audit file size for each CNode core
+                  type: integer
+                  x-display-base-type: capacity
+                  x-display-units: GB
+                  x-display-units-alt: GiB
+                  x-format: bytes2gb
+                  x-raw-units: Bytes
+                max_retention_period:
+                  description: Max retention period for audit files. Units of measurement set by max_renention_timeunit.
+                  type: integer
+                max_retention_timeunit:
+                  description: Unit of measurement for the period specified as max_retention_period
+                  type: string
+                mock_fanout_auth:
+                  description: (deprecated since 4.6)
+                  type: boolean
+                motd:
+                  description: Custom Message of the Day text displayed by VAST OS on login
+                  type: string
+                motd_append_to_default:
+                  description: Append custom motd to default motd
+                  type: boolean
+                name:
+                  description: used for cluster rename
+                  type: string
+                nfs4_certificate:
+                  description: Certificate file content of TLS certificate, used to enforce TLS encryption on NFSv4 client connections. TLS encryption is controlled by the view policy and provides an alternative to Kerberos encryption for environments where Active Directory is not used.
+                  type: string
+                nfs4_private_key:
+                  description: Private key file content of TLS certificate for NFSv4. See also nfs4_certificate.
+                  type: string
+                protocols:
+                  description: Array of protocols to audit for all views.
+                  items:
+                    type: string
+                  type: array
+                protocols_audit:
+                  description: Specify audit options to enable them globally for all views. Options can be disabled here and enabled in the view policy.
+                  type: object
+                psnt:
+                  description: Cluster PSNT
+                  type: string
+                qos:
+                  $ref: '#/components/schemas/RequestTruncatedQOS'
+                quota_flip_cap:
+                  description: True will use used_capacity of Quota and False will use used_effective_capacity
+                  type: boolean
+                read_access_users:
+                  description: Enter users here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+                  items:
+                    type: string
+                  type: array
+                read_access_users_groups:
+                  description: Enter groups here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+                  items:
+                    type: string
+                  type: array
+                remove_mtls_certificates:
+                  description: Remove mTLS certificates from cluster
+                  type: boolean
+                remove_nfs4_certificate:
+                  description: Remove NFSv4 TLS certificates from cluster
+                  type: boolean
+                remove_s3_key_pair:
+                  description: Remove S3 certificate pair
+                  type: boolean
+                revert_disabled_dboxes_slots:
+                  description: Enable dbox slots that was disabled by parameter `disable_dboxes_slots`
+                  example: '[<dbox-name>:<slot_number>, ...] (e.g. dbox-1:1,dbox-2:1)'
+                  items:
+                    description: DBOX-NAME:SLOT_NUMBER
+                    type: string
+                  type: array
+                root_certificate:
+                  description: mTLS Root Certificate content. When a certificate and private key are installed on each participating replication peer cluster, and the CA's root certificate is installed on each peer, mTLS encryption can be enabled on replication connections between peer clusters.
+                  type: string
+                s3_allow_cors:
+                  type: boolean
+                s3_certificate:
+                  description: S3 HTTPS certificate file content
+                  type: string
+                s3_enable_http:
+                  description: Enable S3 HTTP
+                  type: boolean
+                s3_enable_https:
+                  description: Enable S3 HTTPS
+                  type: boolean
+                s3_enable_v2_authentication:
+                  description: Should we allow s3 v2 authentication?
+                  type: boolean
+                s3_private_key:
+                  description: S3 HTTPS certificate private key file content
+                  type: string
+                set_system_status_delay:
+                  description: Set 30 sec delay in system-status RPC
+                  type: boolean
+                showmount_hide_slash:
+                  description: Suppress Linux showmount command output including /
+                  type: boolean
+                showmount_suppressed:
+                  description: Suppress Linux showmount command output on for NFSv3 users
+                  type: boolean
+                smb_administrators_group_name:
+                  description: Optional custom name to specify a non default privileged group. If not set, privileged group is the BUILTIN\Administrators group. (deprecated since 4.6)
+                  type: string
+                smb_privileged_group_full_access:
+                  description: If true, the SMB privileged group has full access. Otherwise, read only. (deprecated since 4.6)
+                  type: boolean
+                smb_privileged_group_sid:
+                  description: Optional custom SID to specify a non default SMB privileged group. If not set, SMB privileged group is the Backup Operators domain group. (deprecated since 4.6)
+                  type: string
+                smb_privileged_user_name:
+                  description: Optional custom username for the SMB privileged user. If not set, the SMB privileged user name is 'vastadmin'
+                  type: string
+                sw_defined:
+                  description: sw_defined
+                  type: boolean
+                trash_gid:
+                  description: GID with permissions to the trash folder (deprecated since 4.6)
+                  type: integer
+                use_flash_write_buffers:
+                  description: Enables write buffers to spill over into flash drives
+                  type: boolean
+                use_smb_privileged_group:
+                  description: If true, the SMB privileged group is enabled. (deprecated since 4.6)
+                  type: boolean
+                use_smb_privileged_user:
+                  description: If true, the SMB privileged user is enabled. (deprecated since 4.6)
+                  type: boolean
+                use_tenant_all_snapshots:
+                  description: Whether to use tenant all snapshots
+                  type: boolean
+                wb_raid_layout:
+                  description: WB Raid layout
+                  type: string
+              type: object
+        x-originalParamName: ClusterModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Manage Cluster
+      tags:
+      - clusters
+  /clusters/{id}/add_ekm/:
+    post:
+      operationId: cluster_add_ekm
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ekm_auth_domain:
+                  description: Auth domain (Thales)
+                  type: string
+                ekm_bypass_validation:
+                  description: Bypass key and cert validation (VMS)
+                  type: boolean
+                ekm_ca_certificate:
+                  description: EKM CA certificate
+                  type: string
+                ekm_certificate:
+                  description: EKM certificate
+                  type: string
+                ekm_domain:
+                  description: Domain (Thales)
+                  type: string
+                ekm_private_key:
+                  description: EKM private key
+                  type: string
+                ekm_proxy_address:
+                  description: 'Thales EKM proxy address: https://proxy-address:port'
+                  type: string
+                ekm_servers:
+                  description: 'List of EKM servers: 10.0.0.1:5696,11.0.0.1:5697'
+                  type: string
+                encryption_type:
+                  description: Encryption type
+                  type: string
+              type: object
+        x-originalParamName: AddEkmParams
+      responses:
+        '204':
+          description: ''
+      summary: Add EKM
+      tags:
+      - clusters
+  /clusters/{id}/advanced/:
+    get:
+      description: This endpoint returns aggregated information about the cluster
+      operationId: cluster_advanced_metrics
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterAdvanced'
+          description: OK
+      summary: Aggregated information about the cluster
+      tags:
+      - clusters
+  /clusters/{id}/auditing/:
+    get:
+      description: This endpoint returns cluster audit settings
+      operationId: cluster_auditing_show
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterAuditingReadOnly'
+          description: OK
+      summary: Show Cluster Audit Settings
+      tags:
+      - clusters
+    patch:
+      description: This endpoint updates cluster audit settings
+      operationId: cluster_auditing_modify
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        $ref: '#/components/requestBodies/ClusterAuditingParamsBody'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterAuditingReadOnlyWithAsyncTask'
+          description: OK
+      summary: Modify Cluster Audit Settings
+      tags:
+      - clusters
+  /clusters/{id}/celery_queue/:
+    get:
+      description: This endpoint will query all or a specific task from the celery queue
+      operationId: celery_queue
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Task name
+        in: query
+        name: task_name
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CeleryInfo'
+          description: ''
+      summary: List celery queue
+      tags:
+      - clusters
+  /clusters/{id}/celery_remove_queued_task/:
+    delete:
+      description: This endpoint will delete waiting tasks that were not fetched by any worker from the celery queue
+      operationId: celery_remove_queued_task
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Task name
+        in: query
+        name: task_name
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Task was removed from the celery queue
+      summary: Delete all tasks of a specific name from the celery queue
+      tags:
+      - clusters
+  /clusters/{id}/celery_reserved/:
+    get:
+      description: This endpoint will query all tasks that are reserved by the main process
+      operationId: celery_reserved
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CeleryInfo'
+          description: ''
+      summary: List celery reserved queue
+      tags:
+      - clusters
+  /clusters/{id}/celery_scheduled/:
+    get:
+      description: This endpoint will query all tasks that are scheduled to a specific time
+      operationId: celery_scheduled
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CeleryInfo'
+          description: ''
+      summary: List celery scheduled queue
+      tags:
+      - clusters
+  /clusters/{id}/celery_status/:
+    get:
+      description: This endpoint will show celery stats
+      operationId: celery_status
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CeleryInfo'
+          description: ''
+      summary: Show the full celery stats
+      tags:
+      - clusters
+  /clusters/{id}/delete_folder/:
+    delete:
+      description: This endpoint deletes a folder from the system.
+      operationId: clusters_delete_folder
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                path:
+                  description: Folder path to delete
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              required:
+              - path
+              type: object
+        x-originalParamName: ClusterDeleteFolder
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete Cluster Folder
+      tags:
+      - clusters
+  /clusters/{id}/expand/:
+    post:
+      operationId: clusters_expand
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                devices_mock:
+                  description: Devices Mock for NVRAM section layout (only for loopback)
+                  type: string
+                nvram_section_layout:
+                  description: NVRAM section layout
+                  type: string
+                skip_everything:
+                  description: Skip hardware validations before expansion
+                  type: boolean
+                skip_layout_validation:
+                  description: skip layout validation
+                  type: string
+              type: object
+        x-originalParamName: ExpandParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Expand Cluster
+      tags:
+      - clusters
+  /clusters/{id}/generate_unfreeze_token/:
+    post:
+      description: This endpoint generates a token for unlocking indestructibility.
+      operationId: generate_unfreeze_token
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                password:
+                  description: Unfreeze password
+                  type: string
+              required:
+              - password
+              type: object
+        x-originalParamName: GenerateUnfreezeTokenParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChallengeToken'
+          description: ''
+      summary: Generate Token to Unlock Indestructibility
+      tags:
+      - clusters
+  /clusters/{id}/locks/:
+    delete:
+      description: This endpoint deletes NLM locks on a file.
+      operationId: cluster_locks_delete
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        $ref: '#/components/requestBodies/ClusterLocksParamsBody'
+      responses:
+        '204':
+          description: Deleted
+      summary: Deletes NLM Locks
+      tags:
+      - clusters
+    post:
+      description: This endpoint returns all NLM locks on a file at a specified path.
+      operationId: cluster_locks_list
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        $ref: '#/components/requestBodies/ClusterLocksRequestParamsBody'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Lock'
+                type: array
+          description: Lock information
+      summary: List NLM Locks
+      tags:
+      - clusters
+  /clusters/{id}/notify_new_version/:
+    post:
+      operationId: notify_new_version
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                bmc_fw_version:
+                  description: bmc_fw_version
+                  type: string
+                build:
+                  description: build
+                  type: string
+                nvram_version:
+                  description: nvram_version
+                  type: string
+                os_version:
+                  description: os_version
+                  type: string
+                s3_url:
+                  description: link to download new version
+                  type: string
+                ssd_version:
+                  description: ssd_version
+                  type: string
+                sys_version:
+                  description: sys_version
+                  type: string
+              required:
+              - s3_url
+              - build
+              - sys_version
+              - os_version
+              - ssd_version
+              - nvram_version
+              - bmc_fw_version
+              type: object
+        x-originalParamName: NotifyNewVersionParams
+      responses:
+        '200':
+          description: ''
+      summary: Notify of New Version Available for Download
+      tags:
+      - clusters
+  /clusters/{id}/pre_upgrade_validation_exceptions/:
+    get:
+      operationId: pre_upgrade_validation_exceptions
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreUpgradeValidationExceptions'
+          description: ''
+      summary: Run Pre-Upgrade Validation
+      tags:
+      - clusters
+  /clusters/{id}/release_recursive_locks/:
+    delete:
+      description: This endpoint deletes NLM locks on a path recursively.
+      operationId: cluster_locks_delete_recursively
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        $ref: '#/components/requestBodies/ClusterLocksParamsBody'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Deletes NLM Locks Recursively
+      tags:
+      - clusters
+  /clusters/{id}/resume_deploy/:
+    patch:
+      description: This endpoint resumes failed cluster deploy task.
+      operationId: resume_deploy
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncCluster'
+          description: ''
+      summary: Resume failed deploy
+      tags:
+      - clusters
+  /clusters/{id}/rpc/:
+    patch:
+      description: This endpoint runs cluster rpc.
+      operationId: clusters_rpc
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                module_type:
+                  description: Module type for the commander connection
+                  type: string
+                params:
+                  description: params for rpc call
+                  type: string
+                rpc:
+                  description: rpc name to execute
+                  type: string
+              required:
+              - rpc
+              type: object
+        x-originalParamName: ClusterRpc
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Generic'
+          description: ''
+      summary: This endpoint runs cluster rpc.
+      tags:
+      - clusters
+  /clusters/{id}/s3_true_ip_config/:
+    get:
+      operationId: clusters_get_s3_true_ip_config
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  included_addresses:
+                    description: List of IP address ranges
+                    items:
+                      properties:
+                        range:
+                          description: Number of addresses in the range
+                          type: integer
+                        start_ip:
+                          description: Starting IP address
+                          type: string
+                      type: object
+                    type: array
+                  true_client_ip_header:
+                    description: True client IP value
+                    type: string
+                type: object
+          description: S3 True IP configuration
+      summary: Get S3 True IP Configuration
+      tags:
+      - clusters
+    patch:
+      description: This endpoint sets the S3 True IP configuration for the cluster, including true client IP and IP address ranges.
+      operationId: clusters_set_s3_true_ip_config
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                included_addresses:
+                  description: List of IP address ranges to include
+                  items:
+                    properties:
+                      range:
+                        description: Number of addresses in the range
+                        type: integer
+                      start_ip:
+                        description: Starting IP address (must be IPv4)
+                        type: string
+                    required:
+                    - start_ip
+                    - range
+                    type: object
+                  type: array
+                true_client_ip_header:
+                  description: True client IP value (must be IPv4)
+                  type: string
+              required:
+              - true_client_ip_header
+              - included_addresses
+              type: object
+        x-originalParamName: S3TrueIPConfig
+      responses:
+        '204':
+          description: ''
+      summary: Set S3 True IP Configuration
+      tags:
+      - clusters
+  /clusters/{id}/set_certificates/:
+    post:
+      operationId: cluster_set_certificates
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ekm_auth_domain:
+                  description: Auth domain (Thales)
+                  type: string
+                ekm_bypass_validation:
+                  description: Bypass key and cert validation (VMS)
+                  type: boolean
+                ekm_ca_certificate:
+                  description: EKM CA certificate
+                  type: string
+                ekm_certificate:
+                  description: EKM certificate
+                  type: string
+                ekm_domain:
+                  description: Domain (Thales)
+                  type: string
+                ekm_private_key:
+                  description: EKM private key
+                  type: string
+                ekm_proxy_address:
+                  description: 'Thales EKM proxy address: https://proxy-address:port'
+                  type: string
+                ekm_servers:
+                  description: 'List of EKM servers: 10.0.0.1:5696,11.0.0.1:5697'
+                  type: string
+                encryption_type:
+                  description: Encryption type
+                  type: string
+              type: object
+        description: Cluster ID
+        x-originalParamName: SetCertificatesParams
+      responses:
+        '204':
+          description: ''
+      summary: Update EKM certificates
+      tags:
+      - clusters
+  /clusters/{id}/set_drive_fw_upgrade/:
+    post:
+      description: Set true/false to upgrade non-active drives fw
+      operationId: set_drive_fw_upgrade
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                enabled:
+                  description: Enable/disable flag
+                  type: boolean
+              required:
+              - enabled
+              type: object
+        x-originalParamName: DriveFWUpgradeParams
+      responses:
+        '200':
+          description: ''
+      summary: Set true/false to upgrade non-active drives fw
+      tags:
+      - clusters
+  /clusters/{id}/set_password/:
+    patch:
+      description: This endpoint changes the cluster passwords.
+      operationId: clusters_set_password
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  description: The new given password
+                  type: string
+                username:
+                  description: The given username for password change
+                  type: string
+              required:
+              - username
+              - password
+              type: object
+        x-originalParamName: ClusterPasswordParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Change Cluster Passwords
+      tags:
+      - clusters
+  /clusters/{id}/should_upload/:
+    post:
+      operationId: should_upload
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                bundle_sha256:
+                  description: sha256 sum of bundle
+                  type: string
+              required:
+              - bundle_sha256
+              type: object
+        x-originalParamName: ShouldUploadParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShouldUpgrade'
+          description: ''
+        '424':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShouldUpgrade'
+          description: ''
+      summary: Detect Need for Bundle Upload
+      tags:
+      - clusters
+  /clusters/{id}/stop_upgrade/:
+    post:
+      description: This endpoint stops a running upgrade flow.
+      operationId: stop_upgrade
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Stop Running Upgrade
+      tags:
+      - clusters
+  /clusters/{id}/system_settings/:
+    patch:
+      description: This endpoint sets the cluster system settings.
+      operationId: clusters_system_settings
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                settings:
+                  description: system settings to modify
+                  type: string
+              required:
+              - settings
+              type: object
+        x-originalParamName: ClusterSystemSettings
+      responses:
+        '204':
+          description: OK
+      summary: Set Cluster System Settings
+      tags:
+      - clusters
+  /clusters/{id}/unfreeze/:
+    post:
+      description: This endpoint unlocks the cluster's indestructibility mechanism.
+      operationId: unfreeze
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                token:
+                  description: Token
+                  type: string
+              required:
+              - token
+              type: object
+        x-originalParamName: UnfreezeParams
+      responses:
+        '204':
+          description: Unfreeze ran succesfully
+      summary: Unfreeze Cluster
+      tags:
+      - clusters
+  /clusters/{id}/update_polling_interval/:
+    patch:
+      operationId: update_polling_interval
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                interval:
+                  description: New interval for polling task
+                  type: integer
+                task_name:
+                  description: Name of polling task
+                  type: string
+              type: object
+        x-originalParamName: UpdatePollingIntervalParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Change interval for a polling task
+      tags:
+      - clusters
+  /clusters/{id}/upgrade/:
+    patch:
+      description: This endpoint upgrades the cluster s/w on the nodes
+      operationId: clusters_upgrade
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                bmc_upgrade:
+                  description: BMC upgrade
+                  type: boolean
+                build:
+                  description: Specifies the build for upgrade
+                  type: string
+                drives_fw_upgrade:
+                  description: Exclusive flag to perform SSD/SCM FW upgrade
+                  type: boolean
+                enable_dr:
+                  description: Enables data reduction (DR) for a cluster without DR enabled prior to upgrade
+                  type: boolean
+                force:
+                  description: Forces upgrade regardless of version or upgrade state
+                  type: boolean
+                os_upgrade:
+                  description: OS upgrade
+                  type: boolean
+                prepare:
+                  description: Pull docker images only
+                  type: boolean
+                skip_hw_check:
+                  description: Skips validation of hardware component health. Use with caution since component redundancy is important in NDU. Do not use with OS upgrade.
+                  type: boolean
+                skip_sw_validations:
+                  description: Skips SW validations (e.g. deny list)
+                  type: boolean
+              required:
+              - build
+              type: object
+        x-originalParamName: ClusterUpgradeParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Upgrade Cluster
+      tags:
+      - clusters
+  /clusters/{id}/upgrade_optane/:
+    post:
+      operationId: upgrade_optane
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                force:
+                  default: false
+                  description: Force upgrade regardless of version
+                  type: boolean
+              type: object
+        x-originalParamName: UpgradeOptaneParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Upgrade Optane NVRAM
+      tags:
+      - clusters
+  /clusters/{id}/upgrade_ssd/:
+    post:
+      operationId: upgrade_ssd
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                force:
+                  default: false
+                  description: Forces upgrade regardless of version
+                  type: boolean
+              type: object
+        x-originalParamName: UpgradeSsdParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Upgrade SSD
+      tags:
+      - clusters
+  /clusters/{id}/upgrade_without_file/:
+    post:
+      operationId: upgrade_without_file
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                bmc_upgrade:
+                  default: false
+                  description: BMC upgrade
+                  type: boolean
+                cnodes_batch_size_percentage:
+                  default: 10
+                  description: Overrides default percentage of CNodes to upgrade in parallel. Max 50
+                  type: integer
+                dnodes_batch_size_percentage:
+                  default: 20
+                  description: Overrides default percentage of DNodes to upgrade in parallel. Max 37.5. Not relevant during os upgrade
+                  format: float
+                  type: number
+                dpus_batch_size_percentage:
+                  default: 10
+                  description: Overrides default percentage of DPUs to upgrade in parallel. Max 37.5.
+                  format: float
+                  type: number
+                drives_fw_upgrade:
+                  default: false
+                  description: Upgrade FW for SSD/SCMs exclusively
+                  type: boolean
+                enable_dr:
+                  default: false
+                  description: Enables data reduction (DR) for a cluster without DR enabled prior to upgrade
+                  type: boolean
+                force:
+                  default: false
+                  description: Forces upgrade regardless of version or upgrade state
+                  type: boolean
+                fw_upgrade:
+                  default: false
+                  description: 'Upgrade FWs: BMC, MCU, PCI, NIC'
+                  type: boolean
+                isolcpus:
+                  default: false
+                  description: Resets the configuration of isolated CPUs according to a formula
+                  type: boolean
+                os_upgrade:
+                  default: false
+                  description: Performs OS upgrade on CNodes and DNodes in addition to upgrading core platform build
+                  type: boolean
+                skip_hw_check:
+                  default: false
+                  description: Skips validation of hardware component health. Use with caution since component redundancy is important in NDU. Do not use with OS upgrade.
+                  type: boolean
+                skip_sw_validations:
+                  default: false
+                  description: Skips SW validations (e.g. deny list)
+                  type: boolean
+                vms_only_upgrade:
+                  default: false
+                  description: Forces upgrade of VMS only
+                  type: boolean
+              required:
+              - enable_dr
+              - force
+              type: object
+        x-originalParamName: UpgradeWithoutFileParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Upgrade Cluster from Pre-Uploaded Bundle
+      tags:
+      - clusters
+  /clusters/{id}/upload_bundle/:
+    delete:
+      operationId: delete_bundle
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: ''
+      summary: Delete Upgrade Bundle from Cluster
+      tags:
+      - clusters
+    post:
+      operationId: upload_bundle
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                build_package:
+                  description: The upgrade bundle file
+                  format: binary
+                  type: string
+                  x-formData-name: build_package
+                skip_prepare:
+                  default: false
+                  description: 'Skips preparing the cluster for upgrade, including: pre-upgrade validations, copying the bundle to other hosts, and pulling the image on all CNodes.'
+                  type: boolean
+                  x-formData-name: skip_prepare
+              required:
+              - build_package
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Upload Upgrade Bundle to Cluster
+      tags:
+      - clusters
+  /clusters/{id}/upload_from_s3/:
+    post:
+      operationId: upload_from_s3
+      parameters:
+      - description: Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                s3_url:
+                  description: S3 URL to upgrade package. If not provided, will be taken from db
+                  type: string
+                skip_hw_check:
+                  default: false
+                  description: Skips validation of hardware component health. Use with caution since component redundancy is important in NDU. Do not use with OS upgrade.
+                  type: boolean
+                skip_prepare:
+                  default: false
+                  description: 'Skips preparing the cluster for upgrade, including: pre-upgrade validations, copying the bundle to other hosts, and pulling the image on all CNodes.'
+                  type: boolean
+                skip_sw_validations:
+                  default: false
+                  description: Skips SW validations (e.g. deny list)
+                  type: boolean
+              type: object
+        x-originalParamName: UploadFromS3Params
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Upload Upgrade Bundle from S3 URL
+      tags:
+      - clusters
+  /clusters/{id}/vast_db/:
+    get:
+      description: This endpoint returns cluster Vast DB settings
+      operationId: cluster_vast_db_show
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterVastDB'
+          description: OK
+      summary: Show Cluster Vast DB Settings
+      tags:
+      - clusters
+    patch:
+      description: This endpoint updates cluster Vast DB settings
+      operationId: cluster_vast_db_modify
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        $ref: '#/components/requestBodies/ClusterVastDBModifyParamsBody'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterVastDB'
+          description: OK
+      summary: Modify Cluster Vast DB Settings
+      tags:
+      - clusters
+  /hosts/discovered_hosts/:
+    get:
+      operationId: discovered_hosts
+      parameters:
+      - in: query
+        name: host_type
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Host'
+                title: Hosts
+                type: array
+          description: Hosts information
+      summary: Return new discovered hosts
+      tags:
+      - clusters
+components:
+  schemas:
+    CNode:
+      properties:
+        bios_version:
+          description: BIOS version
+          type: string
+        bmc_fw_version:
+          description: BMC FW version
+          type: string
+          x-cli-header: BMC-FW-Version
+        bmc_state:
+          description: BMC State
+          type: string
+        bmc_state_reason:
+          description: BMC state reason
+          type: string
+        box_vendor:
+          description: Parent box model description including hardware vendor
+          type: string
+        build:
+          type: string
+          x-cli-header: Build
+        cbox:
+          description: Parent CBox
+          type: string
+          x-cli-header: CBox
+        cbox_id:
+          description: Parent CBox ID
+          type: integer
+          x-cli-header: Index-In-Carrier
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          description: Parent Cluster ID
+          type: integer
+        cores:
+          description: Number of CNode cores
+          type: integer
+          x-cli-header: Cores
+        cpld:
+          type: string
+        data_rdma_port:
+          description: port for internal use
+          type: integer
+        data_tcp_port:
+          description: port for internal use
+          type: integer
+        display_name:
+          type: string
+        display_state:
+          description: State
+          type: string
+          x-cli-header: State
+        enabled:
+          description: True if the CNode is enabled
+          type: boolean
+        guid:
+          description: Global unique ID
+          type: string
+        host_label:
+          description: Host label, used to label container, e.g. 11.0.0.1-4000
+          type: string
+        host_opensm_master:
+          description: If OpenSM master
+          type: string
+          x-cli-header: opensm-master
+        hostname:
+          description: Host Name
+          type: string
+          x-cli-header: Host Name
+        id:
+          description: CNode ID
+          type: integer
+          x-cli-header: ID
+        ip:
+          description: The IP of the bond interface of ip1 and ip2.
+          type: string
+          x-cli-header: IP
+        ip1:
+          description: 1st of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP1
+        ip2:
+          description: 2nd of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP2
+        ipmi_ip:
+          description: IP of IPMI
+          type: string
+        ipv6:
+          description: External IPv6 Address
+          type: string
+          x-cli-header: IPv6
+        is_mgmt:
+          description: True if the CNode is currently hosting VMS
+          type: boolean
+          x-cli-header: Management
+          x-format: bool2str
+        led_status:
+          description: LED status
+          type: string
+          x-cli-header: LED Status
+        mgmt_ip:
+          description: IP address for management access
+          type: string
+          x-cli-header: Mgmt-ip
+        name:
+          type: string
+          x-cli-header: Name
+        new_name:
+          description: Name
+          type: string
+        opensm_state:
+          description: opensm service state
+          type: boolean
+          x-cli-header: opensm-state
+        os_version:
+          description: VAST OS version
+          type: string
+          x-cli-header: OS-Version
+        platform_rdma_port:
+          description: port for internal use
+          type: integer
+        platform_tcp_port:
+          description: port for internal use
+          type: integer
+        position:
+          description: position of CNode in CBox
+          type: string
+        rpm:
+          description: VAST Utils Version
+          type: string
+          x-cli-header: VAST Utils Version
+        sn:
+          description: The host serial number
+          type: string
+          x-cli-header: Serial
+        state:
+          description: State, e.g. active
+          type: string
+          x-cli-header: State
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          type: string
+        tpm_boot_dev_encryption_status:
+          description: Boot encryption status
+          type: string
+          x-cli-header: Boot encryption
+        turbo_boost:
+          type: boolean
+        url:
+          type: string
+        vlan:
+          description: VLAN ID
+          type: string
+        vms_preferred:
+          description: VMS preferred CNode
+          type: boolean
+          x-cli-header: VMS-Preferred
+      required:
+      - name
+      type: object
+    RequestTruncatedQOS:
+      properties:
+        static_limits:
+          $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
+      type: object
+    SmbClientConnection:
+      type: object
+    VastInstallInfo:
+      properties:
+        box_name:
+          description: Name of parent CBox/DBox
+          type: string
+        box_uid:
+          description: UID of the parent CBox/DBox
+          type: string
+        box_vendor:
+          description: Model description, including vendor
+          type: string
+        hostname:
+          description: Hostname
+          type: string
+        ip:
+          description: Management IP
+          type: string
+        is_ceres:
+          description: Whether the host is part of a CERES DBox
+          type: boolean
+        is_ceres_v2:
+          description: Whether the host is part of a CERES V2 DBox
+          type: boolean
+        is_vms_host:
+          description: Whether the host is the VMS CNode
+          type: boolean
+        node_type:
+          description: Type of Node (CNode or DNode)
+          type: string
+        position:
+          description: Position of node in chassis
+          type: string
+        vast_os:
+          description: VAST OS version running on the host
+          type: string
+      type: object
+    ClusterAuditingReadOnly:
+      allOf:
+      - $ref: '#/components/schemas/ClusterAuditing'
+      - properties:
+          vast_audit_log_state:
+            description: State of the VAST DataBase table to which audit logs are saved, if enabled
+            enum:
+            - NONE
+            - IN_CREATION
+            - CREATED
+            - FAILED
+            type: string
+        required:
+        - audit_dir_name
+        - read_access_users
+        - read_access_users_groups
+        - max_file_size
+        - max_retention_period
+        - max_retention_timeunit
+        - protocols_audit
+        - protocols
+        - max_audit_dir_size
+        - enable_json_audit
+        - enable_vast_db_audit
+        - vast_audit_log_state
+        type: object
+    DNode:
+      properties:
+        arch_type:
+          type: string
+        bios_version:
+          type: string
+          x-cli-header: BIOS Version
+        bmc_fw_version:
+          description: BMC FW version
+          type: string
+          x-cli-header: BMC FW version
+        bmc_state:
+          type: string
+        bmc_state_reason:
+          type: string
+        box_rdma_port:
+          description: port for internal use
+          type: integer
+        build:
+          type: string
+          x-cli-header: Build
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          type: integer
+        cpld:
+          type: string
+        data_rdma_port:
+          description: port for internal use
+          type: integer
+        data_tcp_port:
+          description: port for internal use
+          type: integer
+        dbox:
+          description: Parent DBox
+          type: string
+          x-cli-header: DBox
+        dbox_id:
+          type: integer
+        display_name:
+          type: string
+        dtray:
+          description: Parent DTray
+          type: string
+          x-cli-header: DTray
+        ebox:
+          description: Parent EBox
+          type: string
+          x-cli-header: EBox
+        ebox_id:
+          type: integer
+        enabled:
+          description: True if Dnode is enabled
+          type: boolean
+        guid:
+          type: string
+        host_label:
+          description: Host label, used to label container, e.g. 11.0.0.1-4000
+          type: string
+        hostname:
+          description: Host Name
+          type: string
+          x-cli-header: Hostname
+        id:
+          type: integer
+          x-cli-header: ID
+        ip:
+          description: The IP of the bond interface of ip1 and ip2.
+          type: string
+          x-cli-header: IP
+        ip1:
+          description: 1st of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP1
+        ip2:
+          description: 2nd of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP2
+        ipmi_ip:
+          description: IPMI IP
+          type: string
+          x-cli-header: IPMI IP
+        ipv6:
+          description: External IPv6 Address
+          type: string
+          x-cli-header: IPv6
+        is_primary:
+          description: Indicates if node is the primary, aka master, dnode.
+          type: boolean
+          x-cli-header: Primary
+        led_status:
+          type: string
+          x-cli-header: LED Status
+        mgmt_ip:
+          description: IP address for management access
+          type: string
+          x-cli-header: MGMT IP
+        name:
+          type: string
+          x-cli-header: Name
+        new_name:
+          type: string
+        os_version:
+          description: Node OS version
+          type: string
+          x-cli-header: OS
+        platform_rdma_port:
+          description: port for internal use
+          type: integer
+        platform_tcp_port:
+          description: port for internal use
+          type: integer
+        position:
+          type: string
+        rpm:
+          description: VAST Utils Version
+          type: string
+          x-cli-header: VAST Utils Version
+        sn:
+          description: The host serial number
+          type: string
+          x-cli-header: Serial
+        state:
+          type: string
+          x-cli-header: State
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      type: object
+    AddBoxesCBoxesHostsParams:
+      items:
+        properties:
+          id:
+            type: integer
+          nb_eth_mtu:
+            description: relevant only for large subnet
+            type: integer
+          nb_ib_mode:
+            description: relevant only for large subnet
+            enum:
+            - datagram
+            - connected
+            type: string
+          nb_ib_mtu:
+            description: relevant only for large subnet
+            type: integer
+          net_type:
+            enum:
+            - eth
+            - ib
+            - int_eth_ext_ib
+            - int_ib_ext_eth
+            type: string
+          reverse_nics:
+            default: 'false'
+            type: boolean
+          skip_nic:
+            enum:
+            - int
+            - ext
+            - none
+            type: string
+        required:
+        - id
+        - net_type
+        - reverse_nics
+        - skip_nic
+        type: object
+      type: array
+    TruncatedQOSStaticLimits:
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      required:
+      - max_reads_bw_mbps
+      - max_writes_bw_mbps
+      - max_reads_iops
+      - max_writes_iops
+      - burst_reads_bw_mb
+      - burst_writes_bw_mb
+      - burst_reads_loan_mb
+      - burst_writes_loan_mb
+      - burst_reads_iops
+      - burst_writes_iops
+      - burst_reads_loan_iops
+      - burst_writes_loan_iops
+      type: object
+    DBoxMigrationResponse:
+      type: object
+    RequestTruncatedQOSStaticLimits:
+      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
+    ClusterAdvanced:
+      properties:
+        number_of_files_and_directories:
+          description: Number of files and directories
+          type: integer
+        number_of_protected_shares:
+          description: Number of protected shards
+          type: integer
+        number_of_shares:
+          description: Number of shards
+          type: integer
+        number_of_unprotected_shares:
+          description: Number of unprotected shares
+          type: integer
+        read_bandwidth_in_bytes_per_sec:
+          type: integer
+        read_iops_per_sec:
+          type: integer
+        read_latency_in_millisec:
+          type: number
+        total_capacity_in_gib:
+          description: Total cluster capacity in GiB
+          type: number
+        used_capacity_in_gib:
+          description: Used cluster capacity in GiB
+          type: number
+        write_bandwidth_in_bytes_per_sec:
+          type: integer
+        write_iops_per_sec:
+          type: integer
+        write_latency_in_millisec:
+          type: number
+      type: object
+    ChallengeToken:
+      properties:
+        expiration_time:
+          description: Token expiration time
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+        name:
+          description: Token name
+          type: string
+        password:
+          type: string
+        token:
+          description: Token value
+          type: string
+      required:
+      - name
+      type: object
+    SystemShardExpandResponse:
+      type: object
+    ListPrefetchItem:
+      properties:
+        paths:
+          items:
+            $ref: '#/components/schemas/ListPrefetchPathItem'
+          type: array
+        tenant:
+          properties:
+            name:
+              description: Tenant name
+              type: string
+          type: object
+      type: object
+    DBoxMigrationUpdateSourceTargetResponse:
+      properties:
+        source_ids:
+          items:
+            type: integer
+          type: array
+        target_ids:
+          items:
+            type: integer
+          type: array
+      type: object
+    ClusterLocksParams:
+      allOf:
+      - $ref: '#/components/schemas/TenantIdBody'
+      - properties:
+          lock_type:
+            description: Lock type. Specify if unlock_type is SINGLE.
+            enum:
+            - LOCK_TYPE_NLM4
+            - LOCK_TYPE_NFS4
+            - LOCK_TYPE_SMB2
+            type: string
+          path:
+            description: 'The full path to a locked file, formed as: VIEW_PATH/FILE_PATH, where VIEW_PATH is the VAST Cluster view path, and FILE_PATH is the client path to a locked file, relative to the mount point.'
+            type: string
+          unlock_id:
+            description: Unlock ID. Specify if unlock_type is SINGLE.
+            type: string
+          unlock_type:
+            description: The type of unlock operation to perform. 'SINGLE' unlocks a single specified lock, 'ALL' unlocks all locks.
+            enum:
+            - SINGLE
+            - ALL
+            type: string
+    PreUpgradeValidationExceptions:
+      properties:
+        exceptions:
+          description: Pre-upgrade validation exceptions
+          type: object
+      required:
+      - exceptions
+      type: object
+    CeleryInfo:
+      type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
+          type: string
+      type: object
+    AddBoxesParams:
+      properties:
+        cboxes:
+          properties:
+            hosts:
+              $ref: '#/components/schemas/AddBoxesCBoxesHostsParams'
+            order:
+              type: integer
+            subnet:
+              type: integer
+          required:
+          - hosts
+          - subnet
+          - order
+          type: object
+        cnode_ipmi_pool:
+          items:
+            type: string
+          type: array
+        cnode_management_ip_pool:
+          items:
+            type: string
+          type: array
+        cnode_start_index:
+          description: 'CNode start index valid range: [1, 99], for null value index will be selected automatically, as max_existed_index + 1'
+          type: integer
+        continue_migration:
+          type: boolean
+        dboxes:
+          properties:
+            hosts:
+              $ref: '#/components/schemas/AddBoxesDBoxesHostsParams'
+            order:
+              type: integer
+            subnet:
+              type: integer
+          required:
+          - hosts
+          - subnet
+          - order
+          type: object
+        dnode_ipmi_pool:
+          items:
+            type: string
+          type: array
+        dnode_management_ip_pool:
+          items:
+            type: string
+          type: array
+        dnode_start_index:
+          description: 'CNode start index valid range: [100, 254], for null value index will be selected automatically, as max_existed_index + 1'
+          type: integer
+        empty_dbox:
+          type: boolean
+        external_gateway:
+          items:
+            type: string
+          type: array
+        hostname_prefix:
+          type: string
+        ipv6_prefix:
+          type: integer
+        management_cidr:
+          type: integer
+        migrate_target:
+          type: boolean
+        rack_pools:
+          additionalProperties:
+            $ref: '#/components/schemas/ClusterCreateRackUpdate'
+          type: object
+      required:
+      - cboxes
+      - dboxes
+      - dnode_management_ip_pool
+      - cnode_management_ip_pool
+      - dnode_ipmi_pool
+      - cnode_ipmi_pool
+      - management_cidr
+      - external_gateway
+      - empty_dbox
+      - migrate_target
+      type: object
+    BGPTableItem:
+      properties:
+        cnode_id:
+          type: integer
+        cnode_name:
+          type: string
+        peer_address:
+          type: string
+        port:
+          type: string
+        rack_id:
+          type: integer
+        rack_name:
+          type: string
+        self_address:
+          type: string
+        state:
+          type: string
+      type: object
+    DBoxTotalCapacity:
+      properties:
+        nvram_capacity:
+          type: integer
+        nvram_number:
+          type: integer
+        ssd_capacity:
+          type: integer
+        ssd_number:
+          type: integer
+      type: object
+    ArbitraryFloatsObject:
+      additionalProperties:
+        format: float
+        type: number
+      type: object
+    FileHandle:
+      properties:
+        clone_id:
+          type: string
+          x-cli-header: Clone ID
+        delete_pending:
+          type: string
+          x-cli-header: Pending delete
+          x-format: str2yes_no
+        ehandle:
+          type: string
+          x-cli-header: eHandle
+        has_any_lease:
+          type: string
+          x-cli-header: Has lease
+          x-format: str2yes_no
+        lease_break_in_progress:
+          type: string
+          x-cli-header: Lease break in progress
+          x-format: str2yes_no
+        nfs4_only:
+          type: string
+          x-cli-header: NFSv4.1 only
+          x-format: str2yes_no
+        number_open_protocol_handles:
+          type: integer
+          x-cli-header: Number of open protocol handles
+        stream_key:
+          description: Global access path ID
+          type: string
+      type: object
+    ClusterVastDB:
+      properties:
+        vast_db_splits:
+          description: Number of splits used for query_data scanning speed. Default 8.
+          type: integer
+        vast_db_sub_splits:
+          description: Number of sub-splits used for query_data scanning speed. Default 8.
+          type: integer
+      required:
+      - vast_db_splits
+      - vast_db_sub_splits
+      type: object
+    ClusterLocksRequestParams:
+      allOf:
+      - $ref: '#/components/schemas/ClusterLocksParams'
+      - properties:
+          direction:
+            description: Pagination direction.
+            enum:
+            - prev
+            - next
+            type: string
+    ClusterAuditing:
+      properties:
+        audit_dir_name:
+          description: Name of the audit directory, which is located under the root directory.
+          type: string
+        enable_json_audit:
+          description: If enabled, audit logs are saved in JSON format into a file in the directory specified as audit_dir_name.  Can be enabled in addition to enable_vast_db_audit.
+          type: boolean
+        enable_vast_db_audit:
+          description: If enabled, audit logs are saved in a VAST DataBase table. Can be enabled in addition to enable_json_audit.
+          type: boolean
+        max_audit_dir_size:
+          description: Maximum audit directory size
+          type: string
+        max_file_size:
+          description: Maximum audit file size for each CNode core
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: bytes2gb
+          x-raw-units: Bytes
+        max_retention_period:
+          description: Max retention period for audit files
+          type: integer
+        max_retention_timeunit:
+          description: Max retention period timeunit for audit files
+          type: string
+        protocols:
+          description: Protocols to audit
+          items:
+            type: string
+          type: array
+        protocols_audit:
+          description: Map of protocols audit configurations
+          type: object
+        read_access_users:
+          description: Enter users here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+          items:
+            type: string
+          type: array
+        read_access_users_groups:
+          description: Enter groups here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+          items:
+            type: string
+          type: array
+      type: object
+    DBoxMigrationStatusResponse:
+      type: object
+    ClusterAuditingReadOnlyWithAsyncTask:
+      allOf:
+      - $ref: '#/components/schemas/ClusterAuditingReadOnly'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    AddBoxesDBoxesHostsParams:
+      items:
+        properties:
+          id:
+            type: integer
+        required:
+        - id
+        type: object
+      type: array
+    ProtocolHandle:
+      properties:
+        error:
+          type: string
+        file_handle:
+          $ref: '#/components/schemas/FileHandle'
+        open_protocol_handles:
+          items:
+            $ref: '#/components/schemas/OpenProtocolHandle'
+          type: array
+      type: object
+    Cluster:
+      properties:
+        access_ip_ranges:
+          items:
+            type: string
+          type: array
+          x-cli-header: Access IP Ranges
+        allow_encryption:
+          description: True if External Key Manager (EKM) is configured
+          type: boolean
+        allow_nfs3_over_udp:
+          description: Allow/deny NFS3 over UDP
+          type: boolean
+        audit_dir_name:
+          description: Audit directory name, located under root directory. Protocol audit logs are saved to this directory.
+          type: string
+        auto_logout_timeout:
+          description: Inactivity period for auto logout for VAST OS on all nodes (seconds)
+          type: integer
+        auxiliary_space_in_use:
+          description: Physical Snapshot Space In Use
+          format: float
+          type: number
+          x-cli-header: Physical-Aux-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-raw-units: Bytes
+        auxiliary_space_in_use_tb:
+          description: Physical Snapshot Space In Use (TB)
+          format: float
+          type: number
+          x-cli-header: Physical-Aux-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        available_upgrade_version:
+          description: Details of an upgrade package that has been uploaded and is available. Empty if there is no upgrade package uploaded.
+          properties:
+            bmc_fw_versions:
+              type: object
+            build:
+              type: string
+            nvram_version:
+              type: string
+            os_version:
+              type: string
+            ssd_version:
+              type: string
+            sys_version:
+              type: string
+          type: object
+        block_ipmi:
+          description: IPMI/BMC access is blocked on this system
+          type: boolean
+        build:
+          description: Cluster build
+          type: string
+        bw:
+          description: Bandwidth
+          format: int64
+          type: integer
+          x-cli-header: BW
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-metric: null
+          x-raw-units: Bytes/s
+        bw_mb:
+          description: Bandwidth
+          type: integer
+          x-cli-header: BW
+          x-display-units: MB/s
+          x-raw-units: Bytes/s
+        cert_pass:
+          description: Provides the password that protects the private key of the replication certificate uploaded as cluster_private_key, if password protected. The password must be supplied when uploading cluster_private_key and must be re-entered when modifying the certificate.
+          format: password
+          type: string
+        cloud_provider:
+          description: Cloud provider for VOC system, null for on-prem systems.
+          type: string
+        cluster_certificate:
+          description: Certificate (public key) file content of a CA signed certificate for mTLS encryption of replication peer connections where secure mode is enabled in the replication peer configuration. A certificate and private key must be installed on each participating replication peer cluster, and the CA's root certificate must be installed on each peer.
+          type: string
+        cluster_private_key:
+          description: Private Key file content of a CA signed certificate, used for mTLS encryption of replication peer connections where secure mode is enabled in the replication peer configuration.  A certificate and private key must be installed on each participating replication peer cluster, and the CA's root certificate must be installed on each peer.
+          type: string
+        cnode_cores:
+          description: Number of cnode cores
+          type: integer
+          x-cli-header: CNode-Cores
+        cnode_metrics:
+          description: Enable cnode-level metrics collection
+          type: boolean
+        dbox_ha_support:
+          description: DBox HA support
+          type: boolean
+          x-cli-header: DBox HA support
+        deep_stripe:
+          description: Is deep stripe system
+          type: boolean
+        default_others_share_level_perm:
+          description: Default Share level permissions for Others. (deprecated since 4.6)
+          enum:
+          - READ
+          - CHANGE
+          - FULL
+          type: string
+        defrag_threshold:
+          description: Defrag Threshold
+          type: integer
+        delete_snap_blocks_threshold:
+          type: integer
+        deployment_time:
+          description: Cluster deployment time
+          type: string
+        disable_dirsnap:
+          description: True when directory snapshots are disabled
+          type: boolean
+          x-cli-header: Disable directory snapshots
+        disable_metrics:
+          description: True when internal developer metrics collection is disabled
+          type: boolean
+          x-cli-header: Developer Metrics Disabled
+        dmsetup:
+          description: Mock NVMeoF devices with dmsetup devices
+          type: boolean
+        dr_hash_size:
+          description: DR hash size in buckets
+          type: integer
+        dr_shards:
+          description: Number of DR shards
+          type: integer
+        dr_wb_shards:
+          description: Number of DR write buffer shards
+          type: integer
+        drive_pci_port_type:
+          description: Cluster pci port type (dual, single)
+          type: string
+        drive_size:
+          description: Drive size for mocked devices
+          type: integer
+        drr:
+          description: Data reduction ratio (logical_space_in_use / physical_space_in_use)
+          format: float
+          type: number
+        drr_text:
+          description: DRR presented as 1:5.6
+          type: string
+          x-cli-header: DRR
+        ekm_address:
+          description: IP address or DNS name of External Key Manager
+          type: string
+        ekm_auth_domain:
+          description: EKM auth domain (Thales)
+          type: string
+        ekm_domain:
+          description: EKM domain (Thales)
+          type: string
+        ekm_port:
+          description: 'Port number for connections to an external key manager. Valid range: 1024 - 65535. Default: 5696'
+          type: integer
+        ekm_proxy_address:
+          description: 'Thales EKM proxy address: https://proxy-address:port'
+          type: string
+        ekm_servers:
+          description: 'List of additional EKM servers: 10.0.0.1:5696,11.0.0.1:5697'
+          type: string
+        enable_bucket_db_replication:
+          description: True if bucket DB replication is enabled
+          type: boolean
+        enable_bucket_replication:
+          description: True if bucket replication is enabled
+          type: boolean
+        enable_dr:
+          description: enable data reduction
+          type: boolean
+        enable_encryption:
+          description: Enable data encryption
+          type: boolean
+        enable_json_audit:
+          description: If enabled, audit logs are saved in JSON format into a file in the directory specified as audit_dir_name.  Can be enabled in addition to enable_vast_db_audit.
+          type: boolean
+        enable_s3:
+          description: S3 protocol enabled
+          type: boolean
+        enable_similarity:
+          description: Similarity enabled
+          type: boolean
+        enable_smb:
+          description: SMB protocol enabled
+          type: boolean
+        enable_trash:
+          type: boolean
+        enable_turbo_boost:
+          description: Enable Turbo Boost
+          type: boolean
+        enable_vast_db_audit:
+          description: If enabled, audit logs are saved in a VAST DataBase table. Can be enabled in addition to enable_json_audit.
+          type: boolean
+        enabled:
+          description: cluster enabled
+          type: boolean
+        encryption_type:
+          description: Encryption type. INTERNAL = keys are managed internally. CIPHER_TRUST_KMIP=Keys are stored and managed on Thales Group CipherTrust Data Security Platform, FORTANIX_KMIP=Keys are stored and managed on Fortanix DSM, HASHICORP_KMIP?=Keys are stored and managed on HashiCorp Vault Enterprise.
+          type: string
+        estore_capacity_in_use_bytes:
+          description: Logical Space In Use
+          format: float
+          type: number
+          x-cli-header: Logical-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        estore_capacity_in_use_tb:
+          description: Logical Space In Use (TB)
+          format: float
+          type: number
+          x-cli-header: Logical-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        expansion_phase:
+          type: integer
+        expansion_phase_description:
+          type: string
+        expansion_state:
+          type: string
+        failure_domains_support:
+          description: Failure domains support
+          type: boolean
+          x-cli-header: Failure domains support
+        format_drives:
+          description: Format drives
+          type: boolean
+        free_logical_space:
+          description: Free Logical Space
+          format: float
+          type: number
+        free_logical_space_tb:
+          description: The estimated effective free capacity remaining for writing data to the cluster, computed dynamically based upon the observed DRR and overhead impact.
+          format: float
+          type: number
+          x-cli-header: Free-Logical-Space
+          x-display-units: TB
+          x-raw-units: Bytes
+        free_physical_space:
+          description: Free Physical Space
+          format: float
+          type: number
+        free_physical_space_tb:
+          description: Free Physical Space
+          format: float
+          type: number
+          x-cli-header: Free-Physical-Space
+          x-display-units: TB
+          x-raw-units: Bytes
+        free_physical_space_wo_overhead:
+          description: Free Usable Space
+          format: float
+          type: number
+          x-cli-header: Free-Usable-Space
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-raw-units: Bytes
+        free_physical_space_wo_overhead_tb:
+          description: Free Usable Space, in TB
+          format: float
+          type: number
+          x-cli-header: Free-Usable-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        free_usable_capacity:
+          description: The amount of usable capacity that is not in use, in bytes.
+          format: int64
+          type: integer
+          x-cli-header: Free-Usable-Capacity
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        free_usable_capacity_tb:
+          description: The amount of usable capacity that is not in use, in bytes, in TB.
+          format: float
+          type: number
+          x-cli-header: Free-Usable-Capacity-TB
+          x-display-units: TB
+          x-raw-units: Bytes
+        gn_max_inode_count:
+          description: Quota limit on the number of files and directories in the cluster's global namespace. The limit is shared between all global access source paths on the cluster.
+          type: string
+        gn_max_size:
+          description: Quota capacity limit for the cluster's global namespace. The limit is shared between all global access source paths on the cluster.
+          type: string
+        gn_used_inode_count:
+          description: Number of files and directories in use in the cluster's global namespace. Summed across all global access source paths on the cluster.
+          type: integer
+        gn_used_size:
+          description: Amount of capacity in use for global namespace. Combination of all capacity used by all global access source paths on the cluster.
+          type: string
+        guid:
+          description: globally unique identifier
+          type: string
+          x-cli-header: GUID
+        half_system:
+          description: Is half system
+          type: boolean
+        id:
+          description: Cluster ID
+          type: integer
+          x-cli-header: ID
+        iops:
+          description: IOPS
+          format: int64
+          type: integer
+          x-cli-header: IOPS
+          x-metric: null
+          x-raw-units: IOPS
+        ip:
+          description: IP of the cluster's Leader CNode
+          type: string
+          x-cli-header: Leader IP
+        is_large_subnet:
+          description: Cluster uses a large subnet
+          type: boolean
+        is_wb_raid_enabled:
+          description: True if wb_raid_layout value means WBR is enabled
+          type: boolean
+        latency:
+          description: Latency
+          format: int64
+          type: integer
+          x-cli-header: Latency
+          x-display-units: msec
+          x-format: usec2msec
+          x-metric: null
+          x-raw-units: usec
+        latency_ms:
+          description: Latency
+          type: integer
+          x-cli-header: Latency
+          x-display-units: msec
+          x-raw-units: usec
+        leader_cnode:
+          description: Leader CNode
+          type: string
+        leader_state:
+          description: Cluster Leader state
+          enum:
+          - UP
+          - DOWN
+          - UNKNOWN
+          type: string
+        leader_upgrade_state:
+          type: string
+        logical_auxiliary_space_in_use:
+          description: The amount of logical data written to the cluster that was deleted and is being held as auxiliary data, either by snapshots or as deletion in process, in bytes
+          format: float
+          type: number
+          x-cli-header: Logical-Aux-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-raw-units: Bytes
+        logical_auxiliary_space_in_use_tb:
+          description: The amount of logical data written to the cluster that was deleted and is being held as auxiliary data, either by snapshots or as deletion in process, in TB
+          format: float
+          type: number
+          x-cli-header: Logical-Aux-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        logical_drr_percent:
+          description: Logical data reduction ratio percentage
+          format: float
+          type: number
+        logical_inodes_in_use_num:
+          description: Number of files and directories
+          type: integer
+        logical_space:
+          description: The total estimated logical capacity, which is the amount of data estimated that can be written to the cluster.
+          format: int64
+          type: integer
+          x-cli-header: User-Space
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        logical_space_in_use:
+          description: The amount of logical data written to the cluster by data clients. This value doesn't include snapshots.
+          format: int64
+          type: integer
+          x-cli-header: User-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        logical_space_in_use_percent:
+          description: Logical space in use percentage
+          format: float
+          type: number
+        logical_space_in_use_tb:
+          description: Logical Space In Use
+          format: float
+          type: number
+          x-cli-header: Logical-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        logical_space_tb:
+          description: Total Estimated Logical Space
+          format: float
+          type: number
+          x-cli-header: User-Space
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        loopback:
+          description: Loopback (single node) installation
+          type: boolean
+        max_audit_dir_size:
+          description: Maximum size of the audit directory. Specify the value with units of MB, GB, TB and so on. No default.
+          type: string
+        max_cluster_read_bw_mb:
+          description: Maximum cluster read bandwidth in MB/s
+          type: integer
+        max_cluster_write_bw_mb:
+          description: Maximum cluster write bandwidth in MB/s
+          type: integer
+        max_file_size:
+          description: Maximum audit file size for each CNode core
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: bytes2gb
+          x-raw-units: Bytes
+        max_handles_count:
+          description: Maximum supported number of handles
+          type: integer
+        max_number_mtls_certs_per_ca:
+          description: The maximum number of mTLS certificates per CA
+          type: integer
+        max_nvram_capacity_percent:
+          description: Max NVRM capacity percent
+          type: integer
+          x-cli-header: Max-NVRM-Capacity-Percent
+        max_nvram_replication_factor:
+          description: Max NVRAM replication factor
+          type: integer
+          x-cli-header: Max-NVRAM-Replication-Factor
+        max_performance:
+          properties:
+            read_bw:
+              type: integer
+            read_iops:
+              type: integer
+            write_bw:
+              format: float
+              type: number
+            write_iops:
+              type: integer
+          type: object
+        max_performance_metrics:
+          $ref: '#/components/schemas/ArbitraryFloatsObject'
+        max_retention_period:
+          description: Max retention period for audit files
+          type: integer
+        max_retention_timeunit:
+          description: Max retention period timeunit for audit files
+          type: string
+        max_ssd_capacity_percent:
+          description: Max SSD capacity percent
+          type: integer
+          x-cli-header: Max-SSD-Capacity-Percent
+        md_iops:
+          description: Meta-data IOPS
+          format: int64
+          type: integer
+          x-cli-header: MD-IOPS
+          x-metric: null
+          x-raw-units: IOPS
+        md_usage_health:
+          enum:
+          - HEALTHY
+          - LOW_RESOURCES
+          - EMPTY
+          - UNKNOWN
+          type: string
+          x-cli-header: Metadata-health
+        mega_dr_shards:
+          description: Number of DR shards
+          type: integer
+        mega_dr_wb_shards:
+          description: Number of DR write buffer shards
+          type: integer
+        mega_shards:
+          description: Number of shards
+          type: integer
+        mega_stripe_groups:
+          description: Number of stripe groups
+          type: integer
+        memory_raid_rebuild_progress:
+          type: integer
+        memory_raid_state:
+          type: string
+          x-cli-header: Memory-RAID-state
+        mgmt_cnode:
+          description: Management CNode
+          type: string
+          x-cli-header: Mgmt-CNode
+        mgmt_inner_vip:
+          description: VMS inner vip. A virtual IP on the internal network used for mounting the VMS database.
+          type: string
+          x-cli-header: VMS-Inner-VIP
+        mgmt_inner_vip_cnode:
+          description: CNode hosting the VMS inner VIP
+          type: string
+          x-cli-header: VMS-Inner-VIP-CNode
+        mgmt_vip:
+          description: Management virtual IP. A single virtual IP configured on the management interfaces on all CNodes. VAST Management System (VMS) listens on this IP. It is used to access the VMS interfaces.
+          type: string
+        micro_dr_shards:
+          description: Number of DR shards
+          type: integer
+        micro_dr_wb_shards:
+          description: Number of DR write buffer shards
+          type: integer
+        micro_estore_shards:
+          description: Micro Estore Shards
+          type: integer
+        micro_shards:
+          description: Number of shards
+          type: integer
+        micro_stripe_groups:
+          description: Number of stripe groups
+          type: integer
+        mio_raid_state:
+          description: MIO raid state
+          type: string
+        mock_fanout_auth:
+          description: (deprecated since 4.6)
+          type: boolean
+        motd:
+          description: Custom Message of the Day text displayed by VAST OS on login
+          type: string
+        motd_append_to_default:
+          description: Append custom motd to default motd
+          type: boolean
+        name:
+          description: Name
+          type: string
+          x-cli-header: Name
+        ndb_bandwidth:
+          description: NDB query bandwidth total (MB)
+          format: float
+          type: number
+        ndb_bandwidth_read:
+          description: NDB query bandwidth read (MB)
+          format: float
+          type: number
+        ndb_bandwidth_write:
+          description: NDB query bandwidth write (MB)
+          format: float
+          type: number
+        ndb_number_of_running_queries:
+          description: NDB number of running queries
+          format: int64
+          type: integer
+        ndb_rows_scanned_per_second:
+          description: NDB rows scanned per second
+          format: int64
+          type: integer
+        nfs4_certificate:
+          description: Certificate file content of TLS certificate, used to enforce TLS encryption on NFSv4 client connections. TLS encryption is controlled by the view policy and provides an alternative to Kerberos encryption for environments where Active Directory is not used.
+          format: password
+          type: string
+        nfs4_private_key:
+          description: Private key file content of TLS certificate for NFSv4. See also nfs4_certificate.
+          format: password
+          type: string
+        nvram_raid_rebuild_progress:
+          description: Percentage progress of NVRAM RAID rebuild, if in progress
+          type: integer
+        nvram_raid_rebuild_progress_fraction:
+          description: Progress of SSD RAID rebuild expressed as a fraction, if in progress
+          type: string
+        nvram_raid_state:
+          type: string
+          x-cli-header: NVRAM-RAID-state
+        nvram_size:
+          type: integer
+        online_start_time:
+          description: Cluster online start time
+          type: string
+        perf_check:
+          description: Check cluster performance
+          type: boolean
+        physical_drr_percent:
+          description: Physical data reduction ratio percentage
+          format: float
+          type: number
+        physical_space:
+          description: The total physical capacity of the cluster with an 8% reduction for reserve overhead
+          format: int64
+          type: integer
+          x-cli-header: Total-Space
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        physical_space_in_use:
+          description: Physical Space In Use
+          format: int64
+          type: integer
+          x-cli-header: Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        physical_space_in_use_percent:
+          description: Physical space in use percentage
+          format: float
+          type: number
+        physical_space_in_use_tb:
+          description: Physical Space In Use
+          format: float
+          type: number
+          x-cli-header: Physical-Space-In-use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        physical_space_in_use_wo_overhead:
+          description: Usable Space In Use
+          format: int64
+          type: integer
+          x-cli-header: Usable-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        physical_space_tb:
+          description: Total Physical Space
+          format: float
+          type: number
+          x-cli-header: Total-Space
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-raw-units: Bytes
+        physical_space_wo_overhead:
+          description: The total physical capacity of the cluster.
+          format: int64
+          type: integer
+          x-cli-header: Usable-Space
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        protocols:
+          description: Array of globally audited protocols.
+          items:
+            enum:
+            - NFSv3
+            - NFSv4.1
+            - SMB
+            - S3
+            - NDB
+            - STS
+            type: string
+          type: array
+        protocols_audit:
+          description: Global audit options that apply to all views. Settings that are disabled here can be enabled in the view policy.
+          properties:
+            create_delete_files_dirs_objects:
+              description: Audit operations that create or delete files, directories, or objects
+              type: boolean
+            log_deleted_files_dirs:
+              description: Log deleted files and directories
+              type: boolean
+            log_full_path:
+              description: Log full Element Store path to the requested resource. Enabled by default. May affect performance. When disabled, the view path is recorded.
+              type: boolean
+            log_username:
+              description: Log username of requesting user. Disabled by default
+              type: boolean
+            modify_data_md:
+              description: Audit operations that modify data (including operations that change the file size) and metadata
+              type: boolean
+            read_data:
+              description: Audit operations that read data and metadata
+              type: boolean
+            read_data_md:
+              type: boolean
+            session_create_close:
+              description: Audit session creation and closing operations for sessions that use Kerberos 5 authentication (krb5, krb5i, or krb5p)
+              type: boolean
+          type: object
+        provides_blocked:
+          description: Block/Unblock all external providers
+          type: boolean
+          x-cli-header: Block All External Providers
+        psnt:
+          description: The cluster's PSNT. A PSNT is an asset identifier that links the components of a cluster.
+          type: string
+          x-cli-header: PSNT
+        qos:
+          $ref: '#/components/schemas/TruncatedQOS'
+        quotas_allocated_capacity:
+          type: integer
+        quotas_used_capacity:
+          type: integer
+        quotas_used_percent:
+          format: float
+          type: number
+        raid_drives_can_fail:
+          type: integer
+          x-cli-header: RAID-drives-can-fail
+        raid_rebuild_progress:
+          type: string
+          x-cli-header: RAID-rebuild-progress
+        rd_bw:
+          description: Read Bandwidth
+          format: int64
+          type: integer
+          x-cli-header: R-BW
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-metric: null
+          x-raw-units: Bytes/s
+          x-source-module: I
+        rd_bw_mb:
+          description: Read Bandwidth
+          format: float
+          type: number
+          x-cli-header: R-BW
+          x-display-units: MB/s
+          x-raw-units: Bytes/s
+        rd_iops:
+          description: Read IOPS
+          format: int64
+          type: integer
+          x-cli-header: R-IOPS
+          x-metric: null
+          x-raw-units: IOPS
+          x-source-module: I
+        rd_latency:
+          description: Read Latency
+          format: int64
+          type: integer
+          x-cli-header: R-Latency
+          x-display-units: msec
+          x-format: usec2msec
+          x-metric: null
+          x-raw-units: usec
+          x-source-module: I
+        rd_latency_ms:
+          description: Read Latency
+          type: integer
+          x-cli-header: R-Latency
+          x-display-units: msec
+          x-raw-units: usec
+        rd_md_iops:
+          description: Read Meta-data IOPS
+          format: int64
+          type: integer
+          x-cli-header: R-MD-IOPS
+          x-metric: null
+          x-raw-units: IOPS
+          x-source-module: I
+        read_access_users:
+          description: Enter users here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+          items:
+            type: string
+          type: array
+        read_access_users_groups:
+          description: Enter groups here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+          items:
+            type: string
+          type: array
+        remaining_stripes_health:
+          enum:
+          - HEALTHY
+          - LOW_RESOURCES
+          - EMPTY
+          - UNKNOWN
+          type: string
+          x-cli-header: Stripes-health
+        replication_bw_mb:
+          format: float
+          type: number
+        replication_iops:
+          format: float
+          type: number
+        replication_latency_ms:
+          format: float
+          type: number
+        replication_rd_bw_mb:
+          format: float
+          type: number
+        replication_rd_iops:
+          type: integer
+        replication_rd_latency_ms:
+          format: float
+          type: number
+        replication_wr_bw_mb:
+          format: float
+          type: number
+        replication_wr_iops:
+          type: integer
+        replication_wr_latency_ms:
+          format: float
+          type: number
+        rewrite_phase:
+          description: Current Rewrite phase
+          type: string
+        rewrite_progress:
+          description: Current Rewrite phase progress (%)
+          type: integer
+        rewrite_status:
+          description: Rewrite status summary
+          type: object
+        rewrite_type:
+          description: Current Rewrite types
+          items:
+            type: string
+          type: array
+        rio_nvram_state:
+          type: string
+          x-cli-header: NVRAM-RAID-rio-state
+        rio_raid_rebuild_progress:
+          type: integer
+        rio_raid_rebuild_progress_fraction:
+          type: string
+        root_certificate:
+          description: mTLS Root Certificate content. When a certificate and private key are installed on each participating replication peer cluster, and the CA's root certificate is installed on each peer, mTLS encryption can be enabled on replication connections between peer clusters. See also cluster_certificate and cluster_private_key.
+          format: password
+          type: string
+        s3_allow_cors:
+          type: boolean
+        s3_block_v2_authentication:
+          description: Manage s3 blocks v2 authentication
+          type: boolean
+        s3_certificate:
+          description: Certificate file content of the SSL certificate used to enable client connection to the S3 service over HTTPS.
+          format: password
+          type: string
+        s3_enable_v2_authentication:
+          description: If true, version 2 authentication is blocked for S3 client API requests. Disabled by default.
+          type: boolean
+        s3_new_version:
+          description: Details of a new upgrade package made available by Support at an S3 URL. Empty if there is no such upgrade package available.
+          type: object
+        s3_private_key:
+          description: Private file content of the SSL certificate used to enable client connection to the S3 service over HTTPS.
+          format: password
+          type: string
+        secondary_ekm_address:
+          description: Secondary EKM address
+          type: string
+        secondary_ekm_port:
+          description: 'Secondary EKM port. Valid range: 1024 - 65535.'
+          type: integer
+        shards:
+          description: Number of shards
+          type: integer
+        showmount_hide_slash:
+          description: Suppress Linux showmount command output including "/"
+          type: boolean
+        showmount_suppressed:
+          description: Suppress Linux showmount command output on for NFSv3 users
+          type: boolean
+        smb_administrators_group_name:
+          description: Optional custom group logon name. If set, the group name will replace local administrators group access. (deprecated since 4.6)
+          type: string
+          x-cli-header: Local administrators group name
+        smb_privileged_group_full_access:
+          description: If true, the privileged group has full access. Otherwise, read only. (deprecated since 4.6)
+          type: boolean
+          x-cli-header: Enable privileged domain group restore access
+        smb_privileged_group_sid:
+          description: Optional custom SID to specify a non default privileged group. If not set, privileged group is the Backup Operators domain group. (deprecated since 4.6)
+          type: string
+          x-cli-header: SID of the privileged domain group
+        smb_privileged_user_name:
+          description: Optional domain user logon name. If not set, the privileged user is 'vastadmin'. (deprecated since 4.6)
+          type: string
+          x-cli-header: Logon name of the privileged domain user
+        ssd_raid_rebuild_progress:
+          description: Percentage progress of SSD RAID rebuild, if in progress
+          type: integer
+        ssd_raid_state:
+          type: string
+          x-cli-header: SSD-RAID-state
+        ssh_user:
+          description: SSH User name
+          type: string
+        state:
+          description: Cluster state. UNKNOWN state is displayed in the VMS GUI as disconnected.
+          enum:
+          - INIT
+          - ACTIVATING
+          - DEACTIVATING
+          - ONLINE
+          - OFFLINE
+          - FAILED
+          - UNKNOWN
+          - INSTALLING
+          - PREPARE
+          - KILLED
+          - INSTALLED
+          - KILLING
+          - BOOTSTRAP
+          type: string
+        stripe_groups:
+          description: Number of stripe groups
+          type: integer
+          x-cli-header: Stripe-Groups
+        supported_drives:
+          type: object
+        sw_defined:
+          type: boolean
+        sw_version:
+          type: string
+        system_name:
+          description: Internal guid string used by cluster s/w
+          type: string
+        system_settings:
+          type: object
+        title:
+          type: string
+        trash_gid:
+          description: GID with permissions to the trash folder (deprecated since 4.6)
+          type: integer
+        triplication_enabled:
+          description: Enables metadata triplication. Metadata triplication improves the resiliency of the cluster by allowing the loss of two metadata sections on SCM or DNode RAM at the same time without any loss of metadata or access. Enabling triplication improves resiliency at the cost of reducing the amount of metadata available to the system by 33%. In addition, enabling this feature increases write latency and reduces the max write IOPS of the system. Supported only on EBox clusters.
+          type: boolean
+          x-cli-header: Triplication enabled
+        turbo_boost_flag:
+          description: if enabled VMS will enable turbo boost during upgrade
+          type: boolean
+          x-cli-header: Enable Turbo Boost
+        upgrade_phase:
+          description: Phase of a background running upgrade
+          type: string
+        upgrade_progress:
+          properties:
+            cnodes:
+              properties:
+                done:
+                  type: integer
+                total:
+                  type: integer
+              type: object
+            dnodes:
+              properties:
+                done:
+                  type: integer
+                total:
+                  type: integer
+              type: object
+          type: object
+        upgrade_state:
+          type: string
+        uptime:
+          description: Cluster uptime
+          type: string
+        url:
+          description: Endpoint URL for API operations on the cluster
+          type: string
+        usable_auxiliary_space_in_use:
+          description: This is usable data that has been deleted logically and may be held by snapshots. Data is either reflected as auxiliary data because it was deleted recently and its deletion is still being processed, or it is reflected as auxiliary data because it is held by snapshots. Prior to deletion, data is reflected as used. After the data is deleted, if one or more snapshots that include that data still remain, the data is held by snapshot(s). It is no longer reflected as used and is now reflected as auxiliary.
+          format: float
+          type: number
+          x-cli-header: Usable-Auxiliary-Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        usable_capacity_bytes:
+          description: The usable capacity of the cluster, in bytes. This is always smaller than the physical capacity due to an overhead introduced by data protection. VAST Cluster protects data with RAID stripes. The data protection overhead varies by size of stripe which in turn varies based upon the number of storage enclosures (DBoxes) in a cluster.
+          format: int64
+          type: integer
+          x-cli-header: Usable-Capacity
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-metric: null
+          x-raw-units: Bytes
+          x-source-module: C
+        usable_capacity_tb:
+          description: The usable capacity of the cluster, in TB. This is always smaller than the physical capacity due to an overhead introduced by data protection. VAST Cluster protects data with RAID stripes. The data protection overhead varies by size of stripe which in turn varies based upon the number of storage enclosures (DBoxes) in a cluster.
+          format: float
+          type: number
+          x-cli-header: Usable-Capacity-TB
+          x-display-units: TB
+          x-raw-units: Bytes
+        use_flash_write_buffers:
+          description: Whether to use Write Buffers on Flash (Spillover)
+          type: boolean
+        use_smb_privileged_group:
+          description: If true, the privileged group is enabled. (deprecated since 4.6)
+          type: boolean
+          x-cli-header: Enable privileged domain group backup access
+        use_smb_privileged_user:
+          description: If true, the privileged user is enabled. (deprecated since 4.6)
+          type: boolean
+          x-cli-header: Enable privileged domain user restore access
+        use_spdk:
+          description: Should install spdk
+          type: boolean
+        use_tenant_all_snapshots:
+          description: Whether to use tenant all snapshots
+          type: boolean
+        used_handles_count:
+          type: integer
+        used_handles_percent:
+          format: float
+          type: number
+          x-cli-header: Used handles percent
+        vast_audit_log_state:
+          description: State of Vast Audit Log table
+          enum:
+          - NONE
+          - IN_CREATION
+          - CREATED
+          - FAILED
+          type: string
+        voc:
+          description: vast on cloud cluster
+          type: boolean
+        wb_raid_layout:
+          description: Current WB RAID layout of the cluster
+          type: string
+        wr_bw:
+          description: Write Bandwidth
+          format: int64
+          type: integer
+          x-cli-header: W-BW
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-metric: null
+          x-raw-units: Bytes/s
+          x-source-module: I
+        wr_bw_mb:
+          description: Write Bandwidth
+          type: integer
+          x-cli-header: W-BW
+          x-display-units: MB/s
+          x-raw-units: Bytes/s
+        wr_iops:
+          description: Write IOPS
+          format: int64
+          type: integer
+          x-cli-header: W-IOPS
+          x-metric: null
+          x-raw-units: IOPS
+          x-source-module: I
+        wr_latency:
+          description: Write Latency
+          format: int64
+          type: integer
+          x-cli-header: W-Latency
+          x-display-units: msec
+          x-format: usec2msec
+          x-metric: null
+          x-raw-units: usec
+          x-source-module: I
+        wr_latency_ms:
+          description: Write Latency
+          type: integer
+          x-cli-header: W-Latency
+          x-display-units: msec
+          x-raw-units: usec
+        wr_md_iops:
+          description: Write Meta-data IOPS
+          format: int64
+          type: integer
+          x-cli-header: W-MD-IOPS
+          x-metric: null
+          x-raw-units: IOPS
+          x-source-module: I
+      required:
+      - name
+      type: object
+    AsyncCluster:
+      allOf:
+      - $ref: '#/components/schemas/Cluster'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    Lock:
+      properties:
+        caller:
+          description: An identifier of the client that acquired the lock. This could be an IP or host name of the client.
+          type: string
+        client_id:
+          type: string
+          x-cli-header: Client ID
+        create_time_nano:
+          description: The time the lock was acquired.
+          type: integer
+          x-cli-header: Create-Time
+          x-format: nanosec2datetime
+        is_exclusive:
+          description: If true, the lock is an exclusive (write) lock. If false, the lock is a shared (read) lock.
+          type: boolean
+          x-cli-header: Exclusive
+          x-format: bool2str
+        length:
+          description: The number of bytes of the file locked by the lock. A length of 0 means the lock reaches until the end of the file.
+          type: integer
+          x-format: pretty_numbers
+        lock_granted_type:
+          description: The type of delegation granted to the client. READ=No other client has the ability to write to the file for the duration of the delegation. WRITE=no other client has read or write access to the file for the duration of the delegation.
+          type: string
+          x-cli-header: Granted Type
+          x-format: pretty_enum
+        lock_id:
+          type: string
+          x-cli-header: Lock ID
+        lock_path:
+          description: The path that the locks are taken on
+          type: string
+          x-cli-header: Lock Path
+        lock_type:
+          description: The type of lock
+          type: string
+          x-cli-header: Type
+          x-format: pretty_lock_type
+        offset:
+          description: The number of bytes from the beginning of the file's byte range from which the lock begins.
+          type: integer
+          x-format: pretty_numbers
+        open_id:
+          type: string
+          x-cli-header: Open ID
+        owner:
+          description: An identifier internal to the client kernel for the specific process that owns the lock.
+          type: string
+        path:
+          description: The path that the locks are taken on
+          type: string
+        state:
+          description: Lock state
+          type: string
+        svid:
+          description: A kernel identifier of the owning process on the client machine.
+          type: integer
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_name:
+          description: Tenant Name
+          type: string
+          x-cli-header: Tenant
+        unlock_id:
+          description: ID to specify in order for unlocking the lock.
+          type: string
+          x-cli-header: Unlock ID
+      type: object
+    OpenProtocolHandle:
+      properties:
+        access_mask:
+          items:
+            type: string
+          type: array
+          x-cli-header: Access Mask (hex)
+        access_mask_display:
+          description: Human readable access mask string values
+          type: string
+          x-cli-header: Access Mask
+        client_ip:
+          type: string
+          x-cli-header: Client IP
+        file_mode:
+          type: string
+          x-cli-header: File Mode
+          x-format: pretty_enum
+        has_lease:
+          type: string
+          x-cli-header: Lease
+          x-format: str2yes_no
+        is_nfs_expirable:
+          type: string
+        nfs4_seqid:
+          type: string
+          x-cli-header: NFSv4.1 Sequence ID
+        nfs_expiration_time:
+          type: string
+        proto_type:
+          type: string
+          x-cli-header: Protocol
+          x-format: pretty_protocol
+        session_id:
+          type: string
+          x-cli-header: Session ID
+        share_access:
+          type: string
+          x-cli-header: Share Access
+        unique_id:
+          type: string
+          x-cli-header: Unique ID
+        username:
+          type: string
+      type: object
+    ClusterCreateRackUpdate:
+      properties:
+        cnode_ip_pool:
+          items:
+            example: 192.168.1.2-12
+            type: string
+          type: array
+        cnode_ipmi_pool:
+          items:
+            example: 192.168.1.2-12
+            type: string
+          type: array
+        dnode_ip_pool:
+          items:
+            example: 192.168.100.100-103
+            type: string
+          type: array
+        dnode_ipmi_pool:
+          items:
+            example: 192.168.100.100-103
+            type: string
+          type: array
+      type: object
+    TruncatedQOS:
+      properties:
+        static_limits:
+          $ref: '#/components/schemas/TruncatedQOSStaticLimits'
+      required:
+      - static_limits
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
+    Host:
+      properties:
+        auto:
+          description: auto or manually host (internal property)
+          type: boolean
+          x-cli-header: Auto
+        box_rdma_port:
+          description: port for internal use
+          type: integer
+        build:
+          description: Node build
+          type: string
+        cluster:
+          description: The name of the cluster to which the host belongs
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          description: Cluster ID
+          type: integer
+        data_rdma_port:
+          description: port for internal use
+          type: integer
+        data_tcp_port:
+          description: port for internal use
+          type: integer
+        dbox_uid:
+          description: Unique h/w identifier
+          type: string
+          x-cli-header: DBox-UID
+        deep_stripe:
+          description: Is deep stripe system
+          type: boolean
+        dmsetup:
+          description: Mock NVMeoF devices with dmsetup devices
+          type: boolean
+        dr_hash_size:
+          description: DR hash size in buckets
+          type: integer
+        drive_size:
+          description: Drive size for mocked devices
+          type: integer
+        enable_dr:
+          description: True if data reduction is enabled
+          type: boolean
+        guid:
+          description: Globally unique identifier
+          type: string
+        half_system:
+          description: Is half system
+          type: boolean
+        host_label:
+          description: Host label, used to label container, e.g. 11.0.0.1-4000
+          type: string
+        hostname:
+          description: Hostname
+          type: string
+        hw_info:
+          description: General hardware info related to the host
+          type: object
+        id:
+          description: The ID of a host
+          type: integer
+          x-cli-header: ID
+        install:
+          description: True if selected for installation. False if excluded.
+          type: boolean
+        install_state:
+          description: Node installation state
+          type: string
+          x-cli-header: Install-State
+        ip:
+          description: The IP of the host's bond interface on the internal data network
+          type: string
+          x-cli-header: IP
+        ip1:
+          description: The host's 1st internal IP address
+          type: string
+          x-cli-header: IP1
+        ip2:
+          description: Ths host's 2nd internal IP address
+          type: string
+          x-cli-header: IP2
+        ipv6:
+          description: External IPv6 Address
+          type: string
+          x-cli-header: IPv6
+        led_status:
+          description: Status of host LED
+          type: string
+        loopback:
+          description: True if loopback (single node) installation
+          type: boolean
+        name:
+          description: Name of host
+          type: string
+        net_type:
+          description: network type
+          enum:
+          - eth
+          - ib
+          - int_eth_ext_ib
+          - int_ib_ext_eth
+          type: string
+        node_guid:
+          description: Hosts sibling node guid
+          type: string
+        node_type:
+          description: 'Node type: C-Node/D-Node'
+          type: string
+          x-cli-header: Type
+        nvram_size:
+          description: NVRAM size for mocked devices
+          type: integer
+        os_version:
+          description: The VAST OS version running on the node
+          type: string
+          x-cli-header: OS-Version
+        perf_check:
+          description: Internal property related to checking cluster performance
+          type: boolean
+        platform_rdma_port:
+          description: port for internal use
+          type: integer
+        platform_tcp_port:
+          description: port for internal use
+          type: integer
+        single_nic:
+          description: Host has single NIC
+          type: boolean
+        sn:
+          description: Serial number
+          type: string
+        ssh_user:
+          description: SSH User name
+          type: string
+        state:
+          description: Node state
+          type: string
+          x-cli-header: State
+        sw_defined:
+          description: True if host is software defined model
+          type: boolean
+        sw_version:
+          description: The platform software version running on the node
+          type: string
+          x-cli-header: SW-Version
+        system_name:
+          description: Cluster GUID
+          type: string
+        title:
+          description: Descriptive string including node type, IP address and node name.
+          type: string
+        upgrade_state:
+          description: Host upgrade state
+          type: string
+        url:
+          description: Endpoint URL for API operations
+          type: string
+        vast_install_info:
+          $ref: '#/components/schemas/VastInstallInfo'
+      required:
+      - hostname
+      - node_type
+      type: object
+    DBoxMigrationValidateResponse:
+      properties:
+        deep_discovery_task:
+          type: object
+        is_valid:
+          type: boolean
+      type: object
+    ListPrefetchPathItem:
+      properties:
+        code:
+          type: string
+        inodes_retrieved:
+          type: integer
+        path:
+          type: string
+        prefetch_type:
+          type: string
+        size_retrieved:
+          type: integer
+        task_id:
+          type: integer
+      type: object
+    ShouldUpgrade:
+      properties:
+        all_data_exist:
+          description: True if VMS has all data in an upgrade bundle specified for upload.
+          type: boolean
+        bad_partitions:
+          description: Partitions that have insufficient disk space for starting upgrade
+          type: object
+      required:
+      - all_data_exist
+      - bad_partitions
+      type: object
+    TenantIdBody:
+      minimum: 1
+      properties:
+        tenant_id:
+          type: integer
+      type: object
+    Generic:
+      type: object
+    ClusterVastDBModify:
+      properties:
+        vast_db_splits:
+          description: The number of splits used for query_data scanning speed. Default 8.
+          type: integer
+        vast_db_sub_splits:
+          description: The number of sub-splits used for query_data scanning speed. Default 8.
+          type: integer
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  requestBodies:
+    ClusterLocksParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksParams'
+      x-originalParamName: ClusterLocksParamsBody
+    ClusterLocksRequestParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksRequestParams'
+      x-originalParamName: ClusterLocksRequestParamsBody
+    ClusterAuditingParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterAuditing'
+      x-originalParamName: ClusterAuditingParamsBody
+    ClusterVastDBModifyParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterVastDBModify'
+      x-originalParamName: ClusterVastDBModifyParamsBody
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    ClusterId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vastcatalogindexedcolumns API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The bigcatalogindexedcolumns endpoint enables you to add columns to the VAST Catalog table for S3 tags and S3 metadata attributes.
+  name: vastcatalogindexedcolumns
+paths:
+  /bigcatalogindexedcolumns/:
+    get:
+      description: This endpoint lists VAST Catalog tags.
+      operationId: vastcatalogindexedcolumns_list
+      parameters:
+      - in: query
+        name: column_type
+        schema:
+          enum:
+          - tag
+          - metadata
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VastCatalogIndexedColumn'
+                type: array
+          description: VAST Catalog tags
+      summary: List VAST Catalog Tags
+      tags:
+      - vastcatalogindexedcolumns
+  /bigcatalogindexedcolumns/add/:
+    patch:
+      description: This endpoint adds an indexed column to the VAST Catalog table.
+      operationId: vastcatalogindexedcolumns_add
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                column_type:
+                  description: Type of indexed column
+                  enum:
+                  - tag
+                  - metadata
+                  type: string
+                name:
+                  description: Column name
+                  type: string
+              required:
+              - name
+              - column_type
+              type: object
+        x-originalParamName: VastCatalogIndexedColumnAdd
+      responses:
+        '204':
+          description: OK
+      summary: Add Indexed Column to VAST Catalog
+      tags:
+      - vastcatalogindexedcolumns
+  /bigcatalogindexedcolumns/remove/:
+    delete:
+      description: This endpoint removes a user-added indexed column from VAST Catalog.
+      operationId: vastcatalogindexedcolumns_remove
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                column_type:
+                  description: Type of indexed column
+                  enum:
+                  - tag
+                  - metadata
+                  type: string
+                name:
+                  description: Column name
+                  type: string
+              required:
+              - name
+              - column_type
+              type: object
+        x-originalParamName: VastCatalogIndexedColumnRemove
+      responses:
+        '204':
+          description: OK
+      summary: Remove VAST Catalog Indexed Column
+      tags:
+      - vastcatalogindexedcolumns
+components:
+  schemas:
+    VastCatalogIndexedColumn:
+      properties:
+        column_type:
+          description: Type of indexed column
+          type: string
+        name:
+          description: Name of indexed column
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

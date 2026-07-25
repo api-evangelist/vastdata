@@ -1,0 +1,1357 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Compute Clusters API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Compute Clusters
+paths:
+  /computeclusters/:
+    get:
+      description: This endpoint lists Compute Clusters
+      operationId: computeclusters_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComputeClusterListItem'
+                type: array
+          description: Compute Cluster information
+      summary: Get all existing Compute Clusters
+      tags:
+      - Compute Clusters
+    post:
+      description: This endpoint creates a Compute Cluster.
+      operationId: computeclusters_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComputeClusterCreateParams'
+        x-originalParamName: ComputeClusterCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncComputeCluster'
+          description: ''
+        '400':
+          description: The request contains invalid data.
+      summary: Create a Compute Cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/dashboard/:
+    get:
+      description: 'This endpoint provides system-wide aggregated resource counts for compute clusters.
+
+        Returns counts of compute clusters, CNodes, pods, deployments, services, namespaces, and tenants,
+
+        with state-based breakdowns for each resource type.
+
+        '
+      operationId: computeclusters_dashboard
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComputeClusterDashboard'
+          description: Aggregated dashboard information across all compute clusters
+      summary: Get aggregated dashboard information for all compute clusters
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/:
+    delete:
+      description: Delete Compute Cluster.
+      operationId: computeclusters_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Compute Cluster deletion initiated
+      summary: Delete Compute Cluster
+      tags:
+      - Compute Clusters
+    get:
+      description: This endpoint returns information about a specific Compute Cluster.
+      operationId: computeclusters_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComputeCluster'
+          description: ''
+      summary: Return Details of a Compute Cluster
+      tags:
+      - Compute Clusters
+    patch:
+      operationId: computeclusters_update
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComputeClusterModifyParams'
+        x-originalParamName: ComputeClusterModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncComputeCluster'
+          description: Compute Cluster modification initiated
+        '400':
+          description: The request contains invalid data.
+      summary: Modify Compute Cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/deployment_detail/:
+    get:
+      description: Returns the raw Kubernetes API object for a specific deployment.
+      operationId: computeclusters_deployment_detail
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Name of the deployment
+        in: query
+        name: resource_name
+        required: true
+        schema:
+          type: string
+      - description: Namespace of the deployment
+        in: query
+        name: resource_namespace
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Full deployment details as raw Kubernetes API object
+      summary: Get full details of a specific deployment
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/deployments/:
+    get:
+      description: This endpoint lists all deployments in the specified compute cluster.
+      operationId: computeclusters_deployments
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Filter deployments by namespace
+        in: query
+        name: namespace
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComputeClusterDeployment'
+                type: array
+          description: List of deployments
+      summary: List deployments in the compute cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/events/:
+    get:
+      description: Returns Kubernetes events for the specified resource, filtered by involvedObject.
+      operationId: computeclusters_events
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Name of the resource
+        in: query
+        name: resource_name
+        required: true
+        schema:
+          type: string
+      - description: Namespace of the resource
+        in: query
+        name: resource_namespace
+        required: true
+        schema:
+          type: string
+      - description: Kind of the resource (Pod, Deployment, Service, ReplicaSet)
+        in: query
+        name: resource_kind
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: List of events as raw Kubernetes API objects
+      summary: List events for a specific resource in the compute cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/metric_viewer_certificates/:
+    post:
+      description: Generate metric viewer certificates for the compute cluster.
+      operationId: computeclusters_metric_viewer_certificates
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricViewerCertificates'
+          description: Generated metric viewer certificates
+      summary: Generate metric viewer certificates
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/namespaces/:
+    get:
+      description: This endpoint lists all namespaces in the specified compute cluster.
+      operationId: computeclusters_namespaces
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComputeClusterNamespace'
+                type: array
+          description: List of namespaces
+      summary: List namespaces in the compute cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/nodes/:
+    get:
+      description: This endpoint lists all nodes in the specified compute cluster.
+      operationId: computeclusters_nodes
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComputeClusterNode'
+                type: array
+          description: List of nodes
+      summary: List nodes in the compute cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/pod_detail/:
+    get:
+      description: Returns the raw Kubernetes API object for a specific pod.
+      operationId: computeclusters_pod_detail
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Name of the pod
+        in: query
+        name: resource_name
+        required: true
+        schema:
+          type: string
+      - description: Namespace of the pod
+        in: query
+        name: resource_namespace
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Full pod details as raw Kubernetes API object
+      summary: Get full details of a specific pod
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/pods/:
+    get:
+      description: This endpoint lists all pods in the specified compute cluster.
+      operationId: computeclusters_pods
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Filter pods by namespace
+        in: query
+        name: namespace
+        schema:
+          type: string
+      - description: Filter pods by deployment name; namespace must also be provided
+        in: query
+        name: deployment
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComputeClusterPod'
+                type: array
+          description: List of pods
+      summary: List pods in the compute cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/reconcile_create/:
+    post:
+      description: Retry creation of a compute cluster whose initial creation did not complete successfully.
+      operationId: computeclusters_reconcile_create
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Compute Cluster reconcile create initiated
+        '400':
+          description: The request contains invalid data.
+      summary: Reconcile Compute Cluster Creation
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/replica_sets/:
+    get:
+      description: Returns all ReplicaSets owned by the specified deployment.
+      operationId: computeclusters_replica_sets
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Name of the deployment
+        in: query
+        name: resource_name
+        required: true
+        schema:
+          type: string
+      - description: Namespace of the deployment
+        in: query
+        name: resource_namespace
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: List of ReplicaSets as raw Kubernetes API objects
+      summary: List ReplicaSets for a specific deployment in the compute cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/rotate_base_certificates/:
+    post:
+      description: 'Rotate root and/or intermediate certificates for the compute cluster.
+
+        Three modes are supported:
+
+        1. Empty body (no keep_root) - regenerate all certificates (root + intermediate + leaf).
+
+        2. Empty body with keep_root=true - keep root, regenerate intermediate + leaf.
+
+        3. Provide all 3 certificate fields in body - use provided certs, generate leaf.
+
+        '
+      operationId: computeclusters_rotate_base_certificates
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: If true, keep the existing root certificate and only regenerate intermediate and leaf certificates
+        in: query
+        name: keep_root
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RotateBaseCertificatesParams'
+        x-originalParamName: RotateBaseCertificatesParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Certificate rotation initiated
+        '400':
+          description: The request contains invalid data.
+      summary: Rotate root and/or intermediate certificates
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/rotate_leaf_certificates/:
+    post:
+      description: Rotate only the leaf certificates for the compute cluster.
+      operationId: computeclusters_rotate_leaf_certificates
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Leaf certificate rotation initiated
+      summary: Rotate leaf certificates
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/rotate_service_key/:
+    post:
+      description: Rotate the service key for the compute cluster.
+      operationId: computeclusters_rotate_service_key
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Service key rotation initiated
+      summary: Rotate service key
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/service_detail/:
+    get:
+      description: Returns the raw Kubernetes API object for a specific service.
+      operationId: computeclusters_service_detail
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Name of the service
+        in: query
+        name: resource_name
+        required: true
+        schema:
+          type: string
+      - description: Namespace of the service
+        in: query
+        name: resource_namespace
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Full service details as raw Kubernetes API object
+      summary: Get full details of a specific service
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/services/:
+    get:
+      description: This endpoint lists all services in the specified compute cluster.
+      operationId: computeclusters_services
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Filter services by namespace
+        in: query
+        name: namespace
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComputeClusterService'
+                type: array
+          description: List of services
+      summary: List services in the compute cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/start/:
+    post:
+      description: Start a stopped compute cluster.
+      operationId: computeclusters_start
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Compute Cluster start initiated
+        '400':
+          description: The request contains invalid data.
+      summary: Start Compute Cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/stop/:
+    post:
+      description: Stop a running compute cluster.
+      operationId: computeclusters_stop
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Compute Cluster stop initiated
+        '400':
+          description: The request contains invalid data.
+      summary: Stop Compute Cluster
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/tenants/:
+    get:
+      description: Returns a paginated list of tenant associations for the specified compute cluster.
+      operationId: computeclusters_tenants_list
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ComputeClusterTenant'
+                type: array
+          description: Paginated list of tenant associations
+      summary: List Compute Cluster Tenant Associations
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/tenants/bulk/:
+    post:
+      description: 'Manage tenant associations with a compute cluster. You can add or remove tenants. Cannot be used when all_tenants is enabled on the compute cluster.
+
+        '
+      operationId: computeclusters_tenants_bulk
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tenants_to_add:
+                  description: List of tenant IDs to add to this compute cluster
+                  items:
+                    type: integer
+                  type: array
+                tenants_to_remove:
+                  description: List of tenant IDs to remove from this compute cluster
+                  items:
+                    type: integer
+                  type: array
+              type: object
+        x-originalParamName: ComputeClusterTenantParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Tenant association operation initiated
+        '400':
+          description: The request contains invalid data.
+      summary: Manage Compute Cluster Tenant Associations
+      tags:
+      - Compute Clusters
+  /computeclusters/{id}/tenants/{tenant_id}/:
+    get:
+      description: Returns a single tenant association for the specified compute cluster.
+      operationId: computeclusters_tenants_read
+      parameters:
+      - description: Compute Cluster ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Tenant Association ID
+        in: path
+        name: tenant_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComputeClusterTenant'
+          description: Tenant association details
+      summary: Retrieve a Compute Cluster Tenant Association
+      tags:
+      - Compute Clusters
+components:
+  schemas:
+    ComputeClusterNamespace:
+      properties:
+        created_at:
+          description: Namespace creation timestamp
+          type: string
+        name:
+          description: Namespace name
+          type: string
+        status:
+          description: Namespace status (Active, Terminating, etc.)
+          type: string
+      type: object
+    RotateBaseCertificatesParams:
+      properties:
+        intermediate_certificate:
+          description: 'RKE2 intermediate certificate.
+
+            Must be provided together with root_certificate and intermediate_key.
+
+            '
+          type: string
+        intermediate_key:
+          description: 'RKE2 intermediate private key.
+
+            Must be provided together with root_certificate and intermediate_certificate.
+
+            '
+          type: string
+        root_certificate:
+          description: 'RKE2 root certificate.
+
+            Must be provided together with intermediate_certificate and intermediate_key.
+
+            '
+          type: string
+      type: object
+    ComputeCluster:
+      allOf:
+      - $ref: '#/components/schemas/ComputeClusterListItem'
+      - properties:
+          cnodes:
+            description: List of CNodes assigned to this compute cluster with their static IPs and stats
+            items:
+              properties:
+                id:
+                  description: CNode ID
+                  type: integer
+                ip:
+                  description: Static IP address assigned to this CNode
+                  type: string
+                message:
+                  description: Unhealthy condition messages from the node
+                  type: string
+                state:
+                  description: Current state of the CNode in the compute cluster
+                  enum:
+                  - INITIALIZING
+                  - DELETING
+                  - UPDATING
+                  - INACTIVE
+                  - RUNNING
+                  - ERROR
+                  - ACTIVATING
+                  - UNKNOWN
+                  readOnly: true
+                  type: string
+                stats:
+                  $ref: '#/components/schemas/ComputeClusterCNodeStats'
+                type:
+                  description: CNode role type in the compute cluster
+                  enum:
+                  - WORKER
+                  - SERVER
+                  - UNASSIGNED
+                  type: string
+              type: object
+            readOnly: true
+            type: array
+        type: object
+    ComputeClusterTenant:
+      properties:
+        compute_cluster:
+          description: Compute Cluster ID
+          type: integer
+        de_compute_guid:
+          description: Data Engine compute GUID
+          type: string
+        de_mtls_cert_guid:
+          description: Data Engine mTLS certificate GUID
+          type: string
+        status:
+          description: 'Status of the tenant association.
+
+            - `INIT` means the tenant association has been created but not yet provisioned on the compute cluster.
+
+            - `PROVISIONED` means the tenant''s namespaces have been created on the compute cluster.
+
+            - `DE_ATTACHED` means the tenant is fully attached to the Data Engine with mTLS certificates and compute GUID assigned.
+
+            - `DELETING` means the tenant is being detached and removed from the compute cluster.
+
+            - `ROTATING` means the tenant''s mTLS certificates are being rotated.
+
+            - `PARTIALLY_PROVISIONED` means the tenant association is in an incomplete state, typically due to a failed operation or timeout.
+
+            '
+          enum:
+          - INIT
+          - PROVISIONED
+          - DE_ATTACHED
+          - DELETING
+          - ROTATING
+          - PARTIALLY_PROVISIONED
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      type: object
+    ComputeClusterPodCountsPerState:
+      additionalProperties:
+        enum:
+        - total
+        - failed
+        - running
+        - pending
+        - succeeded
+        - unknown
+        type: integer
+      example:
+        failed: 3
+        pending: 10
+        running: 180
+        succeeded: 5
+        total: 200
+        unknown: 2
+      type: object
+    ComputeClusterCNodeCountsPerState:
+      additionalProperties:
+        enum:
+        - total
+        - ready
+        - disk_pressure
+        - memory_pressure
+        - pid_pressure
+        - network_unavailable
+        type: integer
+      example:
+        disk_pressure: 2
+        memory_pressure: 1
+        network_unavailable: 2
+        pid_pressure: 0
+        ready: 45
+        total: 50
+      type: object
+    ComputeClusterDeployment:
+      properties:
+        available:
+          description: Number of available replicas
+          type: integer
+        created_at:
+          description: Deployment creation timestamp
+          type: string
+        name:
+          description: Deployment name
+          type: string
+        namespace:
+          description: Namespace where the deployment is located
+          type: string
+        ready:
+          description: Ready replicas in "X/Y" format (like kubectl)
+          type: string
+        up_to_date:
+          description: Number of up-to-date replicas
+          type: integer
+      type: object
+    AsyncComputeCluster:
+      allOf:
+      - $ref: '#/components/schemas/ComputeCluster'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    ComputeClusterPodCondition:
+      properties:
+        last_transition_time:
+          description: Timestamp of the condition's last transition
+          type: string
+        message:
+          description: Human-readable message about the condition's last transition
+          type: string
+        reason:
+          description: Machine-readable reason for the condition's last transition
+          type: string
+        status:
+          description: Condition status (True, False, Unknown)
+          type: string
+        type:
+          description: Condition type (e.g. Ready, Initialized, ContainersReady, PodScheduled)
+          type: string
+      type: object
+    ComputeClusterService:
+      properties:
+        cluster_ip:
+          description: Cluster IP address
+          type: string
+        created_at:
+          description: Service creation timestamp
+          type: string
+        external_ip:
+          description: External IP address
+          type: string
+        name:
+          description: Service name
+          type: string
+        namespace:
+          description: Namespace where the service is located
+          type: string
+        service_type:
+          description: Service type (ClusterIP, NodePort, LoadBalancer, etc.)
+          type: string
+      type: object
+    ComputeClusterModifyParams:
+      properties:
+        all_tenants:
+          description: When true, all existing and newly created tenants are automatically assigned to this compute cluster
+          type: boolean
+        backup_frequency:
+          description: Backup frequency in minutes
+          type: integer
+        cnodes:
+          description: List of CNode assignments with resource presets
+          items:
+            $ref: '#/components/schemas/ComputeClusterCNodeInput'
+          type: array
+        static_ip_ranges:
+          description: 'List of IP range pairs [[start1, end1], [start2, end2]] for static IP assignment to CNodes.
+
+            Must provide enough IPs for all CNodes.
+
+            '
+          items:
+            example:
+            - 10.0.0.10
+            - 10.0.0.20
+            items:
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+      type: object
+    ComputeClusterCNodeInput:
+      properties:
+        id:
+          description: CNode ID
+          type: integer
+        resource_preset:
+          description: Resource allocation preset for this CNode
+          enum:
+          - LOW
+          - BALANCED
+          - MEM_HEAVY
+          - HIGH_COMPUTE
+          type: string
+      required:
+      - id
+      - resource_preset
+      type: object
+    ComputeClusterCNodeStats:
+      description: Statistics for a CNode in a compute cluster
+      properties:
+        cpu:
+          description: CPU usage statistics for this CNode, in cores
+          properties:
+            total:
+              description: CPU limit allocated to this CNode, in cores
+              format: float
+              type: number
+            used:
+              description: CPU cores currently consumed by this CNode.
+              format: float
+              type: number
+          type: object
+        memory:
+          description: Memory usage statistics for this CNode, in bytes
+          properties:
+            total:
+              description: Total memory available on the CNode, in bytes
+              format: float
+              type: number
+            used:
+              description: Memory currently used on the CNode, in bytes.
+              format: float
+              type: number
+          type: object
+        pods:
+          description: Number of pods running on this CNode
+          type: integer
+      type: object
+    ComputeClusterDeploymentCountsPerState:
+      additionalProperties:
+        enum:
+        - total
+        - running
+        - degraded
+        - error
+        type: integer
+      example:
+        degraded: 3
+        error: 2
+        running: 45
+        total: 50
+      type: object
+    ComputeClusterCreateParams:
+      properties:
+        all_tenants:
+          default: false
+          description: When true, all existing and newly created tenants are automatically assigned to this compute cluster
+          type: boolean
+        backup_frequency:
+          default: 60
+          description: Backup frequency in minutes
+          type: integer
+        cluster_cidr:
+          default: 10.42.0.0/16
+          description: Kubernetes cluster CIDR for pod networking (default is "10.42.0.0/16")
+          type: string
+        cnodes:
+          description: List of CNode assignments with resource presets
+          items:
+            $ref: '#/components/schemas/ComputeClusterCNodeInput'
+          type: array
+        default_gateway:
+          description: Default gateway IP address for the compute cluster network (e.g., "10.0.0.1"). Optional.
+          type: string
+        description:
+          description: User-defined description for the compute cluster
+          type: string
+        intermediate_certificate:
+          description: RKE2 intermediate certificate. If omitted, certificates will be generated automatically. Must be provided together with root_certificate and intermediate_key.
+          type: string
+        intermediate_key:
+          description: RKE2 intermediate private key. If omitted, certificates will be generated automatically. Must be provided together with root_certificate and intermediate_certificate.
+          type: string
+        name:
+          description: Compute Cluster name
+          type: string
+        netmask:
+          description: Network mask for the compute cluster network (e.g., "255.255.255.0" or "24")
+          type: string
+        root_certificate:
+          description: RKE2 root certificate. If omitted, certificates will be generated automatically. Must be provided together with intermediate_certificate and intermediate_key.
+          type: string
+        server_kube_vip_address:
+          description: Kubernetes VIP address for the API server
+          type: string
+        service_cidr:
+          default: 10.43.0.0/16
+          description: Kubernetes service CIDR for service networking (default is "10.43.0.0/16")
+          type: string
+        static_ip_ranges:
+          description: 'List of IP range pairs [[start1, end1], [start2, end2]] for static IP assignment to CNodes.
+
+            Must provide enough IPs for all CNodes.
+
+            '
+          items:
+            example:
+            - 10.0.0.10
+            - 10.0.0.20
+            items:
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+        tags:
+          description: User-defined tags for the compute cluster
+          items:
+            maxLength: 40
+            type: string
+          maxItems: 64
+          type: array
+        vlan:
+          description: VLAN ID for the compute cluster network (1-4095). Optional; omit or set to null to disable.
+          maximum: 4095
+          minimum: 1
+          type: integer
+      required:
+      - name
+      - cnodes
+      - static_ip_ranges
+      - netmask
+      type: object
+    ComputeClusterDashboard:
+      properties:
+        cnodes:
+          $ref: '#/components/schemas/ComputeClusterCNodeCountsPerState'
+        compute_clusters:
+          $ref: '#/components/schemas/ComputeClusterCountsPerState'
+        deployments:
+          $ref: '#/components/schemas/ComputeClusterDeploymentCountsPerState'
+        namespace_counts:
+          description: Total number of namespaces across all clusters
+          type: integer
+        pods:
+          $ref: '#/components/schemas/ComputeClusterPodCountsPerState'
+        service_counts:
+          description: Total number of services across all clusters
+          type: integer
+        tenant_counts:
+          description: Total number of tenants attached to compute clusters
+          type: integer
+      type: object
+    ComputeClusterListItem:
+      description: Compute Cluster object returned when listing Compute Clusters.
+      properties:
+        all_tenants:
+          default: false
+          description: When true, all existing and newly created tenants are automatically assigned to this compute cluster
+          type: boolean
+        backup_frequency:
+          default: 60
+          description: Backup frequency in minutes
+          type: integer
+        certificate:
+          description: Cluster CA certificate for kubeconfig authentication
+          type: string
+        client_certificate:
+          description: Client certificate for kubeconfig authentication
+          type: string
+        client_key:
+          description: Client private key for kubeconfig authentication
+          type: string
+        cluster_cidr:
+          default: 10.64.0.0/12
+          description: Kubernetes cluster CIDR for pod networking (default is "10.64.0.0/12")
+          type: string
+        default_gateway:
+          description: Default gateway IP address for the compute cluster network (e.g., "10.0.0.1"). Optional.
+          type: string
+        description:
+          description: User-defined description for the compute cluster
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+        intermediate_certificate:
+          description: RKE2 intermediate certificate. If omitted, certificates will be generated automatically. Must be provided together with root_certificate and intermediate_key.
+          type: string
+        intermediate_key:
+          description: RKE2 intermediate private key. If omitted, certificates will be generated automatically. Must be provided together with root_certificate and intermediate_certificate.
+          type: string
+        name:
+          description: Compute Cluster name
+          type: string
+        netmask:
+          description: Network mask for the compute cluster network (e.g., "255.255.255.0" or "24")
+          type: string
+        resource_counts:
+          description: Resource counts with state-based breakdowns for this cluster
+          properties:
+            cnodes:
+              $ref: '#/components/schemas/ComputeClusterCNodeCountsPerState'
+            deployments:
+              $ref: '#/components/schemas/ComputeClusterDeploymentCountsPerState'
+            namespace_counts:
+              description: Total number of namespaces in the cluster
+              type: integer
+            pods:
+              $ref: '#/components/schemas/ComputeClusterPodCountsPerState'
+            service_counts:
+              description: Total number of services in the cluster
+              type: integer
+            tenant_counts:
+              description: Total number of tenants attached to this cluster
+              type: integer
+          readOnly: true
+          type: object
+        root_certificate:
+          description: RKE2 root certificate. If omitted, certificates will be generated automatically. Must be provided together with intermediate_certificate and intermediate_key.
+          type: string
+        server_kube_vip_address:
+          description: Kubernetes VIP address for the API server
+          type: string
+        service_cidr:
+          default: 10.80.0.0/12
+          description: Kubernetes service CIDR for service networking (default is "10.80.0.0/12")
+          type: string
+        state:
+          description: Current state of the compute cluster
+          enum:
+          - CREATING
+          - UPDATING
+          - DELETING
+          - STARTING
+          - STOPPED
+          - RUNNING
+          - STOPPING
+          - ERROR
+          - DEGRADED
+          - PARTIALLY_PROVISIONED
+          readOnly: true
+          type: string
+        static_ip_ranges:
+          description: 'List of IP range pairs [[start1, end1], [start2, end2]] for static IP assignment to CNodes.
+
+            Must provide enough IPs for all CNodes.
+
+            '
+          items:
+            example:
+            - 10.0.0.10
+            - 10.0.0.20
+            items:
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+        tags:
+          description: User-defined tags for the compute cluster
+          items:
+            maxLength: 40
+            type: string
+          maxItems: 64
+          type: array
+        vlan:
+          description: VLAN ID for the compute cluster network (1-4095). Optional; omit or set to null to disable.
+          maximum: 4095
+          minimum: 1
+          type: integer
+      type: object
+    ComputeClusterCountsPerState:
+      additionalProperties:
+        enum:
+        - total
+        - creating
+        - updating
+        - running
+        - deleting
+        - starting
+        - stopped
+        - error
+        - stopping
+        - degraded
+        - partially_provisioned
+        type: integer
+      example:
+        creating: 1
+        degraded: 1
+        deleting: 1
+        error: 1
+        partially_provisioned: 0
+        running: 14
+        starting: 2
+        stopped: 0
+        stopping: 0
+        total: 16
+        updating: 0
+      type: object
+    ComputeClusterPod:
+      properties:
+        conditions:
+          description: Pod status conditions reported by Kubernetes
+          items:
+            $ref: '#/components/schemas/ComputeClusterPodCondition'
+          type: array
+        created_at:
+          description: Pod creation timestamp
+          type: string
+        ip:
+          description: Pod IP address
+          type: string
+        name:
+          description: Pod name
+          type: string
+        namespace:
+          description: Pod namespace
+          type: string
+        node:
+          description: Node name where pod is scheduled
+          type: string
+        status:
+          description: Pod status (Running, Pending, Failed, etc.)
+          type: string
+      type: object
+    MetricViewerCertificates:
+      description: Certificates for authenticating and viewing the compute cluster's metrics
+      properties:
+        ca_cert:
+          description: PEM-encoded CA certificate
+          type: string
+        client_cert:
+          description: PEM-encoded client certificate
+          type: string
+        private_key:
+          description: PEM-encoded private key
+          type: string
+      type: object
+    ComputeClusterNode:
+      properties:
+        architecture:
+          description: Node architecture (amd64, arm64, etc.)
+          type: string
+        capacity_cpu:
+          description: CPU capacity of the node
+          type: string
+        capacity_memory:
+          description: Memory capacity of the node
+          type: string
+        created_at:
+          description: Node creation timestamp
+          type: string
+        message:
+          description: Unhealthy condition messages from the node
+          type: string
+        name:
+          description: Node name
+          type: string
+        os_image:
+          description: Operating system image
+          type: string
+        status:
+          description: Node status (Ready, Unknown)
+          type: string
+        version:
+          description: Kubernetes version running on the node
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

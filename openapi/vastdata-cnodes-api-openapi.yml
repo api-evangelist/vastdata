@@ -1,0 +1,600 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Cnodes API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Cnodes
+paths:
+  /cnodes/{id}/bgpconfig:
+    patch:
+      description: This endpoint configures BGP on the CNode.
+      operationId: cnodes_update_bgpconfig
+      parameters:
+      - description: CNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CNodeBGPConfig'
+        x-originalParamName: CnodeBgpConfig
+      responses:
+        '204':
+          description: ''
+      summary: Configure BGP on CNode
+      tags:
+      - Cnodes
+    get:
+      description: This endpoint returns the BGP configuration of the CNode.
+      operationId: cnodes_get_bgpconfig
+      parameters:
+      - description: CNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CNodeBGPConfig'
+          description: ''
+      summary: Get BGP Configuration
+      tags:
+      - Cnodes
+  /cnodes/:
+    get:
+      description: Get the list of cnodes already assigned to cluster.
+      operationId: cnodes_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by CNode IP
+        in: query
+        name: ip
+        schema:
+          type: string
+      - description: Filter by state
+        in: query
+        name: state
+        schema:
+          type: string
+      - in: query
+        name: cluster_name
+        schema:
+          type: string
+      - in: query
+        name: cluster_id
+        schema:
+          type: integer
+      - description: Filter by CNode name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: Return only enabled CNodes
+        in: query
+        name: enabled
+        schema:
+          type: boolean
+      - in: query
+        name: vippool_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CNode'
+                title: CNodes
+                type: array
+          description: CNode information
+      summary: List Cnodes
+      tags:
+      - Cnodes
+    post:
+      description: This endpoint adds a CNode to the cluster.
+      operationId: cnodes_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cluster_id:
+                  type: integer
+                cores:
+                  description: The number of cores the CNode will use
+                  type: integer
+                dpu_ips:
+                  description: A list of IPv4 addresses and IP ranges.
+                  type: string
+                force:
+                  description: Force adding the CNode
+                  type: boolean
+                ip:
+                  description: The bond internal IP of the new CNode.
+                  type: string
+              required:
+              - ip
+              type: object
+        x-originalParamName: CnodeAddParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncCNode'
+          description: ''
+      summary: Add CNode
+      tags:
+      - Cnodes
+  /cnodes/add_cnodes/:
+    post:
+      description: This endpoint adds multiple CNodes to the cluster.
+      operationId: multiple_cnodes_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cluster_id:
+                  type: integer
+                cores:
+                  description: The number of cores the CNode will use
+                  type: integer
+                dpu_ips:
+                  description: A list of IPv4 addresses and IP ranges for DPU CNodes.
+                  type: string
+                force:
+                  description: Force adding the CNode
+                  type: boolean
+                ips:
+                  description: A list of IPv4 addresses and IP ranges for regular CNodes.
+                  type: string
+                num_of_virtual_dpus:
+                  description: Number of virtual DPUs to bring up on a physical CNode
+                  type: integer
+              required:
+              - dpu_ips
+              type: object
+        x-originalParamName: MultipleCnodeAddParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Add multiple CNodes to the cluster
+      tags:
+      - Cnodes
+  /cnodes/set_tenants/:
+    post:
+      description: This endpoint attaches tenants to a CNode.
+      operationId: cnode_set_tenants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  description: CNode ID
+                  type: integer
+                mode:
+                  description: NONE/DEDICATED/SHARED
+                  type: string
+                tenant_ids:
+                  description: A list of tenet IDs
+                  type: string
+              required:
+              - id
+              - tenant_ids
+              - mode
+              type: object
+        x-originalParamName: CnodeSetTenantsParams
+      responses:
+        '204':
+          description: ''
+      summary: Attach tenants to a CNode
+      tags:
+      - Cnodes
+  /cnodes/{id}/:
+    delete:
+      description: This endpoint removes a CNode from the cluster.
+      operationId: cnodes_remove
+      parameters:
+      - description: CNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Force CNode removal
+        in: query
+        name: force
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Remove CNode
+      tags:
+      - Cnodes
+    get:
+      description: This endpoint returns details of a CNode.
+      operationId: cnodes_read
+      parameters:
+      - description: CNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CNode'
+          description: ''
+      summary: Return Details of a CNode
+      tags:
+      - Cnodes
+    patch:
+      description: This endpoint activates, deactivates, replaces, powers off and powers on a CNode.
+      operationId: cnodes_partial_update
+      parameters:
+      - description: CNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: True for activate, False for deactivate
+                  type: boolean
+                power_cycle:
+                  description: True for power cycle
+                  type: boolean
+                power_off:
+                  description: True for power off
+                  type: boolean
+                power_on:
+                  description: True for power on
+                  type: boolean
+                replace:
+                  description: True for replacement
+                  type: boolean
+                skip_network_validation:
+                  description: If true, skips internal network validation. Allows FRU to proceed if another node is in failed state.
+                  type: boolean
+                skip_position:
+                  description: Skip the position validation during FRU
+                  type: boolean
+              type: object
+        x-originalParamName: CnodeModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Activate/Deactivate/Replace/Power On/Off CNode
+      tags:
+      - Cnodes
+  /cnodes/{id}/control_led/:
+    patch:
+      description: This endpoint controls the CNode LED
+      operationId: control_led
+      parameters:
+      - description: CNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  enum:
+                  - blink
+                  - false
+                  type: string
+              type: object
+        x-originalParamName: CnodeControlLed
+      responses:
+        '204':
+          description: OK
+      summary: Control CNode LED
+      tags:
+      - Cnodes
+  /cnodes/{id}/highlight/:
+    patch:
+      description: This endpoint highlights a CNode.
+      operationId: highlight
+      parameters:
+      - description: CNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: HighLight CNode
+      tags:
+      - Cnodes
+  /cnodes/{id}/rename/:
+    patch:
+      description: This endpoint renames a CNode.
+      operationId: rename
+      parameters:
+      - description: CNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: New CNode name
+                  type: string
+              type: object
+        x-originalParamName: CnodeRename
+      responses:
+        '204':
+          description: The CNode was renamed successfully
+      summary: Rename CNode
+      tags:
+      - Cnodes
+components:
+  schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    AsyncCNode:
+      allOf:
+      - $ref: '#/components/schemas/CNode'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    CNodeBGPConfig:
+      properties:
+        enabled:
+          description: Enable BGP
+          type: boolean
+        port1_peer_address:
+          description: Port1 peer address
+          type: string
+        port1_self_address:
+          description: Port1 self address
+          type: string
+        port2_peer_address:
+          description: Port2 peer address
+          type: string
+        port2_self_address:
+          description: Port2 self address
+          type: string
+        self_asn:
+          description: ASN
+          type: string
+        subnet_bits:
+          description: Subnet bits
+          type: integer
+      type: object
+    CNode:
+      properties:
+        bios_version:
+          description: BIOS version
+          type: string
+        bmc_fw_version:
+          description: BMC FW version
+          type: string
+          x-cli-header: BMC-FW-Version
+        bmc_state:
+          description: BMC State
+          type: string
+        bmc_state_reason:
+          description: BMC state reason
+          type: string
+        box_vendor:
+          description: Parent box model description including hardware vendor
+          type: string
+        build:
+          type: string
+          x-cli-header: Build
+        cbox:
+          description: Parent CBox
+          type: string
+          x-cli-header: CBox
+        cbox_id:
+          description: Parent CBox ID
+          type: integer
+          x-cli-header: Index-In-Carrier
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          description: Parent Cluster ID
+          type: integer
+        cores:
+          description: Number of CNode cores
+          type: integer
+          x-cli-header: Cores
+        cpld:
+          type: string
+        data_rdma_port:
+          description: port for internal use
+          type: integer
+        data_tcp_port:
+          description: port for internal use
+          type: integer
+        display_name:
+          type: string
+        display_state:
+          description: State
+          type: string
+          x-cli-header: State
+        enabled:
+          description: True if the CNode is enabled
+          type: boolean
+        guid:
+          description: Global unique ID
+          type: string
+        host_label:
+          description: Host label, used to label container, e.g. 11.0.0.1-4000
+          type: string
+        host_opensm_master:
+          description: If OpenSM master
+          type: string
+          x-cli-header: opensm-master
+        hostname:
+          description: Host Name
+          type: string
+          x-cli-header: Host Name
+        id:
+          description: CNode ID
+          type: integer
+          x-cli-header: ID
+        ip:
+          description: The IP of the bond interface of ip1 and ip2.
+          type: string
+          x-cli-header: IP
+        ip1:
+          description: 1st of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP1
+        ip2:
+          description: 2nd of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP2
+        ipmi_ip:
+          description: IP of IPMI
+          type: string
+        ipv6:
+          description: External IPv6 Address
+          type: string
+          x-cli-header: IPv6
+        is_mgmt:
+          description: True if the CNode is currently hosting VMS
+          type: boolean
+          x-cli-header: Management
+          x-format: bool2str
+        led_status:
+          description: LED status
+          type: string
+          x-cli-header: LED Status
+        mgmt_ip:
+          description: IP address for management access
+          type: string
+          x-cli-header: Mgmt-ip
+        name:
+          type: string
+          x-cli-header: Name
+        new_name:
+          description: Name
+          type: string
+        opensm_state:
+          description: opensm service state
+          type: boolean
+          x-cli-header: opensm-state
+        os_version:
+          description: VAST OS version
+          type: string
+          x-cli-header: OS-Version
+        platform_rdma_port:
+          description: port for internal use
+          type: integer
+        platform_tcp_port:
+          description: port for internal use
+          type: integer
+        position:
+          description: position of CNode in CBox
+          type: string
+        rpm:
+          description: VAST Utils Version
+          type: string
+          x-cli-header: VAST Utils Version
+        sn:
+          description: The host serial number
+          type: string
+          x-cli-header: Serial
+        state:
+          description: State, e.g. active
+          type: string
+          x-cli-header: State
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          type: string
+        tpm_boot_dev_encryption_status:
+          description: Boot encryption status
+          type: string
+          x-cli-header: Boot encryption
+        turbo_boost:
+          type: boolean
+        url:
+          type: string
+        vlan:
+          description: VLAN ID
+          type: string
+        vms_preferred:
+          description: VMS preferred CNode
+          type: boolean
+          x-cli-header: VMS-Preferred
+      required:
+      - name
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

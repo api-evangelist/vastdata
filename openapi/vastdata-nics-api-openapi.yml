@@ -1,0 +1,175 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory nics API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: NICs represent interfaces on Network Interface Cards (NICs) in the CNodes and DNodes.
+  name: nics
+paths:
+  /nics/:
+    get:
+      description: This endpoint lists NICs.
+      operationId: nics_list
+      parameters:
+      - description: Filter by state
+        in: query
+        name: state
+        schema:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          - up
+          - down
+          - unknown
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NIC'
+                title: NICs
+                type: array
+          description: NIC information
+      summary: List NICs.
+      tags:
+      - nics
+  /nics/{id}/:
+    get:
+      description: This endpoint returns details of a specified NIC.
+      operationId: nics_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NIC'
+          description: ''
+      summary: Return Details of One NIC
+      tags:
+      - nics
+components:
+  schemas:
+    NIC:
+      properties:
+        address:
+          type: string
+          x-cli-header: Address
+        cbox_id:
+          type: integer
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          type: integer
+        dbox_id:
+          type: integer
+        display_name:
+          type: string
+        fw_version:
+          description: FW version
+          type: string
+          x-cli-header: Firmware-Version
+        guid:
+          type: string
+        host:
+          description: NIC host
+          type: string
+        host_id:
+          type: integer
+        hostname:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        ipv6_address:
+          type: string
+          x-cli-header: Address
+        link_state:
+          description: NIC Link state
+          type: string
+        link_type:
+          type: string
+        model:
+          type: string
+        mtu:
+          type: integer
+          x-cli-header: MTU
+        name:
+          description: NIC name e.g ens785f1
+          type: string
+        nic_location:
+          type: object
+        nicport_id:
+          description: Related NICPort ID
+          type: integer
+          x-cli-header: NIC Port ID
+        node_id:
+          type: integer
+        port:
+          description: NIC Port e.g. 1/2
+          type: string
+        port_type:
+          type: string
+        rate:
+          type: string
+        rate_number:
+          type: integer
+        sn:
+          type: string
+        state:
+          description: NIC state
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          - up
+          - down
+          - unknown
+          type: string
+        title:
+          type: string
+        vippool_ids:
+          items:
+            type: integer
+          type: array
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,342 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory ssds API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: SSDs represent flash SSDs resident in the cluster's DBoxes.
+  name: ssds
+paths:
+  /ssds/:
+    get:
+      description: This endpoint lists SSDs.
+      operationId: ssds_list
+      parameters:
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by SSD state
+        in: query
+        name: state
+        schema:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          type: string
+      - description: Filter by SSD serial number
+        in: query
+        name: sn
+        schema:
+          type: string
+      - description: Filter by SSD model
+        in: query
+        name: model
+        schema:
+          type: string
+      - description: Filter by parent DBox name
+        in: query
+        name: dbox__name
+        schema:
+          type: string
+      - description: Filter by parent DBox ID
+        in: query
+        name: dbox__id
+        schema:
+          type: string
+      - description: Filter by SSD firmware version
+        in: query
+        name: fw_version
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SSD'
+                title: SSDs
+                type: array
+          description: SSD information
+      summary: List SSDs
+      tags:
+      - ssds
+  /ssds/{id}/:
+    get:
+      description: This endpoint returns information about an SSD.
+      operationId: ssds_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSD'
+          description: ''
+      summary: Return Details of an SSD
+      tags:
+      - ssds
+    patch:
+      description: This endpoint activates or deactivates an SSD.
+      operationId: ssds_partial_update
+      parameters:
+      - description: SSD ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: True for activate, False for deactivate
+                  type: boolean
+              type: object
+        x-originalParamName: SSDModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Activate/Deactivate an SSD
+      tags:
+      - ssds
+  /ssds/{id}/control_led/:
+    patch:
+      description: This endpoint controls the ON/OFF state of the specified SSD's identification LED.
+      operationId: ssd_control_led
+      parameters:
+      - description: SSD ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  enum:
+                  - true
+                  - false
+                  type: string
+              type: object
+        x-originalParamName: SsdControlLed
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Turn SSD identification LED on and off
+      tags:
+      - ssds
+  /ssds/{id}/format/:
+    patch:
+      description: This endpoint formats an SSD.
+      operationId: ssd_format
+      parameters:
+      - description: SSD ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Format SSD
+      tags:
+      - ssds
+components:
+  schemas:
+    SSD:
+      properties:
+        arch_type:
+          type: string
+        attached_dnode_names:
+          description: Attached DNodes
+          type: string
+        carrier:
+          description: The carrier number ssd resides in
+          type: integer
+          x-cli-header: Slot-Index
+        carrier_hw_version:
+          description: Carrier hw version
+          type: string
+        carrier_serial:
+          type: string
+        carrier_sw_version:
+          description: Carrier sw version
+          type: string
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          type: integer
+        dbox:
+          description: Parent DBox name
+          type: string
+          x-cli-header: DBox
+        dbox_id:
+          description: ID of parent DBox
+          type: integer
+        display_name:
+          type: string
+        dnode1_attached:
+          type: boolean
+        dnode2_attached:
+          type: boolean
+        enabled:
+          description: SSD enabled
+          type: boolean
+        fail_reason:
+          description: SSD failure reason
+          enum:
+          - NONE
+          - IO_ERROR
+          - DETACHED
+          - FAILURE_DOMAIN_CHANGED
+          - TEST_FAILED
+          - SYSTEM_MISMATCH
+          - DNODE_FAILURE
+          - LOCKING_FAILED
+          - CARRIER_VERSION_MISMATCH
+          - FW_VERSION_MISMATCH
+          - FAILED_CONNECT
+          - HEALTH_CHECK_ERROR
+          - TEMPERATURE_EXCEEDED_THRESHOLD
+          - WRONG_DEVICE_LINK_PROPERTIES
+          - INVALID_CARRIER_SERIAL
+          type: string
+          x-cli-header: Failure-Reason
+        fw_version:
+          description: SSD firmware version
+          type: string
+          x-cli-header: Firmware-Version
+        guid:
+          description: Global unique ID
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        index_in_carrier:
+          description: SSD index in carrier
+          type: integer
+          x-cli-header: Index-In-Carrier
+        insertion_time:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        led_status:
+          type: string
+          x-cli-header: Slot LED Status
+        model:
+          description: SSD model
+          type: string
+        name:
+          type: string
+          x-cli-header: Name
+        shelf:
+          description: The shelf
+          enum:
+          - FRONT
+          - REAR
+          - LEFT
+          - RIGHT
+          - N/A
+          type: string
+        size:
+          description: Total SSD space
+          format: int64
+          type: integer
+          x-cli-header: Total-Space
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+        slot:
+          description: SSD slot
+          type: integer
+        sn:
+          description: SSD serial number
+          type: string
+          x-cli-header: Serial-Number
+        space_in_use:
+          description: SSD space in use
+          format: int64
+          type: integer
+          x-cli-header: Space-In-Use
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+        state:
+          description: SSD state
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          type: string
+        title:
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

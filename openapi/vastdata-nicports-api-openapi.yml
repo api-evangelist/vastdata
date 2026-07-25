@@ -1,0 +1,177 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory nicports API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: nicports
+paths:
+  /nicports/:
+    get:
+      description: This endpoint lists NIC Ports.
+      operationId: nicports_list
+      parameters:
+      - description: Filter by state
+        in: query
+        name: state
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NICPort'
+                title: NICPorts
+                type: array
+          description: NICPort information
+      summary: List NIC Ports.
+      tags:
+      - nicports
+  /nicports/{id}/:
+    get:
+      description: This endpoint returns details of a specified NICPort.
+      operationId: nicports_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NICPort'
+          description: ''
+      summary: Return Details of One NICPort.
+      tags:
+      - nicports
+    patch:
+      description: This endpoint enables or disables a NICPort.
+      operationId: nicports_partial_update
+      parameters:
+      - description: NICPort ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: True for enable, False for disable
+                  type: boolean
+              type: object
+        x-originalParamName: NICPortModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Enable or Disable an NICPort
+      tags:
+      - nicports
+  /nicports/{id}/related_nicports/:
+    get:
+      description: This endpoint returns IDs of all NICPorts that are logically the same physical port as the specified NICPort.
+      operationId: nicports_related_nicports
+      parameters:
+      - description: NICPort ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  description: NICPort ID
+                  type: integer
+                title: RelatedNICPortIDs
+                type: array
+          description: Related NICPort IDs
+      summary: Get Related NICPorts
+      tags:
+      - nicports
+components:
+  schemas:
+    NICPort:
+      properties:
+        address:
+          description: NICPort address
+          type: string
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          type: integer
+        display_name:
+          type: string
+        enabled:
+          description: Whether the NICPort is enabled
+          type: boolean
+        external:
+          description: Whether the NICPort is external
+          type: boolean
+        failure_reason:
+          description: Reason for port failure if in FAILED state
+          type: string
+        fw_version:
+          type: string
+        guid:
+          type: string
+        host_id:
+          description: ID of the host this NICPort belongs to
+          type: integer
+        id:
+          type: integer
+          x-cli-header: ID
+        interface:
+          description: NICPort interface name
+          type: string
+        model:
+          type: string
+        name:
+          type: string
+          x-cli-header: Name
+        port_membership:
+          description: Port membership
+          type: string
+          x-cli-header: Port-Membership
+        sn:
+          type: string
+        state:
+          description: NICPort state
+          type: string
+        title:
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

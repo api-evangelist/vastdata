@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory capacity API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: This endpoint enables you to query capacity details of any path on any tenant and its direct child paths."
+  name: capacity
+paths:
+  /capacity/:
+    get:
+      description: This endpoint queries a tenant for capacity details for a path on the tenant and its direct child paths.
+      operationId: capacity_query
+      parameters:
+      - description: Specifies a path. The query response includes details of the specified path and its direct child paths. By default, this is the root path.
+        in: query
+        name: path
+        schema:
+          type: string
+      - description: 'Selects which capacity type is returned as sort_key in the response. Default: usable.'
+        in: query
+        name: type
+        schema:
+          enum:
+          - usable
+          - logical
+          - unique
+          type: string
+      - description: Specifies for which tenant to return a response. By default, this is the default tenant.
+        in: query
+        name: tenant_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CapacityData'
+          description: Capacity details of a path and its children
+      summary: Query a Tenant for Capacity Details
+      tags:
+      - capacity
+components:
+  schemas:
+    CapacityData:
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

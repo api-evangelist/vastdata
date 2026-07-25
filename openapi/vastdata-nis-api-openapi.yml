@@ -1,0 +1,251 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory nis API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: NIS is a supported external authorization provider. NIS can be used for authorizing user access to files and directories via NFS. NIS netgroups can be used to specify NFS hosts in view policies when controlling access permissions per NFS hosts. Up to one NIS configuration is supported. Limitations apply to the combinations of external providers and protocol enablement.
+  name: nis
+paths:
+  /nis/:
+    get:
+      description: This endpoint lists NIS configurations.
+      operationId: nis_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/NIS'
+                title: NIS
+                type: array
+          description: NIS information
+      summary: List NIS Configurations
+      tags:
+      - nis
+    post:
+      description: This endpoint creates a NIS configuration.
+      operationId: nis_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                domain_name:
+                  description: The NIS domain name shared by all the NIS servers and clients on your network.
+                  type: string
+                hosts:
+                  description: Host names of NIS master and slave servers.
+                  items:
+                    type: string
+                  type: array
+                ips:
+                  description: IP addresses of NIS master and slave servers.
+                  items:
+                    type: string
+                  type: array
+                name:
+                  description: NIS name
+                  type: string
+                servers:
+                  description: NIS master and slave servers (limited to ten servers). You can specify each server by its IP or host name, up to 48 characters. Separate hosts with commas.
+                  items:
+                    type: string
+                  type: array
+              required:
+              - domain_name
+              type: object
+        x-originalParamName: NISCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NIS'
+          description: ''
+      summary: Create a NIS Configuration
+      tags:
+      - nis
+  /nis/refresh/:
+    patch:
+      description: This endpoint refreshes the NIS cache by looking up user and netgroup maps on the NIS server.
+      operationId: refresh
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NIS'
+          description: ''
+      summary: Refresh NIS Cache
+      tags:
+      - nis
+  /nis/{id}/:
+    delete:
+      description: This endpoint deletes a NIS configuration.
+      operationId: nis_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete NIS Configuration
+      tags:
+      - nis
+    get:
+      description: This endpoint returns details of a NIS configuration.
+      operationId: nis_read
+      parameters:
+      - description: NIS ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NIS'
+          description: ''
+      summary: Return NIS Configuration Details
+      tags:
+      - nis
+    patch:
+      description: This endpoint modifies a NIS configuration.
+      operationId: nis_partial_update
+      parameters:
+      - description: NIS ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                domain_name:
+                  description: The NIS domain name shared by all the NIS servers and clients on your network.
+                  type: string
+                hosts:
+                  description: list of hosts
+                  items:
+                    type: string
+                  type: array
+                ips:
+                  description: list of ips
+                  items:
+                    type: string
+                  type: array
+                name:
+                  description: NIS name
+                  type: string
+                servers:
+                  description: NIS master and slave servers (limited to ten servers). You can specify each server by its IP or host name, up to 48 characters. Separate hosts with commas.
+                  items:
+                    type: string
+                  type: array
+              type: object
+        x-originalParamName: NISModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NIS'
+          description: ''
+      summary: Modify NIS
+      tags:
+      - nis
+  /nis/{id}/set_posix_primary/:
+    patch:
+      description: This endpoint sets NIS as the primary POSIX provider. If VAST Cluster is connected to two external authorization providers, one of the providers is always set to be the POSIX primary provider. If both providers have POSIX user attributes, then in case of any conflict between POSIX attributes that are retrieved from the providers, the POSIX primary takes precedence over the other provider.
+      operationId: nis_set_posix_primary
+      parameters:
+      - description: NIS ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Set NIS as Primary POSIX Provider
+      tags:
+      - nis
+components:
+  schemas:
+    NIS:
+      properties:
+        domain_name:
+          description: The NIS domain name shared by all the NIS servers and clients on the network.
+          type: string
+          x-cli-header: Domain Name
+        guid:
+          type: string
+        hosts:
+          description: not in use
+          items:
+            type: string
+          type: array
+          x-cli-header: Hosts
+        id:
+          type: integer
+          x-cli-header: ID
+        ips:
+          items:
+            type: string
+          type: array
+          x-cli-header: IPs
+        name:
+          description: Name of the NIS configuration
+          type: string
+          x-cli-header: Name
+        posix_primary_provider:
+          description: POSIX primary provider
+          type: boolean
+          x-cli-header: POSIX Primary
+        servers:
+          description: NIS master and slave servers (limited to ten servers). Each server may be specified by its IP or host name, up to 48 characters.
+          items:
+            type: string
+          type: array
+          x-cli-header: Servers
+        state:
+          description: Nis state
+          enum:
+          - UNKNOWN
+          - FAILED
+          - CONNECTED
+          type: string
+          x-cli-header: State
+        tenant_id:
+          type: integer
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - domain_name
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

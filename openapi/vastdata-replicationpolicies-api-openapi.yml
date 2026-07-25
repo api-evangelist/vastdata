@@ -1,0 +1,225 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory replicationpolicies API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: replicationpolicies
+paths:
+  /replicationpolicies/:
+    get:
+      description: This endpoint presents the replication policies. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/
+      operationId: replicationpolicies_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by replication peer
+        in: query
+        name: replication_target__name
+        schema:
+          type: string
+      - description: Filter by replication policy name
+        in: query
+        name: name
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ReplicationPolicy'
+                title: Replication target
+                type: array
+          description: Replication target information
+      summary: List Replication Policies (deprecated from VAST Cluster 3.4)
+      tags:
+      - replicationpolicies
+    post:
+      description: This endpoint creates a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/
+      operationId: replicationpolicies_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                aws_preferred_storage:
+                  description: Amazon S3 / Amazon Glacier
+                  type: string
+                bandwidth_limitation_rules:
+                  description: bandwith limitation rules
+                  type: string
+                name:
+                  type: string
+                  x-cli-header: Name
+                priority:
+                  description: low / normal / high
+                  type: string
+                replication_target_id:
+                  description: replication target id
+                  type: integer
+                schedule_frequency:
+                  description: schedule frequency, in datetime format
+                  format: date-time
+                  type: string
+                  x-format: datetime2display
+                schedule_start_time:
+                  description: Schedule the first restore point after the initial sync
+                  format: date-time
+                  type: string
+                  x-format: datetime2display
+              required:
+              - name
+              - replication_target_id
+              type: object
+        x-originalParamName: ReplicationPolicyCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationPolicy'
+          description: ''
+      summary: Create Replication Policy (deprecated from VAST Cluster 3.4)
+      tags:
+      - replicationpolicies
+  /replicationpolicies/{id}/:
+    delete:
+      description: This endpoint deletes a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.
+      operationId: replicationpolicies_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: this endpoint deletes a replication policy.
+      summary: Delete a Replication Policy (deprecated from VAST Cluster 3.4)
+      tags:
+      - replicationpolicies
+    get:
+      description: This endpoint returns details of a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/
+      operationId: replicationpolicies_read
+      parameters:
+      - description: index of replication policy
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationPolicy'
+          description: ''
+      summary: Return Details of a Replication Policy (deprecated from VAST Cluster 3.4)
+      tags:
+      - replicationpolicies
+    patch:
+      description: This endpoint modifies a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/
+      operationId: replicationpolicies_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                aws_preferred_storage:
+                  description: Amazon S3 / Amazon Glacier
+                  type: string
+                bandwidth_limitation_rules:
+                  description: bandwith limitation rules
+                  type: string
+                name:
+                  type: string
+                  x-cli-header: Name
+                priority:
+                  description: low / normal / high
+                  type: string
+                replication_target:
+                  description: replication target id
+                  type: string
+                schedule_frequency:
+                  description: schedule frequency, in datetime format
+                  format: date-time
+                  type: string
+                  x-format: datetime2display
+                schedule_start_time:
+                  description: Schedule the first restore point after the initial sync
+                  format: date-time
+                  type: string
+                  x-format: datetime2display
+              type: object
+        x-originalParamName: ReplicationPolicyModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a Replication Policy (deprecated from VAST Cluster 3.4)
+      tags:
+      - replicationpolicies
+components:
+  schemas:
+    ReplicationPolicy:
+      properties:
+        aws_preferred_storage:
+          description: Amazon S3 / Amazon Glacier
+          type: string
+        bandwidth_limitation_rules:
+          description: bandwith limitation rules
+          type: string
+        guid:
+          description: unique identifier
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          type: string
+          x-cli-header: Name
+        priority:
+          description: low / normal / high
+          type: string
+        replication_target:
+          description: replication target name
+          type: string
+        replication_target_name:
+          description: replication target name
+          type: string
+        schedule_frequency:
+          description: schedule frequency, in datetime format
+          format: date-time
+          type: string
+          x-format: datetime2display
+        schedule_start_time:
+          description: Schedule the first restore point after the initial sync
+          format: date-time
+          type: string
+          x-format: datetime2display
+        vip_pool:
+          description: ip pool
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,274 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory carriers API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Carriers represent DBox slots that house SSDs and NVRAMs.
+  name: carriers
+paths:
+  /carriers/:
+    get:
+      description: This endpoint lists carriers.
+      operationId: carriers_list
+      parameters:
+      - description: Filter by carrier state
+        in: query
+        name: state
+        schema:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          type: string
+      - description: Filter by parent DBox name
+        in: query
+        name: dbox__name
+        schema:
+          type: string
+      - description: Filter by parent DBox ID
+        in: query
+        name: dbox__id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Carrier'
+                title: Carriers
+                type: array
+          description: carriers information
+      summary: List Carriers
+      tags:
+      - carriers
+  /carriers/{id}/:
+    get:
+      description: This endpoint returns details of a specific carrier.
+      operationId: carriers_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carrier'
+          description: ''
+      summary: Return Details of One Carrier
+      tags:
+      - carriers
+    patch:
+      description: This endpoint activates or deactivates a carrier.
+      operationId: carriers_partial_update
+      parameters:
+      - description: Carrier ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: True for activate, False for deactivate
+                  type: boolean
+              type: object
+        x-originalParamName: CarrierModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Activate or Deactivate a Carrier
+      tags:
+      - carriers
+  /carriers/{id}/control_led/:
+    patch:
+      description: This endpoint controls a slot LED
+      operationId: control_led
+      parameters:
+      - description: Slot ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  type: string
+              type: object
+        x-originalParamName: CarrierControlLed
+      responses:
+        '204':
+          description: OK
+      summary: Control Slot LED
+      tags:
+      - carriers
+  /carriers/{id}/highlight/:
+    patch:
+      description: This endpoint highlights the control slot.
+      operationId: highlight
+      parameters:
+      - description: slot ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Highlight the Control Slot
+      tags:
+      - carriers
+  /carriers/{id}/reset_pci/:
+    patch:
+      description: This endpoint power cycles a slot
+      operationId: reset_pci
+      parameters:
+      - description: slot ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Power Cycles a Slot
+      tags:
+      - carriers
+components:
+  schemas:
+    Carrier:
+      properties:
+        carrier_index:
+          type: string
+          x-cli-header: Index
+        carrier_type:
+          description: Disks type (SSD / NVRAM)
+          type: string
+          x-cli-header: Type
+        cluster:
+          type: string
+        cluster_id:
+          type: string
+        dbox:
+          type: string
+          x-cli-header: DBox
+        dbox_id:
+          type: integer
+          x-cli-header: DBox ID
+        display_name:
+          type: string
+        fw_version:
+          description: FW version
+          type: string
+          x-cli-header: Firmware-Version
+        guid:
+          type: string
+        hw_version:
+          description: HW version
+          type: string
+          x-cli-header: Hardware-Version
+        id:
+          type: integer
+          x-cli-header: ID
+        insertion_time:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        led_status:
+          type: string
+          x-cli-header: LED Status
+        model:
+          type: string
+        name:
+          type: string
+        nvrams:
+          type: object
+        position:
+          type: string
+        shelf:
+          description: The shelf (left/right/front/rear)
+          type: string
+        sn:
+          description: Carrier serial number
+          type: string
+        ssds:
+          type: object
+        state:
+          description: NIC state
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          type: string
+        sw_version:
+          description: SW version
+          type: string
+          x-cli-header: Software-Version
+        title:
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

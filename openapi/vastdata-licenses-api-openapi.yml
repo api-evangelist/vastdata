@@ -1,0 +1,146 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory licenses API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A license entitles the VAST Cluster operator to an amount of storage capacity for a given period from a given start time. Licenses can be aggregated to increase the licensed capacity. Operating a VAST Cluster requires an installed license. An active valid license entitles the owner to new software releases, service packs and support.
+  name: licenses
+paths:
+  /licenses/:
+    get:
+      description: This endpoint lists licenses.
+      operationId: licenses_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/License'
+                title: License
+                type: array
+          description: License information
+      summary: List Licenses
+      tags:
+      - licenses
+    post:
+      description: '<p>This endpoint installs a VMS license.</p> <p>A license can be installed before, on or after its start date. The license key is decrypted and then validated. Initially, the license state is set to pending. If the expiration date has passed, the state changes to expired. If the expiration date is in the future and the start date has passed, the license is activated and it''s state changes to active. If the start date is in the future, the license state remains pending until the start date and is then activated on the start date.</p>
+
+        '
+      operationId: licenses_create
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                license_key:
+                  description: License key
+                  type: string
+              type: object
+        x-originalParamName: LicenseAddParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/License'
+          description: ''
+      summary: Add a license key
+      tags:
+      - licenses
+      x-cli-command: license
+  /licenses/{id}/:
+    delete:
+      description: This endpoint removes a license.
+      operationId: licenses_delete
+      parameters:
+      - description: License ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The license was removed successfully
+      summary: Remove a License
+      tags:
+      - licenses
+    get:
+      description: This endpoint returns details of a specific license.
+      operationId: licenses_read
+      parameters:
+      - description: License ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/License'
+          description: ''
+      summary: Return Details of a License
+      tags:
+      - licenses
+components:
+  schemas:
+    License:
+      properties:
+        accelerated_cpu_cores:
+          type: string
+        capacity:
+          description: The usable capacity allowed by the license. Unlimited means the full cluster capacity is licensed. If there are multiple active licenses, the total licensed capacity is the sum of all the capacities of all the active licenses.
+          type: string
+          x-cli-header: Capacity [TB]
+        cpu_cores:
+          type: string
+        expiration_date:
+          description: The date on which the license expired or will expire. This is calculated by VMS from the start date and period.
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        license_key:
+          type: string
+        name:
+          type: string
+        period:
+          description: The period, in months, for which the license is valid. The period begins on the start date. Unlimited means that the license does not expire.
+          type: string
+          x-cli-header: Period [months]
+        start_date:
+          description: The start date of the license period.
+          type: string
+        state:
+          description: '''Pending'' means not yet activated. The license is either initializing or the start date is in the future. ''Expired'' means the expiration date has passed and the license is no longer active. ''Active'' means the start date has passed and the license was activated.'
+          enum:
+          - PENDING
+          - ACTIVE
+          - EXPIRED
+          - UNKNOWN
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

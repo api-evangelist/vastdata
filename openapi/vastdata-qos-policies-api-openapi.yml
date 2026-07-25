@@ -1,0 +1,322 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory QoS Policies API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: QoS Policies
+paths:
+  /qospolicies/is_operation_healthy:
+    post:
+      description: Returns warnings about the future state if operation is performed.
+      operationId: qospolicies_is_operation_healthy
+      parameters:
+      - description: QOS Policy id on is operation healthy for update requests
+        in: query
+        name: id
+        schema:
+          type: string
+      - in: query
+        name: operation
+        schema:
+          enum:
+          - create
+          - modify
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/QOSPolicyCreateParams'
+        x-originalParamName: QOSPolicyOperationParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warnings'
+          description: ''
+      summary: Check whether an operation may be successfully performed
+      tags:
+      - QoS Policies
+components:
+  schemas:
+    RequestQOSStaticTotalLimits:
+      properties:
+        burst_bw_mb:
+          default: 0
+          description: Burst BW Mb
+          minimum: 0
+          type: integer
+        burst_iops:
+          default: 0
+          description: Burst IOPS
+          minimum: 0
+          type: integer
+        burst_loan_iops:
+          default: 0
+          description: Burst loan IOPS
+          minimum: 0
+          type: integer
+        burst_loan_mb:
+          default: 0
+          description: Burst loan Mb
+          minimum: 0
+          type: integer
+        max_bw_mbps:
+          default: 0
+          description: Maximal BW Mb/s
+          minimum: 0
+          type: integer
+        max_iops:
+          default: 0
+          description: Maximal IOPS
+          minimum: 0
+          type: integer
+        min_bw_mbps:
+          default: 0
+          description: Minimal BW Mb/s
+          minimum: 0
+          type: integer
+        min_iops:
+          default: 0
+          description: Minimal IOPS
+          minimum: 0
+          type: integer
+      type: object
+    QOSPolicyCreateParams:
+      allOf:
+      - properties:
+          name:
+            type: string
+          policy_type:
+            description: QOS Policy type
+            enum:
+            - VIEW
+            - USER
+            type: string
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        required:
+        - name
+        type: object
+      - $ref: '#/components/schemas/QOSPolicyModifyParams'
+    RequestQOSDynamicLimits:
+      description: 'Performance limits per unit of either used logical capacity or provisioned capacity, depending on the mode. Units are stated per limit. Valid values: 0-4294967296. 0 means unlimited.'
+      properties:
+        max_reads_bw_mbps_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
+    RequestQOSDynamicTotalLimits:
+      properties:
+        max_bw_mbps_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_iops_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
+    QOSPolicyModifyParams:
+      properties:
+        attached_users:
+          description: The users to which to attach the policy, for a user QOS policy
+          items:
+            $ref: '#/components/schemas/AttachedUser'
+          type: array
+        capacity_limits:
+          $ref: '#/components/schemas/RequestQOSDynamicLimits'
+        capacity_total_limits:
+          $ref: '#/components/schemas/RequestQOSDynamicTotalLimits'
+        is_default:
+          description: Is default User QOS Policy
+          type: boolean
+        is_gold:
+          description: 'Grants priority QoS over views that do not have this setting enabled. Can only be set or modified by a Cluster Admin, not supported for Volume QoS Policies
+
+            '
+          type: boolean
+        limit_by:
+          description: Specifies which performance parameter(s) are limited by the policy. BW_IOPS=The policy limits service according to bandwidth (BW) and IO per second (IOPS). BW=The policy limits service according to BW only. IOPS=The policy limits service according to IOPS only.
+          enum:
+          - BW
+          - IOPS
+          - BW_IOPS
+          type: string
+        mode:
+          description: QoS provisioning mode
+          enum:
+          - STATIC
+          - USED_CAPACITY
+          - PROVISIONED_CAPACITY
+          type: string
+        s3_connections_limit:
+          description: Maximum number of allowed S3 connections, 0 means unlimited
+          type: integer
+        static_limits:
+          $ref: '#/components/schemas/RequestQOSStaticLimits'
+        static_total_limits:
+          $ref: '#/components/schemas/RequestQOSStaticTotalLimits'
+        use_total_limits:
+          type: boolean
+      type: object
+    AttachedUser:
+      properties:
+        fqdn:
+          description: The Fully Qualified Domain Name (FQDN) of the user's domain.
+          type: string
+        identifier_type:
+          description: The attribute used to identify the user.
+          enum:
+          - sid_str
+          - uid
+          - username
+          type: string
+        identifier_value:
+          description: The value of the identifying attribute for the user. Must be of the attribute specified as identifier_type.
+          type: string
+        label:
+          description: A label for the user
+          type: string
+        name:
+          description: User's name
+          type: string
+      required:
+      - name
+      - identifier_type
+      - identifier_value
+      - fqdn
+      type: object
+    RequestQOSStaticLimits:
+      allOf:
+      - $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
+      - properties:
+          min_reads_bw_mbps:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_reads_iops:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_writes_bw_mbps:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_writes_iops:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+        type: object
+    RequestTruncatedQOSStaticLimits:
+      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
+    Warnings:
+      properties:
+        warnings:
+          items:
+            example: 'Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant=''default'', path=''/test'')'
+            type: string
+          type: array
+      required:
+      - warnings
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

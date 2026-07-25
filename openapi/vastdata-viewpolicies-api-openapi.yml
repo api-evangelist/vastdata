@@ -1,0 +1,1172 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory viewpolicies API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A view policy specifies view configuration parameters. A view policy can be used by multiple views. Every view is attached to one view policy.
+  name: viewpolicies
+paths:
+  /viewpolicies/:
+    get:
+      description: This endpoint lists view policies. By default, all view policies are returned. The list can be filtered using optional parameters. A view policy is a reusable set of configurations that apply to views. Every view has a view policy. A view policy may be used by multiple views.
+      operationId: viewpolicies_list
+      parameters:
+      - description: Filter by atime frequency.
+        in: query
+        name: atime_frequency
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by name.
+        in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: cluster__name
+        schema:
+          type: string
+      - in: query
+        name: cluster__id
+        schema:
+          type: string
+      - description: Filter by enabled nfs-return-open-permissions flag
+        in: query
+        name: nfs_return_open_permissions
+        schema:
+          type: boolean
+      - description: Filter by smb_file_mode. smb_file_mode is the default unix permission bits applied to files created by SMB clients. It is relevant only to views that are exposed to both SMB and NFS access protocols and have NFS security flavor.
+        in: query
+        name: smb_file_mode
+        schema:
+          type: integer
+      - description: Filter by smb_directory_mode. smb_directory_mode is the default unix permission bits applied to directories created by SMB clients. It is relevant only to views that are exposed to both SMB and NFS access protocols and have NFS security flavor.
+        in: query
+        name: smb_directory_mode
+        schema:
+          type: integer
+      - description: apple sid
+        in: query
+        name: apple_sid
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TenantNameIContainsQP'
+      - $ref: '#/components/parameters/ServesTenantQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ViewPolicy'
+                title: ViewPolicies
+                type: array
+          description: View Policies information
+      summary: List View Policies
+      tags:
+      - viewpolicies
+    post:
+      description: This endpoint creates a view policy.
+      operationId: viewpolicies_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_flavor:
+                  description: Applicable with MIXED_LAST_WINS security flavor (Access can be set via NFSv3 regardless of this option)
+                  enum:
+                  - NFS4
+                  - SMB
+                  - ALL
+                  type: string
+                allowed_characters:
+                  description: Specifies the policy for which characters are allowed in file names.
+                  enum:
+                  - LCD
+                  - NPL
+                  type: string
+                apple_sid:
+                  description: For use when connecting from Mac clients to SMB shares, this option enables Security IDs (SIDs) to be returned in Apple compatible representation.
+                  type: boolean
+                atime_frequency:
+                  description: 'Frequency for updating the atime attribute of NFS files. atime is updated on read operations if the difference between the current time and the file''s atime value is greater than the atime frequency. For example: 300 or 00:00:30 seconds is supported. Zero value is not supported. Default: 3600'
+                  type: string
+                auth_source:
+                  description: Specifies which source is trusted for the user's group memberships, when users' access to the view is authorized.
+                  enum:
+                  - RPC
+                  - PROVIDERS
+                  - RPC_AND_PROVIDERS
+                  type: string
+                cluster_id:
+                  type: integer
+                disable_handle_lease:
+                  type: boolean
+                disable_read_lease:
+                  type: boolean
+                disable_write_lease:
+                  type: boolean
+                enable_access_to_snapshot_dir_in_subdirs:
+                  description: Specifies whether to make the .snapshot directory accessible in subdirectories of the View.
+                  type: boolean
+                enable_visibility_of_snapshot_dir:
+                  description: Specifies whether to make the .snapshot directory visible in subdirectories of the View.
+                  type: boolean
+                expose_id_in_fsid:
+                  type: boolean
+                flavor:
+                  description: Specifies the security flavor, which determines how file and directory permissions are applied in multiprotocol views.
+                  enum:
+                  - NFS
+                  - SMB
+                  - MIXED_LAST_WINS
+                  - S3_NATIVE
+                  type: string
+                gid_inheritance:
+                  description: Specifies how files receive their owning group when they are created.
+                  enum:
+                  - LINUX
+                  - BSD
+                  type: string
+                inherit_parent_mode_bits:
+                  description: 'Enable NFS behavior of inheriting POSIX settings from the parent directory versus configured values.
+
+                    '
+                  type: boolean
+                is_block_default_policy:
+                  description: Specifies whether to make this View Policy default for BLOCK
+                  type: boolean
+                is_s3_default_policy:
+                  description: Specifies whether to make the view policy the default policy used for S3 endpoint views.
+                  type: boolean
+                name:
+                  type: string
+                nfs_all_squash:
+                  description: Specify which NFS client hosts have all squash. With all squash, all client users are mapped to nobody for all file and folder management operations on the export. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                nfs_case_insensitive:
+                  description: Force case insensitivity for NFSv3 and NFSv4
+                  type: boolean
+                nfs_enforce_mtls:
+                  description: Specifies whether we enforce mTLS authentication over NFS.
+                  type: boolean
+                nfs_enforce_tls:
+                  description: Accept NFSv3 and NFSv4 client mounts only if they are TLS-encrypted. Use only with Minimal Protection Level set to System or None.
+                  type: boolean
+                nfs_enforce_tls_relaxed:
+                  description: Whether to relax TLS enforcement by not requiring TLS for auxiliary NFSv3 sub-protocols | (MOUNT, NLM, NSM, RQUOTA, NFSACL)
+                  type: boolean
+                nfs_minimal_protection_level:
+                  description: 'For a policy intended for use with NFSv4-enabled views, sets the Minimal Protection Level for NFSv4 client mounts: ''KRB_AUTH_ONLY'' allows client mounts with Kerberos authentication only (using the RPCSEC_GSS authentication service), ''SYSTEM'' allows client mounts using either the AUTH_SYS RCP security flavor (the traditional default NFS authentication scheme) or with Kerberos authentication, ''NONE'' (default) allows client mounts with the AUTH_NONE (anonymous access), or AUTH_SYS RCP security flavors, or with Kerberos authentication.'
+                  type: string
+                nfs_no_squash:
+                  description: Specify which NFS client hosts have no squash. With no squash, all operations are supported. Use this option if you trust the root user not to perform operations that will corrupt data. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                nfs_posix_acl:
+                  description: Enables full support of extended POSIX Access Control Lists (ACL).
+                  type: boolean
+                nfs_read_only:
+                  description: Specify which NFS client hosts can access the view with read-only access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                nfs_read_write:
+                  description: Specify which NFS client hosts can access the view with read-write access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                nfs_return_open_permissions:
+                  description: If enabled for NFS-exposed views, the NFS server unilaterally returns open (777) permission for all files and directories when responding to client side access checks.
+                  type: boolean
+                nfs_root_squash:
+                  description: Specify which NFS client hosts have root squash. With root squash, the root user is mapped to nobody for all file and folder management operations on the export. This enables you to prevent the strongest super user from corrupting all user data on the VAST Cluster. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                path_length:
+                  description: Specifies the policy for limiting file path component name length.
+                  enum:
+                  - LCD
+                  - NPL
+                  type: string
+                permission_per_vip_pool:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+                protocols:
+                  description: Array of protocols to audit
+                  items:
+                    type: string
+                  type: array
+                protocols_audit:
+                  description: Specify audit options to enable them for all attached views in addition to auditing options that are enabled globably on the cluster.
+                  properties:
+                    create_delete_files_dirs_objects:
+                      description: Audit operations that create or delete files, directories, or objects
+                      type: boolean
+                    log_deleted_files_dirs:
+                      description: Log deleted files and directories
+                      type: boolean
+                    log_full_path:
+                      description: Log full Element Store path to the requested resource. Enabled by default. May affect performance. When disabled, the view path is recorded.
+                      type: boolean
+                    log_hostname:
+                      description: Log hostname
+                      type: boolean
+                    log_username:
+                      description: Log username of requesting user. Disabled by default
+                      type: boolean
+                    modify_data:
+                      type: boolean
+                    modify_data_md:
+                      description: Audit operations that modify data (including operations that change the file size) and metadata
+                      type: boolean
+                    read_data:
+                      description: Audit operations that read data and metadata
+                      type: boolean
+                    read_data_md:
+                      type: boolean
+                    session_create_close:
+                      description: Audit session creation and closing operations for sessions that use Kerberos 5 authentication (krb5, krb5i, or krb5p)
+                      type: boolean
+                  type: object
+                read_only:
+                  description: Specify which NFS client hosts can access the view with read-only access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                read_write:
+                  description: Specify which NFS client hosts can access the view with read-write access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                s3_bucket_full_control:
+                  items:
+                    type: object
+                  type: array
+                s3_flavor_allow_free_listing:
+                  description: Allow NFS clients freely list bucket views and their subdirectories, regardless of individual object permissions.
+                  type: boolean
+                s3_flavor_detect_full_pathname:
+                  description: When this flag is enabled in S3 flavor, NFS access to objects is determined based on the full resource names specified in the identity policies. When disabled, only the bucket name is compared to the identity policy.
+                  type: boolean
+                s3_object_acl:
+                  items:
+                    type: object
+                  type: object
+                s3_read_only:
+                  description: Specify which S3 client hosts can access the view with read-only access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                s3_read_write:
+                  description: Specify which S3 client hosts can access the view with read-write access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                s3_special_chars_support:
+                  description: This will enable object names that contain “//“ or “/../“ and are incompatible with other protocols
+                  type: boolean
+                s3_visibility:
+                  description: Users with permission to list buckets that are created using this policy even if they do not have permission to access those buckets.
+                  items:
+                    type: string
+                  type: array
+                s3_visibility_groups:
+                  description: Users with permission to list buckets that are created using this policy even if they do not have permission to access those buckets.
+                  items:
+                    type: string
+                  type: array
+                smb_directory_mode:
+                  description: For multiprotocol views, if the security flavor is NFS, this parameter sets default unix permission bits for directories created by SMB clients. Use three digit numeric notation, each digit representing the user, group and others compontents of the permissions, in that order. Each digit is the sum of the read bit, write bit and execute bit. If reading is permitted, the read bit adds 4 to the component. If writing is permitted, the write bit adds 2 to the component. If execution is permitted, the execute bit adds 1 to the component.
+                  example: '755'
+                  type: integer
+                smb_file_mode:
+                  description: For multiprotocol views, if the security flavor is NFS, this parameter sets default unix permission bits for files created by SMB clients. Use three digit numeric notation, each digit representing the user, group and others compontents of the permissions, in that order. Each digit is the sum of the read bit, write bit and execute bit. If reading is permitted, the read bit adds 4 to the component. If writing is permitted, the write bit adds 2 to the component. If execution is permitted, the execute bit adds 1 to the component.
+                  example: '644'
+                  type: integer
+                smb_is_ca:
+                  description: When enabled, the SMB share exposed by the view is set as continuously available, which allows SMB3 clients to request use of persistent file handles and keep their connections to this share in case of a failover event.
+                  type: boolean
+                smb_read_only:
+                  description: Specify which SMB client hosts can access the view with read-only access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                smb_read_write:
+                  description: Specify which SMB client hosts can access the view with read-write access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                smb_recursive_change_notify:
+                  description: Whether to enable SMB Recursive Change Notify
+                  type: boolean
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                trash_access:
+                  description: Specify which NFS client hosts can access the trash folder. Specify array of hosts separated by commas. Each host can be specified as an IP address, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address. Trash folder access must also be enabled for the cluster.
+                  items:
+                    type: string
+                  type: array
+                use_32bit_fileid:
+                  description: Sets the VAST Cluster's NFS server to use 32bit file IDs. This setting supports legacy 32-bit applications running over NFS.
+                  type: boolean
+                use_auth_provider:
+                  description: Not in use
+                  type: boolean
+                vip_pools:
+                  description: Dedicate VIP Pools to the view policy. Specify VIP Pool IDs in a comma separated list.
+                  items:
+                    type: integer
+                  type: array
+              required:
+              - name
+              type: object
+        x-originalParamName: ViewpolicyCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewPolicy'
+          description: ''
+      summary: Create View Policy
+      tags:
+      - viewpolicies
+  /viewpolicies/{id}/:
+    delete:
+      description: This endpoint deletes a view policy.
+      operationId: viewpolicies_delete
+      parameters:
+      - description: The ID of the view policy to delete
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete View Policy
+      tags:
+      - viewpolicies
+    get:
+      description: This endpoint returns a specified view policy.
+      operationId: viewpolicies_read
+      parameters:
+      - description: The ID of the view policy
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewPolicy'
+          description: ''
+      summary: Return Details of a View Policy
+      tags:
+      - viewpolicies
+    patch:
+      description: This endpoint modifies a view policy.
+      operationId: viewpolicies_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_flavor:
+                  description: Applicable with MIXED_LAST_WINS security flavor (Access can be set via NFSv3 regardless of this option)
+                  enum:
+                  - NFS4
+                  - SMB
+                  - ALL
+                  type: string
+                allowed_characters:
+                  description: Specifies the policy for which characters are allowed in file names.
+                  enum:
+                  - LCD
+                  - NPL
+                  type: string
+                apple_sid:
+                  description: For use when connecting from Mac clients to SMB shares, this option enables Security IDs (SIDs) to be returned in Apple compatible representation.
+                  type: boolean
+                atime_frequency:
+                  description: 'Frequency for updating the atime attribute of NFS files. atime is updated on read operations if the difference between the current time and the file''s atime value is greater than the atime frequency. For example: 300 or 00:00:30 seconds is supported. Zero value is not supported. Default: 3600'
+                  type: string
+                auth_source:
+                  description: Specifies which source is trusted for the user's group memberships, when users' access to the view is authorized.
+                  enum:
+                  - RPC
+                  - PROVIDERS
+                  - RPC_AND_PROVIDERS
+                  type: string
+                cluster_id:
+                  type: integer
+                disable_handle_lease:
+                  type: boolean
+                disable_read_lease:
+                  type: boolean
+                disable_write_lease:
+                  type: boolean
+                enable_access_to_snapshot_dir_in_subdirs:
+                  description: Specifies whether to make the .snapshot directory accessible in subdirectories of the View.
+                  type: boolean
+                enable_visibility_of_snapshot_dir:
+                  description: Specifies whether to make the .snapshot directory visible in subdirectories of the View.
+                  type: boolean
+                expose_id_in_fsid:
+                  type: boolean
+                flavor:
+                  description: Sets the security flavor, which determines how file and directory permissions are applied in multiprotocol views
+                  enum:
+                  - NFS
+                  - SMB
+                  - MIXED_LAST_WINS
+                  - S3_NATIVE
+                  type: string
+                gid_inheritance:
+                  description: GID inheritance. BSD - Inherit the GID from the parent folder. LINUX - Inherit the GID from the user.
+                  enum:
+                  - BSD
+                  - LINUX
+                  type: string
+                inherit_parent_mode_bits:
+                  description: 'Enable NFS behavior of inheriting POSIX settings from the parent directory versus configured values.
+
+                    '
+                  type: boolean
+                is_block_default_policy:
+                  description: Specifies whether to make this View Policy default for BLOCK
+                  type: boolean
+                is_s3_default_policy:
+                  description: Specifies whether to make the view policy the default policy used for S3 endpoint views.
+                  type: boolean
+                name:
+                  type: string
+                nfs_all_squash:
+                  description: Specify which NFS client hosts have all squash. With all squash, all client users are mapped to nobody for all file and folder management operations on the export. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                nfs_case_insensitive:
+                  description: Force case insensitivity for NFSv3 and NFSv4
+                  type: boolean
+                nfs_enforce_mtls:
+                  description: Specifies whether we enforce mTLS authentication over NFS.
+                  type: boolean
+                nfs_enforce_tls:
+                  description: Accept NFSv3 and NFSv4 client mounts only if they are TLS-encrypted. Use only with Minimal Protection Level set to System or None.
+                  type: boolean
+                nfs_enforce_tls_relaxed:
+                  description: Whether to relax TLS enforcement by not requiring TLS for auxiliary NFSv3 sub-protocols | (MOUNT, NLM, NSM, RQUOTA, NFSACL)
+                  type: boolean
+                nfs_minimal_protection_level:
+                  description: 'For a policy intended for use with NFSv4-enabled views, sets the Minimal Protection Level for NFSv4 client mounts: ''KRB_AUTH_ONLY'' allows client mounts with Kerberos authentication only (using the RPCSEC_GSS authentication service), ''SYSTEM'' allows client mounts using either the AUTH_SYS RCP security flavor (the traditional default NFS authentication scheme) or with Kerberos authentication, ''NONE'' (default) allows client mounts with the AUTH_NONE (anonymous access), or AUTH_SYS RCP security flavors, or with Kerberos authentication.'
+                  type: string
+                nfs_no_squash:
+                  description: Specify which NFS client hosts have no squash. With no squash, all operations are supported. Use this option if you trust the root user not to perform operations that will corrupt data. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                nfs_posix_acl:
+                  description: Enables full support of extended POSIX Access Control Lists (ACL)
+                  type: boolean
+                nfs_read_only:
+                  description: Specify which NFS client hosts can access the view with read-only access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                nfs_read_write:
+                  description: Specify which NFS client hosts can access the view with read-write access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                nfs_return_open_permissions:
+                  description: If enabled for NFS-exposed views, the NFS server unilaterally returns open (777) permission for all files and directories when responding to client side access checks
+                  type: boolean
+                nfs_root_squash:
+                  description: Specify which NFS client hosts have root squash. With root squash, the root user is mapped to nobody for all file and folder management operations on the export. This enables you to prevent the strongest super user from corrupting all user data on the VAST Cluster. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                path_length:
+                  description: Specifies the policy for limiting file path component name length.
+                  enum:
+                  - LCD
+                  - NPL
+                  type: string
+                permission_per_vip_pool:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+                protocols:
+                  description: Array of protocols to audit
+                  items:
+                    type: string
+                  type: array
+                protocols_audit:
+                  description: Specify audit options to enable them for all attached views in addition to auditing options that are enabled globably on the cluster.
+                  properties:
+                    create_delete_files_dirs_objects:
+                      description: Audit operations that create or delete files, directories, or objects
+                      type: boolean
+                    log_deleted_files_dirs:
+                      description: Log deleted files and directories
+                      type: boolean
+                    log_full_path:
+                      description: Log full Element Store path to the requested resource. Enabled by default. May affect performance. When disabled, the view path is recorded.
+                      type: boolean
+                    log_hostname:
+                      description: Log hostname
+                      type: boolean
+                    log_username:
+                      description: Log username of requesting user. Disabled by default
+                      type: boolean
+                    modify_data:
+                      type: boolean
+                    modify_data_md:
+                      description: Audit operations that modify data (including operations that change the file size) and metadata
+                      type: boolean
+                    read_data:
+                      description: Audit operations that read data and metadata
+                      type: boolean
+                    read_data_md:
+                      type: boolean
+                    session_create_close:
+                      description: Audit session creation and closing operations for sessions that use Kerberos 5 authentication (krb5, krb5i, or krb5p)
+                      type: boolean
+                  type: object
+                read_only:
+                  description: Specify which NFS client hosts can access the view with read-only access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                read_write:
+                  description: Specify which NFS client hosts can access the view with read-write access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                s3_bucket_acl:
+                  items:
+                    type: object
+                  type: object
+                s3_flavor_allow_free_listing:
+                  description: Allow NFS clients freely list bucket views and their subdirectories, regardless of individual object permissions.
+                  type: boolean
+                s3_flavor_detect_full_pathname:
+                  description: When this flag is enabled in S3 flavor, NFS access to objects is determined based on the full resource names specified in the identity policies. When disabled, only the bucket name is compared to the identity policy.
+                  type: boolean
+                s3_object_acl:
+                  items:
+                    type: object
+                  type: object
+                s3_read_only:
+                  description: Specify which S3 client hosts can access the view with read-only access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                s3_read_write:
+                  description: Specify which S3 client hosts can access the view with read-write access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                s3_special_chars_support:
+                  description: This will enable object names that contain “//“ or “/../“ and are incompatible with other protocols
+                  type: boolean
+                s3_visibility:
+                  description: Users with permission to list buckets that are created using this policy even if they do not have permission to access those buckets.
+                  items:
+                    type: string
+                  type: array
+                s3_visibility_groups:
+                  description: Users with permission to list buckets that are created using this policy even if they do not have permission to access those buckets.
+                  items:
+                    type: string
+                  type: array
+                smb_directory_mode:
+                  description: For multiprotocol views, if the security flavor is NFS, this parameter sets default unix permission bits for directories created by SMB clients. Use three digit numeric notation, each digit representing the user, group and others compontents of the permissions, in that order. Each digit is the sum of the read bit, write bit and execute bit. If reading is permitted, the read bit adds 4 to the component. If writing is permitted, the write bit adds 2 to the component. If execution is permitted, the execute bit adds 1 to the component.
+                  type: integer
+                smb_file_mode:
+                  description: For multiprotocol views, if the security flavor is NFS, this parameter sets default unix permission bits for files created by SMB clients. Use three digit numeric notation, each digit representing the user, group and others compontents of the permissions, in that order. Each digit is the sum of the read bit, write bit and execute bit. If reading is permitted, the read bit adds 4 to the component. If writing is permitted, the write bit adds 2 to the component. If execution is permitted, the execute bit adds 1 to the component.
+                  type: integer
+                smb_is_ca:
+                  description: When enabled, the SMB share exposed by the view is set as continuously available, which allows SMB3 clients to request use of persistent file handles and keep their connections to this share in case of a failover event.
+                  type: boolean
+                smb_read_only:
+                  description: Specify which SMB client hosts can access the view with read-only access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                smb_read_write:
+                  description: Specify which SMB client hosts can access the view with read-write access. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address.
+                  items:
+                    type: string
+                  type: array
+                smb_recursive_change_notify:
+                  description: Whether to enable SMB Recursive Change Notify
+                  type: boolean
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                trash_access:
+                  description: Specify which NFSv3 client hosts can access the trash folder. Specify array of hosts separated by commas. Each host can be specified as an IP address, a netgroup key beginning with @, a CIDR subnet or a range of IPs indicated by an IP address with a * as a wildcard in place of any of the 8-bit fields in the IP address. Trash folder access must also be enabled for the cluster.
+                  items:
+                    type: string
+                  type: array
+                use_32bit_fileid:
+                  description: Sets the VAST Cluster's NFS server to use 32bit file IDs. This setting supports legacy 32-bit applications running over NFS.
+                  type: string
+                use_auth_provider:
+                  description: Not in use
+                  type: boolean
+                vip_pools:
+                  description: Dedicate VIP Pools to the view policy. Specify VIP Pool IDs in a comma separated list.
+                  items:
+                    type: integer
+                  type: array
+              type: object
+        x-originalParamName: ViewpolicyModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a View Policy
+      tags:
+      - viewpolicies
+  /viewpolicies/{id}/refresh_netgroups/:
+    patch:
+      description: Refresh View policy netgroups
+      operationId: refresh_netgroups
+      parameters:
+      - description: The view policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: OK
+      summary: refresh View policy netgroups
+      tags:
+      - viewpolicies
+  /viewpolicies/{id}/remote_mapping/:
+    delete:
+      description: This endpoint removes a remote mapping.
+      operationId: remove_remote_mapping
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                peer:
+                  description: Peer name
+                  type: string
+              required:
+              - target
+              type: object
+        x-originalParamName: RemoveRemoteMappingParams
+      responses:
+        '204':
+          description: ''
+      tags:
+      - viewpolicies
+    post:
+      operationId: add_remote_mapping
+      parameters:
+      - description: The view policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                peer:
+                  description: Peer name
+                  type: string
+                remote_policy:
+                  description: Remote policy name
+                  type: string
+              required:
+              - target
+              - policy
+              type: object
+        x-originalParamName: AddRemoteMappingParams
+      responses:
+        '200':
+          description: ''
+      tags:
+      - viewpolicies
+components:
+  schemas:
+    ViewPolicy:
+      properties:
+        access_flavor:
+          description: Applicable with MIXED_LAST_WINS security flavor (Access can be set via NFSv3 regardless of this option)
+          type: string
+        allowed_characters:
+          description: 'How to determine which characters are allowed in file names. ''LCD'' (default): Allows only characters allowed by all VAST Cluster-supported protocols, regardless of the specific protocol enabled on a specific view. With this (default) option, the limitation on the length of a single component of the path is 255 characters. ''NPL'': Imposes no limitation beyond that of the client protocol.'
+          enum:
+          - LCD
+          - NPL
+          type: string
+        apple_sid:
+          description: For use when connecting from Mac clients to SMB shares, this option enables Security IDs (SIDs) to be returned in Apple compatible representation.
+          type: boolean
+          x-cli-header: Apple sid
+        atime_frequency:
+          description: 'Frequency for updating the atime attribute of NFS files. atime is updated on read operations if the difference between the current time and the file''s atime value is greater than the atime frequency. Default: 3600'
+          type: string
+          x-example: 30m
+        auth_source:
+          description: Specifies which source is trusted for the user's group memberships, when users' access to the view is authorized.
+          enum:
+          - RPC
+          - PROVIDERS
+          - RPC_AND_PROVIDERS
+          type: string
+          x-cli-header: Group Membership Source
+          x-format: pretty_auth_source
+        change:
+          items:
+            type: string
+          type: array
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          description: Parent Cluster ID
+          type: integer
+        count_views:
+          description: Number of Policy related Views
+          type: integer
+        created:
+          format: date-time
+          type: string
+          x-cli-header: Created time
+          x-format: datetime2display
+        data_create_delete:
+          description: Create/Delete Files/Directories/Objects
+          type: boolean
+        data_modify:
+          description: Modify data/MD
+          type: boolean
+        data_read:
+          description: Read data
+          type: boolean
+        disable_handle_lease:
+          type: boolean
+        disable_read_lease:
+          type: boolean
+        disable_write_lease:
+          type: boolean
+        enable_access_to_snapshot_dir_in_subdirs:
+          description: Specifies whether to make the .snapshot directory visible in subdirectories of the View.
+          type: boolean
+          x-cli-header: Accessible .snapshot Folder In Subdirectories
+        enable_listing_of_snapshot_dir:
+          description: Specifies whether to make the .snapshot directory visible in subdirectories of the View.
+          type: boolean
+          x-cli-header: Visible .snapshot Folder In SMB Subdirectories
+        enable_snapshot_lookup:
+          description: Specifies whether to make the .snapshot directory accessible in subdirectories of the View.
+          type: boolean
+          x-cli-header: Accessible .snapshot Folder In Subdirectories
+        enable_visibility_of_snapshot_dir:
+          description: Specifies whether to make the .snapshot directory visible in subdirectories of the View.
+          type: boolean
+          x-cli-header: Visible .snapshot Folder In SMB Subdirectories
+        expose_id_in_fsid:
+          type: boolean
+        flavor:
+          description: Security flavor, which determines how file and directory permissions are applied in multiprotocol views.
+          enum:
+          - NFS
+          - SMB
+          - MIXED_LAST_WINS
+          - S3_NATIVE
+          type: string
+        full:
+          items:
+            type: string
+          type: array
+        gid_inheritance:
+          description: 'Specifies how files receive their owning group when they are created. ''LINUX'' (default): Each new file inherits its owning group from the group ID of the user who creates the file. ''BSD'': Each new file inherits its owning group from the group ID of the parent directory.'
+          enum:
+          - BSD
+          - LINUX
+          type: string
+        guid:
+          description: Globally unique identifier
+          type: string
+        id:
+          description: ID
+          type: integer
+          x-cli-header: ID
+        inherit_parent_mode_bits:
+          description: 'Enable NFS behavior of inheriting POSIX settings from the parent directory versus configured values.
+
+            '
+          type: boolean
+        internal:
+          type: boolean
+        is_block_default_policy:
+          description: Specifies whether to make this View Policy default for BLOCK
+          type: boolean
+        is_s3_default_policy:
+          description: Specifies whether to make this View Policy default for S3
+          type: boolean
+        log_deleted:
+          description: Log deleted files/dirs from trash dir
+          type: boolean
+        log_full_path:
+          description: Log full path
+          type: boolean
+        log_hostname:
+          description: Log hostname
+          type: boolean
+        log_username:
+          description: Log username
+          type: boolean
+        name:
+          description: Name of the policy
+          type: string
+          x-cli-header: Name
+        nfs_all_squash:
+          description: Hosts with all squash policy
+          items:
+            type: string
+          type: array
+          x-cli-header: NFS-all-squash
+        nfs_case_insensitive:
+          description: Force case insensitivity for NFSv3 and NFSv4
+          type: boolean
+          x-cli-header: NFS-case-insensitivity
+        nfs_enforce_mtls:
+          description: Specifies whether we enforce mTLS authentication over NFS.
+          type: boolean
+        nfs_enforce_tls:
+          description: Accept NFSv3 and NFSv4 client mounts only if they are TLS-encrypted. Use only with Minimal Protection Level set to System or None.
+          type: boolean
+          x-cli-header: Enforce TLS to encrypt traffic
+        nfs_enforce_tls_relaxed:
+          description: Whether to relax TLS enforcement by not requiring TLS for auxiliary NFSv3 sub-protocols | (MOUNT, NLM, NSM, RQUOTA, NFSACL)
+          type: boolean
+        nfs_minimal_protection_level:
+          description: 'Minimal Protection Level for NFSv4 client mounts: ''KRB_AUTH_ONLY'' allows client mounts with Kerberos authentication only (using the RPCSEC_GSS authentication service), ''SYSTEM'' allows client mounts using either the AUTH_SYS RCP security flavor (the traditional default NFS authentication scheme) or with Kerberos authentication, ''NONE'' (default) allows client mounts with the AUTH_NONE (anonymous access), or AUTH_SYS RCP security flavors, or with Kerberos authentication.'
+          enum:
+          - NONE
+          - SYSTEM
+          - KRB_AUTH_ONLY
+          - KRB_INTEGRITY
+          - KRB_PRIVACY
+          type: string
+        nfs_no_squash:
+          description: Hosts with no squash policy
+          items:
+            type: string
+          type: array
+          x-cli-header: NFS-no-squash
+        nfs_posix_acl:
+          description: 'True if support is enabled for extended POSIX Access Control Lists (ACL) for NFSv3 clients. '
+          type: boolean
+          x-cli-header: NFS-POSIX-ACL
+          x-format: bool2str
+        nfs_read_only:
+          description: Hosts with NFS read only permissions
+          items:
+            type: string
+          type: array
+          x-cli-header: NFS-read-only
+        nfs_read_write:
+          description: Hosts with NFS read/write permissions
+          items:
+            type: string
+          type: array
+          x-cli-header: NFS-read-write
+        nfs_return_open_permissions:
+          description: when using smb use open permissions for files
+          type: boolean
+          x-cli-header: NFS-return-open-permissions
+        nfs_root_squash:
+          description: Hosts with root squash policy
+          items:
+            type: string
+          type: array
+          x-cli-header: NFS-root-squash
+        path_length:
+          description: 'How to determine the maximum allowed path component name length. ''LCD'' (default): Imposes the lowest common denominator file length limit of all VAST Cluster-supported protocols, regardless of the specific protocol enabled on a specific view. ''NPL'': Imposes no limitation beyond that of the client protocol.'
+          enum:
+          - LCD
+          - NPL
+          type: string
+        permission_per_vip_pool:
+          $ref: '#/components/schemas/ArbitraryStringsObject'
+        pretty_atime_frequency:
+          type: string
+        pretty_auth_source:
+          type: string
+        protocols:
+          description: Array of protocols to audit
+          items:
+            enum:
+            - NFSv3
+            - NFSv4.1
+            - SMB
+            - S3
+            - NDB
+            - STS
+            type: string
+          type: array
+        protocols_audit:
+          description: Audit settings. Any settings enabled here apply to attached views, in addition to any audit settings enabled on the cluster.
+          properties:
+            create_delete_files_dirs_objects:
+              description: Audit operations that create or delete files, directories, or objects
+              type: boolean
+            log_deleted_files_dirs:
+              description: Log deleted files and directories
+              type: boolean
+            log_full_path:
+              description: Log full Element Store path to the requested resource. Enabled by default. May affect performance. When disabled, the view path is recorded.
+              type: boolean
+            log_hostname:
+              description: Log hostname
+              type: boolean
+            log_username:
+              description: Log username of requesting user. Disabled by default
+              type: boolean
+            modify_data:
+              type: boolean
+            modify_data_md:
+              description: Audit operations that modify data (including operations that change the file size) and metadata
+              type: boolean
+            read_data:
+              description: Audit operations that read data and metadata
+              type: boolean
+            read_data_md:
+              type: boolean
+            session_create_close:
+              description: Audit session creation and closing operations for sessions that use Kerberos 5 authentication (krb5, krb5i, or krb5p)
+              type: boolean
+          type: object
+        read:
+          description: Hosts with read permissions
+          items:
+            type: string
+          type: array
+        read_only:
+          description: Hosts with NFS read only permissions
+          items:
+            type: string
+          type: array
+          x-cli-header: NFS-read-only
+        read_write:
+          description: Hosts with NFS read/write permissions
+          items:
+            type: string
+          type: array
+          x-cli-header: NFS-read-write
+        remote_mapping:
+          type: object
+        s3_bucket_listing:
+          description: Hosts with full permissions
+          type: string
+        s3_bucket_read:
+          description: Hosts with full permissions
+          type: string
+        s3_bucket_read_acp:
+          description: Hosts with full permissions
+          type: string
+        s3_bucket_write:
+          description: Hosts with full permissions
+          type: string
+        s3_bucket_write_acp:
+          description: Hosts with full permissions
+          type: string
+        s3_flavor_allow_free_listing:
+          description: Allow NFS clients freely list bucket views and their subdirectories, regardless of individual object permissions.
+          type: boolean
+        s3_flavor_detect_full_pathname:
+          description: When this flag is enabled in S3 flavor, NFS access to objects is determined based on the full resource names specified in the identity policies. When disabled, only the bucket name is compared to the identity policy.
+          type: boolean
+        s3_object_full_control:
+          description: Hosts with full permissions
+          type: string
+        s3_object_read:
+          description: Hosts with full permissions
+          type: string
+        s3_object_read_acp:
+          description: Hosts with full permissions
+          type: string
+        s3_object_write:
+          description: Hosts with full permissions
+          type: string
+        s3_object_write_acp:
+          description: Hosts with full permissions
+          type: string
+        s3_read_only:
+          description: Hosts with S3 read only permissions
+          items:
+            type: string
+          type: array
+          x-cli-header: S3-read-only
+        s3_read_write:
+          description: Hosts with S3 read/write permissions
+          items:
+            type: string
+          type: array
+          x-cli-header: S3-read-write
+        s3_special_chars_support:
+          description: This will enable object names that contain “//“ or “/../“ and are incompatible with other protocols
+          type: boolean
+          x-cli-header: S3-Special-Chars
+        s3_visibility:
+          description: Users with permission to list buckets that are created using this policy even if they do not have permission to access those buckets.
+          items:
+            type: string
+          type: array
+        s3_visibility_groups:
+          description: Groups with permission to list buckets that are created using this policy even if they do not have permission to access those buckets.
+          items:
+            type: string
+          type: array
+        smb_directory_mode:
+          description: Default unix type permissions on new folder
+          type: integer
+          x-cli-header: Default folder permissions
+        smb_directory_mode_padded:
+          description: Default unix type permissions on new folder
+          type: string
+          x-cli-header: Default folder permissions
+        smb_file_mode:
+          description: Default unix type permissions on new file
+          type: integer
+          x-cli-header: Default file permissions
+        smb_file_mode_padded:
+          description: Default unix type permissions on new file
+          type: string
+          x-cli-header: Default file permissions
+        smb_is_ca:
+          description: When enabled, the SMB share exposed by the view is set as continuously available, which allows SMB3 clients to request use of persistent file handles and keep their connections to this share in case of a failover event.
+          type: boolean
+          x-cli-header: SMB-Persistent-Handle
+        smb_read_only:
+          description: Hosts with SMB read only permissions
+          items:
+            type: string
+          type: array
+          x-cli-header: SMB-read-only
+        smb_read_write:
+          description: Hosts with SMB read/write permissions
+          items:
+            type: string
+          type: array
+          x-cli-header: SMB-read-write
+        smb_recursive_change_notify:
+          description: Whether SMB Recursive Change Notify is enabled
+          type: boolean
+        sync:
+          description: Synchronization state with leader
+          type: string
+          x-cli-header: VIP Pools
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+          x-format: none_to_all_tenants
+        tenant_name:
+          description: Tenant Name
+          type: string
+        title:
+          type: string
+        trash_access:
+          description: Hosts with trash access permission
+          items:
+            type: string
+          type: array
+          x-cli-header: NFS-trash-access
+        url:
+          description: Endpoint URL for API operations on the view policy object
+          type: string
+        use_32bit_fileid:
+          description: If true, the VAST Cluster's NFS server uses 32bit file IDs. This setting supports legacy 32-bit applications running over NFS.
+          type: boolean
+        use_auth_provider:
+          description: Not in use
+          type: boolean
+          x-format: bool2str
+        vip_pools:
+          description: Comma separated vip pool ids. Restricts view access to specified VIP pools.
+          items:
+            type: integer
+          type: array
+          x-cli-header: VIP Pools
+      required:
+      - name
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
+  parameters:
+    ServesTenantQP:
+      description: Filter by served tenants. Accepts tenant ID or "all" for all served tenants.
+      in: query
+      name: serves_tenant
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TenantNameIContainsQP:
+      description: Tenant name to filter by
+      in: query
+      name: tenant_name__icontains
+      schema:
+        type: string
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

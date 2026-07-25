@@ -1,0 +1,333 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory s3lifecyclerules API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: An S3 Lifecycle configuration is a set of rules that define actions that an S3 service applies to a group of objects. VAST Cluster supports S3 Lifecycle configurations that define expiration actions. These actions define when objects expire.
+  name: s3lifecyclerules
+paths:
+  /s3lifecyclerules/:
+    get:
+      operationId: s3lifecyclerules_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      - in: query
+        name: view__id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/S3LifeCycleRule'
+                title: S3LifeCycleRule
+                type: array
+          description: ''
+      summary: List S3 life cycle rules
+      tags:
+      - s3lifecyclerules
+    post:
+      description: This endpoint creates an S3 Lifecycle Rule.
+      operationId: s3lifecyclerules_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                abort_mpu_days_after_initiation:
+                  type: integer
+                enabled:
+                  description: True by default. Set to false if you do not want lifestyle actions defined in the rule to become effective immediately after the rule is created.
+                  type: boolean
+                expiration_date:
+                  description: 'Expires current versions of objects on a specified date. Alternatively, specify expiration_days instead, which sets a numner of days after creation to expire current versions of objects. If the date is in the past when set, all qualified objects become immediately eligible for expiration. Note also that the policy continues to apply the rule after the date passes. Specify the date value in the ISO 8601 format without the time part. (YYYY-MM-DD). The time of expiration is always midnight UTC. Do not set expired_obj_delete_marker to true in the same rule. To clean up expired object delete markers before they reach age criteria, create a separate rule with expired_obj_delete_marker set to true.
+
+                    '
+                  type: string
+                expiration_days:
+                  description: 'Expires current versions of objects after a specified number of days counted from object creation. Alternatively, specify expiration_date instead, which sets a date to expire current versions of objects. In a non-versioned bucket, the expiration action results in permanent removal of affected objects. In a versioned bucket, if the current version of an object is not a delete marker, a delete marker is created and becomes the current version, while the existing current version is retained as a non-current version. Versioned objects where the only version is a delete marker are deleted when they meet the age criteria. Do not set expired_obj_delete_marker to true in the same rule. To clean up expired object delete markers before they reach age criteria, create a separate rule with expired_obj_delete_marker set to true. The time of expiration is the next midnight UTC after the number of days following object creation time.
+
+                    '
+                  type: integer
+                expired_obj_delete_marker:
+                  description: Set to true to delete versioned objects where the only version is a delete marker. Do not include in the same rule as expiration_days or expiration_date.
+                  type: boolean
+                max_size:
+                  description: Maximum object size. Restricts the rule to objects with the specified maximum size.
+                  type: integer
+                min_size:
+                  description: Minimum object size. Restricts the rule to objects with the specified minimum size.
+                  type: integer
+                name:
+                  description: A name for the rule.
+                  type: string
+                newer_noncurrent_versions:
+                  description: A number of newest non-current versions of an object to retain. Specifying this value protects the specified number of non-current versions from being eligible for deletion due to a noncurrent_days setting.
+                  type: integer
+                noncurrent_days:
+                  description: A number of days after which to permanently delete non-current versions of objects. The number of days is timed from when the object becomes non-current, which is when a versioned object is deleted or overwritten.
+                  type: integer
+                object_age_attr:
+                  default: M_TIME
+                  description: Defines which time to use for expiration. Default - M_TIME.
+                  enum:
+                  - M_TIME
+                  - A_TIME
+                  - C_TIME
+                  type: string
+                prefix:
+                  description: A path prefix. The rule will be restricted to objects with the specified prefix. If not specified, the rule will apply to all objects in the bucket.
+                  type: string
+                tags:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+                view_id:
+                  description: ID of the view on a specific bucket. The rule will apply to objects within that specific bucket.
+                  type: integer
+              required:
+              - name
+              - view_id
+              type: object
+        x-originalParamName: S3LifeCycleRuleCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S3LifeCycleRule'
+          description: ''
+      summary: Create an S3 Lifecycle Rule
+      tags:
+      - s3lifecyclerules
+  /s3lifecyclerules/get_object_expiration/:
+    get:
+      description: If object expiration is configured in S3 lifecycle rule(s) for a specified object, This endpoint returns the object's expiration date and the ID of the lifecycle rule governing its expiration.
+      operationId: s3lifecyclerules_get_object_expiration
+      parameters:
+      - description: Object name
+        in: query
+        name: object_name
+        required: true
+        schema:
+          type: string
+      - description: Bucket name
+        in: query
+        name: bucket_name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S3BucketObjectData'
+          description: ''
+      summary: Get Object Expiration Information
+      tags:
+      - s3lifecyclerules
+  /s3lifecyclerules/{id}/:
+    delete:
+      description: This endpoint deletes an S3 lifecycle rule.
+      operationId: s3lifecyclerules_delete
+      parameters:
+      - description: The ID of an S3 lifecycle rule
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete an S3 Lifecycle Rule
+      tags:
+      - s3lifecyclerules
+    get:
+      description: This endpoint returns a specified S3 lifecycle rule.
+      operationId: s3lifecyclerules_read
+      parameters:
+      - description: The ID of an S3 lifecycle rule
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S3LifeCycleRule'
+          description: ''
+      summary: Get an S3 Lifecycle Rule
+      tags:
+      - s3lifecyclerules
+    patch:
+      operationId: s3lifecyclerules_partial_update
+      parameters:
+      - description: The ID of an S3 lifecycle rule
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                abort_mpu_days_after_initiation:
+                  description: Delete incomplete multipart uploads (MPUs).
+                  type: integer
+                enabled:
+                  description: Set to false to disable the rule. This is one way to prevent a rule from continuing to apply to the objects in a bucket.
+                  type: boolean
+                expiration_date:
+                  description: 'Expires current versions of objects on a specified date. Alternatively, specify expiration_days instead, which sets a numner of days after creation to expire current versions of objects. If the date is in the past when set, all qualified objects become immediately eligible for expiration. Note also that the policy continues to apply the rule after the date passes. Specify the date value in the ISO 8601 format without the time part. (YYYY-MM-DD). The time of expiration is always midnight UTC. Do not set expired_obj_delete_marker to true in the same rule. To clean up expired object delete markers before they reach age criteria, create a separate rule with expired_obj_delete_marker set to true."
+
+                    '
+                  type: string
+                expiration_days:
+                  description: 'Expires current versions of objects after a specified number of days counted from object creation. Alternatively, specify expiration_date instead, which sets a date to expire current versions of objects. In a non-versioned bucket, the expiration action results in permanent removal of affected objects. In a versioned bucket, if the current version of an object is not a delete marker, a delete marker is created and becomes the current version, while the existing current version is retained as a non-current version. Versioned objects where the only version is a delete marker are deleted when they meet the age criteria. Do not set expired_obj_delete_marker to true in the same rule. To clean up expired object delete markers before they reach age criteria, create a separate rule with expired_obj_delete_marker set to true. The time of expiration is the next midnight UTC after the number of days following object creation time.
+
+                    '
+                  type: integer
+                expired_obj_delete_marker:
+                  description: Set to true to delete versioned objects where the only version is a delete marker. Do not include in the same rule as expiration_days or expiration_date.
+                  type: boolean
+                max_size:
+                  description: Maximum object size. Restricts the rule to objects with the specified maximum size.
+                  type: integer
+                min_size:
+                  description: Minimum object size. Restricts the rule to objects with the specified minimum size.
+                  type: integer
+                name:
+                  description: The name of the rule
+                  type: string
+                newer_noncurrent_versions:
+                  description: A number of newest non-current versions of an object to retain. Specifying this value protects the specified number of non-current versions from being eligible for deletion due to a noncurrent_days setting.
+                  type: integer
+                noncurrent_days:
+                  description: A number of days after which to permanently delete non-current versions of objects. The number of days is timed from when the object becomes non-current, which is when a versioned object is deleted or overwritten.
+                  type: integer
+                object_age_attr:
+                  default: M_TIME
+                  description: Defines which time to use for expiration. Default - M_TIME
+                  enum:
+                  - M_TIME
+                  - A_TIME
+                  - C_TIME
+                  type: string
+                prefix:
+                  description: A path prefix. The rule will be restricted to objects with the specified prefix. If not specified, the rule will apply to all objects in the bucket.
+                  type: string
+                tags:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+                view_id:
+                  description: The ID of the View to which the rule applies
+                  type: integer
+              required:
+              - name
+              - view_id
+              type: object
+        x-originalParamName: S3LifeCycleRuleModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify an S3 Lifecycle Rule
+      tags:
+      - s3lifecyclerules
+components:
+  schemas:
+    S3LifeCycleRule:
+      properties:
+        abort_mpu_days_after_initiation:
+          description: The number of days until expiration after an incomplete multipart upload
+          type: integer
+        enabled:
+          type: boolean
+        expiration_date:
+          description: The expiration date of the object
+          type: string
+        expiration_days:
+          description: The number of days from creation until an object expires
+          type: integer
+        expired_obj_delete_marker:
+          description: If true, delete markets of objects are removed when objects expire
+          type: boolean
+        guid:
+          type: string
+          x-cli-header: GUID
+        id:
+          description: The ID of an S3 Lifecycle rule
+          type: integer
+          x-cli-header: ID
+        max_size:
+          description: Maximum object size
+          type: integer
+        min_size:
+          description: Minimum object size
+          type: integer
+        name:
+          description: A unique name
+          type: string
+        newer_noncurrent_versions:
+          description: The number of newer versions to retain
+          type: integer
+        noncurrent_days:
+          description: Number of days at which objects become noncurrent
+          type: integer
+        object_age_attr:
+          description: Defines which time to use for expiration.
+          enum:
+          - M_TIME
+          - A_TIME
+          - C_TIME
+          type: string
+        prefix:
+          description: Defines a scope of elements (objects, files or directories) by prefix. All objects with keys that begin with the specified prefix are included in the scope. In file and directory nomenclature, a prefix is a file and/or directory path within the view that can include part of the file or directory name. For example, 'sales/jan' would include the file sales/january and the directory sales/jan/week1/. No characters are handled as wildcards.
+          type: string
+        tags:
+          $ref: '#/components/schemas/ArbitraryStringsObject'
+        title:
+          type: string
+        url:
+          type: string
+        view_id:
+          description: The ID of a view, when the rule applies to all objects in a view (bucket)
+          type: integer
+        view_path:
+          description: The path of a view, when the rule applies to all objects in a view (bucket)
+          type: string
+      required:
+      - name
+      - view_id
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
+    S3BucketObjectData:
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

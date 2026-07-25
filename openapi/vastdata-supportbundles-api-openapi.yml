@@ -1,0 +1,461 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory supportbundles API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A support bundle is a compressed file consisting of logs that are extracted from the VAST Cluster. Support bundles can be sent to VAST Support for troubleshooting purposes. They can also be downloaded from VMS.
+  name: supportbundles
+paths:
+  /supportbundles/:
+    get:
+      description: This endpoint lists support bundles.
+      operationId: supportbundles_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SupportBundle'
+                title: Support Bundle
+                type: array
+          description: Support Bundle information
+      summary: List Support Bundles
+      tags:
+      - supportbundles
+    post:
+      description: This endpoint creates a support bundle.
+      operationId: supportbundles_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_key:
+                  description: S3 Bucket access key
+                  type: string
+                aggregated:
+                  description: Saves an aggregated bundle file on the management CNode in addition to the separate bundle files that are saved per node. (deprecated)
+                  type: boolean
+                astron_args:
+                  description: 'Arguments for the astron command. Note: times should be in UTC (Use with caution)'
+                  type: string
+                bucket_name:
+                  description: S3 Bucket for upload
+                  type: string
+                bucket_subdir:
+                  description: Sub-Directory in support bucket
+                  type: string
+                cnode_ids:
+                  description: Collect from specific CNodes. Specify as a comma separated array of CNode IDs. If not specified, logs are collected from all CNodes.
+                  type: string
+                cnode_names:
+                  description: Collect from CNodes specified by name.
+                  type: string
+                cnodes_only:
+                  description: Collect logs from CNodes only
+                  type: boolean
+                dbox_ids:
+                  description: Collect from specific DBoxes.
+                  type: string
+                dbox_names:
+                  description: Colect from DBoxes specified by name.
+                  type: string
+                delete_after_send:
+                  description: Delete bundle immediately after successfully uploading
+                  type: boolean
+                dnode_ids:
+                  description: Collect from specific DNodes. Specify as a comma separated array of DNode IDs. If not specified, logs are collected from all DNodes.
+                  type: string
+                dnode_names:
+                  description: Collect from DNodes specified by name.
+                  type: string
+                dnodes_only:
+                  description: Collect logs from DNodes only
+                  type: boolean
+                dtray_ids:
+                  description: Collect from specific DTrays.
+                  type: string
+                dtray_names:
+                  description: Collect from Dtrays specified by name.
+                  type: string
+                end_time:
+                  description: End time of logs in UTC+3
+                  type: string
+                hubble_args:
+                  description: 'Arguments for the hubble command. Note: times should be in UTC (Use with caution)'
+                  type: string
+                level:
+                  description: Bundle level e.g. small, medium, large
+                  type: string
+                luna_args:
+                  description: Arguments for the luna analyzing tool
+                  type: string
+                max_size:
+                  description: Maximum data limit to apply to the collection of binary trace files, in GB, per node.
+                  format: float
+                  type: number
+                md_tool_addresses:
+                  description: A comma separated list of block addresses to send to md_tool_cli
+                  type: string
+                md_tool_handles:
+                  description: A comma separated list of handles to send to md_tool_cli
+                  type: string
+                obfuscated:
+                  description: 'Converts all bundled objects to text and obfuscates them. Any data that cannot be converted to text is not included in the bundle. The following types of information are replaced with a non-reversible hash: file and directory names, IP addresses, host names, user names, passwords, MAC addresses.'
+                  type: boolean
+                path:
+                  description: Bundle path
+                  type: string
+                prefix:
+                  description: Specify an identifying label to include in the bundle file name.
+                  type: string
+                preset:
+                  description: A predefined preset bundle
+                  enum:
+                  - standard
+                  - debug
+                  - micro
+                  - mini
+                  - performance
+                  - management
+                  - traces_and_metrics
+                  - nfs
+                  - nfs4
+                  - smb
+                  - s3
+                  - estore
+                  - raid
+                  - hardware
+                  - permission_issues
+                  - rca
+                  - dr
+                  - metadata
+                  type: string
+                secret_key:
+                  description: S3 Bucket secret key
+                  type: string
+                send_now:
+                  description: Upload Support Bundle immediately after creation
+                  type: boolean
+                split_time:
+                  description: Time interval in seconds for splitting large bundles when uploading. Used with --send-now and --delete-after-send to create multiple smaller bundles instead of one large bundle.
+                  type: integer
+                start_time:
+                  description: Start time of logs in UTC+3
+                  type: string
+                tcpdump_args:
+                  description: Additional arguments for running tcpdump
+                  type: string
+                text:
+                  description: Convert all bundled objects to a textual format. Any data that cannot be converted to text is not included in the bundle.
+                  type: boolean
+                upload_via_vms:
+                  description: If true, upload non-aggregated Support Bundle via VMS. Otherwise, upload from each node.
+                  type: boolean
+                vip_ids:
+                  description: Collect support bundle from CNodes hosting specified VIPs. Includes historical CNodes that hosted these VIPs during the time range. Specify as a comma separated array of VIP IDs.
+                  type: string
+                vippool_ids:
+                  description: Collect support bundle from CNodes in these vip-pools IDs
+                  type: string
+                volume_size:
+                  description: Enables streaming. Maximum size of slice of support data of category that supports slicing, GiB.
+                  type: number
+              type: object
+        x-originalParamName: SupportBundleCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncSupportBundle'
+          description: ''
+      summary: Create a Support Bundle
+      tags:
+      - supportbundles
+      x-cli-command: supportbundle
+      x-cli-subcommand: create
+  /supportbundles/{id}/:
+    delete:
+      description: This endpoint deletes a support bundle.
+      operationId: supportbundles_delete
+      parameters:
+      - description: Support Bundle ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The support bundle was deleted successfully
+      summary: Delete a Support Bundle
+      tags:
+      - supportbundles
+    get:
+      description: This endpoint returns information about a specific support bundle.
+      operationId: supportbundles_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportBundle'
+          description: ''
+      summary: Return Details of a Support Bundle
+      tags:
+      - supportbundles
+  /supportbundles/{id}/download/:
+    get:
+      description: This endpoint downloads a support bundle.
+      operationId: supportbundles_download
+      parameters:
+      - description: Support Bundle ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Bundle secret key
+        in: query
+        name: secret
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns a SupportBundle file for download
+      summary: Download a Support Bundle
+      tags:
+      - supportbundles
+  /supportbundles/{id}/upload/:
+    patch:
+      description: This endpoint uploads a supportbundle to the AWS S3 Support bucket.
+      operationId: supportbundles_upload
+      parameters:
+      - description: Support Bundle ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_key:
+                  description: S3 Bucket access key
+                  type: string
+                bucket_name:
+                  description: S3 Bucket for upload
+                  type: string
+                bucket_subdir:
+                  description: Subdirectory in support bucket
+                  type: string
+                secret_key:
+                  description: S3 Bucket secret key
+                  type: string
+                upload_via_vms:
+                  description: If true, upload non-aggregated Support Bundle via VMS. Otherwise, upload from each node.
+                  type: boolean
+              type: object
+        x-originalParamName: SupportBundleUploadParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Upload Support Bundle to AWS S3.
+      tags:
+      - supportbundles
+components:
+  schemas:
+    AsyncSupportBundle:
+      allOf:
+      - $ref: '#/components/schemas/SupportBundle'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    SupportBundle:
+      properties:
+        access_key:
+          description: S3 Bucket access key
+          type: string
+        aggregated:
+          description: Aggregate harvests into final bundle (deprecated)
+          type: boolean
+        astron_args:
+          type: string
+        bucket_name:
+          description: S3 Bucket for upload
+          type: string
+        bucket_subdir:
+          description: Sub-directory in support bucket
+          type: string
+        bundle_file:
+          type: string
+        bundle_size:
+          description: Bundle size in bytes
+          type: integer
+        bundle_url:
+          description: URL to access/download support bundle file
+          type: string
+        callhome:
+          type: boolean
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          type: integer
+        cnode_ids:
+          description: Array of IDs of specific CNodes from which logs are collected. If not specified, logs are collected from all CNodes.
+          items:
+            type: integer
+          type: array
+        cnode_ids_array:
+          description: Resolved CNode IDs included in the bundle harvest
+          items:
+            type: integer
+          type: array
+        cnodes_only:
+          type: boolean
+        core:
+          type: boolean
+        create_datetime:
+          type: string
+        created:
+          description: Bundle creation time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        delete_after_send:
+          description: Delete the bundle immediately after successfully uploading
+          type: boolean
+        dnode_ids:
+          description: Array of IDs of specific DNodes from which logs are collected. If not specified, logs are collected from all DNodes.
+          items:
+            type: integer
+          type: array
+        dnode_ids_array:
+          description: Resolved DNode IDs included in the bundle harvest
+          items:
+            type: integer
+          type: array
+        dnodes_only:
+          type: boolean
+        end_time:
+          description: End time of logs in UTC+3
+          type: string
+          x-format: datetime2display
+        guid:
+          type: string
+        hubble_args:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        level:
+          description: Bundle level e.g. small, medium, large
+          type: string
+        luna_args:
+          type: string
+        management:
+          type: boolean
+        max_size:
+          description: Trace files bundle size limit in GB for each node
+          format: float
+          type: number
+          x-display-units: GB
+        mem_traces:
+          type: boolean
+        metrics:
+          type: boolean
+        name:
+          type: string
+        obfuscated:
+          description: 'True if the bundle is obfuscated. If obfuscated, all bundled objects are converted to text and obfuscated. Any data that cannot be converted to text is not included in the bundle. The following types of information are replaced with a non-reversible hash: file and directory names, IP addresses, host names, user names, passwords, MAC addresses.'
+          type: boolean
+        on_nfs:
+          description: True if the bundle is stored on NFS
+          type: boolean
+        performance:
+          type: boolean
+        platform:
+          type: boolean
+        position_in_queue:
+          description: Position of the support bundle in the queue
+          type: integer
+        prefix:
+          description: Identifying label included in the bundle file name as a prefix
+          type: string
+        preset:
+          description: Type of predefined preset bundle
+          type: string
+        secret_key:
+          description: S3 Bucket secret key
+          type: string
+        send_now:
+          description: Upload support bundle after creation
+          type: boolean
+        start_time:
+          description: Start time of logs in UTC+3
+          type: string
+          x-format: datetime2display
+        state:
+          description: State of the bundle
+          enum:
+          - UNKNOWN
+          - CREATING
+          - CREATED
+          - FAILED
+          - DELETING
+          - DELETED
+          - MODIFYING
+          - MODIFIED
+          - PARTIALLY_CREATED
+          - COMPLETING
+          type: string
+        text:
+          description: True if only textual logs are included in the bundle
+          type: boolean
+        traces:
+          type: boolean
+        upload_via_vms:
+          type: boolean
+        url:
+          type: string
+        volume_size:
+          type: integer
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

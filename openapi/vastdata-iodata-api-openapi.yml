@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory iodata API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The iodata path provides data flow analytics.
+  name: iodata
+paths:
+  /iodata/:
+    get:
+      description: This endpoint returns data flow analytics.
+      operationId: iodata_query
+      parameters:
+      - description: True returns data for graphical representation. False returns data as a time series.
+        in: query
+        name: graph
+        schema:
+          type: boolean
+      - description: Queries analytics only for a specified protocol.
+        in: query
+        name: protocol_filter
+        schema:
+          enum:
+          - NFS
+          - NFS4
+          - S3
+          - SMB
+          type: string
+      - description: 'Time frame over which to query. Specify as a whole integer followed by a unit: ''s'' or ''S'' denotes seconds. ''m'' = minutes, ''h'' or ''H'' = hours, ''d'' or ''D'' = days, ''w'' or ''W'' = weeks, ''M'' = months, ''y'' or ''Y'' = years. Examples: for ten minutes, specify ''10m''. For three months, specify ''3M''.'
+        in: query
+        name: time_frame
+        schema:
+          type: string
+      - description: Start of time frame to query, in the format 2025-02-16T10:00:00.000Z.
+        in: query
+        name: start_time
+        schema:
+          type: string
+      - description: End of time frame to query, in the format 2025-02-16T10:00:00.000Z.
+        in: query
+        name: end_time
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IOData'
+          description: ''
+      summary: List Data Flow Analytics
+      tags:
+      - iodata
+components:
+  schemas:
+    IOData:
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

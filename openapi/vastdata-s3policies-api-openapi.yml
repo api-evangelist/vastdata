@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory s3policies API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Identity policies comprise statements that grant or deny permissions for any combination of specific actions on any combination of specified resources. They are the primary access control method available with the VAST Cluster S3 service. Identity policies are manageable exclusively through VMS. They are written in JSON document structure. Multiple identity policies can be attached  to multiple users and to multiple groups. Permissions denied by identity policies override permissions allowed by identity policies. Permissions allowed or denied by identity policies override S3 ACLs.
+  name: s3policies
+paths:
+  /s3policies/:
+    get:
+      description: This endpoint lists all S3 identity policies.
+      operationId: s3policies_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: iam_roles__id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/S3Policy'
+                title: S3Policy
+                type: array
+          description: S3 identity policy information
+      summary: List S3 policies
+      tags:
+      - s3policies
+    post:
+      description: This endpoint creates an S3 identity policy. Multiple S3 identity policies may be created and they may be attached to multiple users and groups. Each user and group is denied all permissions denied by any attached S3 identity policy and is granted the aggregate of all permissions granted by all attached S3 identity policies that are not denied by any other attached policy. Creating an S3 identify policy involves writing the policy in a JSON document structure.
+      operationId: s3policies_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: A name for the S3 identity policy
+                  type: string
+                policy:
+                  description: JSON policy
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              required:
+              - name
+              - policy
+              type: object
+        x-originalParamName: S3PolicyCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S3Policy'
+          description: ''
+      summary: Create an Identity Policy
+      tags:
+      - s3policies
+  /s3policies/{id}/:
+    delete:
+      description: This endpoint deletes a specified S3 identity policy.
+      operationId: s3policies_delete
+      parameters:
+      - description: The ID of the S3 identity policy.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Delete an S3 Identity Policy
+      tags:
+      - s3policies
+    get:
+      description: This endpoint returns an S3 identity policy
+      operationId: s3policies_read
+      parameters:
+      - description: The ID of the S3 identity policy.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S3Policy'
+          description: ''
+      summary: Return details of an S3 identity policy
+      tags:
+      - s3policies
+    patch:
+      description: This endpoint modifies an S3 identity policy.
+      operationId: s3policies_partial_update
+      parameters:
+      - description: The ID of the S3 identity policy.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: Enabled if True, Disabled if False
+                  type: boolean
+                name:
+                  description: A new name for the S3 identity policy
+                  type: string
+                policy:
+                  description: A modified S3 identity policy in JSON format.
+                  type: string
+              type: object
+        x-originalParamName: S3PolicyModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify an S3 Identity Policy
+      tags:
+      - s3policies
+components:
+  schemas:
+    S3Policy:
+      properties:
+        enabled:
+          type: boolean
+        groups:
+          description: The groups to which the S3 identity policy is attached.
+          items:
+            type: string
+          type: array
+          x-cli-header: Groups
+        guid:
+          type: string
+        id:
+          description: The ID of an S3 identity policy.
+          type: integer
+          x-cli-header: ID
+        is_replicated:
+          type: boolean
+          x-cli-header: Replicated
+        name:
+          description: The name of the S3 identity policy.
+          type: string
+          x-cli-header: Name
+        policy:
+          description: The S3 identity policy in JSON format.
+          type: string
+          x-cli-header: Policy
+        tenant_id:
+          type: integer
+        tenant_name:
+          type: string
+          x-cli-header: Tenant
+        title:
+          type: string
+        url:
+          type: string
+        users:
+          description: 'The principals to which the S3 identity policy is attached. '
+          items:
+            type: string
+          type: array
+          x-cli-header: Users
+      required:
+      - name
+      - policy
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

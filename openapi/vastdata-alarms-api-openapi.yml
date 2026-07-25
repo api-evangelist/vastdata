@@ -1,0 +1,219 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory alarms API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Alarms can be raised by events.
+  name: alarms
+paths:
+  /alarms/:
+    get:
+      description: This endpoint lists alarms. The parameters filter the list.
+      operationId: alarms_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      - in: query
+        name: timestamp__gte
+        schema:
+          type: string
+      - in: query
+        name: timestamp__lte
+        schema:
+          type: string
+      - description: Filter by severity
+        in: query
+        name: severity
+        schema:
+          enum:
+          - MINOR
+          - MAJOR
+          - CRITICAL
+          - INFO
+          type: string
+      - description: Filter the list by text contained in the alarm message
+        in: query
+        name: alarm_message__contains
+        schema:
+          type: string
+      - in: query
+        name: object_guid
+        schema:
+          type: string
+      - description: Filter the list by object type
+        in: query
+        name: object_type
+        schema:
+          type: string
+      - description: The ID of the affected object
+        in: query
+        name: object_id
+        schema:
+          type: string
+      - description: get only discovery related hosts
+        in: query
+        name: only_discovered_hosts
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                title: Alarms
+                type: array
+          description: alarm information
+      summary: List Alarms
+      tags:
+      - alarms
+  /alarms/clear/:
+    patch:
+      description: This endpoint clears all alarms.
+      operationId: alarms_clear
+      responses:
+        '200':
+          description: ''
+      summary: Clear Alarms
+      tags:
+      - alarms
+  /alarms/{id}/:
+    delete:
+      description: This endpoint deletes an alarm.
+      operationId: alarms_delete
+      parameters:
+      - description: Alarm ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Delete Alarm
+      tags:
+      - alarms
+    get:
+      description: This endpoint returns details of a specified alarm
+      operationId: alarms_read
+      parameters:
+      - description: Alarm ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+          description: ''
+      summary: Return Details of an Alarm
+      tags:
+      - alarms
+    patch:
+      description: This endpoint acknowledges an alarm.
+      operationId: alarms_partial_update
+      parameters:
+      - description: Alarm ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                acknowledged:
+                  description: Set to true to acknowledge the specified alarm
+                  type: boolean
+              type: object
+        x-originalParamName: AlarmModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Acknowledge Alarm
+      tags:
+      - alarms
+components:
+  schemas:
+    Alarm:
+      properties:
+        acknowledged:
+          description: True if the alarm was acknowledged by the user
+          type: boolean
+        alarm_message:
+          description: A description of the event that triggered the alarm.
+          type: string
+        cluster:
+          type: string
+        event:
+          description: The event that raised the alarm.
+          type: string
+        event_definition:
+          type: string
+        event_name:
+          description: related event definition name
+          type: string
+        event_type:
+          description: related event type
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        last_updated:
+          description: Last alarm occurrence
+          format: date-time
+          type: string
+          x-format: datetime2display
+        metadata:
+          type: object
+        object_guid:
+          type: string
+        object_id:
+          description: The object involved in the event that triggered the alarm.
+          type: integer
+        object_name:
+          type: string
+        object_type:
+          description: The type of object involved in the event that triggered the alarm.
+          type: string
+        rel_obj_class:
+          description: 'related object''s class, possible values: [host, dbox, cbox, null]'
+          type: string
+        rel_obj_id:
+          description: related object's id
+          type: string
+        severity:
+          description: The alarm severity. Can be minor, major or critical.
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+          x-format: datetime2display
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,332 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory hosts API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Hosts are network discoverable CNodes and DNodes that can be included in a new cluster configuration.
+  name: hosts
+paths:
+  /hosts/:
+    get:
+      description: This endpoint lists discovered hosts
+      operationId: hosts_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Specify auto or manually hosts
+        in: query
+        name: auto
+        schema:
+          type: boolean
+      - description: Comma-separated list of nodes IPs
+        in: query
+        name: ip_list
+        schema:
+          type: string
+      - description: Loopback nodes
+        in: query
+        name: loopback
+        schema:
+          type: boolean
+      - in: query
+        name: ip
+        schema:
+          type: string
+      - in: query
+        name: state
+        schema:
+          type: string
+      - in: query
+        name: cluster__name
+        schema:
+          type: string
+      - in: query
+        name: cluster__id
+        schema:
+          type: integer
+      - in: query
+        name: install_state
+        schema:
+          type: string
+      - in: query
+        name: node_type
+        schema:
+          type: string
+      - in: query
+        name: sw_version
+        schema:
+          type: string
+      - in: query
+        name: build
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Host'
+                title: Hosts
+                type: array
+          description: Hosts information
+      summary: List Hosts
+      tags:
+      - hosts
+  /hosts/discover:
+    get:
+      description: Discover hosts
+      operationId: hosts_discover
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Discover Hosts
+      tags:
+      - hosts
+  /hosts/{id}/:
+    get:
+      description: This endpoint returns details of a host.
+      operationId: hosts_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: ''
+      summary: Return Details of a Host
+      tags:
+      - hosts
+components:
+  schemas:
+    VastInstallInfo:
+      properties:
+        box_name:
+          description: Name of parent CBox/DBox
+          type: string
+        box_uid:
+          description: UID of the parent CBox/DBox
+          type: string
+        box_vendor:
+          description: Model description, including vendor
+          type: string
+        hostname:
+          description: Hostname
+          type: string
+        ip:
+          description: Management IP
+          type: string
+        is_ceres:
+          description: Whether the host is part of a CERES DBox
+          type: boolean
+        is_ceres_v2:
+          description: Whether the host is part of a CERES V2 DBox
+          type: boolean
+        is_vms_host:
+          description: Whether the host is the VMS CNode
+          type: boolean
+        node_type:
+          description: Type of Node (CNode or DNode)
+          type: string
+        position:
+          description: Position of node in chassis
+          type: string
+        vast_os:
+          description: VAST OS version running on the host
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    Host:
+      properties:
+        auto:
+          description: auto or manually host (internal property)
+          type: boolean
+          x-cli-header: Auto
+        box_rdma_port:
+          description: port for internal use
+          type: integer
+        build:
+          description: Node build
+          type: string
+        cluster:
+          description: The name of the cluster to which the host belongs
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          description: Cluster ID
+          type: integer
+        data_rdma_port:
+          description: port for internal use
+          type: integer
+        data_tcp_port:
+          description: port for internal use
+          type: integer
+        dbox_uid:
+          description: Unique h/w identifier
+          type: string
+          x-cli-header: DBox-UID
+        deep_stripe:
+          description: Is deep stripe system
+          type: boolean
+        dmsetup:
+          description: Mock NVMeoF devices with dmsetup devices
+          type: boolean
+        dr_hash_size:
+          description: DR hash size in buckets
+          type: integer
+        drive_size:
+          description: Drive size for mocked devices
+          type: integer
+        enable_dr:
+          description: True if data reduction is enabled
+          type: boolean
+        guid:
+          description: Globally unique identifier
+          type: string
+        half_system:
+          description: Is half system
+          type: boolean
+        host_label:
+          description: Host label, used to label container, e.g. 11.0.0.1-4000
+          type: string
+        hostname:
+          description: Hostname
+          type: string
+        hw_info:
+          description: General hardware info related to the host
+          type: object
+        id:
+          description: The ID of a host
+          type: integer
+          x-cli-header: ID
+        install:
+          description: True if selected for installation. False if excluded.
+          type: boolean
+        install_state:
+          description: Node installation state
+          type: string
+          x-cli-header: Install-State
+        ip:
+          description: The IP of the host's bond interface on the internal data network
+          type: string
+          x-cli-header: IP
+        ip1:
+          description: The host's 1st internal IP address
+          type: string
+          x-cli-header: IP1
+        ip2:
+          description: Ths host's 2nd internal IP address
+          type: string
+          x-cli-header: IP2
+        ipv6:
+          description: External IPv6 Address
+          type: string
+          x-cli-header: IPv6
+        led_status:
+          description: Status of host LED
+          type: string
+        loopback:
+          description: True if loopback (single node) installation
+          type: boolean
+        name:
+          description: Name of host
+          type: string
+        net_type:
+          description: network type
+          enum:
+          - eth
+          - ib
+          - int_eth_ext_ib
+          - int_ib_ext_eth
+          type: string
+        node_guid:
+          description: Hosts sibling node guid
+          type: string
+        node_type:
+          description: 'Node type: C-Node/D-Node'
+          type: string
+          x-cli-header: Type
+        nvram_size:
+          description: NVRAM size for mocked devices
+          type: integer
+        os_version:
+          description: The VAST OS version running on the node
+          type: string
+          x-cli-header: OS-Version
+        perf_check:
+          description: Internal property related to checking cluster performance
+          type: boolean
+        platform_rdma_port:
+          description: port for internal use
+          type: integer
+        platform_tcp_port:
+          description: port for internal use
+          type: integer
+        single_nic:
+          description: Host has single NIC
+          type: boolean
+        sn:
+          description: Serial number
+          type: string
+        ssh_user:
+          description: SSH User name
+          type: string
+        state:
+          description: Node state
+          type: string
+          x-cli-header: State
+        sw_defined:
+          description: True if host is software defined model
+          type: boolean
+        sw_version:
+          description: The platform software version running on the node
+          type: string
+          x-cli-header: SW-Version
+        system_name:
+          description: Cluster GUID
+          type: string
+        title:
+          description: Descriptive string including node type, IP address and node name.
+          type: string
+        upgrade_state:
+          description: Host upgrade state
+          type: string
+        url:
+          description: Endpoint URL for API operations
+          type: string
+        vast_install_info:
+          $ref: '#/components/schemas/VastInstallInfo'
+      required:
+      - hostname
+      - node_type
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

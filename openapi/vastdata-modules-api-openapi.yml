@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory modules API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: modules
+paths:
+  /modules/:
+    get:
+      description: This endpoint lists modules.
+      operationId: modules_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Module'
+                title: Modules
+                type: array
+          description: Module information
+      summary: List Modules
+      tags:
+      - modules
+  /modules/{id}/:
+    get:
+      description: This endpoint returns details of a module.
+      operationId: modules_read
+      parameters:
+      - description: Module ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+          description: ''
+      summary: Return Details of a Module.
+      tags:
+      - modules
+components:
+  schemas:
+    Module:
+      properties:
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          type: integer
+        cnode:
+          description: Parent CNode
+          type: string
+          x-cli-header: CNode
+        dnode:
+          description: Parent DNode
+          type: string
+          x-cli-header: DNode
+        env:
+          description: Parent Env
+          type: string
+          x-cli-header: Env
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        module_type:
+          description: Module Type (I, E, ...)
+          type: string
+          x-cli-header: Type
+        name:
+          type: string
+          x-cli-header: Name
+        silo_id:
+          description: Silo ID
+          type: integer
+          x-cli-header: Silo-ID
+        state:
+          type: string
+          x-cli-header: State
+        title:
+          type: string
+        url:
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

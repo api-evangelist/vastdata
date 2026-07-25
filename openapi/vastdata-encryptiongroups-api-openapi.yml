@@ -1,0 +1,224 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory encryptiongroups API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: When data encryption is enabled on a VAST cluster with keys managed by an external key manager, each tenant must belong to an encryption group. Multiple tenants can belong to the same encryption group. It is also possible when creating a new path to encrypt the path with its own dedicated encryption group. This endpoint enables retrieval of encryption groups and their identifiers (CRN).
+  name: encryptiongroups
+paths:
+  /encryptiongroups/:
+    get:
+      description: This endpoint lists encryption groups.
+      operationId: encryptiongroups_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EncryptionGroup'
+                title: Encryption Groups
+                type: array
+          description: Encryption Groups
+      summary: List Encryption Groups
+      tags:
+      - encryptiongroups
+  /encryptiongroups/{id}/deactivate_encryption_group/:
+    post:
+      description: This endpoint deactivates an encryption group. Deactivated keys are revoked and destroyed. They cannot be reinstated. The encrypted data becomes inaccessible forever.
+      operationId: deactivate_encryption_group
+      parameters:
+      - $ref: '#/components/parameters/EncryptionGroupId'
+      responses:
+        '204':
+          description: Encryption group was deactivated successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Encryption group was not found by its key <encryption_group>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to deactivate encryption group.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Deactivate encryption group.
+      tags:
+      - encryptiongroups
+  /encryptiongroups/{id}/reinstate_encryption_group/:
+    post:
+      description: This endpoint reinstates an encryption group key.
+      operationId: reinstate_encryption_group
+      parameters:
+      - $ref: '#/components/parameters/EncryptionGroupId'
+      responses:
+        '204':
+          description: Encryption group was reinstated successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Encryption group was not found by its key <encryption_group>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to reinstate encryption group.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Reinstate Encryption Group
+      tags:
+      - encryptiongroups
+  /encryptiongroups/{id}/revoke_encryption_group/:
+    post:
+      description: This endpoint revokes an encryption group key.
+      operationId: revoke_encryption_group
+      parameters:
+      - $ref: '#/components/parameters/EncryptionGroupId'
+      responses:
+        '204':
+          description: Encryption group was revoked successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Encryption group was not found by its key <encryption_group>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to revoke encryption group.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Revoke Encryption Group
+      tags:
+      - encryptiongroups
+  /encryptiongroups/{id}/rotate_encryption_group_key/:
+    post:
+      description: This endpoint rotates an encryption group key.
+      operationId: rotate_encryption_group_key
+      parameters:
+      - $ref: '#/components/parameters/EncryptionGroupId'
+      responses:
+        '204':
+          description: Encryption group key was rotated successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Encryption group was not found by its key <encryption_group_key>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to rotate encryption group key.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Rotate Encryption Group Key
+      tags:
+      - encryptiongroups
+components:
+  schemas:
+    EncryptionGroup:
+      properties:
+        crn:
+          description: Encryption Group Cloud Resource Name
+          example: INTERNAL_ENCRYPTION_GROUP_CRN
+          type: string
+        guid:
+          example: 9f0bf0bf-7b36-413b-8278-9dd47b3f7cdb
+          type: string
+        id:
+          type: integer
+        state:
+          description: Encryption Group State
+          enum:
+          - INIT
+          - ACTIVE
+          - REVOKE_IN_PROGRESS
+          - REVOKE_UPDATING_AGENTS
+          - REVOKED
+          - REINSTATE_IN_PROGRESS
+          - REINSTATE_UPDATING_AGENTS
+          - EKM_REVOKE_IN_PROGRESS
+          - EKM_REVOKE_UPDATING_AGENTS
+          - EKM_REVOKED
+          - EKM_REVOKE_FAILED
+          - EKM_REVOKING_KEYS
+          type: string
+      required:
+      - id
+      - guid
+      - state
+      - crn
+      type: object
+  parameters:
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    EncryptionGroupId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

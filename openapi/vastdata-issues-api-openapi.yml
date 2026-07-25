@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory issues API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: issues
+paths:
+  /issues/:
+    get:
+      description: This endpoint lists created issues for vtasks.
+      operationId: issues_list
+      parameters:
+      - description: Type of the issue
+        in: query
+        name: issue_type
+        schema:
+          type: string
+      - description: ID of a task
+        in: query
+        name: task_id
+        schema:
+          type: integer
+      - description: Issue stage
+        in: query
+        name: stage
+        schema:
+          type: string
+      - description: Issue location
+        in: query
+        name: location
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Issue'
+                title: List of issues
+                type: array
+          description: List of issues
+      summary: List Issues
+      tags:
+      - issues
+  /issues/pre_install_validations/:
+    get:
+      description: This endpoint lists created issues for pre install validations.
+      operationId: pre_install_validations_issues_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Issue'
+                title: List of pre install validations issues
+                type: array
+          description: List of pre install validations issues
+      summary: List pre install validations issues
+      tags:
+      - issues
+components:
+  schemas:
+    Issue:
+      properties:
+        action:
+          type: string
+        additional_props:
+          description: Additional props of an issue
+          type: object
+        id:
+          type: integer
+        issue:
+          type: string
+        issue_type:
+          type: string
+        location:
+          type: string
+        severity:
+          type: string
+        stage:
+          type: string
+        task_id:
+          type: integer
+        time:
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

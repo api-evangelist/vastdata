@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory subnetmanager API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The subnetmanager monitors an OpenSM service. Clusters operating in larger IB networks must have an OpenSM service configured on some of the CNodes in the cluster. The OpenSM services running on those Cnodes are critical for the data network and need to be monitored. Monitoring is enabled when up to two IPs of CNodes hosting the OpenSM service are registered. The state and if applicable, failure reason, can be retrieved from the registered CNodes.
+  name: subnetmanager
+paths:
+  /subnetmanager/:
+    get:
+      description: This endpoint returns subnet manager service information.
+      operationId: subnetmanager_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SubnetManager'
+                title: Subnet Manager
+                type: array
+          description: Monitoring information about the Infiniband Subnet Manager service.
+      summary: List subnet manager
+      tags:
+      - subnetmanager
+      x-cli-command: subnetmanager
+    post:
+      description: This endpoint registers up to two CNodes running the subnet manager service. This is relevant to installations with Infiniband networks where the OpenSM service is installed on some of the CNodes.
+      operationId: subnetmanager_create
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                ips:
+                  description: An array of up to two IPs of CNodes running the OpenSM subnet manager CNodes.
+                  items:
+                    type: string
+                  type: array
+              type: object
+        x-originalParamName: SubnetManagerAddParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubnetManager'
+          description: Subnet Manager information
+      summary: Add Subnet manager
+      tags:
+      - subnetmanager
+      x-cli-command: subnetmanager
+  /subnetmanager/{id}/:
+    delete:
+      description: This endpoint removes a subnet manager.
+      operationId: subnetmanager_delete
+      parameters:
+      - description: Subnet Manager ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The subnet manager was removed successfully
+      summary: Remove a Subnet Manager
+      tags:
+      - subnetmanager
+    get:
+      description: This endpoint returns subnet manager service information.
+      operationId: subnetmanager_read
+      parameters:
+      - description: Subnet Manager ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubnetManager'
+          description: Monitoring information about the Infiniband Subnet Manager service.
+      summary: Return Details of a Subnet manager
+      tags:
+      - subnetmanager
+    patch:
+      description: This endpoint modifies the registered subnet manager IPs.
+      operationId: subnetmanager_partial_update
+      parameters:
+      - description: Subnet manager ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ips:
+                  description: Array of subnet manager IPs
+                  items:
+                    type: string
+                  type: array
+              type: object
+        x-originalParamName: SubnetManagerModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Manage Subnet Manager
+      tags:
+      - subnetmanager
+components:
+  schemas:
+    SubnetManager:
+      properties:
+        failure_reason:
+          description: In the event that the sampled OpenSM service has a failed state, this is the reason for failure of the service
+          type: string
+          x-cli-header: Failure Reason
+        guid:
+          description: Global unique ID
+          type: string
+        id:
+          description: The ID of the subnet manager monitor.
+          type: integer
+          x-cli-header: ID
+        ips:
+          description: The IPs of CNodes registered as a subnet manager. These CNodes host the OpenSM service.
+          items:
+            type: string
+          type: array
+          x-cli-header: IPs
+        name:
+          description: Name
+          type: string
+        state:
+          description: The state of the OpenSM service running on the subnet manager CNodes. 'ACTIVE' means all servers are answering. 'FAILED' means no servers are answering. 'DEGRADED' means at least one service is answering and at least one service is not answering.
+          type: string
+          x-cli-header: State
+        title:
+          type: string
+        url:
+          description: The endpoint URL for API operations on the subnet manager
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

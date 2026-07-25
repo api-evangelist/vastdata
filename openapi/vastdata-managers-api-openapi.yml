@@ -1,0 +1,417 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory managers API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: VAST Management System (VMS) users are called managers. A manager has login credentials and must be assigned at least one role in order to have any VMS permissions. A manager can have multiple roles.
+  name: managers
+paths:
+  /managers/:
+    get:
+      description: This endpoint lists the VMS manager users with the option to filter by user name.
+      operationId: managers_list
+      parameters:
+      - description: Filter by username
+        in: query
+        name: username
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Manager'
+                title: Managers
+                type: array
+          description: Manager information
+      summary: List Managers (VMS Users)
+      tags:
+      - managers
+    post:
+      operationId: managers_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                first_name:
+                  description: Manager's first name
+                  type: string
+                is_temporary_password:
+                  description: Sets the password to be temporary. Expiration of temporary passwords is controlled by the tmp_pwd_expiration_timeout setting, which you can modify and retrieve through the /vms/{id}/pwd_settings/ path.
+                  type: boolean
+                last_name:
+                  description: Manager's last name
+                  type: string
+                password:
+                  description: Manager's password
+                  type: string
+                password_expiration_disabled:
+                  description: Password expiration is disabled
+                  type: boolean
+                permissions_list:
+                  description: 'Specify permissions list as an array of permission codenames in the format PERMISSION-REALM.
+
+                    To list permission codenames, run /permissions/get.
+
+                    '
+                  items:
+                    type: string
+                  type: array
+                roles:
+                  description: Joins manager to specified roles. Specify as an array of role IDs, separated by commas.
+                  items:
+                    type: integer
+                  type: array
+                tenant_id:
+                  description: Tenant ID. If user_type is TENANT_ADMIN, specify the ID of the tenant to which to grant admin access.
+                  type: integer
+                user_type:
+                  description: Manager user type. SUPER_ADMIN aka 'cluster admin' = VMS manager users who can log into the cluster VMS to manage the cluster. TENANT_ADMIN=VMS manager users who can log into a specific tenant's VMS to manage that tenant.
+                  enum:
+                  - SUPER_ADMIN
+                  - TENANT_ADMIN
+                  type: string
+                username:
+                  description: Manager's user name
+                  type: string
+              required:
+              - username
+              - password
+              - roles
+              type: object
+        required: true
+        x-originalParamName: ManagerCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manager'
+          description: ''
+      summary: Create Manager (VMS User)
+      tags:
+      - managers
+  /managers/authorized_status/:
+    get:
+      description: This endpoint gets authorized status for requested user
+      operationId: managers_authorized_status
+      parameters:
+      - in: query
+        name: leading_vid
+        required: true
+        schema:
+          type: integer
+      - in: query
+        name: bucket_name
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: object_path
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: action
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: owner_vid
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/TenantIdQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                type: object
+          description: ''
+      summary: Get authorized status for a user
+      tags:
+      - managers
+  /managers/password:
+    patch:
+      description: This operation changes password for the requesting user.
+      operationId: password_update
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                password:
+                  description: New password.
+                  type: string
+              required:
+              - password
+              type: object
+        x-originalParamName: PasswordUpdateParams
+      responses:
+        '204':
+          description: OK
+      summary: Change user's password
+      tags:
+      - managers
+  /managers/{id}/:
+    delete:
+      description: This endpoint deletes a VMS manager user.
+      operationId: managers_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The manager was deleted successfully.
+      summary: Delete Manager
+      tags:
+      - managers
+    get:
+      description: This endpoint returns details of a manager user.
+      operationId: managers_read
+      parameters:
+      - description: Manager ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manager'
+          description: ''
+      summary: Return Details of a Manager (VMS User)
+      tags:
+      - managers
+    patch:
+      description: This endpoint modifies a manager user.
+      operationId: managers_partial_update
+      parameters:
+      - description: Manager ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                first_name:
+                  description: Manager's first name
+                  type: string
+                is_temporary_password:
+                  description: The password is temporary. Expiration of temporary passwords is controlled by the tmp_pwd_expiration_timeout setting, which you can modify and retrieve through the /vms/{id}/pwd_settings/ path.
+                  type: boolean
+                last_name:
+                  description: Manager's last name
+                  type: string
+                object_id:
+                  description: object ID
+                  type: integer
+                object_type:
+                  description: object type
+                  type: string
+                password:
+                  description: Manager's password
+                  type: string
+                password_expiration_disabled:
+                  description: Password expiration is disabled
+                  type: boolean
+                permissions:
+                  description: permission type
+                  type: string
+                permissions_list:
+                  description: 'Specify permissions list as an array of permission codenames in the format PERMISSION-REALM.
+
+                    To list permission codenames, run /permissions/get.
+
+                    '
+                  items:
+                    type: string
+                  type: array
+                realm:
+                  description: Realm type
+                  type: string
+                roles:
+                  description: Specify all role IDs to update the roles assigned to the manager
+                  items:
+                    type: integer
+                  type: array
+                user_type:
+                  description: Manager user type. SUPER_ADMIN aka 'cluster admin' = VMS manager users who can log into the cluster VMS to manage the cluster. TENANT_ADMIN=VMS manager users who can log into a specific tenant's VMS to manage that tenant.
+                  enum:
+                  - SUPER_ADMIN
+                  - TENANT_ADMIN
+                  type: string
+                username:
+                  description: Manager's user name
+                  type: string
+              type: object
+        x-originalParamName: ManagerModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manager'
+          description: OK
+      summary: Modify Manager (VMS User)
+      tags:
+      - managers
+  /managers/{id}/unlock/:
+    patch:
+      description: This endpoint unlocks a manager.
+      operationId: managers_unlock
+      parameters:
+      - description: Manager ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                is_temporary_password:
+                  description: Sets the password to be temporary. Expiration of temporary passwords is controlled by the tmp_pwd_expiration_timeout setting, which you can modify and retrieve through the /vms/{id}/pwd_settings/ path.
+                  type: boolean
+                password:
+                  description: The manager's (new) password.
+                  type: string
+              type: object
+        x-originalParamName: ManagerUnlockParams
+      responses:
+        '204':
+          description: OK
+      summary: Unlock a Manager
+      tags:
+      - managers
+components:
+  schemas:
+    Manager:
+      properties:
+        failed_logins:
+          description: Number of failed logins
+          type: integer
+        first_name:
+          description: Manager's first name
+          type: string
+        full_name:
+          description: First and last name
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        is_active:
+          description: True if manager is active
+          type: boolean
+          x-cli-header: Active
+        is_default:
+          description: Sets the manager to be the default manager
+          type: boolean
+          x-cli-header: Default
+        is_temporary_password:
+          description: Sets the password to be temporary. Expiration of temporary passwords is controlled by the tmp_pwd_expiration_timeout setting, which you can modify and retrieve through the /vms/{id}/pwd_settings/ path.
+          type: boolean
+          x-cli-header: Temporary password
+        last_login:
+          description: Last login time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        last_name:
+          description: Manager's first name
+          type: string
+        object_permissions:
+          type: object
+          x-format: roles
+        password:
+          description: Password for VMS login
+          type: string
+        password_expiration:
+          description: Password expiration
+          format: date-time
+          type: string
+          x-format: datetime2display
+        password_expiration_disabled:
+          description: Password expiration is disabled
+          type: boolean
+          x-cli-header: Password expiration disabled
+        password_retype:
+          description: Retype the password
+          type: string
+        permissions:
+          type: object
+          x-format: roles
+        roles:
+          description: Roles assigned to the manager
+          type: object
+          x-format: roles
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        user_type:
+          description: Manager user type. SUPER_ADMIN aka 'cluster admin' = VMS manager users who can log into the cluster VMS to manage the cluster. TENANT_ADMIN=VMS manager users who can log into a specific tenant's VMS to manage that tenant.
+          enum:
+          - SUPER_ADMIN
+          - TENANT_ADMIN
+          type: string
+        username:
+          description: Username for VMS login
+          type: string
+      required:
+      - username
+      - password
+      - roles
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

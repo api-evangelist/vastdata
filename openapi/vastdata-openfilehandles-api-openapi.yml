@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory openfilehandles API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: openfilehandles
+paths:
+  /openfilehandles/:
+    get:
+      description: This endpoint lists open files handles.
+      operationId: openfilehandles_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/OpenFileIdQP'
+      - description: Filter by client IP prefix
+        in: query
+        name: client_ip__startswith
+        schema:
+          type: string
+      - description: Filter by CIDR subnet
+        in: query
+        name: client_ip_subnet
+        schema:
+          type: string
+      - description: Filter by lock status
+        in: query
+        name: has_locks
+        schema:
+          type: boolean
+      - description: Filter by lease status
+        in: query
+        name: has_lease
+        schema:
+          type: boolean
+      - description: Filter by username substring
+        in: query
+        name: username__icontains
+        schema:
+          type: string
+      - description: Filter by protocol
+        in: query
+        name: protocol
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OpenFileHandle'
+                title: Open Files
+                type: array
+          description: open files handlesinformation
+      summary: Get all open files handles.
+      tags:
+      - openfilehandles
+  /openfilehandles/{id}/:
+    get:
+      description: This endpoint returns information about a specific open file handle.
+      operationId: openfilehandles_read
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenFileHandle'
+          description: ''
+      summary: Return details of an open file handle.
+      tags:
+      - openfilehandles
+components:
+  parameters:
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    OpenFileIdQP:
+      description: Open File id to filter by.
+      in: query
+      name: open_file__id
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  schemas:
+    OpenFileHandle:
+      properties:
+        access_mask:
+          description: Access mask
+          type: string
+        client_ip:
+          description: Client IP
+          type: string
+        has_lease:
+          description: Whether the handle has a lease
+          type: boolean
+        has_locks:
+          description: Whether the open file handle has locks
+          type: boolean
+        id:
+          type: integer
+          x-cli-header: ID
+        open_file_id:
+          description: Open file ID
+          type: integer
+        open_file_path:
+          description: File's path
+          type: string
+        protocol:
+          description: Protocol type
+          enum:
+          - NFS3
+          - MOUNT
+          - NLM
+          - NFS_ACL
+          - NSM
+          - NFS4
+          - S3
+          - SMB
+          - RQUOTAD
+          - COUNT
+          type: string
+        session_id:
+          description: Session ID hex
+          type: string
+        share_access:
+          description: Share access
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        unique_id:
+          description: Unique ID hex
+          type: string
+        username:
+          description: Username
+          type: string
+      type: object
+      x-cli-pagination: true
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

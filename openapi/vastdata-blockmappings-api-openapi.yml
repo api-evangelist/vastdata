@@ -1,0 +1,219 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory blockmappings API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Block Mappings are mappings of Blockhosts to Volumes. They make block storage volumes available to block storage hosts.
+  name: blockmappings
+paths:
+  /blockmappings/:
+    get:
+      description: This endpoint lists mappings of block storage hosts to volumes.
+      operationId: blockmappings_list
+      parameters:
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/VolumeIdQP'
+      - $ref: '#/components/parameters/BlockHostIdQP'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlockMapping'
+                title: Block Mappings
+                type: array
+          description: block mapping information
+      summary: Return Mappings of Block Hosts to Volumes
+      tags:
+      - blockmappings
+  /blockmappings/bulk/:
+    patch:
+      operationId: blockmappings_bulk
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                pairs_to_add:
+                  items:
+                    $ref: '#/components/schemas/BlockMappingPair'
+                  type: array
+                pairs_to_add_by_path:
+                  items:
+                    $ref: '#/components/schemas/BlockMappingByPathPair'
+                  type: array
+                pairs_to_remove:
+                  items:
+                    $ref: '#/components/schemas/BlockMappingPair'
+                  type: array
+                pairs_to_remove_by_path:
+                  items:
+                    $ref: '#/components/schemas/BlockMappingByPathPair'
+                  type: array
+                snapshot_id:
+                  type: integer
+              type: object
+        x-originalParamName: BlockmappingsBulkParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: This endpoint maps (update) a single blockhost into multiple volumes (either their current version or a snapshot).
+      summary: Map Block Hosts to Volumes
+      tags:
+      - blockmappings
+  /blockmappings/{id}/:
+    get:
+      description: This endpoint returns information about a specific mapping of block hosts to volumes.
+      operationId: blockmappings_read
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockMapping'
+          description: ''
+      summary: Return Details of a block hosts-volume mappings.
+      tags:
+      - blockmappings
+components:
+  schemas:
+    SnapshotData:
+      properties:
+        created:
+          description: snapshot's creation time
+          format: date-time
+          type: string
+        id:
+          description: snapshot's ID
+          type: integer
+        name:
+          description: snapshot's name
+          type: string
+      type: object
+    BlockMappingByPathPair:
+      properties:
+        host_id:
+          description: ID of a block host
+          type: integer
+        volume_full_path:
+          description: Full path of the volume.
+          type: string
+      required:
+      - volume_full_path
+      - host_id
+      type: object
+    BlockMapping:
+      properties:
+        block_host:
+          $ref: '#/components/schemas/PartialBlockHostInfo'
+        id:
+          type: integer
+        snapshot_data:
+          $ref: '#/components/schemas/SnapshotData'
+        volume:
+          $ref: '#/components/schemas/PartialVolumeInfo'
+      required:
+      - id
+      - volume
+      - block_host
+      type: object
+    BlockMappingPair:
+      properties:
+        host_id:
+          description: ID of a block host
+          type: integer
+        volume_id:
+          description: ID of a volume
+          type: integer
+      required:
+      - volume_id
+      - host_id
+      type: object
+    PartialBlockHostInfo:
+      properties:
+        id:
+          type: integer
+        name:
+          description: Name of block host
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    PartialVolumeInfo:
+      properties:
+        id:
+          type: integer
+        name:
+          description: Path (volume name)
+          type: string
+      required:
+      - id
+      - name
+      type: object
+  parameters:
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    BlockHostIdQP:
+      description: Mapped block host id to filter by.
+      in: query
+      name: block_host_id
+      schema:
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    VolumeIdQP:
+      description: Mapped volume id to filter by.
+      in: query
+      name: volume_id
+      schema:
+        type: integer
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

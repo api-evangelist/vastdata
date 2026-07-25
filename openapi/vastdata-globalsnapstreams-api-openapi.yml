@@ -1,0 +1,381 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory globalsnapstreams API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Global snapshot streams create instantly writable directories cloned from snapshots. Clones can be created from any snapshot residing on the cluster itself or on a cluster that has a replication peer relationship with the local cluster. The cloned directory can be from any snapshot or subtree of a snapshot, such as a snapshot replicated from a third cluster to a remote peer.
+  name: globalsnapstreams
+paths:
+  /globalsnapstreams/:
+    get:
+      description: This endpoint lists global snapshot streams.
+      operationId: globalsnapstreams_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by Global Snaphot Stream name
+        in: query
+        name: name
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/GlobalSnapStream'
+                title: Global Snaphot Streams
+                type: array
+          description: Global Snapshot Stream information
+      summary: Return Global Snaphot Streams
+      tags:
+      - globalsnapstreams
+    post:
+      description: This endpoint creates a global snapshot stream. A global snapshot stream clones a remote or a local snapshot to a target path on the local cluster.
+      operationId: globalsnapstreams_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: Enables background sync, in which the snapshot data is copied from the source to the destination after the clone is created. During the copying stage, read requests are directed to the source if the requested data is not yet copied. If false, the snapshot data is not copied to the destination. Requests to read data from the cloned directory continue to read data from the cloned source.
+                  type: boolean
+                guid:
+                  description: Do not specify this parameter.
+                  type: string
+                id:
+                  description: Do not specify this parameter.
+                  type: integer
+                  x-cli-header: ID
+                loanee_root_path:
+                  description: ID of the path you want to clone. Specify only if cloning from a snapshot on the local cluster.
+                  type: string
+                loanee_snapshot:
+                  description: Loanee snapshot name
+                  type: string
+                loanee_snapshot_id:
+                  description: ID of local snapshot to clone. Specify only if cloning from a snapshot on the local cluster.
+                  type: integer
+                loanee_tenant_id:
+                  description: The target tenant for the clone, on the local cluster.
+                  type: integer
+                name:
+                  description: A name for the global snap stream.
+                  type: string
+                  x-cli-header: Name
+                owner_root_snapshot:
+                  description: Details of the remote snapshot to clone. To retrieve details of snapshots per path, call /clusters/list_snapshoted_paths_remote/ and clusters/list_clone_snapshoted_paths_remote/. Specify only if cloning from remote.
+                  properties:
+                    clone_id:
+                      type: integer
+                    name:
+                      description: Name of snapshot
+                      type: string
+                    parent_handle_ehandle:
+                      type: string
+                  type: object
+                owner_tenant:
+                  description: Owner tenant details
+                  type: object
+                remote_target:
+                  description: The name of a remote replication peer from which to clone a snapshot. Specify only if cloning from remote.
+                  type: string
+                remote_target_id:
+                  description: The ID of the remote replication peer from which to clone a snapshot. Specify only if cloning from remote.
+                  type: integer
+                status:
+                  description: Status
+                  type: object
+                view_replication_enabled:
+                  description: Enables view replication
+                  type: boolean
+              type: object
+        x-originalParamName: GlobalSnapStreamCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncGlobalSnapStream'
+          description: ''
+      summary: Create a Global Snapshot Stream
+      tags:
+      - globalsnapstreams
+  /globalsnapstreams/{id}/:
+    delete:
+      description: This endpoint deletes a global snapshot stream.
+      operationId: globalsnapstreams_delete
+      parameters:
+      - description: Global Snapshot Stream ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                remove_dir:
+                  description: Remove Directory
+                  type: boolean
+              type: object
+        x-originalParamName: GlobalSnapStreamDeleteParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: Deleted
+      summary: Delete a Global Snapshot Stream
+      tags:
+      - globalsnapstreams
+    get:
+      description: This endpoints returns details of a specified global snapshot stream.
+      operationId: globalsnapstreams_read
+      parameters:
+      - description: Global Snap Stream ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalSnapStream'
+          description: ''
+      summary: Return Details of a Global Snapshot Stream
+      tags:
+      - globalsnapstreams
+    patch:
+      description: This endpoint modifies a global snaphot stream.
+      operationId: globalsnapstreams_partial_update
+      parameters:
+      - description: Global Snapshot Stream ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: Enabled
+                  type: boolean
+                name:
+                  description: Name
+                  type: string
+                  x-cli-header: Name
+              type: object
+        x-originalParamName: GlobalSnapStreamModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a Global Snapshot Stream
+      tags:
+      - globalsnapstreams
+  /globalsnapstreams/{id}/pause:
+    patch:
+      description: This endpoint pauses a global snapshot stream.
+      operationId: globalsnapstreams_pause
+      parameters:
+      - description: Global Snapshot Stream ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  default: false
+                  description: Enabled
+                  type: boolean
+              type: object
+        x-originalParamName: GlobalSnapStreamPauseParams
+      responses:
+        '200':
+          description: ''
+      summary: Pause a Global Snapshot Stream
+      tags:
+      - globalsnapstreams
+  /globalsnapstreams/{id}/resume:
+    patch:
+      description: This endpoint resumes a paused global snapshot stream.
+      operationId: globalsnapstreams_resume
+      parameters:
+      - description: Global Snaphot Stream ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  default: true
+                  description: Enabled
+                  type: boolean
+              type: object
+        x-originalParamName: GlobalSnapStreamResumeParams
+      responses:
+        '200':
+          description: ''
+      summary: Resume a Global Snapshot Stream
+      tags:
+      - globalsnapstreams
+  /globalsnapstreams/{id}/stop:
+    patch:
+      description: This endpoint stops a global snapshot stream.
+      operationId: globalsnapstreams_stop
+      parameters:
+      - description: Global Snapshot Stream ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Stop a Global Snapshot Stream
+      tags:
+      - globalsnapstreams
+components:
+  schemas:
+    AsyncGlobalSnapStream:
+      allOf:
+      - $ref: '#/components/schemas/GlobalSnapStream'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    GlobalSnapStream:
+      properties:
+        bw:
+          description: BW
+          type: integer
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-raw-units: Bytes/s
+        direction:
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+          x-cli-header: Background sync
+        eta:
+          description: ETA
+          type: string
+        external_state:
+          description: Global Snapshot Clone state
+          type: string
+        guid:
+          description: unique identifier
+          type: string
+        health:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        loanee_root_path:
+          description: Target path
+          type: string
+          x-cli-header: Target path
+        loanee_snapshot:
+          description: Loanee snapshot name
+          type: string
+        loanee_snapshot_id:
+          type: integer
+        loanee_tenant:
+          properties:
+            guid:
+              description: Loanee tenant guid
+              type: string
+            name:
+              description: Loanee tenant name
+              type: string
+          type: object
+        name:
+          type: string
+        owner_root_snapshot:
+          description: Owner root snapshot details
+          type: object
+        owner_tenant:
+          properties:
+            guid:
+              description: Owner tenant guid
+              type: string
+            name:
+              description: Owner tenant name
+              type: string
+          type: object
+        remote_target:
+          description: Remote cluster name
+          type: string
+          x-cli-header: Remote Cluster
+        remote_target_id:
+          type: integer
+        restore_task:
+          type: integer
+        source_cluster:
+          description: Source cluster
+          type: string
+        source_path:
+          description: Source path
+          type: string
+        source_snapshot:
+          description: Source snapshot
+          type: string
+        state:
+          type: string
+        status:
+          description: Status
+          type: object
+        sync_progress:
+          type: integer
+        target_cluster:
+          description: Target cluster
+          type: string
+        view_replication_enabled:
+          description: Whether view replication is enabled
+          type: boolean
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

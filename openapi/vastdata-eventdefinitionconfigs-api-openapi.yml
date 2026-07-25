@@ -1,0 +1,289 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory eventdefinitionconfigs API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The eventdefinitionconfigs path exposes event definition configurations that affect event definitions and quotas. These include default actions that apply globally to event definitions and are overridden by any conflicting settings in specific event definitions.
+  name: eventdefinitionconfigs
+paths:
+  /eventdefinitionconfigs/:
+    get:
+      description: This endpoint lists Event Definition configurations
+      operationId: eventdefinitionconfigs_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EventDefinitionConfig'
+                title: Eventdefinitionconfigs
+                type: array
+          description: Event Definition configurations
+      summary: List Event Definition Configurations
+      tags:
+      - eventdefinitionconfigs
+  /eventdefinitionconfigs/{id}/:
+    get:
+      description: This endpoint returns the details of an Event Definition configuration.
+      operationId: eventdefinitionconfigs_read
+      parameters:
+      - description: Event Definition ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDefinitionConfig'
+          description: ''
+      summary: Return Details of Event Definition Configuration
+      tags:
+      - eventdefinitionconfigs
+    patch:
+      description: This endpoint modifies the global event definition configuration which includes the default actions triggered by alarms.
+      operationId: eventdefinitionconfigs_partial_update
+      parameters:
+      - description: Event Definition Configuration ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                audit_logs_retention:
+                  description: Audit logs retention in days
+                  type: integer
+                critical_value:
+                  description: 'Maps CRITICAL severity to a different value. Default: CRITICAL'
+                  enum:
+                  - INFO
+                  - MINOR
+                  - MAJOR
+                  - CRITICAL
+                  type: string
+                disable_actions:
+                  description: Set to true to disable default actions for events.
+                  type: boolean
+                email_recipients:
+                  description: Default email recipients. These recipients receive notifications of all alarms except those triggered by events that have a different list of email recipients specified in the event definition or for which actions are disabled.
+                  items:
+                    type: string
+                  type: array
+                email_sender:
+                  description: Global for all alarm notification emails, the sender email that appears in the emails.
+                  type: string
+                email_subject:
+                  description: Optional and global email subject for all alarm notification emails. Leave blank to send alarm info in the subject.
+                  type: string
+                enabled:
+                  type: boolean
+                info_value:
+                  description: 'Maps INFO severity to a different severity value. Default: INFO'
+                  enum:
+                  - INFO
+                  - MINOR
+                  - MAJOR
+                  - CRITICAL
+                  type: string
+                major_value:
+                  description: 'Maps MAJOR severity to a different severity value. Default: MAJOR'
+                  enum:
+                  - INFO
+                  - MINOR
+                  - MAJOR
+                  - CRITICAL
+                  type: string
+                minor_value:
+                  description: 'Maps MINOR severity to a different severity value. Default: MINOR'
+                  enum:
+                  - INFO
+                  - MINOR
+                  - MAJOR
+                  - CRITICAL
+                  type: string
+                quota_email_hourly_limit:
+                  description: Maximum quota alert emails VMS will send per hour
+                  type: integer
+                quota_email_interval:
+                  description: The minimal interval time between quota alert emails sent to a user.
+                  type: string
+                quota_email_provider:
+                  description: Specify which query context should be used to query providers for user quota alert emails. 'Aggregated' will perform an aggregated query of all providers. Alternatively, you can specify a specific provider if connected to the cluster.
+                  enum:
+                  - aggregated
+                  - ldap
+                  - ad
+                  type: string
+                quota_email_suffix:
+                  description: A default suffix to add to append to user names to form an email address. This is used as the email recipient address for sending a user user quota alert emails. It is only used if an email address is not found for the user on a provider.
+                  type: string
+                smtp_host:
+                  description: SMTP server host name for alert emails.
+                  type: string
+                smtp_password:
+                  description: Password for SMTP authentication
+                  type: string
+                smtp_port:
+                  description: 'The port used by the SMTP server to send outgoing emails. '
+                  type: string
+                smtp_use_tls:
+                  description: Set to true to send email over a TLS connection.
+                  type: boolean
+                smtp_user:
+                  description: User for SMTP authentication
+                  type: string
+                syslog_host:
+                  description: The syslog server's IP address, for sending event logs to a syslog server.
+                  type: string
+                syslog_ipmi_audit:
+                  description: CNode and DNode IPMI commands
+                  type: boolean
+                syslog_port:
+                  description: The port number used by the syslog server to listen on for syslog requests.
+                  type: integer
+                syslog_protocol:
+                  description: The protocol used for communicating with the remote syslog server.
+                  enum:
+                  - tcp
+                  - udp
+                  type: string
+                syslog_secure_audit:
+                  description: /var/log/secure logs audit
+                  type: boolean
+                syslog_shell_audit:
+                  description: CNode and DNode shell commands
+                  type: boolean
+                syslog_vms_audit:
+                  description: VMS audit
+                  type: boolean
+              type: object
+        x-originalParamName: EventdefinitionconfigModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify Event Definition Configuration
+      tags:
+      - eventdefinitionconfigs
+  /eventdefinitionconfigs/{id}/test/:
+    patch:
+      description: This endpoint tests the global event definition configuration which includes the default actions triggered by alarms.
+      operationId: eventdefinitionconfigs_test
+      parameters:
+      - description: Event Definition Configuration ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Test Event Definition Configuration
+      tags:
+      - eventdefinitionconfigs
+components:
+  schemas:
+    EventDefinitionConfig:
+      properties:
+        audit_logs_retention:
+          description: Audit logs retention in days
+          type: integer
+        critical_value:
+          description: 'Maps CRITICAL severity to a different value. Default: CRITICAL'
+          type: string
+        disable_actions:
+          type: boolean
+        email_recipients:
+          description: List of emails you want to notify in case this alarm occurs
+          items:
+            type: string
+          type: array
+        email_sender:
+          type: string
+        email_subject:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        info_value:
+          description: 'Maps INFO severity to a different severity value. Default: INFO'
+          type: string
+        major_value:
+          description: 'Maps MAJOR severity to a different severity value. Default: MAJOR'
+          type: string
+        minor_value:
+          description: 'Maps MINOR severity to a different severity value. Default: MINOR'
+          type: string
+        quota_email_hourly_limit:
+          description: Maximum quota alert emails VMS will send per hour
+          type: integer
+        quota_email_interval:
+          description: Minimum interval between emails to the same address. D HH:MM:SS
+          type: string
+        quota_email_provider:
+          type: string
+        quota_email_suffix:
+          type: string
+        smtp_host:
+          description: SMTP host for alert emails
+          type: string
+          x-cli-header: SMTP-Host
+        smtp_password:
+          description: Password for SMTP authentication
+          type: string
+          x-cli-header: SMTP-Password
+        smtp_port:
+          description: Connection port on the SMTP host
+          type: integer
+          x-cli-header: SMTP-Port
+        smtp_use_tls:
+          type: boolean
+          x-cli-header: SMTP-TLS
+        smtp_user:
+          description: User for SMTP authentication
+          type: string
+          x-cli-header: SMTP-User
+        syslog_host:
+          description: Syslog host for events logging. Use commas for multiple hosts
+          type: string
+        syslog_ipmi_audit:
+          description: Enable CNode and DNode IPMI commands audit
+          type: boolean
+        syslog_port:
+          description: Syslog port for events logging
+          type: integer
+        syslog_protocol:
+          description: Syslog protocol for events logging. Default is UDP
+          type: string
+        syslog_secure_audit:
+          description: Enable /var/log/secure logs audit
+          type: boolean
+        syslog_shell_audit:
+          description: Enable login/logout (GUI/CLI/VMS/SSH/IPMI),shell, clush, sudo and docker commands audit for CNode and DNode
+          type: boolean
+        syslog_vms_audit:
+          description: Enable VMS audit
+          type: boolean
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

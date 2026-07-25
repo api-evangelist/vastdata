@@ -1,0 +1,256 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vm API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Virtual machines can include EBox hosts and virtual machine hosts that comprise VAST on Cloud (VoC) clusters. Each virtual machine runs CNodes and DNodes in containers. Both EBoxes and GCP VoC virtual machines  each run one CNode container and two DNode containers.
+  name: vm
+paths:
+  /virtual-machines/:
+    get:
+      description: This endpoint lists all virtual machines that belong to the cluster and their details.
+      operationId: vm_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VirtualMachine'
+                title: VM
+                type: array
+          description: Virtual machine information
+      summary: List virtual machines
+      tags:
+      - vm
+  /virtual-machines/decommission:
+    post:
+      description: Decommission a specified number of ENODE VMs.
+      operationId: vm_decommission
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                count:
+                  description: Number of ENODE VMs to decommission
+                  type: integer
+              type: object
+        x-originalParamName: VMDecommissionParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Decommission ENODE VMs
+      tags:
+      - vm
+  /virtual-machines/expand:
+    patch:
+      description: Add Virtual Machines to the cluster.
+      operationId: vm_expand
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                total_cnode_machines:
+                  description: Total amount CNode VMs for the cluster
+                  type: integer
+                total_enode_machines:
+                  description: Total amount ENode VMs for the cluster
+                  type: integer
+              type: object
+        x-originalParamName: VMExpandParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Add Virtual Machines to the cluster.
+      tags:
+      - vm
+  /virtual-machines/remove:
+    delete:
+      description: Remove Virtual Machine
+      operationId: vm_remove
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                vm_external_id:
+                  description: VM external id (external_machine_id)
+                  type: string
+              type: object
+        x-originalParamName: VMRemoveParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Remove Virtual Machine
+      tags:
+      - vm
+  /virtual-machines/replace:
+    patch:
+      description: Replace Virtual Machines.
+      operationId: vm_replace
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                in_place:
+                  description: Perform in-place replacement
+                  type: boolean
+                vm_external_ids:
+                  description: The list of VM external ids (external_machine_id)
+                  items:
+                    type: string
+                  type: array
+              required:
+              - vm_external_ids
+              type: object
+        x-originalParamName: VMReplaceParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Replace Virtual Machines.
+      tags:
+      - vm
+  /virtual-machines/{id}/:
+    get:
+      description: This endpoint returns details of a specific virtual machine.
+      operationId: vm_read
+      parameters:
+      - description: virtual machine ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualMachine'
+          description: ''
+      summary: Return Details of a virtual machine.
+      tags:
+      - vm
+components:
+  schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    VirtualMachine:
+      properties:
+        arch_type:
+          description: System architecture. e.g. x86_64
+          type: string
+        box_vendor:
+          description: Shows vendor and model.
+          type: string
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          description: ID of parent cluster
+          type: integer
+        description:
+          description: Description
+          type: string
+          x-cli-header: Description
+        drive_type:
+          type: string
+        dtray:
+          type: string
+        external_machine_id:
+          description: Instance name in cloud provider
+          type: string
+        guid:
+          description: Globally unique identifier
+          type: string
+        id:
+          description: ID of the virtual machine.
+          type: integer
+          x-cli-header: ID
+        index_in_rack:
+          description: Index of unit position in rack.
+          minimum: 1
+          type: integer
+        is_conclude_possible:
+          description: Flag that indicates a replacement conclude possibility
+          type: boolean
+        is_replace_possible:
+          description: Flag that indicates replacement availability
+          type: boolean
+        led_status:
+          description: LED Status
+          type: string
+        name:
+          type: string
+          x-cli-header: Name
+        rack_id:
+          description: ID of a rack to which the machine is assigned, if applicable. Rack assignment is intended for data center management purposes. Can be relevant to EBoxes.
+          minimum: 1
+          type: integer
+        state:
+          description: State. e.g. ACTIVE
+          type: string
+        subsystem:
+          description: An index used in the formation of IP addresses allocated on the cluster's internal network. Each subsystem enables allocation of 254 IPs. Default is 0.
+          minimum: 0
+          type: integer
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          description: Title
+          type: string
+        uid:
+          description: Unique h/w identifier
+          type: string
+        url:
+          description: REST API endpoint for the virtual machine object.
+          type: string
+      required:
+      - name
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

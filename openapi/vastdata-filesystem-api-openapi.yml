@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory filesystem API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: filesystem
+paths:
+  /filesystem/clone/:
+    post:
+      description: This endpoint clones provided source_path to dest_path.
+      operationId: clone_path
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                dest_path:
+                  description: Full destination path
+                  type: string
+                is_snapshot:
+                  description: Clone is snapshot (file is cloned within the same directory)
+                  type: boolean
+                source_path:
+                  description: Full source path
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                unique_id:
+                  description: Unique ID
+                  type: string
+              required:
+              - source_path
+              - dest_path
+              - unique_id
+              type: object
+        x-originalParamName: CloneParams
+      responses:
+        '201':
+          description: Clone created successfully
+      summary: Clone path
+      tags:
+      - filesystem
+components:
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

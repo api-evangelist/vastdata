@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory logout API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The logout path is used to log out of VMS.
+  name: logout
+paths:
+  /logout/:
+    post:
+      description: This endpoint logs out of VMS.
+      operationId: logout
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manager'
+          description: ''
+      summary: Log Out
+      tags:
+      - logout
+components:
+  schemas:
+    Manager:
+      properties:
+        failed_logins:
+          description: Number of failed logins
+          type: integer
+        first_name:
+          description: Manager's first name
+          type: string
+        full_name:
+          description: First and last name
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        is_active:
+          description: True if manager is active
+          type: boolean
+          x-cli-header: Active
+        is_default:
+          description: Sets the manager to be the default manager
+          type: boolean
+          x-cli-header: Default
+        is_temporary_password:
+          description: Sets the password to be temporary. Expiration of temporary passwords is controlled by the tmp_pwd_expiration_timeout setting, which you can modify and retrieve through the /vms/{id}/pwd_settings/ path.
+          type: boolean
+          x-cli-header: Temporary password
+        last_login:
+          description: Last login time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        last_name:
+          description: Manager's first name
+          type: string
+        object_permissions:
+          type: object
+          x-format: roles
+        password:
+          description: Password for VMS login
+          type: string
+        password_expiration:
+          description: Password expiration
+          format: date-time
+          type: string
+          x-format: datetime2display
+        password_expiration_disabled:
+          description: Password expiration is disabled
+          type: boolean
+          x-cli-header: Password expiration disabled
+        password_retype:
+          description: Retype the password
+          type: string
+        permissions:
+          type: object
+          x-format: roles
+        roles:
+          description: Roles assigned to the manager
+          type: object
+          x-format: roles
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        user_type:
+          description: Manager user type. SUPER_ADMIN aka 'cluster admin' = VMS manager users who can log into the cluster VMS to manage the cluster. TENANT_ADMIN=VMS manager users who can log into a specific tenant's VMS to manage that tenant.
+          enum:
+          - SUPER_ADMIN
+          - TENANT_ADMIN
+          type: string
+        username:
+          description: Username for VMS login
+          type: string
+      required:
+      - username
+      - password
+      - roles
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

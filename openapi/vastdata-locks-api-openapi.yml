@@ -1,0 +1,210 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory locks API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: NLMv4 locks help NFSv3 clients protect NFS files from data consistency conflicts. NFS client applications can acquire read or write NLM locks on byte ranges or on whole files. VAST Cluster uses NSM to automatically remove NLM locks. Manual removal of locks should not be needed provided that every client host is configured to send sm_notify reboot notifications to NFS peers. The locks path feature can be used for manual lock removal in the event that a client OS is not configured to send sm_notify reboot notifications to NFS peers and crashes and leaves behind locks.
+  name: locks
+paths:
+  /clusters/{id}/locks/:
+    delete:
+      description: This endpoint deletes NLM locks on a file.
+      operationId: cluster_locks_delete
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        $ref: '#/components/requestBodies/ClusterLocksParamsBody'
+      responses:
+        '204':
+          description: Deleted
+      summary: Deletes NLM Locks
+      tags:
+      - locks
+    post:
+      description: This endpoint returns all NLM locks on a file at a specified path.
+      operationId: cluster_locks_list
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        $ref: '#/components/requestBodies/ClusterLocksRequestParamsBody'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Lock'
+                type: array
+          description: Lock information
+      summary: List NLM Locks
+      tags:
+      - locks
+  /clusters/{id}/release_recursive_locks/:
+    delete:
+      description: This endpoint deletes NLM locks on a path recursively.
+      operationId: cluster_locks_delete_recursively
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        $ref: '#/components/requestBodies/ClusterLocksParamsBody'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Deletes NLM Locks Recursively
+      tags:
+      - locks
+components:
+  parameters:
+    ClusterId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+  requestBodies:
+    ClusterLocksParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksParams'
+      x-originalParamName: ClusterLocksParamsBody
+    ClusterLocksRequestParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksRequestParams'
+      x-originalParamName: ClusterLocksRequestParamsBody
+  schemas:
+    ClusterLocksParams:
+      allOf:
+      - $ref: '#/components/schemas/TenantIdBody'
+      - properties:
+          lock_type:
+            description: Lock type. Specify if unlock_type is SINGLE.
+            enum:
+            - LOCK_TYPE_NLM4
+            - LOCK_TYPE_NFS4
+            - LOCK_TYPE_SMB2
+            type: string
+          path:
+            description: 'The full path to a locked file, formed as: VIEW_PATH/FILE_PATH, where VIEW_PATH is the VAST Cluster view path, and FILE_PATH is the client path to a locked file, relative to the mount point.'
+            type: string
+          unlock_id:
+            description: Unlock ID. Specify if unlock_type is SINGLE.
+            type: string
+          unlock_type:
+            description: The type of unlock operation to perform. 'SINGLE' unlocks a single specified lock, 'ALL' unlocks all locks.
+            enum:
+            - SINGLE
+            - ALL
+            type: string
+    Lock:
+      properties:
+        caller:
+          description: An identifier of the client that acquired the lock. This could be an IP or host name of the client.
+          type: string
+        client_id:
+          type: string
+          x-cli-header: Client ID
+        create_time_nano:
+          description: The time the lock was acquired.
+          type: integer
+          x-cli-header: Create-Time
+          x-format: nanosec2datetime
+        is_exclusive:
+          description: If true, the lock is an exclusive (write) lock. If false, the lock is a shared (read) lock.
+          type: boolean
+          x-cli-header: Exclusive
+          x-format: bool2str
+        length:
+          description: The number of bytes of the file locked by the lock. A length of 0 means the lock reaches until the end of the file.
+          type: integer
+          x-format: pretty_numbers
+        lock_granted_type:
+          description: The type of delegation granted to the client. READ=No other client has the ability to write to the file for the duration of the delegation. WRITE=no other client has read or write access to the file for the duration of the delegation.
+          type: string
+          x-cli-header: Granted Type
+          x-format: pretty_enum
+        lock_id:
+          type: string
+          x-cli-header: Lock ID
+        lock_path:
+          description: The path that the locks are taken on
+          type: string
+          x-cli-header: Lock Path
+        lock_type:
+          description: The type of lock
+          type: string
+          x-cli-header: Type
+          x-format: pretty_lock_type
+        offset:
+          description: The number of bytes from the beginning of the file's byte range from which the lock begins.
+          type: integer
+          x-format: pretty_numbers
+        open_id:
+          type: string
+          x-cli-header: Open ID
+        owner:
+          description: An identifier internal to the client kernel for the specific process that owns the lock.
+          type: string
+        path:
+          description: The path that the locks are taken on
+          type: string
+        state:
+          description: Lock state
+          type: string
+        svid:
+          description: A kernel identifier of the owning process on the client machine.
+          type: integer
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_name:
+          description: Tenant Name
+          type: string
+          x-cli-header: Tenant
+        unlock_id:
+          description: ID to specify in order for unlocking the lock.
+          type: string
+          x-cli-header: Unlock ID
+      type: object
+    TenantIdBody:
+      minimum: 1
+      properties:
+        tenant_id:
+          type: integer
+      type: object
+    ClusterLocksRequestParams:
+      allOf:
+      - $ref: '#/components/schemas/ClusterLocksParams'
+      - properties:
+          direction:
+            description: Pagination direction.
+            enum:
+            - prev
+            - next
+            type: string
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

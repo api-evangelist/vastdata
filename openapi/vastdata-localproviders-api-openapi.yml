@@ -1,0 +1,190 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory localproviders API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Local Providers are providers configured on the cluster, to which you can add users for authorizing access to the cluster or tenants of the cluster.
+  name: localproviders
+paths:
+  /localproviders/:
+    get:
+      description: This endpoint lists local providers.
+      operationId: localproviders_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocalProvider'
+                title: Local Provider
+                type: array
+          description: Local Providers information
+      summary: List Local Providers
+      tags:
+      - localproviders
+    post:
+      description: This endpoint creates a local provider.
+      operationId: localproviders_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  description: Description of the local provider
+                  type: string
+                managed_by:
+                  description: Manager user types that can manage the provider
+                  items:
+                    enum:
+                    - TENANT_ADMIN
+                    - SUPER_ADMIN
+                    type: string
+                  type: array
+                name:
+                  description: Name of the local provider
+                  type: string
+              required:
+              - name
+              type: object
+        x-originalParamName: LocalProviderCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalProvider'
+          description: ''
+      summary: Create Local Provider
+      tags:
+      - localproviders
+  /localproviders/{id}/:
+    delete:
+      description: This endpoint deletes a specified local provider.
+      operationId: localproviders_delete
+      parameters:
+      - $ref: '#/components/parameters/LocalProviderId'
+      responses:
+        '204':
+          description: ''
+      summary: Delete Local Provider
+      tags:
+      - localproviders
+    get:
+      description: This endpoint returns properties of a specified local provider.
+      operationId: localproviders_show
+      parameters:
+      - $ref: '#/components/parameters/LocalProviderId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalProvider'
+          description: Local Provider information
+      summary: Return Details of a Local Provider
+      tags:
+      - localproviders
+    patch:
+      description: This endpoint modifies a specified local provider.
+      operationId: localproviders_modify
+      parameters:
+      - $ref: '#/components/parameters/LocalProviderId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  description: Description of the local provider
+                  type: string
+                managed_by:
+                  description: Manager user types that can manage the provider
+                  items:
+                    enum:
+                    - TENANT_ADMIN
+                    - SUPER_ADMIN
+                    type: string
+                  type: array
+                name:
+                  description: Name of the local provider
+                  type: string
+              type: object
+        x-originalParamName: LocalProviderModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalProvider'
+          description: ''
+      summary: Modify a Local Provider
+      tags:
+      - localproviders
+components:
+  parameters:
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    LocalProviderId:
+      description: Local Provider ID
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  schemas:
+    LocalProvider:
+      description: Description of the local provider
+      properties:
+        assigned_tenants_preview:
+          type: string
+          x-cli-header: Assigned Tenants Preview
+        description:
+          description: Description of the local provider
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        managed_by:
+          description: Specifies which manager user types have permission to manage users and groups on the provider. SUPER_ADMIN refers to VMS manager users with user type 'cluster admin' who can log into the cluster VMS to manage the cluster. TENANT_ADMIN refers VMS manager users with 'tenant admin' type who can log into a specific tenant's VMS to manage that tenant. Either both or one or the other may be specified.
+          items:
+            enum:
+            - TENANT_ADMIN
+            - SUPER_ADMIN
+            type: string
+          type: array
+          x-cli-header: Managed By
+        name:
+          description: Name of the local provider
+          type: string
+      required:
+      - name
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

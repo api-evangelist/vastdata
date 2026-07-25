@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory permissions API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The permissions endpoint returns permissions that can be assigned to VMS managers and roles. VMS Each permission enables a type of permission, such as create or read permission, on a realm. Each realm includes a set of resources. For example, the logical realm includes views, view policies, quotas, QoS policies and many more types of resources. The hardware realm includes infrastructure components such as CBoxes and DBoxes.
+  name: permissions
+paths:
+  /permissions/:
+    get:
+      description: This endpoint lists the global permissions.
+      operationId: permissions_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Permission'
+                title: Permissions
+                type: array
+          description: Permission information
+      summary: List Permissions
+      tags:
+      - permissions
+  /permissions/{id}/:
+    get:
+      description: This endpoint returns details of a specified permission.
+      operationId: permissions_read
+      parameters:
+      - description: permission ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permission'
+          description: ''
+      summary: Return Permissions Details
+      tags:
+      - permissions
+components:
+  schemas:
+    Permission:
+      properties:
+        codename:
+          type: string
+        id:
+          type: integer
+        name:
+          description: The permission name
+          type: string
+        permission_type:
+          description: The type of permission.
+          type: string
+        realm:
+          description: The object realm to which the permission applies
+          type: string
+        resources:
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

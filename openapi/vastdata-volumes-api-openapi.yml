@@ -1,0 +1,507 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Volumes API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Volumes
+paths:
+  /volumes/bulk:
+    delete:
+      description: This endpoint deletes multiple block storage volumes.
+      operationId: volumes_bulk_delete
+      parameters:
+      - $ref: '#/components/parameters/BlockHostVolumeForce'
+      responses:
+        '204':
+          description: OK
+      summary: Delete a Bulk Of Block Storage Volumes
+      tags:
+      - Volumes
+  /volumes/:
+    get:
+      description: This endpoint lists existing block storage volumes.
+      operationId: volumes_list
+      parameters:
+      - $ref: '#/components/parameters/ViewIdQP'
+      - $ref: '#/components/parameters/VolumeNameQP'
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/VolumeNguidQP'
+      - $ref: '#/components/parameters/VolumeUuidQP'
+      - $ref: '#/components/parameters/SnapshotIdQP'
+      - $ref: '#/components/parameters/MappedSnapshotIdQP'
+      - $ref: '#/components/parameters/VolumeNamespaceIdQP'
+      - $ref: '#/components/parameters/VolumeBlockHostIdQP'
+      - $ref: '#/components/parameters/VolumeQosPolicyIdQP'
+      - $ref: '#/components/parameters/VolumeIsMonitoredQP'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Volume'
+                title: Volumes
+                type: array
+          description: Volumes and their properties
+      summary: List Block Storage Volumes
+      tags:
+      - Volumes
+    post:
+      description: This endpoint creates a volume for block storage.
+      operationId: volumes_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                is_monitored:
+                  description: Enables live monitoring on the volume.
+                  type: boolean
+                name:
+                  description: The path to the volume relative to the subsystem directory. The path should not begin with a slash (/). You can include slashes inside the path to indicate a hierarchy of directories. The path will be created under the subsystem path for the volume. Any directory hierarchy indicated by slashes will be created accordingly. For example, if you specify b/c/d the directories <subsystem_path>/b and <subsystem_path>b/c will be created if they do not yet exist, as well as the new directory <subsystem_path>/b/c/d.
+                  type: string
+                qos_policy_id:
+                  description: QOS Policy ID
+                  type: integer
+                size:
+                  description: The volume size, in bytes.
+                  type: integer
+                tags:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+                view_id:
+                  description: The ID of the subsystem view on which to create the volume.
+                  type: integer
+              required:
+              - view_id
+              - name
+              - size
+              type: object
+        x-originalParamName: VolumeCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+          description: OK
+      summary: Create a Block Storage Volume
+      tags:
+      - Volumes
+  /volumes/{id}/:
+    delete:
+      description: This endpoint deletes a block storage volume.
+      operationId: volumes_delete
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      - description: Forces removal of mappings of the volume to hosts. A volume can be removed only if it is not mapped to any host.
+        in: query
+        name: force_unmap
+        schema:
+          type: boolean
+      - description: Forces removal of mappings of the volume to hosts. A volume can be removed only if it is not mapped to any host.
+        in: query
+        name: force
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: OK
+      summary: Delete a Block Storage Volume
+      tags:
+      - Volumes
+    get:
+      description: This endpoint returns the properties of a block storage volume.
+      operationId: volumes_read
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+          description: ''
+      summary: Return Details of a Block Storage Volume
+      tags:
+      - Volumes
+    patch:
+      description: This endpoint modifies the name (path relative to subsystem) and/or size (expansion only) of a block storage volume.
+      operationId: volumes_update
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                is_monitored:
+                  description: Enables live monitoring on the volume.
+                  type: boolean
+                name:
+                  description: The path to the volume relative to the subsystem directory. The path should not begin with a slash (/). You can include slashes inside the path to indicate a hierarchy of directories. The path will be created under the subsystem path for the volume. Any directory hierarchy indicated by slashes will be created accordingly. For example, if you specify b/c/d the directories <subsystem_path>/b and <subsystem_path>b/c will be created if they do not yet exist, as well as the new directory <subsystem_path>/b/c/d.
+                  type: string
+                qos_policy_id:
+                  description: QOS Policy ID
+                  type: integer
+                size:
+                  description: The volume size, in bytes.
+                  type: integer
+                tags:
+                  $ref: '#/components/schemas/ArbitraryStringsObject'
+              type: object
+        x-originalParamName: VolumeModifyParams
+      responses:
+        '204':
+          description: OK
+      summary: Modify a Block Storage Volume
+      tags:
+      - Volumes
+  /volumes/{id}/fetch_capacity:
+    get:
+      description: This endpoint fetches and returns the used capacity of a volume.
+      operationId: volumes_fetch_capacity
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  capacity:
+                    description: Volume's capacity usage in bytes
+                    type: integer
+                    x-display-units: GB
+                    x-display-units-alt: GiB
+                    x-format: bytes2gb
+                    x-raw-units: Bytes
+                title: Volume's capacity
+                type: object
+          description: The amount of the volume's capacity that is in use
+      summary: Fetches Capacity Usage of Block Storage Volume
+      tags:
+      - Volumes
+  /volumes/{id}/get_snapshots:
+    get:
+      description: This endpoint returns the snapshots taken on the volume.
+      operationId: volumes_get_snapshots
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VolumeSnapshot'
+                title: Volume snapshots
+                type: array
+          description: Volume snapshots information.
+      summary: Return Snapshots (IDs) of a Volume.
+      tags:
+      - Volumes
+  /volumes/{id}/set_hosts:
+    patch:
+      description: This endpoint maps (set) a single volume (either it's current version or a snapshot) into multiple block hosts.
+      operationId: volumes_set_hosts
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ids:
+                  items:
+                    type: integer
+                  type: array
+                snapshot_id:
+                  type: integer
+              type: object
+        x-originalParamName: VolumeSetHostsParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Map a Volume to Block Hosts
+      tags:
+      - Volumes
+  /volumes/{id}/update_hosts:
+    patch:
+      description: This endpoint maps (update) a single volume (either it's current version or a snapshot) into multiple block hosts.
+      operationId: volumes_update_hosts
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ids_to_add:
+                  items:
+                    type: integer
+                  type: array
+                ids_to_remove:
+                  items:
+                    type: integer
+                  type: array
+                snapshot_id:
+                  type: integer
+              type: object
+        x-originalParamName: VolumeUpdateHostsParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Update Mapping of a Volume to Block Hosts
+      tags:
+      - Volumes
+components:
+  parameters:
+    VolumeNguidQP:
+      description: volume nguid to filter by.
+      in: query
+      name: nguid
+      schema:
+        type: string
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    VolumeBlockHostIdQP:
+      description: Volume BlockHost ID to filter by.
+      in: query
+      name: block_hosts__id
+      schema:
+        type: integer
+    SnapshotIdQP:
+      description: Unmapped Volumes captured by snapshot — under snapshot’s path, created before the snapshot time.
+      in: query
+      name: snapshot_id
+      schema:
+        type: integer
+    BlockHostVolumeForce:
+      description: Forcefully removes mappings between hosts and volumes. A host can be deleted only if it is not mapped to any volume, and a volume can be deleted only if it is not mapped to any host.
+      in: query
+      name: force
+      schema:
+        type: boolean
+    VolumeNamespaceIdQP:
+      description: Volume namespace ID to filter by.
+      in: query
+      name: namespace_id
+      schema:
+        type: integer
+    VolumeIsMonitoredQP:
+      description: Filter by whether Volume is monitored.
+      in: query
+      name: is_monitored
+      schema:
+        type: boolean
+    VolumeQosPolicyIdQP:
+      description: Volume QOS Policy ID to filter by.
+      in: query
+      name: qos_policy__id
+      schema:
+        minimum: 1
+        type: integer
+    MappedSnapshotIdQP:
+      description: Volumes explicitly mapped to the snapshot.
+      in: query
+      name: mapped_snapshot_id
+      schema:
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    ViewIdQP:
+      description: View ID by which to filter
+      in: query
+      name: view__id
+      schema:
+        minimum: 1
+        type: integer
+    VolumeNameQP:
+      description: Volume name to filter by.
+      in: query
+      name: name
+      schema:
+        type: string
+    VolumeUuidQP:
+      description: volume uuid to filter by.
+      in: query
+      name: uuid
+      schema:
+        type: string
+  schemas:
+    SnapshotData:
+      properties:
+        created:
+          description: snapshot's creation time
+          format: date-time
+          type: string
+        id:
+          description: snapshot's ID
+          type: integer
+        name:
+          description: snapshot's name
+          type: string
+      type: object
+    PartialGenericInfo:
+      properties:
+        id:
+          description: ID
+          type: integer
+        name:
+          description: Name
+          type: string
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
+    VolumeSnapshot:
+      properties:
+        created:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          type: string
+        path:
+          type: string
+      required:
+      - id
+      type: object
+    Volume:
+      properties:
+        capacity:
+          description: The amount of data written to the volume (deprecated as of 5.4).
+          type: integer
+          x-cli-header: Logical Capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: bytes2gb
+          x-raw-units: Bytes
+        created:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        full_path:
+          description: The full path of the volume (subsystem path joined with the volume name).
+          type: string
+        id:
+          description: Volume ID
+          type: integer
+        is_monitored:
+          description: Is this volume live monitored (default - False).
+          type: boolean
+        mapped_block_host_count:
+          description: The number of block hosts mapped to the volume.
+          type: integer
+        mapped_block_hosts_preview:
+          description: Mapped block hosts preview.
+          type: string
+        name:
+          description: The path to the volume relative to the view path.
+          type: string
+        namespace_id:
+          description: Available for mapped volumes, the namespace ID as used by hosts to search the volume within the subsystem. Each namespace ID is unique within the subsystem. If a volume snapshot is mapped to any host(s), a snapshot volume is created with its own namespace ID.
+          type: integer
+        nguid:
+          description: The NGUID used by block hosts to access the volume.
+          type: string
+        qos_policy:
+          $ref: '#/components/schemas/PartialGenericInfo'
+        qos_policy_id:
+          description: QOS Policy ID
+          type: integer
+        size:
+          description: The size of the volume, (in GB)
+          type: integer
+          x-cli-header: Size
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: bytes2gb
+          x-raw-units: Bytes
+        snapshot_data:
+          $ref: '#/components/schemas/SnapshotData'
+        state:
+          description: Volume state
+          enum:
+          - UNKNOWN
+          - CREATING
+          - CREATED
+          - FAILED
+          - DELETING
+          - DELETED
+          - MODIFYING
+          - MODIFIED
+          - PARTIALLY_CREATED
+          - COMPLETING
+          type: string
+        tags:
+          $ref: '#/components/schemas/ArbitraryStringsObject'
+        tenant_name:
+          description: The name of the tenant to which the volume belongs.
+          type: string
+        uuid:
+          description: The UUID, used by hosts to search the volume in the subsystem.
+          type: string
+        view_id:
+          description: Id of the block subsystem view to which the volume belongs.
+          type: integer
+      required:
+      - view_id
+      - name
+      - size
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,287 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory folders API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The folders endpoint enables the ability to manage directories and to set and get a directory's owner user and group attributes.
+  name: folders
+paths:
+  /folders/create_folder/:
+    post:
+      description: This endpoint creates a folder in the Element Store, under a specified tenant, owning group and user.
+      operationId: folders_create_folder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                create_dir_mode:
+                  description: Unix permissions mode for the new dir
+                  type: integer
+                group:
+                  description: The owning group
+                  type: string
+                inherit_acl:
+                  description: Indicates whether the directory should inherit ACLs from its parent directory
+                  type: boolean
+                owner_is_group:
+                  description: Set to true if the owning user is a group. This feature is used to enable setting a group as a user owner, as supported by SMB.
+                  type: boolean
+                path:
+                  description: Folder path to create
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                user:
+                  description: The owning user
+                  type: string
+              required:
+              - path
+              type: object
+        x-originalParamName: FoldersCreateFolder
+      responses:
+        '200':
+          description: OK
+      summary: Create Folder
+      tags:
+      - folders
+  /folders/delete_folder/:
+    delete:
+      description: This endpoint deletes a folder from the Element Store.
+      operationId: folders_delete_folder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                path:
+                  description: Folder path to delete
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              required:
+              - path
+              type: object
+        x-originalParamName: FoldersDeleteFolder
+      responses:
+        '200':
+          description: The folder was deleted.
+      summary: Delete Folder
+      tags:
+      - folders
+  /folders/modify_folder/:
+    patch:
+      description: This endpoint modifies a folder in the Element Store, including its path, tenant, owning group and user.
+      operationId: folders_modify_folder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                group:
+                  description: The owning group
+                  type: string
+                owner_is_group:
+                  description: Set to true if the owning user is a group. This feature is used to enable setting a group as a user owner, as supported by SMB.
+                  type: boolean
+                path:
+                  description: Folder path to modify
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+                user:
+                  description: The owning user
+                  type: string
+              required:
+              - path
+              type: object
+        x-originalParamName: FoldersModifyFolder
+      responses:
+        '200':
+          description: The folder was successfully modified
+      summary: Modify Folder
+      tags:
+      - folders
+  /folders/read_only/:
+    delete:
+      description: This endpoint unlocks a folder that was made read-only.
+      operationId: delete_read_only_folder
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ReadOnlyFolderParams'
+        x-originalParamName: ReadOnlyFolderParams
+      responses:
+        '204':
+          description: Read-only folder was unlocked successfully
+      summary: Unlock Read-Only Folder
+      tags:
+      - folders
+    get:
+      description: This endpoint returns details of folders that are locked as read-only.
+      operationId: get_read_only_folder
+      parameters:
+      - description: Path to get read-only folder details
+        in: query
+        name: path
+        required: true
+        schema:
+          type: string
+      - description: Tenant ID
+        in: query
+        name: tenant_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  root_path:
+                    description: Root path for requested folder
+                    type: string
+                  state:
+                    description: Folder's state
+                    type: string
+                required:
+                - state
+                - root_path
+                type: object
+          description: ''
+      summary: Return Details of Read-Only Folder
+      tags:
+      - folders
+    post:
+      description: This endpoint locks an existing path from writes, making it read-only for all users, regardless of permissions.
+      operationId: create_read_only_folder
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ReadOnlyFolderParams'
+        x-originalParamName: ReadOnlyFolderParams
+      responses:
+        '201':
+          description: Read-only folder was created successfully
+      summary: Make a Folder Read-Only
+      tags:
+      - folders
+  /folders/stat_path/:
+    post:
+      description: This endpoint returns the owning user and group for a specified Element Store path.
+      operationId: stat_path
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                path:
+                  description: Path
+                  type: string
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              required:
+              - path
+              - tenant_id
+              type: object
+        x-originalParamName: FoldersStatPathParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  abac_tags:
+                    items:
+                      type: string
+                    type: array
+                  atime:
+                    description: Access Time
+                    type: string
+                  children:
+                    description: Children count
+                    type: integer
+                  ctime:
+                    description: Change Time
+                    type: string
+                  has_default_acl:
+                    description: Path has default ACL
+                    type: boolean
+                  indestructible_object_timeout:
+                    description: Indestructible object timeout
+                    type: string
+                  is_directory:
+                    description: Path is a directory
+                    type: boolean
+                  mtime:
+                    description: Modification Time
+                    type: string
+                  owning_gid:
+                    description: Owning group ID
+                    type: integer
+                  owning_group:
+                    description: Owning group name
+                    type: string
+                  owning_uid:
+                    description: Owning user ID
+                    type: integer
+                  owning_user:
+                    description: Owning user name
+                    type: string
+                  smb_readonly_flag:
+                    description: Is path SMB readonly
+                    type: boolean
+                  worm_auto_commit_timeout:
+                    description: Warm auto commit timeout
+                    type: string
+                  worm_legal_hold_status:
+                    description: Worm legal hold status
+                    type: string
+                  worm_lock_status:
+                    description: Worm lock status
+                    type: string
+                  worm_retention_mode:
+                    description: Worm retention mode
+                    type: string
+                  worm_retention_timeout:
+                    description: Worm retention timeout
+                    type: string
+                type: object
+          description: ''
+      summary: Get Owning User and Group for a Path
+      tags:
+      - folders
+components:
+  schemas:
+    ReadOnlyFolderParams:
+      properties:
+        path:
+          description: Path
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      required:
+      - path
+      - tenant_id
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

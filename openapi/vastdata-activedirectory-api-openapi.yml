@@ -1,0 +1,1016 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Active Directory is supported as an external authorization and authentication provider. Active Directory may store and provide user and group attributes used by both NFS and SMB protocols. Active Directory can be used to enable Kerberos authentication with NFSv4 and with SMB. It is a requirement for enabling SMB access on VAST Cluster. Up to one Active Directory domain is supported. The configuration must specify an LDAP configuration for binding to the LDAP domain of the Active Directory server. Limitations apply to the combinations of external providers and protocol enablement.
+  name: activedirectory
+paths:
+  /activedirectory/:
+    get:
+      description: This endpoint lists Active Directory configurations.
+      operationId: active_directory_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ActiveDirectory'
+                title: Active Directory
+                type: array
+          description: Active Directory information
+      summary: List Active Directory Configurations
+      tags:
+      - activedirectory
+    post:
+      description: This endpoint creates an Active Directory configuration. An Active Directory configuration specifies an external Active Directory server domain and defines the configuration of a machine account name to be added to that domain if and when the cluster is joined to the domain.
+      operationId: active_directory_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                abac_read_only_value_name:
+                  description: The attribute to use when querying a provider for a read only attribute access check
+                  type: string
+                abac_read_write_value_name:
+                  description: The attribute to use when querying a provider for a read-write attribute access check
+                  type: string
+                binddn:
+                  description: The bind DN for authenticating to the LDAP domain. You can specify any user account that has read access to the domain.
+                  type: string
+                bindpw:
+                  description: The password used with the Bind DN to authenticate to the LDAP server.
+                  type: string
+                domain_name:
+                  description: The fully qualified domain name (FQDN) of the Active Directory domain to join. This parameter is required unless ldap_id is provided.
+                  type: string
+                domains_with_posix_attributes:
+                  description: 'Allows to enumerate specific domains for POSIX attributes
+
+                    in case posix_attributes_source is set to SPECIFIC_DOMAINS.
+
+                    '
+                  items:
+                    type: string
+                  type: array
+                gid_number:
+                  description: Override 'gidNumber' as the attribute of a group entry that contains the group's GID number. When binding VAST Cluster to AD, you may need to set this to 'gidnumber' (case sensitive).
+                  type: string
+                group_login_name:
+                  description: 'The attribute used to query Active Directory for the group login name in NFS ID mapping.
+
+                    Applicable only with Active Directory and NFSv4.
+
+                    '
+                  type: string
+                group_searchbase:
+                  description: Base DN for group queries within the joined domain only. When auto discovery is enabled, group queries outside the joined domain use auto-discovered Base DNs.
+                  type: string
+                is_abac_provider:
+                  description: is this Active Directory used for ABAC
+                  type: boolean
+                is_vms_auth_provider:
+                  description: 'Enables use of the LDAP for VMS authentication. Two LDAP configurations per cluster can be used for VMS authentication: one with Active Directory and one without.'
+                  type: boolean
+                ldap_id:
+                  description: ID of the LDAP configuration for binding to the LDAP domain of the Active Directory server. This parameter is required unless domain_name is provided.
+                  type: string
+                ma_pwd_change_frequency:
+                  description: Machine Account password change frequency.
+                  type: string
+                ma_pwd_update_time:
+                  description: Machine Account password update time.
+                  type: string
+                machine_account_name:
+                  description: The name for the machine object representing the VAST Cluster to be created within the OU.
+                  type: string
+                mail_property_name:
+                  type: string
+                match_user:
+                  description: The attribute to use when querying a provider for a user that matches a user that was already retrieved from another provider. A user entry that contains a matching value in this attribute will be considered the same user as the user previously retrieved.
+                  type: string
+                method:
+                  description: The authentication method configured on the LDAP server for authenticating clients.
+                  enum:
+                  - anonymous
+                  - simple
+                  - sasl
+                  - krbv4
+                  - krbv41
+                  - krbv42
+                  type: string
+                monitor_action:
+                  description: The type of periodic health check that VAST Cluster performs for the Active Directory provider. PING (default, less overhead and impact on the provider) = pings the provider. BIND = binds to the provider.
+                  enum:
+                  - PING
+                  - BIND
+                  type: string
+                netgroup_searchbase:
+                  description: Base DN for netgroup queries.
+                  example: OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu
+                  type: string
+                ntlm_enabled:
+                  default: true
+                  description: Manages support of NTLM authentication method for SMB protocol.
+                  type: boolean
+                organizational_unit:
+                  description: A non default organizational unit (OU) in the Active Directory domain in which to create the machine object. If left empty, the machine object will be created in the default Computers OU.
+                  type: string
+                port:
+                  description: 'The port of the remote LDAP server. Typical values: 389, 636.'
+                  type: integer
+                posix_account:
+                  description: Override 'posixAccount'as the object class that defines a user entry on the LDAP server. When binding VAST Cluster to AD, set this parameter to 'user' in order for authorization to work properly.
+                  type: string
+                posix_attributes_source:
+                  description: Defines which domains POSIX attributes will be supported from.
+                  enum:
+                  - JOINED_DOMAIN
+                  - ALL_DOMAINS
+                  - SPECIFIC_DOMAINS
+                  - GC
+                  type: string
+                posix_group:
+                  description: Override 'posixGroup' as the object class that defines a group entry on the LDAP server. When binding VAST Cluster to AD, set this parameter to 'group' in order for authorization to work properly.
+                  type: string
+                preferred_dc_list:
+                  description: Specify multiple DCs using 'urls' parameter in LDAP configuration.
+                  items:
+                    type: string
+                  type: array
+                query_groups_mode:
+                  description: 'A mode setting for how groups are queried: Set to COMPATIBLE to look up user groups using the ''memberOf'' and ''memberUid'' attributes. Set to RFC2307BIS_ONLY to look up user groups using only the ''memberOf'' attribute. Set to RFC2307_ONLY to look up user groups using only the ''memberUid'' attribute. Set to NONE not to look up user groups other than by leading GID and primary group SID.'
+                  type: string
+                query_posix_attributes_from_gc:
+                  description: When set to True - users/groups from non-joined domain POSIX attributes are supported, when set to False - Posix attributes of users/groups from non-joined domain are not supported. As a condition Global catalog needs to be configured to support Posix attributes. (deprecated since 4.6)
+                  type: boolean
+                reverse_lookup:
+                  description: resolve netgroups into hostnames
+                  type: boolean
+                scheduled_ma_pwd_change_enabled:
+                  description: Enables scheduled Machine Account password change.
+                  type: boolean
+                searchbase:
+                  description: The entry in the LDAP directory tree to use as a starting point for user queries.
+                  type: string
+                smb_allowed:
+                  default: true
+                  description: Indicates if the Active Directory configuration is allowed to serve as a provider for SMB attributes.
+                  type: boolean
+                super_admin_groups:
+                  description: List of groups on the Active Directory provider. Members of these groups can log into VMS as cluster admin users.
+                  items:
+                    type: string
+                  type: array
+                tls_certificate:
+                  description: TLS certificate to use for verifying the remote LDAP server's TLS certificate.
+                  type: string
+                uid:
+                  description: Override 'uid' as the attribute of a user entry on the LDAP server that contains the user name. When binding VAST Cluster to AD, you may need to set this to 'sAMAccountname'.
+                  type: string
+                uid_member:
+                  description: Override 'memberUid' as the attribute of a group entry on the LDAP server that contains names of group members. When binding VAST Cluster to AD, you may need to set this to 'memberUID'
+                  type: string
+                uid_member_value_property_name:
+                  type: string
+                uid_number:
+                  description: 'Override ''uidNumber'' as the attribute of a user entry on the LDAP server that contains the UID number.
+
+                    Often when binding VAST Cluster to Active Directory this does not need to be set.
+
+                    '
+                  type: string
+                url:
+                  description: 'LDAP server URI in the format <scheme>://<address>. <address> can be either a DNS name or an IP address. Example: ldap://ldap.company.com'
+                  type: string
+                urls:
+                  description: Comma separated list of URIs of LDAP servers in the format <scheme>://<address>. The order of listing defines the priority order. The URI with highest priority that has a good health status is used.
+                  items:
+                    type: string
+                  type: array
+                use_auto_discovery:
+                  description: When enabled, Active Directory Domain Controllers (DCs) and Active Directory domains are auto discovered. Queries extend beyond the joined domain to all domains in the forest. When disabled, queries are restricted to the joined domain and DCs must be provided in the URLs field.
+                  type: boolean
+                use_ldaps:
+                  description: Use LDAPS for Auto-Discovery
+                  type: boolean
+                use_multi_forest:
+                  description: Allow access for users from trusted domains on other forests.
+                  type: boolean
+                use_posix:
+                  description: POSIX support
+                  type: boolean
+                use_tls:
+                  description: Set to true to enable use of TLS to secure communication between VAST Cluster and the LDAP server.
+                  type: boolean
+                user_login_name:
+                  description: 'The attribute used to query Active Directory for the user login name in NFS ID mapping.
+
+                    Applicable only with Active Directory and NFSv4.
+
+                    '
+                  type: string
+                username_property_name:
+                  description: The attribute to use for querying users in VMS user-initated user queries. Default is 'name'. Sometimes set to 'cn'
+                  type: string
+              type: object
+        x-originalParamName: ActiveDirectoryCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveDirectory'
+          description: ''
+      summary: Create Active Directory Configuration
+      tags:
+      - activedirectory
+  /activedirectory/{id}/:
+    delete:
+      description: This endpoint deletes an Active Directory configuration.
+      operationId: active_directory_delete
+      parameters:
+      - description: Active Directory ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                skip_ldap:
+                  description: Set to true to avoid removing the LDAP server configuration that is attached to the Active Directory configuration.
+                  type: boolean
+              type: object
+        x-originalParamName: ActiveDirectoryDeleteParams
+      responses:
+        '204':
+          description: ''
+      summary: Delete Active Directory configuration
+      tags:
+      - activedirectory
+    get:
+      description: This endpoint returns details of a specified Active Directory configuration
+      operationId: active_directory_read
+      parameters:
+      - description: Active Directory ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveDirectory'
+          description: ''
+      summary: Return Active Directory Configuration Details
+      tags:
+      - activedirectory
+    patch:
+      description: This endpoint joins or leaves an Active Directory domain.
+      operationId: active_directory_partial_update
+      parameters:
+      - description: ID of the Active Directory configuration for the Active Directory server to join
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                abac_read_only_value_name:
+                  description: The attribute to use when querying a provider for a read only attribute access check
+                  type: string
+                abac_read_write_value_name:
+                  description: The attribute to use when querying a provider for a read-write attribute access check
+                  type: string
+                admin_passwd:
+                  description: The password for the specified Active Directory admin user.
+                  type: string
+                admin_username:
+                  description: An Active Directory admin user with permission to join the Active Directory server.
+                  type: string
+                binddn:
+                  description: The bind DN for authenticating to the LDAP domain. You can specify any user account that has read access to the domain.
+                  type: string
+                bindpw:
+                  description: The password used with the Bind DN to authenticate to the LDAP server.
+                  type: string
+                domain_name:
+                  description: FQDN of Active Directory domain. Must be resolvable in DNS
+                  type: string
+                domains_with_posix_attributes:
+                  description: 'Allows to enumerate specific domains for POSIX attributes
+
+                    in case posix_attributes_source is set to SPECIFIC_DOMAINS.
+
+                    '
+                  items:
+                    type: string
+                  type: array
+                enabled:
+                  description: Set to true to join Active Directory. Set to false to leave Active Directory.
+                  type: boolean
+                gid_number:
+                  description: Override 'gidNumber' as the attribute of a group entry that contains the group's GID number. When binding VAST Cluster to AD, you may need to set this to 'gidnumber' (case sensitive).
+                  type: string
+                group_login_name:
+                  description: 'The attribute used to query Active Directory for the group login name in NFS ID mapping.
+
+                    Applicable only with Active Directory and NFSv4.
+
+                    '
+                  type: string
+                group_searchbase:
+                  description: Base DN for group queries within the joined domain only. When auto discovery is enabled, group queries outside the joined domain use auto-discovered Base DNs.
+                  type: string
+                is_abac_provider:
+                  description: is this Active Directory used for ABAC
+                  type: boolean
+                is_vms_auth_provider:
+                  description: 'Enables use of the LDAP for VMS authentication. Two LDAP configurations per cluster can be used for VMS authentication: one with Active Directory and one without.'
+                  type: boolean
+                ma_pwd_change_frequency:
+                  description: Machine Account password change frequency.
+                  type: string
+                ma_pwd_update_time:
+                  description: Machine Account password update time.
+                  type: string
+                mail_property_name:
+                  type: string
+                match_user:
+                  description: The attribute to use when querying a provider for a user that matches a user that was already retrieved from another provider. A user entry that contains a matching value in this attribute will be considered the same user as the user previously retrieved.
+                  type: string
+                method:
+                  description: The authentication method configured on the LDAP server for authenticating clients.
+                  enum:
+                  - anonymous
+                  - simple
+                  - sasl
+                  - krbv4
+                  - krbv41
+                  - krbv42
+                  type: string
+                monitor_action:
+                  description: The type of periodic health check that VAST Cluster performs for the Active Directory provider. PING (default, less overhead and impact on the provider) = pings the provider. BIND = binds to the provider.
+                  enum:
+                  - PING
+                  - BIND
+                  type: string
+                netgroup_searchbase:
+                  description: Base DN for netgroup queries.
+                  example: OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu
+                  type: string
+                ntlm_enabled:
+                  default: true
+                  description: Manages support of NTLM authentication method for SMB protocol.
+                  type: boolean
+                port:
+                  description: 'The port of the remote LDAP server. Typical values: 389, 636.'
+                  type: integer
+                posix_account:
+                  description: Override 'posixAccount'as the object class that defines a user entry on the LDAP server. When binding VAST Cluster to AD, set this parameter to 'user' in order for authorization to work properly.
+                  type: string
+                posix_attributes_source:
+                  description: Defines which domains POSIX attributes will be supported from.
+                  enum:
+                  - JOINED_DOMAIN
+                  - ALL_DOMAINS
+                  - SPECIFIC_DOMAINS
+                  - GC
+                  type: string
+                posix_group:
+                  description: Override 'posixGroup' as the object class that defines a group entry on the LDAP server. When binding VAST Cluster to AD, set this parameter to 'group' in order for authorization to work properly.
+                  type: string
+                query_groups_mode:
+                  description: 'A mode setting for how groups are queried: Set to COMPATIBLE to look up user groups using the ''memberOf'' and ''memberUid'' attributes. Set to RFC2307BIS_ONLY to look up user groups using only the ''memberOf'' attribute. Set to RFC2307_ONLY to look up user groups using only the ''memberUid'' attribute. Set to NONE not to look up user groups other than by leading GID and primary group SID.'
+                  type: string
+                query_posix_attributes_from_gc:
+                  description: 'When set to True - users/groups from non-joined domain POSIX attributes are supported,
+
+                    when set to False - Posix attributes of users/groups from non-joined domain are not supported.
+
+                    As a condition Global catalog needs to be configured to support Posix attributes. (deprecated since 4.6)
+
+                    '
+                  type: boolean
+                reverse_lookup:
+                  description: resolve netgroups into hostnames
+                  type: boolean
+                scheduled_ma_pwd_change_enabled:
+                  description: Enables scheduled Machine Account password change.
+                  type: boolean
+                searchbase:
+                  description: The entry in the LDAP directory tree to use as a starting point for user queries.
+                  type: string
+                smb_allowed:
+                  default: true
+                  description: Indicates if the Active Directory configuration is allowed to serve as a provider for SMB attributes.
+                  type: boolean
+                super_admin_groups:
+                  description: List of groups on the Active Directory provider. Members of these groups can log into VMS as cluster admin users.
+                  items:
+                    type: string
+                  type: array
+                tls_certificate:
+                  description: TLS certificate to use for verifying the remote LDAP server's TLS certificate.
+                  type: string
+                uid:
+                  description: Override 'uid' as the attribute of a user entry on the LDAP server that contains the user name. When binding VAST Cluster to AD, you may need to set this to 'sAMAccountname'.
+                  type: string
+                uid_member:
+                  description: Override 'memberUid' as the attribute of a group entry on the LDAP server that contains names of group members. When binding VAST Cluster to AD, you may need to set this to 'memberUID'
+                  type: string
+                uid_member_value_property_name:
+                  type: string
+                uid_number:
+                  description: 'Override ''uidNumber'' as the attribute of a user entry on the LDAP server that contains the UID number.
+
+                    Often when binding VAST Cluster to Active Directory this does not need to be set.
+
+                    '
+                  type: string
+                url:
+                  description: 'LDAP server URI in the format <scheme>://<address>. <address> can be either a DNS name or an IP address. Example: ldap://ldap.company.com'
+                  type: string
+                urls:
+                  description: Comma separated list of URIs of LDAP servers in the format <scheme>://<address>. The order of listing defines the priority order. The URI with highest priority that has a good health status is used.
+                  items:
+                    type: string
+                  type: array
+                use_auto_discovery:
+                  description: When enabled, Active Directory Domain Controllers (DCs) and Active Directory domains are auto discovered. Queries extend beyond the joined domain to all domains in the forest. When disabled, queries are restricted to the joined domain and DCs must be provided in the URLs field.
+                  type: boolean
+                use_ldaps:
+                  description: Use LDAPS for Auto-Discovery
+                  type: boolean
+                use_multi_forest:
+                  description: Allow access for users from trusted domains on other forests.
+                  type: boolean
+                use_posix:
+                  description: POSIX support
+                  type: boolean
+                use_tls:
+                  description: Set to true to enable use of TLS to secure communication between VAST Cluster and the LDAP server.
+                  type: boolean
+                user_login_name:
+                  description: 'The attribute used to query Active Directory for the user login name in NFS ID mapping.
+
+                    Applicable only with Active Directory and NFSv4.
+
+                    '
+                  type: string
+                username_property_name:
+                  description: The attribute to use for querying users in VMS user-initated user queries. Default is 'name'. Sometimes set to 'cn'
+                  type: string
+              required:
+              - admin_username
+              - admin_passwd
+              - enabled
+              type: object
+        x-originalParamName: ActiveDirectoryModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Join or Leave Active Directory
+      tags:
+      - activedirectory
+  /activedirectory/{id}/change_machine_account_password/:
+    post:
+      operationId: change_machine_account_password
+      parameters:
+      - $ref: '#/components/parameters/ActiveDirectoryId'
+      responses:
+        '200':
+          description: ''
+      summary: Change machine account password
+      tags:
+      - activedirectory
+  /activedirectory/{id}/current_gc/:
+    get:
+      operationId: active_directory_current_gc
+      parameters:
+      - $ref: '#/components/parameters/ActiveDirectoryId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ''
+      summary: Get current Active Directory GC
+      tags:
+      - activedirectory
+  /activedirectory/{id}/dcs/:
+    get:
+      operationId: active_directory_dcs
+      parameters:
+      - $ref: '#/components/parameters/ActiveDirectoryId'
+      - in: query
+        name: state
+        schema:
+          type: string
+      - in: query
+        name: is_closest
+        schema:
+          type: string
+      - in: query
+        name: uri
+        schema:
+          type: string
+      - in: query
+        name: port
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ''
+      summary: Get Active Directory DCs
+      tags:
+      - activedirectory
+  /activedirectory/{id}/domains/:
+    get:
+      operationId: active_directory_domains
+      parameters:
+      - $ref: '#/components/parameters/ActiveDirectoryId'
+      - in: query
+        name: base_dn
+        schema:
+          type: string
+      - in: query
+        name: fqdn
+        schema:
+          type: string
+      - in: query
+        name: sid
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ''
+      summary: Get Active Directory domains
+      tags:
+      - activedirectory
+  /activedirectory/{id}/gcs/:
+    get:
+      operationId: active_directory_gcs
+      parameters:
+      - $ref: '#/components/parameters/ActiveDirectoryId'
+      - in: query
+        name: state
+        schema:
+          type: string
+      - in: query
+        name: is_closest
+        schema:
+          type: string
+      - in: query
+        name: uri
+        schema:
+          type: string
+      - in: query
+        name: port
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ''
+      summary: Get Active Directory GCs
+      tags:
+      - activedirectory
+  /activedirectory/{id}/is_operation_healthy:
+    post:
+      description: Returns warnings about the future state if operation is performed.
+      operationId: active_directory_is_operation_healthy
+      parameters:
+      - $ref: '#/components/parameters/ActiveDirectoryId'
+      - in: query
+        name: operation
+        schema:
+          enum:
+          - modify
+          - delete
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                admin_passwd:
+                  description: The password for the specified Active Directory admin user.
+                  type: string
+                admin_username:
+                  description: An Active Directory admin user with permission to join the Active Directory server.
+                  type: string
+                enabled:
+                  description: Set to true to join Active Directory. Set to false to leave Active Directory.
+                  type: boolean
+                ntlm_enabled:
+                  default: true
+                  description: Manages support of NTLM authentication method for SMB protocol.
+                  type: boolean
+                smb_allowed:
+                  default: true
+                  description: Indicates if the Active Directory configuration is allowed to serve as a provider for SMB attributes.
+                  type: boolean
+              type: object
+        x-originalParamName: ADIsOperationHealthyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warnings'
+          description: ''
+      summary: Check whether an operation may be successfully performed
+      tags:
+      - activedirectory
+  /activedirectory/{id}/refresh/:
+    patch:
+      operationId: active_directory_refresh
+      parameters:
+      - description: Active Directory ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Refreshed
+      summary: Refresh AD
+      tags:
+      - activedirectory
+components:
+  parameters:
+    ActiveDirectoryId:
+      description: Active Directory ID
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+  schemas:
+    LastMaPwdRenewalStatus:
+      description: Last Active Directory machine account password renewal status
+      properties:
+        is_during_change:
+          description: True if password change is in progress
+          type: boolean
+        last_change_attempt:
+          description: Last change time
+          type: string
+        last_successful_change:
+          description: Last successful change time
+          type: string
+        message:
+          description: Message
+          type: string
+        next_scheduled_change:
+          description: Next scheduled change time
+          type: string
+      type: object
+    Ldap:
+      properties:
+        abac_read_only_value_name:
+          type: string
+          x-cli-header: Read-Only-Value
+        abac_read_write_value_name:
+          type: string
+          x-cli-header: Read-Write-Value
+        active_directory:
+          type: string
+        active_directory_id:
+          type: integer
+        advanced_filter:
+          description: Manual filters for the BaseDN. This is useful when accounts are distributed across OUs and the baseDN needs to be wide to include all accounts, while there are also accounts that you would like to exclude from user queries.
+          type: string
+        binddn:
+          description: Distinguished name of LDAP superuser
+          type: string
+          x-cli-header: Bind-DN
+        bindpw:
+          description: Password for the LDAP superuser
+          type: string
+          x-cli-header: Bind-Password
+        domain_name:
+          description: FQDN of the domain.
+          type: string
+          x-cli-header: Domain Name
+        domains_with_posix_attributes:
+          description: 'Allows to enumerate specific domains for POSIX attributes
+
+            in case posix_attributes_source is set to SPECIFIC_DOMAINS.
+
+            '
+          items:
+            type: string
+          type: array
+        gid_number:
+          type: string
+          x-cli-header: gidNumber
+        group_login_name:
+          description: The attribute used to query Active Directory for the group login name in NFS ID mapping. Applicable only with Active Directory and NFSv4.
+          type: string
+        group_searchbase:
+          description: Base DN for group queries within the joined domain only. When auto discovery is enabled, group queries outside the joined domain use auto-discovered Base DNs.
+          type: string
+          x-cli-header: Group-Base-DN
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        is_abac_provider:
+          description: is this Ldap / Active Directory used for ABAC
+          type: boolean
+          x-cli-header: is ABAC provider
+        is_vms_auth_provider:
+          description: 'Enables use of the LDAP for VMS authentication. Two LDAP configurations per cluster can be used for VMS authentication: one with Active Directory and one without.'
+          type: boolean
+        mail_property_name:
+          description: The attribute to use for the user's email address.
+          type: string
+        match_user:
+          type: string
+        method:
+          description: Bind Authentication Method
+          type: string
+          x-cli-header: Method
+        monitor_action:
+          description: The type of periodic health check that VAST Cluster performs for the LDAP provider. PING (default, less overhead and impact on the provider) = pings the provider. BIND = binds to the provider.
+          enum:
+          - PING
+          - BIND
+          type: string
+        name:
+          description: Name of the LDAP configuration
+          type: string
+          x-cli-header: Name
+        netgroup_searchbase:
+          description: Base DN for netgroup queries.
+          example: OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu
+          type: string
+          x-cli-header: Netgroup-Base-DN
+        port:
+          description: LDAP server port. 389 (LDAP)  636 (LDAPS)
+          type: integer
+          x-cli-header: Port
+        posix_account:
+          type: string
+          x-cli-header: PosixAccount
+        posix_attributes_source:
+          description: Defines which domains POSIX attributes will be supported from.
+          enum:
+          - JOINED_DOMAIN
+          - ALL_DOMAINS
+          - SPECIFIC_DOMAINS
+          - GC
+          type: string
+        posix_group:
+          type: string
+          x-cli-header: PosixGroup
+        posix_primary_provider:
+          description: POSIX primary provider
+          type: boolean
+          x-cli-header: POSIX Primary Provider
+        query_groups_mode:
+          description: Query group mode
+          type: string
+        query_posix_attributes_from_gc:
+          description: 'When set to True - users/groups from non-joined domain POSIX attributes are supported,
+
+            when set to False - Posix attributes of users/groups from non-joined domain are not supported.
+
+            As a condition Global catalog needs to be configured to support Posix attributes. (deprecated since 4.6)
+
+            '
+          type: boolean
+        reverse_lookup:
+          description: Resolve LDAP netgroups into hostnames
+          type: boolean
+          x-cli-header: Resolve-Hostnames
+        searchbase:
+          description: The Base DN is the starting point the LDAP provider uses when searching for users and groups. If the Group Base DN is configured it will be used instead of the Base DN, for groups only
+          type: string
+          x-cli-header: Base-DN
+        state:
+          enum:
+          - CONNECTED
+          - DEGRADED
+          - DISCONNECTED
+          - UNKNOWN
+          - CONNECTING
+          - IN_DISCOVERY
+          - NOT_FOUND
+          type: string
+        super_admin_groups:
+          description: List of groups on the LDAP provider. Members of these groups can log into VMS as cluster admin users.
+          items:
+            type: string
+          type: array
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        title:
+          type: string
+        tls_certificate:
+          type: string
+          x-cli-header: TLS-certificate
+        uid:
+          type: string
+          x-cli-header: uid
+        uid_member:
+          type: string
+          x-cli-header: memberUid
+        uid_member_value_property_name:
+          description: The attribute which represents the value of the LDAP group's member property.
+          type: string
+        uid_number:
+          type: string
+          x-cli-header: uidNumber
+        url:
+          description: Comma-separated list of URIs of LDAP servers (Domain Controllers (DCs) in Active Directory), in priority order. The URI with highest priority that has a good health status is used. Specify each URI in the format SCHEME://ADDRESS. ADDRESS can be either a DNS name or an IP address. e.g. ldap://ldap.company.com, ldaps://ldaps.company.com, ldap://192.0.2.2
+          type: string
+          x-cli-header: URL
+        urls:
+          description: Comma-separated list of URIs of LDAP servers (Domain Controllers (DCs) in Active Directory), in priority order. The URI with highest priority that has a good health status is used. Specify each URI in the format SCHEME://ADDRESS. ADDRESS can be either a DNS name or an IP address. e.g. ldap://ldap.company.com, ldaps://ldaps.company.com, ldap://192.0.2.2
+          items:
+            type: string
+          type: array
+          x-cli-header: URLs
+        use_auto_discovery:
+          description: When enabled, Active Directory Domain Controllers (DCs) and Active Directory domains are auto discovered. Queries extend beyond the joined domain to all domains in the forest. When disabled, queries are restricted to the joined domain and DCs must be provided in the URLs field.
+          type: boolean
+        use_ldaps:
+          description: Use LDAPS for auto-Discovery. To activate, set use-auto-discovery to true also.
+          type: boolean
+        use_multi_forest:
+          description: Allow access for users from trusted domains on other forests.
+          type: boolean
+          x-cli-header: Enable trusted domains on other forests
+        use_posix:
+          description: POSIX support
+          type: boolean
+          x-cli-header: POSIX support
+        use_tls:
+          description: configure LDAP with TLS
+          type: boolean
+          x-cli-header: Use TLS
+        user_login_name:
+          description: The attribute used to query Active Directory for the user login name in NFS ID mapping. Applicable only with Active Directory and NFSv4.
+          type: string
+        username_property_name:
+          description: Username property name
+          type: string
+      required:
+      - searchbase
+      - urls
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    Warnings:
+      properties:
+        warnings:
+          items:
+            example: 'Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant=''default'', path=''/test'')'
+            type: string
+          type: array
+      required:
+      - warnings
+      type: object
+    ActiveDirectory:
+      properties:
+        domain_name:
+          description: FQDN of the domain. This parameter is required unless ldap_id is provided
+          type: string
+          x-cli-header: Domain Name
+        enabled:
+          description: enabled/disabled
+          type: boolean
+          x-cli-header: Enabled State
+          x-example: --enabled/--disabled
+        guid:
+          description: GUID
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        last_ma_pwd_renewal_status:
+          $ref: '#/components/schemas/LastMaPwdRenewalStatus'
+        ldap:
+          $ref: '#/components/schemas/Ldap'
+        ldap_id:
+          description: ID of the LDAP configuration for binding to the LDAP domain of the Active Directory server. This parameter is required unless domain_name is provided.
+          type: integer
+        ma_pwd_change_frequency:
+          description: Frequency for scheduled password change for the VAST Cluster Active Directory machine account password.
+          type: string
+          x-cli-header: Machine Account password change frequency
+        ma_pwd_update_time:
+          description: Machine Account password update time.
+          type: string
+          x-cli-header: Machine Account password update time
+        machine_account_name:
+          description: Name of the computer object/machine account to add. Recommended to be the name of the cluster.
+          type: string
+          x-cli-header: Machine Account Name
+        monitor_action:
+          description: The type of periodic health check that VAST Cluster performs for the Active Directory provider. PING (default, less overhead and impact on the provider) = pings the provider. BIND = binds to the provider.
+          enum:
+          - PING
+          - BIND
+          type: string
+        name:
+          type: string
+          x-cli-header: Name
+        ntlm_enabled:
+          default: true
+          description: Manages support of NTLM authentication method for SMB protocol.
+          type: boolean
+        organizational_unit:
+          description: Organizational Unit within Active Directory where the Cluster Machine account will be created. If left empty, it will go into default Computers OU.
+          type: string
+          x-cli-header: Organizational Unit
+        preferred_dc_list:
+          description: 'List of Domain Controllers to prefer for authentication. DCs listed here will be queried
+
+            exclusively unless they fail or do not respond. In such a case, other DCs will be consulted.
+
+            Specify as a comma-separated list. Each entry can be a fully-qualified hostname or an IP address.
+
+            '
+          type: object
+          x-cli-header: Preferred dc list
+        scheduled_ma_pwd_change_enabled:
+          description: Enables scheduled password change for the VAST Cluster Active Directory machine account password.
+          type: boolean
+          x-cli-header: Scheduled Machine Account password change enabled
+        smb_allowed:
+          default: true
+          description: Indicates if the Active Directory server can service IO from SMB protocol.
+          type: boolean
+        state:
+          description: Active Directory state
+          enum:
+          - UNKNOWN
+          - NOT_A_MEMBER
+          - JOINED
+          - JOINING_IN_PROGRESS
+          - LEAVING_IN_PROGRESS
+          - JOINED_FAILED
+          - LEAVE_FAILED
+          type: string
+          x-cli-header: State
+        tenant_id:
+          type: integer
+        title:
+          type: string
+        url:
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

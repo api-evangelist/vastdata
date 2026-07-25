@@ -1,0 +1,366 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory dnodes API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A DNode is an NVMe-oF controller card in a DBox. The dnodes path represents the DNodes in the cluster, exposes information about the DNodes and maintenance operations.
+  name: dnodes
+paths:
+  /dnodes/:
+    get:
+      description: This endpoint returns a list of Dnodes in the cluster, with optional filtering.
+      operationId: dnodes_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by DNode IP
+        in: query
+        name: ip
+        schema:
+          type: string
+      - description: Filter by DNode state
+        in: query
+        name: state
+        schema:
+          type: string
+      - in: query
+        name: cluster__name
+        schema:
+          type: string
+      - in: query
+        name: cluster__id
+        schema:
+          type: integer
+      - description: Filter by DNode name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: List only enabled DNodes
+        in: query
+        name: enabled
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DNode'
+                title: DNodes
+                type: array
+          description: DNode information
+      summary: List DNodes
+      tags:
+      - dnodes
+  /dnodes/{id}/:
+    get:
+      description: This endpoint returns details of a DNode.
+      operationId: dnodes_read
+      parameters:
+      - description: DNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DNode'
+          description: ''
+      summary: Return Details of a DNode
+      tags:
+      - dnodes
+    patch:
+      description: This endpoint activates, deactivates, replaces, powers off and powers on a DNode.
+      operationId: dnodes_partial_update
+      parameters:
+      - description: DNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: True for activate, False for deactivate
+                  type: boolean
+                erase_boot:
+                  description: True for erase boot
+                  type: boolean
+                power_cycle:
+                  description: True for power cycle
+                  type: boolean
+                power_off:
+                  description: True for power off
+                  type: boolean
+                power_on:
+                  description: True for power on
+                  type: boolean
+                replace:
+                  description: True for replacement
+                  type: boolean
+                skip_network_validation:
+                  description: If true, skips internal network validation. Allows FRU to proceed if another node is in failed state.
+                  type: boolean
+              type: object
+        x-originalParamName: DnodeModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Activate/Deactivate/Replace/Power On/Off DNode
+      tags:
+      - dnodes
+  /dnodes/{id}/control_led/:
+    patch:
+      description: This endpoint controls a DNode LED
+      operationId: control_led
+      parameters:
+      - description: DNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  enum:
+                  - blink
+                  - false
+                  type: string
+              type: object
+        x-originalParamName: DnodeControlLed
+      responses:
+        '204':
+          description: OK
+      summary: Control DNode LED
+      tags:
+      - dnodes
+  /dnodes/{id}/highlight/:
+    patch:
+      description: This endpoint highlights a DNode
+      operationId: highlight
+      parameters:
+      - description: DNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Highlight DNode
+      tags:
+      - dnodes
+  /dnodes/{id}/rename/:
+    patch:
+      description: This endpoint renames a DNode.
+      operationId: rename
+      parameters:
+      - description: DNode ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: New DNode name
+                  type: string
+              type: object
+        x-originalParamName: DnodeRename
+      responses:
+        '204':
+          description: The DNode was renamed successfully
+      summary: Rename DNode
+      tags:
+      - dnodes
+components:
+  schemas:
+    DNode:
+      properties:
+        arch_type:
+          type: string
+        bios_version:
+          type: string
+          x-cli-header: BIOS Version
+        bmc_fw_version:
+          description: BMC FW version
+          type: string
+          x-cli-header: BMC FW version
+        bmc_state:
+          type: string
+        bmc_state_reason:
+          type: string
+        box_rdma_port:
+          description: port for internal use
+          type: integer
+        build:
+          type: string
+          x-cli-header: Build
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          type: integer
+        cpld:
+          type: string
+        data_rdma_port:
+          description: port for internal use
+          type: integer
+        data_tcp_port:
+          description: port for internal use
+          type: integer
+        dbox:
+          description: Parent DBox
+          type: string
+          x-cli-header: DBox
+        dbox_id:
+          type: integer
+        display_name:
+          type: string
+        dtray:
+          description: Parent DTray
+          type: string
+          x-cli-header: DTray
+        ebox:
+          description: Parent EBox
+          type: string
+          x-cli-header: EBox
+        ebox_id:
+          type: integer
+        enabled:
+          description: True if Dnode is enabled
+          type: boolean
+        guid:
+          type: string
+        host_label:
+          description: Host label, used to label container, e.g. 11.0.0.1-4000
+          type: string
+        hostname:
+          description: Host Name
+          type: string
+          x-cli-header: Hostname
+        id:
+          type: integer
+          x-cli-header: ID
+        ip:
+          description: The IP of the bond interface of ip1 and ip2.
+          type: string
+          x-cli-header: IP
+        ip1:
+          description: 1st of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP1
+        ip2:
+          description: 2nd of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP2
+        ipmi_ip:
+          description: IPMI IP
+          type: string
+          x-cli-header: IPMI IP
+        ipv6:
+          description: External IPv6 Address
+          type: string
+          x-cli-header: IPv6
+        is_primary:
+          description: Indicates if node is the primary, aka master, dnode.
+          type: boolean
+          x-cli-header: Primary
+        led_status:
+          type: string
+          x-cli-header: LED Status
+        mgmt_ip:
+          description: IP address for management access
+          type: string
+          x-cli-header: MGMT IP
+        name:
+          type: string
+          x-cli-header: Name
+        new_name:
+          type: string
+        os_version:
+          description: Node OS version
+          type: string
+          x-cli-header: OS
+        platform_rdma_port:
+          description: port for internal use
+          type: integer
+        platform_tcp_port:
+          description: port for internal use
+          type: integer
+        position:
+          type: string
+        rpm:
+          description: VAST Utils Version
+          type: string
+          x-cli-header: VAST Utils Version
+        sn:
+          description: The host serial number
+          type: string
+          x-cli-header: Serial
+        state:
+          type: string
+          x-cli-header: State
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

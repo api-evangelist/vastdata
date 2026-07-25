@@ -1,0 +1,1913 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Views API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Views
+paths:
+  /views/{id}/s3cors_configuration/:
+    delete:
+      description: This endpoint delete all S3 CORS rules for a given view.
+      operationId: delete_s3cors_configuration
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: CORS configuration deleted successfully
+      summary: Delete all S3 CORS rules for View
+      tags:
+      - Views
+    get:
+      description: This endpoint returns all S3 CORS rules for a given view.
+      operationId: read_s3cors_configuration
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: If true, return CORS rules in AWS camelCase format (aws_cors_rules). Default is false (cors_rules in snake_case).
+        in: query
+        name: aws_format
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  aws_cors_rules:
+                    description: List of S3 CORS rules in AWS camelCase format (when aws_format=true)
+                    items:
+                      $ref: '#/components/schemas/AWSS3CORSRuleData'
+                    type: array
+                  cors_rules:
+                    description: List of S3 CORS rules in snake_case format (default)
+                    items:
+                      $ref: '#/components/schemas/S3CORSRuleData'
+                    type: array
+                title: cors_rules
+                type: object
+          description: CORS configuration retrieved successfully
+      summary: Get S3 CORS configuration for View
+      tags:
+      - Views
+    post:
+      description: Creates S3 CORS rules for a view. Accepts either 'cors_rules' array directly or 'aws_cors_rules' array in AWS format. Exactly one of these fields must be provided.
+      operationId: create_s3cors_configuration
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              description: Exactly one of 'cors_rules' or 'aws_cors_rules' must be provided
+              properties:
+                aws_cors_rules:
+                  description: AWS format CORS rules array in camelCase (mutually exclusive with cors_rules)
+                  items:
+                    $ref: '#/components/schemas/AWSS3CORSRuleData'
+                  type: array
+                cors_rules:
+                  description: List of S3 CORS rules in snake_case format (mutually exclusive with aws_cors_rules)
+                  items:
+                    $ref: '#/components/schemas/S3CORSRuleData'
+                  type: array
+              type: object
+        x-originalParamName: S3CORSRuleCreateConfigurationParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/S3CORSRuleData'
+                title: cors_rules
+                type: array
+          description: CORS configuration created successfully
+      summary: Create multiple S3 CORS rules for View
+      tags:
+      - Views
+  /views/:
+    get:
+      description: This endpoint lists views. Parameters enable you to limit which views are returned based on various criteria.
+      operationId: views_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - description: Filter by View name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: Filter by Element Store path
+        in: query
+        name: path
+        schema:
+          type: string
+      - description: Filter by NFS export alias
+        in: query
+        name: alias
+        schema:
+          type: string
+      - description: Limit response by S3 bucket name
+        in: query
+        name: bucket
+        schema:
+          type: string
+      - description: Filter by share name
+        in: query
+        name: share
+        schema:
+          type: string
+      - description: Filter by view policy name
+        in: query
+        name: policy__name
+        schema:
+          type: string
+      - description: Filter by view policy ID
+        in: query
+        name: policy__id
+        schema:
+          type: string
+      - description: Filter response by cluster name.
+        in: query
+        name: cluster__name
+        schema:
+          type: string
+      - description: Limit response by cluster ID
+        in: query
+        name: cluster__id
+        schema:
+          type: string
+      - $ref: '#/components/parameters/NqnQP'
+      - $ref: '#/components/parameters/IsDefaultSubsystemQP'
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TenantNameIContainsQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/View'
+                title: Views
+                type: array
+          description: View details
+      summary: List Views
+      tags:
+      - Views
+    post:
+      description: This endpoint creates a view.
+      operationId: views_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                abac_tags:
+                  description: list of ABAC tags
+                  items:
+                    type: string
+                  type: array
+                abe_max_depth:
+                  description: Restricts ABE to a specified path depth. For example, if max depth is 3, ABE does not affect paths deeper than three levels. If not specified, ABE affects all path depths.
+                  type: integer
+                abe_protocols:
+                  description: The protocols for which Access-Based Enumeration (ABE) is enabled
+                  items:
+                    enum:
+                    - NFS
+                    - SMB
+                    - NFS4
+                    - S3
+                    type: string
+                  type: array
+                alias:
+                  description: Relevant if NFS is included in the protocols array. An alias for the mount path of an NFSv3 export. The alias must begin with a forward slash ('/') and must consist of only ASCII characters. If specified, the alias that can be used by NFSv3 clients to mount the view.
+                  type: string
+                allow_anonymous_access:
+                  description: not in use
+                  type: boolean
+                allow_s3_anonymous_access:
+                  description: Allow S3 anonymous access to S3 bucket. If true, anonymous requests are granted provided that the object ACL grants access to the All Users group (in S3 Native security flavor) or the permission mode bits on the requested file and directory path grant access permission to 'others' (in NFS security flavor).
+                  type: boolean
+                allowed_delegations:
+                  description: "Defines which types of NFSv4 file delegations are enabled for this view.\n- `NONE` means NFSv4 file delegations are disabled.\n- `READ` means read type NFSv4 file delegations can be granted to a client opening a file.\n- `WRITE` means write type NFSv4 file delegations can be granted to a client opening a file.\n- `READ_WRITE` means both read and write type NFSv4 file delegations\n  can be granted to a client opening a file.\n- `USE_TENANT_ALLOWED_DELEG` (default) means the view inherits the tenant’s `allowed_delegations`.\n\n**Important:** If the tenant has `DISABLED` delegations, this overrides the view entirely.\nThe effective delegations value for this view is forced to `NONE`, regardless of the view’s setting.\n"
+                  enum:
+                  - NONE
+                  - READ
+                  - WRITE
+                  - READ_WRITE
+                  - USE_TENANT_ALLOWED_DELEG
+                  type: string
+                  x-cli-header: Allowed NFSv4 File Delegations
+                auto_commit:
+                  description: 'Applicable if locking is enabled. Sets the auto-commit time for files that are locked automatically. These files are locked automatically after the auto-commit period elapses from the time the file is saved. Files locked automatically are locked for the default-retention-period, after which they are unlocked. Specify as an integer value followed by a letter for the unit (h - hours, d - days, y - years). Example: 2h (2 hours).'
+                  type: string
+                bucket:
+                  description: A name for the S3 bucket name. Must be specified if S3 bucket is specified in protocols.
+                  type: string
+                bucket_creators:
+                  description: For S3 endpoint views, specify a list of users, by user name, whose bucket create requests use this view. Any request to create an S3 bucket that is sent by S3 API by a specified user will use this S3 Endpoint view. Users should not be specified as bucket creators in more than one S3 Endpoint view. Naming a user as a bucket creator in two S3 Endpoint views will fail the creation of the view with an error.
+                  items:
+                    type: string
+                  type: array
+                bucket_creators_groups:
+                  description: 'For S3 endpoint views, specify a list of groups, by group name, whose bucket create requests use this view. Any request to create an S3 bucket that is sent by S3 API by a user who belongs to a group listed here will use this S3 Endpoint view. Take extra care not to duplicate bucket creators through groups: If you specify a group as a bucket creator group in one view and you also specify a user who belongs to that group as a bucket creator user in another view, view creation will not fail. Yet, there is a conflict between the two configurations and the selection of a view for configuring the user''s buckets is not predictable.'
+                  items:
+                    type: string
+                  type: array
+                bucket_logging:
+                  properties:
+                    destination_id:
+                      description: Specifies a view ID as the destination bucket for S3 bucket logging. The specified view must have the S3 bucket protocol enabled, must be on the same tenant as the view itself (the source view), must have the same bucket owner, and cannot be the same view as the source view. It also must not have S3 object locking enabled.  In bucket logging, a log entry is created in AWS log format for each request made to the source bucket. The log entries are periodically uploaded to the destination bucket. Configuring destination_id enables S3 bucket logging for the view.
+                      type: integer
+                      x-cli-header: Bucket logging destination id
+                    key_format:
+                      description: 'The format for the S3 bucket logging object keys. SIMPLE_PREFIX=[DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString], PARTITIONED_PREFIX_EVENT_TIME=[DestinationPrefix][SourceUsername]/[SourceBucket]/[YYYY]/[MM]/[DD]/[YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString] where the partitioning is done based on the time when the logged events occurred, PARTITIONED_PREFIX_DELIVERY_TIME=[DestinationPrefix][SourceUsername]/[SourceBucket]/[YYYY]/[MM]/[DD]/[YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString] where the partitioning is done based on the time when the log object has been delivered to the destination bucket. Default: SIMPLE_PREFIX'
+                      type: string
+                      x-cli-header: Bucket logging key format
+                    prefix:
+                      description: Specifies a prefix to be prepended to each key of a log object uploaded to the destination bucket. This prefix can be used to categorize log objects; for example, if you use the same destination bucket for multiple source buckets. The prefix can be up to 128 characters and must follow S3 object naming rules.
+                      type: string
+                      x-cli-header: Bucket logging prefix
+                  required:
+                  - destination_id
+                  type: object
+                bucket_owner:
+                  description: Specifies a user to be the bucket owner. Specify as user name. Must be specified if S3 Bucket is included in protocols.
+                  type: string
+                bucket_owner_type:
+                  enum:
+                  - USER
+                  - ROLE
+                  type: string
+                cluster_id:
+                  description: Cluster ID
+                  type: integer
+                create_dir:
+                  description: Create a directory at the specified path. Set to true if the specified path does not exist.
+                  type: boolean
+                create_dir_acl:
+                  description: Define ACL for the newly created dir
+                  items:
+                    description: ACE
+                    properties:
+                      grantee:
+                        description: type of grantee
+                        enum:
+                        - users
+                        - groups
+                        type: string
+                      group_type:
+                        enum:
+                        - NFS
+                        - S3
+                        - SMB
+                        type: string
+                      perm:
+                        description: The type of permission to grant to the grantee
+                        enum:
+                        - READ
+                        - CHANGE
+                        - FULL
+                        - NONE
+                        type: string
+                      sid_str:
+                        description: SID attribute of grantee. Specify this attribute or another for the grantee.
+                        type: string
+                      uid_or_gid:
+                        description: UID of user type grantee or GID of group type grantee. Specify this attribute or another attribute for the grantee.
+                        type: string
+                      vid_or_vaid:
+                        description: VID of user type grantee or VAID of group type grantee. This is a VAST user or group attribute. Specify this attribute or another attribute for the guarantee.
+                        type: string
+                    required:
+                    - grantee
+                    - perm
+                    type: object
+                  type: array
+                create_dir_mode:
+                  description: Unix permissions mode for the new dir
+                  type: integer
+                default_retention_period:
+                  description: 'Relevant if locking is enabled. Required if s3_locks_retention_mode is set to governance or compliance. Specifies a default retention period for objects in the bucket. If set, object versions that are placed in the bucket are automatically protected with the specified retention lock. Otherwise, by default, each object version has no automatic protection but can be configured with a retention period or legal hold. Specify as an integer followed by h for hours, d for days, m for months, or y for years. For example: 2d or 1y.'
+                  type: string
+                event_notifications:
+                  items:
+                    $ref: '#/components/schemas/EventNotification'
+                  type: array
+                files_retention_mode:
+                  description: Applicable if locking is enabled. The retention mode for new files. For views enabled for NFSv3 or SMB, if locking is enabled, files_retention_mode must be set to GOVERNANCE or COMPLIANCE. If the view is enabled for S3 and not for NFSv3 or SMB, files_retention_mode can be set to NONE. If GOVERNANCE, locked files cannot be deleted or changed. The Retention settings can be shortened or extended by users with sufficient permissions. If COMPLIANCE, locked files cannot be deleted or changed. Retention settings can be extended, but not shortened, by users with sufficient permissions. If NONE (S3 only), the retention mode is not set for the view; it is set individually for each object.
+                  type: string
+                indestructible_object_duration:
+                  description: Retention period for objects, in days. Each object in the bucket is protected from deletion, overwriting, renaming and metadata changes for the specified number of days after its creation date.
+                  type: integer
+                inherit_acl:
+                  description: Indicates whether the directory should inherit ACLs from its parent directory
+                  type: boolean
+                is_default_subsystem:
+                  description: Set to true to set view to be the default subsystem for block storage. There can be up to one default subsystem per tenant. The default subsystem is the default view selected when creating a block volume if no view is specified.
+                  type: boolean
+                is_indestructible_object_enabled:
+                  description: Set to true to enable indestructible object mode on the view. This is supported only if S3 is the only specified protocol. Other limitations also apply.
+                  type: boolean
+                is_kafka_encrypted_conn_allowed:
+                  description: True if encrypted connection is allowed for Kafka
+                  type: boolean
+                  x-cli-header: Allow encrypted connection
+                is_kafka_unencrypted_conn_allowed:
+                  description: True if unencrypted connection is allowed for Kafka
+                  type: boolean
+                  x-cli-header: Allow unencrypted connection
+                is_seamless:
+                  description: Supports seamless failover between replication peers by syncing file handles between the view and remote views on the replicated path on replication peers. This enables NFSv3 client users to retain the same mount point to the view in the event of a failover of the view path to a replication peer. This feature enables NFSv3 client users to retain the same mount point to the view in the event of a failover of the view path to a replication peer. Enabling this option may cause overhead and should only be enabled when the use case is relevant. To complete the configuration for seamless failover between any two peers, a seamless view must be created on each peer.
+                  type: boolean
+                kafka_encrypted_auth_mechanism:
+                  description: Authentication mechanism for encrypted connection
+                  enum:
+                  - NONE
+                  - SASL_PLAIN
+                  type: string
+                kafka_first_join_group_timeout_sec:
+                  description: Kafka first join group timeout, in seconds
+                  type: integer
+                  x-cli-header: Kafka First Join Group Timeout
+                kafka_is_authorization_required:
+                  description: True if authorization is required for Kafka
+                  type: boolean
+                  x-cli-header: Authorization required
+                kafka_rejoin_group_timeout_sec:
+                  description: Kafka rejoin group timeout, in seconds
+                  type: integer
+                  x-cli-header: Kafka Rejoin Group Timeout
+                kafka_unencrypted_auth_mechanism:
+                  description: Authentication mechanism for unencrypted connection
+                  enum:
+                  - NONE
+                  - SASL_PLAIN
+                  type: string
+                kafka_vip_pools:
+                  description: For Kafka-enabled views, an array of IDs of Virtual IP pools used to access event topics exposed by the view. The specified virtual IP pool must belong to the same tenant as the Kafka-enabled view. Must also not be a virtual IP pool that is excluded by the view policy's virtual IP pool association.
+                  items:
+                    type: integer
+                  type: array
+                locking:
+                  description: Set to true to enable object locking on a view. Object locking cannot be disabled after the view is created. Must be true if s3_versioning is true.
+                  type: boolean
+                max_retention_period:
+                  description: 'Applicable if locking is enabled. Sets a maximum retention period for files that are locked in the view. Files cannot be locked for longer than this period, whether they are locked manually (by setting the atime) or automatically, using auto-commit. Specify as an integer value followed by a letter for the unit (m - minutes, h - hours, d - days, y - years). Example: 2y (2 years).'
+                  type: string
+                min_retention_period:
+                  description: 'Applicable if locking is enabled. Sets a minimum retention period for files that are locked in the view. Files cannot be locked for less than this period, whether locked manually (by setting the atime) or automatically, using auto-commit. Specify as an integer value followed by a letter for the unit (h - hours, d - days, m - months, y - years). Example: 1d (1 day).'
+                  type: string
+                name:
+                  description: A name for the view
+                  type: string
+                nfs_interop_flags:
+                  description: Indicates whether the view should support simultaneous access to NFS3/NFS4/SMB protocols.
+                  enum:
+                  - BOTH_NFS3_AND_NFS4_INTEROP_DISABLED
+                  - ONLY_NFS3_INTEROP_ENABLED
+                  - ONLY_NFS4_INTEROP_ENABLED
+                  - BOTH_NFS3_AND_NFS4_INTEROP_ENABLED
+                  type: string
+                owner:
+                  description: The owner of the folder. Specify the owner using the attribute type set by owner_type. You can specify a group as the owner, as supported by SMB. To enable setting a group as the owner, set owner_is_group=true. In all cases, set owning_group also.
+                  type: string
+                owner_is_group:
+                  description: Set to true if passing a group as the owner of the folder. This feature is used to enable setting a group as the owner, as supported by SMB.
+                  type: boolean
+                owner_type:
+                  description: The type of attribute used to specify owner.
+                  type: string
+                owning_group:
+                  description: The owning group of the folder.
+                  type: string
+                owning_group_type:
+                  description: The type of attribute to use to specify the owning group of the folder.
+                  type: string
+                path:
+                  description: The full Element Store path to from the top level of the storage system on the cluster to the location that you want to expose. Begin with '/'. Do not include a trailing slash.
+                  type: string
+                policy_id:
+                  description: Every view must be attached to one view policy, which specifies further configurations. Specify by view policy ID which view policy should be used for the view.
+                  type: integer
+                protocols:
+                  description: Protocols enabled for access to the view. 'NFS' enables access from NFS version 3, 'NFS4' enables access from NFS version 4.1 and 4.2, S3' creates an S3 bucket on the view, 'ENDPOINT' creates an S3 endpoint, used as template for views created via S3 RPCs, DATABASE exposes the view as a VAST database. KAFKA enables events related to elements on the view path to be published to the VAST Event Broker. BLOCK exposes the view as a block storage subsystem.
+                  items:
+                    enum:
+                    - NFS
+                    - SMB
+                    - NFS4
+                    - S3
+                    - ENDPOINT
+                    - DATABASE
+                    - KAFKA
+                    - BLOCK
+                    type: string
+                  type: array
+                qos_policy:
+                  description: QoS Policy
+                  type: string
+                qos_policy_id:
+                  description: Associates a QoS policy with the view.
+                  type: integer
+                s3_locks_retention_mode:
+                  description: The retention mode for new object versions stored in this bucket. You can override this if you upload a new object version with an explicit retention mode and period.
+                  type: string
+                s3_object_ownership_rule:
+                  type: string
+                s3_unverified_lookup:
+                  description: S3 Unverified Lookup
+                  type: boolean
+                s3_versioning:
+                  description: Enable S3 Versioning if S3 bucket. Versioning cannot be disabled after the view is created.
+                  type: boolean
+                select_for_live_monitoring:
+                  description: Enables live monitoring on the view. Live monitoring can be enabled for up to ten views at one time. Analytics data for views is polled every 5 minutes by default and every 10 seconds with live monitoring.
+                  type: boolean
+                share:
+                  description: SMB share name. Must be specified if SMB is specified in protocols.
+                  type: string
+                share_acl:
+                  description: Share-level ACL details
+                  properties:
+                    acl:
+                      description: Share-level ACL
+                      items:
+                        description: Share-level ACE
+                        properties:
+                          fqdn:
+                            description: FQDN of the chosen grantee
+                            type: string
+                          grantee:
+                            description: grantee type
+                            enum:
+                            - users
+                            - groups
+                            type: string
+                          name:
+                            description: name of the chosen grantee
+                            type: string
+                          perm:
+                            description: Grantee’s permissions
+                            enum:
+                            - FULL
+                            - CHANGE
+                            - READ
+                            type: string
+                          sid_str:
+                            description: grantee’s SID
+                            type: string
+                          uid_or_gid:
+                            description: grantee’s uid (if user) or gid (if group)
+                            type: integer
+                        type: object
+                      type: array
+                    enabled:
+                      description: True if Share ACL is enabled on the view, otherwise False
+                      type: boolean
+                  type: object
+                smb_encryption_state:
+                  description: Defines the encryption level for SMB
+                  enum:
+                  - AVAILABLE
+                  - DESIRED
+                  - REQUIRED
+                  type: string
+                tenant_id:
+                  description: Associates the specified tenant with the view.
+                  type: integer
+                user_impersonation:
+                  $ref: '#/components/schemas/UserImpersonation'
+              required:
+              - path
+              - policy_id
+              type: object
+        x-originalParamName: ViewCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/View'
+          description: ''
+      summary: Create View
+      tags:
+      - Views
+  /views/close_smb_handle/:
+    delete:
+      description: This endpoint queries open smb filehandles.
+      operationId: close_smb_handle
+      parameters:
+      - description: File path
+        in: query
+        name: file_path
+        required: true
+        schema:
+          type: string
+      - description: Session ID
+        in: query
+        name: session_id
+        required: true
+        schema:
+          type: string
+      - description: Handle ID
+        in: query
+        name: session_handle_unique_id
+        required: true
+        schema:
+          type: string
+      - description: Tenant GUID
+        in: query
+        name: tenant_guid
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolHandle'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service temporarily unavailable, try again later.
+      summary: Close open SMB filehandles
+      tags:
+      - Views
+  /views/list_open_smb_handles/:
+    get:
+      description: This endpoint queries open smb filehandles.
+      operationId: list_open_smb_handles
+      parameters:
+      - description: File path
+        in: query
+        name: file_path
+        required: true
+        schema:
+          type: string
+      - description: Tenant GUID
+        in: query
+        name: tenant_guid
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolHandle'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service temporarily unavailable, try again later.
+      summary: Query open SMB filehandles
+      tags:
+      - Views
+  /views/list_seamless_peers/:
+    get:
+      description: This endpoint lists replication peers available for seamless replication.
+      operationId: list_seamless_peers
+      parameters:
+      - description: File path
+        in: query
+        name: file_path
+        required: true
+        schema:
+          type: string
+      - description: Tenant's globally unique identifier
+        in: query
+        name: tenant_guid
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SeamlessPeer'
+                title: SeamlessPeers
+                type: array
+          description: ''
+      summary: Get a list of available seamless peers
+      tags:
+      - Views
+  /views/{id}/:
+    delete:
+      description: This endpoint deletes a view.
+      operationId: views_delete
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Force View removal
+        in: query
+        name: force
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete View
+      tags:
+      - Views
+    get:
+      description: This endpoint returns details of a view.
+      operationId: views_read
+      parameters:
+      - description: The ID of the view to show
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/View'
+          description: ''
+      summary: Return Details of a View
+      tags:
+      - Views
+    patch:
+      description: This endpoint modifies a view.
+      operationId: views_partial_update
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                abe_max_depth:
+                  description: Restricts ABE to a specified path depth. For example, if max depth is 3, ABE does not affect paths deeper than three levels. If not specified, ABE affects all path depths.
+                  type: integer
+                abe_protocols:
+                  description: The protocols for which Access-Based Enumeration (ABE) is enabled
+                  items:
+                    enum:
+                    - NFS
+                    - SMB
+                    - NFS4
+                    - S3
+                    type: string
+                  type: array
+                alias:
+                  description: For NFS-enabled views, a view alias for NFSv3 clients.
+                  type: string
+                allow_anonymous_access:
+                  description: Not in use
+                  type: boolean
+                allow_s3_anonymous_access:
+                  description: Allow S3 anonymous access to S3 bucket. If true, anonymous requests are granted provided that the object ACL grants access to the All Users group (in S3 Native security flavor) or the permission mode bits on the requested file and directory path grant access permission to 'others' (in NFS security flavor).
+                  type: boolean
+                allowed_delegations:
+                  description: "Defines which types of NFSv4 file delegations are enabled for this view.\n- `NONE` means NFSv4 file delegations are disabled.\n- `READ` means read type NFSv4 file delegations can be granted to a client opening a file.\n- `WRITE` means write type NFSv4 file delegations can be granted to a client opening a file.\n- `READ_WRITE` means both read and write type NFSv4 file delegations\n  can be granted to a client opening a file.\n- `USE_TENANT_ALLOWED_DELEG` (default) means the view inherits the tenant’s `allowed_delegations`.\n\n**Important:** If the tenant has `DISABLED` delegations, this overrides the view entirely.\nThe effective delegations value for this view is forced to `NONE`, regardless of the view’s setting.\n"
+                  enum:
+                  - NONE
+                  - READ
+                  - WRITE
+                  - READ_WRITE
+                  - USE_TENANT_ALLOWED_DELEG
+                  type: string
+                  x-cli-header: Allowed NFSv4 File Delegations
+                auto_commit:
+                  description: 'Applicable if locking is enabled. Sets the auto-commit time for files that are locked automatically. These files are locked automatically after the auto-commit period elapses from the time the file is saved. Files locked automatically are locked for the default-retention-period, after which they are unlocked. Specify as an integer value followed by a letter for the unit (h - hours, d - days, y - years). Example: 2h (2 hours).'
+                  type: string
+                bucket:
+                  description: Not yet implemented
+                  type: string
+                bucket_creators:
+                  description: For S3 endpoint views, specify a list of users, by user name, whose bucket create requests use this view. Any request to create an S3 bucket that is sent by S3 API by a specified user will use this S3 Endpoint view. Users should not be specified as bucket creators in more than one S3 Endpoint view. Naming a user as a bucket creator in two S3 Endpoint views will fail the creation of the view with an error.
+                  items:
+                    type: string
+                  type: array
+                bucket_creators_groups:
+                  description: 'For S3 endpoint views, specify a list of groups, by group name, whose bucket create requests use this view. Any request to create an S3 bucket that is sent by S3 API by a user who belongs to a group listed here will use this S3 Endpoint view. Take extra care not to duplicate bucket creators through groups: If you specify a group as a bucket creator group in one view and you also specify a user who belongs to that group as a bucket creator user in another view, view creation will not fail. Yet, there is a conflict between the two configurations and the selection of a view for configuring the user''s buckets is not predictable.'
+                  items:
+                    type: string
+                  type: array
+                bucket_logging:
+                  properties:
+                    destination_id:
+                      description: Specifies a view ID as the destination bucket for S3 bucket logging. The specified view must have the S3 bucket protocol enabled, must be on the same tenant as the view itself (the source view), must have the same bucket owner, and cannot be the same view as the source view. It also must not have S3 object locking enabled.  In bucket logging, a log entry is created in AWS log format for each request made to the source bucket. The log entries are periodically uploaded to the destination bucket. Configuring destination_id enables S3 bucket logging for the view.
+                      type: integer
+                      x-cli-header: Bucket logging destination id
+                    key_format:
+                      description: 'The format for the S3 bucket logging object keys. SIMPLE_PREFIX=[DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString], PARTITIONED_PREFIX_EVENT_TIME=[DestinationPrefix][SourceUsername]/[SourceBucket]/[YYYY]/[MM]/[DD]/[YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString] where the partitioning is done based on the time when the logged events occurred, PARTITIONED_PREFIX_DELIVERY_TIME=[DestinationPrefix][SourceUsername]/[SourceBucket]/[YYYY]/[MM]/[DD]/[YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString] where the partitioning is done based on the time when the log object has been delivered to the destination bucket. Default: SIMPLE_PREFIX'
+                      type: string
+                      x-cli-header: Bucket logging key format
+                    prefix:
+                      description: Specifies a prefix to be prepended to each key of a log object uploaded to the destination bucket. This prefix can be used to categorize log objects; for example, if you use the same destination bucket for multiple source buckets. The prefix can be up to 128 characters and must follow S3 object naming rules.
+                      type: string
+                      x-cli-header: Bucket logging prefix
+                  required:
+                  - destination_id
+                  type: object
+                bucket_owner:
+                  description: S3 Bucket owner
+                  type: string
+                bucket_owner_type:
+                  enum:
+                  - USER
+                  - ROLE
+                  type: string
+                create_dir:
+                  description: Create a directory at the specified path
+                  type: boolean
+                default_retention_period:
+                  description: 'Relevant if locking is enabled. Required if s3_locks_retention_mode is set to governance or compliance. Specifies a default retention period for objects in the bucket. If set, object versions that are placed in the bucket are automatically protected with the specified retention lock. Otherwise, by default, each object version has no automatic protection but can be configured with a retention period or legal hold. Specify as an integer followed by h for hours, d for days, m for months, or y for years. For example: 2d or 1y.'
+                  type: string
+                event_notifications:
+                  items:
+                    $ref: '#/components/schemas/EventNotification'
+                  type: array
+                files_retention_mode:
+                  description: Applicable if locking is enabled. The retention mode for new files. For views enabled for NFSv3 or SMB, if locking is enabled, files_retention_mode must be set to GOVERNANCE or COMPLIANCE. If the view is enabled for S3 and not for NFSv3 or SMB, files_retention_mode can be set to NONE. If GOVERNANCE, locked files cannot be deleted or changed. The Retention settings can be shortened or extended by users with sufficient permissions. If COMPLIANCE, locked files cannot be deleted or changed. Retention settings can be extended, but not shortened, by users with sufficient permissions. If NONE (S3 only), the retention mode is not set for the view; it is set individually for each object.
+                  type: string
+                indestructible_object_duration:
+                  description: Retention period for objects, in days. Each object in the bucket is protected from deletion, overwriting, renaming and metadata changes for the specified number of days after its creation date.
+                  type: integer
+                is_default_subsystem:
+                  description: Set to true to set view to be the default subsystem for block storage. There can be up to one default subsystem per tenant. The default subsystem is the default view selected when creating a block volume if no view is specified.
+                  type: boolean
+                is_indestructible_object_enabled:
+                  description: Set to true to enable indestructible object mode on the view. This is supported only if S3 is the only specified protocol. Other limitations also apply.
+                  type: boolean
+                is_kafka_encrypted_conn_allowed:
+                  description: True if encrypted connection is allowed for Kafka
+                  type: boolean
+                  x-cli-header: Allow encrypted connection
+                is_kafka_unencrypted_conn_allowed:
+                  description: True if unencrypted connection is allowed for Kafka
+                  type: boolean
+                  x-cli-header: Allow unencrypted connection
+                is_seamless:
+                  description: Supports seamless failover between replication peers by syncing file handles between the view and remote views on the replicated path on replication peers. This enables NFSv3 client users to retain the same mount point to the view in the event of a failover of the view path to a replication peer. This feature enables NFSv3 client users to retain the same mount point to the view in the event of a failover of the view path to a replication peer. Enabling this option may cause overhead and should only be enabled when the use case is relevant. To complete the configuration for seamless failover between any two peers, a seamless view must be created on each peer.
+                  type: boolean
+                kafka_encrypted_auth_mechanism:
+                  description: Authentication mechanism for encrypted connection
+                  enum:
+                  - NONE
+                  - SASL_PLAIN
+                  type: string
+                kafka_first_join_group_timeout_sec:
+                  description: Kafka first join group timeout, in seconds
+                  type: integer
+                  x-cli-header: Kafka First Join Group Timeout
+                kafka_is_authorization_required:
+                  description: True if authorization is required for Kafka
+                  type: boolean
+                  x-cli-header: Authorization required
+                kafka_rejoin_group_timeout_sec:
+                  description: Kafka rejoin group timeout, in seconds
+                  type: integer
+                  x-cli-header: Kafka Rejoin Group Timeout
+                kafka_unencrypted_auth_mechanism:
+                  description: Authentication mechanism for unencrypted connection
+                  enum:
+                  - NONE
+                  - SASL_PLAIN
+                  type: string
+                locking:
+                  description: Set to true to enable object locking on an S3 bucket. Object locking cannot be disabled after the view is modified. Must be true if s3_versioning is true.
+                  type: boolean
+                max_retention_period:
+                  description: 'Applicable if locking is enabled. Sets a maximum retention period for files that are locked in the view. Files cannot be locked for longer than this period, whether they are locked manually (by setting the atime) or automatically, using auto-commit. Specify as an integer value followed by a letter for the unit (m - minutes, h - hours, d - days, y - years). Example: 2y (2 years).'
+                  type: string
+                min_retention_period:
+                  description: 'Applicable if locking is enabled. Sets a minimum retention period for files that are locked in the view. Files cannot be locked for less than this period, whether locked manually (by setting the atime) or automatically, using auto-commit. Specify as an integer value followed by a letter for the unit (h - hours, d - days, m - months, y - years). Example: 1d (1 day).'
+                  type: string
+                name:
+                  description: View name
+                  type: string
+                nfs_interop_flags:
+                  description: Indicates whether the view should support simultaneous access to NFS3/NFS4/SMB protocols.
+                  enum:
+                  - BOTH_NFS3_AND_NFS4_INTEROP_DISABLED
+                  - ONLY_NFS3_INTEROP_ENABLED
+                  - ONLY_NFS4_INTEROP_ENABLED
+                  - BOTH_NFS3_AND_NFS4_INTEROP_ENABLED
+                  type: string
+                path:
+                  description: View path
+                  type: string
+                policy_id:
+                  description: View policy ID. Specify to change which view policy the view uses. Every view must be attached to one view policy, which specifies further configurations.
+                  type: integer
+                protocols:
+                  description: Client protocols enabled for access to the view. 'NFS' enables access from NFS version 3, 'NFS4' enables access from NFS version 4.1 and 4.2, S3' creates an S3 bucket on the view, 'ENDPOINT' creates an S3 endpoint, used as template for views created via S3 RPCs, DATABASE exposes the view as a VAST database. KAFKA enables events related to elements on the view path to be published to the VAST Event Broker. BLOCK exposes the view as a block storage subsystem.
+                  items:
+                    enum:
+                    - NFS
+                    - SMB
+                    - NFS4
+                    - S3
+                    - ENDPOINT
+                    - DATABASE
+                    - KAFKA
+                    - BLOCK
+                    type: string
+                  type: array
+                qos_policy:
+                  description: QoS Policy
+                  type: string
+                qos_policy_id:
+                  description: Associates a QoS policy with the view.
+                  type: integer
+                s3_locks_retention_mode:
+                  description: The retention mode for new object versions stored in this bucket. You can override this if you upload a new object version with an explicit retention mode and period.
+                  type: string
+                s3_object_ownership_rule:
+                  type: string
+                s3_unverified_lookup:
+                  description: S3 Unverified Lookup
+                  type: boolean
+                s3_versioning:
+                  description: Enable S3 Versioning if S3 bucket. Versioning cannot be disabled after the view is modified.
+                  type: boolean
+                select_for_live_monitoring:
+                  description: Enables live monitoring on the view. Live monitoring can be enabled for up to ten views at one time. Analytics data for views is polled every 5 minutes by default and every 10 seconds with live monitoring.
+                  type: boolean
+                share:
+                  description: SMB share name
+                  type: string
+                share_acl:
+                  description: Share-level ACL details
+                  properties:
+                    acl:
+                      description: Share-level ACL
+                      items:
+                        description: Share-level ACE
+                        properties:
+                          fqdn:
+                            description: FQDN of the chosen grantee
+                            type: string
+                          grantee:
+                            description: grantee type
+                            enum:
+                            - users
+                            - groups
+                            type: string
+                          name:
+                            description: name of the chosen grantee
+                            type: string
+                          perm:
+                            description: Grantee’s permissions
+                            enum:
+                            - FULL
+                            - CHANGE
+                            - READ
+                            type: string
+                          sid_str:
+                            description: grantee’s SID
+                            type: string
+                          uid_or_gid:
+                            description: grantee’s uid (if user) or gid (if group)
+                            type: integer
+                        type: object
+                      type: array
+                    enabled:
+                      description: True if Share ACL is enabled on the view, otherwise False
+                      type: boolean
+                  type: object
+                smb_encryption_state:
+                  description: Defines the encryption level for SMB
+                  enum:
+                  - AVAILABLE
+                  - DESIRED
+                  - REQUIRED
+                  type: string
+                user_impersonation:
+                  $ref: '#/components/schemas/UserImpersonation'
+              type: object
+        x-originalParamName: ViewModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a View
+      tags:
+      - Views
+    put:
+      description: This endpoint modifies a view.
+      operationId: views_update
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                alias:
+                  description: NFS alias
+                  type: string
+                path:
+                  description: The Element Store path exposed by the view
+                  type: string
+              required:
+              - path
+              type: object
+        x-originalParamName: data
+      responses:
+        '200':
+          description: ''
+      summary: Modify View.
+      tags:
+      - Views
+  /views/{id}/check_permissions_templates/:
+    post:
+      description: 'This endpoint performs validation on a set of bulk permission update parameters and should be run before performing a bulk permission update (using the  /views/{id}/permissions_repair/ path). It also returns details of the owning users and groups of the template directory and, if applicable, template file, which will be applied to the target path if a bulk permission update is performed. For the template directory, the response verifies if the directory has default ACL, which is needed if no template file is specified. The target directory is validated for the following conditions: - Is not and does not contain the cluster’s audit directory. - Does not have views with s3_versioning=True under it. - No paths under it are used in a running global snapshot stream. - Is a directory. - The length of its path does not exceed 1024 characters.'
+      operationId: check_permissions_templates
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                target_path:
+                  description: Target dir path
+                  type: string
+                template_dir_path:
+                  description: Template dir path
+                  type: string
+                template_file_path:
+                  description: Template file path
+                  type: string
+                template_view_id:
+                  description: Template view ID
+                  type: integer
+              required:
+              - target_path
+              - template_view_id
+              - template_dir_path
+              type: object
+        x-originalParamName: ViewsCheckPermissionsTemplatesParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewsCheckPermissionsTemplatesResponse'
+          description: ''
+      summary: Check Permissions Templates Before Bulk Permission Update
+      tags:
+      - Views
+  /views/{id}/legal_hold/:
+    get:
+      description: This endpoint gets legal hold for provided path under specified view.
+      operationId: get_legal_hold
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Path to get legal hold
+        in: query
+        name: legal_hold_path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  value:
+                    description: Legal hold value
+                    type: string
+                type: object
+          description: ''
+      summary: Get legal hold
+      tags:
+      - Views
+    patch:
+      description: This endpoint sets or unsets legal hold from provided path under specified view.
+      operationId: change_legal_hold
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                legal_hold_path:
+                  description: Path to set/unset
+                  type: string
+                value:
+                  description: True to set, False to unset
+                  type: boolean
+              required:
+              - legal_hold_path
+              - value
+              type: object
+        x-originalParamName: ViewsChangeLegalHoldParams
+      responses:
+        '200':
+          description: ''
+      summary: Change legal hold
+      tags:
+      - Views
+  /views/{id}/nfs4_triggers/:
+    get:
+      operationId: view_get_triggers
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  enabled:
+                    description: Whether NFSv4 triggers are currently enabled for this view
+                    type: boolean
+                type: object
+          description: Returns the current triggers state for the view
+      summary: Get the current NFSv4 triggers state for a view
+      tags:
+      - Views
+    post:
+      operationId: view_register_triggers
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                enabled:
+                  description: Whether to enable (`true`) or disable (`false`) NFSv4 triggers
+                  type: boolean
+              required:
+              - enabled
+              type: object
+        x-originalParamName: ViewRegisterTriggersParams
+      responses:
+        '204':
+          description: NFSv4 triggers successfully updated
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: nfs_triggers_delegations_conflict
+                    type: string
+                  detail:
+                    example: 'Conflict: View cannot have both NFSv4 Triggers and NFS delegations enabled at the same time. To enable triggers, set `allowed_delegations` to NONE first.
+
+                      '
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+      summary: Register or unregister NFSv4 triggers for a view
+      tags:
+      - Views
+  /views/{id}/permissions_repair/:
+    delete:
+      description: This endpoint stops a bulk permission update.
+      operationId: stop_permissions_repair
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Stop Bulk Permission Update
+      tags:
+      - Views
+    post:
+      description: 'This endpoint starts a bulk permission update on a target path. In a bulk permission update, permissions of files and directory under the target path are overwritten with those of specified templates. A directory template is required.  If a template file is specified for a bulk permission update, VAST Cluster overwrites the permissions and ownership attributes of the target files and directories as follows: - Permissions of target files are overwritten with those of the template file. - Permissions of target directories are overwritten with those of the template directory. If no template file is specified, VAST Cluster overwrites the permissions and ownership attributes of the target directory with those of the template directory, and nested directories and files inherit permissions and ownership attributes from their parent. In this case, the template directory must have a default ACL on it.'
+      operationId: start_permissions_repair
+      parameters:
+      - description: View ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                target_path:
+                  description: Path to the directory where the files and directories that you want to update permissions for reside.
+                  type: string
+                template_dir_path:
+                  description: Path to the directory to retrieve permissions from and apply to the target path.
+                  type: string
+                template_file_path:
+                  description: Path to a file under template_dir_path that you want to use as a template for file permissions. If specified, permissions of target files are overwritten with those of the template file and permissions of target directories are overwritten with those of the template directory. If not specified, permissions and ownership attributes of the target directory are overwritten with those of the template directory, and nested directories and files inherit permissions and ownership attributes from their parent. In this case, the template directory must have a default ACL.
+                  type: string
+                template_view_id:
+                  description: The ID of a view that exposes template_dir_path. The view must be on the same tenant as the target path.
+                  type: integer
+              required:
+              - target_path
+              - template_view_id
+              - template_dir_path
+              type: object
+        x-originalParamName: PermissionsRepairParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Start Bulk Permission Update
+      tags:
+      - Views
+components:
+  schemas:
+    ViewsCheckPermissionsTemplatesResponse:
+      properties:
+        template_dir_path:
+          properties:
+            path:
+              description: Path to the template directory
+              type: string
+            stat:
+              properties:
+                has_default_acl:
+                  description: True if the directory has default ACL. When performing bulk permission update without specifying a template file, the template directory must have default ACL.
+                  type: boolean
+                is_directory:
+                  description: True if the path is a directory path
+                  type: boolean
+                owning_gid:
+                  description: Owning group's gid
+                  type: integer
+                owning_group:
+                  description: Owning group's group name
+                  type: string
+                owning_uid:
+                  description: Owning user's uid
+                  type: integer
+                owning_user:
+                  description: Owning user's user name
+                  type: string
+              type: object
+          type: object
+        template_file_path:
+          properties:
+            path:
+              description: Path to the template file
+              type: string
+            stat:
+              properties:
+                has_default_acl:
+                  description: N/A, reflects if the object has default ACL
+                is_directory:
+                  description: False if the path is a file path and not a directory
+                owning_gid:
+                  description: Owning group's gid
+                owning_group:
+                  description: Owning group's group name
+                owning_uid:
+                  description: Owning user's uid
+                owning_user:
+                  description: Owning user's user name
+              type: object
+          type: object
+      type: object
+    SeamlessPeer:
+      properties:
+        failure_reason:
+          description: Reason of failure during getting seamless info from the remote
+          type: string
+        name:
+          description: Name of seamless replication peer
+          type: string
+          x-cli-header: Peer name
+        remote_peer_name:
+          description: Remote peer name
+          type: string
+          x-cli-header: Cluster name
+        status:
+          description: The seamless status of the remote peer.
+          type: string
+          x-cli-header: Sync status
+        tenant_guid:
+          description: Globally unique identifier for the remote tenant
+          type: string
+        tenant_name:
+          description: Remote tenant name
+          type: string
+          x-cli-header: Tenant
+        view_name:
+          description: Remote view name
+          type: string
+        view_path:
+          description: Remote view path
+          type: string
+          x-cli-header: Path
+      type: object
+    AWSS3CORSRuleData:
+      properties:
+        AllowedHeaders:
+          description: CORS allowed headers
+          items:
+            type: string
+          type: array
+        AllowedMethods:
+          description: CORS allowed methods
+          items:
+            type: string
+          type: array
+        AllowedOrigins:
+          description: CORS allowed origins
+          items:
+            type: string
+          type: array
+        ExposeHeaders:
+          description: Headers the browser can expose to client-side
+          items:
+            type: string
+          type: array
+        MaxAgeSeconds:
+          description: Time in seconds to cache the preflight response
+          type: integer
+      required:
+      - AllowedOrigins
+      - AllowedMethods
+      type: object
+    ProtocolHandle:
+      properties:
+        error:
+          type: string
+        file_handle:
+          $ref: '#/components/schemas/FileHandle'
+        open_protocol_handles:
+          items:
+            $ref: '#/components/schemas/OpenProtocolHandle'
+          type: array
+      type: object
+    EventNotification:
+      description: S3 bucket Event Notification
+      properties:
+        broker_id:
+          description: Event broker ID
+          type: integer
+          x-cli-header: Event broker ID
+        name:
+          description: Event unique name
+          type: string
+          x-cli-header: Event name
+        prefix_filter:
+          description: Event prefix filter
+          type: string
+          x-cli-header: Event prefix filter
+        suffix_filter:
+          description: Event suffix filter
+          type: string
+          x-cli-header: Event suffix filter
+        topic:
+          description: Event topic
+          type: string
+          x-cli-header: Event topic
+        triggers:
+          description: Event triggers
+          items:
+            enum:
+            - S3_OBJECT_CREATED_ALL
+            - S3_OBJECT_CREATED_PUT
+            - S3_OBJECT_CREATED_POST
+            - S3_OBJECT_CREATED_COPY
+            - S3_OBJECT_CREATED_COMPLETE_MULTIPART_UPLOAD
+            - S3_OBJECT_REMOVED_ALL
+            - S3_OBJECT_REMOVED_DELETE
+            - S3_OBJECT_REMOVED_DELETE_MARKER_CREATED
+            - S3_OBJECT_TAGGING_ALL
+            - S3_OBJECT_TAGGING_PUT
+            - S3_OBJECT_TAGGING_DELETE
+            type: string
+          type: array
+          x-cli-header: Event triggers
+      type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    UserImpersonation:
+      properties:
+        enabled:
+          description: True if user impersonation is enabled
+          type: boolean
+        identifier:
+          description: Identifier of the user to impersonate
+          type: string
+        identifier_type:
+          description: The identifier type of the specified identifier.
+          type: string
+        login_name:
+          description: Full username of user to impersonate, including domain name
+          type: string
+        username:
+          description: The username of the user to impersonate
+          type: string
+      type: object
+    View:
+      properties:
+        abac_tags:
+          description: Comma separated tags.
+          items:
+            type: string
+          type: array
+          x-cli-header: ABAC tags
+        abe_max_depth:
+          description: Restricts ABE to a specified path depth. For example, if max depth is 3, ABE does not affect paths deeper than three levels. If not specified, ABE affects all path depths.
+          type: integer
+        abe_protocols:
+          description: The protocols for which Access-Based Enumeration (ABE) is enabled
+          items:
+            enum:
+            - NFS
+            - SMB
+            - NFS4
+            - S3
+            type: string
+          type: array
+        alias:
+          description: Alias for NFS export, must start with '/' and only ASCII characters are allowed. If configured, this supersedes the exposed NFS export path
+          type: string
+          x-cli-header: Alias
+        allow_anonymous_access:
+          description: Allow S3 anonymous access
+          type: boolean
+        allow_s3_anonymous_access:
+          description: Allow S3 anonymous access
+          type: boolean
+        allowed_delegations:
+          description: "Which types of NFSv4 file delegations are enabled for this view.\n- `NONE` means NFSv4 file delegations are disabled.\n- `READ` means read type NFSv4 file delegations can be granted to a client opening a file.\n- `WRITE` means write type NFSv4 file delegations can be granted to a client opening a file.\n- `READ_WRITE` means both read and write type NFSv4 file delegations\n  can be granted to a client opening a file.\n- `USE_TENANT_ALLOWED_DELEG` (default) means the view inherits the tenant’s `allowed_delegations`.\n\n**Important:** If the tenant has `DISABLED` delegations, this overrides the view entirely.\nThe effective delegations value for this view is forced to `NONE`, regardless of the view’s setting.\n"
+          enum:
+          - NONE
+          - READ
+          - WRITE
+          - READ_WRITE
+          - USE_TENANT_ALLOWED_DELEG
+          type: string
+          x-cli-header: Allowed NFSv4 File Delegations
+        auto_commit:
+          description: 'Applicable if locking is enabled. Sets the auto-commit time for files that are locked automatically. These files are locked automatically after the auto-commit period elapses from the time the file is saved. Files locked automatically are locked for the default-retention-period, after which they are unlocked. Specify as an integer value followed by a letter for the unit (h - hours, d - days, y - years). Example: 2h (2 hours).'
+          type: string
+        bucket:
+          description: S3 Bucket name
+          type: string
+          x-cli-header: Bucket
+        bucket_creators:
+          description: For S3 endpoint buckets, this is a list of users whose bucket create requests use this view.
+          items:
+            type: string
+          type: array
+          x-cli-header: Bucket Creators (Users)
+          x-format: users_or_deleted
+        bucket_creators_groups:
+          description: For S3 endpoint buckets, this is a list of groups whose bucket create requests use this view.
+          items:
+            type: string
+          type: array
+          x-cli-header: Bucket Creators (Groups)
+          x-format: groups_or_deleted
+        bucket_logging:
+          description: S3 bucket logging configuration. S3 bucket logging records S3 operations on a source bucket, with logs written to a different bucket configured as the destination. When the source bucket has S3 bucket logging enabled, VAST Cluster creates a log entry in AWS log format for each request made to the source bucket, and periodically uploads the log objects to a destination bucket. The format of log object keys can be configured to allow for date-based partitioning of log objects.
+          properties:
+            destination_id:
+              description: The ID of the S3 bucket view configured as the bucket logging destination, to store S3 bucket logs for the view. If destination_id is configured, S3 bucket logging is enabled.
+              type: integer
+              x-cli-header: Bucket logging destination id
+            key_format:
+              description: 'The format for log object keys. SIMPLE_PREFIX=[DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString], PARTITIONED_PREFIX_EVENT_TIME=[DestinationPrefix][SourceUsername]/[SourceBucket]/[YYYY]/[MM]/[DD]/[YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString] where the partitioning is done based on the time when the logged events occurred, PARTITIONED_PREFIX_DELIVERY_TIME=[DestinationPrefix][SourceUsername]/[SourceBucket]/[YYYY]/[MM]/[DD]/[YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString] where the partitioning is done based on the time when the log object has been delivered to the destination bucket. Default: SIMPLE_PREFIX'
+              enum:
+              - SIMPLE_PREFIX
+              - PARTITIONED_PREFIX_EVENT_TIME
+              - PARTITIONED_PREFIX_DELIVERY_TIME
+              type: string
+              x-cli-header: Bucket logging - S3 prefix key format
+            prefix:
+              description: A prefix that is prepended to each key of a log object uploaded to the destination bucket. This prefix can be used to categorize log objects if, for example, you use the same destination bucket for multiple source buckets. The prefix can be up to 128 characters and must follow S3 object naming rules.
+              type: string
+              x-cli-header: Bucket logging - S3 prefix key
+          type: object
+        bucket_owner:
+          description: S3 Bucket owner
+          type: string
+        bucket_owner_type:
+          type: string
+        bulk_permission_update_progress:
+          description: Progress
+          type: integer
+        bulk_permission_update_state:
+          description: State
+          type: string
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
+          description: Parent Cluster ID
+          type: integer
+        create_dir:
+          description: Creates the directory specified by the path
+          type: boolean
+        created:
+          format: date-time
+          type: string
+          x-cli-header: Created time
+          x-format: datetime2display
+        default_retention_period:
+          description: 'Default retention period for objects in the bucket. Required if s3_locks_retention_mode is set to governance or compliance. Object versions that are placed in the bucket are automatically protected with the specified retention for the specified amount of time. Otherwise, by default, each object version has no automatic protection but can be configured with a retention period or legal hold. Specify as an integer followed by h for hours, d for days, m for months, or y for years. For example: 2d or 1y.'
+          type: string
+        directory:
+          description: Create the directory if it does not exist
+          type: boolean
+        effective_allowed_delegations:
+          description: "The resolved NFSv4 delegation type that applies to the View.\n\nResolution rules:\n- If the tenant's allowed delegations is `DISABLED`, the effective value is forced to `NONE`.\n- Otherwise, if `allowed_delegations` is `USE_TENANT_ALLOWED_DELEG`,\n  the value is inherited from the Tenant's `allowed_delegations`.\n- In all other cases, the effective value equals this object's own `allowed_delegations`.\n\nThis field shows the final delegation behavior observed by clients.\n"
+          enum:
+          - NONE
+          - READ
+          - WRITE
+          - READ_WRITE
+          type: string
+          x-cli-header: Effective Allowed NFSv4 File Delegations
+        event_notifications:
+          items:
+            $ref: '#/components/schemas/EventNotification'
+          type: array
+        files_retention_mode:
+          description: Applicable if locking is enabled. The retention mode for new files. For views enabled for NFSv3 or SMB, if locking is enabled, files_retention_mode must be set to GOVERNANCE or COMPLIANCE. If the view is enabled for S3 and not for NFSv3 or SMB, files_retention_mode can be set to NONE. If GOVERNANCE, locked files cannot be deleted or changed. The Retention settings can be shortened or extended by users with sufficient permissions. If COMPLIANCE, locked files cannot be deleted or changed. Retention settings can be extended, but not shortened, by users with sufficient permissions. If NONE (S3 only), the retention mode is not set for the view; it is set individually for each object.
+          enum:
+          - NONE
+          - GOVERNANCE
+          - COMPLIANCE
+          type: string
+        guid:
+          type: string
+        has_bucket_logging_destination:
+          description: Has a destination bucket configured as a destination for S3 bucket logging
+          type: boolean
+          x-cli-header: Has bucket logging destination
+        has_bucket_logging_sources:
+          description: Is referenced by other S3 bucket views as the destination bucket for S3 bucket logging.
+          type: boolean
+          x-cli-header: Has bucket logging sources
+        has_nfs4_triggers:
+          description: Whether NFSv4 triggers are currently enabled for this view
+          type: boolean
+          x-cli-header: Has NFSv4 Triggers
+        id:
+          type: integer
+          x-cli-header: ID
+        ignore_oos:
+          type: boolean
+        indestructible_object_duration:
+          description: Retention period for indestructible object mode, in days.
+          type: integer
+          x-cli-header: Indestructible object duration
+        internal:
+          type: boolean
+        is_default_subsystem:
+          description: True if the view is the default subsystem for block storage. There can be up to one default subsystem per tenant. The default subsystem is the default view selected when creating a block volume if no view is specified.
+          type: boolean
+        is_indestructible_object_enabled:
+          description: True if indestructible object mode is enabled.
+          type: boolean
+          x-cli-header: Indestructible object
+        is_kafka_encrypted_conn_allowed:
+          description: True if encrypted connection is allowed for Kafka
+          type: boolean
+          x-cli-header: Allow encrypted connection
+        is_kafka_unencrypted_conn_allowed:
+          description: True if unencrypted connection is allowed for Kafka
+          type: boolean
+          x-cli-header: Allow unencrypted connection
+        is_remote:
+          type: boolean
+        is_seamless:
+          description: Supports seamless failover between replication peers by syncing file handles between the view and remote views on the replicated path on replication peers. This enables NFSv3 client users to retain the same mount point to the view in the event of a failover of the view path to a replication peer. This feature enables NFSv3 client users to retain the same mount point to the view in the event of a failover of the view path to a replication peer. Enabling this option may cause overhead and should only be enabled when the use case is relevant. To complete the configuration for seamless failover between any two peers, a seamless view must be created on each peer.
+          type: boolean
+          x-cli-header: Global Synchronization
+        kafka_encrypted_auth_mechanism:
+          description: Authentication mechanism for encrypted connection
+          enum:
+          - NONE
+          - SASL_PLAIN
+          type: string
+        kafka_first_join_group_timeout_sec:
+          description: Kafka first join group timeout in seconds
+          type: integer
+          x-cli-header: Kafka First Join Group Timeout
+        kafka_is_authorization_required:
+          description: True if authorization is required for Kafka
+          type: boolean
+          x-cli-header: Authorization required
+        kafka_rejoin_group_timeout_sec:
+          description: Kafka rejoin group timeout in seconds
+          type: integer
+          x-cli-header: Kafka Rejoin Group Timeout
+        kafka_unencrypted_auth_mechanism:
+          description: Authentication mechanism for unencrypted connection
+          enum:
+          - NONE
+          - SASL_PLAIN
+          type: string
+        kafka_vip_pools:
+          description: For Kafka-enabled views, a comma separated list of vip pool IDs used to access event topics exposed by the view. The specified virtual IP pool must belong to the same tenant as the Kafka-enabled view. Must also not be a virtual IP pool that is excluded by the view policy's virtual IP pool association.
+          items:
+            type: integer
+          type: array
+          x-cli-header: Kafka VIP Pools
+        locking:
+          description: Write Once Read Many (WORM) locking enabled
+          type: boolean
+          x-cli-header: WORM
+        logical_capacity:
+          description: Logical Capacity consumed by view
+          type: integer
+        max_retention_period:
+          description: 'Applicable if locking is enabled. Sets a maximum retention period for files that are locked in the view. Files cannot be locked for longer than this period, whether they are locked manually (by setting the atime) or automatically, using auto-commit. Specify as an integer value followed by a letter for the unit (m - minutes, h - hours, d - days, y - years). Example: 2y (2 years).'
+          type: string
+        min_retention_period:
+          description: 'Applicable if locking is enabled. Sets a minimum retention period for files that are locked in the view. Files cannot be locked for less than this period, whether locked manually (by setting the atime) or automatically, using auto-commit. Specify as an integer value followed by a letter for the unit (h - hours, d - days, m - months, y - years). Example: 1d (1 day).'
+          type: string
+        name:
+          type: string
+          x-cli-header: Name
+        nfs_interop_flags:
+          description: Indicates whether the view should support simultaneous access to NFS3/NFS4/SMB protocols.
+          enum:
+          - BOTH_NFS3_AND_NFS4_INTEROP_DISABLED
+          - ONLY_NFS3_INTEROP_ENABLED
+          - ONLY_NFS4_INTEROP_ENABLED
+          - BOTH_NFS3_AND_NFS4_INTEROP_ENABLED
+          type: string
+          x-cli-header: NFS-interop
+        nqn:
+          description: Applicable to subsystem (block protocol enabled) views. The subsystem's NVMe Qualified Name. A unique identifier used to identify the subsystem in NVMe operations.
+          type: string
+        path:
+          description: The Element Store path exposed by the view. Begin with a forward slash. Do not include a trailing slash
+          type: string
+          x-cli-header: Path
+        physical_capacity:
+          description: Physical Capacity consumed by view
+          type: integer
+        policy:
+          description: The name of the associated view policy
+          type: string
+          x-cli-header: Policy
+        policy_id:
+          description: The ID of the associated view policy
+          type: integer
+        protocols:
+          description: Protocols enabled for access to the view. 'NFS' enables access from NFS version 3, 'NFS4' enables access from NFS version 4.1 and 4.2, S3' creates an S3 bucket on the view, 'ENDPOINT' creates an S3 endpoint, used as template for views created via S3 RPCs, DATABASE exposes the view as a VAST database. KAFKA enables events related to elements on the view path to be published to the VAST Event Broker. BLOCK exposes the view as a block storage subsystem."
+          enum:
+          - NFS
+          - SMB
+          - NFS4
+          - S3
+          - ENDPOINT
+          - DATABASE
+          - KAFKA
+          - BLOCK
+          items:
+            type: string
+          type: array
+        qos_policy:
+          description: QoS Policy
+          type: string
+        qos_policy_id:
+          description: QoS Policy ID
+          type: integer
+        s3_locks_retention_mode:
+          description: The retention mode for new object versions stored in this bucket. You can override this if you upload a new object version with an explicit retention mode and period.
+          type: string
+        s3_object_ownership_rule:
+          type: string
+          x-cli-header: Enable ACLs
+        s3_unverified_lookup:
+          description: S3 Unverified Lookup
+          type: boolean
+        s3_versioning:
+          description: S3 Versioning enabled on S3 bucket.
+          type: boolean
+        select_for_live_monitoring:
+          description: True when the view has live monitoring enabled.  Views that have live monitoring enabled are polled for metrics every ten seconds. Otherwise, views are polled every five minutes.
+          type: boolean
+          x-cli-header: Live Monitoring
+        share:
+          description: Name of the SMB share. Must not include certain special characters.
+          type: string
+        share_acl:
+          description: Share-level ACL details
+          properties:
+            acl:
+              description: Share-level ACL
+              items:
+                description: Share-level ACE
+                properties:
+                  fqdn:
+                    description: FQDN of the chosen grantee
+                    type: string
+                  grantee:
+                    description: grantee type
+                    enum:
+                    - users
+                    - groups
+                    type: string
+                  name:
+                    description: name of the chosen grantee
+                    type: string
+                  perm:
+                    description: Grantee’s permissions
+                    enum:
+                    - FULL
+                    - CHANGE
+                    - READ
+                    type: string
+                  sid_str:
+                    description: grantee’s SID
+                    type: string
+                  uid_or_gid:
+                    description: grantee’s uid (if user) or gid (if group)
+                    type: integer
+                type: object
+              type: array
+            enabled:
+              description: True if Share ACL is enabled on the view, otherwise False
+              type: boolean
+          type: object
+        smb_encryption_state:
+          description: Defines the encryption level for SMB
+          enum:
+          - 'OFF'
+          - AVAILABLE
+          - DESIRED
+          - REQUIRED
+          type: string
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_name:
+          description: Tenant Name
+          type: string
+        title:
+          type: string
+        url:
+          description: The endpoint URL for API operations on the view
+          type: string
+        user_impersonation:
+          $ref: '#/components/schemas/UserImpersonation'
+      required:
+      - path
+      - policy_id
+      type: object
+    FileHandle:
+      properties:
+        clone_id:
+          type: string
+          x-cli-header: Clone ID
+        delete_pending:
+          type: string
+          x-cli-header: Pending delete
+          x-format: str2yes_no
+        ehandle:
+          type: string
+          x-cli-header: eHandle
+        has_any_lease:
+          type: string
+          x-cli-header: Has lease
+          x-format: str2yes_no
+        lease_break_in_progress:
+          type: string
+          x-cli-header: Lease break in progress
+          x-format: str2yes_no
+        nfs4_only:
+          type: string
+          x-cli-header: NFSv4.1 only
+          x-format: str2yes_no
+        number_open_protocol_handles:
+          type: integer
+          x-cli-header: Number of open protocol handles
+        stream_key:
+          description: Global access path ID
+          type: string
+      type: object
+    OpenProtocolHandle:
+      properties:
+        access_mask:
+          items:
+            type: string
+          type: array
+          x-cli-header: Access Mask (hex)
+        access_mask_display:
+          description: Human readable access mask string values
+          type: string
+          x-cli-header: Access Mask
+        client_ip:
+          type: string
+          x-cli-header: Client IP
+        file_mode:
+          type: string
+          x-cli-header: File Mode
+          x-format: pretty_enum
+        has_lease:
+          type: string
+          x-cli-header: Lease
+          x-format: str2yes_no
+        is_nfs_expirable:
+          type: string
+        nfs4_seqid:
+          type: string
+          x-cli-header: NFSv4.1 Sequence ID
+        nfs_expiration_time:
+          type: string
+        proto_type:
+          type: string
+          x-cli-header: Protocol
+          x-format: pretty_protocol
+        session_id:
+          type: string
+          x-cli-header: Session ID
+        share_access:
+          type: string
+          x-cli-header: Share Access
+        unique_id:
+          type: string
+          x-cli-header: Unique ID
+        username:
+          type: string
+      type: object
+    S3CORSRuleData:
+      properties:
+        allowed_headers:
+          description: CORS allowed headers
+          items:
+            type: string
+          type: array
+        allowed_methods:
+          description: CORS allowed methods
+          items:
+            type: string
+          type: array
+        allowed_origins:
+          description: CORS allowed origins
+          items:
+            type: string
+          type: array
+        expose_headers:
+          description: Headers the browser can expose to client-side
+          items:
+            type: string
+          type: array
+        max_age_seconds:
+          description: Time in seconds to cache the preflight response
+          type: integer
+      required:
+      - allowed_origins
+      - allowed_methods
+      type: object
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    TenantNameIContainsQP:
+      description: Tenant name to filter by
+      in: query
+      name: tenant_name__icontains
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    IsDefaultSubsystemQP:
+      description: Filter by whether View is a default Subsystem.
+      in: query
+      name: is_default_subsystem
+      schema:
+        type: boolean
+    NqnQP:
+      description: NVMe Qualified Name to filter by.
+      in: query
+      name: nqn
+      schema:
+        type: string
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

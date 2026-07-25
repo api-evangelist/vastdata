@@ -1,0 +1,258 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory schemas API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The schemas endpoint enables you to manage the schemas in a VAST database.
+  name: schemas
+paths:
+  /schemas/:
+    get:
+      description: This endpoint lists Database Schemas.
+      operationId: schemas_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/TabularPageSize'
+      - $ref: '#/components/parameters/TenantIdQP'
+      - description: Filter by database in which the schemas reside
+        in: query
+        name: database_name
+        schema:
+          type: string
+      - description: Get list of schemas by schema_name
+        in: query
+        name: schema_name
+        schema:
+          type: string
+      - $ref: '#/components/parameters/TabularNameQP'
+      - $ref: '#/components/parameters/TabularNameStartswithQP'
+      - $ref: '#/components/parameters/TabularCountOnlyQP'
+      - description: 'Can be true or false.
+
+          If this by_level is true, the VMS will provide a list of all schemas of only one level.
+
+          To get the next level, make another request with the name of the parent scheme
+
+          '
+        in: query
+        name: schema_name__startswith
+        schema:
+          type: string
+      - description: 'Can be true or false.
+
+          If this by_level is true, the VMS will provide a list of all schemas of only one level.
+
+          to get the next level, need to make another request with the name of the parent scheme
+
+          '
+        in: query
+        name: by_level
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Schema'
+                title: Schemas
+                type: array
+          description: Database Schemas
+      summary: List Database Schemas
+      tags:
+      - schemas
+    post:
+      description: This endpoint creates a database schema
+      operationId: schemas_create
+      requestBody:
+        $ref: '#/components/requestBodies/SchemaCreateParamsBody'
+      responses:
+        '201':
+          description: OK
+      summary: Create a Database Schema
+      tags:
+      - schemas
+  /schemas/delete/:
+    delete:
+      description: This endpoint deletes a database schema.
+      operationId: schemas_delete
+      requestBody:
+        $ref: '#/components/requestBodies/SchemaDeleteParamsBody'
+      responses:
+        '204':
+          description: OK
+      summary: Delete Schema
+      tags:
+      - schemas
+  /schemas/rename/:
+    patch:
+      description: This endpoint renames a schema. The name must meet the requirements for S3 object names.
+      operationId: schemas_rename
+      requestBody:
+        $ref: '#/components/requestBodies/SchemaRenameParamsBody'
+      responses:
+        '204':
+          description: OK
+      summary: Rename a database schema
+      tags:
+      - schemas
+  /schemas/show/:
+    get:
+      description: This endpoint shows a Database Schema.
+      operationId: schemas_show
+      parameters:
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TabularDatabaseNameQP'
+      - $ref: '#/components/parameters/TabularNameRequiredQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schema'
+          description: Database Schema
+      summary: Show a Database Schema
+      tags:
+      - schemas
+components:
+  parameters:
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    TabularNameStartswithQP:
+      description: Getting list of objects by prefix match
+      in: query
+      name: name__startswith
+      schema:
+        type: string
+  requestBodies:
+    SchemaRenameParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/SchemaRenameParams'
+      x-originalParamName: SchemaRenameParamsBody
+    SchemaDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/SchemaDeleteParams'
+      x-originalParamName: SchemaDeleteParamsBody
+    SchemaCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/SchemaCreateParams'
+      x-originalParamName: SchemaCreateParamsBody
+  schemas:
+    SchemaRenameParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
+      - properties:
+          new_name:
+            description: New name of the Schema
+            type: string
+          new_schema_name:
+            description: New name of the Schema (deprecated since 5.0)
+            type: string
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        required:
+        - new_name
+        type: object
+    TabularDatabaseHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - database_name
+      - name
+      type: object
+    SchemaDeleteParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
+      - properties:
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
+    Schema:
+      allOf:
+      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
+      - properties:
+          properties:
+            description: Misc properties of the Schema
+            type: string
+        type: object
+    SchemaCreateParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
+      - properties:
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

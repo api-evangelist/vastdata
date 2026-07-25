@@ -1,0 +1,333 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory replicationstreams API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: This path enables you to manage replication streams. Note that for the general case, replication streams belong to protected paths and are managed as part of protected path management. However, for the use case where you configure replication to an S3 replication peer and to an aync replication peer on the same path, use this path instead.
+  name: replicationstreams
+paths:
+  /replicationstreams/:
+    get:
+      description: This endpoint presents replication streams. Replication streams are associated with protected paths. Each replication stream replicates data on the protected path to a specific replication peer.
+      operationId: replicationstreams_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - in: query
+        name: state
+        schema:
+          type: string
+      - in: query
+        name: source_dir
+        schema:
+          type: string
+      - in: query
+        name: replication_policy__name
+        schema:
+          type: string
+      - description: start/pause replication stream
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: start/pause replication stream
+        in: query
+        name: enabled
+        schema:
+          type: string
+      - description: orders by some field
+        in: query
+        name: ordering
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ReplicationStream'
+                title: Replication stream
+                type: array
+          description: Replication stream information
+      summary: List Replication Streams
+      tags:
+      - replicationstreams
+    post:
+      description: This path enables you to create a replication stream. It is available for cases where you wish to configure replication to an S3 replication peer on the same path as you configure async replication. Otherwise, use /protectedpaths/{id}/add_stream/ to add a stream to a protected path.
+      operationId: replicationstreams_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: Enable/pause replication stream
+                  type: boolean
+                is_manual_priority_score:
+                  description: Indicates whether the priority score is set manually by a user.
+                  type: boolean
+                name:
+                  type: string
+                  x-cli-header: Name
+                priority_score:
+                  description: Indicates how close replication is to missing its RPO in relation to their current interval. A lower score means a higher priority.
+                  type: number
+                protected_path_id:
+                  description: protected path id
+                  type: string
+                protection_policy_id:
+                  description: Protection policy id
+                  type: string
+                remote_tenant_guid:
+                  description: Remote tenant GUID of the remote path. If none given, the default tenant will be set
+                  type: string
+                remote_tenant_name:
+                  description: remote tenant name
+                  type: string
+                source_dir:
+                  description: Path to replicate
+                  type: string
+                target_exported_dir:
+                  description: path to replicate to
+                  type: string
+                tenant_id:
+                  description: Local tenant ID of the local path. If none given, the default tenant will be set
+                  type: number
+                view_replication_enabled:
+                  description: Manages view replication
+                  type: boolean
+              required:
+              - name
+              type: object
+        x-originalParamName: ReplicationStreamCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationStream'
+          description: ''
+      summary: Create Replication Stream
+      tags:
+      - replicationstreams
+  /replicationstreams/{id}/:
+    delete:
+      description: This endpoint deletes a replication stream.
+      operationId: replicationstreams_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete a Replication Stream
+      tags:
+      - replicationstreams
+    get:
+      description: This path returns details of a replication stream.
+      operationId: replicationstreams_read
+      parameters:
+      - description: index of replication stream
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationStream'
+          description: ''
+      summary: Return Details of a Replication Stream
+      tags:
+      - replicationstreams
+    patch:
+      description: This endpoint modifies a replication stream.
+      operationId: replicationstreams_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                enabled:
+                  description: Enable/pause replication stream
+                  type: boolean
+                is_manual_priority_score:
+                  description: Indicates whether the priority score is set manually by a user.
+                  type: boolean
+                name:
+                  type: string
+                  x-cli-header: Name
+                priority_score:
+                  description: Indicates how close replication is to missing its RPO in relation to their current interval. A lower score means a higher priority.
+                  type: number
+                protection_policy_id:
+                  description: Protection policy id
+                  type: string
+                replication_policy_id:
+                  description: replication policy id
+                  type: string
+                source_dir:
+                  description: Path to replicate
+                  type: string
+                state:
+                  description: State
+                  type: string
+              type: object
+        x-originalParamName: ReplicationStreamModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a Replication Stream
+      tags:
+      - replicationstreams
+components:
+  parameters:
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  schemas:
+    ReplicationStream:
+      properties:
+        bw:
+          description: Replication Bandwidth
+          format: int64
+          type: integer
+          x-cli-header: Bandwidth
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-raw-units: Bytes/s
+        capabilities:
+          description: Indicates if the replication stream is a global access stream or an async replication stream.
+          type: string
+          x-cli-header: Mode
+        enabled:
+          description: start/pause replication
+          type: boolean
+        guid:
+          description: guid
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        internal:
+          type: boolean
+        is_manual_priority_score:
+          description: Indicates whether the priority score is set manually by a user.
+          type: boolean
+        name:
+          type: string
+          x-cli-header: Name
+        priority_number:
+          description: Priority of replication job. A lower number means higher priority.
+          type: integer
+        priority_score:
+          description: Indicates how close replication is to missing its RPO in relation to their current interval. A lower score means a higher priority.
+          type: number
+          x-format: trim_three_digits_after_dot
+        protected_path_guid:
+          description: protected path guid
+          type: string
+        protected_path_id:
+          description: protected path id
+          type: integer
+        protection_policy:
+          description: protection policy id
+          type: string
+        remote_target_id:
+          description: Remote target ID for streams with GN capability.
+          type: integer
+        remote_target_name:
+          description: Remote target name for streams with GN capability.
+          type: string
+        remote_tenant_guid:
+          description: remote tenant guid
+          type: string
+        remote_tenant_name:
+          description: remote tenant name
+          type: string
+        replication_group_id:
+          description: replication group id
+          type: integer
+        replication_policy:
+          description: replication policy id
+          type: string
+        role:
+          description: current role in the replication
+          type: string
+        source_dir:
+          description: path to replicate
+          type: string
+        state:
+          description: state
+          enum:
+          - Failed
+          - DELETED_ON_PEER
+          - N/A
+          - INVALID
+          - DELETE_PENDING
+          - Active
+          - Suspended
+          - Syncing
+          - Finalizing
+          - Initializing
+          - Initial Scan
+          - Initial Sync
+          - Initial Sync Suspended
+          - Writable
+          - Blocked
+          - Sync Failed
+          - INITIAL_SYNC
+          - INCREMENTAL_SYNC
+          - INCREMENTAL_SYNC_SUSPENDED
+          - ERROR_DEPRECATED
+          - LOCAL_ACTIVE
+          - INITIAL_SCAN
+          - DELETE_READY
+          - INITIAL_SYNC_SUSPENDED
+          - LOCAL_SUSPENDED
+          - PENDING_SYNC
+          - PENDING_CLEANUP
+          type: string
+        view_replication_enabled:
+          description: Indicates if view replication is enabled
+          type: boolean
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

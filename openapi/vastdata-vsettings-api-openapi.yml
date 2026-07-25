@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vsettings API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: vsettings
+paths:
+  /clusters/{id}/vsettings/:
+    delete:
+      operationId: cluster_vsettings_delete
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteVsettingParams'
+        x-originalParamName: DeleteVsettingParams
+      responses:
+        '204':
+          description: ''
+      summary: Delete Cluster VSetting by key
+      tags:
+      - vsettings
+    get:
+      operationId: cluster_vsettings
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - $ref: '#/components/parameters/VsettingKey'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArbitraryStringsObject'
+          description: ''
+      summary: Show or list cluster vsettings
+      tags:
+      - vsettings
+    patch:
+      operationId: cluster_vsettings_partial_update
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyVsettingsParams'
+        x-originalParamName: ModifyVsettingsParams
+      responses:
+        '204':
+          description: ''
+      summary: Modify Cluster VSettings
+      tags:
+      - vsettings
+components:
+  parameters:
+    ClusterId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    VsettingKey:
+      description: VSetting key
+      in: query
+      name: key
+      schema:
+        type: string
+  schemas:
+    DeleteVsettingParams:
+      properties:
+        key:
+          description: vsetting key
+          type: string
+      required:
+      - key
+      type: object
+    ModifyVsettingsParams:
+      properties:
+        vsettings:
+          $ref: '#/components/schemas/ArbitraryStringsObject'
+      required:
+      - vsettings
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

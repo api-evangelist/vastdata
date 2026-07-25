@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory psus API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: PSUs represent power supply units on the CBoxes and DBoxes.
+  name: psus
+paths:
+  /psus/:
+    get:
+      description: This endpoint lists PSUs.
+      operationId: psus_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by PSU state
+        in: query
+        name: state
+        schema:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          - up
+          - degraded
+          - disconnected_cable
+          - failed
+          - ac_lost
+          - predictive_failure
+          - configuration_error
+          - psu_out
+          - PSU_not_present
+          type: string
+      - description: Filter by PSU serial number
+        in: query
+        name: sn
+        schema:
+          type: string
+      - description: Filter by PSU model
+        in: query
+        name: model
+        schema:
+          type: string
+      - description: Filter by parent Box name
+        in: query
+        name: box__name
+        schema:
+          type: string
+      - description: Filter by parent Box ID
+        in: query
+        name: box__id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PSU'
+                title: PSUs
+                type: array
+          description: PSU information
+      summary: List PSUs
+      tags:
+      - psus
+  /psus/{id}/:
+    get:
+      description: This endpoint returns details of a specified PSU.
+      operationId: psus_read
+      parameters:
+      - description: PSU ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PSU'
+          description: ''
+      summary: Return Details of One PSU
+      tags:
+      - psus
+components:
+  schemas:
+    PSU:
+      properties:
+        box:
+          description: Parent Box name
+          type: string
+          x-cli-header: Box
+        box_id:
+          description: ID of parent CBox or DBox
+          type: integer
+        box_uid:
+          description: Parent  CBox or DBox UID
+          type: string
+        cbox_id:
+          description: Parent CBox ID, if applicable
+          type: integer
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          description: Parent cluster ID
+          type: integer
+        dbox_id:
+          description: Parent DBox ID, if applicable
+          type: integer
+        display_name:
+          description: Name
+          type: string
+        fw_version:
+          description: FW version
+          type: string
+          x-cli-header: Firmware-Version
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        location:
+          description: PSU location
+          type: string
+        model:
+          description: PSU model
+          type: string
+        name:
+          description: Name
+          type: string
+          x-cli-header: Name
+        sn:
+          description: PSU serial number
+          type: string
+          x-cli-header: Serial-Number
+        state:
+          description: PSU state
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          - up
+          - degraded
+          - disconnected_cable
+          - failed
+          - ac_lost
+          - predictive_failure
+          - configuration_error
+          - psu_out
+          - PSU_not_present
+          type: string
+        title:
+          description: Title comprising name, parent CBox or DBox name, and location"
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

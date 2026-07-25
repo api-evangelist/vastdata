@@ -1,0 +1,530 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory vastcatalogconfig API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The bigcatalogconfig endpoint enables you to manage the configuration of VAST Catalog and to query the VAST Catalog. VAST Catalog is a database that indexes metadata attributes of all data on the cluster, enabling high performance querying of files, objects and directories based on classification of data according to attributes used by multiple access protocols. VAST catalog indexes the metadata attributes of the cluster's data from periodic snapshots of the cluster's data. The database is stored on a dedicated S3 bucket on the cluster.
+  name: vastcatalogconfig
+paths:
+  /bigcatalogconfig/:
+    get:
+      description: This endpoint returns a list of VAST Catalog configurations.
+      operationId: vastcatalogconfig_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VastCatalogConfig'
+                title: BigCatalogConfig
+                type: array
+          description: VAST Catalog configuration
+      summary: List VAST Catalog Configuration
+      tags:
+      - vastcatalogconfig
+    post:
+      description: This endpoint creates a schedule for periodic snapshot creation for VAST Catalog, with retention periods for the periodic snapshots and for the VAST Catalog table.
+      operationId: vastcatalogconfig_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                frames:
+                  description: Defines a schedule for periodic snapshot creation for VAST Catalog, with retention periods for the periodic snapshots and for the VAST Catalog table.
+                  example: every 90m start-at 2025-07-27 20:10:35 keep-local 10h keep-remote 30d
+                  items:
+                    $ref: '#/components/schemas/Frame'
+                  type: object
+                  x-cli-header: Schedule
+              required:
+              - frames
+              type: object
+        x-originalParamName: VastCatalogConfigCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VastCatalogConfig'
+          description: OK
+      summary: Create a VAST Catalog Configuration
+      tags:
+      - vastcatalogconfig
+  /bigcatalogconfig/columns/:
+    get:
+      operationId: vastcatalogconfig_columns
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Column'
+                type: array
+          description: OK
+      summary: Return VAST Catalog columns
+      tags:
+      - vastcatalogconfig
+  /bigcatalogconfig/query_data/:
+    get:
+      operationId: vastcatalogconfig_get_query_data
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Ordering'
+      - $ref: '#/components/parameters/VastCatalogPathQP'
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/VastCatalogSnapshotNameQP'
+      - $ref: '#/components/parameters/VastCatalogFieldsQP'
+      - $ref: '#/components/parameters/VastDBFiltersQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryDataOutputSchema'
+          description: OK
+      summary: Queries data based on provided params
+      tags:
+      - vastcatalogconfig
+    post:
+      operationId: vastcatalogconfig_query_data
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Ordering'
+      requestBody:
+        $ref: '#/components/requestBodies/VastCatalogConfigQueryData'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryDataOutputSchema'
+          description: OK
+      summary: Query VAST Catalog
+      tags:
+      - vastcatalogconfig
+  /bigcatalogconfig/stats/:
+    get:
+      operationId: vastcatalogconfig_stats
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats'
+          description: OK
+      summary: Return VAST Catalog Stats
+      tags:
+      - vastcatalogconfig
+  /bigcatalogconfig/{id}/:
+    delete:
+      description: This endpoint deletes the VAST Catalog configuration.
+      operationId: vastcatalogconfig_delete
+      parameters:
+      - description: Vastcatalogconfig ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: OK
+      summary: Delete VAST Catalog Configuration.
+      tags:
+      - vastcatalogconfig
+    get:
+      description: This endpoint returns details of the VAST Catalog configuration.
+      operationId: vastcatalogconfig_read
+      parameters:
+      - description: Vastcatalogconfig ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VastCatalogConfig'
+          description: OK
+      summary: Return VAST Catalog Configuration
+      tags:
+      - vastcatalogconfig
+    patch:
+      operationId: vastcatalogconfig_modify
+      parameters:
+      - description: VAST Catalog Configuration ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                enable:
+                  description: Enablement status of VAST Catalog
+                  type: boolean
+                frames:
+                  description: Defines a schedule for periodic snapshot creation for VAST Catalog, with retention periods for the periodic snapshots and for the VAST Catalog table.
+                  example: every 90m start-at 2025-07-27 20:10:35 keep-local 10h keep-remote 30d
+                  type: object
+                  x-cli-header: Schedules
+                splits:
+                  description: The number of splits used for query_data scanning speed
+                  type: integer
+              type: object
+        x-originalParamName: VastCatalogConfigModifyParams
+      responses:
+        '200':
+          description: OK
+      summary: Modify VAST Catalog Configuration
+      tags:
+      - vastcatalogconfig
+components:
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    VastCatalogPathQP:
+      description: Target source path
+      in: query
+      name: path
+      required: true
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    VastDBFiltersQP:
+      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+      in: query
+      name: filters
+      schema:
+        type: string
+    VastCatalogFieldsQP:
+      description: Defines which fields should be displayed
+      in: query
+      name: fields
+      schema:
+        default:
+        - parent_path
+        - name
+        - size
+        - mtime
+        - owner_name
+        - uid
+        - owner_sid
+        - group_owner_name
+        - gid
+        - group_owner_sid
+        items:
+          type: string
+        type: array
+    Ordering:
+      in: query
+      name: ordering
+      schema:
+        items:
+          type: string
+        type: array
+    Limit:
+      in: query
+      name: limit
+      schema:
+        default: 1000
+        type: integer
+    VastCatalogSnapshotNameQP:
+      description: The name of the snapshot, the latest version is taken by default
+      in: query
+      name: snapshot
+      schema:
+        type: string
+  requestBodies:
+    VastCatalogConfigQueryData:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/VastCatalogQueryDataInputSchema'
+      x-originalParamName: VastCatalogConfigQueryData
+  schemas:
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
+    QueryDataOutputSchema:
+      properties:
+        count:
+          description: Number of rows in data
+          type: integer
+        next:
+          description: Link to the next page
+          type: string
+        prop_list:
+          description: List of column names
+          items:
+            type: string
+          type: array
+        results:
+          description: List of query data rows
+          items:
+            type: string
+          type: array
+      type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+    BaseQueryDataInputSchema:
+      properties:
+        fields:
+          description: Defines which fields should be displayed
+          items:
+            type: string
+          type: array
+        filters:
+          description: Defines the filters
+          type: object
+      required:
+      - filters
+      type: object
+    VastCatalogConfig:
+      allOf:
+      - $ref: '#/components/schemas/ProtectionPolicy'
+      - properties:
+          enable:
+            description: Flag indicating the status of vast catalog config
+            type: boolean
+    Stats:
+      properties:
+        count_columns:
+          type: integer
+        count_rows:
+          type: integer
+      type: object
+    VastCatalogQueryDataInputSchema:
+      allOf:
+      - $ref: '#/components/schemas/BaseQueryDataInputSchema'
+      - properties:
+          fields:
+            default:
+            - parent_path
+            - name
+            - size
+            - mtime
+            - owner_name
+            - uid
+            - owner_sid
+            - group_owner_name
+            - gid
+            - group_owner_sid
+            description: Defines which fields should be displayed
+            items:
+              type: string
+            type: array
+          path:
+            description: Target source path
+            type: string
+          snapshot:
+            description: The name of the snapshot, the latest version is taken by default
+            type: string
+          tenant_id:
+            default: 0
+            description: Tenant ID
+            type: integer
+        required:
+        - path
+        type: object
+    RemoteTenant:
+      properties:
+        guid:
+          description: Remote Tenant guid
+          type: string
+        name:
+          description: Remote Tenant name
+          type: string
+      type: object
+    ProtectionPolicy:
+      properties:
+        clone_type:
+          description: Specify the type of data protection. CLOUD_REPLICATION is S3 backup. LOCAL means local snapshots without replication.
+          enum:
+          - LOCAL
+          - NATIVE_REPLICATION
+          - CLOUD_REPLICATION
+          type: string
+          x-cli-header: Clone Type
+        created:
+          type: string
+        frames:
+          description: Defines the schedule for snapshot creation and the local and remote retention policies.
+          example: every 90m start-at 2025-07-27 20:10:35 keep-local 10h keep-remote 30d
+          items:
+            $ref: '#/components/schemas/Frame'
+          type: array
+          x-cli-header: Schedule
+        guid:
+          description: unique identifier
+          type: string
+        handle:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        indestructible:
+          description: 'Protected from accidental or malicious deletion by the indestructibility mechanism. Authorized unlocking of the cluster''s indestructibility mechanism is required to do any of the following: deleting the protection policy, modifying the protection policy, or disabling this setting.'
+          type: boolean
+        internal:
+          type: boolean
+        is_local:
+          type: boolean
+        is_on_schedule:
+          type: boolean
+        name:
+          type: string
+          x-cli-header: Name
+        native_replication_remote_target:
+          type: string
+        prefix:
+          description: The prefix of the snapshot that will be created
+          type: string
+          x-cli-header: Snapshot Prefix
+        pretty_schedules:
+          items:
+            type: string
+          type: array
+        remote_tenant:
+          $ref: '#/components/schemas/RemoteTenant'
+        replication_target:
+          type: string
+        schedule_miss:
+          type: integer
+        state:
+          description: State of Protection Policy
+          enum:
+          - DELETE_PENDING
+          - working
+          - delete_pending
+          type: string
+        sync_interval:
+          description: A sync point is a common restore point for all group members. This value guarantees such a sync point exists in this duration. In other words, this is the maximal sync duration gap between other members.
+          type: integer
+        target_guid:
+          type: string
+        target_name:
+          description: Target Name
+          type: string
+          x-cli-header: Replication Peer
+        target_object_id:
+          description: target object id
+          type: integer
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        tenant_id:
+          type: integer
+        title:
+          type: string
+          x-cli-header: Name
+        url:
+          type: string
+      required:
+      - name
+      - prefix
+      - frames
+      - clone_type
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+    Frame:
+      properties:
+        every:
+          example: 30m
+          type: string
+        keep-local:
+          example: 30m
+          type: string
+        keep-remote:
+          example: 30m
+          type: string
+        start-at:
+          example: '2021-02-03 01:02:03'
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

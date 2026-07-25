@@ -1,0 +1,343 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory protectionpolicies API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A protection policy is a reusable configuration that defines a schedule for taking snapshots and optionally replicating them to a specified async  replication peer or S3 replication peer. It defines how long to retain local snapshots. If the purpose of a protection policy is remote backup to either S3 or an async replication peer without local snapshot retention, then this is achieved by defining no retention for local snapshots. Once defined, a protection policy can be specified in the configuration of a protected path.
+  name: protectionpolicies
+paths:
+  /protectionpolicies/:
+    get:
+      description: This endpoint lists protection policies.
+      operationId: protectionpolicies_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by name of replication peer
+        in: query
+        name: target__name
+        schema:
+          type: string
+      - description: Filter by protection policy name
+        in: query
+        name: name
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProtectionPolicy'
+                title: Protection Policies
+                type: array
+          description: protection policy information
+      summary: Return Protection Policies
+      tags:
+      - protectionpolicies
+    post:
+      description: This endpoint creates a protection policy.
+      operationId: protectionpolicies_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                big_catalog:
+                  description: Indicates if Protection Policy will be used for VAST Catalog. There may only be 1 such policy.
+                  type: boolean
+                clone_type:
+                  description: Specify the type of data protection. CLOUD_REPLICATION is S3 backup. LOCAL means local snapshots without replication.
+                  enum:
+                  - LOCAL
+                  - NATIVE_REPLICATION
+                  - CLOUD_REPLICATION
+                  type: string
+                  x-cli-header: Clone Type
+                frames:
+                  description: Defines the schedule for snapshot creation and the local and remote retention policies.
+                  example: every 90m start-at 2025-07-27 20:10:35 keep-local 10h keep-remote 30d
+                  items:
+                    type: object
+                  type: array
+                  x-cli-header: Schedule
+                guid:
+                  description: Do not specify this parameter.
+                  type: string
+                id:
+                  description: Do not specify this parameter.
+                  type: integer
+                  x-cli-header: ID
+                indestructible:
+                  description: 'Set to true to protect the protection policy from accidental or malicious deletion with the indestructibility feature. If this setting is enabled, authorized unlocking of the cluster''s indestructibility mechanism is required to do any of the following: modifying the policy, deleting the policy or disabling this setting.'
+                  type: boolean
+                name:
+                  type: string
+                  x-cli-header: Name
+                prefix:
+                  description: The prefix for names of snapshots created by the policy
+                  type: string
+                remote_tenant_guid:
+                  description: remote tenant guid
+                  type: string
+                target_object_id:
+                  description: ID of the remote peer. Specify ID of a ReplicationTarget (aka S3 replication peer) if clone_type is CLOUD_REPLICATION. Specify the ID of a NativeReplicationRemoteTarget if clone_type is NATIVE_REPLICATION.
+                  type: integer
+                tenant_id:
+                  description: Tenant ID
+                  type: integer
+              required:
+              - name
+              - prefix
+              - frames
+              - clone_type
+              type: object
+        x-originalParamName: protectionPolicyCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtectionPolicy'
+          description: ''
+      summary: Create Protection Policy
+      tags:
+      - protectionpolicies
+  /protectionpolicies/{id}/:
+    delete:
+      description: This endpoint deletes a protection policy.
+      operationId: protectionpolicies_delete
+      parameters:
+      - description: Protection Policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete Protection Policy
+      tags:
+      - protectionpolicies
+    get:
+      description: This endpoint returns details of a specified protection policy.
+      operationId: protectionpolicies_read
+      parameters:
+      - description: Protection Policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtectionPolicy'
+          description: ''
+      summary: Return Details of a Protection Policy
+      tags:
+      - protectionpolicies
+    patch:
+      description: This endpoint modifies a protection policy.
+      operationId: protectionpolicies_partial_update
+      parameters:
+      - description: Protection Policy ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                big_catalog:
+                  description: Indicates if Protection Policy will be used for VAST Catalog. There may only be 1 such policy.
+                  type: boolean
+                clone_type:
+                  description: Specify the type of data protection. CLOUD_REPLICATION is S3 backup. LOCAL means local snapshots without replication.
+                  enum:
+                  - LOCAL
+                  - NATIVE_REPLICATION
+                  - CLOUD_REPLICATION
+                  type: string
+                  x-cli-header: Clone Type
+                frames:
+                  description: Defines the schedule for snapshot creation and the local and remote retention policies.
+                  example: every 90m start-at 2025-07-27 20:10:35 keep-local 10h keep-remote 30d
+                  items:
+                    type: object
+                  type: array
+                  x-cli-header: Schedules
+                guid:
+                  description: Do not specify this parameter.
+                  type: string
+                id:
+                  description: Do not specify this parameter.
+                  type: integer
+                  x-cli-header: ID
+                indestructible:
+                  description: 'Set to true to protect the protection policy from accidental or malicious deletion with the indestructibility feature. If this setting is enabled, authorized unlocking of the cluster''s indestructibility mechanism is required to do any of the following: modifying the policy, deleting the policy or disabling this setting.'
+                  type: boolean
+                name:
+                  description: Name
+                  type: string
+                  x-cli-header: Name
+                prefix:
+                  description: The prefix for names of snapshots created by the policy
+                  type: string
+                target_object_id:
+                  description: ID of the remote peer. Specify ID of a ReplicationTarget (aka S3 replication peer) if clone_type is CLOUD_REPLICATION. Specify the ID of a NativeReplicationRemoteTarget if clone_type is NATIVE_REPLICATION.
+                  type: integer
+              type: object
+        x-originalParamName: protectionPolicyModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify a Protection Policy
+      tags:
+      - protectionpolicies
+components:
+  schemas:
+    RemoteTenant:
+      properties:
+        guid:
+          description: Remote Tenant guid
+          type: string
+        name:
+          description: Remote Tenant name
+          type: string
+      type: object
+    ProtectionPolicy:
+      properties:
+        clone_type:
+          description: Specify the type of data protection. CLOUD_REPLICATION is S3 backup. LOCAL means local snapshots without replication.
+          enum:
+          - LOCAL
+          - NATIVE_REPLICATION
+          - CLOUD_REPLICATION
+          type: string
+          x-cli-header: Clone Type
+        created:
+          type: string
+        frames:
+          description: Defines the schedule for snapshot creation and the local and remote retention policies.
+          example: every 90m start-at 2025-07-27 20:10:35 keep-local 10h keep-remote 30d
+          items:
+            $ref: '#/components/schemas/Frame'
+          type: array
+          x-cli-header: Schedule
+        guid:
+          description: unique identifier
+          type: string
+        handle:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        indestructible:
+          description: 'Protected from accidental or malicious deletion by the indestructibility mechanism. Authorized unlocking of the cluster''s indestructibility mechanism is required to do any of the following: deleting the protection policy, modifying the protection policy, or disabling this setting.'
+          type: boolean
+        internal:
+          type: boolean
+        is_local:
+          type: boolean
+        is_on_schedule:
+          type: boolean
+        name:
+          type: string
+          x-cli-header: Name
+        native_replication_remote_target:
+          type: string
+        prefix:
+          description: The prefix of the snapshot that will be created
+          type: string
+          x-cli-header: Snapshot Prefix
+        pretty_schedules:
+          items:
+            type: string
+          type: array
+        remote_tenant:
+          $ref: '#/components/schemas/RemoteTenant'
+        replication_target:
+          type: string
+        schedule_miss:
+          type: integer
+        state:
+          description: State of Protection Policy
+          enum:
+          - DELETE_PENDING
+          - working
+          - delete_pending
+          type: string
+        sync_interval:
+          description: A sync point is a common restore point for all group members. This value guarantees such a sync point exists in this duration. In other words, this is the maximal sync duration gap between other members.
+          type: integer
+        target_guid:
+          type: string
+        target_name:
+          description: Target Name
+          type: string
+          x-cli-header: Replication Peer
+        target_object_id:
+          description: target object id
+          type: integer
+        tenant:
+          $ref: '#/components/schemas/PartialTenantInfo'
+        tenant_id:
+          type: integer
+        title:
+          type: string
+          x-cli-header: Name
+        url:
+          type: string
+      required:
+      - name
+      - prefix
+      - frames
+      - clone_type
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+    Frame:
+      properties:
+        every:
+          example: 30m
+          type: string
+        keep-local:
+          example: 30m
+          type: string
+        keep-remote:
+          example: 30m
+          type: string
+        start-at:
+          example: '2021-02-03 01:02:03'
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

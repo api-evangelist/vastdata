@@ -1,0 +1,224 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory indestructibility API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: VAST Cluster enables you to create and maintain immutable backups using a feature called Indestructibility. Snapshots and protection policies can be flagged indestructible and they are then protected from accidental or malicious deletion and modification. The indestructibility path represents the configuration of the indestructibility mechanism on the cluster.
+  name: indestructibility
+paths:
+  /indestructibility/:
+    get:
+      description: This endpoint returns information about the indestructibility configuration.
+      operationId: indestructibility_list
+      parameters:
+      - in: query
+        name: username
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Indestructibility'
+                title: Indestructibility
+                type: array
+          description: indestructibility information
+      summary: List Indestructibility Configuration
+      tags:
+      - indestructibility
+  /indestructibility/{id}/:
+    get:
+      description: This endpoint returns details of an indestructibility configuration.
+      operationId: indestructibility_read
+      parameters:
+      - description: Indestructibility ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Indestructibility'
+          description: ''
+      summary: Return Indestructibility Details.
+      tags:
+      - indestructibility
+    patch:
+      description: This endpoint can change the indestructibility password and/or the indestructibility password restore delay. The indestructibility mechanism must be unlocked before This endpoint can be done.
+      operationId: indestructibility_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                indestructibility_passwd:
+                  description: The current indestructibility password.
+                  type: string
+                new_indestructibility_passwd:
+                  description: A new indestructibility password. The password must have at least eight characters.
+                  type: string
+                passwd_delay:
+                  description: 'A new password restore delay. This is the delay from the time a request is made to restore the indestructibility password to default until it takes effect. Default: 1d (one day). Minimum: 1m (one minute).'
+                  type: string
+              type: object
+        x-originalParamName: IndestructibilityModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Indestructibility'
+          description: ''
+      summary: Modify Indestructibility Settings
+      tags:
+      - indestructibility
+  /indestructibility/{id}/generate_token/:
+    patch:
+      description: This endpoint generates an indestructibility token that is valid for one hour.
+      operationId: indestructibility_generate_token
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                indestructibility_passwd:
+                  type: string
+              type: object
+        x-originalParamName: IndestructibilityGenerateTokenParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Indestructibility'
+          description: ''
+      summary: Generate Indestructibility Token
+      tags:
+      - indestructibility
+  /indestructibility/{id}/reset_passwd/:
+    patch:
+      description: 'This endpoint restores the indestructibility password to its default value. This is indented for the case of a forgotten indestructibility password, where restoring to default enables a user to change the password again to a new secure password. There is a configurable delay until the password restore takes effect. The delay provides additional security in case of a rogue admin using VMS to restore the password. Throughout the duration of the password restore delay period, an alarm is raised. The alarm is raised to alert VMS users that a password restore was initiated in case it was initiated by an unauthorized user. In case you suspect that a rogue admin has initiated a reset, please contact VAST Support and we will assist you.
+
+        '
+      operationId: indestructibility_reset_passwd
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Indestructibility'
+          description: ''
+      summary: Reset Indestructibility Password
+      tags:
+      - indestructibility
+  /indestructibility/{id}/unlock/:
+    patch:
+      description: "<p>This endpoint unlocks indestructibility for one hour. The following can only be done while indestructibility is unlocked:</p>\n  * Modifying an indestructible protection policy, including changing the snapshot schedule and shortening the retention period for snapshots.\n  * Modify a protected path that points to an indestructible protection policy, including pausing the path.\n  * Deleting indestructible snapshots.\n  * Shortening the expiration time of indestructible snapshots.\n  * Changing the indestructibility password.\n  * Changing the indestructibility password restore delay.\n"
+      operationId: indestructibility_unlock
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                challenge_token:
+                  description: A challenge token, provided by Support. To obtain a challenge token, first generate an indestructibility token and provide it to Support with any additional identifying details required by Support.
+                  type: string
+              type: object
+        x-originalParamName: IndestructibilityUnlockParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Indestructibility'
+          description: ''
+      summary: Unlock Indestructibility
+      tags:
+      - indestructibility
+components:
+  schemas:
+    Indestructibility:
+      properties:
+        guid:
+          description: Global unique ID
+          type: string
+        id:
+          description: The ID of the indestructibility configuration object
+          type: integer
+          x-cli-header: ID
+        indestructibility_passwd:
+          description: The password needed to unlock the indestructibility mechanism on the cluster.
+          type: string
+        is_locked:
+          description: Indicator of whether the indestructibility mechanism is currently locked (true) or unlocked (false)
+          type: boolean
+        name:
+          type: string
+          x-cli-header: Name
+        new_indestructibility_passwd:
+          description: A new indestructibility password, submitted in a request to change the indestructibility password.
+          type: string
+        passwd_delay:
+          description: 'The delay from the time a request is made to restore the indestructibility password to default until it takes effect. Default: 1d (one day). Minimum: 1m (one minute).'
+          type: string
+        passwd_delay_eta:
+          description: The time at which the password will be restored to default following a current password restore request.
+          type: string
+        title:
+          type: string
+        token:
+          description: VMS generated token used in the procedure for unlocking the indestructibility mechanism.
+          type: string
+        token_time:
+          description: The time when the token will cease to be valid.
+          type: string
+        unlock_system_time:
+          description: If unlock_time > current time, the indestructibility system is unlocked. Empty when the indestructibility system is locked.
+          type: string
+        url:
+          description: Endpoint URL for operations on the indestructibility configuration
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

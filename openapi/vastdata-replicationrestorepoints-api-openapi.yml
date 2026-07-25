@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory replicationrestorepoints API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: A replication restore point is a location to which a snapshot was replicated and from which files can be restored.A restore point may reside on an S3 replication peer or on an async replication peer.
+  name: replicationrestorepoints
+paths:
+  /replicationrestorepoints/:
+    get:
+      description: This endpoint lists replication restore points.
+      operationId: replicationrestorepoints_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - in: query
+        name: stream__id
+        schema:
+          type: string
+      - in: query
+        name: stream__name
+        schema:
+          type: string
+      - in: query
+        name: stream__name__contains
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ReplicationRestorePoint'
+                title: Replication Restore Points
+                type: array
+          description: Replication restore points information
+      summary: List Replication Restore Points
+      tags:
+      - replicationrestorepoints
+  /replicationrestorepoints/{id}/:
+    get:
+      description: This endpoint returns details of a replication restore point.
+      operationId: replicationrestorepoints_read
+      parameters:
+      - description: index of replication restore point
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationRestorePoint'
+          description: ''
+      summary: Return Details of a Replication Restore Point
+      tags:
+      - replicationrestorepoints
+components:
+  schemas:
+    ReplicationRestorePoint:
+      properties:
+        crate_id:
+          description: crate id
+          type: integer
+        created:
+          format: date-time
+          type: string
+          x-cli-header: Creation Time
+          x-format: datetime2display
+        eta_sec:
+          description: Amount of seconds to completion
+          type: string
+          x-cli-header: Remaining Time
+        guid:
+          description: guid
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        internal:
+          type: boolean
+        is_local:
+          type: boolean
+        logical_backlog:
+          type: integer
+        logical_size:
+          description: Logical Space
+          format: int64
+          type: integer
+          x-cli-header: Transferred Logical Size
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-raw-units: Bytes
+        name:
+          type: string
+          x-cli-header: Name
+        network_bw_per_sec:
+          format: int64
+          type: integer
+          x-cli-header: Bandwidth
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-raw-units: Bytes/s
+        physical_backlog:
+          type: integer
+        physical_size:
+          description: Physical Space
+          format: int64
+          type: integer
+          x-cli-header: Transferred Physical Size
+          x-display-base-type: capacity
+          x-display-units: TB
+          x-display-units-alt: TiB
+          x-format: bytes2tb
+          x-raw-units: Bytes
+        progress_promil:
+          description: Progress
+          type: string
+          x-cli-header: Progress
+        protected_path_guid:
+          type: string
+        state:
+          description: state
+          type: string
+        stream:
+          type: string
+        stream_index:
+          description: stream index
+          type: integer
+        stream_name:
+          description: Stream name
+          type: string
+          x-cli-header: Replication Stream
+        target_name:
+          description: Target name
+          type: string
+          x-cli-header: Peer
+        upload_finish_time:
+          type: string
+        upload_start_time:
+          type: string
+        url:
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

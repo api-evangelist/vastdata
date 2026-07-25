@@ -1,0 +1,220 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory apitokens API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: API tokens are tokens created by VMS that enable VMS users to securely authenticate REST API requests.
+  name: apitokens
+paths:
+  /apitokens/:
+    get:
+      description: This endpoint lists API tokens. All users can list their own API tokens. Users with view permission for the security realm can list other users' API tokens.
+      operationId: apitokens_list
+      parameters:
+      - in: query
+        name: archived
+        schema:
+          type: string
+      - description: Filter by token owner username
+        in: query
+        name: owner
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiToken'
+                title: ApiToken
+                type: array
+          description: ApiToken information
+      summary: List API Tokens
+      tags:
+      - apitokens
+    post:
+      description: This endpoint creates a new API token to securely authenticate calls to the VMS REST API. Requires Create permissions for the Security realm.
+      operationId: apitokens_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                expiry_date:
+                  description: 'Sets the token''s expiration date by specifying an amount of time from token creation until the token should expire. The expiration date is equal to the token creation date in UTC + the specified time period. Specify as a whole integer followed by a unit of time: ''Y'' for (365 day) years, ''M'' for (30 day) months, ''w'' or ''W'' for weeks, ''d'' or ''D'' for days, ''h'' or ''H'' for hours, ''m'' for minutes, ''s'' or ''S'' for seconds. The maximum and default expiration time is the password expiration timeout.'
+                  type: string
+                name:
+                  description: Sets a custom name for the token. If not specified, the token is named OWNER_api_token, where OWNER is the user name of the token owner.
+                  type: string
+                owner:
+                  description: The user name of the user for whom to create the API token. If not specified, the token is created for the requesting user.
+                  type: string
+              type: object
+        x-originalParamName: ApitokenCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    description: The generated API token ID
+                    type: string
+                  token:
+                    description: The generated API token
+                    type: string
+                type: object
+          description: API token created successfully
+        '400':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Bad Request
+        '503':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Service Unavailable - Max allowed API tokens reached
+      summary: Create API Token.
+      tags:
+      - apitokens
+  /apitokens/{id}/:
+    get:
+      description: This endpoint returns properties of a specified API token.
+      operationId: apitokens_show
+      parameters:
+      - description: The ID of the token to show.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiToken'
+          description: ''
+      summary: Return Properties of an API Token
+      tags:
+      - apitokens
+    patch:
+      description: This endpoint modifies an existing API token.
+      operationId: apitokens_modify
+      parameters:
+      - description: ID of the API token to modify
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                expiry_date:
+                  description: 'Changes the expiration date of the token. Specify the amount of time from token creation until the token should expire. The expiration date is equal to the token creation date in UTC + the specified time period. Specify as a whole integer followed by a unit of time: ''Y'' for (365 day) years, ''M'' for (30 day) months, ''w'' or ''W'' for weeks, ''d'' or ''D'' for days, ''h'' or ''H'' for hours, ''m'' for minutes, ''s'' or ''S'' for seconds. The maximum and default expiration time is the password expiration timeout.'
+                  type: string
+                name:
+                  description: Sets a new name for the token.
+                  type: string
+              type: object
+        x-originalParamName: ApitokenModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: API token has been modified
+        '400':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: API key not found
+      summary: Modify an API Token
+      tags:
+      - apitokens
+  /apitokens/{id}/revoke:
+    patch:
+      description: This endpoint revokes an API token.
+      operationId: apitokens_revoke
+      parameters:
+      - description: The ID of the API token to revoke.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: API token has been revoked
+        '404':
+          description: Api token not found
+      summary: Revoke API Token
+      tags:
+      - apitokens
+components:
+  schemas:
+    ApiToken:
+      properties:
+        created:
+          description: Time of token creation
+          format: date-time
+          type: string
+          x-format: datetime2display
+        expiry_date:
+          description: The token's expiration date.
+          type: string
+        id:
+          type: string
+          x-cli-header: ID
+        last_used:
+          description: Time of last use of the token for authentication
+          format: date-time
+          type: string
+          x-format: datetime2display
+        name:
+          description: The name of the Api token
+          type: string
+        owner:
+          description: The name of the owner of the Api token
+          type: string
+        revocation_time:
+          description: The time at which the token was revoked, if applicable.
+          format: date-time
+          type: string
+          x-format: datetime2display
+        revoked:
+          description: True if the token has been revoked. False otherwise.
+          type: boolean
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

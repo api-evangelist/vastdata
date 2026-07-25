@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory S3 Keys API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: The s3keys endpoint enables users to manage their own S3 access key pairs.
+  name: S3 Keys
+paths:
+  /s3keys/:
+    get:
+      description: This operation returns the access key of an S3 access key pair created by and for the requesting user
+      operationId: s3keys_read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessKey'
+          description: Access key with enabled/disabled status and user identifier type.
+      summary: Return S3 Access Key
+      tags:
+      - S3 Keys
+    post:
+      description: This operation creates an S3 access key pair for the requesting user.
+      operationId: s3keys_create
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserKeyPair'
+          description: ''
+      summary: Create S3 Access Key Pair
+      tags:
+      - S3 Keys
+  /s3keys/{access_key}/:
+    delete:
+      description: This operation deletes an S3 access key pair belonging to the requesting user.
+      operationId: s3keys_delete
+      parameters:
+      - description: The access key of the access key pair to be deleted
+        in: path
+        name: access_key
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      summary: Delete User's S3 Access Key Pair
+      tags:
+      - S3 Keys
+components:
+  schemas:
+    AccessKey:
+      type: object
+    UserKeyPair:
+      properties:
+        access_key:
+          description: S3 access key, needed to authenticate S3 client requests
+          type: string
+        secret_key:
+          description: S3 secret key, needed to authenticate S3 client requests
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,375 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Racks API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Racks
+paths:
+  /racks/{id}/bgpconfig/:
+    post:
+      description: Bulk update BGP configuration on all cnodes in the rack
+      operationId: racks_update_bgpconfig
+      parameters:
+      - description: Rack ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RackBGPConfig'
+        x-originalParamName: RackBgpConfig
+      responses:
+        '204':
+          description: ''
+      summary: Configure BGP on Rack
+      tags:
+      - Racks
+  /racks/:
+    get:
+      description: This endpoint lists Racks
+      operationId: racks_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Rack'
+                title: Racks
+                type: array
+          description: Racks information
+      summary: Get all existing Racks
+      tags:
+      - Racks
+    post:
+      description: This endpoint creates a Rack.
+      operationId: racks_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  type: string
+                ip_range:
+                  items:
+                    format: ipv4
+                    type: string
+                  maxItems: 2
+                  minItems: 2
+                  type: array
+                name:
+                  description: Rack name
+                  type: string
+                number_of_units:
+                  type: integer
+                rack_unit:
+                  type: string
+                row:
+                  type: string
+              required:
+              - name
+              type: object
+        required: true
+        x-originalParamName: RackCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncRack'
+          description: ''
+      summary: Create a Rack
+      tags:
+      - Racks
+      x-cli-command: rack
+      x-cli-subcommand: create
+  /racks/{id}/:
+    delete:
+      operationId: racks_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deleted
+      summary: Delete a Rack
+      tags:
+      - Racks
+    get:
+      description: This endpoint returns information about a specific Rack.
+      operationId: racks_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rack'
+          description: ''
+      summary: Return Details of a Rack
+      tags:
+      - Racks
+    patch:
+      operationId: racks_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                description:
+                  type: string
+                ip_range:
+                  items:
+                    format: ipv4
+                    type: string
+                  maxItems: 2
+                  minItems: 2
+                  type: array
+                name:
+                  description: Rack name
+                  type: string
+                number_of_units:
+                  type: integer
+                rack_unit:
+                  type: string
+                row:
+                  type: string
+              type: object
+        x-originalParamName: RackModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rack'
+          description: Updated
+      summary: Update a Rack
+      tags:
+      - Racks
+  /racks/{id}/add_boxes/:
+    post:
+      description: This endpoint adds Boxes to a Rack
+      operationId: addBoxes
+      parameters:
+      - description: Rack ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cbox:
+                  items:
+                    $ref: '#/components/schemas/BoxRackUpdate'
+                  type: array
+                dbox:
+                  items:
+                    $ref: '#/components/schemas/BoxRackUpdate'
+                  type: array
+              type: object
+        x-originalParamName: RacksAddBoxes
+      responses:
+        '204':
+          description: ''
+      summary: Add Boxes to a Rack
+      tags:
+      - Racks
+  /racks/{id}/control_led/:
+    patch:
+      description: This endpoint controls the Rack Boxes LED
+      operationId: control_led
+      parameters:
+      - description: Rack ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                control:
+                  description: LED state
+                  enum:
+                  - true
+                  - false
+                  type: string
+              type: object
+        x-originalParamName: CnodeControlLed
+      responses:
+        '204':
+          description: ''
+      summary: Control Rack Boxes LED
+      tags:
+      - Racks
+  /racks/{id}/rename/:
+    patch:
+      description: This endpoint renames a Rack.
+      operationId: rename
+      parameters:
+      - description: Rack ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: New Rack name
+                  type: string
+              type: object
+        x-originalParamName: RackRename
+      responses:
+        '204':
+          description: ''
+      summary: Rename Rack
+      tags:
+      - Racks
+components:
+  schemas:
+    AsyncRack:
+      allOf:
+      - $ref: '#/components/schemas/Rack'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    Rack:
+      properties:
+        available_capacity:
+          type: integer
+        cnode_ip_pool:
+          items:
+            items:
+              format: ipv4
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+        cnode_ipmi_pool:
+          items:
+            items:
+              format: ipv4
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+        description:
+          type: string
+        dnode_ip_pool:
+          items:
+            items:
+              format: ipv4
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+        dnode_ipmi_pool:
+          items:
+            items:
+              format: ipv4
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        is_bgp_enabled:
+          description: Is BGP enabled for the rack
+          type: boolean
+        name:
+          type: string
+          x-cli-header: Name
+        number_of_units:
+          type: integer
+        row:
+          type: string
+          x-cli-header: Row
+        total_capacity:
+          type: integer
+      required:
+      - name
+      type: object
+    BoxRackUpdate:
+      properties:
+        id:
+          type: integer
+          x-cli-header: ID
+        rack_index:
+          type: integer
+        rack_unit:
+          type: string
+      required:
+      - id
+      type: object
+    RackBGPConfig:
+      properties:
+        ip_ranges:
+          items:
+            type: string
+          type: array
+        ips_represent:
+          description: IP address representation (odd/even)
+          enum:
+          - odd
+          - even
+          type: string
+        self_asn:
+          description: ASN
+          type: string
+        subnet_bits:
+          description: Subnet bits
+          type: integer
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

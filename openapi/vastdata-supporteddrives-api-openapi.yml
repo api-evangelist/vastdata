@@ -1,0 +1,198 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory supporteddrives API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: supporteddrives
+paths:
+  /supporteddrives/:
+    get:
+      operationId: supporteddrives_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SupportedDrive'
+                type: array
+          description: List supported drives
+      tags:
+      - supporteddrives
+      x-cli-command: supporteddrives
+    post:
+      operationId: supporteddrives_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                drives:
+                  description: List of supported drives
+                  items:
+                    $ref: '#/components/schemas/SupportedDriveInput'
+                  type: array
+                platforms:
+                  description: List of supported hw platforms
+                  items:
+                    $ref: '#/components/schemas/SupportedPlatformInput'
+                  type: array
+                replace:
+                  description: Remove drives not present in data
+                  type: boolean
+                signature:
+                  description: Signature, base64-encoded
+                  type: string
+                version:
+                  description: Version
+                  type: string
+              type: object
+        x-originalParamName: SupportedDriveParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  drives:
+                    description: List of supported drives
+                    items:
+                      $ref: '#/components/schemas/SupportedDriveInput'
+                    type: array
+                  platforms:
+                    description: List of supported hw platforms
+                    items:
+                      $ref: '#/components/schemas/SupportedPlatformInput'
+                    type: array
+                  replace:
+                    description: Remove drives not present in data
+                    type: boolean
+                  signature:
+                    description: Signature, base64-encoded
+                    type: string
+                  version:
+                    description: Version
+                    type: string
+                type: object
+          description: ''
+      tags:
+      - supporteddrives
+      x-cli-command: supporteddrives
+  /supporteddrives/{id}/:
+    delete:
+      operationId: supporteddrives_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      tags:
+      - supporteddrives
+      x-cli-command: supporteddrives
+    get:
+      operationId: supporteddrives_get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportedDrive'
+          description: Supported drive info
+      tags:
+      - supporteddrives
+      x-cli-command: supporteddrives
+    put:
+      operationId: supporteddrives_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportedDriveInput'
+        x-originalParamName: SupportedDriveParamsUpdate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportedDrive'
+          description: Updated drive data
+      tags:
+      - supporteddrives
+      x-cli-command: supporteddrives
+components:
+  schemas:
+    SupportedDriveInput:
+      properties:
+        capacity_tb:
+          type: integer
+        fw:
+          items:
+            properties:
+              latest:
+                type: boolean
+              name:
+                type: string
+            type: object
+          type: array
+        hw_platform:
+          items:
+            type: string
+          type: array
+        model:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+      type: object
+    SupportedDrive:
+      properties:
+        drive_type:
+          type: string
+        id:
+          type: integer
+        model_name:
+          type: string
+        raw_data:
+          $ref: '#/components/schemas/SupportedDriveInput'
+        synced:
+          type: boolean
+      type: object
+    SupportedPlatformInput:
+      properties:
+        default_section_layout:
+          type: string
+        name:
+          type: string
+        ssd_capacity_tb:
+          type: integer
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

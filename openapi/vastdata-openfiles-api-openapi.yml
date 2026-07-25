@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory openfiles API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: openfiles
+paths:
+  /openfiles/:
+    get:
+      description: This endpoint lists open files.
+      operationId: openfiles_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/OpenFilesQueryIdQP'
+      - description: Filter by file path substring
+        in: query
+        name: path__icontains
+        schema:
+          type: string
+      - description: Filter by lock status
+        in: query
+        name: has_locks
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OpenFile'
+                title: Open Files
+                type: array
+          description: open files information
+      summary: Get all open files.
+      tags:
+      - openfiles
+  /openfiles/{id}/:
+    get:
+      description: This endpoint returns information about a specific open file.
+      operationId: openfiles_read
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenFile'
+          description: ''
+      summary: Return details of an open file.
+      tags:
+      - openfiles
+  /openfiles/{id}/list_open_handles/:
+    post:
+      description: This endpoint creates an async open handles listing task.
+      operationId: openfiles_list_open_handles
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      requestBody:
+        $ref: '#/components/requestBodies/OpenFileHandlesQueryParamsBody'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: List open handles for an open file.
+      tags:
+      - openfiles
+components:
+  schemas:
+    PartialVTask:
+      properties:
+        id:
+          description: Task ID
+          type: integer
+        start_time:
+          description: Task start time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        state:
+          description: Task state
+          type: string
+      type: object
+    OpenFile:
+      properties:
+        has_locks:
+          description: Whether the open file has locks
+          type: boolean
+        id:
+          type: integer
+          x-cli-header: ID
+        list_open_handles_task:
+          $ref: '#/components/schemas/PartialVTask'
+        open_files_query_id:
+          description: Open files query ID
+          type: integer
+        path:
+          description: Open file's path
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      type: object
+      x-cli-pagination: true
+    OpenFileHandlesQueryParams:
+      properties:
+        protocol:
+          description: Protocol type
+          enum:
+          - SMB
+          type: string
+      required:
+      - protocol
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  parameters:
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    OpenFilesQueryIdQP:
+      description: Open Files Query id to filter by.
+      in: query
+      name: open_files_query__id
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+  requestBodies:
+    OpenFileHandlesQueryParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/OpenFileHandlesQueryParams'
+      x-originalParamName: OpenFileHandlesQueryParamsBody
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

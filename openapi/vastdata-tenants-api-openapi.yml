@@ -1,0 +1,1911 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory Tenants API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- name: Tenants
+paths:
+  /tenants/{id}/views_count:
+    get:
+      description: Returns the number of views in the tenant.
+      operationId: get_tenant_views_count
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  current_views_count:
+                    description: The number of views in this tenant
+                    type: integer
+                  max_views:
+                    description: Maximum views allowed in this tenant
+                    type: integer
+                type: object
+          description: ''
+      summary: Get the number of views in the tenant
+      tags:
+      - Tenants
+  /tenants/:
+    get:
+      description: This endpoint lists tenants.
+      operationId: tenants_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/NameIContainsQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Tenant'
+                title: Tenants
+                type: array
+          description: Tenant information
+      summary: List Tenants
+      tags:
+      - Tenants
+    post:
+      description: This endpoint creates a tenant.
+      operationId: tenants_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_ip_ranges:
+                  description: Restricts tenant login access to specified source IP ranges. Enter as single IPs (1.1.1.1), ranges (1.2.3.4 - 1.2.3.6), or CIDR (1.1.1.0/24).
+                  items:
+                    type: string
+                  type: array
+                ad_provider_id:
+                  description: The ID of an Active Directory provider configured on the cluster. Enables the specified provider for the tenant.
+                  type: integer
+                allow_disabled_users:
+                  description: Allow IO from users whose Active Directory accounts are explicitly disabled.
+                  type: boolean
+                allow_locked_users:
+                  description: Allow IO from users whose Active Directory accounts are locked out by lockout policies due to unsuccessful login attempts.
+                  type: boolean
+                allowed_delegations:
+                  description: Defines the possible types of NFSv4 delegations
+                  enum:
+                  - NONE
+                  - READ
+                  - WRITE
+                  - READ_WRITE
+                  type: string
+                application_users_group_name:
+                  description: The name of the group that will be used for application users
+                  type: string
+                capacity_rules:
+                  $ref: '#/components/schemas/CapacityRules'
+                client_ip_ranges:
+                  description: 'Array of ranges of client IPs to be served by the tenant. For client requests made to a VIP that belongs to a VIP Pool that is not associated to a specific tenant, the client''s source IP is checked against the Client IPs that are defined within each tenant. That check determines access. The client IPs that you associate with each tenant must be unique per tenant. '
+                  items:
+                    items:
+                      type: string
+                    type: array
+                  type: array
+                default_others_share_level_perm:
+                  description: Default Share-level permissions for Others
+                  enum:
+                  - READ
+                  - CHANGE
+                  - FULL
+                  type: string
+                domain_name:
+                  description: Domain name to incorporate into the VMS tenant login page URL.
+                  type: string
+                encryption_crn:
+                  description: Tenant's encryption group unique identifier (deprecated)
+                  type: string
+                encryption_group:
+                  description: Tenant's encryption group unique identifier
+                  type: string
+                grant_unrequested_delegations_by_default:
+                  description: When enabled, the server may grant delegations based on share access even if not explicitly requested by the client
+                  type: boolean
+                identity_provider_name:
+                  description: The ID of a SAML provider configured on the cluster. Connects the specified provider to the tenant.
+                  type: string
+                is_nfsv42_supported:
+                  description: Enable NFSv4.2
+                  type: boolean
+                krb_provider_id:
+                  description: Kerberos provider ID
+                  type: integer
+                ldap_provider_id:
+                  description: The ID of an LDAP provider configured on the cluster. Enables the specified provider for the tenant.
+                  type: integer
+                local_provider_id:
+                  description: The ID of a local provider configured on the cluster. Connects the specified provider to the tenant.
+                  type: integer
+                login_name_primary_provider:
+                  description: Login name primary provider type
+                  enum:
+                  - NONE
+                  - LDAP
+                  - NIS
+                  - AD
+                  - LOCAL
+                  type: string
+                max_views:
+                  description: Max views we can create on this tenant (0:unlimted as default)
+                  type: integer
+                  x-cli-header: Max Views
+                mtls_identifier:
+                  description: The mTLS identifier of the tenant
+                  type: string
+                name:
+                  description: A name for the tenant
+                  type: string
+                nis_provider_id:
+                  description: The ID of a NIS provider configured on the cluster. Enables the specified provider for the tenant.
+                  type: integer
+                oidc_provider_id:
+                  description: OIDC provider ID
+                  type: integer
+                posix_primary_provider:
+                  description: Specifies which provider takes precedence over other providers in case of any conflicts between attribute values when user information is retrieved from the providers. Relevant only if more than one provider is enabled for the tenant.
+                  enum:
+                  - NONE
+                  - LDAP
+                  - NIS
+                  - AD
+                  type: string
+                preferred_owning_group:
+                  description: Set to prefer GID of the user as the owning group of the file
+                  enum:
+                  - PROTOCOL_BASED
+                  - POSIX_GID
+                  type: string
+                qos:
+                  $ref: '#/components/schemas/RequestTruncatedQOS'
+                require_smb_signing:
+                  description: Require SMB signing
+                  type: boolean
+                smb_administrators_group_name:
+                  description: Optional custom name to specify a non default privileged group. If not set, privileged group is the Backup Operators domain group.
+                  type: string
+                smb_encryption_state:
+                  description: Defines the encryption level for SMB
+                  enum:
+                  - 'OFF'
+                  - AVAILABLE
+                  - DESIRED
+                  - REQUIRED
+                  type: string
+                smb_privileged_group_full_access:
+                  description: True=The SMB privileged user group has read and write control access. Members of the group can perform backup and restore operations on all files and directories, without requiring read or write access to the specific files and directories. False=the privileged group has read only access.
+                  type: boolean
+                  x-cli-header: Enable privileged domain group restore access
+                smb_privileged_group_sid:
+                  description: Optional custom SID to specify a non default SMB privileged group. If not set, SMB privileged group is the Backup Operators domain group.
+                  type: string
+                smb_privileged_user_name:
+                  description: Optional custom username for the SMB privileged user. If not set, the SMB privileged user name is 'vastadmin'
+                  type: string
+                tenant_admins_group_name:
+                  description: Specifies a group on an AD or LDAP provider. Enables users in the group to log into the tenant VMS as Tenant Admin users. In order to be granted permissions to do any configuration, the same users need to belong to groups on the provider that are associated with VMS manager user roles for tenant admin type users on the tenant.
+                  type: string
+                trash_gid:
+                  description: GID of group of NFSv3 users to which to grant permission to move files into the trash folder. If not set, the operation of moving files into the trash folder is supported for the root user only.
+                  type: integer
+                use_smb_native:
+                  description: Use native SMB authentication
+                  type: boolean
+                use_smb_privileged_group:
+                  description: Enables SMB privileged user group
+                  type: boolean
+                  x-cli-header: Enable privileged domain group backup access
+                use_smb_privileged_user:
+                  description: Enables SMB privileged user
+                  type: boolean
+              required:
+              - name
+              type: object
+        x-originalParamName: TenantCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+          description: ''
+      summary: Create Tenant
+      tags:
+      - Tenants
+  /tenants/configured_idp/:
+    get:
+      description: This endpoint returns a tenant's configured SAML identity provider.
+      operationId: get_configured_idp_for_tenant
+      parameters:
+      - description: Tenant name
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  identity_provider_name:
+                    type: string
+                title: Identity Provider
+                type: object
+          description: ''
+      summary: Return Configured Identity Provider for Tenant
+      tags:
+      - Tenants
+  /tenants/metric_labels/:
+    get:
+      description: This endpoint lists all available tenant metric labels.
+      operationId: tenant_metric_labels_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TenantMetricLabel'
+                type: array
+          description: A list of tenant metric labels.
+      summary: List Tenant Metric Labels
+      tags:
+      - Tenants
+    post:
+      description: This endpoint creates a new tenant metric label.
+      operationId: tenant_metric_labels_create
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                default_value:
+                  description: The default value for this metric label.
+                  maxLength: 64
+                  type: string
+                description:
+                  description: Description of the metric label purpose.
+                  maxLength: 1024
+                  type: string
+                key:
+                  description: The unique key for the metric label.
+                  maxLength: 32
+                  type: string
+              required:
+              - key
+              type: object
+        x-originalParamName: TenantMetricLabelCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMetricLabel'
+          description: Metric label created successfully.
+      summary: Create Tenant Metric Label
+      tags:
+      - Tenants
+  /tenants/metric_labels/{id}/:
+    delete:
+      description: This endpoint deletes a tenant metric label.
+      operationId: tenant_metric_labels_delete
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '204':
+          description: Metric label deleted successfully.
+      summary: Delete Tenant Metric Label
+      tags:
+      - Tenants
+    get:
+      description: This endpoint retrieves a specific tenant metric label.
+      operationId: tenant_metric_labels_get
+      parameters:
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMetricLabel'
+          description: Metric label details.
+      summary: Get Tenant Metric Label
+      tags:
+      - Tenants
+  /tenants/remote_objects/:
+    get:
+      description: Returns details of remote tenants.
+      operationId: get_remote_tenants
+      parameters:
+      - description: Filter remote tenants by name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: Filter remote tenants by target
+        in: query
+        name: target_id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RemoteTenant'
+                title: Tenants
+                type: array
+          description: ''
+      summary: Return Details of Remote Tenants
+      tags:
+      - Tenants
+  /tenants/{id}/:
+    delete:
+      description: Deletes a specified tenant.
+      operationId: tenants_delete
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - description: Forces deletion of the tenant, even if files exist in the tenant directory.
+        in: query
+        name: force_remove
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+        '204':
+          description: ''
+      summary: Delete Tenant
+      tags:
+      - Tenants
+    get:
+      description: Returns details of a specified tenant.
+      operationId: tenants_read
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+          description: ''
+      summary: Return Details of Tenant
+      tags:
+      - Tenants
+    patch:
+      description: Modifies a specified tenant.
+      operationId: tenants_partial_update
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                access_ip_ranges:
+                  description: Restricts tenant login access to specified source IP ranges. Enter as single IPs (1.1.1.1), ranges (1.2.3.4 - 1.2.3.6), or CIDR (1.1.1.0/24).
+                  items:
+                    type: string
+                  type: array
+                ad_provider_id:
+                  description: Active Directory provider ID
+                  type: integer
+                allow_disabled_users:
+                  description: Allow IO from users whose Active Directory accounts are explicitly disabled.
+                  type: boolean
+                allow_locked_users:
+                  description: Allow IO from users whose Active Directory accounts are locked out by lockout policies due to unsuccessful login attempts.
+                  type: boolean
+                allowed_delegations:
+                  description: Defines the possible types of NFSv4 delegations
+                  enum:
+                  - NONE
+                  - READ
+                  - WRITE
+                  - READ_WRITE
+                  type: string
+                application_users_group_name:
+                  description: The name of the group that will be used for application users
+                  type: string
+                capacity_rules:
+                  $ref: '#/components/schemas/CapacityRules'
+                client_ip_ranges:
+                  description: Array of ranges of client IPs to be served by the tenant. For client requests made to a VIP that belongs to a VIP Pool that is not associated to a specific tenant, the client's source IP is checked against the Client IPs that are defined within each tenant. That check determines access. The client IPs that you associate with each tenant must be unique per tenant.
+                  items:
+                    items:
+                      type: string
+                    type: array
+                  type: array
+                data_engine_role_enabled:
+                  description: Whether to create dedicated Role for application users group
+                  type: boolean
+                data_engine_s3_policy_enabled:
+                  description: Whether to create dedicated Identity Policy for application users group
+                  type: boolean
+                default_others_share_level_perm:
+                  description: Default Share-level permissions for Others
+                  enum:
+                  - READ
+                  - CHANGE
+                  - FULL
+                  type: string
+                domain_name:
+                  description: Domain name to incorporate into the VMS tenant login page URL.
+                  type: string
+                grant_unrequested_delegations_by_default:
+                  description: When enabled, the server may grant delegations based on share access even if not explicitly requested by the client
+                  type: boolean
+                identity_provider_name:
+                  description: Sets a configured SAML login provider to enable for the tenant. When set, users defined on the specified SAML provider can login to the tenant VMS as tenant admin users.
+                  type: string
+                is_nfsv42_supported:
+                  description: Enable NFSv4.2
+                  type: boolean
+                krb_provider_id:
+                  description: Kerberos provider ID
+                  type: integer
+                ldap_provider_id:
+                  description: Open-LDAP provider ID specified separately by the user
+                  type: integer
+                local_provider_id:
+                  description: Local provider ID
+                  type: integer
+                login_name_primary_provider:
+                  description: Login name primary provider type
+                  enum:
+                  - NONE
+                  - LDAP
+                  - NIS
+                  - AD
+                  - LOCAL
+                  type: string
+                max_views:
+                  description: Max views we can create on this tenant (0:unlimted as default)
+                  type: integer
+                  x-cli-header: Max Views
+                mtls_identifier:
+                  description: The mTLS identifier of the tenant
+                  type: string
+                nis_provider_id:
+                  description: NIS provider ID
+                  type: integer
+                oidc_provider_id:
+                  description: OIDC provider ID
+                  type: integer
+                posix_primary_provider:
+                  description: POSIX primary provider type
+                  enum:
+                  - NONE
+                  - LDAP
+                  - NIS
+                  - AD
+                  type: string
+                preferred_owning_group:
+                  description: Set to prefer GID of the user as the owning group of the file
+                  enum:
+                  - PROTOCOL_BASED
+                  - POSIX_GID
+                  type: string
+                qos:
+                  $ref: '#/components/schemas/RequestTruncatedQOS'
+                require_smb_signing:
+                  description: Require SMB signing
+                  type: boolean
+                smb_administrators_group_name:
+                  description: Optional custom name to specify a non default privileged group. If not set, privileged group is the Backup Operators domain group.
+                  type: string
+                smb_encryption_state:
+                  description: Defines the encryption level for SMB
+                  enum:
+                  - 'OFF'
+                  - AVAILABLE
+                  - DESIRED
+                  - REQUIRED
+                  type: string
+                smb_privileged_group_full_access:
+                  description: True=The SMB privileged user group has read and write control access. Members of the group can perform backup and restore operations on all files and directories, without requiring read or write access to the specific files and directories. False=the privileged group has read only access.
+                  type: boolean
+                  x-cli-header: Enable privileged domain group restore access
+                smb_privileged_group_sid:
+                  description: Optional custom SID to specify a non default SMB privileged group. If not set, SMB privileged group is the Backup Operators domain group.
+                  type: string
+                smb_privileged_user_name:
+                  description: Optional custom username for the SMB privileged user. If not set, the SMB privileged user name is 'vastadmin'
+                  type: string
+                tenant_admins_group_name:
+                  description: Specifies a group on an AD or LDAP provider. Enables users in the group to log into the tenant VMS as Tenant Admin users. In order to be granted permissions to do any configuration, the same users need to belong to groups on the provider that are associated with VMS manager user roles for tenant admin type users on the tenant.
+                  type: string
+                trash_gid:
+                  description: GID with permissions to the trash folder
+                  type: integer
+                use_smb_native:
+                  description: Use native SMB authentication
+                  type: boolean
+                use_smb_privileged_group:
+                  description: Enables SMB privileged user group
+                  type: boolean
+                  x-cli-header: Enable privileged domain group backup access
+                use_smb_privileged_user:
+                  description: Enables SMB privileged user
+                  type: boolean
+              type: object
+        x-originalParamName: TenantModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+          description: ''
+      summary: Modify Tenant
+      tags:
+      - Tenants
+  /tenants/{id}/client_ip_ranges/:
+    patch:
+      description: Updates Client IP ranges of a Tenant.
+      operationId: tenant_update_client_ip_ranges
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                client_ip_ranges_to_add:
+                  description: Array of source IP ranges to allow for the tenant.
+                  items:
+                    items:
+                      type: string
+                    type: array
+                  type: array
+                client_ip_ranges_to_remove:
+                  description: Array of source IP ranges to disallow for the tenant.
+                  items:
+                    items:
+                      type: string
+                    type: array
+                  type: array
+              type: object
+        x-originalParamName: TenantClientIpRangesModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+          description: ''
+      summary: Update tenant Client IP ranges
+      tags:
+      - Tenants
+  /tenants/{id}/client_metrics/:
+    get:
+      description: this endpoint returns tenant client metrics settings.
+      operationId: tenant_get_client_metrics
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantClientMetrics'
+          description: ''
+      summary: get tenant client metrics settings
+      tags:
+      - Tenants
+    patch:
+      description: This endpoint updates client metrics settings for a tenant.
+      operationId: tenant_update_client_metrics
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                config:
+                  properties:
+                    bucket_name:
+                      description: The name of the client metrics database S3 bucket
+                      type: string
+                    bucket_owner:
+                      description: The user designated as the S3 bucket owner for the client metrics database for the tenant.
+                      type: string
+                    enabled:
+                      description: Enables collection of client metrics. If you enable the collection of client metrics, make sure bucket_owner and bucket_name are set as well.
+                      type: boolean
+                    max_capacity_mb:
+                      description: The maximum size of the client metrics database, in MBB. If the limit is reached, older data is deleted from the database.
+                      type: integer
+                    retention_time_sec:
+                      description: The retention period, in seconds, for client metrics data that is stored in the client metrics database. Data older than this time is deleted from the database.
+                      type: integer
+                  required:
+                  - enabled
+                  type: object
+                user_defined_columns:
+                  description: Description of table columns
+                  items:
+                    $ref: '#/components/schemas/TabularColumnArrowSchema'
+                  type: array
+              type: object
+        x-originalParamName: TenantClientMetricsModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantClientMetrics'
+          description: ''
+      summary: Update Tenant Client Metrics Settings
+      tags:
+      - Tenants
+  /tenants/{id}/deactivate_encryption_group/:
+    post:
+      description: This endpoint deactivates a tenant's encryption group. Deactivated keys are revoked and destroyed. They cannot be reinstated. The encrypted data becomes inaccessible forever.
+      operationId: tenant_deactivate_encryption_group
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '204':
+          description: Tenant's encryption group was deactivated successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Encryption group was not found by its key <encryption_group>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to deactivate encryption group.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Deactivate tenant's encryption group.
+      tags:
+      - Tenants
+  /tenants/{id}/is_operation_healthy:
+    post:
+      description: Returns warnings about the future state if operation is performed.
+      operationId: tenants_is_operation_healthy
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - in: query
+        name: operation
+        schema:
+          enum:
+          - modify
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ad_provider_id:
+                  description: Active Directory provider ID
+                  type: integer
+                client_ip_ranges:
+                  description: Array of source IP ranges to allow for the tenant.
+                  items:
+                    items:
+                      type: string
+                    type: array
+                  type: array
+                default_others_share_level_perm:
+                  description: Default Share-level permissions for Others
+                  enum:
+                  - READ
+                  - CHANGE
+                  - FULL
+                  type: string
+                ldap_provider_id:
+                  description: Open-LDAP provider ID specified separately by the user
+                  type: integer
+                local_provider_id:
+                  description: Local provider ID
+                  type: integer
+                nis_provider_id:
+                  description: NIS provider ID
+                  type: integer
+                posix_primary_provider:
+                  description: POSIX primary provider type
+                  enum:
+                  - NONE
+                  - LDAP
+                  - NIS
+                  - AD
+                  type: string
+                smb_administrators_group_name:
+                  description: Optional custom name to specify a non default privileged group. If not set, privileged group is the BUILTIN\Administrators group.
+                  type: string
+                smb_privileged_group_full_access:
+                  description: If true, the privileged group has full access. Otherwise, read only
+                  type: boolean
+                  x-cli-header: Enable privileged domain group restore access
+                smb_privileged_group_sid:
+                  description: Optional custom SID to specify a non default SMB privileged group. If not set, SMB privileged group is the Backup Operators domain group.
+                  type: string
+                smb_privileged_user_name:
+                  description: Optional custom username for the SMB privileged user. If not set, the SMB privileged user name is 'vastadmin'
+                  type: string
+                trash_gid:
+                  description: GID with permissions to the trash folder
+                  type: integer
+                use_smb_privileged_group:
+                  description: If true, the privileged group is enabled
+                  type: boolean
+                  x-cli-header: Enable privileged domain group backup access
+                use_smb_privileged_user:
+                  description: If true, the privileged user is enabled
+                  type: boolean
+              type: object
+        x-originalParamName: TenantIsOperationHealthyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warnings'
+          description: ''
+      summary: Check whether an operation may be successfully performed
+      tags:
+      - Tenants
+  /tenants/{id}/nfs4_deleg/:
+    delete:
+      description: Remove NFSv4 delegation
+      operationId: tenant_remove_nfs4_deleg
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - description: File path
+        in: query
+        name: file_path
+        required: true
+        schema:
+          type: string
+      - description: Client ID
+        in: query
+        name: client_id
+        required: true
+        schema:
+          type: integer
+      - description: Delegation state ID
+        in: query
+        name: delegation_stateid
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+      summary: Remove NFSv4 delegation
+      tags:
+      - Tenants
+  /tenants/{id}/nfs4_delegs/:
+    get:
+      description: This endpoint queries list of NFSv4 delegations
+      operationId: tenant_list_nfs4_delegs
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - description: File path
+        in: query
+        name: file_path
+        required: true
+        schema:
+          type: string
+      - description: Xeystore pagination
+        in: query
+        name: xeystore_pagination_next_client_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NFS4DelegateState'
+          description: A list of tenant NFSv4 delegations.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The request contains invalid data.
+      summary: Query list of NFSv4 delegations
+      tags:
+      - Tenants
+  /tenants/{id}/reinstate_encryption_group/:
+    post:
+      description: Reinstate tenant's encryption group.
+      operationId: tenant_reinstate_encryption_group
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '204':
+          description: Tenant's encryption group was reinstated successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Encryption group was not found by Encryption CRN <encryption_crn>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to reinstate encryption group.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Reinstate tenant's encryption group.
+      tags:
+      - Tenants
+  /tenants/{id}/revoke_encryption_group/:
+    post:
+      description: Revoke tenant's encryption group.
+      operationId: tenant_revoke_encryption_group
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '204':
+          description: Tenant's encryption group was revoked successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Encryption group was not found by its key <encryption_group>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to revoke encryption group.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Revoke tenant's encryption group.
+      tags:
+      - Tenants
+  /tenants/{id}/rotate_encryption_group_key/:
+    post:
+      description: This endpoint rotates the key encryption key for the encryption group to which the tenant belongs. This is applicable only if encryption is enabled with encryption type CIPHER_TRUST_KMIP, in which encryption keys are managed externally on Thales Group CipherTrust Data Security Platform. The key encryption key is used by the cluster to retrieve the data encryption key from the external key manager (EKM) when needed to encrypt data. Rotating the key encryption key generates a new version of the key encryption key, with the same key name and attributes.
+      operationId: tenant_rotate_encryption_group_key
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '204':
+          description: Tenant's encryption group key was rotated successfully.
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Encryption group was not found by its key <encryption_group_key>.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+        '503':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Failed to rotate encryption group key.
+                    type: string
+                type: object
+          description: Service temporarily unavailable, try again later.
+      summary: Rotate tenant's encryption group key.
+      tags:
+      - Tenants
+  /tenants/{id}/same_encryption_group_tenants/:
+    get:
+      description: Returns names of tenants with the same encryption group.
+      operationId: get_tenant_same_encryption_group_tenants
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  description: Tenant name
+                  type: string
+                type: array
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Tenant has no Encryption Group.
+                    type: string
+                type: object
+          description: The request could not be completed due to a conflict with the current state.
+      summary: Get tenants with the same encryption group
+      tags:
+      - Tenants
+  /tenants/{id}/vippool_ip_ranges/:
+    get:
+      description: Returns IP ranges of VIP Pools that can be used with the tenant.
+      operationId: get_tenant_vippool_ip_ranges
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VIPPoolIPRanges'
+          description: ''
+      summary: Get tenant VIP pools IP ranges
+      tags:
+      - Tenants
+  /tenants/{tenant_id}/metric_label_values/:
+    get:
+      description: This endpoint lists all metric label values for a specific tenant.
+      operationId: tenant_metric_label_values_list
+      parameters:
+      - $ref: '#/components/parameters/NestedTenantId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TenantMetricLabelValue'
+                type: array
+          description: A list of tenant metric label values.
+      summary: List Tenant Metric Label Values
+      tags:
+      - Tenants
+    post:
+      description: This endpoint creates a new metric label value for a tenant.
+      operationId: tenant_metric_label_values_create
+      parameters:
+      - $ref: '#/components/parameters/NestedTenantId'
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                label_id:
+                  description: The ID of the metric label.
+                  type: integer
+                value:
+                  description: The value for this metric label.
+                  maxLength: 64
+                  type: string
+              required:
+              - label_id
+              - value
+              type: object
+        x-originalParamName: TenantMetricLabelValueCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMetricLabelValue'
+          description: Metric label value created successfully.
+      summary: Create Tenant Metric Label Value
+      tags:
+      - Tenants
+  /tenants/{tenant_id}/metric_label_values/bulk/:
+    get:
+      description: This endpoint retrieves all metric label values for a tenant as a dictionary.
+      operationId: tenant_metric_label_values_bulk_get
+      parameters:
+      - $ref: '#/components/parameters/NestedTenantId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMetricLabelValues'
+          description: Dictionary of metric label keys to values.
+      summary: Get All Tenant Metric Label Values
+      tags:
+      - Tenants
+    post:
+      description: 'This endpoint replaces all metric label values for a tenant with the provided dictionary.
+
+        All existing values are deleted and replaced with the new ones.
+
+        '
+      operationId: tenant_metric_label_values_bulk_update
+      parameters:
+      - $ref: '#/components/parameters/NestedTenantId'
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/TenantMetricLabelValues'
+        x-originalParamName: TenantMetricLabelValuesBulkUpdateParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMetricLabelValues'
+          description: Metric label values updated successfully.
+      summary: Bulk Update Tenant Metric Label Values
+      tags:
+      - Tenants
+  /tenants/{tenant_id}/metric_label_values/{id}/:
+    delete:
+      description: This endpoint deletes a metric label value for a tenant.
+      operationId: tenant_metric_label_values_delete
+      parameters:
+      - $ref: '#/components/parameters/NestedTenantId'
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '204':
+          description: Metric label value deleted successfully.
+      summary: Delete Tenant Metric Label Value
+      tags:
+      - Tenants
+    get:
+      description: This endpoint retrieves a specific metric label value for a tenant.
+      operationId: tenant_metric_label_values_get
+      parameters:
+      - $ref: '#/components/parameters/NestedTenantId'
+      - $ref: '#/components/parameters/PathObjectId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMetricLabelValue'
+          description: Metric label value details.
+      summary: Get Tenant Metric Label Value
+      tags:
+      - Tenants
+    patch:
+      description: This endpoint updates a metric label value for a tenant.
+      operationId: tenant_metric_label_values_update
+      parameters:
+      - $ref: '#/components/parameters/NestedTenantId'
+      - $ref: '#/components/parameters/PathObjectId'
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              properties:
+                value:
+                  description: The new value for this metric label.
+                  maxLength: 64
+                  type: string
+              type: object
+        x-originalParamName: TenantMetricLabelValueUpdateParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMetricLabelValue'
+          description: Metric label value updated successfully.
+      summary: Update Tenant Metric Label Value
+      tags:
+      - Tenants
+components:
+  parameters:
+    NameIContainsQP:
+      description: Name to filter by
+      in: query
+      name: name__icontains
+      schema:
+        type: string
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TenantId:
+      description: Tenant ID
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    NestedTenantId:
+      description: ID of a Tenant
+      in: path
+      name: tenant_id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+  schemas:
+    TabularColumnArrowSchema:
+      properties:
+        field:
+          description: Column type
+          example:
+            column_type: map
+            key_type:
+              column_type: bool
+            value_type:
+              column_type: bool
+          properties:
+            column_type:
+              type: string
+            key_type:
+              description: Column type for the map key (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the key (e.g., "string", "bool")
+                  type: string
+              type: object
+            value_type:
+              description: Column type for the map value (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the value (e.g., "string", "bool")
+                  type: string
+              type: object
+          type: object
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - name
+      - field
+      type: object
+    LocalProviderData:
+      properties:
+        id:
+          description: ID of the local provider
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of the local provider
+          type: string
+      type: object
+    TenantMetricLabelValues:
+      additionalProperties:
+        maxLength: 64
+        type: string
+      description: Custom labels to be exposed in Prometheus metrics.
+      example:
+        customer: acme
+        region: us-west
+      type: object
+    RequestTruncatedQOS:
+      properties:
+        static_limits:
+          $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
+      type: object
+    Tenant:
+      properties:
+        access_ip_ranges:
+          description: Restricts tenant login access to specified source IP ranges. Enter as single IPs (1.1.1.1), ranges (1.2.3.4 - 1.2.3.6), or CIDR (1.1.1.0/24).
+          items:
+            type: string
+          type: array
+          x-cli-header: Access IP Ranges
+        ad_provider_id:
+          description: Active Directory provider ID
+          type: integer
+          x-cli-header: Active Directory provider ID
+        ad_title:
+          type: string
+        allow_disabled_users:
+          description: Allow IO from users whose Active Directory accounts are explicitly disabled.
+          type: boolean
+          x-cli-header: Allow explicitly disabled users
+        allow_locked_users:
+          description: Allow IO from users whose Active Directory accounts are locked out by lockout policies due to unsuccessful login attempts.
+          type: boolean
+          x-cli-header: Allow temporarily locked out users
+        allowed_delegations:
+          description: Defines the possible types of NFSv4 delegations
+          enum:
+          - NONE
+          - READ
+          - WRITE
+          - READ_WRITE
+          type: string
+          x-cli-header: Allowed NFSv4 File Delegations
+        application_users_group_name:
+          description: The name of the group that will be used for application users
+          type: string
+          x-cli-header: App Users Group Name
+        capacity_rules:
+          $ref: '#/components/schemas/CapacityRules'
+        client_ip_ranges:
+          description: Array of source IP ranges to allow for the tenant.
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+          x-cli-header: Client IP ranges
+        client_ip_ranges_summary:
+          type: string
+        data_engine_enabled:
+          description: True if DataEngine is enabled on this tenant
+          type: boolean
+        default_others_share_level_perm:
+          description: Default Share-level permissions for 'Everyone' Group
+          enum:
+          - READ
+          - CHANGE
+          - FULL
+          type: string
+          x-cli-header: Default share-level ACL
+        dir:
+          type: string
+        domain_name:
+          description: Domain name to incorporate into the VMS tenant login page URL.
+          type: string
+          x-cli-header: Domain Name
+        encryption_crn:
+          description: Tenant's encryption group unique identifier (deprecated)
+          type: string
+          x-cli-header: Encryption CRN
+        encryption_group:
+          description: Tenant's encryption group unique identifier
+          type: string
+          x-cli-header: Encryption Group
+        encryption_group_id:
+          description: Encryption Group ID
+          type: integer
+          x-cli-header: Encryption Group ID
+        encryption_group_state:
+          description: Tenant's encryption group state
+          enum:
+          - INIT
+          - ACTIVE
+          - REVOKE_IN_PROGRESS
+          - REVOKE_UPDATING_AGENTS
+          - REVOKED
+          - REINSTATE_IN_PROGRESS
+          - REINSTATE_UPDATING_AGENTS
+          - UNKNOWN
+          - ''
+          - EKM_REVOKE_IN_PROGRESS
+          - EKM_REVOKE_UPDATING_AGENTS
+          - EKM_REVOKED
+          - EKM_REVOKE_FAILED
+          - EKM_REVOKING_KEYS
+          type: string
+          x-cli-header: Encryption group state
+        grant_unrequested_delegations_by_default:
+          description: When enabled, the server may grant delegations based on share access even if not explicitly requested by the client
+          type: boolean
+          x-cli-header: Grant Unrequested NFSv4 File Delegations by Default
+        guid:
+          description: Tenant guid
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        identity_provider_name:
+          description: Sets a configured SAML login provider to enable for the tenant.  When set, users defined on the specified SAML provider with relevant roles and user types can login to the tenant VMS.
+          type: string
+          x-cli-header: Identity Provider Name
+        is_nfsv42_supported:
+          description: Enable NFSv4.2
+          type: boolean
+          x-cli-header: Enable NFSv4.2
+        krb_provider_id:
+          description: Kerberos provider ID
+          type: integer
+          x-cli-header: Kerberos provider ID
+        krb_provider_title:
+          description: Kerberos provider title
+          type: string
+        ldap_provider_id:
+          description: Open-LDAP provider ID
+          type: integer
+          x-cli-header: Open LDAP provider ID
+        ldap_title:
+          type: string
+        local_provider:
+          $ref: '#/components/schemas/LocalProviderData'
+        local_provider_id:
+          description: Local provider ID
+          type: integer
+          x-cli-header: Local provider ID
+        local_provider_title:
+          description: The local provider associated with the tenant
+          type: string
+        login_name_primary_provider:
+          description: Primary provider for the user's login name
+          enum:
+          - NONE
+          - LDAP
+          - NIS
+          - AD
+          - LOCAL
+          type: string
+          x-cli-header: Login Name Primary Provider
+        max_views:
+          description: Max views we can create on this tenant (0:unlimted as default)
+          type: integer
+          x-cli-header: Max Views
+        mtls_identifier:
+          description: The mTLS identifier of the tenant
+          type: string
+        name:
+          type: string
+        nis_provider_id:
+          description: NIS provider ID
+          type: integer
+          x-cli-header: NIS provider ID
+        nis_title:
+          type: string
+        oidc_provider_id:
+          description: OIDC provider ID
+          type: integer
+          x-cli-header: OIDC provider ID
+        oidc_provider_title:
+          type: string
+        posix_primary_provider:
+          description: The primary provider that takes precedence for POSIX user attributes in case of conflict between two providers that both have POSIX user attributes
+          enum:
+          - NONE
+          - LDAP
+          - NIS
+          - AD
+          - LOCAL
+          type: string
+          x-cli-header: Posix Primary Provider
+        preferred_owning_group:
+          description: Set to prefer GID of the user as the owning group of the file
+          enum:
+          - PROTOCOL_BASED
+          - POSIX_GID
+          type: string
+          x-cli-header: Preferred Owning Group
+        qos:
+          $ref: '#/components/schemas/TruncatedQOS'
+        require_smb_signing:
+          description: Require SMB clients to perform SMB message signing. SMB messages with invalid or missing signatures will be blocked.
+          type: boolean
+          x-cli-header: Require SMB signing
+        smb_administrators_group_name:
+          description: Optional custom name to specify a non default privileged group. If not set, privileged group is the BUILTIN\Administrators group.
+          type: string
+          x-cli-header: Local administrators group name
+        smb_allowed:
+          type: boolean
+        smb_encryption_state:
+          description: Defines the encryption level for SMB
+          enum:
+          - 'OFF'
+          - AVAILABLE
+          - DESIRED
+          - REQUIRED
+          type: string
+          x-cli-header: SMB Encryption State
+        smb_privileged_group_full_access:
+          description: If true, the privileged group has full access. Otherwise, read only
+          type: boolean
+          x-cli-header: Enable privileged domain group restore access
+        smb_privileged_group_sid:
+          description: Optional custom SID to specify a non default SMB privileged group. If not set, SMB privileged group is the Backup Operators domain group.
+          type: string
+          x-cli-header: SID of the privileged domain group
+        smb_privileged_user_name:
+          description: Optional custom username for the SMB privileged user. If not set, the SMB privileged user name is 'vastadmin'
+          type: string
+          x-cli-header: Logon name of the privileged domain user
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        tenant_admins_group_name:
+          description: Sets a group on an AD or LDAP provider. Enables users in the group to log into the tenant VMS as Tenant Admin users. Tenant Admin is a type of VMS manager user that has management access to a specific tenant's VMS.
+          type: string
+          x-cli-header: Tenant Admins Group Name
+        title:
+          type: string
+        trash_gid:
+          description: GID of group of NFSv3 users that have permission to move files into the trash folder. If not set, the operation of moving files into the trash folder is supported for the root user only.
+          type: integer
+          x-cli-header: Trash folder GID
+        url:
+          type: string
+        use_smb_native:
+          description: Access check decisions will be made based on user and group information from the Kerberos ticket. Use this if your Active Directory has a one-way trust. This is relevant for SMB only.
+          type: boolean
+          x-cli-header: Use native SMB authentication
+        use_smb_privileged_group:
+          description: If true, the privileged group is enabled
+          type: boolean
+          x-cli-header: Enable privileged domain group backup access
+        use_smb_privileged_user:
+          description: If true, the privileged user is enabled
+          type: boolean
+          x-cli-header: Enable privileged domain user restore access
+        vippool_names:
+          description: Array of VIP Pools that can be used with the tenant.
+          items:
+            type: string
+          type: array
+          x-cli-header: VIP Pools
+        vippools:
+          description: Array of VIP Pools names and IDs that can be used with the tenant.
+          items:
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+            type: object
+          type: array
+      required:
+      - name
+      type: object
+    TruncatedQOSStaticLimits:
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      required:
+      - max_reads_bw_mbps
+      - max_writes_bw_mbps
+      - max_reads_iops
+      - max_writes_iops
+      - burst_reads_bw_mb
+      - burst_writes_bw_mb
+      - burst_reads_loan_mb
+      - burst_writes_loan_mb
+      - burst_reads_iops
+      - burst_writes_iops
+      - burst_reads_loan_iops
+      - burst_writes_loan_iops
+      type: object
+    CapacityRules:
+      properties:
+        grace_period:
+          description: Quota enforcement grace period for tenant capacity limit, in seconds
+          type: string
+        hard_limit:
+          description: Capacity hard limit for the tenant
+          type: integer
+        hard_limit_inodes:
+          description: Hard limit on the number of files or directories for the tenant
+          type: integer
+        notify_hard_limit:
+          description: Notify on reaching hard limit
+          type: boolean
+        notify_soft_limit:
+          description: Notify on reaching soft limit
+          type: boolean
+        soft_limit:
+          description: Capacity soft limit for the tenant
+          type: integer
+        soft_limit_inodes:
+          description: Soft limit on the number of files or directories for the tenant
+          type: integer
+      type: object
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
+    RequestTruncatedQOSStaticLimits:
+      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
+    TenantClientMetrics:
+      properties:
+        config:
+          properties:
+            bucket_name:
+              description: The name of the client metrics database S3 bucket.
+              type: string
+            bucket_owner:
+              description: The user designated as the S3 bucket owner for the client metrics database for the selected tenant.
+              type: string
+            enabled:
+              description: Enables collection of client metrics. If you enable the collection of client metrics, make sure bucket_owner and bucket_name are set as well.
+              type: boolean
+            max_capacity_mb:
+              description: The maximum size of the client metrics database, in MBB. If the limit is reached, older data is deleted from the database.
+              type: integer
+            retention_time_sec:
+              description: The retention period, in seconds, for client metrics data that is stored in the client metrics database. Data older than this time is deleted from the database.
+              type: integer
+          required:
+          - enabled
+          type: object
+        default_columns:
+          description: Default predefined table columns
+          items:
+            $ref: '#/components/schemas/TabularColumnArrowSchema'
+          type: array
+        user_defined_columns:
+          description: Custom user defined table colums.
+          items:
+            $ref: '#/components/schemas/Column'
+          type: array
+      required:
+      - config
+      type: object
+    PartialTenantMetricLabel:
+      properties:
+        id:
+          type: integer
+        key:
+          type: string
+      readOnly: true
+      type: object
+    NFS4DelegateState:
+      properties:
+        delegate_info:
+          items:
+            $ref: '#/components/schemas/NFS4DelegateInfo'
+          type: array
+        delegate_info_count_total:
+          type: integer
+        xeystore_pagination:
+          type: boolean
+        xeystore_pagination_next_client_id:
+          type: integer
+      type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
+          type: string
+      type: object
+    TenantMetricLabelValue:
+      properties:
+        created_at:
+          description: Timestamp when the metric label value was created.
+          format: date-time
+          readOnly: true
+          type: string
+          x-format: datetime2display
+        id:
+          readOnly: true
+          type: integer
+        label:
+          $ref: '#/components/schemas/PartialTenantMetricLabel'
+        value:
+          description: The value for this metric label for the tenant.
+          maxLength: 64
+          type: string
+      required:
+      - value
+      type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+    NFS4DelegateInfo:
+      properties:
+        client_id:
+          description: Tenant ID
+          type: integer
+        delegation_stateid:
+          type: integer
+        delegation_type:
+          enum:
+          - NONE
+          - READ
+          - WRITE
+          - WRITE_ATTRS_DELEG
+          type: string
+        list_open_handles_task:
+          $ref: '#/components/schemas/PartialVTask'
+        revoke_in_progress:
+          type: boolean
+        vip_addr:
+          type: string
+      type: object
+    TruncatedQOS:
+      properties:
+        static_limits:
+          $ref: '#/components/schemas/TruncatedQOSStaticLimits'
+      required:
+      - static_limits
+      type: object
+    RemoteTenant:
+      properties:
+        guid:
+          description: Remote Tenant guid
+          type: string
+        name:
+          description: Remote Tenant name
+          type: string
+      type: object
+    PartialVTask:
+      properties:
+        id:
+          description: Task ID
+          type: integer
+        start_time:
+          description: Task start time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        state:
+          description: Task state
+          type: string
+      type: object
+    TenantMetricLabel:
+      properties:
+        created_at:
+          description: Timestamp when the metric label was created.
+          format: date-time
+          readOnly: true
+          type: string
+          x-format: datetime2display
+        default_value:
+          description: The default value for this metric label.
+          maxLength: 64
+          type: string
+        description:
+          description: Description of the metric label purpose.
+          maxLength: 1024
+          type: string
+        id:
+          readOnly: true
+          type: integer
+        key:
+          description: The unique key for the metric label.
+          maxLength: 32
+          type: string
+      required:
+      - key
+      - default_value
+      - description
+      type: object
+    VIPPoolIPRanges:
+      description: Array of IP ranges of VIP Pools that can be used with the tenant.
+      properties:
+        vippool_ip_ranges:
+          items:
+            example: 172.20.16.1 - 172.20.16.16
+            type: string
+          type: array
+          x-cli-header: VIP Pools IP ranges
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    Warnings:
+      properties:
+        warnings:
+          items:
+            example: 'Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant=''default'', path=''/test'')'
+            type: string
+          type: array
+      required:
+      - warnings
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

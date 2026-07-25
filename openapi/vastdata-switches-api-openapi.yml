@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory switches API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Switches represent switches in the cluster.
+  name: switches
+paths:
+  /switches/:
+    get:
+      description: This endpoint lists switches.
+      operationId: switches_list
+      parameters:
+      - description: Filter by switch state
+        in: query
+        name: state
+        schema:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          - OK
+          - ERROR
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Switch'
+                title: Switches
+                type: array
+          description: Switch information
+      summary: List Switches
+      tags:
+      - switches
+    post:
+      description: This endpoint adds a switch to the cluster.
+      operationId: switches_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ip:
+                  description: Switch IP
+                  type: string
+                password:
+                  description: Switch password
+                  type: string
+                username:
+                  description: Switch username
+                  type: string
+              type: object
+        x-originalParamName: SwitchCreateParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Switch'
+          description: ''
+      summary: Add Switch
+      tags:
+      - switches
+  /switches/bulk/:
+    patch:
+      description: This endpoint updates credentials for multiple switches simultaneously.
+      operationId: switches_bulk_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ids:
+                  description: List of switch IDs to update (e.g., [1,2,3])
+                  items:
+                    type: integer
+                  type: array
+                password:
+                  description: New password for all switches
+                  type: string
+                username:
+                  description: New username for all switches
+                  type: string
+              required:
+              - ids
+              - username
+              - password
+              type: object
+        x-originalParamName: SwitchBulkUpdateParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncTaskInResponse'
+          description: ''
+      summary: Bulk Update Switch Credentials
+      tags:
+      - switches
+  /switches/{id}/:
+    delete:
+      description: This endpoint deletes a switch.
+      operationId: switches_delete
+      parameters:
+      - description: Switch ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The switch was deleted successfully
+      summary: Delete Switch
+      tags:
+      - switches
+    get:
+      description: This endpoint returns details of a specified switch.
+      operationId: switches_read
+      parameters:
+      - description: Switch ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Switch'
+          description: ''
+      summary: Return Details of a Switch
+      tags:
+      - switches
+    patch:
+      description: This endpoint modifies a switch username and password.
+      operationId: switches_partial_update
+      parameters:
+      - description: Switch ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  description: Switch password
+                  type: string
+                username:
+                  description: Switch username
+                  type: string
+              type: object
+        x-originalParamName: SwitchModifyParams
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Switch'
+          description: ''
+      summary: Change Switch User Credentials
+      tags:
+      - switches
+components:
+  schemas:
+    Switch:
+      properties:
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          type: string
+        configuration_file:
+          type: string
+        configured:
+          type: boolean
+        display_name:
+          type: string
+        fw_version:
+          type: string
+        guid:
+          type: string
+        hostname:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        install:
+          type: boolean
+        ip:
+          description: Switch external ip
+          type: string
+        ipv6:
+          description: Switch discovered ipv6
+          type: string
+        mgmt_gateway:
+          type: string
+        mgmt_ip:
+          type: string
+        mgmt_subnet:
+          type: integer
+        model:
+          description: Switch model
+          type: string
+        mtu:
+          type: integer
+          x-cli-header: MTU
+        name:
+          description: Switch hostname
+          type: string
+        pair_id:
+          type: string
+        password:
+          format: password
+          type: string
+        peer_switch:
+          type: string
+        role:
+          type: string
+        sn:
+          description: Switch Serial Number
+          type: string
+        state:
+          description: Switch state
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          - OK
+          - ERROR
+          type: string
+        switch_id:
+          type: integer
+        switch_type:
+          enum:
+          - arista
+          - mellanox
+          - mellanox-os
+          - aruba
+          - cumulus
+          - unknown
+          type: string
+        title:
+          description: Switch title
+          type: string
+        username:
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

@@ -1,0 +1,197 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory projectioncolumns API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Projection columns are columns that are included in a projection, either as the columns used to sort the projection or as additional columns included in a projection.
+  name: projectioncolumns
+paths:
+  /projectioncolumns/:
+    get:
+      description: This endpoint lists database table semi-sorted projection columns.
+      operationId: projectioncolumns_list
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/TabularPageSize'
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TabularDatabaseNameQP'
+      - $ref: '#/components/parameters/TabularSchemaNameQP'
+      - $ref: '#/components/parameters/TabularTableNameQP'
+      - $ref: '#/components/parameters/TabularProjectionNameQP'
+      - $ref: '#/components/parameters/TabularNameQP'
+      - $ref: '#/components/parameters/TabularNameStartswithQP'
+      - $ref: '#/components/parameters/TabularCountOnlyQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProjectionColumn'
+                title: Projection Columns
+                type: array
+          description: Database Table Semi-Sorted Projection Columns
+      summary: List Database Table Semi-Sorted Projection Columns
+      tags:
+      - projectioncolumns
+  /projectioncolumns/show/:
+    get:
+      description: This endpoint shows a database table semi-sorted projection column.
+      operationId: projectioncolumns_show
+      parameters:
+      - $ref: '#/components/parameters/TenantIdQP'
+      - $ref: '#/components/parameters/TabularDatabaseNameQP'
+      - $ref: '#/components/parameters/TabularSchemaNameQP'
+      - $ref: '#/components/parameters/TabularTableNameQP'
+      - $ref: '#/components/parameters/TabularProjectionNameQP'
+      - $ref: '#/components/parameters/TabularNameRequiredQP'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectionColumn'
+          description: Database Table Semi-Sorted Projection Column
+      summary: Return a Database Table Semi-Sorted Projection Column
+      tags:
+      - projectioncolumns
+components:
+  parameters:
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularSchemaNameQP:
+      description: Getting list of objects by schema_name
+      in: query
+      name: schema_name
+      required: true
+      schema:
+        type: string
+    TabularProjectionNameQP:
+      description: Getting list of objects by projection_name
+      in: query
+      name: projection_name
+      required: true
+      schema:
+        type: string
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    TabularNameStartswithQP:
+      description: Getting list of objects by prefix match
+      in: query
+      name: name__startswith
+      schema:
+        type: string
+  schemas:
+    ProjectionColumn:
+      allOf:
+      - $ref: '#/components/schemas/TabularProjectionHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          is_sorted:
+            description: Whether the column is a sorted column, used to sort the projection
+            type: boolean
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        - is_sorted
+        type: object
+    TabularProjectionHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        projection_name:
+          description: Name of the Projection
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - projection_name
+      - name
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

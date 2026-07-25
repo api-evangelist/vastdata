@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory challengetokens API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Challenge tokens are used to unlock the cluster's indestructibility mechanism.
+  name: challengetokens
+paths:
+  /challengetokens/:
+    get:
+      description: This endpoint lists challenge tokens.
+      operationId: challenge_tokens_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChallengeToken'
+          description: Challenge tokens information
+      summary: List challenge tokens
+      tags:
+      - challengetokens
+  /challengetokens/{id}/:
+    get:
+      description: This endpoint returns details of a specific challenge token.
+      operationId: challenge_tokens_read
+      parameters:
+      - description: Challenge Token ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChallengeToken'
+          description: ''
+      summary: Return Details of a challenge token
+      tags:
+      - challengetokens
+components:
+  schemas:
+    ChallengeToken:
+      properties:
+        expiration_time:
+          description: Token expiration time
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+        name:
+          description: Token name
+          type: string
+        password:
+          type: string
+        token:
+          description: Token value
+          type: string
+      required:
+      - name
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

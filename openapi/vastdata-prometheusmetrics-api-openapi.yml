@@ -1,0 +1,209 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory prometheusmetrics API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: prometheusmetrics is VAST's Prometheus exporter resource. Prometheus is an open-source systems monitoring and alerting toolkit that provides a data model for describing and recording metrics over time and also provides a web application to display those metrics. Prometheus can be configured to fetch metrics from a third party system (such as in this case VAST Cluster) by means of a software entity called a Prometheus exporter. A Prometheus exporter collects metrics from a third party system, converts them to Prometheus metrics and exposes them via a resource path. The VAST prometheus exporter can fetch pre-defined metrics from the VMS database and return the data as a plain/text key-value format response.  You can configure the Prometheus server to scrape the metrics from the exporter at a chosen interval and display the VMS metrics through its display applications.
+  name: prometheusmetrics
+paths:
+  /prometheusmetrics/:
+    get:
+      description: This endpoint exports cluster and CNode metrics that are not exported by other prometheusmetrics endpoints.
+      operationId: prometheusmetrics_read
+      responses:
+        '200':
+          description: prometheus exporter metrics
+      summary: prometheus metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/alarms:
+    get:
+      description: This endpoint gives prometheus exporter alarms metrics.
+      operationId: prometheusmetricsalarms_read
+      responses:
+        '200':
+          description: prometheus exporter alarms metrics
+      summary: prometheus alarms metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/all:
+    get:
+      description: This endpoint exports all VAST Cluster metrics. This includes each and every metric that can be exported by the other Prometheus exporter endpoints. Due to the large amount of data exported, using this endpoint to collect metrics from a very large cluster is not recommended.
+      operationId: prometheusmetricsall_read
+      responses:
+        '200':
+          description: All prometheus exporter metrics
+      summary: all prometheus metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/defrag:
+    get:
+      description: This endpoint exports defragmentation metrics to the Prometheus exporter.
+      operationId: prometheusmetricsdefrag_read
+      responses:
+        '200':
+          description: Prometheus exporter defrag metrics
+      summary: prometheus defrag metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/devices:
+    get:
+      description: This endpoint returns information about the SSD or NVRAM physical state, such as presence of media errors or current temperature, and overall operational status (active or failed).
+      operationId: prometheusmetricsdevices_read
+      responses:
+        '200':
+          description: prometheus exporter devices metrics
+      summary: prometheus devices metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/nics:
+    get:
+      description: This endpoint gives prometheus exporter nics metrics.
+      operationId: prometheusmetricsnics_read
+      responses:
+        '200':
+          description: prometheus exporter nics metrics
+      summary: prometheus nics metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/quotas:
+    get:
+      description: This endpoint returns information related to quotas configured on the cluster, such as the quota limits set and number of users who have exceeded the quota or who have been blocked due to quota exceeded condition.
+      operationId: prometheusmetricsquotas_read
+      responses:
+        '200':
+          description: prometheus exporter quotas metrics
+      summary: prometheus quotas metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/replications:
+    get:
+      description: This endpoint gives prometheus exporter replications metrics.
+      operationId: prometheusmetricsreplications_read
+      responses:
+        '200':
+          description: prometheus exporter replications metrics
+      summary: prometheus replications metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/switches:
+    get:
+      description: This endpoint gives prometheus exporter switches metrics.
+      operationId: prometheusmetricsswitches_read
+      responses:
+        '200':
+          description: prometheus exporter switches metrics
+      summary: prometheus switches metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/tenants:
+    get:
+      description: This endpoint gives prometheus exporter tenants metrics.
+      operationId: prometheusmetricstenants_read
+      responses:
+        '200':
+          description: prometheus exporter tenants metrics
+      summary: prometheus tenants metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/user_connections:
+    get:
+      description: This endpoint gives prometheus exporter user connections metrics.
+      operationId: prometheusmetricsuser_connections_read
+      responses:
+        '200':
+          description: prometheus exporter user connections metrics
+      summary: prometheus user connections metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/user_view:
+    get:
+      description: This endpoint gives prometheus exporter user view metrics.
+      operationId: prometheusmetricsuser_view_read
+      responses:
+        '200':
+          description: prometheus exporter user view metrics
+      summary: prometheus user view metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/users:
+    get:
+      description: This endpoint exports user bandwidth, IOPS and metadata IOPS metrics on read and/or write operations to the Prometheus exporter.
+      operationId: prometheusmetricsusers_read
+      responses:
+        '200':
+          description: prometheus exporter users metrics
+      summary: prometheus users metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/views:
+    get:
+      description: This endpoint exports performance metrics per view, including bandwidth, IOPS, metadata IOPS, latency and QoS, and also view logical and physical capacity.
+      operationId: prometheusmetricsviews_read
+      responses:
+        '200':
+          description: prometheus exporter views metrics
+      summary: prometheus views metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/vips:
+    get:
+      description: This endpoint gives prometheus exporter vips metrics.
+      operationId: prometheusmetricsvips_read
+      responses:
+        '200':
+          description: prometheus exporter vips metrics
+      summary: prometheus vips metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/vms_state:
+    get:
+      description: This endpoint gives prometheus exporter vms state metrics.
+      operationId: prometheusmetricsvms_state_read
+      responses:
+        '200':
+          description: prometheus exporter vms state metrics
+      summary: prometheus vms state metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+  /prometheusmetrics/volumes:
+    get:
+      description: This endpoint gives prometheus exporter volumes metrics.
+      operationId: prometheusmetricsvolumes_read
+      responses:
+        '200':
+          description: prometheus exporter volumes metrics
+      summary: prometheus volumes metrics
+      tags:
+      - prometheusmetrics
+      x-cli-command: prometheusmetrics
+components:
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

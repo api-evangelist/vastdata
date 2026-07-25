@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory fans API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Fans represent fans on the CBoxes and DBoxes
+  name: fans
+paths:
+  /fans/:
+    get:
+      description: This endpoint lists fans.
+      operationId: fans_list
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: string
+      - description: Filter by fan state
+        in: query
+        name: state
+        schema:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          - OK
+          - LOWER_NON_RECOVERABLE
+          - LOWER_CRITICAL
+          - LOWER_NON_CRITICAL
+          type: string
+      - description: Filter by fan serial number
+        in: query
+        name: sn
+        schema:
+          type: string
+      - description: Filter by fan model
+        in: query
+        name: model
+        schema:
+          type: string
+      - description: Filter by parent CBox or DBox name
+        in: query
+        name: box__name
+        schema:
+          type: string
+      - description: Filter by parent CBox or DBox ID
+        in: query
+        name: box__id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Fan'
+                title: Fans
+                type: array
+          description: Fan information
+      summary: List Fans
+      tags:
+      - fans
+  /fans/{id}/:
+    get:
+      description: This endpoint returns details of a specified fan.
+      operationId: fans_read
+      parameters:
+      - description: Fan ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fan'
+          description: ''
+      summary: Return Details of Fan
+      tags:
+      - fans
+components:
+  schemas:
+    Fan:
+      properties:
+        box:
+          description: Parent Box name
+          type: string
+          x-cli-header: Box
+        box_id:
+          type: integer
+        box_uid:
+          type: string
+        cbox_id:
+          type: integer
+        cluster:
+          description: Parent Cluster
+          type: string
+        cluster_id:
+          type: integer
+        cnode:
+          type: string
+        dbox_id:
+          type: integer
+        display_name:
+          type: string
+        dnode:
+          type: string
+        fw_version:
+          type: string
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        index:
+          description: Fan index
+          type: integer
+        internal:
+          type: boolean
+        location:
+          type: string
+          x-cli-header: Location
+        model:
+          description: Fan model
+          type: string
+        name:
+          type: string
+          x-cli-header: Name
+        psu:
+          type: string
+        sn:
+          description: Fan serial number
+          type: string
+          x-cli-header: Serial-Number
+        speed:
+          description: Fan speed
+          type: integer
+          x-display-units: RPM
+        state:
+          description: Fan state
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - FAILED
+          - LOGIN_FAILED
+          - ACTIVATING
+          - INACTIVE
+          - DEACTIVATING
+          - FAILING
+          - PHASING_OUT
+          - ENTER_PHASING_OUT
+          - EXIT_PHASING_OUT
+          - ACTIVE
+          - OK
+          - LOWER_NON_RECOVERABLE
+          - LOWER_CRITICAL
+          - LOWER_NON_CRITICAL
+          type: string
+        title:
+          type: string
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http

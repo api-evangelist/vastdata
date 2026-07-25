@@ -1,0 +1,440 @@
+openapi: 3.0.3
+info:
+  description: VAST Management API definition
+  title: VAST API Swagger Schema activedirectory monitors API
+  version: '1.0'
+security:
+- ApiToken: []
+tags:
+- description: Monitors are analytics reports that can provide insight into capacity utilization and cluster performance. Top performer analytics are performance metrics of the n most active client users, views, client hosts, vips, vip pools and cnodes.
+  name: monitors
+paths:
+  /monitors/:
+    get:
+      description: This endpoint lists properties of predefined analytics reports.
+      operationId: monitors_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Monitor'
+                title: Monitor
+                type: array
+          description: Monitor information
+      summary: List Monitors
+      tags:
+      - monitors
+    post:
+      description: This endpoint defines a custom analytics report.
+      operationId: monitors_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                aggregation:
+                  description: If data granularity is minutes, hours or days, the data is aggregated. This parameter selects which aggregation function to use.
+                  enum:
+                  - avg
+                  - min
+                  - max
+                  - latency_weighted_average
+                  - stddev
+                  - sum
+                  type: string
+                from_time:
+                  description: Start time of period to report. e.g. 2021-01-15T13:41:52Z
+                  type: string
+                granularity:
+                  description: 'Data granularity: seconds (raw), minutes (five minute aggregated samples), hours (hourly aggregated samples), or days (daily aggregated samples)'
+                  type: string
+                name:
+                  description: A name for the monitor.
+                  type: string
+                object_ids:
+                  description: Specific objects to include in the report, specified as a comma separated list of object IDs.
+                  type: string
+                object_type:
+                  description: The type of object to monitor.
+                  enum:
+                  - cluster
+                  - cnode
+                  - dnode
+                  - nvram
+                  - replicationstream
+                  - ssd
+                  type: string
+                prop_list:
+                  description: A list of metrics to query. To get the full list of metrics, use GET /metrics/.
+                  type: string
+                time_frame:
+                  description: 'Default time frame to report over. Examples: 2h (2 hours), 1D (1 Day), 10m (10 minutes), 1M (1 month)'
+                  type: string
+                to_time:
+                  description: End time of period to report. e.g. 2021-01-15T13:41:52Z
+                  type: string
+              required:
+              - object_type
+              type: object
+        x-originalParamName: MonitorAddParams
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monitor'
+          description: ''
+      summary: Create Custom Analytics Report (aka Monitor)
+      tags:
+      - monitors
+  /monitors/ad_hoc_query/:
+    get:
+      description: This endpoint queries VMS for analytics.
+      operationId: monitors_ad_hoc_query
+      parameters:
+      - description: The type of object to monitor.
+        in: query
+        name: object_type
+        required: true
+        schema:
+          enum:
+          - cluster
+          - cnode
+          - dnode
+          - nvram
+          - replicationstream
+          - ssd
+          type: string
+      - description: Start time of report. e.g. 2021-01-15T13:41:52Z
+        in: query
+        name: from_time
+        schema:
+          type: string
+      - description: End time of report. e.g. 2021-01-15T13:41:52Z
+        in: query
+        name: to_time
+        schema:
+          type: string
+      - description: Time frame to report. Specify as an integer followed by 'm' (minutes) 'h' (hours), 'D' (days) ,'W' (weeks) or 'M' (months) 'Y' (years). e.g. 10m
+        in: query
+        name: time_frame
+        schema:
+          type: string
+      - description: Specify a list of IDs of objects of the specified object_type to filter the report on those specific objects.
+        in: query
+        name: object_ids
+        schema:
+          items:
+            type: integer
+          type: array
+      - description: A list of metrics to query. To get the full list of metrics, use GET /metrics/.
+        in: query
+        name: prop_list
+        schema:
+          items:
+            type: string
+          type: array
+      - description: 'Data granularity: seconds (raw), minutes (five minute aggregated samples), hours (hourly aggregated samples), or days (daily aggregated samples)'
+        in: query
+        name: granularity
+        schema:
+          type: string
+      - description: If granularity is minutes, hours or days, the data is aggregated. This parameter selects which aggregation function to use.
+        in: query
+        name: aggregation
+        schema:
+          enum:
+          - avg
+          - min
+          - max
+          - latency_weighted_average
+          - stddev
+          - sum
+          type: string
+      - in: query
+        name: format_data
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorData'
+          description: ''
+      summary: Query Analytics with Ad Hoc Query Parameters
+      tags:
+      - monitors
+  /monitors/topn/:
+    get:
+      description: This endpoint queries VMS for top performer data. It can return performance metrics for the most active client users, views, client hosts, vips, vip pools and cnodes.
+      operationId: monitors_topn
+      parameters:
+      - description: Filters results by category of performers. Supported for users, clients and views only.
+        in: query
+        name: key
+        required: true
+        schema:
+          enum:
+          - user
+          - client
+          - view
+          - vip
+          - vippool
+          - cnode
+          - volume
+          type: string
+      - description: Filters results by a specified performance metric
+        in: query
+        name: type
+        required: true
+        schema:
+          enum:
+          - bw
+          - iops
+          - md_iops
+          - latency
+          - rows
+          type: string
+      - description: The maximum number of top performers in each category to return in the response
+        in: query
+        name: count
+        schema:
+          type: integer
+      - description: The timestamp for which to display data. For example, 2023-12-06T13:10:03Z. If not passed, the most recent sampling is returned.
+        in: query
+        name: timestamp
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopNData'
+          description: ''
+      summary: Query Top Performer Data
+      tags:
+      - monitors
+  /monitors/{id}/:
+    delete:
+      description: This endpoint deletes an analytics report.
+      operationId: monitors_delete
+      parameters:
+      - description: Monitor ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+      summary: Delete Monitor (aka Analytics Report)
+      tags:
+      - monitors
+    get:
+      description: This endpoint returns the properties of a specified analytics report.
+      operationId: monitors_read
+      parameters:
+      - description: Monitor ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monitor'
+          description: ''
+      summary: Return Details of an Analytics Report
+      tags:
+      - monitors
+    patch:
+      description: This endpoint partially modifies the specified monitor.
+      operationId: monitors_partial_update
+      parameters:
+      - description: Monitor ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                aggregation:
+                  description: If data granularity is minutes, hours or days, the data is aggregated. This parameter selects which aggregation function to use.
+                  enum:
+                  - avg
+                  - min
+                  - max
+                  - latency_weighted_average
+                  - stddev
+                  - sum
+                  type: string
+                from_time:
+                  description: Start time of period to report. e.g. 2021-01-15T13:41:52Z
+                  type: string
+                granularity:
+                  description: 'Data granularity: seconds (raw), minutes (five minute aggregated samples), hours (hourly aggregated samples), or days (daily aggregated samples)'
+                  type: string
+                object_ids:
+                  description: Specific objects to include in the report, specified as a comma separated list of object IDs.
+                  type: string
+                prop_list:
+                  description: A list of metrics to query. To get the full list of metrics, use GET /metrics/.
+                  type: string
+                to_time:
+                  description: End time of period to report. e.g. 2021-01-15T13:41:52Z
+                  type: string
+              type: object
+        x-originalParamName: MonitorModifyParams
+      responses:
+        '200':
+          description: ''
+      summary: Modify Analytics Report
+      tags:
+      - monitors
+  /monitors/{id}/query/:
+    get:
+      description: This endpoint queries for analytics, based on a defined monitor.
+      operationId: monitors_query
+      parameters:
+      - description: Monitor ID, to specify the analytics you want to query.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Start time for the report. e.g. 2021-01-15T13:41:52Z
+        in: query
+        name: from_time
+        schema:
+          type: string
+      - description: End time for the report. e.g. 2021-01-15T13:41:52Z
+        in: query
+        name: to_time
+        schema:
+          type: string
+      - description: Time frame to report. Specify as an integer followed by 'm' (minutes) 'h' (hours), 'D' (days) ,'W' (weeks) or 'M' (months) 'Y' (years). e.g. 10m
+        in: query
+        name: time_frame
+        schema:
+          type: string
+      - description: 'Data granularity: seconds (raw), minutes (five minute aggregated samples), hours (hourly aggregated samples), or days (daily aggregated samples)'
+        in: query
+        name: granularity
+        schema:
+          type: string
+      - description: If granularity is minutes, hours or days, the data is aggregated. This parameter selects which aggregation function to use.
+        in: query
+        name: aggregation
+        schema:
+          enum:
+          - avg
+          - min
+          - max
+          - latency_weighted_average
+          - stddev
+          - sum
+          type: string
+      - in: query
+        name: format_data
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorData'
+          description: ''
+      summary: Query Analytics using Defined Analytics Report (aka Monitor)
+      tags:
+      - monitors
+components:
+  schemas:
+    MonitorData:
+      properties:
+        data:
+          description: list of data samples, each sample in form of [timestamp, obj_id, *data]
+          type: object
+        object_ids:
+          description: list of object ids that appears in the query results
+          type: object
+        prop_list:
+          description: list of metrics that appears in the result
+          type: object
+      type: object
+    Monitor:
+      properties:
+        aggregation:
+          description: Aggregation function. avg, min, max etc.
+          type: string
+        exclude_patterns:
+          items:
+            type: string
+          type: array
+        from_time:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        granularity:
+          description: Data granularity
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        limit:
+          type: integer
+        metrics_exposure:
+          description: Monitor's metrics exposure
+          type: string
+        monitor_type:
+          description: Monitor type (predefined, custom, etc)
+          type: string
+        name:
+          description: Monitor name
+          type: string
+        object_ids:
+          description: Only query metrics on these objects (optional)
+          type: object
+        object_type:
+          description: Object type
+          type: string
+        prop_list:
+          description: Only query these metrics (optional)
+          type: object
+        query_aggregation:
+          description: Special aggregations to apply on query, e.g intersampling
+          type: string
+        time_frame:
+          description: Time frame to use
+          type: string
+        to_time:
+          format: date-time
+          type: string
+          x-format: datetime2display
+      type: object
+    TopNData:
+      type: object
+  securitySchemes:
+    ApiToken:
+      description: Send current valid API token in an Authorization header with format Api-Token <token>.
+      in: header
+      name: ApiToken
+      type: apiKey
+    basicAuth:
+      description: Basic authentication using VMS user name and password
+      scheme: basic
+      type: http
