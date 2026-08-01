@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/vastdata-vms-openapi.json
+notes: Cross-cutting request/response semantics of the VAST Management System (VMS)
+  REST API, derived from the published OpenAPI 3.0.3 schema and the official vastpy /
+  go-vast-client SDK documentation. The API is served by each cluster's VMS at
+  https://<vms-host>/api/.
+authentication:
+  style: api-token header or basic auth
+  header: 'Authorization: Api-Token <token>'
+  notes: API tokens supported in VAST 5.3+; username/password basic auth works on
+    all versions. See authentication/vastdata-authentication.yml.
+idempotency:
+  supported: false
+  notes: No Idempotency-Key header or documented idempotency contract in the VMS
+    OpenAPI; mutation safety is handled via dry-run endpoints (e.g.
+    /dboxes/decommission/dry-run/) rather than idempotency keys.
+pagination:
+  style: page-based
+  parameters: [page, page_size, limit]
+  notes: Collection endpoints accept page/page_size (and limit) query parameters.
+versioning:
+  scheme: uri-path
+  pattern: /api/v{n}/
+  notes: Clients may pin an API version; the version segment is optional and defaults
+    to the latest API (per vastpy README, https://github.com/vast-data/vastpy).
+errors:
+  envelope: plain application/json bodies; no problem+json
+  catalog: errors/vastdata-problem-types.yml
+request_tracing:
+  header: null
+  notes: No documented request-id/trace header in the OpenAPI.
+rate_limits:
+  signaling: null
+  notes: No documented rate-limit headers; VMS enforces resource ceilings via 503
+    responses (e.g. max API tokens reached).
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+cross_links:
+  - authentication/vastdata-authentication.yml
+  - errors/vastdata-problem-types.yml
+  - lifecycle/vastdata-lifecycle.yml

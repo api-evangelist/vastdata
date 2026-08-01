@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/vastdata-vms-openapi.json
+format: json            # application/json error bodies; not RFC 9457 problem+json
+notes: Derived from the 4xx/5xx responses declared across the 772 operations of the
+  VAST Management System (VMS) REST API OpenAPI 3.0.3 document. Error bodies are
+  plain application/json; the spec does not use application/problem+json.
+problems:
+  - status: 400
+    title: Bad Request / Validation error
+    description: The request contains invalid data or fails validation.
+    occurrences: 29
+    example_operations:
+      - openapi/vastdata-vms-openapi.json#POST /apitokens/
+      - openapi/vastdata-vms-openapi.json#PATCH /apitokens/{id}/
+      - openapi/vastdata-vms-openapi.json#POST /certificates/validate_compute_cluster_certificates/
+  - status: 404
+    title: Resource not found
+    description: The referenced object (API token, Kerberos provider, view, etc.)
+      does not exist.
+    occurrences: 7
+    example_operations:
+      - openapi/vastdata-vms-openapi.json#PATCH /apitokens/{id}/
+      - openapi/vastdata-vms-openapi.json#GET /kerberos/{id}/
+  - status: 409
+    title: Conflict with current state
+    description: The request could not be completed due to a conflict with the current
+      state of the cluster (e.g. encryption-group key rotation, dbox/ebox decommission
+      dry-runs failing validation).
+    occurrences: 15
+    example_operations:
+      - openapi/vastdata-vms-openapi.json#POST /clusters/rotate_master_encryption_group_key/
+      - openapi/vastdata-vms-openapi.json#POST /dboxes/decommission/dry-run/
+  - status: 424
+    title: Failed dependency
+    description: Returned by cluster support-bundle upload eligibility checks.
+    occurrences: 1
+    example_operations:
+      - openapi/vastdata-vms-openapi.json#POST /clusters/{id}/should_upload/
+  - status: 503
+    title: Service unavailable
+    description: Service temporarily unavailable, try again later — also used for
+      resource ceilings (e.g. maximum allowed API tokens reached).
+    occurrences: 15
+    example_operations:
+      - openapi/vastdata-vms-openapi.json#POST /apitokens/
+      - openapi/vastdata-vms-openapi.json#GET /clusters/list_open_protocol_handles/

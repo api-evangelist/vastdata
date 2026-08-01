@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+host: https://www.vastdata.com
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    file: ../llms/vastdata-llms.txt
+notes: The corporate site publishes an llms.txt but no /.well-known/ discovery
+  documents. The VAST Management System (VMS) API is an on-premises / in-cluster
+  surface (https://<vms-host>/api/), so no public API host exposes well-known
+  documents to probe.

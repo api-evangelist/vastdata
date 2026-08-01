@@ -1,0 +1,52 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/vast-data/dataengine-cli
+clis:
+  - name: vastde
+    description: VAST DataEngine CLI — command-line interface for building and managing
+      VAST DataEngine serverless functions, pipelines, triggers, and compute resources
+      against the VAST Management Service (VMS).
+    version: v5.5.0-dev (tracks VAST 5.5)
+    official: true
+    install:
+      - method: binary
+        url: https://github.com/vast-data/dataengine-cli/releases
+        platforms: [darwin_arm64, darwin_amd64, linux_amd64, linux_arm64, windows_amd64]
+    configuration: vastde config init; vastde config set --vms-url https://<vms-host>
+      --username <user> --password <pass> --tenant <tenant>
+    commands:
+      - group: config
+        purpose: Manage CLI settings and VMS credentials
+      - group: functions
+        purpose: Create, register, and manage serverless functions (container images)
+      - group: pipelines
+        purpose: Wire triggers, functions, and secrets into deployable pipelines
+      - group: triggers
+        purpose: S3 element and schedule triggers that invoke functions
+      - group: compute
+        purpose: Manage compute clusters
+      - group: registries
+        purpose: Container registry management
+      - group: buckets
+        purpose: Bucket management
+      - group: topics
+        purpose: Kafka-compatible topic management
+      - group: builders
+        purpose: List/set builder images for function builds
+      - group: doc
+        purpose: Auto-generated self-documentation
+    features:
+      - Human-readable, JSON, and YAML output formats
+      - Dry-run mode
+      - Verbose logging (levels 0-9)
+      - Integrated logs and traces for debugging
+  - name: vastpy (CLI)
+    description: Command-line interface bundled with the vastpy Python SDK for quick
+      operations against the VAST Management System REST API.
+    official: true
+    install:
+      - method: pip
+        command: pip install vastpy
+    source: https://github.com/vast-data/vastpy
+notes: The vastde binary is catalogued as a release-download package; vastpy is in
+  packages/vastdata-packages.yml.

@@ -1,9 +1,29 @@
 aid: vastdata
-name: Vastdata
-description: 'Vastdata is a company surfaced as a portfolio company of bond-capital, norwest-venture-partners
-  and added to the API Evangelist network as a stub for enrichment. Sector: infrastructure. This profile
-  is a lead awaiting the enrichment pipeline.'
+name: VAST Data
+description: 'VAST Data is an enterprise AI infrastructure company building a unified
+  data platform for AI. Its VAST AI Operating System combines the VAST DataStore
+  (all-flash file, object, and block storage over NFS, SMB, S3, and CSI), VAST
+  DataBase (structured data, vectors, and streams), VAST DataSpace (a global
+  namespace across on-prem, cloud, and edge), and VAST DataEngine (serverless
+  functions, event triggers, and a Kafka-compatible broker). Everything is managed
+  through the VAST Management System (VMS) REST API — an OpenAPI-documented surface
+  with 770+ operations — plus official Python and Go SDKs, a Terraform provider,
+  the vastde DataEngine CLI, an official MCP server for cluster administration, and
+  published agent skills.'
 url: https://raw.githubusercontent.com/api-evangelist/vastdata/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/vast-data.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -13,11 +33,2006 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
 tags:
 - Company
 - Infrastructure
-apis: []
+- Storage
+- Data
+- AI
+- Database
+- Kubernetes
+- HPC
+apis:
+- aid: vastdata:vastdata-activedirectory-api
+  name: VAST Data activedirectory API
+  description: >-
+    Active Directory is supported as an external authorization and authentication provider. Active Directory
+    may store and provide user and group attributes used by both NFS and SMB protocols. Active Directory
+    can be used to enable Kerberos authentication with NFSv4 and with SMB. It is a requirement for enabling
+    SMB access on VAST Cluster. Up to one Active Directory domain is supported. The configuration must
+    specify an LDAP configuration for binding to the LDAP domain of the Active Directory server. Limitations
+    apply to the combinations of external providers and protocol enablement.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - activedirectory
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-activedirectory-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-alarms-api
+  name: VAST Data alarms API
+  description: Alarms can be raised by events.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - alarms
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-alarms-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-apitokens-api
+  name: VAST Data apitokens API
+  description: >-
+    API tokens are tokens created by VMS that enable VMS users to securely authenticate REST API requests.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - apitokens
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-apitokens-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-basicsettings-api
+  name: VAST Data basicsettings API
+  description: >-
+    This endpoint provides basic settings for users that do not have permissions to access any security
+    realm."
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - basicsettings
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-basicsettings-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-bgpconfigs-api
+  name: VAST Data bgpconfigs API
+  description: >-
+    BGP Configs are Border Gateway Protocol (BGP) configurations. You can configure a virtual IP pool
+    to use layer 3 connectivity, instead of the default layer 2 connectivity, by attaching a BGP configuration
+    to the Virtual IP pool.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - bgpconfigs
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-bgpconfigs-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-blob-expansions-api
+  name: VAST Data Blob Expansions API
+  description: The Blob Expansions API from VAST Data — 5 operation(s) for blob expansions.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Blob Expansions
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-blob-expansions-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-block-hosts-api
+  name: VAST Data Block Hosts API
+  description: The Block Hosts API from VAST Data — 1 operation(s) for block hosts.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Block Hosts
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-block-hosts-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-blockhosts-api
+  name: VAST Data blockhosts API
+  description: >-
+    Block Hosts are block storage client hosts. They must be added to VMS in order to enable block storage
+    volumes to be made available to them.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - blockhosts
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-blockhosts-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-blockmappings-api
+  name: VAST Data blockmappings API
+  description: >-
+    Block Mappings are mappings of Blockhosts to Volumes. They make block storage volumes available to
+    block storage hosts.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - blockmappings
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-blockmappings-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-callhomeconfigs-api
+  name: VAST Data callhomeconfigs API
+  description: >-
+    The callhomeconfigs path provides access to the cluster's Call Home configuration. Call Home is a
+    service that sends non-sensitive data from your VAST Cluster to our central support server to enable
+    us to provide proactive analysis and fast response on critical issues.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - callhomeconfigs
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-callhomeconfigs-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-capacity-api
+  name: VAST Data capacity API
+  description: >-
+    This endpoint enables you to query capacity details of any path on any tenant and its direct child
+    paths."
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - capacity
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-capacity-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-carriers-api
+  name: VAST Data carriers API
+  description: Carriers represent DBox slots that house SSDs and NVRAMs.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - carriers
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-carriers-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-cboxes-api
+  name: VAST Data cboxes API
+  description: >-
+    A CBox is a server chassis containing four CNodes. The cboxes path represents the CBoxes in the cluster,
+    exposes information about the cBoxes and maintenance operations.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - cboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-cboxes-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-certificates-api
+  name: VAST Data Certificates API
+  description: The Certificates API from VAST Data — 3 operation(s) for certificates.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Certificates
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-certificates-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-challengetokens-api
+  name: VAST Data challengetokens API
+  description: Challenge tokens are used to unlock the cluster's indestructibility mechanism.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - challengetokens
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-challengetokens-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-clusters-api
+  name: VAST Data clusters API
+  description: >-
+    VMS manages configuration of a single VAST cluster. The clusters path provides access to many configurations
+    and settings that apply to the cluster.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - clusters
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-clusters-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-cnodegroups-api
+  name: VAST Data cnodegroups API
+  description: >-
+    CNode groups are groups of CNodes that managed applications can run on. See also Managed Applications.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - cnodegroups
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-cnodegroups-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-cnodes-api
+  name: VAST Data Cnodes API
+  description: The Cnodes API from VAST Data — 8 operation(s) for cnodes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Cnodes
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-cnodes-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-columns-api
+  name: VAST Data columns API
+  description: >-
+    The columns endpoint enables you to manage the columns in tables in a schema in a VAST database.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - columns
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-columns-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-compute-clusters-api
+  name: VAST Data Compute Clusters API
+  description: The Compute Clusters API from VAST Data — 23 operation(s) for compute clusters.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Compute Clusters
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-compute-clusters-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-config-api
+  name: VAST Data config API
+  description: The config API from VAST Data — 3 operation(s) for config.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - config
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-config-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-dataspace-api
+  name: VAST Data dataspace API
+  description: The dataspace API from VAST Data — 2 operation(s) for dataspace.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - dataspace
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-dataspace-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-dboxes-api
+  name: VAST Data dboxes API
+  description: >-
+    A DBox is an NVMe-oF JBOF, otherwise known as a VAST enclosure, or an enclosure containing NVMe-oF
+    controller cards and flash SSDs. The dboxes path represents the DBoxes in the cluster, exposes information
+    about the DBoxes and maintenance operations. There are two types of DBoxes. The legacy type DBox has
+    two DNodes. The CERES Dbox, newly introduced in some deployments, has two DTrays and four DNodes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - dboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-dboxes-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-delta-api
+  name: VAST Data delta API
+  description: The delta API from VAST Data — 2 operation(s) for delta.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - delta
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-delta-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-dnodes-api
+  name: VAST Data dnodes API
+  description: >-
+    A DNode is an NVMe-oF controller card in a DBox. The dnodes path represents the DNodes in the cluster,
+    exposes information about the DNodes and maintenance operations.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - dnodes
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-dnodes-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-dns-api
+  name: VAST Data dns API
+  description: >-
+    The DNS path represents a VAST Cluster DNS service. You can create one VAST Cluster DNS service per
+    cluster. The VAST Cluster DNS service can distribute incoming DNS requests to specific VIP pools,
+    according to subdomains. The service is updated of changes to VIP pool ranges. It works with a single
+    DNS delegation record on an external DNS server.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - dns
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-dns-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-dtrays-api
+  name: VAST Data dtrays API
+  description: >-
+    A DTray is a component of the CERES DBox. It is a canister that has two DNodes installed within. The
+    DTray is a component of the CERES DBox. There are two Dtrays in each CERES DBox.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - dtrays
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-dtrays-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-eboxes-api
+  name: VAST Data eboxes API
+  description: >-
+    An EBox is a VAST enclosure that contains a server and SSDs. The server runs a CNode and two DNodes
+    in containers.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - eboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-eboxes-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-encryptedpaths-api
+  name: VAST Data encryptedpaths API
+  description: >-
+    An encrypted path is a path that is encrypted with a dedicated encryption group which is a subgroup
+    of the encryption group of the tenant on which the path resides. Encrypted paths can be created on
+    a cluster that has EKM (external key manager) encryption enabled. It is not possible to encrypt an
+    existing path with its own encryption group.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - encryptedpaths
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-encryptedpaths-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-encryptiongroups-api
+  name: VAST Data encryptiongroups API
+  description: >-
+    When data encryption is enabled on a VAST cluster with keys managed by an external key manager, each
+    tenant must belong to an encryption group. Multiple tenants can belong to the same encryption group.
+    It is also possible when creating a new path to encrypt the path with its own dedicated encryption
+    group. This endpoint enables retrieval of encryption groups and their identifiers (CRN).
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - encryptiongroups
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-encryptiongroups-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-envs-api
+  name: VAST Data envs API
+  description: The envs API from VAST Data — 2 operation(s) for envs.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - envs
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-envs-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-eventdefinitionconfigs-api
+  name: VAST Data eventdefinitionconfigs API
+  description: >-
+    The eventdefinitionconfigs path exposes event definition configurations that affect event definitions
+    and quotas. These include default actions that apply globally to event definitions and are overridden
+    by any conflicting settings in specific event definitions.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - eventdefinitionconfigs
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-eventdefinitionconfigs-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-eventdefinitions-api
+  name: VAST Data eventdefinitions API
+  description: >-
+    Event definitions define the conditions that trigger events, the raising of alarms, alarm severity,
+    and which actions are triggered on events, such as email notifications, webhooks and sending to syslog.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - eventdefinitions
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-eventdefinitions-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-events-api
+  name: VAST Data events API
+  description: >-
+    VMS logs system driven events, such as changes to object states and properties, and user driven events,
+    such as the creation, modification or deletion of any object in the system.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - events
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-events-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-fans-api
+  name: VAST Data fans API
+  description: Fans represent fans on the CBoxes and DBoxes
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - fans
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-fans-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-filesystem-api
+  name: VAST Data filesystem API
+  description: The filesystem API from VAST Data — 1 operation(s) for filesystem.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - filesystem
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-filesystem-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-folders-api
+  name: VAST Data folders API
+  description: >-
+    The folders endpoint enables the ability to manage directories and to set and get a directory's owner
+    user and group attributes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - folders
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-folders-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-globalsnapstreams-api
+  name: VAST Data globalsnapstreams API
+  description: >-
+    Global snapshot streams create instantly writable directories cloned from snapshots. Clones can be
+    created from any snapshot residing on the cluster itself or on a cluster that has a replication peer
+    relationship with the local cluster. The cloned directory can be from any snapshot or subtree of a
+    snapshot, such as a snapshot replicated from a third cluster to a remote peer.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - globalsnapstreams
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-globalsnapstreams-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-groups-api
+  name: VAST Data groups API
+  description: >-
+    Groups are user groups that can be authorized to access any data on the cluster via any supported
+    client protocol. The groups path provides: management of groups on the cluster's local provider, querying
+    of external provider groups, and S3 access management for both local and external groups.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - groups
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-groups-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-health-api
+  name: VAST Data Health API
+  description: The Health API from VAST Data — 1 operation(s) for health.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-health-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-hosts-api
+  name: VAST Data hosts API
+  description: >-
+    Hosts are network discoverable CNodes and DNodes that can be included in a new cluster configuration.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - hosts
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-hosts-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-iamroles-api
+  name: VAST Data iamroles API
+  description: The iamroles API from VAST Data — 4 operation(s) for iamroles.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - iamroles
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-iamroles-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-indestructibility-api
+  name: VAST Data indestructibility API
+  description: >-
+    VAST Cluster enables you to create and maintain immutable backups using a feature called Indestructibility.
+    Snapshots and protection policies can be flagged indestructible and they are then protected from accidental
+    or malicious deletion and modification. The indestructibility path represents the configuration of
+    the indestructibility mechanism on the cluster.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - indestructibility
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-indestructibility-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-injections-api
+  name: VAST Data injections API
+  description: The injections API from VAST Data — 1 operation(s) for injections.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - injections
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-injections-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-iodata-api
+  name: VAST Data iodata API
+  description: The iodata path provides data flow analytics.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - iodata
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-iodata-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-issues-api
+  name: VAST Data issues API
+  description: The issues API from VAST Data — 2 operation(s) for issues.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - issues
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-issues-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-kafkabroker-api
+  name: VAST Data kafkabroker API
+  description: >-
+    Kafka Broker is the VAST Event Broker. Event publishing is available for S3 bucket views. In the context
+    of event publishing, an event is a change that has occurred for an element in VAST Element Store,
+    such as creation of a new object in an S3 bucket. When a certain event is encountered, the cluster
+    can send a JSON record of it to the connected Kafka broker, where the information can be consumed
+    by applications.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - kafkabroker
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-kafkabroker-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-kerberos-api
+  name: VAST Data Kerberos API
+  description: The Kerberos API from VAST Data — 4 operation(s) for kerberos.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Kerberos
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-kerberos-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-ldaps-api
+  name: VAST Data ldaps API
+  description: >-
+    Lightweight Directory Access Protocol (LDAP)-based directory servers may store and provide POSIX user
+    and group attributes, as used by the NFS client access protocol. Up to two LDAP configurations are
+    supported, where one is used for binding to the LDAP domain of an Active Directory server and the
+    other is used for connecting to a different LDAP-based server other than AD. Limitations apply to
+    the combinations of external providers and protocol enablement.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - ldaps
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-ldaps-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-licenses-api
+  name: VAST Data licenses API
+  description: >-
+    A license entitles the VAST Cluster operator to an amount of storage capacity for a given period from
+    a given start time. Licenses can be aggregated to increase the licensed capacity. Operating a VAST
+    Cluster requires an installed license. An active valid license entitles the owner to new software
+    releases, service packs and support.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - licenses
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-licenses-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-localproviders-api
+  name: VAST Data localproviders API
+  description: >-
+    Local Providers are providers configured on the cluster, to which you can add users for authorizing
+    access to the cluster or tenants of the cluster.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - localproviders
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-localproviders-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-locals3keys-api
+  name: VAST Data locals3keys API
+  description: Local S3 Keys are S3 access keys created for and owned by users on local providers.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - locals3keys
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-locals3keys-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-locks-api
+  name: VAST Data locks API
+  description: >-
+    NLMv4 locks help NFSv3 clients protect NFS files from data consistency conflicts. NFS client applications
+    can acquire read or write NLM locks on byte ranges or on whole files. VAST Cluster uses NSM to automatically
+    remove NLM locks. Manual removal of locks should not be needed provided that every client host is
+    configured to send sm_notify reboot notifications to NFS peers. The locks path feature can be used
+    for manual lock removal in the event that a client OS is not configured to send sm_notify reboot notifications
+    to NFS peers and crashes and leaves behind locks.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - locks
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-locks-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-login-api
+  name: VAST Data login API
+  description: The login path is used to log into VMS.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - login
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-login-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-logout-api
+  name: VAST Data logout API
+  description: The logout path is used to log out of VMS.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - logout
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-logout-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-managedapplications-api
+  name: VAST Data managedapplications API
+  description: >-
+    Managed applications is a feature that enables you to run 3D applications on CNodes by distributing
+    an image across a group of CNodes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - managedapplications
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-managedapplications-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-managers-api
+  name: VAST Data managers API
+  description: >-
+    VAST Management System (VMS) users are called managers. A manager has login credentials and must be
+    assigned at least one role in order to have any VMS permissions. A manager can have multiple roles.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - managers
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-managers-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-metrics-api
+  name: VAST Data metrics API
+  description: >-
+    Metrics available to be included in analytics reports (using the /monitors/ endpoint) can be listed
+    using either the /metrics/ endpoint or the /analytics/ endpoint.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-modules-api
+  name: VAST Data modules API
+  description: The modules API from VAST Data — 2 operation(s) for modules.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - modules
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-modules-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-monitors-api
+  name: VAST Data monitors API
+  description: >-
+    Monitors are analytics reports that can provide insight into capacity utilization and cluster performance.
+    Top performer analytics are performance metrics of the n most active client users, views, client hosts,
+    vips, vip pools and cnodes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - monitors
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-monitors-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-nativereplicationremotetargets-api
+  name: VAST Data nativereplicationremotetargets API
+  description: >-
+    A replication peer is a remote cluster configured as a peer for async replication. A replication peer  also
+    represents a configured and mirrored async replication relationship between two clusters.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - nativereplicationremotetargets
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-nativereplicationremotetargets-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-nicports-api
+  name: VAST Data nicports API
+  description: The nicports API from VAST Data — 3 operation(s) for nicports.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - nicports
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-nicports-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-nics-api
+  name: VAST Data nics API
+  description: NICs represent interfaces on Network Interface Cards (NICs) in the CNodes and DNodes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - nics
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-nics-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-nis-api
+  name: VAST Data nis API
+  description: >-
+    NIS is a supported external authorization provider. NIS can be used for authorizing user access to
+    files and directories via NFS. NIS netgroups can be used to specify NFS hosts in view policies when
+    controlling access permissions per NFS hosts. Up to one NIS configuration is supported. Limitations
+    apply to the combinations of external providers and protocol enablement.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - nis
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-nis-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-nvrams-api
+  name: VAST Data nvrams API
+  description: >-
+    NVRAMs represent flash SSDs resident in DBoxes that are deployed as SCM devices, formerly known as
+    NVRAM devices.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - nvrams
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-nvrams-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-objectpermissions-api
+  name: VAST Data objectpermissions API
+  description: >-
+    Object permissions reflect the access types, permission realms and managers associated with each object
+    type. They can be listed but not modified.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - objectpermissions
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-objectpermissions-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-oidcs-api
+  name: VAST Data oidcs API
+  description: The oidcs API from VAST Data — 3 operation(s) for oidcs.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - oidcs
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-oidcs-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-openfilehandles-api
+  name: VAST Data openfilehandles API
+  description: The openfilehandles API from VAST Data — 2 operation(s) for openfilehandles.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - openfilehandles
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-openfilehandles-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-openfiles-api
+  name: VAST Data openfiles API
+  description: The openfiles API from VAST Data — 3 operation(s) for openfiles.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - openfiles
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-openfiles-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-openfilesqueries-api
+  name: VAST Data openfilesqueries API
+  description: The openfilesqueries API from VAST Data — 2 operation(s) for openfilesqueries.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - openfilesqueries
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-openfilesqueries-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-permissions-api
+  name: VAST Data permissions API
+  description: >-
+    The permissions endpoint returns permissions that can be assigned to VMS managers and roles. VMS Each
+    permission enables a type of permission, such as create or read permission, on a realm. Each realm
+    includes a set of resources. For example, the logical realm includes views, view policies, quotas,
+    QoS policies and many more types of resources. The hardware realm includes infrastructure components
+    such as CBoxes and DBoxes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-ports-api
+  name: VAST Data ports API
+  description: Ports represent switch ports.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - ports
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-ports-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-projectioncolumns-api
+  name: VAST Data projectioncolumns API
+  description: >-
+    Projection columns are columns that are included in a projection, either as the columns used to sort
+    the projection or as additional columns included in a projection.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - projectioncolumns
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-projectioncolumns-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-projections-api
+  name: VAST Data projections API
+  description: >-
+    Projections are subsets of a full table in the VAST Database that allow for optimized queries that
+    use only the columns included in the projection.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - projections
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-projections-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-prometheusmetrics-api
+  name: VAST Data prometheusmetrics API
+  description: >-
+    prometheusmetrics is VAST's Prometheus exporter resource. Prometheus is an open-source systems monitoring
+    and alerting toolkit that provides a data model for describing and recording metrics over time and
+    also provides a web application to display those metrics. Prometheus can be configured to fetch metrics
+    from a third party system (such as in this case VAST Cluster) by means of a software entity called
+    a Prometheus exporter. A Prometheus exporter collects metrics from a third party system, converts
+    them to Prometheus metrics and exposes them via a resource path. The VAST prometheus exporter can
+    fetch pre-defined metrics from the VMS database and return the data as a plain/text key-value format
+    response.  You can configure the Prometheus server to scrape the metrics from the exporter at a chosen
+    interval and display the VMS metrics through its display applications.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - prometheusmetrics
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-prometheusmetrics-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-protectedpaths-api
+  name: VAST Data protectedpaths API
+  description: >-
+    A protected path is a data path in the Element Store (file/object system) that is protected by snapshots
+    which may be replicated to an S3 replication peer or to an async replication peer. Scheduling and
+    replication is controlled by an associated protection policy.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - protectedpaths
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-protectedpaths-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-protectionpolicies-api
+  name: VAST Data protectionpolicies API
+  description: >-
+    A protection policy is a reusable configuration that defines a schedule for taking snapshots and optionally
+    replicating them to a specified async  replication peer or S3 replication peer. It defines how long
+    to retain local snapshots. If the purpose of a protection policy is remote backup to either S3 or
+    an async replication peer without local snapshot retention, then this is achieved by defining no retention
+    for local snapshots. Once defined, a protection policy can be specified in the configuration of a
+    protected path.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - protectionpolicies
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-protectionpolicies-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-psus-api
+  name: VAST Data psus API
+  description: PSUs represent power supply units on the CBoxes and DBoxes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - psus
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-psus-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-qos-policies-api
+  name: VAST Data QoS Policies API
+  description: The QoS Policies API from VAST Data — 1 operation(s) for qos policies.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - QoS Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-qos-policies-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-qospolicies-api
+  name: VAST Data qospolicies API
+  description: >-
+    Quality of Service policies enable you to define quality of service per view. Quality of service policies
+    can set maximum limits on read and write bandwidth and IOPS per view.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - qospolicies
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-qospolicies-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-quotaentityinfos-api
+  name: VAST Data quotaentityinfos API
+  description: >-
+    QuotaEntityInfo objects contain details of all users and groups that wrote to quota directories. Provides
+    VAST-internal ID from the VAST Cluster user database and email address.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - quotaentityinfos
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-quotaentityinfos-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-quotagroups-api
+  name: VAST Data quotagroups API
+  description: The quotagroups API from VAST Data — 5 operation(s) for quotagroups.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - quotagroups
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-quotagroups-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-quotas-api
+  name: VAST Data quotas API
+  description: >-
+    A quota limits the amount of storage and/or the number of files or objects and directories that can
+    be contained in a specified directory. A quota can include default limits on usage per user and group.
+    It can also specify userquota objects which override default user and group limits for specified users
+    and groups.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - quotas
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-quotas-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-racks-api
+  name: VAST Data Racks API
+  description: The Racks API from VAST Data — 6 operation(s) for racks.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Racks
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-racks-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-realms-api
+  name: VAST Data realms API
+  description: >-
+    Realms are user defined customized permission realms for VMS manager users. They define sets of object
+    types and can be granted to managers and roles for VMS permissions.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - realms
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-realms-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-replicationpolicies-api
+  name: VAST Data replicationpolicies API
+  description: The replicationpolicies API from VAST Data — 2 operation(s) for replicationpolicies.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - replicationpolicies
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-replicationpolicies-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-replicationrestorepoints-api
+  name: VAST Data replicationrestorepoints API
+  description: >-
+    A replication restore point is a location to which a snapshot was replicated and from which files
+    can be restored.A restore point may reside on an S3 replication peer or on an async replication peer.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - replicationrestorepoints
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-replicationrestorepoints-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-replicationstreams-api
+  name: VAST Data replicationstreams API
+  description: >-
+    This path enables you to manage replication streams. Note that for the general case, replication streams
+    belong to protected paths and are managed as part of protected path management. However, for the use
+    case where you configure replication to an S3 replication peer and to an aync replication peer on
+    the same path, use this path instead.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - replicationstreams
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-replicationstreams-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-replicationtargets-api
+  name: VAST Data replicationtargets API
+  description: >-
+    An S3 replication peer represents a specific S3 destination to which snapshots can be replicated or
+    were replicated. S3 replication peers can be configured in order to enable replication of data to
+    a specific S3 destination or to enable users to access restore points on the S3 replication peer via
+    client mounts of the cluster's file system. The accessible data on the S3 replication peer may have
+    been replicated from the local cluster or from another cluster.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - replicationtargets
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-replicationtargets-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-roles-api
+  name: VAST Data roles API
+  description: >-
+    Roles are sets of VMS permissions. They can specify one or more LDAP groups. Mapping roles to LDAP
+    groups gives LDAP group members the ability to log into VMS and be authorized with the aggregate of
+    permissions belonging to all mapped roles.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - roles
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-roles-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-s3-keys-api
+  name: VAST Data S3 Keys API
+  description: The s3keys endpoint enables users to manage their own S3 access key pairs.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - S3 Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-s3-keys-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-s3lifecyclerules-api
+  name: VAST Data s3lifecyclerules API
+  description: >-
+    An S3 Lifecycle configuration is a set of rules that define actions that an S3 service applies to
+    a group of objects. VAST Cluster supports S3 Lifecycle configurations that define expiration actions.
+    These actions define when objects expire.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - s3lifecyclerules
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-s3lifecyclerules-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-s3policies-api
+  name: VAST Data s3policies API
+  description: >-
+    Identity policies comprise statements that grant or deny permissions for any combination of specific
+    actions on any combination of specified resources. They are the primary access control method available
+    with the VAST Cluster S3 service. Identity policies are manageable exclusively through VMS. They are
+    written in JSON document structure. Multiple identity policies can be attached  to multiple users
+    and to multiple groups. Permissions denied by identity policies override permissions allowed by identity
+    policies. Permissions allowed or denied by identity policies override S3 ACLs.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - s3policies
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-s3policies-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-schemas-api
+  name: VAST Data schemas API
+  description: The schemas endpoint enables you to manage the schemas in a VAST database.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - schemas
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-schemas-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-settingsdiff-api
+  name: VAST Data settingsdiff API
+  description: The settingsdiff API from VAST Data — 1 operation(s) for settingsdiff.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - settingsdiff
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-settingsdiff-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-snapshotpolicies-api
+  name: VAST Data snapshotpolicies API
+  description: The snapshotpolicies API from VAST Data — 2 operation(s) for snapshotpolicies.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - snapshotpolicies
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-snapshotpolicies-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-snapshots-api
+  name: VAST Data snapshots API
+  description: >-
+    A snapshot is an image of the data existing at a point in time under a specific Element Store path.
+    Snapshots can be created on a one off basis or scheduled using a protected path. Scheduled snapshots
+    can be retained locally, and/or backed up either to an S3 replication peer or to a replication peer.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-snapshots-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-ssds-api
+  name: VAST Data ssds API
+  description: SSDs represent flash SSDs resident in the cluster's DBoxes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - ssds
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-ssds-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-subnetmanager-api
+  name: VAST Data subnetmanager API
+  description: >-
+    The subnetmanager monitors an OpenSM service. Clusters operating in larger IB networks must have an
+    OpenSM service configured on some of the CNodes in the cluster. The OpenSM services running on those
+    Cnodes are critical for the data network and need to be monitored. Monitoring is enabled when up to
+    two IPs of CNodes hosting the OpenSM service are registered. The state and if applicable, failure
+    reason, can be retrieved from the registered CNodes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - subnetmanager
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-subnetmanager-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-support-bundles-api
+  name: VAST Data Support Bundles API
+  description: The Support Bundles API from VAST Data — 2 operation(s) for support bundles.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Support Bundles
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-support-bundles-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-supportbundles-api
+  name: VAST Data supportbundles API
+  description: >-
+    A support bundle is a compressed file consisting of logs that are extracted from the VAST Cluster.
+    Support bundles can be sent to VAST Support for troubleshooting purposes. They can also be downloaded
+    from VMS.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - supportbundles
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-supportbundles-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-supporteddrives-api
+  name: VAST Data supporteddrives API
+  description: The supporteddrives API from VAST Data — 2 operation(s) for supporteddrives.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - supporteddrives
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-supporteddrives-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-switches-api
+  name: VAST Data switches API
+  description: Switches represent switches in the cluster.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - switches
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-switches-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-tables-api
+  name: VAST Data tables API
+  description: >-
+    With VAST Database you can store, access and manage tabular data on a VAST cluster. The tables endpoint
+    enables you to interface with the VAST Database tables. You can create tables, filter data, perform
+    modifications and run ACID transactions.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - tables
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-tables-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-tenants-api
+  name: VAST Data Tenants API
+  description: The Tenants API from VAST Data — 21 operation(s) for tenants.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-tenants-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-tlscertificates-api
+  name: VAST Data tlscertificates API
+  description: The tlscertificates API from VAST Data — 4 operation(s) for tlscertificates.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - tlscertificates
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-tlscertificates-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-token-api
+  name: VAST Data token API
+  description: >-
+    Tokens are JSON Web Tokens (JWTs), which can be used instead of Apitokens to authenticate requests
+    to the VMS REST API.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - token
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-token-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-topics-api
+  name: VAST Data topics API
+  description: Topics store categories of events collected by VAST Event Broker.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - topics
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-topics-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-userquotas-api
+  name: VAST Data userquotas API
+  description: >-
+    A userquota object defines a user or group quota. A user or group quota limits the capacity and number
+    of files or directories that a specified user or group can own within a directory. A userquota object
+    doesn't specify any directory. A userquota object is effective when specified in a quota object.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - userquotas
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-userquotas-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-users-api
+  name: VAST Data users API
+  description: >-
+    Users who can be authorized to access any data on the cluster via any supported client protocol can
+    be created on a local provider. They are more typically stored on external authorization providers
+    (AD, LDAP and NIS). The users path provides: management of local provider users, querying of external
+    provider users, and S3 access management for both local and external users.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-users-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vastauditlog-api
+  name: VAST Data vastauditlog API
+  description: >-
+    The VAST audit log is a database that can store VAST cluster protocol audits. If protocol auditing
+    is enabled and configured to be logged to VAST audit log, the endpoint can be used to query the VAST
+    audit log.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vastauditlog
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vastauditlog-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vastcatalogconfig-api
+  name: VAST Data vastcatalogconfig API
+  description: >-
+    The bigcatalogconfig endpoint enables you to manage the configuration of VAST Catalog and to query
+    the VAST Catalog. VAST Catalog is a database that indexes metadata attributes of all data on the cluster,
+    enabling high performance querying of files, objects and directories based on classification of data
+    according to attributes used by multiple access protocols. VAST catalog indexes the metadata attributes
+    of the cluster's data from periodic snapshots of the cluster's data. The database is stored on a dedicated
+    S3 bucket on the cluster.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vastcatalogconfig
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vastcatalogconfig-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vastcatalogindexedcolumns-api
+  name: VAST Data vastcatalogindexedcolumns API
+  description: >-
+    The bigcatalogindexedcolumns endpoint enables you to add columns to the VAST Catalog table for S3
+    tags and S3 metadata attributes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vastcatalogindexedcolumns
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vastcatalogindexedcolumns-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vastdb-api
+  name: VAST Data vastdb API
+  description: The vastdb API from VAST Data — 1 operation(s) for vastdb.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vastdb
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vastdb-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-versions-api
+  name: VAST Data versions API
+  description: >-
+    The cluster platform and VMS software is installed and upgraded via packages that have a version number
+    per release and a software build number. The versions path exposes the cluster's version history.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - versions
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-versions-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-viewpolicies-api
+  name: VAST Data viewpolicies API
+  description: >-
+    A view policy specifies view configuration parameters. A view policy can be used by multiple views.
+    Every view is attached to one view policy.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - viewpolicies
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-viewpolicies-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-views-api
+  name: VAST Data Views API
+  description: The Views API from VAST Data — 10 operation(s) for views.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Views
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-views-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vippools-api
+  name: VAST Data vippools API
+  description: >-
+    A VIP pool is a pool of virtual IP operations (VIPs). VAST Cluster listens on VIPs for requests from
+    data traffic. Each VIP pool is dedicated to one of two roles: PROTOCOLS or REPLICATION. Protocols
+    VIP pools are used for client traffic from all of the supported access protocols (NFSv3, NFSv4.2,
+    SMBv2, S3). Replication VIP Pools are used for connectivity with an async replication peer cluster.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vippools
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vippools-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vips-api
+  name: VAST Data vips API
+  description: A VIP is a virtual IP address that belongs to a VIP pool.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vips
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vips-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vm-api
+  name: VAST Data vm API
+  description: >-
+    Virtual machines can include EBox hosts and virtual machine hosts that comprise VAST on Cloud (VoC)
+    clusters. Each virtual machine runs CNodes and DNodes in containers. Both EBoxes and GCP VoC virtual
+    machines  each run one CNode container and two DNode containers.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vm
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vm-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vms-api
+  name: VAST Data vms API
+  description: >-
+    The VMS path represents VMS settings, such as the management VIP used to access the VMS interfaces,
+    login banner text for the VMS CLI and Web UI, access token lifetimes for the REST API and more.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vms
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vms-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-volumes-api
+  name: VAST Data Volumes API
+  description: The Volumes API from VAST Data — 7 operation(s) for volumes.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - Volumes
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-volumes-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vpntunnels-api
+  name: VAST Data vpntunnels API
+  description: The vpntunnels API from VAST Data — 3 operation(s) for vpntunnels.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vpntunnels
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vpntunnels-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vsettings-api
+  name: VAST Data vsettings API
+  description: The vsettings API from VAST Data — 1 operation(s) for vsettings.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vsettings
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vsettings-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-vtasks-api
+  name: VAST Data vtasks API
+  description: The vtasks API from VAST Data — 3 operation(s) for vtasks.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - vtasks
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-vtasks-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
+- aid: vastdata:vastdata-webhooks-api
+  name: VAST Data webhooks API
+  description: >-
+    Webhooks send event information to external applications. Once defined, you can set them to be triggered
+    by specific events.
+  humanURL: https://www.vastdata.com/platform/developers
+  baseURL: https://{vms-host}/api
+  tags:
+  - webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/vastdata-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://support.vastdata.com/s/
+  - type: SDK
+    url: https://github.com/vast-data/vastpy
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -26,3 +2041,49 @@ maintainers:
 common:
 - type: Website
   url: https://vastdata.com
+- type: DeveloperPortal
+  url: https://www.vastdata.com/platform/developers
+- type: Documentation
+  url: https://support.vastdata.com/s/
+- type: GettingStarted
+  url: https://github.com/vast-data/cosmos-labs
+- type: Support
+  url: https://community.vastdata.com/
+- type: Blog
+  url: https://www.vastdata.com/blog
+- type: GitHubOrganization
+  url: https://github.com/vast-data
+- type: TermsOfService
+  url: https://www.vastdata.com/legal/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.vastdata.com/legal/privacy-policy
+- type: Authentication
+  url: authentication/vastdata-authentication.yml
+- type: DomainSecurity
+  url: security/vastdata-domain-security.yml
+- type: Packages
+  url: packages/vastdata-packages.yml
+- type: SDKs
+  url: packages/vastdata-packages.yml
+- type: CLI
+  url: cli/vastdata-cli.yml
+- type: MCPServer
+  url: mcp/vastdata-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/vastdata-llms.txt
+- type: WellKnown
+  url: well-known/vastdata-well-known.yml
+- type: ErrorCatalog
+  url: errors/vastdata-problem-types.yml
+- type: Conformance
+  url: conformance/vastdata-conformance.yml
+- type: Conventions
+  url: conventions/vastdata-conventions.yml
+- type: Lifecycle
+  url: lifecycle/vastdata-lifecycle.yml
+- type: DataModel
+  url: data-model/vastdata-data-model.yml
+- type: Overlay
+  url: overlays/vastdata-vms-overlay.yaml

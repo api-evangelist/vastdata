@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/vastdata-vms-openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: ApiToken
+  type: apiKey
+  in: header
+  parameter: ApiToken
+  description: Send current valid API token in an Authorization header with format Api-Token
+    <token>.
+  sources:
+  - openapi/vastdata-vms-openapi.json
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Basic authentication using VMS user name and password
+  sources:
+  - openapi/vastdata-vms-openapi.json

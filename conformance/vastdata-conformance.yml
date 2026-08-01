@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/vastdata-vms-openapi.json
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: VMS OpenAPI declares only apiKey (Api-Token header) and http basic
+      securitySchemes; no oauth2 flows.
+  - id: oidc
+    conforms: false
+    evidence: No openIdConnect securityScheme in the VMS OpenAPI; no /.well-known/openid-configuration
+      on vastdata.com (404, see well-known/vastdata-well-known.yml).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: 4xx/5xx responses use application/json, not application/problem+json.
+  - id: pagination
+    conforms: true
+    evidence: Collection operations expose page, page_size, and limit query parameters
+      across the VMS OpenAPI.
+  - id: openapi-3
+    conforms: true
+    evidence: Published VMS API schema is OpenAPI 3.0.3 (531 paths, 772 operations,
+      319 schemas), distributed in vast-data/go-vast-client openapi_schema/.
+  - id: s3-api
+    conforms: true
+    evidence: VAST DataStore exposes an S3-compatible object protocol alongside NFS,
+      SMB, and Block (https://www.vastdata.com/platform/datastore); VMS manages S3
+      keys, policies, and views with S3 protocol support.
+  - id: kafka-protocol
+    conforms: true
+    evidence: VAST DataEngine includes a Kafka-compatible event broker
+      (https://www.vastdata.com/platform/dataengine); VMS API manages topics.
+  - id: csi
+    conforms: true
+    evidence: Official Kubernetes CSI driver (https://github.com/vast-data/vast-csi).
+  - id: scim
+    conforms: false
+    evidence: No SCIM 2.0 paths in the VMS OpenAPI.
+  - id: json:api
+    conforms: false
+    evidence: Responses are plain JSON objects/arrays, not JSON:API envelopes.

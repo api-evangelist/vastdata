@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the VAST Management System REST API
+  version: 1.0.0
+extends: openapi/vastdata-vms-openapi.json
+x-generated: '2026-07-21'
+x-method: generated
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: vastdata
+        harvested: '2026-07-21'
+        source: https://github.com/vast-data/go-vast-client/tree/main/openapi_schema
+        notes: VMS API schema as distributed by VAST Data for SDK code generation;
+          531 paths / 772 operations covering cluster, tenant, view, snapshot,
+          quota, protection, and DataEngine administration.
+  - target: $.info
+    update:
+      contact:
+        name: VAST Data
+        url: https://www.vastdata.com/platform/developers
+  - target: $
+    update:
+      servers:
+        - url: https://{vms-host}/api
+          description: VAST Management System (on-premises / in-cluster endpoint);
+            the upstream schema ships without servers[].
+          variables:
+            vms-host:
+              default: vms.example.internal
+              description: Address of your cluster's VAST Management System.
+  - target: $.components.securitySchemes.ApiToken
+    update:
+      x-apievangelist-note: "Tokens are issued via POST /apitokens/ and sent as
+        'Authorization: Api-Token <token>' (VAST 5.3+)."
