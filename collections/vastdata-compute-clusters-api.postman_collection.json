@@ -1,0 +1,3237 @@
+{
+  "item": [
+    {
+      "id": "1fcb9c6c-0e0c-4378-a306-33e1fe103df6",
+      "name": "Compute Clusters",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd4e6a08-3936-457f-a972-f4b8626e11c1",
+          "name": "Get all existing Compute Clusters",
+          "request": {
+            "name": "Get all existing Compute Clusters",
+            "description": {
+              "content": "This endpoint lists Compute Clusters",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d41c10a-38a6-4d93-ad6b-76c0fd66fa8c",
+              "name": "Compute Cluster information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"all_tenants\": false,\n    \"backup_frequency\": 60,\n    \"certificate\": \"string\",\n    \"client_certificate\": \"string\",\n    \"client_key\": \"string\",\n    \"cluster_cidr\": \"10.64.0.0/12\",\n    \"default_gateway\": \"string\",\n    \"description\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 1578,\n    \"intermediate_certificate\": \"string\",\n    \"intermediate_key\": \"string\",\n    \"name\": \"string\",\n    \"netmask\": \"string\",\n    \"resource_counts\": {\n      \"cnodes\": {\n        \"key_0\": null,\n        \"key_1\": null,\n        \"key_2\": null,\n        \"key_3\": null\n      },\n      \"deployments\": {\n        \"key_0\": null,\n        \"key_1\": null,\n        \"key_2\": null,\n        \"key_3\": null\n      },\n      \"namespace_counts\": 1413,\n      \"pods\": {\n        \"key_0\": null\n      },\n      \"service_counts\": 1956,\n      \"tenant_counts\": 4888\n    },\n    \"root_certificate\": \"string\",\n    \"server_kube_vip_address\": \"string\",\n    \"service_cidr\": \"10.80.0.0/12\",\n    \"state\": \"STOPPED\",\n    \"static_ip_ranges\": [\n      [\n        \"10.0.0.10\",\n        \"10.0.0.20\"\n      ],\n      [\n        \"10.0.0.10\",\n        \"10.0.0.20\"\n      ]\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vlan\": 134\n  },\n  {\n    \"all_tenants\": false,\n    \"backup_frequency\": 60,\n    \"certificate\": \"string\",\n    \"client_certificate\": \"string\",\n    \"client_key\": \"string\",\n    \"cluster_cidr\": \"10.64.0.0/12\",\n    \"default_gateway\": \"string\",\n    \"description\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 3582,\n    \"intermediate_certificate\": \"string\",\n    \"intermediate_key\": \"string\",\n    \"name\": \"string\",\n    \"netmask\": \"string\",\n    \"resource_counts\": {\n      \"cnodes\": {\n        \"disk_pressure\": 2,\n        \"memory_pressure\": 1,\n        \"network_unavailable\": 2,\n        \"pid_pressure\": 0,\n        \"ready\": 45,\n        \"total\": 50\n      },\n      \"deployments\": {\n        \"degraded\": 3,\n        \"error\": 2,\n        \"running\": 45,\n        \"total\": 50\n      },\n      \"namespace_counts\": 8287,\n      \"pods\": {\n        \"failed\": 3,\n        \"pending\": 10,\n        \"running\": 180,\n        \"succeeded\": 5,\n        \"total\": 200,\n        \"unknown\": 2\n      },\n      \"service_counts\": 4170,\n      \"tenant_counts\": 6246\n    },\n    \"root_certificate\": \"string\",\n    \"server_kube_vip_address\": \"string\",\n    \"service_cidr\": \"10.80.0.0/12\",\n    \"state\": \"STARTING\",\n    \"static_ip_ranges\": [\n      [\n        \"10.0.0.10\",\n        \"10.0.0.20\"\n      ],\n      [\n        \"10.0.0.10\",\n        \"10.0.0.20\"\n      ]\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vlan\": 3655\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daff4479-bc02-4119-9b29-32c27982b012",
+          "name": "Create a Compute Cluster",
+          "request": {
+            "name": "Create a Compute Cluster",
+            "description": {
+              "content": "This endpoint creates a Compute Cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"cnodes\": [\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    }\n  ],\n  \"static_ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"netmask\": \"<string>\",\n  \"all_tenants\": false,\n  \"backup_frequency\": 60,\n  \"cluster_cidr\": \"10.42.0.0/16\",\n  \"default_gateway\": \"<string>\",\n  \"description\": \"<string>\",\n  \"intermediate_certificate\": \"<string>\",\n  \"intermediate_key\": \"<string>\",\n  \"root_certificate\": \"<string>\",\n  \"server_kube_vip_address\": \"<string>\",\n  \"service_cidr\": \"10.43.0.0/16\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vlan\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9dd31c1-1026-41f9-826a-631e876ecaab",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cnodes\": [\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    }\n  ],\n  \"static_ip_ranges\": [\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ],\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ]\n  ],\n  \"netmask\": \"<string>\",\n  \"all_tenants\": false,\n  \"backup_frequency\": 60,\n  \"cluster_cidr\": \"10.42.0.0/16\",\n  \"default_gateway\": \"<string>\",\n  \"description\": \"<string>\",\n  \"intermediate_certificate\": \"<string>\",\n  \"intermediate_key\": \"<string>\",\n  \"root_certificate\": \"<string>\",\n  \"server_kube_vip_address\": \"<string>\",\n  \"service_cidr\": \"10.43.0.0/16\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vlan\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"all_tenants\": false,\n  \"backup_frequency\": 60,\n  \"certificate\": \"string\",\n  \"client_certificate\": \"string\",\n  \"client_key\": \"string\",\n  \"cluster_cidr\": \"10.64.0.0/12\",\n  \"default_gateway\": \"string\",\n  \"description\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 7445,\n  \"intermediate_certificate\": \"string\",\n  \"intermediate_key\": \"string\",\n  \"name\": \"string\",\n  \"netmask\": \"string\",\n  \"resource_counts\": {\n    \"cnodes\": {\n      \"key_0\": null\n    },\n    \"deployments\": {\n      \"key_0\": null\n    },\n    \"namespace_counts\": 1602,\n    \"pods\": {\n      \"key_0\": null\n    },\n    \"service_counts\": 502,\n    \"tenant_counts\": 4772\n  },\n  \"root_certificate\": \"string\",\n  \"server_kube_vip_address\": \"string\",\n  \"service_cidr\": \"10.80.0.0/12\",\n  \"state\": \"STOPPED\",\n  \"static_ip_ranges\": [\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ],\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ]\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vlan\": 942,\n  \"cnodes\": [\n    {\n      \"id\": 6823,\n      \"ip\": \"string\",\n      \"message\": \"string\",\n      \"state\": \"ERROR\",\n      \"stats\": {\n        \"cpu\": {\n          \"total\": 721.1481490615457,\n          \"used\": 3458.5728081116717\n        },\n        \"memory\": {\n          \"total\": 4346.213172503147,\n          \"used\": 6020.980247091648\n        },\n        \"pods\": 8062\n      },\n      \"type\": \"WORKER\"\n    },\n    {\n      \"id\": 5938,\n      \"ip\": \"string\",\n      \"message\": \"string\",\n      \"state\": \"UPDATING\",\n      \"stats\": {\n        \"cpu\": {\n          \"total\": 2284.7173408005215,\n          \"used\": 3694.6118578743435\n        },\n        \"memory\": {\n          \"total\": 8424.656440818715,\n          \"used\": 8496.898903825353\n        },\n        \"pods\": 5410\n      },\n      \"type\": \"WORKER\"\n    }\n  ],\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d24cf93-a04c-4562-9c44-3c7cfc17f1ea",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cnodes\": [\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    }\n  ],\n  \"static_ip_ranges\": [\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ],\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ]\n  ],\n  \"netmask\": \"<string>\",\n  \"all_tenants\": false,\n  \"backup_frequency\": 60,\n  \"cluster_cidr\": \"10.42.0.0/16\",\n  \"default_gateway\": \"<string>\",\n  \"description\": \"<string>\",\n  \"intermediate_certificate\": \"<string>\",\n  \"intermediate_key\": \"<string>\",\n  \"root_certificate\": \"<string>\",\n  \"server_kube_vip_address\": \"<string>\",\n  \"service_cidr\": \"10.43.0.0/16\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vlan\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "396021f6-b9ed-4609-95ca-9f16b7e0afaf",
+          "name": "Get aggregated dashboard information for all compute clusters",
+          "request": {
+            "name": "Get aggregated dashboard information for all compute clusters",
+            "description": {
+              "content": "This endpoint provides system-wide aggregated resource counts for compute clusters.\nReturns counts of compute clusters, CNodes, pods, deployments, services, namespaces, and tenants,\nwith state-based breakdowns for each resource type.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                "dashboard",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a8dc8ab-84e5-46ab-9b34-00e2f37cdc9e",
+              "name": "Aggregated dashboard information across all compute clusters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    "dashboard",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cnodes\": {\n    \"key_0\": null,\n    \"key_1\": null,\n    \"key_2\": null,\n    \"key_3\": null\n  },\n  \"compute_clusters\": {\n    \"key_0\": null,\n    \"key_1\": null\n  },\n  \"deployments\": {\n    \"key_0\": null,\n    \"key_1\": null\n  },\n  \"namespace_counts\": 6862,\n  \"pods\": {\n    \"key_0\": null\n  },\n  \"service_counts\": 4989,\n  \"tenant_counts\": 9259\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c63aad1-0cad-4ffa-8fd2-f04858342504",
+          "name": "Delete Compute Cluster",
+          "request": {
+            "name": "Delete Compute Cluster",
+            "description": {
+              "content": "Delete Compute Cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0f3084e-7000-4dc6-a6bb-47e7aa05b884",
+              "name": "Compute Cluster deletion initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d799705f-44ba-4503-8615-fd691a3fde30",
+          "name": "Return Details of a Compute Cluster",
+          "request": {
+            "name": "Return Details of a Compute Cluster",
+            "description": {
+              "content": "This endpoint returns information about a specific Compute Cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11862d5d-051c-47c9-922a-fcc48be7cc63",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"all_tenants\": false,\n  \"backup_frequency\": 60,\n  \"certificate\": \"string\",\n  \"client_certificate\": \"string\",\n  \"client_key\": \"string\",\n  \"cluster_cidr\": \"10.64.0.0/12\",\n  \"default_gateway\": \"string\",\n  \"description\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5065,\n  \"intermediate_certificate\": \"string\",\n  \"intermediate_key\": \"string\",\n  \"name\": \"string\",\n  \"netmask\": \"string\",\n  \"resource_counts\": {\n    \"cnodes\": {\n      \"key_0\": null\n    },\n    \"deployments\": {\n      \"key_0\": null,\n      \"key_1\": null\n    },\n    \"namespace_counts\": 9492,\n    \"pods\": {\n      \"key_0\": null\n    },\n    \"service_counts\": 1889,\n    \"tenant_counts\": 871\n  },\n  \"root_certificate\": \"string\",\n  \"server_kube_vip_address\": \"string\",\n  \"service_cidr\": \"10.80.0.0/12\",\n  \"state\": \"RUNNING\",\n  \"static_ip_ranges\": [\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ],\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ]\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vlan\": 2832,\n  \"cnodes\": [\n    {\n      \"id\": 4471,\n      \"ip\": \"string\",\n      \"message\": \"string\",\n      \"state\": \"DELETING\",\n      \"stats\": {\n        \"cpu\": {\n          \"total\": 6887.47725040399,\n          \"used\": 1732.2462045148245\n        },\n        \"memory\": {\n          \"total\": 8244.981840411247,\n          \"used\": 5072.496113300724\n        },\n        \"pods\": 3814\n      },\n      \"type\": \"UNASSIGNED\"\n    },\n    {\n      \"id\": 6654,\n      \"ip\": \"string\",\n      \"message\": \"string\",\n      \"state\": \"UNKNOWN\",\n      \"stats\": {\n        \"cpu\": {\n          \"total\": 8901.442919592304,\n          \"used\": 5787.914879380828\n        },\n        \"memory\": {\n          \"total\": 4890.0653510634065,\n          \"used\": 6366.953757759917\n        },\n        \"pods\": 1457\n      },\n      \"type\": \"WORKER\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c09225e2-d1c2-489e-bea3-7cd57d95ff20",
+          "name": "Modify Compute Cluster",
+          "request": {
+            "name": "Modify Compute Cluster",
+            "description": {},
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"all_tenants\": \"<boolean>\",\n  \"backup_frequency\": \"<integer>\",\n  \"cnodes\": [\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    }\n  ],\n  \"static_ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f1c440b-18ce-4fc1-a162-151707ca0dcb",
+              "name": "Compute Cluster modification initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"all_tenants\": \"<boolean>\",\n  \"backup_frequency\": \"<integer>\",\n  \"cnodes\": [\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    }\n  ],\n  \"static_ip_ranges\": [\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ],\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ]\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"all_tenants\": false,\n  \"backup_frequency\": 60,\n  \"certificate\": \"string\",\n  \"client_certificate\": \"string\",\n  \"client_key\": \"string\",\n  \"cluster_cidr\": \"10.64.0.0/12\",\n  \"default_gateway\": \"string\",\n  \"description\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 2812,\n  \"intermediate_certificate\": \"string\",\n  \"intermediate_key\": \"string\",\n  \"name\": \"string\",\n  \"netmask\": \"string\",\n  \"resource_counts\": {\n    \"cnodes\": {\n      \"key_0\": null,\n      \"key_1\": null,\n      \"key_2\": null\n    },\n    \"deployments\": {\n      \"key_0\": null,\n      \"key_1\": null\n    },\n    \"namespace_counts\": 7683,\n    \"pods\": {\n      \"key_0\": null,\n      \"key_1\": null,\n      \"key_2\": null\n    },\n    \"service_counts\": 7916,\n    \"tenant_counts\": 286\n  },\n  \"root_certificate\": \"string\",\n  \"server_kube_vip_address\": \"string\",\n  \"service_cidr\": \"10.80.0.0/12\",\n  \"state\": \"PARTIALLY_PROVISIONED\",\n  \"static_ip_ranges\": [\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ],\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ]\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vlan\": 1627,\n  \"cnodes\": [\n    {\n      \"id\": 4795,\n      \"ip\": \"string\",\n      \"message\": \"string\",\n      \"state\": \"INITIALIZING\",\n      \"stats\": {\n        \"cpu\": {\n          \"total\": 391.30798387634223,\n          \"used\": 5071.290944480368\n        },\n        \"memory\": {\n          \"total\": 9966.490189522803,\n          \"used\": 9583.33946228916\n        },\n        \"pods\": 7889\n      },\n      \"type\": \"WORKER\"\n    },\n    {\n      \"id\": 4940,\n      \"ip\": \"string\",\n      \"message\": \"string\",\n      \"state\": \"INITIALIZING\",\n      \"stats\": {\n        \"cpu\": {\n          \"total\": 4770.324691397019,\n          \"used\": 2626.7404726460554\n        },\n        \"memory\": {\n          \"total\": 5539.190919669997,\n          \"used\": 8102.710021683182\n        },\n        \"pods\": 1379\n      },\n      \"type\": \"UNASSIGNED\"\n    }\n  ],\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "961b4c9d-801c-4dfc-8d38-4829e13ba0f5",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"all_tenants\": \"<boolean>\",\n  \"backup_frequency\": \"<integer>\",\n  \"cnodes\": [\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"resource_preset\": \"<string>\"\n    }\n  ],\n  \"static_ip_ranges\": [\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ],\n    [\n      \"10.0.0.10\",\n      \"10.0.0.20\"\n    ]\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d82a8982-f57c-4c94-8cb3-c781984238f0",
+          "name": "Get full details of a specific deployment",
+          "request": {
+            "name": "Get full details of a specific deployment",
+            "description": {
+              "content": "Returns the raw Kubernetes API object for a specific deployment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "deployment_detail",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resource_name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the deployment"
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_namespace",
+                  "value": "<string>",
+                  "description": "(Required) Namespace of the deployment"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5535114-a948-45a4-8936-d835971262ee",
+              "name": "Full deployment details as raw Kubernetes API object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "deployment_detail",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resource_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_namespace",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2a8a5d9-6f60-4bab-bfd7-e93fd146c561",
+          "name": "List deployments in the compute cluster",
+          "request": {
+            "name": "List deployments in the compute cluster",
+            "description": {
+              "content": "This endpoint lists all deployments in the specified compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "deployments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Filter deployments by namespace"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1afc13ef-9734-442e-aa84-b837daa9c739",
+              "name": "List of deployments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "deployments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"available\": 8872,\n    \"created_at\": \"string\",\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"ready\": \"string\",\n    \"up_to_date\": 7933\n  },\n  {\n    \"available\": 2182,\n    \"created_at\": \"string\",\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"ready\": \"string\",\n    \"up_to_date\": 9506\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e8a92f1-d3dd-4e51-9e1c-92ef6c6aee01",
+          "name": "List events for a specific resource in the compute cluster",
+          "request": {
+            "name": "List events for a specific resource in the compute cluster",
+            "description": {
+              "content": "Returns Kubernetes events for the specified resource, filtered by involvedObject.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "events",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resource_name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the resource"
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_namespace",
+                  "value": "<string>",
+                  "description": "(Required) Namespace of the resource"
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_kind",
+                  "value": "<string>",
+                  "description": "(Required) Kind of the resource (Pod, Deployment, Service, ReplicaSet)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e21cb354-cd96-45d9-bc1c-8a320b24fdfb",
+              "name": "List of events as raw Kubernetes API objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "events",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resource_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_namespace",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_kind",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "878357d2-3c54-40d0-9011-b6e9c266d962",
+          "name": "Generate metric viewer certificates",
+          "request": {
+            "name": "Generate metric viewer certificates",
+            "description": {
+              "content": "Generate metric viewer certificates for the compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "metric_viewer_certificates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb8ea90e-a606-4b93-8556-747bcbc26179",
+              "name": "Generated metric viewer certificates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "metric_viewer_certificates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ca_cert\": \"string\",\n  \"client_cert\": \"string\",\n  \"private_key\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db9f6a4f-5880-4649-95fb-707d787c638e",
+          "name": "List namespaces in the compute cluster",
+          "request": {
+            "name": "List namespaces in the compute cluster",
+            "description": {
+              "content": "This endpoint lists all namespaces in the specified compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "namespaces",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58e44835-0417-4c26-afaf-c3e1508c6ca1",
+              "name": "List of namespaces",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "namespaces",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_at\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"string\"\n  },\n  {\n    \"created_at\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16cf62c9-bed3-41a4-83d2-de30fd6e3b7a",
+          "name": "List nodes in the compute cluster",
+          "request": {
+            "name": "List nodes in the compute cluster",
+            "description": {
+              "content": "This endpoint lists all nodes in the specified compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "nodes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2418ca80-0294-40a7-a5d2-8bdedef3cb53",
+              "name": "List of nodes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "nodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"architecture\": \"string\",\n    \"capacity_cpu\": \"string\",\n    \"capacity_memory\": \"string\",\n    \"created_at\": \"string\",\n    \"message\": \"string\",\n    \"name\": \"string\",\n    \"os_image\": \"string\",\n    \"status\": \"string\",\n    \"version\": \"string\"\n  },\n  {\n    \"architecture\": \"string\",\n    \"capacity_cpu\": \"string\",\n    \"capacity_memory\": \"string\",\n    \"created_at\": \"string\",\n    \"message\": \"string\",\n    \"name\": \"string\",\n    \"os_image\": \"string\",\n    \"status\": \"string\",\n    \"version\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c33cf0b-a60d-4a4c-b606-e0848fbe19fe",
+          "name": "Get full details of a specific pod",
+          "request": {
+            "name": "Get full details of a specific pod",
+            "description": {
+              "content": "Returns the raw Kubernetes API object for a specific pod.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "pod_detail",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resource_name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the pod"
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_namespace",
+                  "value": "<string>",
+                  "description": "(Required) Namespace of the pod"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0d308d8-7e4f-4946-bb9a-134f4f0903b0",
+              "name": "Full pod details as raw Kubernetes API object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "pod_detail",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resource_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_namespace",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38e4c7af-e9d4-4971-8edd-d9a82ddbf945",
+          "name": "List pods in the compute cluster",
+          "request": {
+            "name": "List pods in the compute cluster",
+            "description": {
+              "content": "This endpoint lists all pods in the specified compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "pods",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Filter pods by namespace"
+                },
+                {
+                  "disabled": false,
+                  "key": "deployment",
+                  "value": "<string>",
+                  "description": "Filter pods by deployment name; namespace must also be provided"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "104b95c8-bfd5-4bcf-8336-3458cf7e36ab",
+              "name": "List of pods",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "pods",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deployment",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"conditions\": [\n      {\n        \"last_transition_time\": \"string\",\n        \"message\": \"string\",\n        \"reason\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"last_transition_time\": \"string\",\n        \"message\": \"string\",\n        \"reason\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"created_at\": \"string\",\n    \"ip\": \"string\",\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"node\": \"string\",\n    \"status\": \"string\"\n  },\n  {\n    \"conditions\": [\n      {\n        \"last_transition_time\": \"string\",\n        \"message\": \"string\",\n        \"reason\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"last_transition_time\": \"string\",\n        \"message\": \"string\",\n        \"reason\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"created_at\": \"string\",\n    \"ip\": \"string\",\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"node\": \"string\",\n    \"status\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df247947-437e-473e-b31f-d9b5d2801799",
+          "name": "Reconcile Compute Cluster Creation",
+          "request": {
+            "name": "Reconcile Compute Cluster Creation",
+            "description": {
+              "content": "Retry creation of a compute cluster whose initial creation did not complete successfully.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "reconcile_create",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe770f9a-589b-4131-91d9-0b658ebcf1fb",
+              "name": "Compute Cluster reconcile create initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "reconcile_create",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8e0e874-d767-4236-b6cf-3017a1a3feb6",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "reconcile_create",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a08862a-c209-4f83-a6d1-56c28b5b9511",
+          "name": "List ReplicaSets for a specific deployment in the compute cluster",
+          "request": {
+            "name": "List ReplicaSets for a specific deployment in the compute cluster",
+            "description": {
+              "content": "Returns all ReplicaSets owned by the specified deployment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "replica_sets",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resource_name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the deployment"
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_namespace",
+                  "value": "<string>",
+                  "description": "(Required) Namespace of the deployment"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "690a84df-887a-42f4-a740-dbaa12b4348e",
+              "name": "List of ReplicaSets as raw Kubernetes API objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "replica_sets",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resource_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_namespace",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9dfb4040-69d2-4a07-93e9-c3c488b04cf7",
+          "name": "Rotate root and/or intermediate certificates",
+          "request": {
+            "name": "Rotate root and/or intermediate certificates",
+            "description": {
+              "content": "Rotate root and/or intermediate certificates for the compute cluster.\nThree modes are supported:\n1. Empty body (no keep_root) - regenerate all certificates (root + intermediate + leaf).\n2. Empty body with keep_root=true - keep root, regenerate intermediate + leaf.\n3. Provide all 3 certificate fields in body - use provided certs, generate leaf.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "rotate_base_certificates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keep_root",
+                  "value": "<boolean>",
+                  "description": "If true, keep the existing root certificate and only regenerate intermediate and leaf certificates"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"intermediate_certificate\": \"<string>\",\n  \"intermediate_key\": \"<string>\",\n  \"root_certificate\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6be5dbd2-f49c-4ebf-a9eb-b5e0feb8e866",
+              "name": "Certificate rotation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "rotate_base_certificates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keep_root",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"intermediate_certificate\": \"<string>\",\n  \"intermediate_key\": \"<string>\",\n  \"root_certificate\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb2465f6-e03b-4151-a880-f129bd6247f9",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "rotate_base_certificates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keep_root",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"intermediate_certificate\": \"<string>\",\n  \"intermediate_key\": \"<string>\",\n  \"root_certificate\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aaa0abb0-52fd-4cd1-b567-8425d5272ceb",
+          "name": "Rotate leaf certificates",
+          "request": {
+            "name": "Rotate leaf certificates",
+            "description": {
+              "content": "Rotate only the leaf certificates for the compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "rotate_leaf_certificates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11b9d27b-3c73-4e41-a870-c252b1c0e916",
+              "name": "Leaf certificate rotation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "rotate_leaf_certificates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7d9ce4d-708f-4e55-a612-e75c2e08f821",
+          "name": "Rotate service key",
+          "request": {
+            "name": "Rotate service key",
+            "description": {
+              "content": "Rotate the service key for the compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "rotate_service_key",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b86ebaa-186f-48a1-82ce-4a8e55a1f667",
+              "name": "Service key rotation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "rotate_service_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4324d91-e5aa-4dad-b042-f97b35c84d7c",
+          "name": "Get full details of a specific service",
+          "request": {
+            "name": "Get full details of a specific service",
+            "description": {
+              "content": "Returns the raw Kubernetes API object for a specific service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "service_detail",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resource_name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the service"
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_namespace",
+                  "value": "<string>",
+                  "description": "(Required) Namespace of the service"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdaadac2-3ebd-465f-a116-7e92f96b1c02",
+              "name": "Full service details as raw Kubernetes API object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "service_detail",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resource_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_namespace",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0185dd40-59d5-4c5a-8f1c-dfb35f81a4db",
+          "name": "List services in the compute cluster",
+          "request": {
+            "name": "List services in the compute cluster",
+            "description": {
+              "content": "This endpoint lists all services in the specified compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "services",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Filter services by namespace"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "215c589c-fded-48c6-a6bc-76e4badc0089",
+              "name": "List of services",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "services",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cluster_ip\": \"string\",\n    \"created_at\": \"string\",\n    \"external_ip\": \"string\",\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"service_type\": \"string\"\n  },\n  {\n    \"cluster_ip\": \"string\",\n    \"created_at\": \"string\",\n    \"external_ip\": \"string\",\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"service_type\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b162c4b3-7955-4001-b1cc-27e58b4a2c31",
+          "name": "Start Compute Cluster",
+          "request": {
+            "name": "Start Compute Cluster",
+            "description": {
+              "content": "Start a stopped compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "start",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c66460db-7c74-43cf-9358-10b66379a98e",
+              "name": "Compute Cluster start initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "start",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d7bea4f-7b6a-43c4-b3ce-e1d1bf7c421c",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "start",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72a8f353-a335-4d73-95fa-4ee9c0c4d735",
+          "name": "Stop Compute Cluster",
+          "request": {
+            "name": "Stop Compute Cluster",
+            "description": {
+              "content": "Stop a running compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "stop",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68bb32b6-8413-44de-b1c5-0fc958345215",
+              "name": "Compute Cluster stop initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "stop",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb65c6bc-2127-47df-86df-46233bcb8c63",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "stop",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea237a4c-8ddd-4cbb-9edf-f37f9d021e9b",
+          "name": "List Compute Cluster Tenant Associations",
+          "request": {
+            "name": "List Compute Cluster Tenant Associations",
+            "description": {
+              "content": "Returns a paginated list of tenant associations for the specified compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "tenants",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfb736cc-4aac-466d-88a2-7c6566306f1f",
+              "name": "Paginated list of tenant associations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "tenants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"compute_cluster\": 6665,\n    \"de_compute_guid\": \"string\",\n    \"de_mtls_cert_guid\": \"string\",\n    \"status\": \"ROTATING\",\n    \"tenant_id\": 1650\n  },\n  {\n    \"compute_cluster\": 3333,\n    \"de_compute_guid\": \"string\",\n    \"de_mtls_cert_guid\": \"string\",\n    \"status\": \"PARTIALLY_PROVISIONED\",\n    \"tenant_id\": 3541\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92a7321f-745e-4368-93b1-cb017e98d8ca",
+          "name": "Manage Compute Cluster Tenant Associations",
+          "request": {
+            "name": "Manage Compute Cluster Tenant Associations",
+            "description": {
+              "content": "Manage tenant associations with a compute cluster. You can add or remove tenants. Cannot be used when all_tenants is enabled on the compute cluster.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "tenants",
+                "bulk",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenants_to_add\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tenants_to_remove\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46313829-bb25-4f26-8276-247c358ee178",
+              "name": "Tenant association operation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "tenants",
+                    "bulk",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenants_to_add\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tenants_to_remove\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98b26705-69ed-4bb2-b7c7-512e8524058b",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "tenants",
+                    "bulk",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenants_to_add\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tenants_to_remove\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e890e59-ae25-443f-928c-892b64021a0a",
+          "name": "Retrieve a Compute Cluster Tenant Association",
+          "request": {
+            "name": "Retrieve a Compute Cluster Tenant Association",
+            "description": {
+              "content": "Returns a single tenant association for the specified compute cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "computeclusters",
+                ":id",
+                "tenants",
+                ":tenant_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Compute Cluster ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant_id",
+                  "description": "(Required) Tenant Association ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c234c20a-f157-4f4c-92e6-b60cd25f9d64",
+              "name": "Tenant association details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "computeclusters",
+                    ":id",
+                    "tenants",
+                    ":tenant_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Compute Cluster ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant_id",
+                      "description": "(Required) Tenant Association ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"compute_cluster\": 8730,\n  \"de_compute_guid\": \"string\",\n  \"de_mtls_cert_guid\": \"string\",\n  \"status\": \"PROVISIONED\",\n  \"tenant_id\": 3773\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34f7e0ec-3b0e-4fee-92c7-0310602e2b16",
+    "name": "VAST API Swagger Schema activedirectory Compute Clusters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

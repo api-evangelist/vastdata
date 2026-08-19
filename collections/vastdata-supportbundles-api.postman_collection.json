@@ -1,0 +1,647 @@
+{
+  "item": [
+    {
+      "id": "7761ad74-ee48-497c-9c7b-1a7b5a98d513",
+      "name": "supportbundles",
+      "description": {
+        "content": "A support bundle is a compressed file consisting of logs that are extracted from the VAST Cluster. Support bundles can be sent to VAST Support for troubleshooting purposes. They can also be downloaded from VMS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "53db692a-0d4d-452d-8a59-2c06c86d5f77",
+          "name": "List Support Bundles",
+          "request": {
+            "name": "List Support Bundles",
+            "description": {
+              "content": "This endpoint lists support bundles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supportbundles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2ba5930-7fb7-4ee8-8e32-d0eefb01856a",
+              "name": "Support Bundle information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supportbundles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"access_key\": \"string\",\n    \"aggregated\": false,\n    \"astron_args\": \"string\",\n    \"bucket_name\": \"string\",\n    \"bucket_subdir\": \"string\",\n    \"bundle_file\": \"string\",\n    \"bundle_size\": 139,\n    \"bundle_url\": \"string\",\n    \"callhome\": false,\n    \"cluster\": \"string\",\n    \"cluster_id\": 6109,\n    \"cnode_ids\": [\n      2266,\n      6914\n    ],\n    \"cnode_ids_array\": [\n      296,\n      7649\n    ],\n    \"cnodes_only\": true,\n    \"core\": false,\n    \"create_datetime\": \"string\",\n    \"created\": \"1974-10-03T22:04:21.565Z\",\n    \"delete_after_send\": false,\n    \"dnode_ids\": [\n      4299,\n      420\n    ],\n    \"dnode_ids_array\": [\n      6856,\n      9048\n    ],\n    \"dnodes_only\": true,\n    \"end_time\": \"string\",\n    \"guid\": \"string\",\n    \"hubble_args\": \"string\",\n    \"id\": 7239,\n    \"level\": \"string\",\n    \"luna_args\": \"string\",\n    \"management\": true,\n    \"max_size\": 839.3757552234782,\n    \"mem_traces\": false,\n    \"metrics\": false,\n    \"name\": \"string\",\n    \"obfuscated\": true,\n    \"on_nfs\": true,\n    \"performance\": true,\n    \"platform\": true,\n    \"position_in_queue\": 4015,\n    \"prefix\": \"string\",\n    \"preset\": \"string\",\n    \"secret_key\": \"string\",\n    \"send_now\": false,\n    \"start_time\": \"string\",\n    \"state\": \"FAILED\",\n    \"text\": false,\n    \"traces\": true,\n    \"upload_via_vms\": false,\n    \"url\": \"string\",\n    \"volume_size\": 5846\n  },\n  {\n    \"access_key\": \"string\",\n    \"aggregated\": true,\n    \"astron_args\": \"string\",\n    \"bucket_name\": \"string\",\n    \"bucket_subdir\": \"string\",\n    \"bundle_file\": \"string\",\n    \"bundle_size\": 2974,\n    \"bundle_url\": \"string\",\n    \"callhome\": false,\n    \"cluster\": \"string\",\n    \"cluster_id\": 3585,\n    \"cnode_ids\": [\n      8102,\n      9404\n    ],\n    \"cnode_ids_array\": [\n      8474,\n      1874\n    ],\n    \"cnodes_only\": false,\n    \"core\": false,\n    \"create_datetime\": \"string\",\n    \"created\": \"1950-01-25T00:13:10.814Z\",\n    \"delete_after_send\": false,\n    \"dnode_ids\": [\n      7628,\n      2670\n    ],\n    \"dnode_ids_array\": [\n      9748,\n      6446\n    ],\n    \"dnodes_only\": true,\n    \"end_time\": \"string\",\n    \"guid\": \"string\",\n    \"hubble_args\": \"string\",\n    \"id\": 9638,\n    \"level\": \"string\",\n    \"luna_args\": \"string\",\n    \"management\": false,\n    \"max_size\": 8039.911482678093,\n    \"mem_traces\": false,\n    \"metrics\": false,\n    \"name\": \"string\",\n    \"obfuscated\": true,\n    \"on_nfs\": true,\n    \"performance\": false,\n    \"platform\": false,\n    \"position_in_queue\": 9854,\n    \"prefix\": \"string\",\n    \"preset\": \"string\",\n    \"secret_key\": \"string\",\n    \"send_now\": false,\n    \"start_time\": \"string\",\n    \"state\": \"DELETING\",\n    \"text\": true,\n    \"traces\": false,\n    \"upload_via_vms\": true,\n    \"url\": \"string\",\n    \"volume_size\": 2133\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15dd37dc-e7c8-4861-a700-b42248b72528",
+          "name": "Create a Support Bundle",
+          "request": {
+            "name": "Create a Support Bundle",
+            "description": {
+              "content": "This endpoint creates a support bundle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supportbundles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_key\": \"<string>\",\n  \"aggregated\": \"<boolean>\",\n  \"astron_args\": \"<string>\",\n  \"bucket_name\": \"<string>\",\n  \"bucket_subdir\": \"<string>\",\n  \"cnode_ids\": \"<string>\",\n  \"cnode_names\": \"<string>\",\n  \"cnodes_only\": \"<boolean>\",\n  \"dbox_ids\": \"<string>\",\n  \"dbox_names\": \"<string>\",\n  \"delete_after_send\": \"<boolean>\",\n  \"dnode_ids\": \"<string>\",\n  \"dnode_names\": \"<string>\",\n  \"dnodes_only\": \"<boolean>\",\n  \"dtray_ids\": \"<string>\",\n  \"dtray_names\": \"<string>\",\n  \"end_time\": \"<string>\",\n  \"hubble_args\": \"<string>\",\n  \"level\": \"<string>\",\n  \"luna_args\": \"<string>\",\n  \"max_size\": \"<float>\",\n  \"md_tool_addresses\": \"<string>\",\n  \"md_tool_handles\": \"<string>\",\n  \"obfuscated\": \"<boolean>\",\n  \"path\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"preset\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"send_now\": \"<boolean>\",\n  \"split_time\": \"<integer>\",\n  \"start_time\": \"<string>\",\n  \"tcpdump_args\": \"<string>\",\n  \"text\": \"<boolean>\",\n  \"upload_via_vms\": \"<boolean>\",\n  \"vip_ids\": \"<string>\",\n  \"vippool_ids\": \"<string>\",\n  \"volume_size\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e1cc687-71c1-469f-929a-ef72866f220e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supportbundles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_key\": \"<string>\",\n  \"aggregated\": \"<boolean>\",\n  \"astron_args\": \"<string>\",\n  \"bucket_name\": \"<string>\",\n  \"bucket_subdir\": \"<string>\",\n  \"cnode_ids\": \"<string>\",\n  \"cnode_names\": \"<string>\",\n  \"cnodes_only\": \"<boolean>\",\n  \"dbox_ids\": \"<string>\",\n  \"dbox_names\": \"<string>\",\n  \"delete_after_send\": \"<boolean>\",\n  \"dnode_ids\": \"<string>\",\n  \"dnode_names\": \"<string>\",\n  \"dnodes_only\": \"<boolean>\",\n  \"dtray_ids\": \"<string>\",\n  \"dtray_names\": \"<string>\",\n  \"end_time\": \"<string>\",\n  \"hubble_args\": \"<string>\",\n  \"level\": \"<string>\",\n  \"luna_args\": \"<string>\",\n  \"max_size\": \"<float>\",\n  \"md_tool_addresses\": \"<string>\",\n  \"md_tool_handles\": \"<string>\",\n  \"obfuscated\": \"<boolean>\",\n  \"path\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"preset\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"send_now\": \"<boolean>\",\n  \"split_time\": \"<integer>\",\n  \"start_time\": \"<string>\",\n  \"tcpdump_args\": \"<string>\",\n  \"text\": \"<boolean>\",\n  \"upload_via_vms\": \"<boolean>\",\n  \"vip_ids\": \"<string>\",\n  \"vippool_ids\": \"<string>\",\n  \"volume_size\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_key\": \"string\",\n  \"aggregated\": true,\n  \"astron_args\": \"string\",\n  \"bucket_name\": \"string\",\n  \"bucket_subdir\": \"string\",\n  \"bundle_file\": \"string\",\n  \"bundle_size\": 9029,\n  \"bundle_url\": \"string\",\n  \"callhome\": false,\n  \"cluster\": \"string\",\n  \"cluster_id\": 1055,\n  \"cnode_ids\": [\n    7011,\n    7494\n  ],\n  \"cnode_ids_array\": [\n    965,\n    7322\n  ],\n  \"cnodes_only\": false,\n  \"core\": true,\n  \"create_datetime\": \"string\",\n  \"created\": \"1950-12-18T02:05:32.827Z\",\n  \"delete_after_send\": true,\n  \"dnode_ids\": [\n    5495,\n    8137\n  ],\n  \"dnode_ids_array\": [\n    446,\n    6207\n  ],\n  \"dnodes_only\": false,\n  \"end_time\": \"string\",\n  \"guid\": \"string\",\n  \"hubble_args\": \"string\",\n  \"id\": 6118,\n  \"level\": \"string\",\n  \"luna_args\": \"string\",\n  \"management\": false,\n  \"max_size\": 6014.610386152158,\n  \"mem_traces\": true,\n  \"metrics\": true,\n  \"name\": \"string\",\n  \"obfuscated\": true,\n  \"on_nfs\": true,\n  \"performance\": false,\n  \"platform\": true,\n  \"position_in_queue\": 7,\n  \"prefix\": \"string\",\n  \"preset\": \"string\",\n  \"secret_key\": \"string\",\n  \"send_now\": true,\n  \"start_time\": \"string\",\n  \"state\": \"COMPLETING\",\n  \"text\": true,\n  \"traces\": false,\n  \"upload_via_vms\": false,\n  \"url\": \"string\",\n  \"volume_size\": 9488,\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a764910-11be-4417-a9ef-0ecf90e51c52",
+          "name": "Delete a Support Bundle",
+          "request": {
+            "name": "Delete a Support Bundle",
+            "description": {
+              "content": "This endpoint deletes a support bundle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supportbundles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Support Bundle ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d67dc07-eead-4803-b3b9-038712ec591b",
+              "name": "The support bundle was deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supportbundles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Support Bundle ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54ef13f4-d9f7-4b35-81e3-dfd348dd0009",
+          "name": "Return Details of a Support Bundle",
+          "request": {
+            "name": "Return Details of a Support Bundle",
+            "description": {
+              "content": "This endpoint returns information about a specific support bundle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supportbundles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "487e1d44-a166-4bfb-901c-294db09687e5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supportbundles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_key\": \"string\",\n  \"aggregated\": true,\n  \"astron_args\": \"string\",\n  \"bucket_name\": \"string\",\n  \"bucket_subdir\": \"string\",\n  \"bundle_file\": \"string\",\n  \"bundle_size\": 8744,\n  \"bundle_url\": \"string\",\n  \"callhome\": true,\n  \"cluster\": \"string\",\n  \"cluster_id\": 6980,\n  \"cnode_ids\": [\n    4798,\n    5480\n  ],\n  \"cnode_ids_array\": [\n    4049,\n    9514\n  ],\n  \"cnodes_only\": true,\n  \"core\": true,\n  \"create_datetime\": \"string\",\n  \"created\": \"1995-12-30T04:57:55.815Z\",\n  \"delete_after_send\": false,\n  \"dnode_ids\": [\n    2725,\n    446\n  ],\n  \"dnode_ids_array\": [\n    8452,\n    9593\n  ],\n  \"dnodes_only\": false,\n  \"end_time\": \"string\",\n  \"guid\": \"string\",\n  \"hubble_args\": \"string\",\n  \"id\": 6044,\n  \"level\": \"string\",\n  \"luna_args\": \"string\",\n  \"management\": true,\n  \"max_size\": 7426.511982488148,\n  \"mem_traces\": false,\n  \"metrics\": true,\n  \"name\": \"string\",\n  \"obfuscated\": true,\n  \"on_nfs\": false,\n  \"performance\": false,\n  \"platform\": false,\n  \"position_in_queue\": 9988,\n  \"prefix\": \"string\",\n  \"preset\": \"string\",\n  \"secret_key\": \"string\",\n  \"send_now\": true,\n  \"start_time\": \"string\",\n  \"state\": \"PARTIALLY_CREATED\",\n  \"text\": true,\n  \"traces\": false,\n  \"upload_via_vms\": false,\n  \"url\": \"string\",\n  \"volume_size\": 9876\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ce67882-f726-4b32-ae2c-c0515fe397f9",
+          "name": "Download a Support Bundle",
+          "request": {
+            "name": "Download a Support Bundle",
+            "description": {
+              "content": "This endpoint downloads a support bundle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supportbundles",
+                ":id",
+                "download",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "secret",
+                  "value": "<string>",
+                  "description": "(Required) Bundle secret key"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Support Bundle ID"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a6f1cb5-b595-41a4-9623-02b074235d84",
+              "name": "Returns a SupportBundle file for download",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supportbundles",
+                    ":id",
+                    "download",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "secret",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Support Bundle ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcff16b2-dbf1-4af3-9b5e-3489698d86e4",
+          "name": "Upload Support Bundle to AWS S3.",
+          "request": {
+            "name": "Upload Support Bundle to AWS S3.",
+            "description": {
+              "content": "This endpoint uploads a supportbundle to the AWS S3 Support bucket.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supportbundles",
+                ":id",
+                "upload",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Support Bundle ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_key\": \"<string>\",\n  \"bucket_name\": \"<string>\",\n  \"bucket_subdir\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"upload_via_vms\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20d14d55-1a24-4f77-b857-2dd61416c198",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supportbundles",
+                    ":id",
+                    "upload",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Support Bundle ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_key\": \"<string>\",\n  \"bucket_name\": \"<string>\",\n  \"bucket_subdir\": \"<string>\",\n  \"secret_key\": \"<string>\",\n  \"upload_via_vms\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "520c58e9-8b29-4c29-8c96-ce6ae959ed30",
+    "name": "VAST API Swagger Schema activedirectory supportbundles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

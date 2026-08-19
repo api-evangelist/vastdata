@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory projections API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "projections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Database Table Semi-Sorted Projections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projections/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by schema_name"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by table_name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by exact match"
+              },
+              {
+                "name": "name__startswith",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by prefix match"
+              },
+              {
+                "name": "count_only",
+                "value": "",
+                "type": "query",
+                "description": "Whether to only return count of objects"
+              }
+            ]
+          },
+          "docs": "This endpoint lists database table semi-sorted projections."
+        },
+        {
+          "info": {
+            "name": "Create a Database Table Semi-Sorted Projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/projections/"
+          },
+          "docs": "This endpoint creates a database table semi-sorted projection"
+        },
+        {
+          "info": {
+            "name": "Delete a Database Table Semi-Sorted Projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/projections/delete/"
+          },
+          "docs": "This endpoint deletes a database table semi-sorted projection."
+        },
+        {
+          "info": {
+            "name": "Rename a Database Table Semi-Sorted Projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/projections/rename/"
+          },
+          "docs": "This endpoint renames a database table semi-sorted projection."
+        },
+        {
+          "info": {
+            "name": "Return a Database Table Semi-Sorted Projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projections/show/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by schema_name"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by table_name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting object by exact match"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a database table semi-sorted projection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

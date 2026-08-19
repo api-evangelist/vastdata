@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory replicationtargets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "replicationtargets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List S3 Replication Peers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/replicationtargets/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by target bucket name"
+              },
+              {
+                "name": "http_protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter by protocol used to connect to the bucket (http or https)"
+              },
+              {
+                "name": "custom_bucket_url",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the URL of a custom target bucket"
+              }
+            ]
+          },
+          "docs": "This endpoint lists S3 replication peers."
+        },
+        {
+          "info": {
+            "name": "Create an S3 Replication Peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/replicationtargets/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an S3 replication peer."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Single S3 Replication Peer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/replicationtargets/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Replication Target ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified S3 replication peer."
+        },
+        {
+          "info": {
+            "name": "Modify an S3 Replication Peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/replicationtargets/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ReplicationTarget ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies an S3 replication peer."
+        },
+        {
+          "info": {
+            "name": "Delete an S3 Replication Peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/replicationtargets/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Replication Target ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an S3 replication peer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,464 @@
+{
+  "item": [
+    {
+      "id": "23a38474-f690-4dd4-836c-ff665914a1b5",
+      "name": "eventdefinitions",
+      "description": {
+        "content": "Event definitions define the conditions that trigger events, the raising of alarms, alarm severity, and which actions are triggered on events, such as email notifications, webhooks and sending to syslog.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d536d26-c090-433f-940a-483753053515",
+          "name": "List Event Definitions",
+          "request": {
+            "name": "List Event Definitions",
+            "description": {
+              "content": "This endpoint lists event definitions. The parameters filter the list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventdefinitions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "metadata__property",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a17ec08a-9434-4f01-a94d-6841ac068167",
+              "name": "Event Definition Information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventdefinitions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metadata__property",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"action_definitions\": \"string\",\n    \"alarm_definitions\": \"string\",\n    \"alarm_only\": true,\n    \"cooldown\": 7640,\n    \"disable_actions\": true,\n    \"email_recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"enabled\": true,\n    \"event_message\": \"string\",\n    \"event_type\": \"string\",\n    \"id\": 6249,\n    \"internal\": false,\n    \"metadata\": {},\n    \"name\": \"string\",\n    \"object_type\": \"string\",\n    \"property\": \"string\",\n    \"raise_at_count\": 8651,\n    \"severity\": \"string\",\n    \"trigger_off\": \"string\",\n    \"trigger_on\": \"string\",\n    \"user_modified\": true,\n    \"webhooks\": [\n      2895,\n      221\n    ]\n  },\n  {\n    \"action_definitions\": \"string\",\n    \"alarm_definitions\": \"string\",\n    \"alarm_only\": false,\n    \"cooldown\": 6067,\n    \"disable_actions\": false,\n    \"email_recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"enabled\": false,\n    \"event_message\": \"string\",\n    \"event_type\": \"string\",\n    \"id\": 8700,\n    \"internal\": true,\n    \"metadata\": {},\n    \"name\": \"string\",\n    \"object_type\": \"string\",\n    \"property\": \"string\",\n    \"raise_at_count\": 5591,\n    \"severity\": \"string\",\n    \"trigger_off\": \"string\",\n    \"trigger_on\": \"string\",\n    \"user_modified\": false,\n    \"webhooks\": [\n      7645,\n      3512\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1350738d-10fb-41ea-bbdf-ab1c22208c7f",
+          "name": "Return Details of an Event Definition",
+          "request": {
+            "name": "Return Details of an Event Definition",
+            "description": {
+              "content": "This endpoint returns details of a specified event definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventdefinitions",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Event Definition ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0041d29-c7d6-466a-b4b4-d65719b070af",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventdefinitions",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Event Definition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action_definitions\": \"string\",\n  \"alarm_definitions\": \"string\",\n  \"alarm_only\": false,\n  \"cooldown\": 7900,\n  \"disable_actions\": false,\n  \"email_recipients\": [\n    \"string\",\n    \"string\"\n  ],\n  \"enabled\": true,\n  \"event_message\": \"string\",\n  \"event_type\": \"string\",\n  \"id\": 9757,\n  \"internal\": false,\n  \"metadata\": {},\n  \"name\": \"string\",\n  \"object_type\": \"string\",\n  \"property\": \"string\",\n  \"raise_at_count\": 6768,\n  \"severity\": \"string\",\n  \"trigger_off\": \"string\",\n  \"trigger_on\": \"string\",\n  \"user_modified\": false,\n  \"webhooks\": [\n    163,\n    7606\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1527448-8519-4fb2-9940-b19dfc8dddf0",
+          "name": "Modify Event Definition",
+          "request": {
+            "name": "Modify Event Definition",
+            "description": {
+              "content": "This endpoint modifies an event definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventdefinitions",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Event Definition ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alarm_only\": \"<boolean>\",\n  \"cooldown\": \"<integer>\",\n  \"disable_actions\": \"<boolean>\",\n  \"email_recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"internal\": \"<boolean>\",\n  \"raise_at_count\": \"<integer>\",\n  \"severity\": \"<string>\",\n  \"time_frame\": \"<string>\",\n  \"trigger_off\": \"<string>\",\n  \"trigger_on\": \"<string>\",\n  \"webhooks\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee4522ac-3f04-49b2-bb98-3fab307f064a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventdefinitions",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Event Definition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alarm_only\": \"<boolean>\",\n  \"cooldown\": \"<integer>\",\n  \"disable_actions\": \"<boolean>\",\n  \"email_recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"internal\": \"<boolean>\",\n  \"raise_at_count\": \"<integer>\",\n  \"severity\": \"<string>\",\n  \"time_frame\": \"<string>\",\n  \"trigger_off\": \"<string>\",\n  \"trigger_on\": \"<string>\",\n  \"webhooks\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "383acedc-02de-45eb-8371-c6c432fde6f4",
+          "name": "Test Event Definition",
+          "request": {
+            "name": "Test Event Definition",
+            "description": {
+              "content": "This endpoint tests an event definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventdefinitions",
+                ":id",
+                "test",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Event Definition ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bc9249b-33eb-434f-9077-96e334f3f531",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventdefinitions",
+                    ":id",
+                    "test",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Event Definition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b89b24d4-cea4-4700-a2bc-1fff25eba6ba",
+    "name": "VAST API Swagger Schema activedirectory eventdefinitions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "item": [
+    {
+      "id": "db54432c-ea67-44cf-974f-526f2bb68d9f",
+      "name": "objectpermissions",
+      "description": {
+        "content": "Object permissions reflect the access types, permission realms and managers associated with each object type. They can be listed but not modified.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9ef9677-1bb6-485c-8eb1-49f970f0b0fb",
+          "name": "List Object Permissions",
+          "request": {
+            "name": "List Object Permissions",
+            "description": {
+              "content": "This endpoint lists object permissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permissions",
+                "objects",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "realm",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "permissions",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "manager_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "749d10e1-247a-4c42-a473-d13dedc762d6",
+              "name": "Permission information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions",
+                    "objects",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permissions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "manager_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "role_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"manager_id\": 5774,\n    \"object_id\": 833,\n    \"object_type\": \"string\",\n    \"permissions\": \"string\",\n    \"realm\": \"string\",\n    \"role_id\": 5116,\n    \"role_name\": \"string\",\n    \"username\": \"string\"\n  },\n  {\n    \"manager_id\": 724,\n    \"object_id\": 2782,\n    \"object_type\": \"string\",\n    \"permissions\": \"string\",\n    \"realm\": \"string\",\n    \"role_id\": 9736,\n    \"role_name\": \"string\",\n    \"username\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "37644d1e-3b27-4e30-85dc-e31d37379e10",
+    "name": "VAST API Swagger Schema activedirectory objectpermissions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

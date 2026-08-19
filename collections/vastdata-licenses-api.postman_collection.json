@@ -1,0 +1,415 @@
+{
+  "item": [
+    {
+      "id": "890bf1fb-6ac1-4685-b343-db2c83bbad58",
+      "name": "licenses",
+      "description": {
+        "content": "A license entitles the VAST Cluster operator to an amount of storage capacity for a given period from a given start time. Licenses can be aggregated to increase the licensed capacity. Operating a VAST Cluster requires an installed license. An active valid license entitles the owner to new software releases, service packs and support.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "228fd0fc-5ad7-4a4d-bd6f-37dc0f30597f",
+          "name": "List Licenses",
+          "request": {
+            "name": "List Licenses",
+            "description": {
+              "content": "This endpoint lists licenses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d92abdf-79f9-4aea-85f2-94541ca55699",
+              "name": "License information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accelerated_cpu_cores\": \"string\",\n    \"capacity\": \"string\",\n    \"cpu_cores\": \"string\",\n    \"expiration_date\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9249,\n    \"license_key\": \"string\",\n    \"name\": \"string\",\n    \"period\": \"string\",\n    \"start_date\": \"string\",\n    \"state\": \"UNKNOWN\"\n  },\n  {\n    \"accelerated_cpu_cores\": \"string\",\n    \"capacity\": \"string\",\n    \"cpu_cores\": \"string\",\n    \"expiration_date\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8384,\n    \"license_key\": \"string\",\n    \"name\": \"string\",\n    \"period\": \"string\",\n    \"start_date\": \"string\",\n    \"state\": \"ACTIVE\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "967f7200-a2da-459c-ab92-0ba3e28fe5bb",
+          "name": "Add a license key",
+          "request": {
+            "name": "Add a license key",
+            "description": {
+              "content": "<p>This endpoint installs a VMS license.</p> <p>A license can be installed before, on or after its start date. The license key is decrypted and then validated. Initially, the license state is set to pending. If the expiration date has passed, the state changes to expired. If the expiration date is in the future and the start date has passed, the license is activated and it's state changes to active. If the start date is in the future, the license state remains pending until the start date and is then activated on the start date.</p>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"license_key\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "dae99777-52d5-4f71-8fda-239fb7541693",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"license_key\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accelerated_cpu_cores\": \"string\",\n  \"capacity\": \"string\",\n  \"cpu_cores\": \"string\",\n  \"expiration_date\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 6655,\n  \"license_key\": \"string\",\n  \"name\": \"string\",\n  \"period\": \"string\",\n  \"start_date\": \"string\",\n  \"state\": \"EXPIRED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0748b077-c03f-4ea0-98f8-c6b309ee3245",
+          "name": "Remove a License",
+          "request": {
+            "name": "Remove a License",
+            "description": {
+              "content": "This endpoint removes a license.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) License ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83101bf2-f947-47a4-831e-c00fd8bc74ae",
+              "name": "The license was removed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) License ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9752bf6c-0754-4ad8-83ca-7796b29dd635",
+          "name": "Return Details of a License",
+          "request": {
+            "name": "Return Details of a License",
+            "description": {
+              "content": "This endpoint returns details of a specific license.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) License ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "080190ac-8910-450c-acdf-58f7277ea8db",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) License ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accelerated_cpu_cores\": \"string\",\n  \"capacity\": \"string\",\n  \"cpu_cores\": \"string\",\n  \"expiration_date\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 6655,\n  \"license_key\": \"string\",\n  \"name\": \"string\",\n  \"period\": \"string\",\n  \"start_date\": \"string\",\n  \"state\": \"EXPIRED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "223f50d4-2f5e-44b1-98fa-06e5da84c753",
+    "name": "VAST API Swagger Schema activedirectory licenses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

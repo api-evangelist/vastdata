@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory nics API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "nics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List NICs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nics/",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state"
+              }
+            ]
+          },
+          "docs": "This endpoint lists NICs."
+        },
+        {
+          "info": {
+            "name": "Return Details of One NIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nics/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified NIC."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

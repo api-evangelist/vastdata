@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory quotaentityinfos API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "quotaentityinfos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List User and Group Information Associated with User and Group Quotas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/quotaentityinfos/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identifier_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter list by user or group name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter list by user or group name"
+              },
+              {
+                "name": "vast_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter list by user/group's vast ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns user/group names, emails and VAST ids for user/group quotas."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

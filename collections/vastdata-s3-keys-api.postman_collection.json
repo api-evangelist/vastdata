@@ -1,0 +1,295 @@
+{
+  "item": [
+    {
+      "id": "c5b28a9e-4b1f-4141-9722-017aa2a1a063",
+      "name": "S3 Keys",
+      "description": {
+        "content": "The s3keys endpoint enables users to manage their own S3 access key pairs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c69ae3b-5a7f-4640-8181-1787587ec3ce",
+          "name": "Return S3 Access Key",
+          "request": {
+            "name": "Return S3 Access Key",
+            "description": {
+              "content": "This operation returns the access key of an S3 access key pair created by and for the requesting user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3keys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3a98b25-e953-4363-9843-424f6ef8cb23",
+              "name": "Access key with enabled/disabled status and user identifier type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3keys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ef626ea-363d-4b1c-a27b-742f67b8b874",
+          "name": "Create S3 Access Key Pair",
+          "request": {
+            "name": "Create S3 Access Key Pair",
+            "description": {
+              "content": "This operation creates an S3 access key pair for the requesting user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3keys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95254d35-fa3a-4052-aeb5-7409e4c092ed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3keys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_key\": \"string\",\n  \"secret_key\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bc8f8b5-bf60-4169-a93b-735271689cc7",
+          "name": "Delete User's S3 Access Key Pair",
+          "request": {
+            "name": "Delete User's S3 Access Key Pair",
+            "description": {
+              "content": "This operation deletes an S3 access key pair belonging to the requesting user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3keys",
+                ":access_key",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "access_key",
+                  "description": "(Required) The access key of the access key pair to be deleted"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccf1897d-48a4-4afb-ab97-fe56d001148c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3keys",
+                    ":access_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "access_key",
+                      "description": "(Required) The access key of the access key pair to be deleted"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "71e4497c-990b-421b-976a-0346d0749f4e",
+    "name": "VAST API Swagger Schema activedirectory S3 Keys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

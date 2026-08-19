@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory issues API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/issues/",
+            "params": [
+              {
+                "name": "issue_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the issue"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of a task"
+              },
+              {
+                "name": "stage",
+                "value": "",
+                "type": "query",
+                "description": "Issue stage"
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "query",
+                "description": "Issue location"
+              }
+            ]
+          },
+          "docs": "This endpoint lists created issues for vtasks."
+        },
+        {
+          "info": {
+            "name": "List pre install validations issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/issues/pre_install_validations/"
+          },
+          "docs": "This endpoint lists created issues for pre install validations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

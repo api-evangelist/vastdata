@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory ldaps API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ldaps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List LDAP Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ldaps/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists LDAP configurations."
+        },
+        {
+          "info": {
+            "name": "Create LDAP Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ldaps/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an LDAP configuration."
+        },
+        {
+          "info": {
+            "name": "Return Details of an LDAP configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ldaps/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "LDAP ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of an LDAP configuration."
+        },
+        {
+          "info": {
+            "name": "Modify LDAP configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ldaps/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "LDAP ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies an LDAP configuration."
+        },
+        {
+          "info": {
+            "name": "Delete LDAP Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ldaps/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "LDAP ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an LDAP configuration."
+        },
+        {
+          "info": {
+            "name": "Set LDAP as POSIX Primary Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ldaps/:id/set_posix_primary/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "LDAP ID"
+              }
+            ]
+          },
+          "docs": "This endpoint sets the LDAP server as the primary POSIX provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

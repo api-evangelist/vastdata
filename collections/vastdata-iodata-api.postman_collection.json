@@ -1,0 +1,189 @@
+{
+  "item": [
+    {
+      "id": "0a530a95-a1ea-4b57-8f74-d6a629956699",
+      "name": "iodata",
+      "description": {
+        "content": "The iodata path provides data flow analytics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38d77177-6491-4f02-ba52-4d368897fc9c",
+          "name": "List Data Flow Analytics",
+          "request": {
+            "name": "List Data Flow Analytics",
+            "description": {
+              "content": "This endpoint returns data flow analytics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "iodata",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "graph",
+                  "value": "<boolean>",
+                  "description": "True returns data for graphical representation. False returns data as a time series."
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol_filter",
+                  "value": "<string>",
+                  "description": "Queries analytics only for a specified protocol."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_frame",
+                  "value": "<string>",
+                  "description": "Time frame over which to query. Specify as a whole integer followed by a unit: 's' or 'S' denotes seconds. 'm' = minutes, 'h' or 'H' = hours, 'd' or 'D' = days, 'w' or 'W' = weeks, 'M' = months, 'y' or 'Y' = years. Examples: for ten minutes, specify '10m'. For three months, specify '3M'."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<string>",
+                  "description": "Start of time frame to query, in the format 2025-02-16T10:00:00.000Z."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<string>",
+                  "description": "End of time frame to query, in the format 2025-02-16T10:00:00.000Z."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cecbc4c1-caaf-4a3f-ae65-742990bcb50c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "iodata",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "graph",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "protocol_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_frame",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f78087dc-f632-4397-ad84-6a10b2f29c5a",
+    "name": "VAST API Swagger Schema activedirectory iodata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

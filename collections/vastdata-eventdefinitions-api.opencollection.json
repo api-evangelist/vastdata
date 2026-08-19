@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory eventdefinitions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "eventdefinitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Event Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eventdefinitions/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata__property",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists event definitions. The parameters filter the list."
+        },
+        {
+          "info": {
+            "name": "Return Details of an Event Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eventdefinitions/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Definition ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified event definition."
+        },
+        {
+          "info": {
+            "name": "Modify Event Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/eventdefinitions/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Definition ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies an event definition."
+        },
+        {
+          "info": {
+            "name": "Test Event Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/eventdefinitions/:id/test/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Definition ID"
+              }
+            ]
+          },
+          "docs": "This endpoint tests an event definition."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

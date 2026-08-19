@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory oidcs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "oidcs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List OIDC Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/oidcs/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists OIDC Providers"
+        },
+        {
+          "info": {
+            "name": "Create OIDC Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/oidcs/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an OIDC Provider."
+        },
+        {
+          "info": {
+            "name": "Return Details of a OIDC Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/oidcs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "OIDC ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified OIDC Provider."
+        },
+        {
+          "info": {
+            "name": "Modify OIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/oidcs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "OIDC ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a specified OIDC."
+        },
+        {
+          "info": {
+            "name": "Delete OIDC Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/oidcs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "OIDC Provider ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a specified OIDC Provider."
+        },
+        {
+          "info": {
+            "name": "Refresh the keys from OIDC provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/oidcs/:id/refresh_keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "OIDC ID"
+              }
+            ]
+          },
+          "docs": "This endpoint refreshes the keys from OIDC provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

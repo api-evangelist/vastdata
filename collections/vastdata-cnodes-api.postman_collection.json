@@ -1,0 +1,1349 @@
+{
+  "item": [
+    {
+      "id": "7fa3fe9d-a1ac-402f-afcb-86e6ddd8a51b",
+      "name": "Cnodes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f283e4a-a958-4290-aa74-c3b710721cbb",
+          "name": "Configure BGP on CNode",
+          "request": {
+            "name": "Configure BGP on CNode",
+            "description": {
+              "content": "This endpoint configures BGP on the CNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ":id",
+                "bgpconfig"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"port1_peer_address\": \"<string>\",\n  \"port1_self_address\": \"<string>\",\n  \"port2_peer_address\": \"<string>\",\n  \"port2_self_address\": \"<string>\",\n  \"self_asn\": \"<string>\",\n  \"subnet_bits\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "156e5944-b907-42eb-aee5-4ef9a19ee173",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ":id",
+                    "bgpconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"port1_peer_address\": \"<string>\",\n  \"port1_self_address\": \"<string>\",\n  \"port2_peer_address\": \"<string>\",\n  \"port2_self_address\": \"<string>\",\n  \"self_asn\": \"<string>\",\n  \"subnet_bits\": \"<integer>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51344ed8-4432-43ea-8b36-c05bea7233f8",
+          "name": "Get BGP Configuration",
+          "request": {
+            "name": "Get BGP Configuration",
+            "description": {
+              "content": "This endpoint returns the BGP configuration of the CNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ":id",
+                "bgpconfig"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "376eeea4-6131-4aee-bcda-e2a7d4853974",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ":id",
+                    "bgpconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": \"<boolean>\",\n  \"port1_peer_address\": \"<string>\",\n  \"port1_self_address\": \"<string>\",\n  \"port2_peer_address\": \"<string>\",\n  \"port2_self_address\": \"<string>\",\n  \"self_asn\": \"<string>\",\n  \"subnet_bits\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbe20efb-8601-4660-a75c-f73183f59f2a",
+          "name": "List Cnodes",
+          "request": {
+            "name": "List Cnodes",
+            "description": {
+              "content": "Get the list of cnodes already assigned to cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>",
+                  "description": "Filter by CNode IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by state"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by CNode name"
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<boolean>",
+                  "description": "Return only enabled CNodes"
+                },
+                {
+                  "disabled": false,
+                  "key": "vippool_id",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ebf4ce3-9187-4f75-ba50-ffc3aaa04c80",
+              "name": "CNode information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "vippool_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"bios_version\": \"string\",\n    \"bmc_fw_version\": \"string\",\n    \"bmc_state\": \"string\",\n    \"bmc_state_reason\": \"string\",\n    \"box_vendor\": \"string\",\n    \"build\": \"string\",\n    \"cbox\": \"string\",\n    \"cbox_id\": 5642,\n    \"cluster\": \"string\",\n    \"cluster_id\": 5463,\n    \"cores\": 4431,\n    \"cpld\": \"string\",\n    \"data_rdma_port\": 6189,\n    \"data_tcp_port\": 6365,\n    \"display_name\": \"string\",\n    \"display_state\": \"string\",\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"host_label\": \"string\",\n    \"host_opensm_master\": \"string\",\n    \"hostname\": \"string\",\n    \"id\": 1592,\n    \"ip\": \"string\",\n    \"ip1\": \"string\",\n    \"ip2\": \"string\",\n    \"ipmi_ip\": \"string\",\n    \"ipv6\": \"string\",\n    \"is_mgmt\": true,\n    \"led_status\": \"string\",\n    \"mgmt_ip\": \"string\",\n    \"new_name\": \"string\",\n    \"opensm_state\": true,\n    \"os_version\": \"string\",\n    \"platform_rdma_port\": 528,\n    \"platform_tcp_port\": 3600,\n    \"position\": \"string\",\n    \"rpm\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"string\",\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"tpm_boot_dev_encryption_status\": \"string\",\n    \"turbo_boost\": true,\n    \"url\": \"string\",\n    \"vlan\": \"string\",\n    \"vms_preferred\": true\n  },\n  {\n    \"name\": \"string\",\n    \"bios_version\": \"string\",\n    \"bmc_fw_version\": \"string\",\n    \"bmc_state\": \"string\",\n    \"bmc_state_reason\": \"string\",\n    \"box_vendor\": \"string\",\n    \"build\": \"string\",\n    \"cbox\": \"string\",\n    \"cbox_id\": 8840,\n    \"cluster\": \"string\",\n    \"cluster_id\": 7621,\n    \"cores\": 693,\n    \"cpld\": \"string\",\n    \"data_rdma_port\": 6074,\n    \"data_tcp_port\": 1979,\n    \"display_name\": \"string\",\n    \"display_state\": \"string\",\n    \"enabled\": false,\n    \"guid\": \"string\",\n    \"host_label\": \"string\",\n    \"host_opensm_master\": \"string\",\n    \"hostname\": \"string\",\n    \"id\": 7313,\n    \"ip\": \"string\",\n    \"ip1\": \"string\",\n    \"ip2\": \"string\",\n    \"ipmi_ip\": \"string\",\n    \"ipv6\": \"string\",\n    \"is_mgmt\": true,\n    \"led_status\": \"string\",\n    \"mgmt_ip\": \"string\",\n    \"new_name\": \"string\",\n    \"opensm_state\": false,\n    \"os_version\": \"string\",\n    \"platform_rdma_port\": 417,\n    \"platform_tcp_port\": 5096,\n    \"position\": \"string\",\n    \"rpm\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"string\",\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"tpm_boot_dev_encryption_status\": \"string\",\n    \"turbo_boost\": false,\n    \"url\": \"string\",\n    \"vlan\": \"string\",\n    \"vms_preferred\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c2f3c2d-80f7-4157-8c1d-74e7006189ee",
+          "name": "Add CNode",
+          "request": {
+            "name": "Add CNode",
+            "description": {
+              "content": "This endpoint adds a CNode to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ip\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"cores\": \"<integer>\",\n  \"dpu_ips\": \"<string>\",\n  \"force\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b6073f8f-be5f-421d-80bb-15243888b6cd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ip\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"cores\": \"<integer>\",\n  \"dpu_ips\": \"<string>\",\n  \"force\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"bios_version\": \"string\",\n  \"bmc_fw_version\": \"string\",\n  \"bmc_state\": \"string\",\n  \"bmc_state_reason\": \"string\",\n  \"box_vendor\": \"string\",\n  \"build\": \"string\",\n  \"cbox\": \"string\",\n  \"cbox_id\": 2696,\n  \"cluster\": \"string\",\n  \"cluster_id\": 2852,\n  \"cores\": 4774,\n  \"cpld\": \"string\",\n  \"data_rdma_port\": 206,\n  \"data_tcp_port\": 4437,\n  \"display_name\": \"string\",\n  \"display_state\": \"string\",\n  \"enabled\": false,\n  \"guid\": \"string\",\n  \"host_label\": \"string\",\n  \"host_opensm_master\": \"string\",\n  \"hostname\": \"string\",\n  \"id\": 4737,\n  \"ip\": \"string\",\n  \"ip1\": \"string\",\n  \"ip2\": \"string\",\n  \"ipmi_ip\": \"string\",\n  \"ipv6\": \"string\",\n  \"is_mgmt\": false,\n  \"led_status\": \"string\",\n  \"mgmt_ip\": \"string\",\n  \"new_name\": \"string\",\n  \"opensm_state\": false,\n  \"os_version\": \"string\",\n  \"platform_rdma_port\": 3725,\n  \"platform_tcp_port\": 8857,\n  \"position\": \"string\",\n  \"rpm\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"string\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"title\": \"string\",\n  \"tpm_boot_dev_encryption_status\": \"string\",\n  \"turbo_boost\": false,\n  \"url\": \"string\",\n  \"vlan\": \"string\",\n  \"vms_preferred\": true,\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fce9f684-0ff4-41bd-8d14-557a60bd98d1",
+          "name": "Add multiple CNodes to the cluster",
+          "request": {
+            "name": "Add multiple CNodes to the cluster",
+            "description": {
+              "content": "This endpoint adds multiple CNodes to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                "add_cnodes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dpu_ips\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"cores\": \"<integer>\",\n  \"force\": \"<boolean>\",\n  \"ips\": \"<string>\",\n  \"num_of_virtual_dpus\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63f0b713-fae5-416d-808d-e4dae10b5006",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    "add_cnodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dpu_ips\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"cores\": \"<integer>\",\n  \"force\": \"<boolean>\",\n  \"ips\": \"<string>\",\n  \"num_of_virtual_dpus\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "882f587e-ae73-49eb-85a0-7123339641e0",
+          "name": "Attach tenants to a CNode",
+          "request": {
+            "name": "Attach tenants to a CNode",
+            "description": {
+              "content": "This endpoint attaches tenants to a CNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                "set_tenants",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"tenant_ids\": \"<string>\",\n  \"mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac1eb9c7-16f5-4ef2-9540-f369f15843e0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    "set_tenants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"tenant_ids\": \"<string>\",\n  \"mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c118513-293e-4598-80ff-46e557eab3b5",
+          "name": "Remove CNode",
+          "request": {
+            "name": "Remove CNode",
+            "description": {
+              "content": "This endpoint removes a CNode from the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "false",
+                  "description": "Force CNode removal"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "edb26b7d-3711-47d1-8d6d-a3e6a4f585e0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5adc99c-4cf9-4246-b516-ab5cb80accec",
+          "name": "Return Details of a CNode",
+          "request": {
+            "name": "Return Details of a CNode",
+            "description": {
+              "content": "This endpoint returns details of a CNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a532fcde-0bb1-489c-99ef-6a3aa0a67eda",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"bios_version\": \"string\",\n  \"bmc_fw_version\": \"string\",\n  \"bmc_state\": \"string\",\n  \"bmc_state_reason\": \"string\",\n  \"box_vendor\": \"string\",\n  \"build\": \"string\",\n  \"cbox\": \"string\",\n  \"cbox_id\": 4021,\n  \"cluster\": \"string\",\n  \"cluster_id\": 4358,\n  \"cores\": 8824,\n  \"cpld\": \"string\",\n  \"data_rdma_port\": 196,\n  \"data_tcp_port\": 6537,\n  \"display_name\": \"string\",\n  \"display_state\": \"string\",\n  \"enabled\": false,\n  \"guid\": \"string\",\n  \"host_label\": \"string\",\n  \"host_opensm_master\": \"string\",\n  \"hostname\": \"string\",\n  \"id\": 7088,\n  \"ip\": \"string\",\n  \"ip1\": \"string\",\n  \"ip2\": \"string\",\n  \"ipmi_ip\": \"string\",\n  \"ipv6\": \"string\",\n  \"is_mgmt\": true,\n  \"led_status\": \"string\",\n  \"mgmt_ip\": \"string\",\n  \"new_name\": \"string\",\n  \"opensm_state\": false,\n  \"os_version\": \"string\",\n  \"platform_rdma_port\": 4339,\n  \"platform_tcp_port\": 5994,\n  \"position\": \"string\",\n  \"rpm\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"string\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"title\": \"string\",\n  \"tpm_boot_dev_encryption_status\": \"string\",\n  \"turbo_boost\": true,\n  \"url\": \"string\",\n  \"vlan\": \"string\",\n  \"vms_preferred\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d266bc7-4541-4192-8072-91b2dd082203",
+          "name": "Activate/Deactivate/Replace/Power On/Off CNode",
+          "request": {
+            "name": "Activate/Deactivate/Replace/Power On/Off CNode",
+            "description": {
+              "content": "This endpoint activates, deactivates, replaces, powers off and powers on a CNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"power_cycle\": \"<boolean>\",\n  \"power_off\": \"<boolean>\",\n  \"power_on\": \"<boolean>\",\n  \"replace\": \"<boolean>\",\n  \"skip_network_validation\": \"<boolean>\",\n  \"skip_position\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4b139b2-d7ce-4d38-bcd8-c3185f6f2f81",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"power_cycle\": \"<boolean>\",\n  \"power_off\": \"<boolean>\",\n  \"power_on\": \"<boolean>\",\n  \"replace\": \"<boolean>\",\n  \"skip_network_validation\": \"<boolean>\",\n  \"skip_position\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fbf9a04-8272-494d-9590-0babd329a025",
+          "name": "Control CNode LED",
+          "request": {
+            "name": "Control CNode LED",
+            "description": {
+              "content": "This endpoint controls the CNode LED",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca9f322a-7f0a-44bd-bde4-956d50004057",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8184d5ef-4703-4b19-97a5-1480dbc218d3",
+          "name": "HighLight CNode",
+          "request": {
+            "name": "HighLight CNode",
+            "description": {
+              "content": "This endpoint highlights a CNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ":id",
+                "highlight",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e097e6fc-7f36-4908-b909-ee38bfb12928",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ":id",
+                    "highlight",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d43a7ef-4267-4c3a-a6d0-96a17adede23",
+          "name": "Rename CNode",
+          "request": {
+            "name": "Rename CNode",
+            "description": {
+              "content": "This endpoint renames a CNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodes",
+                ":id",
+                "rename",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e14d2738-d2af-4cd6-aafb-e2c85c810ecf",
+              "name": "The CNode was renamed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodes",
+                    ":id",
+                    "rename",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "520e73f9-84ca-4230-bf87-0e676b189c3b",
+    "name": "VAST API Swagger Schema activedirectory Cnodes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

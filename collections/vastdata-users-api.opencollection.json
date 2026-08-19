@@ -1,0 +1,418 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory users API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists users on the cluster's local provider."
+        },
+        {
+          "info": {
+            "name": "Add User to a Local Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds a user to a local provider."
+        },
+        {
+          "info": {
+            "name": "Copy Users with S3 Keys from one Local Provider to Another",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/copy/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint copies users with S3 access key pairs from one local provider to another."
+        },
+        {
+          "info": {
+            "name": "Find User by prefix and domain details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/names/",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "Prefix to find the user"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Domain details to find the user (ALL by default). Format: BASE_DN|FQDN|SID"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              }
+            ]
+          },
+          "docs": "This endpoint queries a user by prefix and domain from ActiveDirectory domains"
+        },
+        {
+          "info": {
+            "name": "Generate S3 Access Key Pair (Non-Local User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/non_local_keys/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint generates an S3 access key pair for a non local user"
+        },
+        {
+          "info": {
+            "name": "Enable or Disable S3 Access Key Pair (Non-Local User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/users/non_local_keys/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint enables or disables an S3 access key pair for a non local user whose attributes were already retrieved from an external provider."
+        },
+        {
+          "info": {
+            "name": "Remove S3 Access Key Pair (Non-Local User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/users/non_local_keys/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint removes an S3 access key pair for a non local user whose attributes were already retrieved from an external provider. Specify the user by either NFS UID or SMB user SID."
+        },
+        {
+          "info": {
+            "name": "Query User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/query/",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "query",
+                "description": "NFS UID"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "User legal name"
+              },
+              {
+                "name": "sid",
+                "value": "",
+                "type": "query",
+                "description": "User SID"
+              },
+              {
+                "name": "vid",
+                "value": "",
+                "type": "query",
+                "description": "Vast user ID"
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Specify the context for the user query. 'local' restricts the search to the local provider. 'udb' searches the cluster's user database for the user. The output in this case includes the VID (VAST ID) for the user, which can be used when specifying a grantee in S3 ACLs. 'aggregated' (default) searches all providers and returns a merged user entry. In case of conflicts between providers, attributes are resolved according to the following rules:\n  * In case of conflict between local and non local providers, the local provider's attributes override those of the other providers.\n  * In case of conflicting POSIX attributes on external providers, the POSIX primary provider overrules the other external provider.\n  * Users are merged if their match user attributes match. The match user attribute is configurable in that you can set which attribute on the POSIX primary provider is used to match the users.\n  * All groups found for the user on all providers with distinct group names are treated as distinct groups to which the user belongs. Groups are merged if they match according to a non-configurable group name attribute.\n'ad', 'nis' or 'ldap' searches the specific provider only. Each of these options appears only if a provider of that type is connected to the cluster.\n"
+              },
+              {
+                "name": "login_name",
+                "value": "",
+                "type": "query",
+                "description": "User login name"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              }
+            ]
+          },
+          "docs": "This endpoint queries a user by an identifier. By default the query is aggregated across all contexts. Optionally, the query can be against any connected provider, against the local provider, or against the user database."
+        },
+        {
+          "info": {
+            "name": "Modify non-Local User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/users/query/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a non-local user's S3 permissions. Specify the user by either NFS UID or SMB user SID."
+        },
+        {
+          "info": {
+            "name": "Refresh User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/users/refresh/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint triggers a fresh query of the user from external providers."
+        },
+        {
+          "info": {
+            "name": "Return Local User Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "user ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified user on the local provider."
+        },
+        {
+          "info": {
+            "name": "Modify Local User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/users/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a user on a local provider."
+        },
+        {
+          "info": {
+            "name": "Delete Local User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/users/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a specified user from the local provider."
+        },
+        {
+          "info": {
+            "name": "Generate S3 Access Key Pair (Local User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/:id/access_keys/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "user ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint generates an S3 access key pair for a user on a local provider."
+        },
+        {
+          "info": {
+            "name": "Enable/Disable S3 Access Key Pair (Local User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/users/:id/access_keys/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "user ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint enables/disables a specified S3 access key pair for a user on the local provider."
+        },
+        {
+          "info": {
+            "name": "Remove S3 Access Key Pair (Local User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/users/:id/access_keys/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint removes a specified S3 access key pair from a user on the local provider."
+        },
+        {
+          "info": {
+            "name": "Get tenant data for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:id/tenant_data/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "user ID"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              }
+            ]
+          },
+          "docs": "This endpoint returns tenant data for a User."
+        },
+        {
+          "info": {
+            "name": "Update Tenant Data for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/users/:id/tenant_data/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "user ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates tenant data for a User."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,376 @@
+{
+  "item": [
+    {
+      "id": "2ef25f41-82c1-46ad-84ce-c7e25f1d9f91",
+      "name": "blockmappings",
+      "description": {
+        "content": "Block Mappings are mappings of Blockhosts to Volumes. They make block storage volumes available to block storage hosts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13f514f4-757e-478b-8716-c5bc973332b7",
+          "name": "Return Mappings of Block Hosts to Volumes",
+          "request": {
+            "name": "Return Mappings of Block Hosts to Volumes",
+            "description": {
+              "content": "This endpoint lists mappings of block storage hosts to volumes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockmappings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_id",
+                  "value": "<integer>",
+                  "description": "Mapped volume id to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "block_host_id",
+                  "value": "<integer>",
+                  "description": "Mapped block host id to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1f1854c-c489-4bc7-a04c-a001e8cfa90e",
+              "name": "block mapping information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockmappings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "volume_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "block_host_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8792,\n    \"volume\": {\n      \"id\": 5488,\n      \"name\": \"string\"\n    },\n    \"block_host\": {\n      \"id\": 4844,\n      \"name\": \"string\"\n    },\n    \"snapshot_data\": {\n      \"created\": \"1953-06-08T11:43:46.322Z\",\n      \"id\": 9487,\n      \"name\": \"string\"\n    }\n  },\n  {\n    \"id\": 265,\n    \"volume\": {\n      \"id\": 4038,\n      \"name\": \"string\"\n    },\n    \"block_host\": {\n      \"id\": 6515,\n      \"name\": \"string\"\n    },\n    \"snapshot_data\": {\n      \"created\": \"1978-02-09T09:44:40.446Z\",\n      \"id\": 1997,\n      \"name\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee3b6b48-a18e-43d5-b46d-2d7675fe9dd1",
+          "name": "Map Block Hosts to Volumes",
+          "request": {
+            "name": "Map Block Hosts to Volumes",
+            "description": {},
+            "url": {
+              "path": [
+                "blockmappings",
+                "bulk",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pairs_to_add\": [\n    {\n      \"volume_id\": \"<integer>\",\n      \"host_id\": \"<integer>\"\n    },\n    {\n      \"volume_id\": \"<integer>\",\n      \"host_id\": \"<integer>\"\n    }\n  ],\n  \"pairs_to_add_by_path\": [\n    {\n      \"volume_full_path\": \"<string>\",\n      \"host_id\": \"<integer>\"\n    },\n    {\n      \"volume_full_path\": \"<string>\",\n      \"host_id\": \"<integer>\"\n    }\n  ],\n  \"pairs_to_remove\": [\n    {\n      \"volume_id\": \"<integer>\",\n      \"host_id\": \"<integer>\"\n    },\n    {\n      \"volume_id\": \"<integer>\",\n      \"host_id\": \"<integer>\"\n    }\n  ],\n  \"pairs_to_remove_by_path\": [\n    {\n      \"volume_full_path\": \"<string>\",\n      \"host_id\": \"<integer>\"\n    },\n    {\n      \"volume_full_path\": \"<string>\",\n      \"host_id\": \"<integer>\"\n    }\n  ],\n  \"snapshot_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e02779a1-1a16-4394-a5af-4909debf5914",
+              "name": "This endpoint maps (update) a single blockhost into multiple volumes (either their current version or a snapshot).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockmappings",
+                    "bulk",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pairs_to_add\": [\n    {\n      \"volume_id\": \"<integer>\",\n      \"host_id\": \"<integer>\"\n    },\n    {\n      \"volume_id\": \"<integer>\",\n      \"host_id\": \"<integer>\"\n    }\n  ],\n  \"pairs_to_add_by_path\": [\n    {\n      \"volume_full_path\": \"<string>\",\n      \"host_id\": \"<integer>\"\n    },\n    {\n      \"volume_full_path\": \"<string>\",\n      \"host_id\": \"<integer>\"\n    }\n  ],\n  \"pairs_to_remove\": [\n    {\n      \"volume_id\": \"<integer>\",\n      \"host_id\": \"<integer>\"\n    },\n    {\n      \"volume_id\": \"<integer>\",\n      \"host_id\": \"<integer>\"\n    }\n  ],\n  \"pairs_to_remove_by_path\": [\n    {\n      \"volume_full_path\": \"<string>\",\n      \"host_id\": \"<integer>\"\n    },\n    {\n      \"volume_full_path\": \"<string>\",\n      \"host_id\": \"<integer>\"\n    }\n  ],\n  \"snapshot_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "110e6e1a-eb0e-4c82-95a0-7adc9101fd39",
+          "name": "Return Details of a block hosts-volume mappings.",
+          "request": {
+            "name": "Return Details of a block hosts-volume mappings.",
+            "description": {
+              "content": "This endpoint returns information about a specific mapping of block hosts to volumes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blockmappings",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11fba443-279f-4a81-af15-22893637a868",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blockmappings",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2679,\n  \"volume\": {\n    \"id\": 3524,\n    \"name\": \"string\"\n  },\n  \"block_host\": {\n    \"id\": 4538,\n    \"name\": \"string\"\n  },\n  \"snapshot_data\": {\n    \"created\": \"2006-02-25T21:00:14.366Z\",\n    \"id\": 2604,\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6a0ebb00-c38c-4aba-a1a2-849c60e2c7fd",
+    "name": "VAST API Swagger Schema activedirectory blockmappings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,555 @@
+{
+  "item": [
+    {
+      "id": "66db3caa-e2ef-416e-84ad-3f4bd29958d5",
+      "name": "protectionpolicies",
+      "description": {
+        "content": "A protection policy is a reusable configuration that defines a schedule for taking snapshots and optionally replicating them to a specified async  replication peer or S3 replication peer. It defines how long to retain local snapshots. If the purpose of a protection policy is remote backup to either S3 or an async replication peer without local snapshot retention, then this is achieved by defining no retention for local snapshots. Once defined, a protection policy can be specified in the configuration of a protected path.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b66781b-28a4-41c3-96ca-9092172dd0c1",
+          "name": "Return Protection Policies",
+          "request": {
+            "name": "Return Protection Policies",
+            "description": {
+              "content": "This endpoint lists protection policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectionpolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "target__name",
+                  "value": "<string>",
+                  "description": "Filter by name of replication peer"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by protection policy name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afebc74f-2366-440f-8df1-f31f08db632e",
+              "name": "protection policy information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectionpolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "target__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"prefix\": \"string\",\n    \"frames\": [\n      {\n        \"every\": \"30m\",\n        \"keep-local\": \"30m\",\n        \"keep-remote\": \"30m\",\n        \"start-at\": \"2021-02-03 01:02:03\"\n      },\n      {\n        \"every\": \"30m\",\n        \"keep-local\": \"30m\",\n        \"keep-remote\": \"30m\",\n        \"start-at\": \"2021-02-03 01:02:03\"\n      }\n    ],\n    \"clone_type\": \"LOCAL\",\n    \"created\": \"string\",\n    \"guid\": \"string\",\n    \"handle\": \"string\",\n    \"id\": 1454,\n    \"indestructible\": false,\n    \"internal\": false,\n    \"is_local\": false,\n    \"is_on_schedule\": false,\n    \"native_replication_remote_target\": \"string\",\n    \"pretty_schedules\": [\n      \"string\",\n      \"string\"\n    ],\n    \"remote_tenant\": {\n      \"guid\": \"string\",\n      \"name\": \"string\"\n    },\n    \"replication_target\": \"string\",\n    \"schedule_miss\": 4752,\n    \"state\": \"delete_pending\",\n    \"sync_interval\": 9002,\n    \"target_guid\": \"string\",\n    \"target_name\": \"string\",\n    \"target_object_id\": 1124,\n    \"tenant\": {\n      \"id\": 6225,\n      \"name\": \"string\"\n    },\n    \"tenant_id\": 889,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"prefix\": \"string\",\n    \"frames\": [\n      {\n        \"every\": \"30m\",\n        \"keep-local\": \"30m\",\n        \"keep-remote\": \"30m\",\n        \"start-at\": \"2021-02-03 01:02:03\"\n      },\n      {\n        \"every\": \"30m\",\n        \"keep-local\": \"30m\",\n        \"keep-remote\": \"30m\",\n        \"start-at\": \"2021-02-03 01:02:03\"\n      }\n    ],\n    \"clone_type\": \"LOCAL\",\n    \"created\": \"string\",\n    \"guid\": \"string\",\n    \"handle\": \"string\",\n    \"id\": 3468,\n    \"indestructible\": false,\n    \"internal\": true,\n    \"is_local\": true,\n    \"is_on_schedule\": true,\n    \"native_replication_remote_target\": \"string\",\n    \"pretty_schedules\": [\n      \"string\",\n      \"string\"\n    ],\n    \"remote_tenant\": {\n      \"guid\": \"string\",\n      \"name\": \"string\"\n    },\n    \"replication_target\": \"string\",\n    \"schedule_miss\": 4353,\n    \"state\": \"delete_pending\",\n    \"sync_interval\": 6054,\n    \"target_guid\": \"string\",\n    \"target_name\": \"string\",\n    \"target_object_id\": 5935,\n    \"tenant\": {\n      \"id\": 7434,\n      \"name\": \"string\"\n    },\n    \"tenant_id\": 4290,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d9a3cb9-7fef-4423-bfdb-2f262d68534c",
+          "name": "Create Protection Policy",
+          "request": {
+            "name": "Create Protection Policy",
+            "description": {
+              "content": "This endpoint creates a protection policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectionpolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"frames\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"clone_type\": \"<string>\",\n  \"big_catalog\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"indestructible\": \"<boolean>\",\n  \"remote_tenant_guid\": \"<string>\",\n  \"target_object_id\": \"<integer>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ddbf8aa-c1df-4007-bf28-03379996126c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectionpolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"frames\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"clone_type\": \"<string>\",\n  \"big_catalog\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"indestructible\": \"<boolean>\",\n  \"remote_tenant_guid\": \"<string>\",\n  \"target_object_id\": \"<integer>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"prefix\": \"string\",\n  \"frames\": [\n    {\n      \"every\": \"30m\",\n      \"keep-local\": \"30m\",\n      \"keep-remote\": \"30m\",\n      \"start-at\": \"2021-02-03 01:02:03\"\n    },\n    {\n      \"every\": \"30m\",\n      \"keep-local\": \"30m\",\n      \"keep-remote\": \"30m\",\n      \"start-at\": \"2021-02-03 01:02:03\"\n    }\n  ],\n  \"clone_type\": \"NATIVE_REPLICATION\",\n  \"created\": \"string\",\n  \"guid\": \"string\",\n  \"handle\": \"string\",\n  \"id\": 3189,\n  \"indestructible\": true,\n  \"internal\": false,\n  \"is_local\": false,\n  \"is_on_schedule\": true,\n  \"native_replication_remote_target\": \"string\",\n  \"pretty_schedules\": [\n    \"string\",\n    \"string\"\n  ],\n  \"remote_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"replication_target\": \"string\",\n  \"schedule_miss\": 4698,\n  \"state\": \"delete_pending\",\n  \"sync_interval\": 7943,\n  \"target_guid\": \"string\",\n  \"target_name\": \"string\",\n  \"target_object_id\": 9314,\n  \"tenant\": {\n    \"id\": 4091,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 5936,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b3e5885-9113-479f-a9f2-9454dc394181",
+          "name": "Delete Protection Policy",
+          "request": {
+            "name": "Delete Protection Policy",
+            "description": {
+              "content": "This endpoint deletes a protection policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectionpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Protection Policy ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "585ebcd4-29ca-4769-abc4-6cf6bc6e9826",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectionpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protection Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23dcc571-ae5f-4228-aca0-f65f9cc57637",
+          "name": "Return Details of a Protection Policy",
+          "request": {
+            "name": "Return Details of a Protection Policy",
+            "description": {
+              "content": "This endpoint returns details of a specified protection policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectionpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Protection Policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0acbcf24-4984-42a2-af5e-3b10f94ea512",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectionpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protection Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"prefix\": \"string\",\n  \"frames\": [\n    {\n      \"every\": \"30m\",\n      \"keep-local\": \"30m\",\n      \"keep-remote\": \"30m\",\n      \"start-at\": \"2021-02-03 01:02:03\"\n    },\n    {\n      \"every\": \"30m\",\n      \"keep-local\": \"30m\",\n      \"keep-remote\": \"30m\",\n      \"start-at\": \"2021-02-03 01:02:03\"\n    }\n  ],\n  \"clone_type\": \"NATIVE_REPLICATION\",\n  \"created\": \"string\",\n  \"guid\": \"string\",\n  \"handle\": \"string\",\n  \"id\": 3189,\n  \"indestructible\": true,\n  \"internal\": false,\n  \"is_local\": false,\n  \"is_on_schedule\": true,\n  \"native_replication_remote_target\": \"string\",\n  \"pretty_schedules\": [\n    \"string\",\n    \"string\"\n  ],\n  \"remote_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"replication_target\": \"string\",\n  \"schedule_miss\": 4698,\n  \"state\": \"delete_pending\",\n  \"sync_interval\": 7943,\n  \"target_guid\": \"string\",\n  \"target_name\": \"string\",\n  \"target_object_id\": 9314,\n  \"tenant\": {\n    \"id\": 4091,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 5936,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ad75c97-1edd-4225-bbb6-9390fb04ffbb",
+          "name": "Modify a Protection Policy",
+          "request": {
+            "name": "Modify a Protection Policy",
+            "description": {
+              "content": "This endpoint modifies a protection policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectionpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Protection Policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"big_catalog\": \"<boolean>\",\n  \"clone_type\": \"<string>\",\n  \"frames\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"indestructible\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"target_object_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "821d55ce-7344-4d79-a218-f68d111e64a1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectionpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protection Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"big_catalog\": \"<boolean>\",\n  \"clone_type\": \"<string>\",\n  \"frames\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"indestructible\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"target_object_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "637ab3ee-ca1e-4e6e-b62d-01324f3bc362",
+    "name": "VAST API Swagger Schema activedirectory protectionpolicies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

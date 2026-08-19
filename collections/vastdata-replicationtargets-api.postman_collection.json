@@ -1,0 +1,575 @@
+{
+  "item": [
+    {
+      "id": "0e94b075-4133-469d-9cd2-72d9c50d6d69",
+      "name": "replicationtargets",
+      "description": {
+        "content": "An S3 replication peer represents a specific S3 destination to which snapshots can be replicated or were replicated. S3 replication peers can be configured in order to enable replication of data to a specific S3 destination or to enable users to access restore points on the S3 replication peer via client mounts of the cluster's file system. The accessible data on the S3 replication peer may have been replicated from the local cluster or from another cluster.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af5068de-1c6f-4778-b945-1ba8c0ce1c18",
+          "name": "List S3 Replication Peers",
+          "request": {
+            "name": "List S3 Replication Peers",
+            "description": {
+              "content": "This endpoint lists S3 replication peers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationtargets",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "bucket_name",
+                  "value": "<string>",
+                  "description": "Filter by target bucket name"
+                },
+                {
+                  "disabled": false,
+                  "key": "http_protocol",
+                  "value": "<string>",
+                  "description": "Filter by protocol used to connect to the bucket (http or https)"
+                },
+                {
+                  "disabled": false,
+                  "key": "custom_bucket_url",
+                  "value": "<string>",
+                  "description": "Filter by the URL of a custom target bucket"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a779d59-a093-4cce-b9a6-a770de940b16",
+              "name": "Replication target information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationtargets",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bucket_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "http_protocol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_bucket_url",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"bucket_name\": \"string\",\n    \"http_protocol\": \"string\",\n    \"type\": \"string\",\n    \"access_key\": \"string\",\n    \"aws_account_id\": \"string\",\n    \"aws_region\": \"string\",\n    \"aws_role\": \"string\",\n    \"created\": \"string\",\n    \"custom_bucket_url\": \"string\",\n    \"decoded_access_key\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8040,\n    \"proxies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": \"ERROR\",\n    \"state_description\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"bucket_name\": \"string\",\n    \"http_protocol\": \"string\",\n    \"type\": \"string\",\n    \"access_key\": \"string\",\n    \"aws_account_id\": \"string\",\n    \"aws_region\": \"string\",\n    \"aws_role\": \"string\",\n    \"created\": \"string\",\n    \"custom_bucket_url\": \"string\",\n    \"decoded_access_key\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 3651,\n    \"proxies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": \"ACTIVE\",\n    \"state_description\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "276e80bc-2162-4d86-9527-8c3c02f106d8",
+          "name": "Create an S3 Replication Peer",
+          "request": {
+            "name": "Create an S3 Replication Peer",
+            "description": {
+              "content": "This endpoint creates an S3 replication peer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationtargets",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"bucket_name\": \"<string>\",\n  \"http_protocol\": \"<string>\",\n  \"type\": \"<string>\",\n  \"access_key\": \"<string>\",\n  \"aws_account_id\": \"<string>\",\n  \"aws_region\": \"<string>\",\n  \"aws_role\": \"<string>\",\n  \"custom_bucket_url\": \"<string>\",\n  \"proxies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd387c10-9781-48ce-a406-325c91142c49",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationtargets",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"bucket_name\": \"<string>\",\n  \"http_protocol\": \"<string>\",\n  \"type\": \"<string>\",\n  \"access_key\": \"<string>\",\n  \"aws_account_id\": \"<string>\",\n  \"aws_region\": \"<string>\",\n  \"aws_role\": \"<string>\",\n  \"custom_bucket_url\": \"<string>\",\n  \"proxies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"bucket_name\": \"string\",\n  \"http_protocol\": \"string\",\n  \"type\": \"string\",\n  \"access_key\": \"string\",\n  \"aws_account_id\": \"string\",\n  \"aws_region\": \"string\",\n  \"aws_role\": \"string\",\n  \"created\": \"string\",\n  \"custom_bucket_url\": \"string\",\n  \"decoded_access_key\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 6960,\n  \"proxies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"ERROR\",\n  \"state_description\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5644d39-d0e6-4d85-88a2-1e58a3e0bb9d",
+          "name": "Delete an S3 Replication Peer",
+          "request": {
+            "name": "Delete an S3 Replication Peer",
+            "description": {
+              "content": "This endpoint deletes an S3 replication peer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationtargets",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Replication Target ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01c40269-3abb-47e2-a97b-40efef0c4f8a",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationtargets",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Replication Target ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83b9227d-eb5d-430e-b2bf-4af8b73ca3a6",
+          "name": "Return Details of a Single S3 Replication Peer.",
+          "request": {
+            "name": "Return Details of a Single S3 Replication Peer.",
+            "description": {
+              "content": "This endpoint returns details of a specified S3 replication peer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationtargets",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Replication Target ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd9e6dac-1559-4c04-9d04-b200b1d02123",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationtargets",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Replication Target ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"bucket_name\": \"string\",\n  \"http_protocol\": \"string\",\n  \"type\": \"string\",\n  \"access_key\": \"string\",\n  \"aws_account_id\": \"string\",\n  \"aws_region\": \"string\",\n  \"aws_role\": \"string\",\n  \"created\": \"string\",\n  \"custom_bucket_url\": \"string\",\n  \"decoded_access_key\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 6960,\n  \"proxies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"ERROR\",\n  \"state_description\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdc30862-8bee-46f0-ab79-0097ff97779b",
+          "name": "Modify an S3 Replication Peer",
+          "request": {
+            "name": "Modify an S3 Replication Peer",
+            "description": {
+              "content": "This endpoint modifies an S3 replication peer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationtargets",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ReplicationTarget ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_key\": \"<string>\",\n  \"aws_account_id\": \"<string>\",\n  \"aws_region\": \"<string>\",\n  \"aws_role\": \"<string>\",\n  \"bucket_name\": \"<string>\",\n  \"custom_bucket_url\": \"<string>\",\n  \"http_protocol\": \"<string>\",\n  \"name\": \"<string>\",\n  \"proxies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e328e4fd-9d26-4399-87fa-2ead5fa86523",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationtargets",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ReplicationTarget ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_key\": \"<string>\",\n  \"aws_account_id\": \"<string>\",\n  \"aws_region\": \"<string>\",\n  \"aws_role\": \"<string>\",\n  \"bucket_name\": \"<string>\",\n  \"custom_bucket_url\": \"<string>\",\n  \"http_protocol\": \"<string>\",\n  \"name\": \"<string>\",\n  \"proxies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"secret_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "98deea1e-2c53-465d-9a75-43be08ca7978",
+    "name": "VAST API Swagger Schema activedirectory replicationtargets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "item": [
+    {
+      "id": "fa62279c-09cc-4d9c-ae2b-a8779b80c67b",
+      "name": "envs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "231dc17d-da13-4fbd-abc8-d97a2b5ce996",
+          "name": "List Envs",
+          "request": {
+            "name": "List Envs",
+            "description": {
+              "content": "This endpoint lists envs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "envs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34444160-888d-40f4-8640-b3d5a0e3f07c",
+              "name": "Envs information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "envs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cluster\": \"string\",\n    \"cluster_id\": 6543,\n    \"cnode\": \"string\",\n    \"dnode\": \"string\",\n    \"env_id\": 6538,\n    \"env_type\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 5873,\n    \"name\": \"string\",\n    \"port\": 556,\n    \"silo_count\": 4724,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"cluster\": \"string\",\n    \"cluster_id\": 5700,\n    \"cnode\": \"string\",\n    \"dnode\": \"string\",\n    \"env_id\": 2523,\n    \"env_type\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9316,\n    \"name\": \"string\",\n    \"port\": 9242,\n    \"silo_count\": 893,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a93f725b-61a3-4eb7-bdf4-cda66ace854c",
+          "name": "Return Details of an Env",
+          "request": {
+            "name": "Return Details of an Env",
+            "description": {
+              "content": "This endpoint lists details of an env.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "envs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca735da5-eec6-4b8f-9394-1d81ae8303c7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "envs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cluster_id\": 8061,\n  \"cnode\": \"string\",\n  \"dnode\": \"string\",\n  \"env_id\": 6052,\n  \"env_type\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5970,\n  \"name\": \"string\",\n  \"port\": 3470,\n  \"silo_count\": 9034,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1defbdda-ae09-4538-a59e-a9019943abdc",
+    "name": "VAST API Swagger Schema activedirectory envs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

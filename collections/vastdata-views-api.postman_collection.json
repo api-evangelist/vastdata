@@ -1,0 +1,2451 @@
+{
+  "item": [
+    {
+      "id": "94468d4d-6d8d-4d41-887b-eb9f72936bee",
+      "name": "Views",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d332bf76-21e3-47a9-b1bd-e4a0de48a69d",
+          "name": "Delete all S3 CORS rules for View",
+          "request": {
+            "name": "Delete all S3 CORS rules for View",
+            "description": {
+              "content": "This endpoint delete all S3 CORS rules for a given view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "s3cors_configuration",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "959e45a9-0596-4fbd-9aa7-2d3a65eeb7ce",
+              "name": "CORS configuration deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "s3cors_configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85aac511-a2cc-456b-a516-309f5af50d00",
+          "name": "Get S3 CORS configuration for View",
+          "request": {
+            "name": "Get S3 CORS configuration for View",
+            "description": {
+              "content": "This endpoint returns all S3 CORS rules for a given view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "s3cors_configuration",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "aws_format",
+                  "value": "<boolean>",
+                  "description": "If true, return CORS rules in AWS camelCase format (aws_cors_rules). Default is false (cors_rules in snake_case)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57c2b7ef-a42b-4103-b010-1af3def3e53d",
+              "name": "CORS configuration retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "s3cors_configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "aws_format",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aws_cors_rules\": [\n    {\n      \"AllowedOrigins\": [\n        \"string\",\n        \"string\"\n      ],\n      \"AllowedMethods\": [\n        \"string\",\n        \"string\"\n      ],\n      \"AllowedHeaders\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ExposeHeaders\": [\n        \"string\",\n        \"string\"\n      ],\n      \"MaxAgeSeconds\": 5252\n    },\n    {\n      \"AllowedOrigins\": [\n        \"string\",\n        \"string\"\n      ],\n      \"AllowedMethods\": [\n        \"string\",\n        \"string\"\n      ],\n      \"AllowedHeaders\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ExposeHeaders\": [\n        \"string\",\n        \"string\"\n      ],\n      \"MaxAgeSeconds\": 4327\n    }\n  ],\n  \"cors_rules\": [\n    {\n      \"allowed_origins\": [\n        \"string\",\n        \"string\"\n      ],\n      \"allowed_methods\": [\n        \"string\",\n        \"string\"\n      ],\n      \"allowed_headers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"expose_headers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"max_age_seconds\": 1426\n    },\n    {\n      \"allowed_origins\": [\n        \"string\",\n        \"string\"\n      ],\n      \"allowed_methods\": [\n        \"string\",\n        \"string\"\n      ],\n      \"allowed_headers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"expose_headers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"max_age_seconds\": 7448\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ab7f987-e47d-4d3c-a451-78d95be45502",
+          "name": "Create multiple S3 CORS rules for View",
+          "request": {
+            "name": "Create multiple S3 CORS rules for View",
+            "description": {
+              "content": "Creates S3 CORS rules for a view. Accepts either 'cors_rules' array directly or 'aws_cors_rules' array in AWS format. Exactly one of these fields must be provided.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "s3cors_configuration",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aws_cors_rules\": [\n    {\n      \"AllowedOrigins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"AllowedMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"AllowedHeaders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ExposeHeaders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"MaxAgeSeconds\": \"<integer>\"\n    },\n    {\n      \"AllowedOrigins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"AllowedMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"AllowedHeaders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ExposeHeaders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"MaxAgeSeconds\": \"<integer>\"\n    }\n  ],\n  \"cors_rules\": [\n    {\n      \"allowed_origins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_methods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"expose_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"max_age_seconds\": \"<integer>\"\n    },\n    {\n      \"allowed_origins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_methods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"expose_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"max_age_seconds\": \"<integer>\"\n    }\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "950afbaa-7755-4594-b466-737b9a21b99f",
+              "name": "CORS configuration created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "s3cors_configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aws_cors_rules\": [\n    {\n      \"AllowedOrigins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"AllowedMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"AllowedHeaders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ExposeHeaders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"MaxAgeSeconds\": \"<integer>\"\n    },\n    {\n      \"AllowedOrigins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"AllowedMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"AllowedHeaders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ExposeHeaders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"MaxAgeSeconds\": \"<integer>\"\n    }\n  ],\n  \"cors_rules\": [\n    {\n      \"allowed_origins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_methods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"expose_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"max_age_seconds\": \"<integer>\"\n    },\n    {\n      \"allowed_origins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_methods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"expose_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"max_age_seconds\": \"<integer>\"\n    }\n  ]\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"allowed_origins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowed_methods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowed_headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"expose_headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"max_age_seconds\": \"<integer>\"\n  },\n  {\n    \"allowed_origins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowed_methods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowed_headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"expose_headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"max_age_seconds\": \"<integer>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb188ea4-ae03-4bfa-8f32-d91120bc25db",
+          "name": "List Views",
+          "request": {
+            "name": "List Views",
+            "description": {
+              "content": "This endpoint lists views. Parameters enable you to limit which views are returned based on various criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by View name"
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Filter by Element Store path"
+                },
+                {
+                  "disabled": false,
+                  "key": "alias",
+                  "value": "<string>",
+                  "description": "Filter by NFS export alias"
+                },
+                {
+                  "disabled": false,
+                  "key": "bucket",
+                  "value": "<string>",
+                  "description": "Limit response by S3 bucket name"
+                },
+                {
+                  "disabled": false,
+                  "key": "share",
+                  "value": "<string>",
+                  "description": "Filter by share name"
+                },
+                {
+                  "disabled": false,
+                  "key": "policy__name",
+                  "value": "<string>",
+                  "description": "Filter by view policy name"
+                },
+                {
+                  "disabled": false,
+                  "key": "policy__id",
+                  "value": "<string>",
+                  "description": "Filter by view policy ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__name",
+                  "value": "<string>",
+                  "description": "Filter response by cluster name."
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__id",
+                  "value": "<string>",
+                  "description": "Limit response by cluster ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "nqn",
+                  "value": "<string>",
+                  "description": "NVMe Qualified Name to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_default_subsystem",
+                  "value": "<boolean>",
+                  "description": "Filter by whether View is a default Subsystem."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_name__icontains",
+                  "value": "<string>",
+                  "description": "Tenant name to filter by"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e515d6f8-5d7b-4577-92cf-75ce95a223bc",
+              "name": "View details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "alias",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "share",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "policy__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "policy__id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nqn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_default_subsystem",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant_name__icontains",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"path\": \"string\",\n    \"policy_id\": 9567,\n    \"abac_tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"abe_max_depth\": 2530,\n    \"abe_protocols\": [\n      \"S3\",\n      \"S3\"\n    ],\n    \"alias\": \"string\",\n    \"allow_anonymous_access\": true,\n    \"allow_s3_anonymous_access\": true,\n    \"allowed_delegations\": \"USE_TENANT_ALLOWED_DELEG\",\n    \"auto_commit\": \"string\",\n    \"bucket\": \"string\",\n    \"bucket_creators\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bucket_creators_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bucket_logging\": {\n      \"destination_id\": 8089,\n      \"key_format\": \"SIMPLE_PREFIX\",\n      \"prefix\": \"string\"\n    },\n    \"bucket_owner\": \"string\",\n    \"bucket_owner_type\": \"string\",\n    \"bulk_permission_update_progress\": 3438,\n    \"bulk_permission_update_state\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 342,\n    \"create_dir\": true,\n    \"created\": \"2021-07-13T14:38:08.599Z\",\n    \"default_retention_period\": \"string\",\n    \"directory\": false,\n    \"effective_allowed_delegations\": \"READ_WRITE\",\n    \"event_notifications\": [\n      {\n        \"broker_id\": 3072,\n        \"name\": \"string\",\n        \"prefix_filter\": \"string\",\n        \"suffix_filter\": \"string\",\n        \"topic\": \"string\",\n        \"triggers\": [\n          \"S3_OBJECT_CREATED_COMPLETE_MULTIPART_UPLOAD\",\n          \"S3_OBJECT_TAGGING_ALL\"\n        ]\n      },\n      {\n        \"broker_id\": 456,\n        \"name\": \"string\",\n        \"prefix_filter\": \"string\",\n        \"suffix_filter\": \"string\",\n        \"topic\": \"string\",\n        \"triggers\": [\n          \"S3_OBJECT_CREATED_POST\",\n          \"S3_OBJECT_CREATED_PUT\"\n        ]\n      }\n    ],\n    \"files_retention_mode\": \"COMPLIANCE\",\n    \"guid\": \"string\",\n    \"has_bucket_logging_destination\": true,\n    \"has_bucket_logging_sources\": true,\n    \"has_nfs4_triggers\": false,\n    \"id\": 7060,\n    \"ignore_oos\": true,\n    \"indestructible_object_duration\": 7321,\n    \"internal\": true,\n    \"is_default_subsystem\": false,\n    \"is_indestructible_object_enabled\": true,\n    \"is_kafka_encrypted_conn_allowed\": false,\n    \"is_kafka_unencrypted_conn_allowed\": true,\n    \"is_remote\": false,\n    \"is_seamless\": true,\n    \"kafka_encrypted_auth_mechanism\": \"SASL_PLAIN\",\n    \"kafka_first_join_group_timeout_sec\": 472,\n    \"kafka_is_authorization_required\": true,\n    \"kafka_rejoin_group_timeout_sec\": 3833,\n    \"kafka_unencrypted_auth_mechanism\": \"NONE\",\n    \"kafka_vip_pools\": [\n      1595,\n      8717\n    ],\n    \"locking\": false,\n    \"logical_capacity\": 7448,\n    \"max_retention_period\": \"string\",\n    \"min_retention_period\": \"string\",\n    \"name\": \"string\",\n    \"nfs_interop_flags\": \"ONLY_NFS3_INTEROP_ENABLED\",\n    \"nqn\": \"string\",\n    \"physical_capacity\": 6979,\n    \"policy\": \"string\",\n    \"protocols\": \"S3\",\n    \"qos_policy\": \"string\",\n    \"qos_policy_id\": 1951,\n    \"s3_locks_retention_mode\": \"string\",\n    \"s3_object_ownership_rule\": \"string\",\n    \"s3_unverified_lookup\": false,\n    \"s3_versioning\": false,\n    \"select_for_live_monitoring\": true,\n    \"share\": \"string\",\n    \"share_acl\": {\n      \"acl\": [\n        {\n          \"fqdn\": \"string\",\n          \"grantee\": \"groups\",\n          \"name\": \"string\",\n          \"perm\": \"CHANGE\",\n          \"sid_str\": \"string\",\n          \"uid_or_gid\": 3471\n        },\n        {\n          \"fqdn\": \"string\",\n          \"grantee\": \"groups\",\n          \"name\": \"string\",\n          \"perm\": \"FULL\",\n          \"sid_str\": \"string\",\n          \"uid_or_gid\": 3346\n        }\n      ],\n      \"enabled\": false\n    },\n    \"smb_encryption_state\": \"AVAILABLE\",\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"tenant_id\": 7359,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"user_impersonation\": {\n      \"enabled\": false,\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"login_name\": \"string\",\n      \"username\": \"string\"\n    }\n  },\n  {\n    \"path\": \"string\",\n    \"policy_id\": 2685,\n    \"abac_tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"abe_max_depth\": 812,\n    \"abe_protocols\": [\n      \"NFS4\",\n      \"S3\"\n    ],\n    \"alias\": \"string\",\n    \"allow_anonymous_access\": false,\n    \"allow_s3_anonymous_access\": false,\n    \"allowed_delegations\": \"WRITE\",\n    \"auto_commit\": \"string\",\n    \"bucket\": \"string\",\n    \"bucket_creators\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bucket_creators_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bucket_logging\": {\n      \"destination_id\": 7988,\n      \"key_format\": \"PARTITIONED_PREFIX_DELIVERY_TIME\",\n      \"prefix\": \"string\"\n    },\n    \"bucket_owner\": \"string\",\n    \"bucket_owner_type\": \"string\",\n    \"bulk_permission_update_progress\": 2853,\n    \"bulk_permission_update_state\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 9811,\n    \"create_dir\": true,\n    \"created\": \"1988-06-12T11:40:00.014Z\",\n    \"default_retention_period\": \"string\",\n    \"directory\": false,\n    \"effective_allowed_delegations\": \"WRITE\",\n    \"event_notifications\": [\n      {\n        \"broker_id\": 1293,\n        \"name\": \"string\",\n        \"prefix_filter\": \"string\",\n        \"suffix_filter\": \"string\",\n        \"topic\": \"string\",\n        \"triggers\": [\n          \"S3_OBJECT_TAGGING_ALL\",\n          \"S3_OBJECT_TAGGING_ALL\"\n        ]\n      },\n      {\n        \"broker_id\": 8334,\n        \"name\": \"string\",\n        \"prefix_filter\": \"string\",\n        \"suffix_filter\": \"string\",\n        \"topic\": \"string\",\n        \"triggers\": [\n          \"S3_OBJECT_CREATED_ALL\",\n          \"S3_OBJECT_CREATED_ALL\"\n        ]\n      }\n    ],\n    \"files_retention_mode\": \"NONE\",\n    \"guid\": \"string\",\n    \"has_bucket_logging_destination\": false,\n    \"has_bucket_logging_sources\": false,\n    \"has_nfs4_triggers\": false,\n    \"id\": 7164,\n    \"ignore_oos\": true,\n    \"indestructible_object_duration\": 3418,\n    \"internal\": false,\n    \"is_default_subsystem\": true,\n    \"is_indestructible_object_enabled\": true,\n    \"is_kafka_encrypted_conn_allowed\": true,\n    \"is_kafka_unencrypted_conn_allowed\": true,\n    \"is_remote\": true,\n    \"is_seamless\": true,\n    \"kafka_encrypted_auth_mechanism\": \"SASL_PLAIN\",\n    \"kafka_first_join_group_timeout_sec\": 3583,\n    \"kafka_is_authorization_required\": true,\n    \"kafka_rejoin_group_timeout_sec\": 8466,\n    \"kafka_unencrypted_auth_mechanism\": \"SASL_PLAIN\",\n    \"kafka_vip_pools\": [\n      8548,\n      3628\n    ],\n    \"locking\": true,\n    \"logical_capacity\": 7098,\n    \"max_retention_period\": \"string\",\n    \"min_retention_period\": \"string\",\n    \"name\": \"string\",\n    \"nfs_interop_flags\": \"BOTH_NFS3_AND_NFS4_INTEROP_DISABLED\",\n    \"nqn\": \"string\",\n    \"physical_capacity\": 9702,\n    \"policy\": \"string\",\n    \"protocols\": \"SMB\",\n    \"qos_policy\": \"string\",\n    \"qos_policy_id\": 5762,\n    \"s3_locks_retention_mode\": \"string\",\n    \"s3_object_ownership_rule\": \"string\",\n    \"s3_unverified_lookup\": false,\n    \"s3_versioning\": false,\n    \"select_for_live_monitoring\": false,\n    \"share\": \"string\",\n    \"share_acl\": {\n      \"acl\": [\n        {\n          \"fqdn\": \"string\",\n          \"grantee\": \"users\",\n          \"name\": \"string\",\n          \"perm\": \"READ\",\n          \"sid_str\": \"string\",\n          \"uid_or_gid\": 1956\n        },\n        {\n          \"fqdn\": \"string\",\n          \"grantee\": \"users\",\n          \"name\": \"string\",\n          \"perm\": \"FULL\",\n          \"sid_str\": \"string\",\n          \"uid_or_gid\": 7381\n        }\n      ],\n      \"enabled\": true\n    },\n    \"smb_encryption_state\": \"DESIRED\",\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"tenant_id\": 1382,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"user_impersonation\": {\n      \"enabled\": true,\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"login_name\": \"string\",\n      \"username\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56788cc2-8310-405e-9b8a-c97927b228c8",
+          "name": "Create View",
+          "request": {
+            "name": "Create View",
+            "description": {
+              "content": "This endpoint creates a view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"policy_id\": \"<integer>\",\n  \"abac_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"abe_max_depth\": \"<integer>\",\n  \"abe_protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alias\": \"<string>\",\n  \"allow_anonymous_access\": \"<boolean>\",\n  \"allow_s3_anonymous_access\": \"<boolean>\",\n  \"allowed_delegations\": \"<string>\",\n  \"auto_commit\": \"<string>\",\n  \"bucket\": \"<string>\",\n  \"bucket_creators\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_creators_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_logging\": {\n    \"destination_id\": \"<integer>\",\n    \"key_format\": \"<string>\",\n    \"prefix\": \"<string>\"\n  },\n  \"bucket_owner\": \"<string>\",\n  \"bucket_owner_type\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"create_dir\": \"<boolean>\",\n  \"create_dir_acl\": [\n    {\n      \"grantee\": \"<string>\",\n      \"perm\": \"<string>\",\n      \"group_type\": \"<string>\",\n      \"sid_str\": \"<string>\",\n      \"uid_or_gid\": \"<string>\",\n      \"vid_or_vaid\": \"<string>\"\n    },\n    {\n      \"grantee\": \"<string>\",\n      \"perm\": \"<string>\",\n      \"group_type\": \"<string>\",\n      \"sid_str\": \"<string>\",\n      \"uid_or_gid\": \"<string>\",\n      \"vid_or_vaid\": \"<string>\"\n    }\n  ],\n  \"create_dir_mode\": \"<integer>\",\n  \"default_retention_period\": \"<string>\",\n  \"event_notifications\": [\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"files_retention_mode\": \"<string>\",\n  \"indestructible_object_duration\": \"<integer>\",\n  \"inherit_acl\": \"<boolean>\",\n  \"is_default_subsystem\": \"<boolean>\",\n  \"is_indestructible_object_enabled\": \"<boolean>\",\n  \"is_kafka_encrypted_conn_allowed\": \"<boolean>\",\n  \"is_kafka_unencrypted_conn_allowed\": \"<boolean>\",\n  \"is_seamless\": \"<boolean>\",\n  \"kafka_encrypted_auth_mechanism\": \"<string>\",\n  \"kafka_first_join_group_timeout_sec\": \"<integer>\",\n  \"kafka_is_authorization_required\": \"<boolean>\",\n  \"kafka_rejoin_group_timeout_sec\": \"<integer>\",\n  \"kafka_unencrypted_auth_mechanism\": \"<string>\",\n  \"kafka_vip_pools\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"locking\": \"<boolean>\",\n  \"max_retention_period\": \"<string>\",\n  \"min_retention_period\": \"<string>\",\n  \"name\": \"<string>\",\n  \"nfs_interop_flags\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_is_group\": \"<boolean>\",\n  \"owner_type\": \"<string>\",\n  \"owning_group\": \"<string>\",\n  \"owning_group_type\": \"<string>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"qos_policy\": \"<string>\",\n  \"qos_policy_id\": \"<integer>\",\n  \"s3_locks_retention_mode\": \"<string>\",\n  \"s3_object_ownership_rule\": \"<string>\",\n  \"s3_unverified_lookup\": \"<boolean>\",\n  \"s3_versioning\": \"<boolean>\",\n  \"select_for_live_monitoring\": \"<boolean>\",\n  \"share\": \"<string>\",\n  \"share_acl\": {\n    \"acl\": [\n      {\n        \"fqdn\": \"<string>\",\n        \"grantee\": \"<string>\",\n        \"name\": \"<string>\",\n        \"perm\": \"<string>\",\n        \"sid_str\": \"<string>\",\n        \"uid_or_gid\": \"<integer>\"\n      },\n      {\n        \"fqdn\": \"<string>\",\n        \"grantee\": \"<string>\",\n        \"name\": \"<string>\",\n        \"perm\": \"<string>\",\n        \"sid_str\": \"<string>\",\n        \"uid_or_gid\": \"<integer>\"\n      }\n    ],\n    \"enabled\": \"<boolean>\"\n  },\n  \"smb_encryption_state\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_impersonation\": {\n    \"enabled\": \"<boolean>\",\n    \"identifier\": \"<string>\",\n    \"identifier_type\": \"<string>\",\n    \"login_name\": \"<string>\",\n    \"username\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72e10741-95e4-4398-a03b-b5b1a14b9487",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"policy_id\": \"<integer>\",\n  \"abac_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"abe_max_depth\": \"<integer>\",\n  \"abe_protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alias\": \"<string>\",\n  \"allow_anonymous_access\": \"<boolean>\",\n  \"allow_s3_anonymous_access\": \"<boolean>\",\n  \"allowed_delegations\": \"<string>\",\n  \"auto_commit\": \"<string>\",\n  \"bucket\": \"<string>\",\n  \"bucket_creators\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_creators_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_logging\": {\n    \"destination_id\": \"<integer>\",\n    \"key_format\": \"<string>\",\n    \"prefix\": \"<string>\"\n  },\n  \"bucket_owner\": \"<string>\",\n  \"bucket_owner_type\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"create_dir\": \"<boolean>\",\n  \"create_dir_acl\": [\n    {\n      \"grantee\": \"<string>\",\n      \"perm\": \"<string>\",\n      \"group_type\": \"<string>\",\n      \"sid_str\": \"<string>\",\n      \"uid_or_gid\": \"<string>\",\n      \"vid_or_vaid\": \"<string>\"\n    },\n    {\n      \"grantee\": \"<string>\",\n      \"perm\": \"<string>\",\n      \"group_type\": \"<string>\",\n      \"sid_str\": \"<string>\",\n      \"uid_or_gid\": \"<string>\",\n      \"vid_or_vaid\": \"<string>\"\n    }\n  ],\n  \"create_dir_mode\": \"<integer>\",\n  \"default_retention_period\": \"<string>\",\n  \"event_notifications\": [\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"files_retention_mode\": \"<string>\",\n  \"indestructible_object_duration\": \"<integer>\",\n  \"inherit_acl\": \"<boolean>\",\n  \"is_default_subsystem\": \"<boolean>\",\n  \"is_indestructible_object_enabled\": \"<boolean>\",\n  \"is_kafka_encrypted_conn_allowed\": \"<boolean>\",\n  \"is_kafka_unencrypted_conn_allowed\": \"<boolean>\",\n  \"is_seamless\": \"<boolean>\",\n  \"kafka_encrypted_auth_mechanism\": \"<string>\",\n  \"kafka_first_join_group_timeout_sec\": \"<integer>\",\n  \"kafka_is_authorization_required\": \"<boolean>\",\n  \"kafka_rejoin_group_timeout_sec\": \"<integer>\",\n  \"kafka_unencrypted_auth_mechanism\": \"<string>\",\n  \"kafka_vip_pools\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"locking\": \"<boolean>\",\n  \"max_retention_period\": \"<string>\",\n  \"min_retention_period\": \"<string>\",\n  \"name\": \"<string>\",\n  \"nfs_interop_flags\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_is_group\": \"<boolean>\",\n  \"owner_type\": \"<string>\",\n  \"owning_group\": \"<string>\",\n  \"owning_group_type\": \"<string>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"qos_policy\": \"<string>\",\n  \"qos_policy_id\": \"<integer>\",\n  \"s3_locks_retention_mode\": \"<string>\",\n  \"s3_object_ownership_rule\": \"<string>\",\n  \"s3_unverified_lookup\": \"<boolean>\",\n  \"s3_versioning\": \"<boolean>\",\n  \"select_for_live_monitoring\": \"<boolean>\",\n  \"share\": \"<string>\",\n  \"share_acl\": {\n    \"acl\": [\n      {\n        \"fqdn\": \"<string>\",\n        \"grantee\": \"<string>\",\n        \"name\": \"<string>\",\n        \"perm\": \"<string>\",\n        \"sid_str\": \"<string>\",\n        \"uid_or_gid\": \"<integer>\"\n      },\n      {\n        \"fqdn\": \"<string>\",\n        \"grantee\": \"<string>\",\n        \"name\": \"<string>\",\n        \"perm\": \"<string>\",\n        \"sid_str\": \"<string>\",\n        \"uid_or_gid\": \"<integer>\"\n      }\n    ],\n    \"enabled\": \"<boolean>\"\n  },\n  \"smb_encryption_state\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_impersonation\": {\n    \"enabled\": \"<boolean>\",\n    \"identifier\": \"<string>\",\n    \"identifier_type\": \"<string>\",\n    \"login_name\": \"<string>\",\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"string\",\n  \"policy_id\": 3574,\n  \"abac_tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"abe_max_depth\": 4622,\n  \"abe_protocols\": [\n    \"NFS\",\n    \"SMB\"\n  ],\n  \"alias\": \"string\",\n  \"allow_anonymous_access\": true,\n  \"allow_s3_anonymous_access\": false,\n  \"allowed_delegations\": \"NONE\",\n  \"auto_commit\": \"string\",\n  \"bucket\": \"string\",\n  \"bucket_creators\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bucket_creators_groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bucket_logging\": {\n    \"destination_id\": 4116,\n    \"key_format\": \"PARTITIONED_PREFIX_DELIVERY_TIME\",\n    \"prefix\": \"string\"\n  },\n  \"bucket_owner\": \"string\",\n  \"bucket_owner_type\": \"string\",\n  \"bulk_permission_update_progress\": 4462,\n  \"bulk_permission_update_state\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 2647,\n  \"create_dir\": false,\n  \"created\": \"1949-03-08T08:28:14.543Z\",\n  \"default_retention_period\": \"string\",\n  \"directory\": false,\n  \"effective_allowed_delegations\": \"READ\",\n  \"event_notifications\": [\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"files_retention_mode\": \"GOVERNANCE\",\n  \"guid\": \"string\",\n  \"has_bucket_logging_destination\": false,\n  \"has_bucket_logging_sources\": true,\n  \"has_nfs4_triggers\": false,\n  \"id\": 1768,\n  \"ignore_oos\": true,\n  \"indestructible_object_duration\": 3109,\n  \"internal\": true,\n  \"is_default_subsystem\": false,\n  \"is_indestructible_object_enabled\": false,\n  \"is_kafka_encrypted_conn_allowed\": false,\n  \"is_kafka_unencrypted_conn_allowed\": true,\n  \"is_remote\": true,\n  \"is_seamless\": false,\n  \"kafka_encrypted_auth_mechanism\": \"NONE\",\n  \"kafka_first_join_group_timeout_sec\": 6462,\n  \"kafka_is_authorization_required\": false,\n  \"kafka_rejoin_group_timeout_sec\": 155,\n  \"kafka_unencrypted_auth_mechanism\": \"SASL_PLAIN\",\n  \"kafka_vip_pools\": [\n    9238,\n    3558\n  ],\n  \"locking\": false,\n  \"logical_capacity\": 3775,\n  \"max_retention_period\": \"string\",\n  \"min_retention_period\": \"string\",\n  \"name\": \"string\",\n  \"nfs_interop_flags\": \"BOTH_NFS3_AND_NFS4_INTEROP_ENABLED\",\n  \"nqn\": \"string\",\n  \"physical_capacity\": 2840,\n  \"policy\": \"string\",\n  \"protocols\": \"S3\",\n  \"qos_policy\": \"string\",\n  \"qos_policy_id\": 9563,\n  \"s3_locks_retention_mode\": \"string\",\n  \"s3_object_ownership_rule\": \"string\",\n  \"s3_unverified_lookup\": true,\n  \"s3_versioning\": false,\n  \"select_for_live_monitoring\": true,\n  \"share\": \"string\",\n  \"share_acl\": {\n    \"acl\": [\n      {\n        \"fqdn\": \"string\",\n        \"grantee\": \"groups\",\n        \"name\": \"string\",\n        \"perm\": \"CHANGE\",\n        \"sid_str\": \"string\",\n        \"uid_or_gid\": 4218\n      },\n      {\n        \"fqdn\": \"string\",\n        \"grantee\": \"users\",\n        \"name\": \"string\",\n        \"perm\": \"READ\",\n        \"sid_str\": \"string\",\n        \"uid_or_gid\": 3274\n      }\n    ],\n    \"enabled\": true\n  },\n  \"smb_encryption_state\": \"OFF\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_id\": 1306,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"user_impersonation\": {\n    \"enabled\": \"<boolean>\",\n    \"identifier\": \"<string>\",\n    \"identifier_type\": \"<string>\",\n    \"login_name\": \"<string>\",\n    \"username\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3865bbc3-7240-461b-b705-377447fa2191",
+          "name": "Close open SMB filehandles",
+          "request": {
+            "name": "Close open SMB filehandles",
+            "description": {
+              "content": "This endpoint queries open smb filehandles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                "close_smb_handle",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "file_path",
+                  "value": "<string>",
+                  "description": "(Required) File path"
+                },
+                {
+                  "disabled": false,
+                  "key": "session_id",
+                  "value": "<string>",
+                  "description": "(Required) Session ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "session_handle_unique_id",
+                  "value": "<string>",
+                  "description": "(Required) Handle ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_guid",
+                  "value": "<string>",
+                  "description": "Tenant GUID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a1cf17e-5db9-4345-b469-3305d7378cf2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    "close_smb_handle",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "session_handle_unique_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_guid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"file_handle\": {\n    \"clone_id\": \"string\",\n    \"delete_pending\": \"string\",\n    \"ehandle\": \"string\",\n    \"has_any_lease\": \"string\",\n    \"lease_break_in_progress\": \"string\",\n    \"nfs4_only\": \"string\",\n    \"number_open_protocol_handles\": 9217,\n    \"stream_key\": \"string\"\n  },\n  \"open_protocol_handles\": [\n    {\n      \"access_mask\": [\n        \"string\",\n        \"string\"\n      ],\n      \"access_mask_display\": \"string\",\n      \"client_ip\": \"string\",\n      \"file_mode\": \"string\",\n      \"has_lease\": \"string\",\n      \"is_nfs_expirable\": \"string\",\n      \"nfs4_seqid\": \"string\",\n      \"nfs_expiration_time\": \"string\",\n      \"proto_type\": \"string\",\n      \"session_id\": \"string\",\n      \"share_access\": \"string\",\n      \"unique_id\": \"string\",\n      \"username\": \"string\"\n    },\n    {\n      \"access_mask\": [\n        \"string\",\n        \"string\"\n      ],\n      \"access_mask_display\": \"string\",\n      \"client_ip\": \"string\",\n      \"file_mode\": \"string\",\n      \"has_lease\": \"string\",\n      \"is_nfs_expirable\": \"string\",\n      \"nfs4_seqid\": \"string\",\n      \"nfs_expiration_time\": \"string\",\n      \"proto_type\": \"string\",\n      \"session_id\": \"string\",\n      \"share_access\": \"string\",\n      \"unique_id\": \"string\",\n      \"username\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "156804a7-7cb2-4fdf-86b8-6140bf23906a",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    "close_smb_handle",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "session_handle_unique_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_guid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fce5bde4-2683-41df-9412-def89776e363",
+              "name": "Service temporarily unavailable, try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    "close_smb_handle",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "session_handle_unique_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_guid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fdb0c45-9ca4-416f-b2e0-3dbd964eb0e3",
+          "name": "Query open SMB filehandles",
+          "request": {
+            "name": "Query open SMB filehandles",
+            "description": {
+              "content": "This endpoint queries open smb filehandles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                "list_open_smb_handles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "file_path",
+                  "value": "<string>",
+                  "description": "(Required) File path"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_guid",
+                  "value": "<string>",
+                  "description": "Tenant GUID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3939c1aa-bc86-434e-9ac0-2bdd2e06efe6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    "list_open_smb_handles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_guid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"file_handle\": {\n    \"clone_id\": \"string\",\n    \"delete_pending\": \"string\",\n    \"ehandle\": \"string\",\n    \"has_any_lease\": \"string\",\n    \"lease_break_in_progress\": \"string\",\n    \"nfs4_only\": \"string\",\n    \"number_open_protocol_handles\": 5387,\n    \"stream_key\": \"string\"\n  },\n  \"open_protocol_handles\": [\n    {\n      \"access_mask\": [\n        \"string\",\n        \"string\"\n      ],\n      \"access_mask_display\": \"string\",\n      \"client_ip\": \"string\",\n      \"file_mode\": \"string\",\n      \"has_lease\": \"string\",\n      \"is_nfs_expirable\": \"string\",\n      \"nfs4_seqid\": \"string\",\n      \"nfs_expiration_time\": \"string\",\n      \"proto_type\": \"string\",\n      \"session_id\": \"string\",\n      \"share_access\": \"string\",\n      \"unique_id\": \"string\",\n      \"username\": \"string\"\n    },\n    {\n      \"access_mask\": [\n        \"string\",\n        \"string\"\n      ],\n      \"access_mask_display\": \"string\",\n      \"client_ip\": \"string\",\n      \"file_mode\": \"string\",\n      \"has_lease\": \"string\",\n      \"is_nfs_expirable\": \"string\",\n      \"nfs4_seqid\": \"string\",\n      \"nfs_expiration_time\": \"string\",\n      \"proto_type\": \"string\",\n      \"session_id\": \"string\",\n      \"share_access\": \"string\",\n      \"unique_id\": \"string\",\n      \"username\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dafca3d3-4fa1-4092-988a-491a18893357",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    "list_open_smb_handles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_guid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd64729d-690f-4c9d-bd6b-a3a6e8888aec",
+              "name": "Service temporarily unavailable, try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    "list_open_smb_handles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_guid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e5e6464-3361-4f50-b14b-d1978ea33a6b",
+          "name": "Get a list of available seamless peers",
+          "request": {
+            "name": "Get a list of available seamless peers",
+            "description": {
+              "content": "This endpoint lists replication peers available for seamless replication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                "list_seamless_peers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "file_path",
+                  "value": "<string>",
+                  "description": "(Required) File path"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_guid",
+                  "value": "<string>",
+                  "description": "(Required) Tenant's globally unique identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1b77a7e-f0c6-4a31-a2c9-e53c77aa20d4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    "list_seamless_peers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_guid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"failure_reason\": \"string\",\n    \"name\": \"string\",\n    \"remote_peer_name\": \"string\",\n    \"status\": \"string\",\n    \"tenant_guid\": \"string\",\n    \"tenant_name\": \"string\",\n    \"view_name\": \"string\",\n    \"view_path\": \"string\"\n  },\n  {\n    \"failure_reason\": \"string\",\n    \"name\": \"string\",\n    \"remote_peer_name\": \"string\",\n    \"status\": \"string\",\n    \"tenant_guid\": \"string\",\n    \"tenant_name\": \"string\",\n    \"view_name\": \"string\",\n    \"view_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b42d0202-4fa4-4bb5-a85a-de215f162b29",
+          "name": "Delete View",
+          "request": {
+            "name": "Delete View",
+            "description": {
+              "content": "This endpoint deletes a view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "false",
+                  "description": "Force View removal"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35df5f70-cb14-44ca-98cf-bd3f3dae80c7",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3d01f67-5770-4c4e-ab73-766249af0644",
+          "name": "Return Details of a View",
+          "request": {
+            "name": "Return Details of a View",
+            "description": {
+              "content": "This endpoint returns details of a view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the view to show"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72091e12-2f3b-4499-9f35-64316ff09383",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the view to show"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"string\",\n  \"policy_id\": 3574,\n  \"abac_tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"abe_max_depth\": 4622,\n  \"abe_protocols\": [\n    \"NFS\",\n    \"SMB\"\n  ],\n  \"alias\": \"string\",\n  \"allow_anonymous_access\": true,\n  \"allow_s3_anonymous_access\": false,\n  \"allowed_delegations\": \"NONE\",\n  \"auto_commit\": \"string\",\n  \"bucket\": \"string\",\n  \"bucket_creators\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bucket_creators_groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bucket_logging\": {\n    \"destination_id\": 4116,\n    \"key_format\": \"PARTITIONED_PREFIX_DELIVERY_TIME\",\n    \"prefix\": \"string\"\n  },\n  \"bucket_owner\": \"string\",\n  \"bucket_owner_type\": \"string\",\n  \"bulk_permission_update_progress\": 4462,\n  \"bulk_permission_update_state\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 2647,\n  \"create_dir\": false,\n  \"created\": \"1949-03-08T08:28:14.543Z\",\n  \"default_retention_period\": \"string\",\n  \"directory\": false,\n  \"effective_allowed_delegations\": \"READ\",\n  \"event_notifications\": [\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"files_retention_mode\": \"GOVERNANCE\",\n  \"guid\": \"string\",\n  \"has_bucket_logging_destination\": false,\n  \"has_bucket_logging_sources\": true,\n  \"has_nfs4_triggers\": false,\n  \"id\": 1768,\n  \"ignore_oos\": true,\n  \"indestructible_object_duration\": 3109,\n  \"internal\": true,\n  \"is_default_subsystem\": false,\n  \"is_indestructible_object_enabled\": false,\n  \"is_kafka_encrypted_conn_allowed\": false,\n  \"is_kafka_unencrypted_conn_allowed\": true,\n  \"is_remote\": true,\n  \"is_seamless\": false,\n  \"kafka_encrypted_auth_mechanism\": \"NONE\",\n  \"kafka_first_join_group_timeout_sec\": 6462,\n  \"kafka_is_authorization_required\": false,\n  \"kafka_rejoin_group_timeout_sec\": 155,\n  \"kafka_unencrypted_auth_mechanism\": \"SASL_PLAIN\",\n  \"kafka_vip_pools\": [\n    9238,\n    3558\n  ],\n  \"locking\": false,\n  \"logical_capacity\": 3775,\n  \"max_retention_period\": \"string\",\n  \"min_retention_period\": \"string\",\n  \"name\": \"string\",\n  \"nfs_interop_flags\": \"BOTH_NFS3_AND_NFS4_INTEROP_ENABLED\",\n  \"nqn\": \"string\",\n  \"physical_capacity\": 2840,\n  \"policy\": \"string\",\n  \"protocols\": \"S3\",\n  \"qos_policy\": \"string\",\n  \"qos_policy_id\": 9563,\n  \"s3_locks_retention_mode\": \"string\",\n  \"s3_object_ownership_rule\": \"string\",\n  \"s3_unverified_lookup\": true,\n  \"s3_versioning\": false,\n  \"select_for_live_monitoring\": true,\n  \"share\": \"string\",\n  \"share_acl\": {\n    \"acl\": [\n      {\n        \"fqdn\": \"string\",\n        \"grantee\": \"groups\",\n        \"name\": \"string\",\n        \"perm\": \"CHANGE\",\n        \"sid_str\": \"string\",\n        \"uid_or_gid\": 4218\n      },\n      {\n        \"fqdn\": \"string\",\n        \"grantee\": \"users\",\n        \"name\": \"string\",\n        \"perm\": \"READ\",\n        \"sid_str\": \"string\",\n        \"uid_or_gid\": 3274\n      }\n    ],\n    \"enabled\": true\n  },\n  \"smb_encryption_state\": \"OFF\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_id\": 1306,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"user_impersonation\": {\n    \"enabled\": \"<boolean>\",\n    \"identifier\": \"<string>\",\n    \"identifier_type\": \"<string>\",\n    \"login_name\": \"<string>\",\n    \"username\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c27b4727-4112-4c44-932e-eed3635d7280",
+          "name": "Modify a View",
+          "request": {
+            "name": "Modify a View",
+            "description": {
+              "content": "This endpoint modifies a view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"abe_max_depth\": \"<integer>\",\n  \"abe_protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alias\": \"<string>\",\n  \"allow_anonymous_access\": \"<boolean>\",\n  \"allow_s3_anonymous_access\": \"<boolean>\",\n  \"allowed_delegations\": \"<string>\",\n  \"auto_commit\": \"<string>\",\n  \"bucket\": \"<string>\",\n  \"bucket_creators\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_creators_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_logging\": {\n    \"destination_id\": \"<integer>\",\n    \"key_format\": \"<string>\",\n    \"prefix\": \"<string>\"\n  },\n  \"bucket_owner\": \"<string>\",\n  \"bucket_owner_type\": \"<string>\",\n  \"create_dir\": \"<boolean>\",\n  \"default_retention_period\": \"<string>\",\n  \"event_notifications\": [\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"files_retention_mode\": \"<string>\",\n  \"indestructible_object_duration\": \"<integer>\",\n  \"is_default_subsystem\": \"<boolean>\",\n  \"is_indestructible_object_enabled\": \"<boolean>\",\n  \"is_kafka_encrypted_conn_allowed\": \"<boolean>\",\n  \"is_kafka_unencrypted_conn_allowed\": \"<boolean>\",\n  \"is_seamless\": \"<boolean>\",\n  \"kafka_encrypted_auth_mechanism\": \"<string>\",\n  \"kafka_first_join_group_timeout_sec\": \"<integer>\",\n  \"kafka_is_authorization_required\": \"<boolean>\",\n  \"kafka_rejoin_group_timeout_sec\": \"<integer>\",\n  \"kafka_unencrypted_auth_mechanism\": \"<string>\",\n  \"locking\": \"<boolean>\",\n  \"max_retention_period\": \"<string>\",\n  \"min_retention_period\": \"<string>\",\n  \"name\": \"<string>\",\n  \"nfs_interop_flags\": \"<string>\",\n  \"path\": \"<string>\",\n  \"policy_id\": \"<integer>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"qos_policy\": \"<string>\",\n  \"qos_policy_id\": \"<integer>\",\n  \"s3_locks_retention_mode\": \"<string>\",\n  \"s3_object_ownership_rule\": \"<string>\",\n  \"s3_unverified_lookup\": \"<boolean>\",\n  \"s3_versioning\": \"<boolean>\",\n  \"select_for_live_monitoring\": \"<boolean>\",\n  \"share\": \"<string>\",\n  \"share_acl\": {\n    \"acl\": [\n      {\n        \"fqdn\": \"<string>\",\n        \"grantee\": \"<string>\",\n        \"name\": \"<string>\",\n        \"perm\": \"<string>\",\n        \"sid_str\": \"<string>\",\n        \"uid_or_gid\": \"<integer>\"\n      },\n      {\n        \"fqdn\": \"<string>\",\n        \"grantee\": \"<string>\",\n        \"name\": \"<string>\",\n        \"perm\": \"<string>\",\n        \"sid_str\": \"<string>\",\n        \"uid_or_gid\": \"<integer>\"\n      }\n    ],\n    \"enabled\": \"<boolean>\"\n  },\n  \"smb_encryption_state\": \"<string>\",\n  \"user_impersonation\": {\n    \"enabled\": \"<boolean>\",\n    \"identifier\": \"<string>\",\n    \"identifier_type\": \"<string>\",\n    \"login_name\": \"<string>\",\n    \"username\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "351f4c6a-f442-4b3f-ae3f-f08e82ec20dc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"abe_max_depth\": \"<integer>\",\n  \"abe_protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alias\": \"<string>\",\n  \"allow_anonymous_access\": \"<boolean>\",\n  \"allow_s3_anonymous_access\": \"<boolean>\",\n  \"allowed_delegations\": \"<string>\",\n  \"auto_commit\": \"<string>\",\n  \"bucket\": \"<string>\",\n  \"bucket_creators\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_creators_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_logging\": {\n    \"destination_id\": \"<integer>\",\n    \"key_format\": \"<string>\",\n    \"prefix\": \"<string>\"\n  },\n  \"bucket_owner\": \"<string>\",\n  \"bucket_owner_type\": \"<string>\",\n  \"create_dir\": \"<boolean>\",\n  \"default_retention_period\": \"<string>\",\n  \"event_notifications\": [\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"broker_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"prefix_filter\": \"<string>\",\n      \"suffix_filter\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"triggers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"files_retention_mode\": \"<string>\",\n  \"indestructible_object_duration\": \"<integer>\",\n  \"is_default_subsystem\": \"<boolean>\",\n  \"is_indestructible_object_enabled\": \"<boolean>\",\n  \"is_kafka_encrypted_conn_allowed\": \"<boolean>\",\n  \"is_kafka_unencrypted_conn_allowed\": \"<boolean>\",\n  \"is_seamless\": \"<boolean>\",\n  \"kafka_encrypted_auth_mechanism\": \"<string>\",\n  \"kafka_first_join_group_timeout_sec\": \"<integer>\",\n  \"kafka_is_authorization_required\": \"<boolean>\",\n  \"kafka_rejoin_group_timeout_sec\": \"<integer>\",\n  \"kafka_unencrypted_auth_mechanism\": \"<string>\",\n  \"locking\": \"<boolean>\",\n  \"max_retention_period\": \"<string>\",\n  \"min_retention_period\": \"<string>\",\n  \"name\": \"<string>\",\n  \"nfs_interop_flags\": \"<string>\",\n  \"path\": \"<string>\",\n  \"policy_id\": \"<integer>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"qos_policy\": \"<string>\",\n  \"qos_policy_id\": \"<integer>\",\n  \"s3_locks_retention_mode\": \"<string>\",\n  \"s3_object_ownership_rule\": \"<string>\",\n  \"s3_unverified_lookup\": \"<boolean>\",\n  \"s3_versioning\": \"<boolean>\",\n  \"select_for_live_monitoring\": \"<boolean>\",\n  \"share\": \"<string>\",\n  \"share_acl\": {\n    \"acl\": [\n      {\n        \"fqdn\": \"<string>\",\n        \"grantee\": \"<string>\",\n        \"name\": \"<string>\",\n        \"perm\": \"<string>\",\n        \"sid_str\": \"<string>\",\n        \"uid_or_gid\": \"<integer>\"\n      },\n      {\n        \"fqdn\": \"<string>\",\n        \"grantee\": \"<string>\",\n        \"name\": \"<string>\",\n        \"perm\": \"<string>\",\n        \"sid_str\": \"<string>\",\n        \"uid_or_gid\": \"<integer>\"\n      }\n    ],\n    \"enabled\": \"<boolean>\"\n  },\n  \"smb_encryption_state\": \"<string>\",\n  \"user_impersonation\": {\n    \"enabled\": \"<boolean>\",\n    \"identifier\": \"<string>\",\n    \"identifier_type\": \"<string>\",\n    \"login_name\": \"<string>\",\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a67c4224-0b85-4f69-b35b-02c5d9203adf",
+          "name": "Modify View.",
+          "request": {
+            "name": "Modify View.",
+            "description": {
+              "content": "This endpoint modifies a view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"alias\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95c814f4-2b62-4c0c-a355-c2c1b2d21357",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"alias\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46c10ff3-9f64-4e89-89df-e354bfdd6bde",
+          "name": "Check Permissions Templates Before Bulk Permission Update",
+          "request": {
+            "name": "Check Permissions Templates Before Bulk Permission Update",
+            "description": {
+              "content": "This endpoint performs validation on a set of bulk permission update parameters and should be run before performing a bulk permission update (using the  /views/{id}/permissions_repair/ path). It also returns details of the owning users and groups of the template directory and, if applicable, template file, which will be applied to the target path if a bulk permission update is performed. For the template directory, the response verifies if the directory has default ACL, which is needed if no template file is specified. The target directory is validated for the following conditions: - Is not and does not contain the cluster’s audit directory. - Does not have views with s3_versioning=True under it. - No paths under it are used in a running global snapshot stream. - Is a directory. - The length of its path does not exceed 1024 characters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "check_permissions_templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target_path\": \"<string>\",\n  \"template_view_id\": \"<integer>\",\n  \"template_dir_path\": \"<string>\",\n  \"template_file_path\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "8a5cdd4d-50d1-433c-a357-d015f698815e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "check_permissions_templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"target_path\": \"<string>\",\n  \"template_view_id\": \"<integer>\",\n  \"template_dir_path\": \"<string>\",\n  \"template_file_path\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"template_dir_path\": {\n    \"path\": \"string\",\n    \"stat\": {\n      \"has_default_acl\": true,\n      \"is_directory\": true,\n      \"owning_gid\": 7817,\n      \"owning_group\": \"string\",\n      \"owning_uid\": 2233,\n      \"owning_user\": \"string\"\n    }\n  },\n  \"template_file_path\": {\n    \"path\": \"string\",\n    \"stat\": {\n      \"has_default_acl\": {},\n      \"is_directory\": {},\n      \"owning_gid\": {},\n      \"owning_group\": {},\n      \"owning_uid\": {},\n      \"owning_user\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a1b257a-1603-4003-92b5-a323a34d55d7",
+          "name": "Get legal hold",
+          "request": {
+            "name": "Get legal hold",
+            "description": {
+              "content": "This endpoint gets legal hold for provided path under specified view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "legal_hold",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "legal_hold_path",
+                  "value": "<string>",
+                  "description": "(Required) Path to get legal hold"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf72e358-6f87-4353-b013-fa34d4775471",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "legal_hold",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "legal_hold_path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e49bc159-0551-4e27-ac59-f2fe5ffdb6a4",
+          "name": "Change legal hold",
+          "request": {
+            "name": "Change legal hold",
+            "description": {
+              "content": "This endpoint sets or unsets legal hold from provided path under specified view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "legal_hold",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"legal_hold_path\": \"<string>\",\n  \"value\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "08952082-8459-4a44-a6a8-88d1fc514cc0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "legal_hold",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_hold_path\": \"<string>\",\n  \"value\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6da5a0e-d8c2-459e-bbee-8f02dabf1615",
+          "name": "Get the current NFSv4 triggers state for a view",
+          "request": {
+            "name": "Get the current NFSv4 triggers state for a view",
+            "description": {},
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "nfs4_triggers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f403edc8-a214-4de0-9412-631546728307",
+              "name": "Returns the current triggers state for the view",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "nfs4_triggers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f4ce276-a970-431f-8997-cf48662d6b93",
+          "name": "Register or unregister NFSv4 triggers for a view",
+          "request": {
+            "name": "Register or unregister NFSv4 triggers for a view",
+            "description": {},
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "nfs4_triggers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "5abecd64-e6b1-4574-abbf-7cbdf55de1ae",
+              "name": "NFSv4 triggers successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "nfs4_triggers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de396d6e-219f-4e30-a800-7045f75d2a21",
+              "name": "The request could not be completed due to a conflict with the current state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "nfs4_triggers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"nfs_triggers_delegations_conflict\",\n  \"detail\": \"Conflict: View cannot have both NFSv4 Triggers and NFS delegations enabled at the same time. To enable triggers, set `allowed_delegations` to NONE first.\\n\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "079f3ebc-f28b-415f-98d0-9ca849b8453a",
+          "name": "Stop Bulk Permission Update",
+          "request": {
+            "name": "Stop Bulk Permission Update",
+            "description": {
+              "content": "This endpoint stops a bulk permission update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "permissions_repair",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a0ea8ec-f410-4e80-bb70-e3541b6aa761",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "permissions_repair",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fbf1cdb-d97a-4bac-a207-da0aa257d583",
+          "name": "Start Bulk Permission Update",
+          "request": {
+            "name": "Start Bulk Permission Update",
+            "description": {
+              "content": "This endpoint starts a bulk permission update on a target path. In a bulk permission update, permissions of files and directory under the target path are overwritten with those of specified templates. A directory template is required.  If a template file is specified for a bulk permission update, VAST Cluster overwrites the permissions and ownership attributes of the target files and directories as follows: - Permissions of target files are overwritten with those of the template file. - Permissions of target directories are overwritten with those of the template directory. If no template file is specified, VAST Cluster overwrites the permissions and ownership attributes of the target directory with those of the template directory, and nested directories and files inherit permissions and ownership attributes from their parent. In this case, the template directory must have a default ACL on it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "views",
+                ":id",
+                "permissions_repair",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) View ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target_path\": \"<string>\",\n  \"template_view_id\": \"<integer>\",\n  \"template_dir_path\": \"<string>\",\n  \"template_file_path\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "793b0e11-0062-4203-ae93-cdfcbc0f99c2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "views",
+                    ":id",
+                    "permissions_repair",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) View ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"target_path\": \"<string>\",\n  \"template_view_id\": \"<integer>\",\n  \"template_dir_path\": \"<string>\",\n  \"template_file_path\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dd0b35b0-5533-452e-a799-e6a42194c1a0",
+    "name": "VAST API Swagger Schema activedirectory Views API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

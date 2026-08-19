@@ -1,0 +1,956 @@
+{
+  "item": [
+    {
+      "id": "6a28567c-2596-488d-a2ad-637ed956cc75",
+      "name": "quotas",
+      "description": {
+        "content": "A quota limits the amount of storage and/or the number of files or objects and directories that can be contained in a specified directory. A quota can include default limits on usage per user and group. It can also specify userquota objects which override default user and group limits for specified users and groups.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b59f86a1-ef86-4a7c-8b90-50cfa5d34a8c",
+          "name": "List Quotas",
+          "request": {
+            "name": "List Quotas",
+            "description": {
+              "content": "This endpoint lists quotas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "hard_limit",
+                  "value": "<string>",
+                  "description": "Filter results by hard capacity limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "soft_limit",
+                  "value": "<string>",
+                  "description": "Filter results by soft capacity limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "soft_limit_inodes",
+                  "value": "<string>",
+                  "description": "Filter results by soft limit on number of files and directories."
+                },
+                {
+                  "disabled": false,
+                  "key": "hard_limit_inodes",
+                  "value": "<string>",
+                  "description": "Filter results by hard limit on number of files and directories"
+                },
+                {
+                  "disabled": false,
+                  "key": "system_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_user_rules",
+                  "value": "<boolean>",
+                  "description": "Include user and group quota rules in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_name__icontains",
+                  "value": "<string>",
+                  "description": "Tenant name to filter by"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f034a42-a60b-44ed-bd1e-65856787a48e",
+              "name": "Quota information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hard_limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "soft_limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "soft_limit_inodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hard_limit_inodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "system_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_user_rules",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant_name__icontains",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"path\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 812,\n    \"default_email\": \"string\",\n    \"default_group_quota\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 2643,\n      \"hard_limit_inodes\": 8501,\n      \"quota_system_id\": 3353,\n      \"soft_limit\": 5276,\n      \"soft_limit_inodes\": 6596\n    },\n    \"default_user_quota\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 5216,\n      \"hard_limit_inodes\": 7426,\n      \"quota_system_id\": 7319,\n      \"soft_limit\": 5691,\n      \"soft_limit_inodes\": 6717\n    },\n    \"enable_alarms\": false,\n    \"enable_email_providers\": true,\n    \"grace_period\": \"string\",\n    \"group_quotas\": [\n      {\n        \"grace_period\": \"string\",\n        \"hard_limit\": 3810,\n        \"hard_limit_inodes\": 2903,\n        \"quota_system_id\": 5304,\n        \"soft_limit\": 9866,\n        \"soft_limit_inodes\": 3129,\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": false,\n        \"is_group\": true,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 6083,\n        \"percent_inodes\": 5743,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 5114,\n        \"used_inodes\": 2408,\n        \"vast_id\": 3471\n      },\n      {\n        \"grace_period\": \"string\",\n        \"hard_limit\": 9392,\n        \"hard_limit_inodes\": 537,\n        \"quota_system_id\": 481,\n        \"soft_limit\": 1369,\n        \"soft_limit_inodes\": 1250,\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": false,\n        \"is_group\": true,\n        \"is_iam_role\": true,\n        \"name\": \"string\",\n        \"percent_capacity\": 3490,\n        \"percent_inodes\": 2339,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 8613,\n        \"used_inodes\": 9832,\n        \"vast_id\": 7603\n      }\n    ],\n    \"guid\": \"string\",\n    \"hard_limit\": 4008,\n    \"hard_limit_inodes\": 6263,\n    \"id\": 1268,\n    \"internal\": true,\n    \"is_user_quota\": true,\n    \"last_user_quotas_update\": \"1954-12-18T06:02:19.472Z\",\n    \"num_blocked_users\": 7665,\n    \"num_exceeded_users\": 4817,\n    \"percent_capacity\": 7094,\n    \"percent_inodes\": 710,\n    \"pretty_grace_period\": \"string\",\n    \"pretty_grace_period_expiration\": \"string\",\n    \"pretty_state\": \"string\",\n    \"soft_limit\": 6320,\n    \"soft_limit_inodes\": 8035,\n    \"state\": \"GRACE_EXPIRED\",\n    \"sync_state\": \"string\",\n    \"system_id\": 6434,\n    \"tenant_id\": 3294,\n    \"tenant_name\": \"string\",\n    \"time_to_block\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"used_capacity\": 1886,\n    \"used_capacity_tb\": 7827.396239339004,\n    \"used_effective_capacity\": 5794,\n    \"used_effective_capacity_tb\": 6777.461967190445,\n    \"used_inodes\": 6040,\n    \"used_limited_capacity\": 2651,\n    \"user_quotas\": [\n      {\n        \"grace_period\": \"string\",\n        \"hard_limit\": 3267,\n        \"hard_limit_inodes\": 7252,\n        \"quota_system_id\": 8821,\n        \"soft_limit\": 4209,\n        \"soft_limit_inodes\": 396,\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": true,\n        \"is_group\": true,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 880,\n        \"percent_inodes\": 8607,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 4749,\n        \"used_inodes\": 5014,\n        \"vast_id\": 8422\n      },\n      {\n        \"grace_period\": \"string\",\n        \"hard_limit\": 273,\n        \"hard_limit_inodes\": 4998,\n        \"quota_system_id\": 5496,\n        \"soft_limit\": 5593,\n        \"soft_limit_inodes\": 2251,\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": false,\n        \"is_group\": false,\n        \"is_iam_role\": true,\n        \"name\": \"string\",\n        \"percent_capacity\": 789,\n        \"percent_inodes\": 6855,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 5219,\n        \"used_inodes\": 868,\n        \"vast_id\": 3035\n      }\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"path\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 4569,\n    \"default_email\": \"string\",\n    \"default_group_quota\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 4546,\n      \"hard_limit_inodes\": 9942,\n      \"quota_system_id\": 6027,\n      \"soft_limit\": 4749,\n      \"soft_limit_inodes\": 5560\n    },\n    \"default_user_quota\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 9507,\n      \"hard_limit_inodes\": 3003,\n      \"quota_system_id\": 5086,\n      \"soft_limit\": 5204,\n      \"soft_limit_inodes\": 4968\n    },\n    \"enable_alarms\": true,\n    \"enable_email_providers\": true,\n    \"grace_period\": \"string\",\n    \"group_quotas\": [\n      {\n        \"grace_period\": \"string\",\n        \"hard_limit\": 4946,\n        \"hard_limit_inodes\": 2572,\n        \"quota_system_id\": 5131,\n        \"soft_limit\": 7137,\n        \"soft_limit_inodes\": 4781,\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": false,\n        \"is_group\": false,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 9658,\n        \"percent_inodes\": 7165,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 1831,\n        \"used_inodes\": 397,\n        \"vast_id\": 2362\n      },\n      {\n        \"grace_period\": \"string\",\n        \"hard_limit\": 9389,\n        \"hard_limit_inodes\": 3670,\n        \"quota_system_id\": 9411,\n        \"soft_limit\": 550,\n        \"soft_limit_inodes\": 1700,\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": true,\n        \"is_group\": false,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 9393,\n        \"percent_inodes\": 183,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 6269,\n        \"used_inodes\": 1670,\n        \"vast_id\": 2414\n      }\n    ],\n    \"guid\": \"string\",\n    \"hard_limit\": 8264,\n    \"hard_limit_inodes\": 6546,\n    \"id\": 6566,\n    \"internal\": true,\n    \"is_user_quota\": false,\n    \"last_user_quotas_update\": \"1981-09-04T11:45:07.546Z\",\n    \"num_blocked_users\": 9390,\n    \"num_exceeded_users\": 3974,\n    \"percent_capacity\": 8162,\n    \"percent_inodes\": 1086,\n    \"pretty_grace_period\": \"string\",\n    \"pretty_grace_period_expiration\": \"string\",\n    \"pretty_state\": \"string\",\n    \"soft_limit\": 6153,\n    \"soft_limit_inodes\": 2767,\n    \"state\": \"HARD_BOTH_EXCEEDED\",\n    \"sync_state\": \"string\",\n    \"system_id\": 773,\n    \"tenant_id\": 6962,\n    \"tenant_name\": \"string\",\n    \"time_to_block\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"used_capacity\": 800,\n    \"used_capacity_tb\": 1569.2383052515213,\n    \"used_effective_capacity\": 7358,\n    \"used_effective_capacity_tb\": 4734.1827166519515,\n    \"used_inodes\": 715,\n    \"used_limited_capacity\": 495,\n    \"user_quotas\": [\n      {\n        \"grace_period\": \"string\",\n        \"hard_limit\": 1508,\n        \"hard_limit_inodes\": 7903,\n        \"quota_system_id\": 6748,\n        \"soft_limit\": 5240,\n        \"soft_limit_inodes\": 6855,\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": false,\n        \"is_group\": false,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 5968,\n        \"percent_inodes\": 56,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 1819,\n        \"used_inodes\": 9561,\n        \"vast_id\": 2803\n      },\n      {\n        \"grace_period\": \"string\",\n        \"hard_limit\": 1250,\n        \"hard_limit_inodes\": 9772,\n        \"quota_system_id\": 4254,\n        \"soft_limit\": 51,\n        \"soft_limit_inodes\": 5644,\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": true,\n        \"is_group\": false,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 4421,\n        \"percent_inodes\": 691,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 33,\n        \"used_inodes\": 7471,\n        \"vast_id\": 5024\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f84ccd79-7227-4048-b65f-3e477133b3e1",
+          "name": "Create a Quota",
+          "request": {
+            "name": "Create a Quota",
+            "description": {
+              "content": "This endpoint creates a quota that applies usage limits to a specified directory. A directory quota can limit the amount of storage and/or the number of files/objects that can be contained in the directory. The quota can also include quota limits on users and groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"path\": \"<string>\",\n  \"create_dir\": \"<boolean>\",\n  \"create_dir_mode\": \"<integer>\",\n  \"default_email\": \"<string>\",\n  \"default_group_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"enable_alarms\": \"<boolean>\",\n  \"enable_email_providers\": \"<boolean>\",\n  \"grace_period\": \"<string>\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ],\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"iam_role_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"inherit_acl\": \"<boolean>\",\n  \"is_physical_quota\": \"<boolean>\",\n  \"is_user_quota\": \"<boolean>\",\n  \"quota_groups_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b9c3c83-bdd7-4cb5-b972-cd74a76b161f",
+              "name": "Quota information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"path\": \"<string>\",\n  \"create_dir\": \"<boolean>\",\n  \"create_dir_mode\": \"<integer>\",\n  \"default_email\": \"<string>\",\n  \"default_group_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"enable_alarms\": \"<boolean>\",\n  \"enable_email_providers\": \"<boolean>\",\n  \"grace_period\": \"<string>\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ],\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"iam_role_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"inherit_acl\": \"<boolean>\",\n  \"is_physical_quota\": \"<boolean>\",\n  \"is_user_quota\": \"<boolean>\",\n  \"quota_groups_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 2938,\n  \"default_email\": \"string\",\n  \"default_group_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"enable_alarms\": true,\n  \"enable_email_providers\": true,\n  \"grace_period\": \"string\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ],\n  \"guid\": \"string\",\n  \"hard_limit\": 9018,\n  \"hard_limit_inodes\": 6518,\n  \"id\": 6570,\n  \"internal\": true,\n  \"is_user_quota\": false,\n  \"last_user_quotas_update\": \"1968-07-15T08:45:36.195Z\",\n  \"num_blocked_users\": 2136,\n  \"num_exceeded_users\": 944,\n  \"percent_capacity\": 8002,\n  \"percent_inodes\": 9934,\n  \"pretty_grace_period\": \"string\",\n  \"pretty_grace_period_expiration\": \"string\",\n  \"pretty_state\": \"string\",\n  \"soft_limit\": 9337,\n  \"soft_limit_inodes\": 1358,\n  \"state\": \"FAILED\",\n  \"sync_state\": \"string\",\n  \"system_id\": 2090,\n  \"tenant_id\": 4499,\n  \"tenant_name\": \"string\",\n  \"time_to_block\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"used_capacity\": 7327,\n  \"used_capacity_tb\": 5231.243660600865,\n  \"used_effective_capacity\": 736,\n  \"used_effective_capacity_tb\": 1889.3995429016463,\n  \"used_inodes\": 1238,\n  \"used_limited_capacity\": 8347,\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d333f085-8e53-4d4a-af01-3e9fbc6fd2c4",
+          "name": "Start recalculation flow all quotas",
+          "request": {
+            "name": "Start recalculation flow all quotas",
+            "description": {},
+            "url": {
+              "path": [
+                "quotas",
+                "recalc",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Quota ID - if not given, will be applied to all quotas"
+                }
+              ],
+              "variable": []
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "beb29b07-692a-45e3-a8c8-4883267e7640",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    "recalc",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ca4783b-7a45-4c60-b3a3-bfe6b0d4d106",
+          "name": "Stop recalculation flow for all quotas",
+          "request": {
+            "name": "Stop recalculation flow for all quotas",
+            "description": {},
+            "url": {
+              "path": [
+                "quotas",
+                "recalc_stop",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb8fb8e4-ee33-477c-88b8-86267bd8fa7a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    "recalc_stop",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "884f6015-065f-4e84-b240-d450ce839bec",
+          "name": "Delete Quota",
+          "request": {
+            "name": "Delete Quota",
+            "description": {
+              "content": "This endpoint deletes a quota.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotas",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a114bfa0-f914-4295-afe3-ff8cd118b463",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ddaf74b-1811-4b29-a1ac-137b994216e0",
+          "name": "Return Details of a Quota",
+          "request": {
+            "name": "Return Details of a Quota",
+            "description": {
+              "content": "This endpoint returns details of a specified quota.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotas",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1fd819a-c2bf-4b76-863e-76ee05e082e2",
+              "name": "Quota information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 2938,\n  \"default_email\": \"string\",\n  \"default_group_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"enable_alarms\": true,\n  \"enable_email_providers\": true,\n  \"grace_period\": \"string\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ],\n  \"guid\": \"string\",\n  \"hard_limit\": 9018,\n  \"hard_limit_inodes\": 6518,\n  \"id\": 6570,\n  \"internal\": true,\n  \"is_user_quota\": false,\n  \"last_user_quotas_update\": \"1968-07-15T08:45:36.195Z\",\n  \"num_blocked_users\": 2136,\n  \"num_exceeded_users\": 944,\n  \"percent_capacity\": 8002,\n  \"percent_inodes\": 9934,\n  \"pretty_grace_period\": \"string\",\n  \"pretty_grace_period_expiration\": \"string\",\n  \"pretty_state\": \"string\",\n  \"soft_limit\": 9337,\n  \"soft_limit_inodes\": 1358,\n  \"state\": \"FAILED\",\n  \"sync_state\": \"string\",\n  \"system_id\": 2090,\n  \"tenant_id\": 4499,\n  \"tenant_name\": \"string\",\n  \"time_to_block\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"used_capacity\": 7327,\n  \"used_capacity_tb\": 5231.243660600865,\n  \"used_effective_capacity\": 736,\n  \"used_effective_capacity_tb\": 1889.3995429016463,\n  \"used_inodes\": 1238,\n  \"used_limited_capacity\": 8347,\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26008fee-fe9e-49c1-ac7c-337d31e074fb",
+          "name": "Modify Quota",
+          "request": {
+            "name": "Modify Quota",
+            "description": {
+              "content": "This endpoint modifies a quota.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotas",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"default_email\": \"<string>\",\n  \"default_group_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"enable_alarms\": \"<boolean>\",\n  \"enable_email_providers\": \"<boolean>\",\n  \"grace_period\": \"<string>\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ],\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"iam_role_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"is_user_quota\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"quota_groups_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\",\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "661f0f6d-7d13-48b4-95e3-db926a670439",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"default_email\": \"<string>\",\n  \"default_group_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"quota_system_id\": \"<integer>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"enable_alarms\": \"<boolean>\",\n  \"enable_email_providers\": \"<boolean>\",\n  \"grace_period\": \"<string>\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ],\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"iam_role_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"is_user_quota\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"quota_groups_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\",\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    },\n    {\n      \"grace_period\": \"<string>\",\n      \"hard_limit\": \"<integer>\",\n      \"hard_limit_inodes\": \"<integer>\",\n      \"quota_system_id\": \"<integer>\",\n      \"soft_limit\": \"<integer>\",\n      \"soft_limit_inodes\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"is_accountable\": \"<boolean>\",\n      \"is_group\": \"<boolean>\",\n      \"is_iam_role\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"percent_capacity\": \"<integer>\",\n      \"percent_inodes\": \"<integer>\",\n      \"state\": \"<string>\",\n      \"time_to_block\": \"<string>\",\n      \"used_capacity\": \"<long>\",\n      \"used_inodes\": \"<integer>\",\n      \"vast_id\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e448121-ac96-46d6-819d-671d650b7b23",
+          "name": "Refresh a Quota's User Quotas",
+          "request": {
+            "name": "Refresh a Quota's User Quotas",
+            "description": {},
+            "url": {
+              "path": [
+                "quotas",
+                ":id",
+                "refresh_user_quotas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54e3abd8-2d7d-4b18-b13b-81cbc8b9a2fb",
+              "name": "Refreshed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    ":id",
+                    "refresh_user_quotas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2286623a-815b-437d-8b30-6e1e33a61fc2",
+          "name": "Reset the grace period countdown after soft limit is exceeded",
+          "request": {
+            "name": "Reset the grace period countdown after soft limit is exceeded",
+            "description": {},
+            "url": {
+              "path": [
+                "quotas",
+                ":id",
+                "reset_grace_period",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4412f168-ea1f-4196-b8dc-d1c6a3cddf43",
+              "name": "Stopped",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotas",
+                    ":id",
+                    "reset_grace_period",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0fe762d9-c133-4fcc-be04-7e0b7d1913f7",
+    "name": "VAST API Swagger Schema activedirectory quotas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

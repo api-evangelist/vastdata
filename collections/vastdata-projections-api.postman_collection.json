@@ -1,0 +1,597 @@
+{
+  "item": [
+    {
+      "id": "4ea2932f-bbeb-46ff-ac8b-5a9fe5f2519e",
+      "name": "projections",
+      "description": {
+        "content": "Projections are subsets of a full table in the VAST Database that allow for optimized queries that use only the columns included in the projection.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0bbc6e12-1ef3-4a09-a5a8-a84272fc8404",
+          "name": "List Database Table Semi-Sorted Projections",
+          "request": {
+            "name": "List Database Table Semi-Sorted Projections",
+            "description": {
+              "content": "This endpoint lists database table semi-sorted projections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projections",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "999"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "table_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by table_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Getting list of objects by exact match"
+                },
+                {
+                  "disabled": false,
+                  "key": "name__startswith",
+                  "value": "<string>",
+                  "description": "Getting list of objects by prefix match"
+                },
+                {
+                  "disabled": false,
+                  "key": "count_only",
+                  "value": "false",
+                  "description": "Whether to only return count of objects"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a77d20e-e596-414b-8285-4f38dd54298c",
+              "name": "Database Table Semi-Sorted Projections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projections",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "999"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "table_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name__startswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"database_name\": \"string\",\n    \"name\": \"string\",\n    \"num_rows\": 5379,\n    \"schema_name\": \"string\",\n    \"size\": 1547,\n    \"table_name\": \"string\",\n    \"properties\": \"string\"\n  },\n  {\n    \"database_name\": \"string\",\n    \"name\": \"string\",\n    \"num_rows\": 9536,\n    \"schema_name\": \"string\",\n    \"size\": 3584,\n    \"table_name\": \"string\",\n    \"properties\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2053fde-b2cf-4fc7-8934-db9fb1fb37e6",
+          "name": "Create a Database Table Semi-Sorted Projection",
+          "request": {
+            "name": "Create a Database Table Semi-Sorted Projection",
+            "description": {
+              "content": "This endpoint creates a database table semi-sorted projection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projections",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"sorted_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_name\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"unsorted_columns\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "c6b3e4eb-b394-45f4-aa8f-42cb75b32aed",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projections",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e87c433b-57e5-4f22-aa28-44ff450fb708",
+          "name": "Delete a Database Table Semi-Sorted Projection",
+          "request": {
+            "name": "Delete a Database Table Semi-Sorted Projection",
+            "description": {
+              "content": "This endpoint deletes a database table semi-sorted projection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projections",
+                "delete",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "b9d5fcd5-550e-4ddf-bf45-002748d19d73",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projections",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94301718-345e-48fc-8f94-fc8660b099ed",
+          "name": "Rename a Database Table Semi-Sorted Projection",
+          "request": {
+            "name": "Rename a Database Table Semi-Sorted Projection",
+            "description": {
+              "content": "This endpoint renames a database table semi-sorted projection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projections",
+                "rename",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"new_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "8045e966-10b7-4b17-b14c-e5236294c275",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projections",
+                    "rename",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11da1e02-f97b-4f64-9c99-fbaea3b7c387",
+          "name": "Return a Database Table Semi-Sorted Projection",
+          "request": {
+            "name": "Return a Database Table Semi-Sorted Projection",
+            "description": {
+              "content": "This endpoint returns a database table semi-sorted projection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projections",
+                "show",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "table_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by table_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Getting object by exact match"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "175a8f67-0225-4d99-86e4-f863d3b7b281",
+              "name": "Database Table Semi-Sorted Projection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projections",
+                    "show",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "table_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"database_name\": \"<string>\",\n  \"initial_sync_progress\": 9752,\n  \"name\": \"<string>\",\n  \"num_rows\": 7032,\n  \"schema_name\": \"<string>\",\n  \"size\": 3812,\n  \"table_name\": \"<string>\",\n  \"properties\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c1e3b889-9283-4a28-9491-9330579ae8b0",
+    "name": "VAST API Swagger Schema activedirectory projections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

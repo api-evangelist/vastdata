@@ -1,0 +1,597 @@
+{
+  "item": [
+    {
+      "id": "bd268145-8698-47cc-98d3-713b18418327",
+      "name": "vm",
+      "description": {
+        "content": "Virtual machines can include EBox hosts and virtual machine hosts that comprise VAST on Cloud (VoC) clusters. Each virtual machine runs CNodes and DNodes in containers. Both EBoxes and GCP VoC virtual machines  each run one CNode container and two DNode containers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0403d4fb-8a4c-4692-ba30-bbad948b6349",
+          "name": "List virtual machines",
+          "request": {
+            "name": "List virtual machines",
+            "description": {
+              "content": "This endpoint lists all virtual machines that belong to the cluster and their details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-machines",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55466f97-8e61-4b24-82a3-7269401caa0d",
+              "name": "Virtual machine information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"arch_type\": \"string\",\n    \"box_vendor\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 4362,\n    \"description\": \"string\",\n    \"drive_type\": \"string\",\n    \"dtray\": \"string\",\n    \"external_machine_id\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8773,\n    \"index_in_rack\": 2773,\n    \"is_conclude_possible\": true,\n    \"is_replace_possible\": true,\n    \"led_status\": \"string\",\n    \"rack_id\": 2315,\n    \"state\": \"string\",\n    \"subsystem\": 8945,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"uid\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"arch_type\": \"string\",\n    \"box_vendor\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 1919,\n    \"description\": \"string\",\n    \"drive_type\": \"string\",\n    \"dtray\": \"string\",\n    \"external_machine_id\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 1473,\n    \"index_in_rack\": 2619,\n    \"is_conclude_possible\": true,\n    \"is_replace_possible\": false,\n    \"led_status\": \"string\",\n    \"rack_id\": 6852,\n    \"state\": \"string\",\n    \"subsystem\": 9765,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"uid\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "642b8804-2cc1-4375-857d-84110a136f5b",
+          "name": "Decommission ENODE VMs",
+          "request": {
+            "name": "Decommission ENODE VMs",
+            "description": {
+              "content": "Decommission a specified number of ENODE VMs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-machines",
+                "decommission"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"count\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "3d4b6216-bf4a-4329-a0bc-715c174693c1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    "decommission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"count\": \"<integer>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8069757-06e1-4a02-97e5-8b21a5a2ba37",
+          "name": "Add Virtual Machines to the cluster.",
+          "request": {
+            "name": "Add Virtual Machines to the cluster.",
+            "description": {
+              "content": "Add Virtual Machines to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-machines",
+                "expand"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"total_cnode_machines\": \"<integer>\",\n  \"total_enode_machines\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "f536ad18-1fdc-4dbc-ba82-91fe90e2543f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    "expand"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"total_cnode_machines\": \"<integer>\",\n  \"total_enode_machines\": \"<integer>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62933e12-2975-4662-91fb-666693ab36f4",
+          "name": "Remove Virtual Machine",
+          "request": {
+            "name": "Remove Virtual Machine",
+            "description": {
+              "content": "Remove Virtual Machine",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-machines",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vm_external_id\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "4e2898d7-ccad-4720-942f-ef413b55fce3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vm_external_id\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4f30fe9-92cc-4602-a341-a3b4f3aa3973",
+          "name": "Replace Virtual Machines.",
+          "request": {
+            "name": "Replace Virtual Machines.",
+            "description": {
+              "content": "Replace Virtual Machines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-machines",
+                "replace"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vm_external_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"in_place\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "d3b830e4-9e8a-4753-9c08-2892b76bcb2b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    "replace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vm_external_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"in_place\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83687c95-8242-49c3-a809-34482cb58b10",
+          "name": "Return Details of a virtual machine.",
+          "request": {
+            "name": "Return Details of a virtual machine.",
+            "description": {
+              "content": "This endpoint returns details of a specific virtual machine.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-machines",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) virtual machine ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27b83d19-7f54-48f3-841a-bc1c91928cf0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) virtual machine ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"arch_type\": \"string\",\n  \"box_vendor\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 5996,\n  \"description\": \"string\",\n  \"drive_type\": \"string\",\n  \"dtray\": \"string\",\n  \"external_machine_id\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 4881,\n  \"index_in_rack\": 1163,\n  \"is_conclude_possible\": false,\n  \"is_replace_possible\": false,\n  \"led_status\": \"string\",\n  \"rack_id\": 9856,\n  \"state\": \"string\",\n  \"subsystem\": 2307,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"title\": \"string\",\n  \"uid\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "497e75d0-e8a0-443b-8327-ac0fffeea4f6",
+    "name": "VAST API Swagger Schema activedirectory vm API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

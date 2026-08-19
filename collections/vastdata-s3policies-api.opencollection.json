@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory s3policies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "s3policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List S3 policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/s3policies/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "iam_roles__id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all S3 identity policies."
+        },
+        {
+          "info": {
+            "name": "Create an Identity Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/s3policies/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an S3 identity policy. Multiple S3 identity policies may be created and they may be attached to multiple users and groups. Each user and group is denied all permissions denied by any attached S3 identity policy and is granted the aggregate of all permissions granted by all attached S3 identity policies that are not denied by any other attached policy. Creating an S3 identify policy involves writing the policy in a JSON document structure."
+        },
+        {
+          "info": {
+            "name": "Return details of an S3 identity policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/s3policies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the S3 identity policy."
+              }
+            ]
+          },
+          "docs": "This endpoint returns an S3 identity policy"
+        },
+        {
+          "info": {
+            "name": "Modify an S3 Identity Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/s3policies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the S3 identity policy."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies an S3 identity policy."
+        },
+        {
+          "info": {
+            "name": "Delete an S3 Identity Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/s3policies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the S3 identity policy."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a specified S3 identity policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

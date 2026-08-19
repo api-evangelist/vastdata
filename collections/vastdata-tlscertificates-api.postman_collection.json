@@ -1,0 +1,935 @@
+{
+  "item": [
+    {
+      "id": "c9e4cc88-e877-45e1-af12-ed721ff73af8",
+      "name": "tlscertificates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc97b9d9-d410-4987-982e-37a9d763e909",
+          "name": "List of TLS certificates",
+          "request": {
+            "name": "List of TLS certificates",
+            "description": {},
+            "url": {
+              "path": [
+                "tlscertificates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant__id",
+                  "value": "<integer>",
+                  "description": "The tenant to show"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant__isnull",
+                  "value": "<boolean>",
+                  "description": "Filter by global certificate"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocols__icontains",
+                  "value": "<string>",
+                  "description": "Protocol to see"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e58ca71-ed52-4cc0-8624-002605d61d61",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tlscertificates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant__isnull",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "protocols__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ca_certificate_name\": \"string\",\n    \"ca_certificate_uploaded\": \"1997-02-06T16:08:20.495Z\",\n    \"created\": \"1969-06-19T09:14:20.096Z\",\n    \"expires_on\": \"1952-10-12T21:53:36.294Z\",\n    \"id\": 9996,\n    \"protocols\": [\n      \"KAFKA\",\n      \"KAFKA\"\n    ],\n    \"revocations_exist\": false,\n    \"revocations_expire_on\": \"1998-10-15T17:14:14.781Z\",\n    \"revocations_name\": \"string\",\n    \"revocations_uploaded\": \"1977-04-09T16:17:10.591Z\",\n    \"tenant\": {\n      \"id\": 5844,\n      \"name\": \"string\"\n    },\n    \"tenant_associate_param\": \"string\"\n  },\n  {\n    \"ca_certificate_name\": \"string\",\n    \"ca_certificate_uploaded\": \"2012-06-11T03:26:52.592Z\",\n    \"created\": \"2020-01-12T01:48:15.207Z\",\n    \"expires_on\": \"1984-09-17T23:52:43.380Z\",\n    \"id\": 1944,\n    \"protocols\": [\n      \"NFS\",\n      \"NFS\"\n    ],\n    \"revocations_exist\": false,\n    \"revocations_expire_on\": \"1949-07-19T04:36:42.683Z\",\n    \"revocations_name\": \"string\",\n    \"revocations_uploaded\": \"2026-07-27T13:23:40.867Z\",\n    \"tenant\": {\n      \"id\": 9199,\n      \"name\": \"string\"\n    },\n    \"tenant_associate_param\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9e5bfcf-4f5b-428a-a146-3ce811597495",
+          "name": "Creates TLS certificates",
+          "request": {
+            "name": "Creates TLS certificates",
+            "description": {},
+            "url": {
+              "path": [
+                "tlscertificates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "ca_certificate_file",
+                  "type": "file",
+                  "description": "(Required) The CA certificate file to upload."
+                },
+                {
+                  "key": "ca_certificate_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Certificate name (default - the file name)."
+                },
+                {
+                  "key": "protocols",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "revocation_file",
+                  "type": "file",
+                  "description": "The certificate revocation list file to upload."
+                },
+                {
+                  "key": "revocations_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Revocation name (default - the file name)."
+                },
+                {
+                  "key": "tenant_associate_param",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Tenant ID"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dce58492-8615-4f11-a9ba-2fcea2f66d6e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tlscertificates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The CA certificate file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "ca_certificate_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Certificate name (default - the file name).",
+                        "type": "text/plain"
+                      },
+                      "key": "ca_certificate_name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "protocols",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The certificate revocation list file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "revocation_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Revocation name (default - the file name).",
+                        "type": "text/plain"
+                      },
+                      "key": "revocations_name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tenant_associate_param",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Tenant ID",
+                        "type": "text/plain"
+                      },
+                      "key": "tenant_id",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ca_certificate_name\": \"string\",\n  \"ca_certificate_uploaded\": \"2006-11-11T01:13:18.096Z\",\n  \"created\": \"2015-01-17T06:04:10.405Z\",\n  \"expires_on\": \"1981-09-19T20:45:06.795Z\",\n  \"id\": 3735,\n  \"protocols\": [\n    \"NFS\",\n    \"NFS\"\n  ],\n  \"revocations_exist\": false,\n  \"revocations_expire_on\": \"1991-12-14T01:01:43.554Z\",\n  \"revocations_name\": \"string\",\n  \"revocations_uploaded\": \"1971-07-07T05:10:11.944Z\",\n  \"tenant\": {\n    \"id\": 9646,\n    \"name\": \"string\"\n  },\n  \"tenant_associate_param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d96afd18-3d85-4e26-bbd5-98ec4cf1bb18",
+          "name": "Check whether an operation may be successfully performed",
+          "request": {
+            "name": "Check whether an operation may be successfully performed",
+            "description": {},
+            "url": {
+              "path": [
+                "tlscertificates",
+                "is_operation_healthy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "ca_certificate_file",
+                  "type": "file",
+                  "description": "(Required) The CA certificate file to upload."
+                },
+                {
+                  "key": "revocation_file",
+                  "type": "file",
+                  "description": "The certificate revocation list file to upload."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7573c105-ca44-4cc6-be82-69e17441ce94",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tlscertificates",
+                    "is_operation_healthy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The CA certificate file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "ca_certificate_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The certificate revocation list file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "revocation_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"warnings\": [\n    \"Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant='default', path='/test')\",\n    \"Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant='default', path='/test')\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1cf37110-ddb4-4158-a3cb-0fe7c6ec6024",
+          "name": "tlscertificates delete",
+          "request": {
+            "name": "tlscertificates delete",
+            "description": {},
+            "url": {
+              "path": [
+                "tlscertificates",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a31b614f-1140-49cc-876e-93dcb2fb080e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tlscertificates",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4376bc6f-8cbb-4de2-baea-824ecc504068",
+          "name": "tlscertificates read",
+          "request": {
+            "name": "tlscertificates read",
+            "description": {},
+            "url": {
+              "path": [
+                "tlscertificates",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e78b1d76-e9fe-4e24-a629-02a466234fc9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tlscertificates",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ca_certificate_name\": \"string\",\n  \"ca_certificate_uploaded\": \"2006-11-11T01:13:18.096Z\",\n  \"created\": \"2015-01-17T06:04:10.405Z\",\n  \"expires_on\": \"1981-09-19T20:45:06.795Z\",\n  \"id\": 3735,\n  \"protocols\": [\n    \"NFS\",\n    \"NFS\"\n  ],\n  \"revocations_exist\": false,\n  \"revocations_expire_on\": \"1991-12-14T01:01:43.554Z\",\n  \"revocations_name\": \"string\",\n  \"revocations_uploaded\": \"1971-07-07T05:10:11.944Z\",\n  \"tenant\": {\n    \"id\": 9646,\n    \"name\": \"string\"\n  },\n  \"tenant_associate_param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81227b67-1c7d-4e8b-89ac-22ef9da11b0b",
+          "name": "tlscertificates partial update",
+          "request": {
+            "name": "tlscertificates partial update",
+            "description": {},
+            "url": {
+              "path": [
+                "tlscertificates",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "ca_certificate_file",
+                  "type": "file",
+                  "description": "The new CA certificate file to upload."
+                },
+                {
+                  "key": "ca_certificate_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Certificate name (default - the file name)."
+                },
+                {
+                  "key": "protocols",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "revocation_file",
+                  "type": "file",
+                  "description": "The new certificate revocation list file to upload."
+                },
+                {
+                  "key": "revocations_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Revocation name (default - the file name)."
+                },
+                {
+                  "key": "tenant_associate_param",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "99de307c-a443-461a-a574-9801189d5ed6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tlscertificates",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The new CA certificate file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "ca_certificate_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Certificate name (default - the file name).",
+                        "type": "text/plain"
+                      },
+                      "key": "ca_certificate_name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "protocols",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The new certificate revocation list file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "revocation_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Revocation name (default - the file name).",
+                        "type": "text/plain"
+                      },
+                      "key": "revocations_name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tenant_associate_param",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edf4faee-80f5-4e3f-8aa8-a5990bab1720",
+          "name": "tlscertificates delete crl",
+          "request": {
+            "name": "tlscertificates delete crl",
+            "description": {},
+            "url": {
+              "path": [
+                "tlscertificates",
+                ":id",
+                "crl",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc1b330e-5760-4761-97e9-80a73273707a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tlscertificates",
+                    ":id",
+                    "crl",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "128a7b4b-4f28-4572-ba14-c71ffd326771",
+    "name": "VAST API Swagger Schema activedirectory tlscertificates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

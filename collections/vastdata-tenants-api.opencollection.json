@@ -1,0 +1,700 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory Tenants API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the number of views in the tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:id/views_count",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "Returns the number of views in the tenant."
+        },
+        {
+          "info": {
+            "name": "List Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Name to filter by"
+              }
+            ]
+          },
+          "docs": "This endpoint lists tenants."
+        },
+        {
+          "info": {
+            "name": "Create Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a tenant."
+        },
+        {
+          "info": {
+            "name": "Return Configured Identity Provider for Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/configured_idp/",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Tenant name"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a tenant's configured SAML identity provider."
+        },
+        {
+          "info": {
+            "name": "List Tenant Metric Labels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/metric_labels/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all available tenant metric labels."
+        },
+        {
+          "info": {
+            "name": "Create Tenant Metric Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/metric_labels/"
+          },
+          "docs": "This endpoint creates a new tenant metric label."
+        },
+        {
+          "info": {
+            "name": "Get Tenant Metric Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/metric_labels/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a specific tenant metric label."
+        },
+        {
+          "info": {
+            "name": "Delete Tenant Metric Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/metric_labels/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a tenant metric label."
+        },
+        {
+          "info": {
+            "name": "Return Details of Remote Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/remote_objects/",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter remote tenants by name"
+              },
+              {
+                "name": "target_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter remote tenants by target"
+              }
+            ]
+          },
+          "docs": "Returns details of remote tenants."
+        },
+        {
+          "info": {
+            "name": "Return Details of Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "Returns details of a specified tenant."
+        },
+        {
+          "info": {
+            "name": "Modify Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tenants/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies a specified tenant."
+        },
+        {
+          "info": {
+            "name": "Delete Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              },
+              {
+                "name": "force_remove",
+                "value": "",
+                "type": "query",
+                "description": "Forces deletion of the tenant, even if files exist in the tenant directory."
+              }
+            ]
+          },
+          "docs": "Deletes a specified tenant."
+        },
+        {
+          "info": {
+            "name": "Update tenant Client IP ranges",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tenants/:id/client_ip_ranges/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "Updates Client IP ranges of a Tenant."
+        },
+        {
+          "info": {
+            "name": "get tenant client metrics settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:id/client_metrics/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "this endpoint returns tenant client metrics settings."
+        },
+        {
+          "info": {
+            "name": "Update Tenant Client Metrics Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tenants/:id/client_metrics/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "This endpoint updates client metrics settings for a tenant."
+        },
+        {
+          "info": {
+            "name": "Deactivate tenant's encryption group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/:id/deactivate_encryption_group/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deactivates a tenant's encryption group. Deactivated keys are revoked and destroyed. They cannot be reinstated. The encrypted data becomes inaccessible forever."
+        },
+        {
+          "info": {
+            "name": "Check whether an operation may be successfully performed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/:id/is_operation_healthy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              },
+              {
+                "name": "operation",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns warnings about the future state if operation is performed."
+        },
+        {
+          "info": {
+            "name": "Remove NFSv4 delegation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/:id/nfs4_deleg/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              },
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Client ID"
+              },
+              {
+                "name": "delegation_stateid",
+                "value": "",
+                "type": "query",
+                "description": "Delegation state ID"
+              }
+            ]
+          },
+          "docs": "Remove NFSv4 delegation"
+        },
+        {
+          "info": {
+            "name": "Query list of NFSv4 delegations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:id/nfs4_delegs/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              },
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path"
+              },
+              {
+                "name": "xeystore_pagination_next_client_id",
+                "value": "",
+                "type": "query",
+                "description": "Xeystore pagination"
+              }
+            ]
+          },
+          "docs": "This endpoint queries list of NFSv4 delegations"
+        },
+        {
+          "info": {
+            "name": "Reinstate tenant's encryption group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/:id/reinstate_encryption_group/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "Reinstate tenant's encryption group."
+        },
+        {
+          "info": {
+            "name": "Revoke tenant's encryption group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/:id/revoke_encryption_group/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "Revoke tenant's encryption group."
+        },
+        {
+          "info": {
+            "name": "Rotate tenant's encryption group key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/:id/rotate_encryption_group_key/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "This endpoint rotates the key encryption key for the encryption group to which the tenant belongs. This is applicable only if encryption is enabled with encryption type CIPHER_TRUST_KMIP, in which encryption keys are managed externally on Thales Group CipherTrust Data Security Platform. The key encryption key is used by the cluster to retrieve the data encryption key from the external key manager (EKM) when needed to encrypt data. Rotating the key encryption key generates a new version of the ke"
+        },
+        {
+          "info": {
+            "name": "Get tenants with the same encryption group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:id/same_encryption_group_tenants/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "Returns names of tenants with the same encryption group."
+        },
+        {
+          "info": {
+            "name": "Get tenant VIP pools IP ranges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:id/vippool_ip_ranges/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "Returns IP ranges of VIP Pools that can be used with the tenant."
+        },
+        {
+          "info": {
+            "name": "List Tenant Metric Label Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:tenant_id/metric_label_values/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a Tenant"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all metric label values for a specific tenant."
+        },
+        {
+          "info": {
+            "name": "Create Tenant Metric Label Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/:tenant_id/metric_label_values/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a Tenant"
+              }
+            ]
+          },
+          "docs": "This endpoint creates a new metric label value for a tenant."
+        },
+        {
+          "info": {
+            "name": "Get All Tenant Metric Label Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:tenant_id/metric_label_values/bulk/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a Tenant"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves all metric label values for a tenant as a dictionary."
+        },
+        {
+          "info": {
+            "name": "Bulk Update Tenant Metric Label Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tenants/:tenant_id/metric_label_values/bulk/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a Tenant"
+              }
+            ]
+          },
+          "docs": "This endpoint replaces all metric label values for a tenant with the provided dictionary.\nAll existing values are deleted and replaced with the new ones.\n"
+        },
+        {
+          "info": {
+            "name": "Get Tenant Metric Label Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tenants/:tenant_id/metric_label_values/:id/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a Tenant"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a specific metric label value for a tenant."
+        },
+        {
+          "info": {
+            "name": "Update Tenant Metric Label Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tenants/:tenant_id/metric_label_values/:id/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a Tenant"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint updates a metric label value for a tenant."
+        },
+        {
+          "info": {
+            "name": "Delete Tenant Metric Label Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tenants/:tenant_id/metric_label_values/:id/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a Tenant"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a metric label value for a tenant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

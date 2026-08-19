@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory columns API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "columns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Database Table Columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/columns/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by schema_name"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by table_name"
+              },
+              {
+                "name": "is_imports_table",
+                "value": "",
+                "type": "query",
+                "description": "Is table actually a sub-table to track imported .parquet files."
+              },
+              {
+                "name": "list_sorted_columns",
+                "value": "",
+                "type": "query",
+                "description": "List only columns that are sorted."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by exact match"
+              },
+              {
+                "name": "name__startswith",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by prefix match"
+              },
+              {
+                "name": "count_only",
+                "value": "",
+                "type": "query",
+                "description": "Whether to only return count of objects"
+              }
+            ]
+          },
+          "docs": "This endpoint lists Database Table Columns."
+        },
+        {
+          "info": {
+            "name": "Delete a Database Table Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/columns/delete/"
+          },
+          "docs": "This endpoint deletes a Database Table Column."
+        },
+        {
+          "info": {
+            "name": "Rename a Database Table Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/columns/rename/"
+          },
+          "docs": "This endpoint renames column."
+        },
+        {
+          "info": {
+            "name": "Show a Database Table Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/columns/show/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by schema_name"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by table_name"
+              },
+              {
+                "name": "is_imports_table",
+                "value": "",
+                "type": "query",
+                "description": "Is table actually a sub-table to track imported .parquet files."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting object by exact match"
+              }
+            ]
+          },
+          "docs": "This endpoint shows a Database Table Column."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

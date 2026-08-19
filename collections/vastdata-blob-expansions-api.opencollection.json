@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory Blob Expansions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blob Expansions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Blob Expansion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/blobexpansions/"
+          },
+          "docs": "This endpoint creates a Blob Expansion on a Kafka Topic."
+        },
+        {
+          "info": {
+            "name": "Add columns to a Blob Expansion",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/blobexpansions/add_columns/"
+          },
+          "docs": "This endpoint adds columns to an existing Blob Expansion."
+        },
+        {
+          "info": {
+            "name": "Delete a Blob Expansion",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/blobexpansions/delete/"
+          },
+          "docs": "This endpoint deletes a Blob Expansion."
+        },
+        {
+          "info": {
+            "name": "Drop columns from a Blob Expansion",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/blobexpansions/drop_columns/"
+          },
+          "docs": "This endpoint drops columns from an existing Blob Expansion."
+        },
+        {
+          "info": {
+            "name": "Show a Blob Expansion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blobexpansions/show/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by table_name"
+              },
+              {
+                "name": "source_column_name",
+                "value": "",
+                "type": "query",
+                "description": "Source column name for blob expansion (defaults to \"value\" for Kafka topics)"
+              }
+            ]
+          },
+          "docs": "This endpoint shows a Blob Expansion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,764 @@
+{
+  "item": [
+    {
+      "id": "a0f9dffb-763a-4b64-89f1-ac760534528b",
+      "name": "snapshots",
+      "description": {
+        "content": "A snapshot is an image of the data existing at a point in time under a specific Element Store path. Snapshots can be created on a one off basis or scheduled using a protected path. Scheduled snapshots can be retained locally, and/or backed up either to an S3 replication peer or to a replication peer.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3181308b-b587-433e-9bd1-f9e6687b95a0",
+          "name": "List Snapshots",
+          "request": {
+            "name": "List Snapshots",
+            "description": {
+              "content": "This endpoint list snapshots. The list can be filtered.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshots",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Filter by snapshot path"
+                },
+                {
+                  "disabled": false,
+                  "key": "name__contains",
+                  "value": "<string>",
+                  "description": "Filter by part of snapshot name"
+                },
+                {
+                  "disabled": false,
+                  "key": "expiration_time",
+                  "value": "<string>",
+                  "description": "Filter by expiration time"
+                },
+                {
+                  "disabled": false,
+                  "key": "protection_policy__name",
+                  "value": "<string>",
+                  "description": "Filter by snapshot policy name"
+                },
+                {
+                  "disabled": false,
+                  "key": "protection_policy__id",
+                  "value": "<integer>",
+                  "description": "Filter by snapshot policy ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by state"
+                },
+                {
+                  "disabled": false,
+                  "key": "created",
+                  "value": "<string>",
+                  "description": "Filter by creation time"
+                },
+                {
+                  "disabled": false,
+                  "key": "locked",
+                  "value": "<boolean>",
+                  "description": "Filter for locked snapshots"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_name__icontains",
+                  "value": "<string>",
+                  "description": "Tenant name to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_id",
+                  "value": "<integer>",
+                  "description": "Mapped volume id to filter by."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3262d4f0-3ebd-4664-b32b-1234dabeb6cb",
+              "name": "Snapshot details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshots",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name__contains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expiration_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "protection_policy__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "protection_policy__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locked",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant_name__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"path\": \"string\",\n    \"aggr_phys_estimation\": 1324,\n    \"cluster\": \"string\",\n    \"created\": \"string\",\n    \"eta_sec\": 4853.276269058036,\n    \"expiration_time\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 7413,\n    \"indestructible\": true,\n    \"locked\": true,\n    \"policy\": \"string\",\n    \"policy_id\": 7051,\n    \"protection_policy\": \"string\",\n    \"protection_policy_id\": 6388,\n    \"state\": \"string\",\n    \"subsystem_related\": true,\n    \"tenant_id\": 384,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"type\": \"string\",\n    \"unique_phys_estimation\": 3352,\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"path\": \"string\",\n    \"aggr_phys_estimation\": 2414,\n    \"cluster\": \"string\",\n    \"created\": \"string\",\n    \"eta_sec\": 2639.041372871398,\n    \"expiration_time\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9281,\n    \"indestructible\": false,\n    \"locked\": true,\n    \"policy\": \"string\",\n    \"policy_id\": 2824,\n    \"protection_policy\": \"string\",\n    \"protection_policy_id\": 3926,\n    \"state\": \"string\",\n    \"subsystem_related\": false,\n    \"tenant_id\": 8612,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"type\": \"string\",\n    \"unique_phys_estimation\": 4107,\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58971ea9-b839-4e2a-a91f-048607753938",
+          "name": "Create Snapshot",
+          "request": {
+            "name": "Create Snapshot",
+            "description": {
+              "content": "This endpoint creates a snapshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshots",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"name\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"expiration_time\": \"<string>\",\n  \"indestructible\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cd890dc1-de2d-4aa9-aa2a-31c752d41ab4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshots",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"name\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"expiration_time\": \"2021-06-18T08:57:09.000Z\",\n  \"indestructible\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"aggr_phys_estimation\": 6141,\n  \"cluster\": \"string\",\n  \"created\": \"string\",\n  \"eta_sec\": 9241.87955192354,\n  \"expiration_time\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 1230,\n  \"indestructible\": true,\n  \"locked\": false,\n  \"policy\": \"string\",\n  \"policy_id\": 1947,\n  \"protection_policy\": \"string\",\n  \"protection_policy_id\": 8568,\n  \"state\": \"string\",\n  \"subsystem_related\": false,\n  \"tenant_id\": 1156,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"unique_phys_estimation\": 1662,\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7213e933-fef7-4f66-99ea-4c1c547eab6d",
+          "name": "Delete a Snapshot",
+          "request": {
+            "name": "Delete a Snapshot",
+            "description": {
+              "content": "This endpoint deletes a snapshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshots",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Specify the ID of the snapshot."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0faf6fe5-5c19-4d5d-bfd9-db267ce7b7af",
+              "name": "The snapshot was deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshots",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Specify the ID of the snapshot."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ce93e11-a83f-482f-b8e0-e1899c3f7d5d",
+          "name": "Return Details of a Snapshot",
+          "request": {
+            "name": "Return Details of a Snapshot",
+            "description": {
+              "content": "This endpoint returns details of a snapshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshots",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Snapshot ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3890afde-ae95-47d1-9a1f-e7f26e545c17",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshots",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Snapshot ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"aggr_phys_estimation\": 6141,\n  \"cluster\": \"string\",\n  \"created\": \"string\",\n  \"eta_sec\": 9241.87955192354,\n  \"expiration_time\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 1230,\n  \"indestructible\": true,\n  \"locked\": false,\n  \"policy\": \"string\",\n  \"policy_id\": 1947,\n  \"protection_policy\": \"string\",\n  \"protection_policy_id\": 8568,\n  \"state\": \"string\",\n  \"subsystem_related\": false,\n  \"tenant_id\": 1156,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"type\": \"string\",\n  \"unique_phys_estimation\": 1662,\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ce8484d-8d2b-4bf7-8c8f-538b8fbb19e0",
+          "name": "Modify a Snapshot",
+          "request": {
+            "name": "Modify a Snapshot",
+            "description": {
+              "content": "This endpoint modifies a snapshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshots",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Snapshot ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiration_time\": \"<string>\",\n  \"indestructible\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4465eedb-7738-4dfe-ad9e-e05859d2ba18",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshots",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Snapshot ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiration_time\": \"<string>\",\n  \"indestructible\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d8c044b-1503-4f7d-95a1-4830060046e5",
+          "name": "Clone a Snapshot",
+          "request": {
+            "name": "Clone a Snapshot",
+            "description": {
+              "content": "This endpoint creates a clone of a specified snapshot at a specified path on a specified tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshots",
+                ":id",
+                "clone",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Snapshot ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"loanee_root_path\": \"<string>\",\n  \"loanee_tenant_id\": \"<integer>\",\n  \"name\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "c87c1bae-bdf0-4926-9e4b-12c2154e7da5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshots",
+                    ":id",
+                    "clone",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Snapshot ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"loanee_root_path\": \"<string>\",\n  \"loanee_tenant_id\": \"<integer>\",\n  \"name\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bw\": 7358,\n  \"direction\": \"string\",\n  \"enabled\": false,\n  \"eta\": \"string\",\n  \"external_state\": \"string\",\n  \"guid\": \"string\",\n  \"health\": \"string\",\n  \"id\": 6184,\n  \"loanee_root_path\": \"string\",\n  \"loanee_snapshot\": \"string\",\n  \"loanee_snapshot_id\": 68,\n  \"loanee_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"name\": \"string\",\n  \"owner_root_snapshot\": {},\n  \"owner_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"remote_target\": \"string\",\n  \"remote_target_id\": 2499,\n  \"restore_task\": 2830,\n  \"source_cluster\": \"string\",\n  \"source_path\": \"string\",\n  \"source_snapshot\": \"string\",\n  \"state\": \"string\",\n  \"status\": {},\n  \"sync_progress\": 5846,\n  \"target_cluster\": \"string\",\n  \"view_replication_enabled\": true,\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8fef137f-51b4-4316-b476-4ab2a584fa48",
+    "name": "VAST API Swagger Schema activedirectory snapshots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

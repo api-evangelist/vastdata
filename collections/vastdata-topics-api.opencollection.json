@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory topics API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Kafka Topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/topics/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by exact match"
+              },
+              {
+                "name": "count_only",
+                "value": "",
+                "type": "query",
+                "description": "Whether to only return count of objects"
+              }
+            ]
+          },
+          "docs": "This endpoint lists Kafka Topics."
+        },
+        {
+          "info": {
+            "name": "Create a Kafka Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/topics/"
+          },
+          "docs": "This endpoint creates a Kafka Topic"
+        },
+        {
+          "info": {
+            "name": "Modify a Kafka Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/topics/"
+          },
+          "docs": "This endpoint modifies a Kafka Topic"
+        },
+        {
+          "info": {
+            "name": "Delete a Kafka Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/topics/delete/"
+          },
+          "docs": "This endpoint deletes a Kafka Topic."
+        },
+        {
+          "info": {
+            "name": "Show a Kafka Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/topics/show/",
+            "params": [
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting object by exact match"
+              }
+            ]
+          },
+          "docs": "This endpoint shows a Kafka Topic."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

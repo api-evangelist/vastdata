@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory dns API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "dns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List VAST-DNS Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dns/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists the VAST-DNS server configuration."
+        },
+        {
+          "info": {
+            "name": "Create a VAST-DNS Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dns/"
+          },
+          "docs": "This endpoint creates a configuration for the VAST DNS service."
+        },
+        {
+          "info": {
+            "name": "Allocate DNS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dns/allocate/"
+          },
+          "docs": "This endpoint allocates a configuration for the VAST DNS service."
+        },
+        {
+          "info": {
+            "name": "Return Details of VAST-DNS Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dns/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DNS ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a VAST-DNS server configuration."
+        },
+        {
+          "info": {
+            "name": "Modify VAST-DNS Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dns/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DNS ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies the VAST-DNS Server configuration."
+        },
+        {
+          "info": {
+            "name": "Delete VAST-DNS Server Configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/dns/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DNS ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a VAST-DNS server configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

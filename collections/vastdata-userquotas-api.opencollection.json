@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory userquotas API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "userquotas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List User Quotas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/userquotas/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_accountable",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to list only user and group quotas for users and groups that have defined user quotas. Set to false to list only user quotas for users and groups that wrote to the directory but have no defined user/group quota rules."
+              },
+              {
+                "name": "quota_system_id",
+                "value": "",
+                "type": "query",
+                "description": "Filters the list to show only user quotas that belong to a quota with a specified system_id number. This is different to quota ID"
+              },
+              {
+                "name": "quota_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific directory quota"
+              },
+              {
+                "name": "entity__is_group",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to list only group quotas. Set to false to list user and group quotas."
+              },
+              {
+                "name": "entity__is_iam_role",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to list only IAM role quotas."
+              },
+              {
+                "name": "refresh_data",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to refresh data before returning a response, hence guaranteeing fresh data. If false, the data is fetched from the VMS database without refreshing. Response may be quicker with this parameter set to false."
+              },
+              {
+                "name": "quota_group_id",
+                "value": "",
+                "type": "query",
+                "description": "Quota Group ID"
+              }
+            ]
+          },
+          "docs": "This endpoint lists user and group quotas."
+        },
+        {
+          "info": {
+            "name": "Create a User Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/userquotas/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a User Quota"
+        },
+        {
+          "info": {
+            "name": "Return Details of a User Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/userquotas/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User Quota ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified user quota."
+        },
+        {
+          "info": {
+            "name": "Modify User Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/userquotas/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User Quota ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a user quota."
+        },
+        {
+          "info": {
+            "name": "Delete User Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/userquotas/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User Quota ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a user quota."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

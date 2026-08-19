@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory supportbundles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "supportbundles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Support Bundles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundles/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists support bundles."
+        },
+        {
+          "info": {
+            "name": "Create a Support Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/supportbundles/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a support bundle."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Support Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundles/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specific support bundle."
+        },
+        {
+          "info": {
+            "name": "Delete a Support Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/supportbundles/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Support Bundle ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a support bundle."
+        },
+        {
+          "info": {
+            "name": "Download a Support Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/supportbundles/:id/download/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Support Bundle ID"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Bundle secret key"
+              }
+            ]
+          },
+          "docs": "This endpoint downloads a support bundle."
+        },
+        {
+          "info": {
+            "name": "Upload Support Bundle to AWS S3.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/supportbundles/:id/upload/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Support Bundle ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint uploads a supportbundle to the AWS S3 Support bucket."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

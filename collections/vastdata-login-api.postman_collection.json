@@ -1,0 +1,128 @@
+{
+  "item": [
+    {
+      "id": "6d1a93a8-5c1e-4c3f-9918-c00b05aa9e33",
+      "name": "login",
+      "description": {
+        "content": "The login path is used to log into VMS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "839eaaea-cf78-4562-ae8f-ef512a0590b4",
+          "name": "Log In",
+          "request": {
+            "name": "Log In",
+            "description": {
+              "content": "This endpoint logs into VMS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "login",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5899ae5b-415f-4a06-a5a7-7636ac8e5754",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"roles\": {},\n  \"failed_logins\": 5139,\n  \"first_name\": \"string\",\n  \"full_name\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 8964,\n  \"is_active\": true,\n  \"is_default\": false,\n  \"is_temporary_password\": false,\n  \"last_login\": \"2012-09-25T15:41:36.309Z\",\n  \"last_name\": \"string\",\n  \"object_permissions\": {},\n  \"password_expiration\": \"2005-07-05T04:28:36.024Z\",\n  \"password_expiration_disabled\": true,\n  \"password_retype\": \"string\",\n  \"permissions\": {},\n  \"tenant\": {\n    \"id\": 6389,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 7314,\n  \"user_type\": \"SUPER_ADMIN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1a74c55f-3bdc-4f10-a35a-507003133776",
+    "name": "VAST API Swagger Schema activedirectory login API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

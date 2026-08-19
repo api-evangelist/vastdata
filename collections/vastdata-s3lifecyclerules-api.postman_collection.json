@@ -1,0 +1,649 @@
+{
+  "item": [
+    {
+      "id": "0c001a9e-0e22-4643-bcfe-d4195444b044",
+      "name": "s3lifecyclerules",
+      "description": {
+        "content": "An S3 Lifecycle configuration is a set of rules that define actions that an S3 service applies to a group of objects. VAST Cluster supports S3 Lifecycle configurations that define expiration actions. These actions define when objects expire.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "553c49f2-0a37-4c89-803d-0bc5360253bd",
+          "name": "List S3 life cycle rules",
+          "request": {
+            "name": "List S3 life cycle rules",
+            "description": {},
+            "url": {
+              "path": [
+                "s3lifecyclerules",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "view__id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9a876da-f324-4d32-b341-f2f08b840c1a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3lifecyclerules",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "view__id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"view_id\": 9454,\n    \"abort_mpu_days_after_initiation\": 5030,\n    \"enabled\": true,\n    \"expiration_date\": \"string\",\n    \"expiration_days\": 9954,\n    \"expired_obj_delete_marker\": true,\n    \"guid\": \"string\",\n    \"id\": 881,\n    \"max_size\": 5259,\n    \"min_size\": 555,\n    \"newer_noncurrent_versions\": 8320,\n    \"noncurrent_days\": 6228,\n    \"object_age_attr\": \"M_TIME\",\n    \"prefix\": \"string\",\n    \"tags\": {\n      \"key_0\": \"string\"\n    },\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"view_path\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"view_id\": 7223,\n    \"abort_mpu_days_after_initiation\": 3767,\n    \"enabled\": true,\n    \"expiration_date\": \"string\",\n    \"expiration_days\": 8256,\n    \"expired_obj_delete_marker\": true,\n    \"guid\": \"string\",\n    \"id\": 7664,\n    \"max_size\": 9080,\n    \"min_size\": 1441,\n    \"newer_noncurrent_versions\": 113,\n    \"noncurrent_days\": 8806,\n    \"object_age_attr\": \"M_TIME\",\n    \"prefix\": \"string\",\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"view_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e096cc50-05e5-4449-8379-1ef6d1f9ec0c",
+          "name": "Create an S3 Lifecycle Rule",
+          "request": {
+            "name": "Create an S3 Lifecycle Rule",
+            "description": {
+              "content": "This endpoint creates an S3 Lifecycle Rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3lifecyclerules",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"view_id\": \"<integer>\",\n  \"abort_mpu_days_after_initiation\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"expiration_date\": \"<string>\",\n  \"expiration_days\": \"<integer>\",\n  \"expired_obj_delete_marker\": \"<boolean>\",\n  \"max_size\": \"<integer>\",\n  \"min_size\": \"<integer>\",\n  \"newer_noncurrent_versions\": \"<integer>\",\n  \"noncurrent_days\": \"<integer>\",\n  \"object_age_attr\": \"M_TIME\",\n  \"prefix\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08dd991a-d465-4d1b-9e0e-18cdf1a56b2a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3lifecyclerules",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"view_id\": \"<integer>\",\n  \"abort_mpu_days_after_initiation\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"expiration_date\": \"<string>\",\n  \"expiration_days\": \"<integer>\",\n  \"expired_obj_delete_marker\": \"<boolean>\",\n  \"max_size\": \"<integer>\",\n  \"min_size\": \"<integer>\",\n  \"newer_noncurrent_versions\": \"<integer>\",\n  \"noncurrent_days\": \"<integer>\",\n  \"object_age_attr\": \"M_TIME\",\n  \"prefix\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"view_id\": 6507,\n  \"abort_mpu_days_after_initiation\": 5061,\n  \"enabled\": false,\n  \"expiration_date\": \"string\",\n  \"expiration_days\": 5233,\n  \"expired_obj_delete_marker\": false,\n  \"guid\": \"string\",\n  \"id\": 1778,\n  \"max_size\": 2444,\n  \"min_size\": 6562,\n  \"newer_noncurrent_versions\": 1263,\n  \"noncurrent_days\": 6689,\n  \"object_age_attr\": \"A_TIME\",\n  \"prefix\": \"string\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"view_path\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b35b651d-36f4-4627-9a04-d949a9000211",
+          "name": "Get Object Expiration Information",
+          "request": {
+            "name": "Get Object Expiration Information",
+            "description": {
+              "content": "If object expiration is configured in S3 lifecycle rule(s) for a specified object, This endpoint returns the object's expiration date and the ID of the lifecycle rule governing its expiration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3lifecyclerules",
+                "get_object_expiration",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "object_name",
+                  "value": "<string>",
+                  "description": "(Required) Object name"
+                },
+                {
+                  "disabled": false,
+                  "key": "bucket_name",
+                  "value": "<string>",
+                  "description": "(Required) Bucket name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "566b57fc-ae54-4cce-ada1-db5bbb45e4b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3lifecyclerules",
+                    "get_object_expiration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "object_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bucket_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c456df70-92db-4b01-956a-4f00682cf8cd",
+          "name": "Delete an S3 Lifecycle Rule",
+          "request": {
+            "name": "Delete an S3 Lifecycle Rule",
+            "description": {
+              "content": "This endpoint deletes an S3 lifecycle rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3lifecyclerules",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of an S3 lifecycle rule"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c83d283b-9a0f-4d45-b97d-f296c9a6e33c",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3lifecyclerules",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of an S3 lifecycle rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "119ee18f-a9bd-4284-88a2-532f4053c574",
+          "name": "Get an S3 Lifecycle Rule",
+          "request": {
+            "name": "Get an S3 Lifecycle Rule",
+            "description": {
+              "content": "This endpoint returns a specified S3 lifecycle rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3lifecyclerules",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of an S3 lifecycle rule"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f430fc8-c19b-41e9-b1bb-fb40437fdf84",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3lifecyclerules",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of an S3 lifecycle rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"view_id\": 6507,\n  \"abort_mpu_days_after_initiation\": 5061,\n  \"enabled\": false,\n  \"expiration_date\": \"string\",\n  \"expiration_days\": 5233,\n  \"expired_obj_delete_marker\": false,\n  \"guid\": \"string\",\n  \"id\": 1778,\n  \"max_size\": 2444,\n  \"min_size\": 6562,\n  \"newer_noncurrent_versions\": 1263,\n  \"noncurrent_days\": 6689,\n  \"object_age_attr\": \"A_TIME\",\n  \"prefix\": \"string\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"view_path\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17d3a372-44f5-4690-8f4c-07019dc9f3f3",
+          "name": "Modify an S3 Lifecycle Rule",
+          "request": {
+            "name": "Modify an S3 Lifecycle Rule",
+            "description": {},
+            "url": {
+              "path": [
+                "s3lifecyclerules",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of an S3 lifecycle rule"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"view_id\": \"<integer>\",\n  \"abort_mpu_days_after_initiation\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"expiration_date\": \"<string>\",\n  \"expiration_days\": \"<integer>\",\n  \"expired_obj_delete_marker\": \"<boolean>\",\n  \"max_size\": \"<integer>\",\n  \"min_size\": \"<integer>\",\n  \"newer_noncurrent_versions\": \"<integer>\",\n  \"noncurrent_days\": \"<integer>\",\n  \"object_age_attr\": \"M_TIME\",\n  \"prefix\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98386d48-0d6c-4904-8277-2edd10ef0f8d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3lifecyclerules",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of an S3 lifecycle rule"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"view_id\": \"<integer>\",\n  \"abort_mpu_days_after_initiation\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"expiration_date\": \"<string>\",\n  \"expiration_days\": \"<integer>\",\n  \"expired_obj_delete_marker\": \"<boolean>\",\n  \"max_size\": \"<integer>\",\n  \"min_size\": \"<integer>\",\n  \"newer_noncurrent_versions\": \"<integer>\",\n  \"noncurrent_days\": \"<integer>\",\n  \"object_age_attr\": \"M_TIME\",\n  \"prefix\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8f81e557-2e97-4b8d-8370-68534ae04f22",
+    "name": "VAST API Swagger Schema activedirectory s3lifecyclerules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,612 @@
+{
+  "item": [
+    {
+      "id": "8a11eaba-02f5-442e-acc6-ee3b706bc585",
+      "name": "dtrays",
+      "description": {
+        "content": "A DTray is a component of the CERES DBox. It is a canister that has two DNodes installed within. The DTray is a component of the CERES DBox. There are two Dtrays in each CERES DBox.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb3ec9e0-e2b1-4b7c-8721-f0614213a906",
+          "name": "List DTrays",
+          "request": {
+            "name": "List DTrays",
+            "description": {
+              "content": "This endpoint lists the all DTrays.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dtrays",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Display specified page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter list by DTray state"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter list by DTray name"
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<boolean>",
+                  "description": "Filter by enabled state"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ce4ed8c-bc87-4aae-a69b-f6e3931de843",
+              "name": "DTray information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dtrays",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"dnodes\": [\n      {\n        \"name\": \"string\",\n        \"arch_type\": \"string\",\n        \"bios_version\": \"string\",\n        \"bmc_fw_version\": \"string\",\n        \"bmc_state\": \"string\",\n        \"bmc_state_reason\": \"string\",\n        \"box_rdma_port\": 4229,\n        \"build\": \"string\",\n        \"cluster\": \"string\",\n        \"cluster_id\": 8119,\n        \"cpld\": \"string\",\n        \"data_rdma_port\": 2222,\n        \"data_tcp_port\": 241,\n        \"dbox\": \"string\",\n        \"dbox_id\": 3744,\n        \"display_name\": \"string\",\n        \"dtray\": \"string\",\n        \"ebox\": \"string\",\n        \"ebox_id\": 3413,\n        \"enabled\": true,\n        \"guid\": \"string\",\n        \"host_label\": \"string\",\n        \"hostname\": \"string\",\n        \"id\": 741,\n        \"ip\": \"string\",\n        \"ip1\": \"string\",\n        \"ip2\": \"string\",\n        \"ipmi_ip\": \"string\",\n        \"ipv6\": \"string\",\n        \"is_primary\": true,\n        \"led_status\": \"string\",\n        \"mgmt_ip\": \"string\",\n        \"new_name\": \"string\",\n        \"os_version\": \"string\",\n        \"platform_rdma_port\": 6554,\n        \"platform_tcp_port\": 9162,\n        \"position\": \"string\",\n        \"rpm\": \"string\",\n        \"sn\": \"string\",\n        \"state\": \"string\",\n        \"sync\": \"string\",\n        \"sync_time\": \"string\",\n        \"title\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"arch_type\": \"string\",\n        \"bios_version\": \"string\",\n        \"bmc_fw_version\": \"string\",\n        \"bmc_state\": \"string\",\n        \"bmc_state_reason\": \"string\",\n        \"box_rdma_port\": 3122,\n        \"build\": \"string\",\n        \"cluster\": \"string\",\n        \"cluster_id\": 603,\n        \"cpld\": \"string\",\n        \"data_rdma_port\": 3637,\n        \"data_tcp_port\": 5687,\n        \"dbox\": \"string\",\n        \"dbox_id\": 6215,\n        \"display_name\": \"string\",\n        \"dtray\": \"string\",\n        \"ebox\": \"string\",\n        \"ebox_id\": 5931,\n        \"enabled\": true,\n        \"guid\": \"string\",\n        \"host_label\": \"string\",\n        \"hostname\": \"string\",\n        \"id\": 9903,\n        \"ip\": \"string\",\n        \"ip1\": \"string\",\n        \"ip2\": \"string\",\n        \"ipmi_ip\": \"string\",\n        \"ipv6\": \"string\",\n        \"is_primary\": false,\n        \"led_status\": \"string\",\n        \"mgmt_ip\": \"string\",\n        \"new_name\": \"string\",\n        \"os_version\": \"string\",\n        \"platform_rdma_port\": 6552,\n        \"platform_tcp_port\": 9070,\n        \"position\": \"string\",\n        \"rpm\": \"string\",\n        \"sn\": \"string\",\n        \"state\": \"string\",\n        \"sync\": \"string\",\n        \"sync_time\": \"string\",\n        \"title\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"bmc_fw_version\": \"string\",\n    \"bmc_ip\": \"string\",\n    \"bmc_state\": \"string\",\n    \"bmc_state_reason\": \"string\",\n    \"cluster\": \"string\",\n    \"cpld_version\": \"string\",\n    \"dbox\": \"string\",\n    \"dbox_id\": 9151,\n    \"enabled\": false,\n    \"guid\": \"string\",\n    \"id\": 4748,\n    \"led_status\": \"string\",\n    \"mcu_state\": \"string\",\n    \"mcu_version\": \"string\",\n    \"pcie_switch_firmware_version\": \"string\",\n    \"pcie_switch_mfg_version\": \"string\",\n    \"position\": \"string\",\n    \"serial_number\": \"string\",\n    \"state\": \"string\",\n    \"sync\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"dnodes\": [\n      {\n        \"name\": \"string\",\n        \"arch_type\": \"string\",\n        \"bios_version\": \"string\",\n        \"bmc_fw_version\": \"string\",\n        \"bmc_state\": \"string\",\n        \"bmc_state_reason\": \"string\",\n        \"box_rdma_port\": 3655,\n        \"build\": \"string\",\n        \"cluster\": \"string\",\n        \"cluster_id\": 5800,\n        \"cpld\": \"string\",\n        \"data_rdma_port\": 9079,\n        \"data_tcp_port\": 2545,\n        \"dbox\": \"string\",\n        \"dbox_id\": 5328,\n        \"display_name\": \"string\",\n        \"dtray\": \"string\",\n        \"ebox\": \"string\",\n        \"ebox_id\": 6734,\n        \"enabled\": false,\n        \"guid\": \"string\",\n        \"host_label\": \"string\",\n        \"hostname\": \"string\",\n        \"id\": 8830,\n        \"ip\": \"string\",\n        \"ip1\": \"string\",\n        \"ip2\": \"string\",\n        \"ipmi_ip\": \"string\",\n        \"ipv6\": \"string\",\n        \"is_primary\": true,\n        \"led_status\": \"string\",\n        \"mgmt_ip\": \"string\",\n        \"new_name\": \"string\",\n        \"os_version\": \"string\",\n        \"platform_rdma_port\": 9320,\n        \"platform_tcp_port\": 3862,\n        \"position\": \"string\",\n        \"rpm\": \"string\",\n        \"sn\": \"string\",\n        \"state\": \"string\",\n        \"sync\": \"string\",\n        \"sync_time\": \"string\",\n        \"title\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"arch_type\": \"string\",\n        \"bios_version\": \"string\",\n        \"bmc_fw_version\": \"string\",\n        \"bmc_state\": \"string\",\n        \"bmc_state_reason\": \"string\",\n        \"box_rdma_port\": 1783,\n        \"build\": \"string\",\n        \"cluster\": \"string\",\n        \"cluster_id\": 2949,\n        \"cpld\": \"string\",\n        \"data_rdma_port\": 2946,\n        \"data_tcp_port\": 4930,\n        \"dbox\": \"string\",\n        \"dbox_id\": 7341,\n        \"display_name\": \"string\",\n        \"dtray\": \"string\",\n        \"ebox\": \"string\",\n        \"ebox_id\": 1506,\n        \"enabled\": true,\n        \"guid\": \"string\",\n        \"host_label\": \"string\",\n        \"hostname\": \"string\",\n        \"id\": 976,\n        \"ip\": \"string\",\n        \"ip1\": \"string\",\n        \"ip2\": \"string\",\n        \"ipmi_ip\": \"string\",\n        \"ipv6\": \"string\",\n        \"is_primary\": false,\n        \"led_status\": \"string\",\n        \"mgmt_ip\": \"string\",\n        \"new_name\": \"string\",\n        \"os_version\": \"string\",\n        \"platform_rdma_port\": 9272,\n        \"platform_tcp_port\": 7772,\n        \"position\": \"string\",\n        \"rpm\": \"string\",\n        \"sn\": \"string\",\n        \"state\": \"string\",\n        \"sync\": \"string\",\n        \"sync_time\": \"string\",\n        \"title\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"bmc_fw_version\": \"string\",\n    \"bmc_ip\": \"string\",\n    \"bmc_state\": \"string\",\n    \"bmc_state_reason\": \"string\",\n    \"cluster\": \"string\",\n    \"cpld_version\": \"string\",\n    \"dbox\": \"string\",\n    \"dbox_id\": 3105,\n    \"enabled\": false,\n    \"guid\": \"string\",\n    \"id\": 7086,\n    \"led_status\": \"string\",\n    \"mcu_state\": \"string\",\n    \"mcu_version\": \"string\",\n    \"pcie_switch_firmware_version\": \"string\",\n    \"pcie_switch_mfg_version\": \"string\",\n    \"position\": \"string\",\n    \"serial_number\": \"string\",\n    \"state\": \"string\",\n    \"sync\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee76cb1e-66b2-4e3b-a84f-2edc719f49b6",
+          "name": "Return Details of a DTray",
+          "request": {
+            "name": "Return Details of a DTray",
+            "description": {
+              "content": "This endpoint returns details of a DTray.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dtrays",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DTray ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04f681d0-23d3-456d-a3c4-630b1deb1547",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dtrays",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DTray ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"dnodes\": [\n    {\n      \"name\": \"string\",\n      \"arch_type\": \"string\",\n      \"bios_version\": \"string\",\n      \"bmc_fw_version\": \"string\",\n      \"bmc_state\": \"string\",\n      \"bmc_state_reason\": \"string\",\n      \"box_rdma_port\": 2167,\n      \"build\": \"string\",\n      \"cluster\": \"string\",\n      \"cluster_id\": 8431,\n      \"cpld\": \"string\",\n      \"data_rdma_port\": 2236,\n      \"data_tcp_port\": 422,\n      \"dbox\": \"string\",\n      \"dbox_id\": 6941,\n      \"display_name\": \"string\",\n      \"dtray\": \"string\",\n      \"ebox\": \"string\",\n      \"ebox_id\": 7379,\n      \"enabled\": false,\n      \"guid\": \"string\",\n      \"host_label\": \"string\",\n      \"hostname\": \"string\",\n      \"id\": 9974,\n      \"ip\": \"string\",\n      \"ip1\": \"string\",\n      \"ip2\": \"string\",\n      \"ipmi_ip\": \"string\",\n      \"ipv6\": \"string\",\n      \"is_primary\": true,\n      \"led_status\": \"string\",\n      \"mgmt_ip\": \"string\",\n      \"new_name\": \"string\",\n      \"os_version\": \"string\",\n      \"platform_rdma_port\": 7837,\n      \"platform_tcp_port\": 7218,\n      \"position\": \"string\",\n      \"rpm\": \"string\",\n      \"sn\": \"string\",\n      \"state\": \"string\",\n      \"sync\": \"string\",\n      \"sync_time\": \"string\",\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"arch_type\": \"string\",\n      \"bios_version\": \"string\",\n      \"bmc_fw_version\": \"string\",\n      \"bmc_state\": \"string\",\n      \"bmc_state_reason\": \"string\",\n      \"box_rdma_port\": 583,\n      \"build\": \"string\",\n      \"cluster\": \"string\",\n      \"cluster_id\": 7494,\n      \"cpld\": \"string\",\n      \"data_rdma_port\": 2591,\n      \"data_tcp_port\": 2700,\n      \"dbox\": \"string\",\n      \"dbox_id\": 147,\n      \"display_name\": \"string\",\n      \"dtray\": \"string\",\n      \"ebox\": \"string\",\n      \"ebox_id\": 3777,\n      \"enabled\": false,\n      \"guid\": \"string\",\n      \"host_label\": \"string\",\n      \"hostname\": \"string\",\n      \"id\": 3011,\n      \"ip\": \"string\",\n      \"ip1\": \"string\",\n      \"ip2\": \"string\",\n      \"ipmi_ip\": \"string\",\n      \"ipv6\": \"string\",\n      \"is_primary\": true,\n      \"led_status\": \"string\",\n      \"mgmt_ip\": \"string\",\n      \"new_name\": \"string\",\n      \"os_version\": \"string\",\n      \"platform_rdma_port\": 1190,\n      \"platform_tcp_port\": 2936,\n      \"position\": \"string\",\n      \"rpm\": \"string\",\n      \"sn\": \"string\",\n      \"state\": \"string\",\n      \"sync\": \"string\",\n      \"sync_time\": \"string\",\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"bmc_fw_version\": \"string\",\n  \"bmc_ip\": \"string\",\n  \"bmc_state\": \"string\",\n  \"bmc_state_reason\": \"string\",\n  \"cluster\": \"string\",\n  \"cpld_version\": \"string\",\n  \"dbox\": \"string\",\n  \"dbox_id\": 6031,\n  \"enabled\": false,\n  \"guid\": \"string\",\n  \"id\": 732,\n  \"led_status\": \"string\",\n  \"mcu_state\": \"string\",\n  \"mcu_version\": \"string\",\n  \"pcie_switch_firmware_version\": \"string\",\n  \"pcie_switch_mfg_version\": \"string\",\n  \"position\": \"string\",\n  \"serial_number\": \"string\",\n  \"state\": \"string\",\n  \"sync\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "908cf1f9-a254-4a57-bdff-6ff9dfb47656",
+          "name": "Activate/Deactivate DTray",
+          "request": {
+            "name": "Activate/Deactivate DTray",
+            "description": {
+              "content": "This endpoint activates, deactivates a DTray.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dtrays",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DTray ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"power_off\": \"<boolean>\",\n  \"power_on\": \"<boolean>\",\n  \"replace\": \"<boolean>\",\n  \"skip_network_validation\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6fc4558e-ca9f-4bc1-87d4-6e3b8462146c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dtrays",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DTray ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"power_off\": \"<boolean>\",\n  \"power_on\": \"<boolean>\",\n  \"replace\": \"<boolean>\",\n  \"skip_network_validation\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4297afd6-10de-4188-9296-21ad6f4a51ef",
+          "name": "Control DTray (DNode) LEDs",
+          "request": {
+            "name": "Control DTray (DNode) LEDs",
+            "description": {
+              "content": "This endpoint controls the DTray (DNode) LEDs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dtrays",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DTray ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "922ca5de-42b4-43e4-b253-e1c1f4cf0c32",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dtrays",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DTray ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7802bd54-e245-4fac-8e29-ba318edcbbce",
+          "name": "Rename Dtray",
+          "request": {
+            "name": "Rename Dtray",
+            "description": {
+              "content": "This endpoint renames a Dtray.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dtrays",
+                ":id",
+                "rename",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Dtray ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e40d326-991e-469e-8c18-a59c887c98b7",
+              "name": "The DTray was renamed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dtrays",
+                    ":id",
+                    "rename",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Dtray ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "17d9df4f-1bf7-4d02-84b8-d8dc07f84405",
+    "name": "VAST API Swagger Schema activedirectory dtrays API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

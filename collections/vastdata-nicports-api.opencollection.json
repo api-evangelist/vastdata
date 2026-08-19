@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory nicports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "nicports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List NIC Ports.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nicports/",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state"
+              }
+            ]
+          },
+          "docs": "This endpoint lists NIC Ports."
+        },
+        {
+          "info": {
+            "name": "Return Details of One NICPort.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nicports/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified NICPort."
+        },
+        {
+          "info": {
+            "name": "Enable or Disable an NICPort",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/nicports/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NICPort ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint enables or disables a NICPort."
+        },
+        {
+          "info": {
+            "name": "Get Related NICPorts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nicports/:id/related_nicports/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NICPort ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns IDs of all NICPorts that are logically the same physical port as the specified NICPort."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

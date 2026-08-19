@@ -1,0 +1,702 @@
+{
+  "item": [
+    {
+      "id": "718c9787-d9f5-44d3-a132-2bb36fcf0962",
+      "name": "nis",
+      "description": {
+        "content": "NIS is a supported external authorization provider. NIS can be used for authorizing user access to files and directories via NFS. NIS netgroups can be used to specify NFS hosts in view policies when controlling access permissions per NFS hosts. Up to one NIS configuration is supported. Limitations apply to the combinations of external providers and protocol enablement.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "816865fa-ab21-4a51-bdb1-3294241442eb",
+          "name": "List NIS Configurations",
+          "request": {
+            "name": "List NIS Configurations",
+            "description": {
+              "content": "This endpoint lists NIS configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nis",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b009f9d-15f1-476c-84d7-eff09238df77",
+              "name": "NIS information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nis",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"domain_name\": \"string\",\n    \"guid\": \"string\",\n    \"hosts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": 243,\n    \"ips\": [\n      \"string\",\n      \"string\"\n    ],\n    \"name\": \"string\",\n    \"posix_primary_provider\": false,\n    \"servers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": \"UNKNOWN\",\n    \"tenant_id\": 1060,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"domain_name\": \"string\",\n    \"guid\": \"string\",\n    \"hosts\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": 2820,\n    \"ips\": [\n      \"string\",\n      \"string\"\n    ],\n    \"name\": \"string\",\n    \"posix_primary_provider\": false,\n    \"servers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": \"FAILED\",\n    \"tenant_id\": 4550,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85192ff2-f5d3-4ca0-8064-d040d8787612",
+          "name": "Create a NIS Configuration",
+          "request": {
+            "name": "Create a NIS Configuration",
+            "description": {
+              "content": "This endpoint creates a NIS configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nis",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain_name\": \"<string>\",\n  \"hosts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"servers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4cb448d-11d8-4351-a2e5-4c74ff7e3073",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nis",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain_name\": \"<string>\",\n  \"hosts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"servers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain_name\": \"string\",\n  \"guid\": \"string\",\n  \"hosts\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id\": 6157,\n  \"ips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"posix_primary_provider\": false,\n  \"servers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"UNKNOWN\",\n  \"tenant_id\": 4509,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c93cac3-4033-45db-9166-d82bdaece14b",
+          "name": "Refresh NIS Cache",
+          "request": {
+            "name": "Refresh NIS Cache",
+            "description": {
+              "content": "This endpoint refreshes the NIS cache by looking up user and netgroup maps on the NIS server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nis",
+                "refresh",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "636ecd14-b6eb-446a-b68a-f9f15cab0e85",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nis",
+                    "refresh",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain_name\": \"string\",\n  \"guid\": \"string\",\n  \"hosts\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id\": 6157,\n  \"ips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"posix_primary_provider\": false,\n  \"servers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"UNKNOWN\",\n  \"tenant_id\": 4509,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d9e30be-6b23-4bc1-b6e6-0e25dbb2f68f",
+          "name": "Delete NIS Configuration",
+          "request": {
+            "name": "Delete NIS Configuration",
+            "description": {
+              "content": "This endpoint deletes a NIS configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nis",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46cb3172-d7ac-49b8-9995-8735091818fd",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nis",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fd67631-f816-42fb-9780-939bbe6cdffd",
+          "name": "Return NIS Configuration Details",
+          "request": {
+            "name": "Return NIS Configuration Details",
+            "description": {
+              "content": "This endpoint returns details of a NIS configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nis",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NIS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "956d85fa-6604-4230-99f5-23b2e79fd677",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nis",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NIS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain_name\": \"string\",\n  \"guid\": \"string\",\n  \"hosts\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id\": 6157,\n  \"ips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"posix_primary_provider\": false,\n  \"servers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"UNKNOWN\",\n  \"tenant_id\": 4509,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08be1578-6adb-4af3-8fce-6eb90e4b8bc1",
+          "name": "Modify NIS",
+          "request": {
+            "name": "Modify NIS",
+            "description": {
+              "content": "This endpoint modifies a NIS configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nis",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NIS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain_name\": \"<string>\",\n  \"hosts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"servers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "468ed635-5452-4bf6-a453-b31fcf10d4cb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nis",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NIS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain_name\": \"<string>\",\n  \"hosts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"servers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain_name\": \"string\",\n  \"guid\": \"string\",\n  \"hosts\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id\": 6157,\n  \"ips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"posix_primary_provider\": false,\n  \"servers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"UNKNOWN\",\n  \"tenant_id\": 4509,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cb19a76-74cb-49f0-b111-058f48d0cd15",
+          "name": "Set NIS as Primary POSIX Provider",
+          "request": {
+            "name": "Set NIS as Primary POSIX Provider",
+            "description": {
+              "content": "This endpoint sets NIS as the primary POSIX provider. If VAST Cluster is connected to two external authorization providers, one of the providers is always set to be the POSIX primary provider. If both providers have POSIX user attributes, then in case of any conflict between POSIX attributes that are retrieved from the providers, the POSIX primary takes precedence over the other provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nis",
+                ":id",
+                "set_posix_primary",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NIS ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82592d1a-1fa6-406a-b104-53ac0e525993",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nis",
+                    ":id",
+                    "set_posix_primary",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NIS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a6b47f8-0c4c-4760-b99d-d75e91042d82",
+    "name": "VAST API Swagger Schema activedirectory nis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

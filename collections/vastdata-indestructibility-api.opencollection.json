@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory indestructibility API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "indestructibility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Indestructibility Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/indestructibility/",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about the indestructibility configuration."
+        },
+        {
+          "info": {
+            "name": "Return Indestructibility Details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/indestructibility/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Indestructibility ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of an indestructibility configuration."
+        },
+        {
+          "info": {
+            "name": "Modify Indestructibility Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/indestructibility/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint can change the indestructibility password and/or the indestructibility password restore delay. The indestructibility mechanism must be unlocked before This endpoint can be done."
+        },
+        {
+          "info": {
+            "name": "Generate Indestructibility Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/indestructibility/:id/generate_token/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint generates an indestructibility token that is valid for one hour."
+        },
+        {
+          "info": {
+            "name": "Reset Indestructibility Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/indestructibility/:id/reset_passwd/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint restores the indestructibility password to its default value. This is indented for the case of a forgotten indestructibility password, where restoring to default enables a user to change the password again to a new secure password. There is a configurable delay until the password restore takes effect. The delay provides additional security in case of a rogue admin using VMS to restore the password. Throughout the duration of the password restore delay period, an alarm is raised. Th"
+        },
+        {
+          "info": {
+            "name": "Unlock Indestructibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/indestructibility/:id/unlock/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<p>This endpoint unlocks indestructibility for one hour. The following can only be done while indestructibility is unlocked:</p>\n  * Modifying an indestructible protection policy, including changing the snapshot schedule and shortening the retention period for snapshots.\n  * Modify a protected path that points to an indestructible protection policy, including pausing the path.\n  * Deleting indestructible snapshots.\n  * Shortening the expiration time of indestructible snapshots.\n  * Changing the "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

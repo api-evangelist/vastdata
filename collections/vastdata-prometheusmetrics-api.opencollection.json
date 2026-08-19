@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory prometheusmetrics API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "prometheusmetrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "prometheus metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/"
+          },
+          "docs": "This endpoint exports cluster and CNode metrics that are not exported by other prometheusmetrics endpoints."
+        },
+        {
+          "info": {
+            "name": "prometheus alarms metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/alarms"
+          },
+          "docs": "This endpoint gives prometheus exporter alarms metrics."
+        },
+        {
+          "info": {
+            "name": "all prometheus metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/all"
+          },
+          "docs": "This endpoint exports all VAST Cluster metrics. This includes each and every metric that can be exported by the other Prometheus exporter endpoints. Due to the large amount of data exported, using this endpoint to collect metrics from a very large cluster is not recommended."
+        },
+        {
+          "info": {
+            "name": "prometheus defrag metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/defrag"
+          },
+          "docs": "This endpoint exports defragmentation metrics to the Prometheus exporter."
+        },
+        {
+          "info": {
+            "name": "prometheus devices metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/devices"
+          },
+          "docs": "This endpoint returns information about the SSD or NVRAM physical state, such as presence of media errors or current temperature, and overall operational status (active or failed)."
+        },
+        {
+          "info": {
+            "name": "prometheus nics metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/nics"
+          },
+          "docs": "This endpoint gives prometheus exporter nics metrics."
+        },
+        {
+          "info": {
+            "name": "prometheus quotas metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/quotas"
+          },
+          "docs": "This endpoint returns information related to quotas configured on the cluster, such as the quota limits set and number of users who have exceeded the quota or who have been blocked due to quota exceeded condition."
+        },
+        {
+          "info": {
+            "name": "prometheus replications metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/replications"
+          },
+          "docs": "This endpoint gives prometheus exporter replications metrics."
+        },
+        {
+          "info": {
+            "name": "prometheus switches metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/switches"
+          },
+          "docs": "This endpoint gives prometheus exporter switches metrics."
+        },
+        {
+          "info": {
+            "name": "prometheus tenants metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/tenants"
+          },
+          "docs": "This endpoint gives prometheus exporter tenants metrics."
+        },
+        {
+          "info": {
+            "name": "prometheus user connections metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/user_connections"
+          },
+          "docs": "This endpoint gives prometheus exporter user connections metrics."
+        },
+        {
+          "info": {
+            "name": "prometheus user view metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/user_view"
+          },
+          "docs": "This endpoint gives prometheus exporter user view metrics."
+        },
+        {
+          "info": {
+            "name": "prometheus users metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/users"
+          },
+          "docs": "This endpoint exports user bandwidth, IOPS and metadata IOPS metrics on read and/or write operations to the Prometheus exporter."
+        },
+        {
+          "info": {
+            "name": "prometheus views metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/views"
+          },
+          "docs": "This endpoint exports performance metrics per view, including bandwidth, IOPS, metadata IOPS, latency and QoS, and also view logical and physical capacity."
+        },
+        {
+          "info": {
+            "name": "prometheus vips metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/vips"
+          },
+          "docs": "This endpoint gives prometheus exporter vips metrics."
+        },
+        {
+          "info": {
+            "name": "prometheus vms state metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/vms_state"
+          },
+          "docs": "This endpoint gives prometheus exporter vms state metrics."
+        },
+        {
+          "info": {
+            "name": "prometheus volumes metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prometheusmetrics/volumes"
+          },
+          "docs": "This endpoint gives prometheus exporter volumes metrics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

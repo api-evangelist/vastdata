@@ -1,0 +1,1558 @@
+{
+  "item": [
+    {
+      "id": "92caef82-428c-417e-9cc9-cd41aa12887c",
+      "name": "Kerberos",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b27e1486-7637-4fd6-b44d-ca16dc516e7c",
+          "name": "List Kerberos Providers",
+          "request": {
+            "name": "List Kerberos Providers",
+            "description": {
+              "content": "This endpoint lists Kerberos Providers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc8edb27-a7f9-434c-8e11-f5891b119529",
+              "name": "A list of Kerberos Providers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"enabled\": false,\n    \"guid\": \"string\",\n    \"id\": 7027,\n    \"kadmin_servers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"kdc\": [\n      \"string\",\n      \"string\"\n    ],\n    \"realm\": \"string\",\n    \"service_principals\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": {\n      \"kadmin_servers\": [\n        {\n          \"location\": \"string\",\n          \"message\": \"string\",\n          \"status\": \"SUCCESS\"\n        },\n        {\n          \"location\": \"string\",\n          \"message\": \"string\",\n          \"status\": \"FAILURE\"\n        }\n      ],\n      \"kdc\": [\n        {\n          \"location\": \"string\",\n          \"message\": \"string\",\n          \"status\": \"SUCCESS\"\n        },\n        {\n          \"location\": \"string\",\n          \"message\": \"string\",\n          \"status\": \"PARSED_ONLY\"\n        }\n      ],\n      \"service_principals\": [\n        {\n          \"message\": \"string\",\n          \"name\": \"string\",\n          \"status\": \"NO_KEYTAB_ENTRY\"\n        },\n        {\n          \"message\": \"string\",\n          \"name\": \"string\",\n          \"status\": \"NO_KEYTAB_ENTRY\"\n        }\n      ]\n    }\n  },\n  {\n    \"enabled\": false,\n    \"guid\": \"string\",\n    \"id\": 8280,\n    \"kadmin_servers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"kdc\": [\n      \"string\",\n      \"string\"\n    ],\n    \"realm\": \"string\",\n    \"service_principals\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": {\n      \"kadmin_servers\": [\n        {\n          \"location\": \"string\",\n          \"message\": \"string\",\n          \"status\": \"PARSED_ONLY\"\n        },\n        {\n          \"location\": \"string\",\n          \"message\": \"string\",\n          \"status\": \"FAILURE\"\n        }\n      ],\n      \"kdc\": [\n        {\n          \"location\": \"string\",\n          \"message\": \"string\",\n          \"status\": \"PINGED_ONLY\"\n        },\n        {\n          \"location\": \"string\",\n          \"message\": \"string\",\n          \"status\": \"PINGED_ONLY\"\n        }\n      ],\n      \"service_principals\": [\n        {\n          \"message\": \"string\",\n          \"name\": \"string\",\n          \"status\": \"NOT_AUTHENTICATED\"\n        },\n        {\n          \"message\": \"string\",\n          \"name\": \"string\",\n          \"status\": \"FAILURE\"\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e175a800-6398-49c7-a215-6084a6d82a08",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9cf2d9b-c6a3-424e-8a59-1dff77da7a90",
+          "name": "Create a new Kerberos provider",
+          "request": {
+            "name": "Create a new Kerberos provider",
+            "description": {
+              "content": "This endpoint creates a Kerberos Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"realm\": \"<string>\",\n  \"kdc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"kadmin_servers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"service_principals\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "2b0a123a-d00f-41f6-a59a-a6859410a229",
+              "name": "Kerberos created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"realm\": \"<string>\",\n  \"kdc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"kadmin_servers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"service_principals\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"guid\": \"string\",\n  \"id\": 1115,\n  \"kadmin_servers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"kdc\": [\n    \"string\",\n    \"string\"\n  ],\n  \"realm\": \"string\",\n  \"service_principals\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": {\n    \"kadmin_servers\": [\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      },\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      }\n    ],\n    \"kdc\": [\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      },\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"PINGED_ONLY\"\n      }\n    ],\n    \"service_principals\": [\n      {\n        \"message\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"NO_KEYTAB_ENTRY\"\n      },\n      {\n        \"message\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"SUCCESS\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61ab40f4-216e-4122-aae2-5f243dc62bbe",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"realm\": \"<string>\",\n  \"kdc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"kadmin_servers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"service_principals\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6bbe5a9-de38-419d-b00f-130e967626c9",
+          "name": "Delete an existing Kerberos Provider",
+          "request": {
+            "name": "Delete an existing Kerberos Provider",
+            "description": {
+              "content": "This endpoint deletes a specified Kerberos Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Kerberos Provider ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3fef00f-1772-4a77-bd33-ab1dd7758b5d",
+              "name": "Kerberos provider deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "574c0469-ecb5-4c82-849d-70871e666753",
+              "name": "Kerberos provider not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7487832b-1565-41e8-896c-e8073b0209ea",
+          "name": "Return Details of a Kerberos Provider",
+          "request": {
+            "name": "Return Details of a Kerberos Provider",
+            "description": {
+              "content": "This endpoint returns details of a specified Kerberos Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Kerberos Provider ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0132f90-54d1-4324-821f-8f7059dc873f",
+              "name": "Kerberos Provider details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"guid\": \"string\",\n  \"id\": 1115,\n  \"kadmin_servers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"kdc\": [\n    \"string\",\n    \"string\"\n  ],\n  \"realm\": \"string\",\n  \"service_principals\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": {\n    \"kadmin_servers\": [\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      },\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      }\n    ],\n    \"kdc\": [\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      },\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"PINGED_ONLY\"\n      }\n    ],\n    \"service_principals\": [\n      {\n        \"message\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"NO_KEYTAB_ENTRY\"\n      },\n      {\n        \"message\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"SUCCESS\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf0e1793-3a83-4881-a149-799a9133b951",
+              "name": "Kerberos Provider not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a863c9f-c6b1-4019-8a93-915c46a5bcaf",
+          "name": "Modify Kerberos Provider",
+          "request": {
+            "name": "Modify Kerberos Provider",
+            "description": {
+              "content": "This endpoint modifies a specified Kerberos Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Kerberos Provider ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"kadmin_servers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"kdc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"service_principals\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c8c41a3-1548-4d86-8cb4-b90230f44e45",
+              "name": "KerberosProvider updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"kadmin_servers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"kdc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"service_principals\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"guid\": \"string\",\n  \"id\": 1115,\n  \"kadmin_servers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"kdc\": [\n    \"string\",\n    \"string\"\n  ],\n  \"realm\": \"string\",\n  \"service_principals\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": {\n    \"kadmin_servers\": [\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      },\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      }\n    ],\n    \"kdc\": [\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"FAILURE\"\n      },\n      {\n        \"location\": \"string\",\n        \"message\": \"string\",\n        \"status\": \"PINGED_ONLY\"\n      }\n    ],\n    \"service_principals\": [\n      {\n        \"message\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"NO_KEYTAB_ENTRY\"\n      },\n      {\n        \"message\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"SUCCESS\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5da8df1b-fa51-4e06-8e71-b9d81696644a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"kadmin_servers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"kdc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"service_principals\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc005b2b-55a3-4dd4-84f4-05997935f8c2",
+              "name": "KerberosProvider not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"kadmin_servers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"kdc\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"service_principals\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2b62ed1-3031-4d07-bdc5-eae7d17c8035",
+          "name": "Generate keytab for the Kerberos Provider",
+          "request": {
+            "name": "Generate keytab for the Kerberos Provider",
+            "description": {
+              "content": "This endpoint generates a keytab file for the Kerberos Provider service principals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ":id",
+                "keytab"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Kerberos Provider ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"admin_password\": \"<string>\",\n  \"admin_username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61219929-b578-41ea-8d29-18e967e72866",
+              "name": "Keytab file was generated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    "keytab"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"admin_password\": \"<string>\",\n  \"admin_username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service_principals\": [\n    {\n      \"message\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"NOT_AUTHENTICATED\"\n    },\n    {\n      \"message\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"FAILURE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b32c68d-d0b9-4e1e-aa71-33f953e94db6",
+              "name": "Bad request No admin username or\\and passowrd given",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    "keytab"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"admin_password\": \"<string>\",\n  \"admin_username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4b6b508-a856-42d0-8987-8198989d17d3",
+          "name": "Upload keytab for the Kerberos Provider",
+          "request": {
+            "name": "Upload keytab for the Kerberos Provider",
+            "description": {
+              "content": "This endpoint uploads a keytab file for specified Kerberos Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ":id",
+                "keytab"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Kerberos Provider ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "keytab_file",
+                  "type": "file",
+                  "description": "(Required) Keytab file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3efad03d-c31e-4ccb-bcfd-b484b4a3cd73",
+              "name": "Keytab file was uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    "keytab"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Keytab file",
+                        "type": "text/plain"
+                      },
+                      "key": "keytab_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service_principals\": [\n    {\n      \"message\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"NOT_AUTHENTICATED\"\n    },\n    {\n      \"message\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"FAILURE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3a29d84-0966-4e3b-bb65-01f6e1c082c2",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    "keytab"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Keytab file",
+                        "type": "text/plain"
+                      },
+                      "key": "keytab_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Keytab file too large (max 8192 bytes).\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20298e5f-694f-4aec-925a-45d5a473398f",
+          "name": "Generate keytab for the Kerberos Provider",
+          "request": {
+            "name": "Generate keytab for the Kerberos Provider",
+            "description": {
+              "content": "This endpoint generates keytab for specified Kerberos Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ":id",
+                "keytab",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Kerberos Provider ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"admin_password\": \"<string>\",\n  \"admin_username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a231f221-ff59-4631-be9d-44999a84622a",
+              "name": "Keytab file was generated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    "keytab",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"admin_password\": \"<string>\",\n  \"admin_username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service_principals\": [\n    {\n      \"message\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"NOT_AUTHENTICATED\"\n    },\n    {\n      \"message\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"FAILURE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81eca2fe-b8a0-4cd7-a050-bb2bee33d6c2",
+              "name": "Bad request No admin username or\\and passowrd given",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    "keytab",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"admin_password\": \"<string>\",\n  \"admin_username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0dcff492-73dd-4395-ae2e-19d35d235c59",
+          "name": "Upload keytab for the Kerberos Provider",
+          "request": {
+            "name": "Upload keytab for the Kerberos Provider",
+            "description": {
+              "content": "This endpoint uploads keytab for specified Kerberos Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kerberos",
+                ":id",
+                "keytab",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Kerberos Provider ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "keytab_file",
+                  "type": "file",
+                  "description": "(Required) Keytab file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b66414f5-672c-48df-a0eb-9f78b60ba773",
+              "name": "Keytab file was generated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    "keytab",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Keytab file",
+                        "type": "text/plain"
+                      },
+                      "key": "keytab_file",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service_principals\": [\n    {\n      \"message\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"NOT_AUTHENTICATED\"\n    },\n    {\n      \"message\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"FAILURE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5db153bd-cefb-47a7-99f3-57af9e952928",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kerberos",
+                    ":id",
+                    "keytab",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Kerberos Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Keytab file",
+                        "type": "text/plain"
+                      },
+                      "key": "keytab_file",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Keytab file too large (max 8192 bytes).\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c227e842-89e7-4190-a302-29ecb0171899",
+    "name": "VAST API Swagger Schema activedirectory Kerberos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

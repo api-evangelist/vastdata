@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "9f64bb65-c8e4-4532-a6f9-f2212dfd4583",
+      "name": "psus",
+      "description": {
+        "content": "PSUs represent power supply units on the CBoxes and DBoxes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f7eb6a8-b672-4d1d-b86c-e95234159c66",
+          "name": "List PSUs",
+          "request": {
+            "name": "List PSUs",
+            "description": {
+              "content": "This endpoint lists PSUs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "psus",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by PSU state"
+                },
+                {
+                  "disabled": false,
+                  "key": "sn",
+                  "value": "<string>",
+                  "description": "Filter by PSU serial number"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Filter by PSU model"
+                },
+                {
+                  "disabled": false,
+                  "key": "box__name",
+                  "value": "<string>",
+                  "description": "Filter by parent Box name"
+                },
+                {
+                  "disabled": false,
+                  "key": "box__id",
+                  "value": "<string>",
+                  "description": "Filter by parent Box ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e369c3a4-06c2-4b09-bbe3-636964e72e0b",
+              "name": "PSU information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "psus",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "box__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "box__id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"box\": \"string\",\n    \"box_id\": 5748,\n    \"box_uid\": \"string\",\n    \"cbox_id\": 9607,\n    \"cluster\": \"string\",\n    \"cluster_id\": 5342,\n    \"dbox_id\": 5816,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8417,\n    \"location\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"ac_lost\",\n    \"title\": \"string\"\n  },\n  {\n    \"box\": \"string\",\n    \"box_id\": 6742,\n    \"box_uid\": \"string\",\n    \"cbox_id\": 7135,\n    \"cluster\": \"string\",\n    \"cluster_id\": 3049,\n    \"dbox_id\": 1015,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 28,\n    \"location\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"INACTIVE\",\n    \"title\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ceb928d-7e9c-4193-86e9-9e4ac26090ab",
+          "name": "Return Details of One PSU",
+          "request": {
+            "name": "Return Details of One PSU",
+            "description": {
+              "content": "This endpoint returns details of a specified PSU.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "psus",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) PSU ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f70af017-b4d6-4382-9ca8-78d3c611248a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "psus",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) PSU ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"box\": \"string\",\n  \"box_id\": 4568,\n  \"box_uid\": \"string\",\n  \"cbox_id\": 3187,\n  \"cluster\": \"string\",\n  \"cluster_id\": 4088,\n  \"dbox_id\": 3736,\n  \"display_name\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 8822,\n  \"location\": \"string\",\n  \"model\": \"string\",\n  \"name\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"PHASING_OUT\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3571ede2-c875-40d3-843d-4e1dba11d137",
+    "name": "VAST API Swagger Schema activedirectory psus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

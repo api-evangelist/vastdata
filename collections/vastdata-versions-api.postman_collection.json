@@ -1,0 +1,237 @@
+{
+  "item": [
+    {
+      "id": "96fd0d09-ddae-4ec4-9071-0686a3ea752c",
+      "name": "versions",
+      "description": {
+        "content": "The cluster platform and VMS software is installed and upgraded via packages that have a version number per release and a software build number. The versions path exposes the cluster's version history.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34c7b075-b496-4c52-b096-1de802178be4",
+          "name": "List Versions",
+          "request": {
+            "name": "List Versions",
+            "description": {
+              "content": "This endpoint lists the version deployment history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6caaced7-50a3-4f5a-b27d-ab5f85493526",
+              "name": "Versions History",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"build\": \"string\",\n    \"carriers_fw_version\": \"string\",\n    \"cluster\": \"string\",\n    \"created\": \"2020-12-19T04:45:29.641Z\",\n    \"enable_dr\": false,\n    \"force\": false,\n    \"guid\": \"string\",\n    \"id\": 5602,\n    \"name\": \"string\",\n    \"os_version\": \"string\",\n    \"skip_hw_check\": true,\n    \"status\": \"string\",\n    \"sys_version\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"build\": \"string\",\n    \"carriers_fw_version\": \"string\",\n    \"cluster\": \"string\",\n    \"created\": \"1964-04-04T00:13:00.230Z\",\n    \"enable_dr\": true,\n    \"force\": false,\n    \"guid\": \"string\",\n    \"id\": 8149,\n    \"name\": \"string\",\n    \"os_version\": \"string\",\n    \"skip_hw_check\": true,\n    \"status\": \"string\",\n    \"sys_version\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c99220be-7cb7-4c13-abb2-a11d9fd0f634",
+          "name": "List Version Deployment History",
+          "request": {
+            "name": "List Version Deployment History",
+            "description": {
+              "content": "This endpoint lists the version deployment history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed4be434-d14d-413c-a4e5-cd0904eee0d5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"build\": \"string\",\n  \"carriers_fw_version\": \"string\",\n  \"cluster\": \"string\",\n  \"created\": \"2019-10-31T22:09:58.742Z\",\n  \"enable_dr\": true,\n  \"force\": true,\n  \"guid\": \"string\",\n  \"id\": 3747,\n  \"name\": \"string\",\n  \"os_version\": \"string\",\n  \"skip_hw_check\": false,\n  \"status\": \"string\",\n  \"sys_version\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c4f47178-d6f1-4281-a44b-aa5cf619ed5a",
+    "name": "VAST API Swagger Schema activedirectory versions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

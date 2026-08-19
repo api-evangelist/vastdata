@@ -1,0 +1,128 @@
+{
+  "item": [
+    {
+      "id": "9a72b867-a63d-4d1e-a0d2-a9b2f9c89339",
+      "name": "logout",
+      "description": {
+        "content": "The logout path is used to log out of VMS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8bee4fdd-9717-4e88-b2e6-272fe50a0a06",
+          "name": "Log Out",
+          "request": {
+            "name": "Log Out",
+            "description": {
+              "content": "This endpoint logs out of VMS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logout",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0de940d-17aa-44fc-ae1f-706e3272ca57",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logout",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"roles\": {},\n  \"failed_logins\": 8337,\n  \"first_name\": \"string\",\n  \"full_name\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 2162,\n  \"is_active\": true,\n  \"is_default\": true,\n  \"is_temporary_password\": false,\n  \"last_login\": \"2019-01-14T14:46:48.555Z\",\n  \"last_name\": \"string\",\n  \"object_permissions\": {},\n  \"password_expiration\": \"2020-12-19T13:47:30.607Z\",\n  \"password_expiration_disabled\": false,\n  \"password_retype\": \"string\",\n  \"permissions\": {},\n  \"tenant\": {\n    \"id\": 4528,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 2707,\n  \"user_type\": \"TENANT_ADMIN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6a95cd1c-b180-4738-a078-6058308b7ab9",
+    "name": "VAST API Swagger Schema activedirectory logout API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

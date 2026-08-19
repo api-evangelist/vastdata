@@ -1,0 +1,910 @@
+{
+  "item": [
+    {
+      "id": "0b8c64a2-59b6-4ec3-8ba3-f67afb5bd038",
+      "name": "groups",
+      "description": {
+        "content": "Groups are user groups that can be authorized to access any data on the cluster via any supported client protocol. The groups path provides: management of groups on the cluster's local provider, querying of external provider groups, and S3 access management for both local and external groups.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b5ba9ec-bee4-42db-976a-b7e0a6a29295",
+          "name": "List Groups",
+          "request": {
+            "name": "List Groups",
+            "description": {
+              "content": "This endpoint lists groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4195ab49-806e-4789-bbe0-4c30e331df9d",
+              "name": "group information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"gid\": 259,\n    \"guid\": \"string\",\n    \"id\": 9981,\n    \"local_provider\": {\n      \"id\": 8805,\n      \"name\": \"string\"\n    },\n    \"s3_policies\": [\n      {\n        \"id\": 8252,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 1863,\n        \"name\": \"string\"\n      }\n    ],\n    \"s3_policies_ids\": [\n      1590,\n      3368\n    ],\n    \"sid\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"gid\": 1480,\n    \"guid\": \"string\",\n    \"id\": 4707,\n    \"local_provider\": {\n      \"id\": 9319,\n      \"name\": \"string\"\n    },\n    \"s3_policies\": [\n      {\n        \"id\": 6458,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 5160,\n        \"name\": \"string\"\n      }\n    ],\n    \"s3_policies_ids\": [\n      1432,\n      7490\n    ],\n    \"sid\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd040d49-60ba-4035-905a-90eaa381a3d8",
+          "name": "Create Group",
+          "request": {
+            "name": "Create Group",
+            "description": {
+              "content": "This endpoint adds a group to the local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"gid\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa6502c2-47c8-491a-a193-1c0cb250fb02",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"gid\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"gid\": 7160,\n  \"guid\": \"string\",\n  \"id\": 759,\n  \"local_provider\": {\n    \"id\": 7083,\n    \"name\": \"string\"\n  },\n  \"s3_policies\": [\n    {\n      \"id\": 6715,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 8429,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_policies_ids\": [\n    1675,\n    6331\n  ],\n  \"sid\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1b426e0-f9a0-4d6a-92ba-de29e1f189f5",
+          "name": "Find Group by prefix and domain details",
+          "request": {
+            "name": "Find Group by prefix and domain details",
+            "description": {
+              "content": "This endpoint queries a group by prefix and domain from ActiveDirectory domains",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                "names",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "prefix",
+                  "value": "<string>",
+                  "description": "Prefix to find the group"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Domain details to find the group (ALL by default). Format: BASE_DN|FQDN|SID"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96e29993-6496-413d-8974-4a2ab96560e1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "names",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gid\": 8890,\n  \"name\": \"string\",\n  \"provider_type\": \"string\",\n  \"s3_policies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_policies_ids\": [\n    8352,\n    2911\n  ],\n  \"sid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2881d12f-3dea-486d-96d7-454dd43840f9",
+          "name": "Query Group",
+          "request": {
+            "name": "Query Group",
+            "description": {
+              "content": "This endpoint queries a specified provider for a group based on a group identifier attribute",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "gid",
+                  "value": "<integer>",
+                  "description": "Group GID"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupname",
+                  "value": "<string>",
+                  "description": "Groupname"
+                },
+                {
+                  "disabled": false,
+                  "key": "sid",
+                  "value": "<string>",
+                  "description": "Group SID"
+                },
+                {
+                  "disabled": false,
+                  "key": "vaid",
+                  "value": "<string>",
+                  "description": "Group VAID (a VAST identifier for groups)"
+                },
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "<string>",
+                  "description": "The provider to query"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "436f1d60-79d2-4bb0-90a9-124ded411bad",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "query",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "groupname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vaid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "context",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gid\": 8859,\n  \"name\": \"string\",\n  \"provider_type\": \"string\",\n  \"s3_policies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_policies_ids\": [\n    7187,\n    7004\n  ],\n  \"sid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd206943-1f2c-4258-b6f5-62e7a11a942e",
+          "name": "Modify non-Local Group",
+          "request": {
+            "name": "Modify non-Local Group",
+            "description": {
+              "content": "This endpoint modifies a non-local group's S3 permissions. Specify the user by either NFS UID or SMB user SID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gid\": \"<integer>\",\n  \"groupname\": \"<string>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"vaid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2054b92-fe90-448c-bf6d-655f2098f481",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "query",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gid\": \"<integer>\",\n  \"groupname\": \"<string>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"vaid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"gid\": 8859,\n  \"name\": \"string\",\n  \"provider_type\": \"string\",\n  \"s3_policies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_policies_ids\": [\n    7187,\n    7004\n  ],\n  \"sid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64f7f3f7-09ad-468e-b556-79300d65912f",
+          "name": "Delete Group",
+          "request": {
+            "name": "Delete Group",
+            "description": {
+              "content": "This endpoint deletes a group from the local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6a4da8f-7b9a-473e-bfe0-feae453979e5",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87b0491b-6f07-4a12-942f-9391f7220c80",
+          "name": "Return Details of a Group",
+          "request": {
+            "name": "Return Details of a Group",
+            "description": {
+              "content": "This endpoint returns details of a group defined on the local provider",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "336de60a-7fe4-48c7-991b-648bb28fa852",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"gid\": 7160,\n  \"guid\": \"string\",\n  \"id\": 759,\n  \"local_provider\": {\n    \"id\": 7083,\n    \"name\": \"string\"\n  },\n  \"s3_policies\": [\n    {\n      \"id\": 6715,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 8429,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_policies_ids\": [\n    1675,\n    6331\n  ],\n  \"sid\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce46e34f-8dbf-4458-a613-50ecccd45676",
+          "name": "Modify Group",
+          "request": {
+            "name": "Modify Group",
+            "description": {
+              "content": "This endpoint modifies a group on the local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"gid\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "731fd47f-0455-4193-8bc1-a20791626139",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"gid\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"gid\": 7160,\n  \"guid\": \"string\",\n  \"id\": 759,\n  \"local_provider\": {\n    \"id\": 7083,\n    \"name\": \"string\"\n  },\n  \"s3_policies\": [\n    {\n      \"id\": 6715,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 8429,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_policies_ids\": [\n    1675,\n    6331\n  ],\n  \"sid\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5d0ee046-bee5-43dc-8fe8-401189d5b181",
+    "name": "VAST API Swagger Schema activedirectory groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

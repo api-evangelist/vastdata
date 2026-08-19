@@ -1,0 +1,993 @@
+{
+  "item": [
+    {
+      "id": "e2b96637-f0fa-4e60-b418-a6a29dedda5e",
+      "name": "quotagroups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c521d43-253e-481f-96fc-7aa77d087e76",
+          "name": "List Quota Groups",
+          "request": {
+            "name": "List Quota Groups",
+            "description": {
+              "content": "This endpoint lists quota groups. The parameters enable you to filter the list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotagroups",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "hard_limit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "soft_limit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "soft_limit_inodes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "hard_limit_inodes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "system_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_user_rules",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_name__icontains",
+                  "value": "<string>",
+                  "description": "Tenant name to filter by"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbf26120-7bb9-427e-ae46-d8b2cffb84a6",
+              "name": "Quota Group information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hard_limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "soft_limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "soft_limit_inodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hard_limit_inodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "system_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_user_rules",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant_name__icontains",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cluster\": \"string\",\n    \"cluster_id\": 3166,\n    \"default_email\": \"string\",\n    \"default_group_quota\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 6352,\n      \"hard_limit_inodes\": 4035,\n      \"quota_system_id\": 5702,\n      \"soft_limit\": 6030,\n      \"soft_limit_inodes\": 4999\n    },\n    \"default_user_quota\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 7401,\n      \"hard_limit_inodes\": 8487,\n      \"quota_system_id\": 3962,\n      \"soft_limit\": 3305,\n      \"soft_limit_inodes\": 2747\n    },\n    \"enable_alarms\": false,\n    \"enable_email_providers\": false,\n    \"grace_period\": \"string\",\n    \"group_quotas\": [\n      {\n        \"grace_period\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"quota_system_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": true,\n        \"is_group\": false,\n        \"is_iam_role\": true,\n        \"name\": \"string\",\n        \"percent_capacity\": 9168,\n        \"percent_inodes\": 8924,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 6720,\n        \"used_inodes\": 1102,\n        \"vast_id\": 3711\n      },\n      {\n        \"grace_period\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"quota_system_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": true,\n        \"is_group\": true,\n        \"is_iam_role\": true,\n        \"name\": \"string\",\n        \"percent_capacity\": 3743,\n        \"percent_inodes\": 6970,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 373,\n        \"used_inodes\": 811,\n        \"vast_id\": 6355\n      }\n    ],\n    \"guid\": \"string\",\n    \"hard_limit\": 6113,\n    \"hard_limit_inodes\": 5667,\n    \"id\": 7045,\n    \"internal\": false,\n    \"is_physical_quota\": false,\n    \"is_user_quota\": true,\n    \"last_user_quotas_update\": \"2008-05-27T01:26:48.692Z\",\n    \"name\": \"string\",\n    \"num_blocked_users\": 4644,\n    \"num_exceeded_users\": 9725,\n    \"percent_capacity\": 1049,\n    \"percent_inodes\": 1177,\n    \"pretty_grace_period\": \"string\",\n    \"pretty_grace_period_expiration\": \"string\",\n    \"pretty_state\": \"string\",\n    \"soft_limit\": 2901,\n    \"soft_limit_inodes\": 3789,\n    \"state\": \"GRACE_EXPIRED\",\n    \"sync_state\": \"string\",\n    \"system_id\": 2258,\n    \"tenant_id\": 2394,\n    \"tenant_name\": \"string\",\n    \"time_to_block\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"used_capacity\": 4984,\n    \"used_capacity_tb\": 7006.247913731935,\n    \"used_effective_capacity\": 1255,\n    \"used_effective_capacity_tb\": 8941.491641816048,\n    \"used_inodes\": 6357,\n    \"used_limited_capacity\": 8247,\n    \"user_quotas\": [\n      {\n        \"grace_period\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"quota_system_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": false,\n        \"is_group\": false,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 7465,\n        \"percent_inodes\": 9839,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 4146,\n        \"used_inodes\": 3560,\n        \"vast_id\": 2865\n      },\n      {\n        \"grace_period\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"quota_system_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": true,\n        \"is_group\": false,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 382,\n        \"percent_inodes\": 8897,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 952,\n        \"used_inodes\": 5897,\n        \"vast_id\": 8218\n      }\n    ],\n    \"quotas\": [\n      {\n        \"id\": 5532,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 5182,\n        \"name\": \"string\"\n      }\n    ],\n    \"quotas_count\": 322\n  },\n  {\n    \"cluster\": \"string\",\n    \"cluster_id\": 8056,\n    \"default_email\": \"string\",\n    \"default_group_quota\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 6512,\n      \"hard_limit_inodes\": 8134,\n      \"quota_system_id\": 5222,\n      \"soft_limit\": 5386,\n      \"soft_limit_inodes\": 7384\n    },\n    \"default_user_quota\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 6443,\n      \"hard_limit_inodes\": 3408,\n      \"quota_system_id\": 6073,\n      \"soft_limit\": 2153,\n      \"soft_limit_inodes\": 4598\n    },\n    \"enable_alarms\": false,\n    \"enable_email_providers\": true,\n    \"grace_period\": \"string\",\n    \"group_quotas\": [\n      {\n        \"grace_period\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"quota_system_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": true,\n        \"is_group\": true,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 380,\n        \"percent_inodes\": 4054,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 3111,\n        \"used_inodes\": 4718,\n        \"vast_id\": 3013\n      },\n      {\n        \"grace_period\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"quota_system_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": false,\n        \"is_group\": true,\n        \"is_iam_role\": false,\n        \"name\": \"string\",\n        \"percent_capacity\": 5813,\n        \"percent_inodes\": 4898,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 4952,\n        \"used_inodes\": 5716,\n        \"vast_id\": 7215\n      }\n    ],\n    \"guid\": \"string\",\n    \"hard_limit\": 2320,\n    \"hard_limit_inodes\": 8929,\n    \"id\": 8638,\n    \"internal\": false,\n    \"is_physical_quota\": false,\n    \"is_user_quota\": false,\n    \"last_user_quotas_update\": \"2026-04-15T04:57:12.752Z\",\n    \"name\": \"string\",\n    \"num_blocked_users\": 6719,\n    \"num_exceeded_users\": 2776,\n    \"percent_capacity\": 1024,\n    \"percent_inodes\": 5659,\n    \"pretty_grace_period\": \"string\",\n    \"pretty_grace_period_expiration\": \"string\",\n    \"pretty_state\": \"string\",\n    \"soft_limit\": 9447,\n    \"soft_limit_inodes\": 804,\n    \"state\": \"GRACE_EXPIRED\",\n    \"sync_state\": \"string\",\n    \"system_id\": 6430,\n    \"tenant_id\": 3029,\n    \"tenant_name\": \"string\",\n    \"time_to_block\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"used_capacity\": 8081,\n    \"used_capacity_tb\": 2545.2012104165287,\n    \"used_effective_capacity\": 2568,\n    \"used_effective_capacity_tb\": 4484.576801155546,\n    \"used_inodes\": 5782,\n    \"used_limited_capacity\": 531,\n    \"user_quotas\": [\n      {\n        \"grace_period\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"quota_system_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": true,\n        \"is_group\": true,\n        \"is_iam_role\": true,\n        \"name\": \"string\",\n        \"percent_capacity\": 5237,\n        \"percent_inodes\": 6816,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 1178,\n        \"used_inodes\": 3110,\n        \"vast_id\": 3579\n      },\n      {\n        \"grace_period\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hard_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"quota_system_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"soft_limit_inodes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": \"string\",\n        \"identifier\": \"string\",\n        \"identifier_type\": \"string\",\n        \"is_accountable\": false,\n        \"is_group\": false,\n        \"is_iam_role\": true,\n        \"name\": \"string\",\n        \"percent_capacity\": 4221,\n        \"percent_inodes\": 2664,\n        \"state\": \"string\",\n        \"time_to_block\": \"string\",\n        \"used_capacity\": 7788,\n        \"used_inodes\": 6445,\n        \"vast_id\": 8107\n      }\n    ],\n    \"quotas\": [\n      {\n        \"id\": 7494,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 3723,\n        \"name\": \"string\"\n      }\n    ],\n    \"quotas_count\": 6045\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fde228c9-79c9-401a-a67a-cba54bfc81b1",
+          "name": "Create a Quota Group",
+          "request": {
+            "name": "Create a Quota Group",
+            "description": {
+              "content": "This endpoint creates a new quota group that can aggregate multiple quotas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotagroups",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"default_email\": \"<string>\",\n  \"default_group_quota\": \"<object>\",\n  \"default_user_quota\": \"<object>\",\n  \"enable_alarms\": \"<boolean>\",\n  \"enable_email_providers\": \"<boolean>\",\n  \"grace_period\": \"<string>\",\n  \"group_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"is_user_quota\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38a97d9b-e432-439c-ab5c-f4da6ba46214",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"default_email\": \"<string>\",\n  \"default_group_quota\": \"<object>\",\n  \"default_user_quota\": \"<object>\",\n  \"enable_alarms\": \"<boolean>\",\n  \"enable_email_providers\": \"<boolean>\",\n  \"grace_period\": \"<string>\",\n  \"group_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"is_user_quota\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cluster_id\": 563,\n  \"default_email\": \"string\",\n  \"default_group_quota\": {\n    \"grace_period\": \"string\",\n    \"hard_limit\": 3775,\n    \"hard_limit_inodes\": 9847,\n    \"quota_system_id\": 1728,\n    \"soft_limit\": 9260,\n    \"soft_limit_inodes\": 9718\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"string\",\n    \"hard_limit\": 8330,\n    \"hard_limit_inodes\": 8245,\n    \"quota_system_id\": 2120,\n    \"soft_limit\": 5086,\n    \"soft_limit_inodes\": 6770\n  },\n  \"enable_alarms\": false,\n  \"enable_email_providers\": true,\n  \"grace_period\": \"string\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 3840,\n      \"hard_limit_inodes\": 6402,\n      \"quota_system_id\": 7364,\n      \"soft_limit\": 2931,\n      \"soft_limit_inodes\": 1249,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": true,\n      \"is_group\": false,\n      \"is_iam_role\": true,\n      \"name\": \"string\",\n      \"percent_capacity\": 7061,\n      \"percent_inodes\": 7618,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 3754,\n      \"used_inodes\": 2409,\n      \"vast_id\": 8327\n    },\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 6871,\n      \"hard_limit_inodes\": 1047,\n      \"quota_system_id\": 79,\n      \"soft_limit\": 283,\n      \"soft_limit_inodes\": 7302,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": false,\n      \"is_group\": false,\n      \"is_iam_role\": true,\n      \"name\": \"string\",\n      \"percent_capacity\": 1249,\n      \"percent_inodes\": 6387,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 5243,\n      \"used_inodes\": 6784,\n      \"vast_id\": 9918\n    }\n  ],\n  \"guid\": \"string\",\n  \"hard_limit\": 6461,\n  \"hard_limit_inodes\": 2894,\n  \"id\": 8099,\n  \"internal\": true,\n  \"is_physical_quota\": true,\n  \"is_user_quota\": false,\n  \"last_user_quotas_update\": \"2004-12-15T13:32:40.873Z\",\n  \"name\": \"string\",\n  \"num_blocked_users\": 234,\n  \"num_exceeded_users\": 3861,\n  \"percent_capacity\": 2012,\n  \"percent_inodes\": 4553,\n  \"pretty_grace_period\": \"string\",\n  \"pretty_grace_period_expiration\": \"string\",\n  \"pretty_state\": \"string\",\n  \"soft_limit\": 8798,\n  \"soft_limit_inodes\": 5787,\n  \"state\": \"INODE_HARD_EXCEEDED\",\n  \"sync_state\": \"string\",\n  \"system_id\": 2139,\n  \"tenant_id\": 5769,\n  \"tenant_name\": \"string\",\n  \"time_to_block\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"used_capacity\": 6049,\n  \"used_capacity_tb\": 8240.360049256238,\n  \"used_effective_capacity\": 335,\n  \"used_effective_capacity_tb\": 2035.429103199976,\n  \"used_inodes\": 5579,\n  \"used_limited_capacity\": 4447,\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 9083,\n      \"hard_limit_inodes\": 5837,\n      \"quota_system_id\": 8187,\n      \"soft_limit\": 6766,\n      \"soft_limit_inodes\": 7265,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": false,\n      \"is_group\": true,\n      \"is_iam_role\": false,\n      \"name\": \"string\",\n      \"percent_capacity\": 5708,\n      \"percent_inodes\": 6725,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 9520,\n      \"used_inodes\": 1895,\n      \"vast_id\": 5818\n    },\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 216,\n      \"hard_limit_inodes\": 9057,\n      \"quota_system_id\": 10,\n      \"soft_limit\": 3453,\n      \"soft_limit_inodes\": 9821,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": true,\n      \"is_group\": false,\n      \"is_iam_role\": false,\n      \"name\": \"string\",\n      \"percent_capacity\": 6197,\n      \"percent_inodes\": 8180,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 6834,\n      \"used_inodes\": 4385,\n      \"vast_id\": 216\n    }\n  ],\n  \"quotas\": [\n    {\n      \"id\": 5993,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1415,\n      \"name\": \"string\"\n    }\n  ],\n  \"quotas_count\": 9575\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8f15603-0138-474e-bfcb-dc1a6e3caa1f",
+          "name": "Delete Quota Group",
+          "request": {
+            "name": "Delete Quota Group",
+            "description": {
+              "content": "This endpoint deletes a quota group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotagroups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota Group ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f334c69-1d40-4282-a88e-8f9a75560ad6",
+              "name": "Quota group deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64367e0d-504f-4a67-9917-521a8546eb3a",
+          "name": "Return details of a quota group",
+          "request": {
+            "name": "Return details of a quota group",
+            "description": {
+              "content": "This endpoint returns details of a specified quota group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotagroups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota Group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4408c83e-1632-471f-b684-7632a3d74a78",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cluster_id\": 563,\n  \"default_email\": \"string\",\n  \"default_group_quota\": {\n    \"grace_period\": \"string\",\n    \"hard_limit\": 3775,\n    \"hard_limit_inodes\": 9847,\n    \"quota_system_id\": 1728,\n    \"soft_limit\": 9260,\n    \"soft_limit_inodes\": 9718\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"string\",\n    \"hard_limit\": 8330,\n    \"hard_limit_inodes\": 8245,\n    \"quota_system_id\": 2120,\n    \"soft_limit\": 5086,\n    \"soft_limit_inodes\": 6770\n  },\n  \"enable_alarms\": false,\n  \"enable_email_providers\": true,\n  \"grace_period\": \"string\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 3840,\n      \"hard_limit_inodes\": 6402,\n      \"quota_system_id\": 7364,\n      \"soft_limit\": 2931,\n      \"soft_limit_inodes\": 1249,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": true,\n      \"is_group\": false,\n      \"is_iam_role\": true,\n      \"name\": \"string\",\n      \"percent_capacity\": 7061,\n      \"percent_inodes\": 7618,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 3754,\n      \"used_inodes\": 2409,\n      \"vast_id\": 8327\n    },\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 6871,\n      \"hard_limit_inodes\": 1047,\n      \"quota_system_id\": 79,\n      \"soft_limit\": 283,\n      \"soft_limit_inodes\": 7302,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": false,\n      \"is_group\": false,\n      \"is_iam_role\": true,\n      \"name\": \"string\",\n      \"percent_capacity\": 1249,\n      \"percent_inodes\": 6387,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 5243,\n      \"used_inodes\": 6784,\n      \"vast_id\": 9918\n    }\n  ],\n  \"guid\": \"string\",\n  \"hard_limit\": 6461,\n  \"hard_limit_inodes\": 2894,\n  \"id\": 8099,\n  \"internal\": true,\n  \"is_physical_quota\": true,\n  \"is_user_quota\": false,\n  \"last_user_quotas_update\": \"2004-12-15T13:32:40.873Z\",\n  \"name\": \"string\",\n  \"num_blocked_users\": 234,\n  \"num_exceeded_users\": 3861,\n  \"percent_capacity\": 2012,\n  \"percent_inodes\": 4553,\n  \"pretty_grace_period\": \"string\",\n  \"pretty_grace_period_expiration\": \"string\",\n  \"pretty_state\": \"string\",\n  \"soft_limit\": 8798,\n  \"soft_limit_inodes\": 5787,\n  \"state\": \"INODE_HARD_EXCEEDED\",\n  \"sync_state\": \"string\",\n  \"system_id\": 2139,\n  \"tenant_id\": 5769,\n  \"tenant_name\": \"string\",\n  \"time_to_block\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"used_capacity\": 6049,\n  \"used_capacity_tb\": 8240.360049256238,\n  \"used_effective_capacity\": 335,\n  \"used_effective_capacity_tb\": 2035.429103199976,\n  \"used_inodes\": 5579,\n  \"used_limited_capacity\": 4447,\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 9083,\n      \"hard_limit_inodes\": 5837,\n      \"quota_system_id\": 8187,\n      \"soft_limit\": 6766,\n      \"soft_limit_inodes\": 7265,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": false,\n      \"is_group\": true,\n      \"is_iam_role\": false,\n      \"name\": \"string\",\n      \"percent_capacity\": 5708,\n      \"percent_inodes\": 6725,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 9520,\n      \"used_inodes\": 1895,\n      \"vast_id\": 5818\n    },\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 216,\n      \"hard_limit_inodes\": 9057,\n      \"quota_system_id\": 10,\n      \"soft_limit\": 3453,\n      \"soft_limit_inodes\": 9821,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": true,\n      \"is_group\": false,\n      \"is_iam_role\": false,\n      \"name\": \"string\",\n      \"percent_capacity\": 6197,\n      \"percent_inodes\": 8180,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 6834,\n      \"used_inodes\": 4385,\n      \"vast_id\": 216\n    }\n  ],\n  \"quotas\": [\n    {\n      \"id\": 5993,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1415,\n      \"name\": \"string\"\n    }\n  ],\n  \"quotas_count\": 9575\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "972aa114-51d1-4717-9a8b-4931ce262222",
+          "name": "Modify Quota Group",
+          "request": {
+            "name": "Modify Quota Group",
+            "description": {
+              "content": "This endpoint modifies a quota group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotagroups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota Group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"default_email\": \"<string>\",\n  \"default_group_quota\": \"<object>\",\n  \"default_user_quota\": \"<object>\",\n  \"enable_alarms\": \"<boolean>\",\n  \"enable_email_providers\": \"<boolean>\",\n  \"grace_period\": \"<string>\",\n  \"group_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"hard_limit\": \"<string>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"is_user_quota\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"soft_limit\": \"<string>\",\n  \"soft_limit_inodes\": \"<integer>\",\n  \"user_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79f7e234-edce-4fdb-bde2-9e878751300a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"default_email\": \"<string>\",\n  \"default_group_quota\": \"<object>\",\n  \"default_user_quota\": \"<object>\",\n  \"enable_alarms\": \"<boolean>\",\n  \"enable_email_providers\": \"<boolean>\",\n  \"grace_period\": \"<string>\",\n  \"group_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"hard_limit\": \"<string>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"is_user_quota\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"soft_limit\": \"<string>\",\n  \"soft_limit_inodes\": \"<integer>\",\n  \"user_quotas\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cluster_id\": 563,\n  \"default_email\": \"string\",\n  \"default_group_quota\": {\n    \"grace_period\": \"string\",\n    \"hard_limit\": 3775,\n    \"hard_limit_inodes\": 9847,\n    \"quota_system_id\": 1728,\n    \"soft_limit\": 9260,\n    \"soft_limit_inodes\": 9718\n  },\n  \"default_user_quota\": {\n    \"grace_period\": \"string\",\n    \"hard_limit\": 8330,\n    \"hard_limit_inodes\": 8245,\n    \"quota_system_id\": 2120,\n    \"soft_limit\": 5086,\n    \"soft_limit_inodes\": 6770\n  },\n  \"enable_alarms\": false,\n  \"enable_email_providers\": true,\n  \"grace_period\": \"string\",\n  \"group_quotas\": [\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 3840,\n      \"hard_limit_inodes\": 6402,\n      \"quota_system_id\": 7364,\n      \"soft_limit\": 2931,\n      \"soft_limit_inodes\": 1249,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": true,\n      \"is_group\": false,\n      \"is_iam_role\": true,\n      \"name\": \"string\",\n      \"percent_capacity\": 7061,\n      \"percent_inodes\": 7618,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 3754,\n      \"used_inodes\": 2409,\n      \"vast_id\": 8327\n    },\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 6871,\n      \"hard_limit_inodes\": 1047,\n      \"quota_system_id\": 79,\n      \"soft_limit\": 283,\n      \"soft_limit_inodes\": 7302,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": false,\n      \"is_group\": false,\n      \"is_iam_role\": true,\n      \"name\": \"string\",\n      \"percent_capacity\": 1249,\n      \"percent_inodes\": 6387,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 5243,\n      \"used_inodes\": 6784,\n      \"vast_id\": 9918\n    }\n  ],\n  \"guid\": \"string\",\n  \"hard_limit\": 6461,\n  \"hard_limit_inodes\": 2894,\n  \"id\": 8099,\n  \"internal\": true,\n  \"is_physical_quota\": true,\n  \"is_user_quota\": false,\n  \"last_user_quotas_update\": \"2004-12-15T13:32:40.873Z\",\n  \"name\": \"string\",\n  \"num_blocked_users\": 234,\n  \"num_exceeded_users\": 3861,\n  \"percent_capacity\": 2012,\n  \"percent_inodes\": 4553,\n  \"pretty_grace_period\": \"string\",\n  \"pretty_grace_period_expiration\": \"string\",\n  \"pretty_state\": \"string\",\n  \"soft_limit\": 8798,\n  \"soft_limit_inodes\": 5787,\n  \"state\": \"INODE_HARD_EXCEEDED\",\n  \"sync_state\": \"string\",\n  \"system_id\": 2139,\n  \"tenant_id\": 5769,\n  \"tenant_name\": \"string\",\n  \"time_to_block\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"used_capacity\": 6049,\n  \"used_capacity_tb\": 8240.360049256238,\n  \"used_effective_capacity\": 335,\n  \"used_effective_capacity_tb\": 2035.429103199976,\n  \"used_inodes\": 5579,\n  \"used_limited_capacity\": 4447,\n  \"user_quotas\": [\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 9083,\n      \"hard_limit_inodes\": 5837,\n      \"quota_system_id\": 8187,\n      \"soft_limit\": 6766,\n      \"soft_limit_inodes\": 7265,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": false,\n      \"is_group\": true,\n      \"is_iam_role\": false,\n      \"name\": \"string\",\n      \"percent_capacity\": 5708,\n      \"percent_inodes\": 6725,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 9520,\n      \"used_inodes\": 1895,\n      \"vast_id\": 5818\n    },\n    {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 216,\n      \"hard_limit_inodes\": 9057,\n      \"quota_system_id\": 10,\n      \"soft_limit\": 3453,\n      \"soft_limit_inodes\": 9821,\n      \"email\": \"string\",\n      \"identifier\": \"string\",\n      \"identifier_type\": \"string\",\n      \"is_accountable\": true,\n      \"is_group\": false,\n      \"is_iam_role\": false,\n      \"name\": \"string\",\n      \"percent_capacity\": 6197,\n      \"percent_inodes\": 8180,\n      \"state\": \"string\",\n      \"time_to_block\": \"string\",\n      \"used_capacity\": 6834,\n      \"used_inodes\": 4385,\n      \"vast_id\": 216\n    }\n  ],\n  \"quotas\": [\n    {\n      \"id\": 5993,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1415,\n      \"name\": \"string\"\n    }\n  ],\n  \"quotas_count\": 9575\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca6b7ea9-da1b-44ce-aa93-5ca443590826",
+          "name": "Assign quotas to quota group",
+          "request": {
+            "name": "Assign quotas to quota group",
+            "description": {
+              "content": "This endpoint assigns quotas to a quota group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotagroups",
+                ":id",
+                "assign_quotas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota Group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quotas_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8070aad-ec83-4178-af99-b3654fd142df",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ":id",
+                    "assign_quotas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quotas_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07201aab-b2bc-4c39-92b1-11fc7e878056",
+              "name": "No changes are required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ":id",
+                    "assign_quotas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quotas_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2f529ad-03d0-4a62-ab2a-9ba712b5e977",
+          "name": "Refresh user quotas of a quota group",
+          "request": {
+            "name": "Refresh user quotas of a quota group",
+            "description": {
+              "content": "This endpoint refreshes the user quota rules for all quotas within the quota group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotagroups",
+                ":id",
+                "refresh_user_quotas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota Group ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ece4f75c-b007-413a-97a3-b9042c80f811",
+              "name": "User quotas refresh initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ":id",
+                    "refresh_user_quotas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41de90d7-151c-438b-8930-4abb77b19a68",
+          "name": "Reset the grace period countdown after soft limit is exceeded",
+          "request": {
+            "name": "Reset the grace period countdown after soft limit is exceeded",
+            "description": {
+              "content": "This endpoint resets the countdown for a quota group whose soft limit was exceeded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotagroups",
+                ":id",
+                "reset_grace_period",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Quota Group ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "744f62a9-6f04-446b-b029-5cc8f1d6ef4b",
+              "name": "Grace period reset successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotagroups",
+                    ":id",
+                    "reset_grace_period",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Quota Group ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34409b8f-2121-4e49-a293-759a290d5267",
+    "name": "VAST API Swagger Schema activedirectory quotagroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

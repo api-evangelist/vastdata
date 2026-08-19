@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory token API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obtain Json Web Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/token/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint generates and obtains a pair of JSON Web Tokens (JWTs). The response provides an access token and a refresh token. The access token is a digitally encoded signature that can be used to authenticate and authorize access requests on a requested API path. It is designed to have a minimal lifetime, to ensure minimum time for the requesting user's identity to be exploited. The refresh token must have a longer lifetime than the access token. It can be used to request new tokens. The new "
+        },
+        {
+          "info": {
+            "name": "Refresh JWT Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/token/refresh/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint refreshes JWT tokens using the last generated refresh token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,634 @@
+{
+  "item": [
+    {
+      "id": "98cd8da1-437c-4371-9cb7-a8ddf0266b19",
+      "name": "nvrams",
+      "description": {
+        "content": "NVRAMs represent flash SSDs resident in DBoxes that are deployed as SCM devices, formerly known as NVRAM devices.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "482ef02b-2c5d-4188-8cd1-d97819cbd041",
+          "name": "List NVRAMs",
+          "request": {
+            "name": "List NVRAMs",
+            "description": {
+              "content": "This endpoint lists NVRAMs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nvrams",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by NVRAM state"
+                },
+                {
+                  "disabled": false,
+                  "key": "sn",
+                  "value": "<string>",
+                  "description": "Filter by NVRAM serial number"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Filter by NVRAM model"
+                },
+                {
+                  "disabled": false,
+                  "key": "dbox__name",
+                  "value": "<string>",
+                  "description": "Filter by parent DBox name"
+                },
+                {
+                  "disabled": false,
+                  "key": "dbox__id",
+                  "value": "<string>",
+                  "description": "Filter by parent DBox ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "fw_version",
+                  "value": "<string>",
+                  "description": "Filter by NVRAM firmware version"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88d5e664-f98b-48e9-bf18-c3caab1e9bfe",
+              "name": "NVRAM information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nvrams",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbox__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbox__id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fw_version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"arch_type\": \"string\",\n    \"attached_dnode_names\": \"string\",\n    \"carrier\": 2622,\n    \"carrier_hw_version\": \"string\",\n    \"carrier_serial\": \"string\",\n    \"carrier_sw_version\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 6969,\n    \"dbox\": \"string\",\n    \"dbox_id\": 8565,\n    \"display_name\": \"string\",\n    \"dnode1_attached\": false,\n    \"dnode2_attached\": false,\n    \"enabled\": false,\n    \"fail_reason\": \"CARRIER_VERSION_MISMATCH\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 26,\n    \"insertion_time\": \"2021-10-21T23:07:11.579Z\",\n    \"is_remote\": true,\n    \"led_status\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"phase_out\": true,\n    \"shelf\": \"RIGHT\",\n    \"size\": 8846,\n    \"slot\": 3565,\n    \"sn\": \"string\",\n    \"space_in_use\": 6691,\n    \"state\": \"HEALTHY\",\n    \"title\": \"string\"\n  },\n  {\n    \"arch_type\": \"string\",\n    \"attached_dnode_names\": \"string\",\n    \"carrier\": 9,\n    \"carrier_hw_version\": \"string\",\n    \"carrier_serial\": \"string\",\n    \"carrier_sw_version\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 7992,\n    \"dbox\": \"string\",\n    \"dbox_id\": 4609,\n    \"display_name\": \"string\",\n    \"dnode1_attached\": false,\n    \"dnode2_attached\": true,\n    \"enabled\": false,\n    \"fail_reason\": \"WRONG_DEVICE_LINK_PROPERTIES\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 7915,\n    \"insertion_time\": \"2001-04-07T20:11:39.818Z\",\n    \"is_remote\": false,\n    \"led_status\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"phase_out\": true,\n    \"shelf\": \"LEFT\",\n    \"size\": 1830,\n    \"slot\": 4397,\n    \"sn\": \"string\",\n    \"space_in_use\": 3115,\n    \"state\": \"FAILED\",\n    \"title\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3655abef-6080-4e6c-a074-d16bb75905aa",
+          "name": "Return Details of an NVRAM",
+          "request": {
+            "name": "Return Details of an NVRAM",
+            "description": {
+              "content": "This endpoint returns information about an NVRAM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nvrams",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c6f5c28-6686-4f0c-adfb-7b6e81dd0850",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nvrams",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arch_type\": \"string\",\n  \"attached_dnode_names\": \"string\",\n  \"carrier\": 4574,\n  \"carrier_hw_version\": \"string\",\n  \"carrier_serial\": \"string\",\n  \"carrier_sw_version\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 6415,\n  \"dbox\": \"string\",\n  \"dbox_id\": 2998,\n  \"display_name\": \"string\",\n  \"dnode1_attached\": true,\n  \"dnode2_attached\": true,\n  \"enabled\": false,\n  \"fail_reason\": \"FW_VERSION_MISMATCH\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 1443,\n  \"insertion_time\": \"1975-09-04T11:39:06.795Z\",\n  \"is_remote\": true,\n  \"led_status\": \"string\",\n  \"model\": \"string\",\n  \"name\": \"string\",\n  \"phase_out\": false,\n  \"shelf\": \"RIGHT\",\n  \"size\": 2358,\n  \"slot\": 4907,\n  \"sn\": \"string\",\n  \"space_in_use\": 7270,\n  \"state\": \"EXIT_PHASING_OUT\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88779659-963f-4556-852d-e2842a7f94c0",
+          "name": "Activate or Deactivate an NVRAM",
+          "request": {
+            "name": "Activate or Deactivate an NVRAM",
+            "description": {
+              "content": "This endpoint activates or deactivates an NVRAM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nvrams",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NVRAM ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d03f9c91-5f40-4fab-9969-1910d2ed2c30",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nvrams",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NVRAM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "084ea04b-b229-42a2-9acf-4449f96b4b8d",
+          "name": "Turn SCM SLED identification LED on and off",
+          "request": {
+            "name": "Turn SCM SLED identification LED on and off",
+            "description": {
+              "content": "This endpoint controls the ON/OFF state of the specified SCM SLED's identification LED",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nvrams",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NVRAM / SCM ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57614d75-1ffb-46cb-83b2-3dcba5b6aa90",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nvrams",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NVRAM / SCM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48107a9a-25d9-49f2-975b-186e47b7f9dd",
+          "name": "Format NVRAM",
+          "request": {
+            "name": "Format NVRAM",
+            "description": {
+              "content": "This endpoint formats the NVRAM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nvrams",
+                ":id",
+                "format",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NVRAM ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebe604d0-174d-40d7-a4b5-ec3d41d11b41",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nvrams",
+                    ":id",
+                    "format",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NVRAM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70eff03f-59c6-4a50-89f9-08ccdbc9b0af",
+    "name": "VAST API Swagger Schema activedirectory nvrams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

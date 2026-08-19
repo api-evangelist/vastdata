@@ -1,0 +1,160 @@
+{
+  "item": [
+    {
+      "id": "780fe9e5-f12b-4f46-b7d7-a6283c795cc3",
+      "name": "QoS Policies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99d99a2d-5638-437a-8421-37db2cb7cbe0",
+          "name": "Check whether an operation may be successfully performed",
+          "request": {
+            "name": "Check whether an operation may be successfully performed",
+            "description": {
+              "content": "Returns warnings about the future state if operation is performed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qospolicies",
+                "is_operation_healthy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "QOS Policy id on is operation healthy for update requests"
+                },
+                {
+                  "disabled": false,
+                  "key": "operation",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"is_default\": \"<boolean>\",\n  \"is_gold\": \"<boolean>\",\n  \"limit_by\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"s3_connections_limit\": \"<integer>\",\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"use_total_limits\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "366a9054-5538-4b25-a4ba-f9112f9df31c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qospolicies",
+                    "is_operation_healthy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "operation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"is_default\": \"<boolean>\",\n  \"is_gold\": \"<boolean>\",\n  \"limit_by\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"s3_connections_limit\": \"<integer>\",\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"use_total_limits\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"warnings\": [\n    \"Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant='default', path='/test')\",\n    \"Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant='default', path='/test')\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ecf1f0a7-491a-4488-a83a-7d49e7d302c4",
+    "name": "VAST API Swagger Schema activedirectory QoS Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

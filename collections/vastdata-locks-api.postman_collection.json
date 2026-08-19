@@ -1,0 +1,364 @@
+{
+  "item": [
+    {
+      "id": "9ba259bf-a532-4665-abd6-da7317cb8723",
+      "name": "locks",
+      "description": {
+        "content": "NLMv4 locks help NFSv3 clients protect NFS files from data consistency conflicts. NFS client applications can acquire read or write NLM locks on byte ranges or on whole files. VAST Cluster uses NSM to automatically remove NLM locks. Manual removal of locks should not be needed provided that every client host is configured to send sm_notify reboot notifications to NFS peers. The locks path feature can be used for manual lock removal in the event that a client OS is not configured to send sm_notify reboot notifications to NFS peers and crashes and leaves behind locks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c04f7fb-14b4-4f02-83df-145b595b66f4",
+          "name": "Deletes NLM Locks",
+          "request": {
+            "name": "Deletes NLM Locks",
+            "description": {
+              "content": "This endpoint deletes NLM locks on a file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clusters",
+                ":id",
+                "locks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenant_id\": \"<integer>\",\n  \"lock_type\": \"<string>\",\n  \"path\": \"<string>\",\n  \"unlock_id\": \"<string>\",\n  \"unlock_type\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "4279d03b-7881-4501-8195-6c72104b6b11",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters",
+                    ":id",
+                    "locks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5e2953e-24f0-4e91-9733-8a63175bc723",
+          "name": "List NLM Locks",
+          "request": {
+            "name": "List NLM Locks",
+            "description": {
+              "content": "This endpoint returns all NLM locks on a file at a specified path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clusters",
+                ":id",
+                "locks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenant_id\": \"<integer>\",\n  \"lock_type\": \"<string>\",\n  \"path\": \"<string>\",\n  \"unlock_id\": \"<string>\",\n  \"unlock_type\": \"<string>\",\n  \"direction\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "af78757d-3166-4157-8394-876dd39b922d",
+              "name": "Lock information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters",
+                    ":id",
+                    "locks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"caller\": \"string\",\n    \"client_id\": \"string\",\n    \"create_time_nano\": 6770,\n    \"is_exclusive\": true,\n    \"length\": 7337,\n    \"lock_granted_type\": \"string\",\n    \"lock_id\": \"string\",\n    \"lock_path\": \"string\",\n    \"lock_type\": \"string\",\n    \"offset\": 756,\n    \"open_id\": \"string\",\n    \"owner\": \"string\",\n    \"path\": \"string\",\n    \"state\": \"string\",\n    \"svid\": 497,\n    \"tenant_id\": 7493,\n    \"tenant_name\": \"string\",\n    \"unlock_id\": \"string\"\n  },\n  {\n    \"caller\": \"string\",\n    \"client_id\": \"string\",\n    \"create_time_nano\": 2983,\n    \"is_exclusive\": true,\n    \"length\": 7893,\n    \"lock_granted_type\": \"string\",\n    \"lock_id\": \"string\",\n    \"lock_path\": \"string\",\n    \"lock_type\": \"string\",\n    \"offset\": 4483,\n    \"open_id\": \"string\",\n    \"owner\": \"string\",\n    \"path\": \"string\",\n    \"state\": \"string\",\n    \"svid\": 7113,\n    \"tenant_id\": 3949,\n    \"tenant_name\": \"string\",\n    \"unlock_id\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1edbd83a-4530-4150-b208-efd3d73967fc",
+          "name": "Deletes NLM Locks Recursively",
+          "request": {
+            "name": "Deletes NLM Locks Recursively",
+            "description": {
+              "content": "This endpoint deletes NLM locks on a path recursively.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clusters",
+                ":id",
+                "release_recursive_locks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenant_id\": \"<integer>\",\n  \"lock_type\": \"<string>\",\n  \"path\": \"<string>\",\n  \"unlock_id\": \"<string>\",\n  \"unlock_type\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "d0d419db-7d04-4dda-91dc-38bb6afa8044",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clusters",
+                    ":id",
+                    "release_recursive_locks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "df9131f0-b878-4821-a606-bfdbd86e1995",
+    "name": "VAST API Swagger Schema activedirectory locks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

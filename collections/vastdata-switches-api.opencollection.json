@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory switches API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "switches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Switches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/switches/",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by switch state"
+              }
+            ]
+          },
+          "docs": "This endpoint lists switches."
+        },
+        {
+          "info": {
+            "name": "Add Switch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/switches/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds a switch to the cluster."
+        },
+        {
+          "info": {
+            "name": "Bulk Update Switch Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/switches/bulk/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates credentials for multiple switches simultaneously."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Switch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/switches/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Switch ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified switch."
+        },
+        {
+          "info": {
+            "name": "Change Switch User Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/switches/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Switch ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a switch username and password."
+        },
+        {
+          "info": {
+            "name": "Delete Switch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/switches/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Switch ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a switch."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

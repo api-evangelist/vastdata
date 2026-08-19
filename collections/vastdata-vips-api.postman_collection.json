@@ -1,0 +1,315 @@
+{
+  "item": [
+    {
+      "id": "1f3c13e1-ad55-4001-ae47-42e7653f3b86",
+      "name": "vips",
+      "description": {
+        "content": "A VIP is a virtual IP address that belongs to a VIP pool.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "557f7725-ae28-4a8c-a0f0-31cc73b01285",
+          "name": "List VIPs",
+          "request": {
+            "name": "List VIPs",
+            "description": {
+              "content": "This endpoint lists VIPs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vips",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>",
+                  "description": "Filter by IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "ip__icontains",
+                  "value": "<string>",
+                  "description": "Filter IP by case-insensitive containment"
+                },
+                {
+                  "disabled": false,
+                  "key": "vippool__id",
+                  "value": "<string>",
+                  "description": "Filter by VIP Pool ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "vippool__name",
+                  "value": "<string>",
+                  "description": "Filter by VIP Pool name"
+                },
+                {
+                  "disabled": false,
+                  "key": "cnode__name",
+                  "value": "<string>",
+                  "description": "Filter by CNode name"
+                },
+                {
+                  "disabled": false,
+                  "key": "cnode__id",
+                  "value": "<string>",
+                  "description": "Filter by CNode ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa49a581-471f-4217-a600-e6cba290ed50",
+              "name": "VIP information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vips",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ip__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vippool__id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vippool__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cnode__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cnode__id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cluster\": \"string\",\n    \"cnode\": \"string\",\n    \"guid\": \"string\",\n    \"hostname\": \"string\",\n    \"id\": 5147,\n    \"ip\": \"string\",\n    \"name\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"vippool\": \"string\"\n  },\n  {\n    \"cluster\": \"string\",\n    \"cnode\": \"string\",\n    \"guid\": \"string\",\n    \"hostname\": \"string\",\n    \"id\": 4719,\n    \"ip\": \"string\",\n    \"name\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"vippool\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "014f1be2-554c-465c-a36e-e4ccdcf47223",
+          "name": "Return Details of a VIP",
+          "request": {
+            "name": "Return Details of a VIP",
+            "description": {
+              "content": "This endpoint returns information about a specified VIP.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vips",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VIP ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82dcda3a-f8c2-4dbe-9ab3-129997843b49",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vips",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VIP ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cnode\": \"string\",\n  \"guid\": \"string\",\n  \"hostname\": \"string\",\n  \"id\": 2505,\n  \"ip\": \"string\",\n  \"name\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"vippool\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e30f9e20-abb2-4d21-9015-2f54bbced336",
+    "name": "VAST API Swagger Schema activedirectory vips API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

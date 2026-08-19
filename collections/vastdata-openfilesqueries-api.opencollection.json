@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory openfilesqueries API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "openfilesqueries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all open files queries.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/openfilesqueries/",
+            "params": [
+              {
+                "name": "path_prefix__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by path prefix substring"
+              },
+              {
+                "name": "name__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by query name substring"
+              },
+              {
+                "name": "tenant__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant ID"
+              },
+              {
+                "name": "created__gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter queries created on or after date"
+              },
+              {
+                "name": "created__lte",
+                "value": "",
+                "type": "query",
+                "description": "Filter queries created on or before date"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by query state"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists open files queries."
+        },
+        {
+          "info": {
+            "name": "Create an open files query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/openfilesqueries/"
+          },
+          "docs": "This endpoint creates an open files query."
+        },
+        {
+          "info": {
+            "name": "Return details of an open files query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/openfilesqueries/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specific open files query."
+        },
+        {
+          "info": {
+            "name": "Delete an open files query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/openfilesqueries/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "Delete an open files query."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

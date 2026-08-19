@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory encryptedpaths API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "encryptedpaths",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Encrypted Paths",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/encryptedpaths/"
+          },
+          "docs": "This endpoint lists encrypted paths."
+        },
+        {
+          "info": {
+            "name": "Create an Encrypted Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/encryptedpaths/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an encrypted path."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Encrypted Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/encryptedpaths/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Encrypted Path ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specific encrypted path."
+        },
+        {
+          "info": {
+            "name": "Modify Encrypted Path Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/encryptedpaths/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Encrypted Path ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies the name of an encrypted path."
+        },
+        {
+          "info": {
+            "name": "Delete Encrypted Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/encryptedpaths/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Encrypted Path ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an encrypted path."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

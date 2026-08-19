@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory nvrams API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "nvrams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List NVRAMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nvrams/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by NVRAM state"
+              },
+              {
+                "name": "sn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by NVRAM serial number"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by NVRAM model"
+              },
+              {
+                "name": "dbox__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent DBox name"
+              },
+              {
+                "name": "dbox__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent DBox ID"
+              },
+              {
+                "name": "fw_version",
+                "value": "",
+                "type": "query",
+                "description": "Filter by NVRAM firmware version"
+              }
+            ]
+          },
+          "docs": "This endpoint lists NVRAMs."
+        },
+        {
+          "info": {
+            "name": "Return Details of an NVRAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nvrams/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about an NVRAM."
+        },
+        {
+          "info": {
+            "name": "Activate or Deactivate an NVRAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/nvrams/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NVRAM ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint activates or deactivates an NVRAM."
+        },
+        {
+          "info": {
+            "name": "Turn SCM SLED identification LED on and off",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/nvrams/:id/control_led/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NVRAM / SCM ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint controls the ON/OFF state of the specified SCM SLED's identification LED"
+        },
+        {
+          "info": {
+            "name": "Format NVRAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/nvrams/:id/format/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NVRAM ID"
+              }
+            ]
+          },
+          "docs": "This endpoint formats the NVRAM."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

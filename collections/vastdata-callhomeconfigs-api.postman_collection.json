@@ -1,0 +1,556 @@
+{
+  "item": [
+    {
+      "id": "4f04a3d2-cf25-4c69-b532-250a37199b77",
+      "name": "callhomeconfigs",
+      "description": {
+        "content": "The callhomeconfigs path provides access to the cluster's Call Home configuration. Call Home is a service that sends non-sensitive data from your VAST Cluster to our central support server to enable us to provide proactive analysis and fast response on critical issues.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9aa3558e-f71e-455b-866b-f8c18150be3c",
+          "name": "List Call Home Configurations",
+          "request": {
+            "name": "List Call Home Configurations",
+            "description": {
+              "content": "This endpoint lists Call Home configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "callhomeconfigs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc9a603e-4d8f-494d-956d-4bb60f0085f3",
+              "name": "Call Home configuration details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "callhomeconfigs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"aggregated\": false,\n    \"alt_s3_host_port\": \"string\",\n    \"aws_s3_ak\": \"string\",\n    \"aws_s3_bucket_name\": \"string\",\n    \"aws_s3_bucket_subdir\": \"string\",\n    \"aws_s3_sk\": \"string\",\n    \"bundle_enabled\": false,\n    \"bundle_interval\": 2663,\n    \"callhome_upload_destination\": \"Matar\",\n    \"cloud_api_domain\": \"string\",\n    \"cloud_api_key\": \"string\",\n    \"cloud_enabled\": true,\n    \"cloud_registered\": true,\n    \"cloud_subdomain\": \"string\",\n    \"compress_method\": \"string\",\n    \"customer\": \"string\",\n    \"customer_id\": \"string\",\n    \"id\": 9433,\n    \"location\": \"string\",\n    \"log_enabled\": false,\n    \"log_interval\": 2446,\n    \"luna_analyze_period\": 2411,\n    \"luna_on_alarm_enabled\": true,\n    \"luna_on_alarm_interval\": 4298,\n    \"max_upload_bandwidth\": 9542,\n    \"max_upload_concurrency\": 1886,\n    \"obfuscated\": true,\n    \"proxy_host\": \"string\",\n    \"proxy_password\": \"string\",\n    \"proxy_port\": \"string\",\n    \"proxy_scheme\": \"string\",\n    \"proxy_username\": \"string\",\n    \"site\": \"string\",\n    \"ssl_certificate\": \"string\",\n    \"support_channel\": false,\n    \"test_mode\": false,\n    \"upload_via_vms\": false,\n    \"verify_ssl\": true\n  },\n  {\n    \"aggregated\": false,\n    \"alt_s3_host_port\": \"string\",\n    \"aws_s3_ak\": \"string\",\n    \"aws_s3_bucket_name\": \"string\",\n    \"aws_s3_bucket_subdir\": \"string\",\n    \"aws_s3_sk\": \"string\",\n    \"bundle_enabled\": true,\n    \"bundle_interval\": 9684,\n    \"callhome_upload_destination\": \"Matar\",\n    \"cloud_api_domain\": \"string\",\n    \"cloud_api_key\": \"string\",\n    \"cloud_enabled\": false,\n    \"cloud_registered\": false,\n    \"cloud_subdomain\": \"string\",\n    \"compress_method\": \"string\",\n    \"customer\": \"string\",\n    \"customer_id\": \"string\",\n    \"id\": 333,\n    \"location\": \"string\",\n    \"log_enabled\": false,\n    \"log_interval\": 2587,\n    \"luna_analyze_period\": 8041,\n    \"luna_on_alarm_enabled\": false,\n    \"luna_on_alarm_interval\": 8082,\n    \"max_upload_bandwidth\": 4969,\n    \"max_upload_concurrency\": 8181,\n    \"obfuscated\": false,\n    \"proxy_host\": \"string\",\n    \"proxy_password\": \"string\",\n    \"proxy_port\": \"string\",\n    \"proxy_scheme\": \"string\",\n    \"proxy_username\": \"string\",\n    \"site\": \"string\",\n    \"ssl_certificate\": \"string\",\n    \"support_channel\": true,\n    \"test_mode\": false,\n    \"upload_via_vms\": true,\n    \"verify_ssl\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7196986-f727-4b64-b1af-d5f8e318ef7a",
+          "name": "Return Call Home Configuration Details",
+          "request": {
+            "name": "Return Call Home Configuration Details",
+            "description": {
+              "content": "This endpoint returns Call Home Configuration details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "callhomeconfigs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Callhomeconfig ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3609e45f-6da3-41ae-a6d3-9ee90bf715fc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "callhomeconfigs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Callhomeconfig ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregated\": false,\n  \"alt_s3_host_port\": \"string\",\n  \"aws_s3_ak\": \"string\",\n  \"aws_s3_bucket_name\": \"string\",\n  \"aws_s3_bucket_subdir\": \"string\",\n  \"aws_s3_sk\": \"string\",\n  \"bundle_enabled\": false,\n  \"bundle_interval\": 9771,\n  \"callhome_upload_destination\": \"Matar\",\n  \"cloud_api_domain\": \"string\",\n  \"cloud_api_key\": \"string\",\n  \"cloud_enabled\": true,\n  \"cloud_registered\": true,\n  \"cloud_subdomain\": \"string\",\n  \"compress_method\": \"string\",\n  \"customer\": \"string\",\n  \"customer_id\": \"string\",\n  \"id\": 2388,\n  \"location\": \"string\",\n  \"log_enabled\": true,\n  \"log_interval\": 6169,\n  \"luna_analyze_period\": 6686,\n  \"luna_on_alarm_enabled\": true,\n  \"luna_on_alarm_interval\": 9817,\n  \"max_upload_bandwidth\": 869,\n  \"max_upload_concurrency\": 4897,\n  \"obfuscated\": false,\n  \"proxy_host\": \"string\",\n  \"proxy_password\": \"string\",\n  \"proxy_port\": \"string\",\n  \"proxy_scheme\": \"string\",\n  \"proxy_username\": \"string\",\n  \"site\": \"string\",\n  \"ssl_certificate\": \"string\",\n  \"support_channel\": true,\n  \"test_mode\": true,\n  \"upload_via_vms\": false,\n  \"verify_ssl\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "900c1286-0c86-40de-bfb9-ae43fe2ae758",
+          "name": "Modify the Call Home Configuration",
+          "request": {
+            "name": "Modify the Call Home Configuration",
+            "description": {
+              "content": "This endpoint modifies the Call Home configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "callhomeconfigs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Call Home Configuration ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aggregated\": \"<boolean>\",\n  \"alt_s3_host_port\": \"<string>\",\n  \"aws_s3_ak\": \"<string>\",\n  \"aws_s3_bucket_name\": \"<string>\",\n  \"aws_s3_bucket_subdir\": \"<string>\",\n  \"aws_s3_sk\": \"<string>\",\n  \"bundle_enabled\": \"<boolean>\",\n  \"bundle_interval\": \"<integer>\",\n  \"cloud_api_domain\": \"<string>\",\n  \"cloud_api_key\": \"<string>\",\n  \"cloud_enabled\": \"<boolean>\",\n  \"cloud_subdomain\": \"<string>\",\n  \"compress_method\": \"<string>\",\n  \"customer\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"location\": \"<string>\",\n  \"log_enabled\": \"<boolean>\",\n  \"log_interval\": \"<integer>\",\n  \"luna_analyze_period\": \"<integer>\",\n  \"luna_on_alarm_enabled\": \"<boolean>\",\n  \"luna_on_alarm_interval\": \"<integer>\",\n  \"max_upload_bandwidth\": \"<integer>\",\n  \"max_upload_concurrency\": \"<integer>\",\n  \"obfuscated\": \"<boolean>\",\n  \"proxy_host\": \"<string>\",\n  \"proxy_password\": \"<string>\",\n  \"proxy_port\": \"<string>\",\n  \"proxy_scheme\": \"<string>\",\n  \"proxy_username\": \"<string>\",\n  \"site\": \"<string>\",\n  \"support_channel\": \"<boolean>\",\n  \"test_mode\": \"<boolean>\",\n  \"upload_via_vms\": \"<boolean>\",\n  \"verify_ssl\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5e00771-ed74-49f5-a02d-c5948dff02b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "callhomeconfigs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Call Home Configuration ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aggregated\": \"<boolean>\",\n  \"alt_s3_host_port\": \"<string>\",\n  \"aws_s3_ak\": \"<string>\",\n  \"aws_s3_bucket_name\": \"<string>\",\n  \"aws_s3_bucket_subdir\": \"<string>\",\n  \"aws_s3_sk\": \"<string>\",\n  \"bundle_enabled\": \"<boolean>\",\n  \"bundle_interval\": \"<integer>\",\n  \"cloud_api_domain\": \"<string>\",\n  \"cloud_api_key\": \"<string>\",\n  \"cloud_enabled\": \"<boolean>\",\n  \"cloud_subdomain\": \"<string>\",\n  \"compress_method\": \"<string>\",\n  \"customer\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"location\": \"<string>\",\n  \"log_enabled\": \"<boolean>\",\n  \"log_interval\": \"<integer>\",\n  \"luna_analyze_period\": \"<integer>\",\n  \"luna_on_alarm_enabled\": \"<boolean>\",\n  \"luna_on_alarm_interval\": \"<integer>\",\n  \"max_upload_bandwidth\": \"<integer>\",\n  \"max_upload_concurrency\": \"<integer>\",\n  \"obfuscated\": \"<boolean>\",\n  \"proxy_host\": \"<string>\",\n  \"proxy_password\": \"<string>\",\n  \"proxy_port\": \"<string>\",\n  \"proxy_scheme\": \"<string>\",\n  \"proxy_username\": \"<string>\",\n  \"site\": \"<string>\",\n  \"support_channel\": \"<boolean>\",\n  \"test_mode\": \"<boolean>\",\n  \"upload_via_vms\": \"<boolean>\",\n  \"verify_ssl\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d06b1ce-3bf8-499f-80aa-c99d569c45e7",
+          "name": "Register Cluster with Uplink",
+          "request": {
+            "name": "Register Cluster with Uplink",
+            "description": {
+              "content": "This endpoint registers a cluster with Uplink.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "callhomeconfigs",
+                ":id",
+                "register-cluster",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID issued to the customer as customer_id. This is part of the Call Home configuration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"token\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "1a4f88a9-cf37-4781-8535-f78f95936cf4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "callhomeconfigs",
+                    ":id",
+                    "register-cluster",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID issued to the customer as customer_id. This is part of the Call Home configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"token\": \"<string>\"\n}"
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3dcbfdd-e7cc-42f4-951e-e410851ea60e",
+          "name": "Send a Call Home Message",
+          "request": {
+            "name": "Send a Call Home Message",
+            "description": {
+              "content": "This endpoint sends a callhome message to the Support server to test the Call Home configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "callhomeconfigs",
+                ":id",
+                "send",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Call Home Configuration ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac7ef994-e9ac-45dc-b2d3-f527b3672e50",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "callhomeconfigs",
+                    ":id",
+                    "send",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Call Home Configuration ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c4a97f1-668c-4498-8304-dd17e7e134c7",
+    "name": "VAST API Swagger Schema activedirectory callhomeconfigs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

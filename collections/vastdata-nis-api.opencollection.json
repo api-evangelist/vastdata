@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory nis API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "nis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List NIS Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nis/"
+          },
+          "docs": "This endpoint lists NIS configurations."
+        },
+        {
+          "info": {
+            "name": "Create a NIS Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/nis/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a NIS configuration."
+        },
+        {
+          "info": {
+            "name": "Refresh NIS Cache",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/nis/refresh/"
+          },
+          "docs": "This endpoint refreshes the NIS cache by looking up user and netgroup maps on the NIS server."
+        },
+        {
+          "info": {
+            "name": "Return NIS Configuration Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nis/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NIS ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a NIS configuration."
+        },
+        {
+          "info": {
+            "name": "Modify NIS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/nis/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NIS ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a NIS configuration."
+        },
+        {
+          "info": {
+            "name": "Delete NIS Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/nis/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a NIS configuration."
+        },
+        {
+          "info": {
+            "name": "Set NIS as Primary POSIX Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/nis/:id/set_posix_primary/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NIS ID"
+              }
+            ]
+          },
+          "docs": "This endpoint sets NIS as the primary POSIX provider. If VAST Cluster is connected to two external authorization providers, one of the providers is always set to be the POSIX primary provider. If both providers have POSIX user attributes, then in case of any conflict between POSIX attributes that are retrieved from the providers, the POSIX primary takes precedence over the other provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

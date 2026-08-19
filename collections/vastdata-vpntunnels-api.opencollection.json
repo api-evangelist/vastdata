@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory vpntunnels API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vpntunnels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List VPN Tunnels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vpntunnels/"
+          },
+          "docs": "This endpoint lists VPN tunnels."
+        },
+        {
+          "info": {
+            "name": "Create VPN Tunnel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vpntunnels/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a VPN tunnel."
+        },
+        {
+          "info": {
+            "name": "Close and Delete all available VPN Tunnels",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/vpntunnels/delete_all/"
+          },
+          "docs": "This endpoint closes and deletes all open VPN tunnels"
+        },
+        {
+          "info": {
+            "name": "Return Details of a VPN Tunnel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vpntunnels/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VPN tunnel ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a VPN tunnel."
+        },
+        {
+          "info": {
+            "name": "Close and Delete VPN Tunnel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/vpntunnels/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VPN tunnel ID"
+              }
+            ]
+          },
+          "docs": "This endpoint closes and deletes an open VPN tunnel"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

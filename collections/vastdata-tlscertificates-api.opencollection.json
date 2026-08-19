@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory tlscertificates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tlscertificates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of TLS certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tlscertificates/",
+            "params": [
+              {
+                "name": "tenant__id",
+                "value": "",
+                "type": "query",
+                "description": "The tenant to show"
+              },
+              {
+                "name": "tenant__isnull",
+                "value": "",
+                "type": "query",
+                "description": "Filter by global certificate"
+              },
+              {
+                "name": "protocols__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Protocol to see"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List of TLS certificates"
+        },
+        {
+          "info": {
+            "name": "Creates TLS certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tlscertificates/",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "ca_certificate_file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ca_certificate_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "protocols",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "revocation_file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "revocations_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tenant_associate_param",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tenant_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates TLS certificates"
+        },
+        {
+          "info": {
+            "name": "Check whether an operation may be successfully performed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tlscertificates/is_operation_healthy",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "ca_certificate_file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "revocation_file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Check whether an operation may be successfully performed"
+        },
+        {
+          "info": {
+            "name": "tlscertificates_read",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tlscertificates/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "tlscertificates_partial_update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tlscertificates/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "ca_certificate_file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ca_certificate_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "protocols",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "revocation_file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "revocations_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tenant_associate_param",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "tlscertificates_delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tlscertificates/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "tlscertificates_delete_crl",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tlscertificates/:id/crl/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

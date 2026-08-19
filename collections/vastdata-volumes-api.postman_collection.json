@@ -1,0 +1,1192 @@
+{
+  "item": [
+    {
+      "id": "4e3dfb85-3ffb-4898-b40c-76fb86d03344",
+      "name": "Volumes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48e28e78-f955-452b-bd78-6c71ce6c050d",
+          "name": "Delete a Bulk Of Block Storage Volumes",
+          "request": {
+            "name": "Delete a Bulk Of Block Storage Volumes",
+            "description": {
+              "content": "This endpoint deletes multiple block storage volumes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "Forcefully removes mappings between hosts and volumes. A host can be deleted only if it is not mapped to any volume, and a volume can be deleted only if it is not mapped to any host."
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27bc28d7-400e-448e-9dc0-1ac35fc5fe35",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25b7d7cc-0d05-4776-8df9-1445aefa4ad0",
+          "name": "List Block Storage Volumes",
+          "request": {
+            "name": "List Block Storage Volumes",
+            "description": {
+              "content": "This endpoint lists existing block storage volumes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "view__id",
+                  "value": "<integer>",
+                  "description": "View ID by which to filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Volume name to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "nguid",
+                  "value": "<string>",
+                  "description": "volume nguid to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<string>",
+                  "description": "volume uuid to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "snapshot_id",
+                  "value": "<integer>",
+                  "description": "Unmapped Volumes captured by snapshot — under snapshot’s path, created before the snapshot time."
+                },
+                {
+                  "disabled": false,
+                  "key": "mapped_snapshot_id",
+                  "value": "<integer>",
+                  "description": "Volumes explicitly mapped to the snapshot."
+                },
+                {
+                  "disabled": false,
+                  "key": "namespace_id",
+                  "value": "<integer>",
+                  "description": "Volume namespace ID to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "block_hosts__id",
+                  "value": "<integer>",
+                  "description": "Volume BlockHost ID to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "qos_policy__id",
+                  "value": "<integer>",
+                  "description": "Volume QOS Policy ID to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_monitored",
+                  "value": "<boolean>",
+                  "description": "Filter by whether Volume is monitored."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "942ef521-d475-4f3d-a964-a34b2799a66c",
+              "name": "Volumes and their properties",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "view__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nguid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "snapshot_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mapped_snapshot_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "namespace_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "block_hosts__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "qos_policy__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "is_monitored",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"view_id\": 6606,\n    \"name\": \"string\",\n    \"size\": 4188,\n    \"capacity\": 1677,\n    \"created\": \"1963-02-10T02:58:15.708Z\",\n    \"full_path\": \"string\",\n    \"id\": 5995,\n    \"is_monitored\": false,\n    \"mapped_block_host_count\": 7232,\n    \"mapped_block_hosts_preview\": \"string\",\n    \"namespace_id\": 2978,\n    \"nguid\": \"string\",\n    \"qos_policy\": {\n      \"id\": 2394,\n      \"name\": \"string\"\n    },\n    \"qos_policy_id\": 8200,\n    \"snapshot_data\": {\n      \"created\": \"1969-04-20T06:20:51.248Z\",\n      \"id\": 6759,\n      \"name\": \"string\"\n    },\n    \"state\": \"FAILED\",\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"tenant_name\": \"string\",\n    \"uuid\": \"string\"\n  },\n  {\n    \"view_id\": 1370,\n    \"name\": \"string\",\n    \"size\": 4965,\n    \"capacity\": 8134,\n    \"created\": \"1978-09-19T21:01:18.542Z\",\n    \"full_path\": \"string\",\n    \"id\": 2730,\n    \"is_monitored\": false,\n    \"mapped_block_host_count\": 5418,\n    \"mapped_block_hosts_preview\": \"string\",\n    \"namespace_id\": 2600,\n    \"nguid\": \"string\",\n    \"qos_policy\": {\n      \"id\": 6884,\n      \"name\": \"string\"\n    },\n    \"qos_policy_id\": 4640,\n    \"snapshot_data\": {\n      \"created\": \"2025-10-29T17:38:48.437Z\",\n      \"id\": 6882,\n      \"name\": \"string\"\n    },\n    \"state\": \"DELETED\",\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"tenant_name\": \"string\",\n    \"uuid\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1093cba5-7aa6-4898-bb0e-ae99ed1533ba",
+          "name": "Create a Block Storage Volume",
+          "request": {
+            "name": "Create a Block Storage Volume",
+            "description": {
+              "content": "This endpoint creates a volume for block storage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"view_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"is_monitored\": \"<boolean>\",\n  \"qos_policy_id\": \"<integer>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4351cdb1-a5b1-47ba-b0f1-8e9cc718b1bf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"view_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"is_monitored\": \"<boolean>\",\n  \"qos_policy_id\": \"<integer>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"view_id\": 6887,\n  \"name\": \"string\",\n  \"size\": 4815,\n  \"capacity\": 3285,\n  \"created\": \"1986-04-30T22:53:23.649Z\",\n  \"full_path\": \"string\",\n  \"id\": 7063,\n  \"is_monitored\": true,\n  \"mapped_block_host_count\": 9091,\n  \"mapped_block_hosts_preview\": \"string\",\n  \"namespace_id\": 3334,\n  \"nguid\": \"string\",\n  \"qos_policy\": {\n    \"id\": 8231,\n    \"name\": \"string\"\n  },\n  \"qos_policy_id\": 3612,\n  \"snapshot_data\": {\n    \"created\": \"1953-04-19T01:18:43.668Z\",\n    \"id\": 5383,\n    \"name\": \"string\"\n  },\n  \"state\": \"MODIFIED\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"tenant_name\": \"string\",\n  \"uuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f92d7054-6d04-473f-90de-0ebca5da8694",
+          "name": "Delete a Block Storage Volume",
+          "request": {
+            "name": "Delete a Block Storage Volume",
+            "description": {
+              "content": "This endpoint deletes a block storage volume.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force_unmap",
+                  "value": "<boolean>",
+                  "description": "Forces removal of mappings of the volume to hosts. A volume can be removed only if it is not mapped to any host."
+                },
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "Forces removal of mappings of the volume to hosts. A volume can be removed only if it is not mapped to any host."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2563fc9b-9065-4a69-81c1-4d9ab3bf1af1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force_unmap",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "473d15ad-34fa-4c8a-bbc6-3652ca0f2634",
+          "name": "Return Details of a Block Storage Volume",
+          "request": {
+            "name": "Return Details of a Block Storage Volume",
+            "description": {
+              "content": "This endpoint returns the properties of a block storage volume.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6ffa7c8-d472-43a9-b6b0-4880c2ba84bc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"view_id\": 6887,\n  \"name\": \"string\",\n  \"size\": 4815,\n  \"capacity\": 3285,\n  \"created\": \"1986-04-30T22:53:23.649Z\",\n  \"full_path\": \"string\",\n  \"id\": 7063,\n  \"is_monitored\": true,\n  \"mapped_block_host_count\": 9091,\n  \"mapped_block_hosts_preview\": \"string\",\n  \"namespace_id\": 3334,\n  \"nguid\": \"string\",\n  \"qos_policy\": {\n    \"id\": 8231,\n    \"name\": \"string\"\n  },\n  \"qos_policy_id\": 3612,\n  \"snapshot_data\": {\n    \"created\": \"1953-04-19T01:18:43.668Z\",\n    \"id\": 5383,\n    \"name\": \"string\"\n  },\n  \"state\": \"MODIFIED\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"tenant_name\": \"string\",\n  \"uuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d493bf9c-0c2f-4458-9d6d-bbd9fe2e1a6c",
+          "name": "Modify a Block Storage Volume",
+          "request": {
+            "name": "Modify a Block Storage Volume",
+            "description": {
+              "content": "This endpoint modifies the name (path relative to subsystem) and/or size (expansion only) of a block storage volume.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_monitored\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"qos_policy_id\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c493c92-d3e1-418a-92d2-2623d9be5c1a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_monitored\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"qos_policy_id\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85bf0e9f-2956-4433-bd24-c5e7c2740491",
+          "name": "Fetches Capacity Usage of Block Storage Volume",
+          "request": {
+            "name": "Fetches Capacity Usage of Block Storage Volume",
+            "description": {
+              "content": "This endpoint fetches and returns the used capacity of a volume.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ":id",
+                "fetch_capacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8884e746-4987-4f4c-b1f5-dbb8780ec1ce",
+              "name": "The amount of the volume's capacity that is in use",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ":id",
+                    "fetch_capacity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"capacity\": 2666\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28a9289c-5c62-43ea-a5c7-2d03490b0765",
+          "name": "Return Snapshots (IDs) of a Volume.",
+          "request": {
+            "name": "Return Snapshots (IDs) of a Volume.",
+            "description": {
+              "content": "This endpoint returns the snapshots taken on the volume.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ":id",
+                "get_snapshots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c216edf-abb3-4bdd-9693-be7c128846e1",
+              "name": "Volume snapshots information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ":id",
+                    "get_snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2753,\n    \"created\": \"1953-12-03T12:13:32.134Z\",\n    \"name\": \"string\",\n    \"path\": \"string\"\n  },\n  {\n    \"id\": 3837,\n    \"created\": \"1987-12-22T01:14:31.450Z\",\n    \"name\": \"string\",\n    \"path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42fc1e61-4d08-488c-8221-cc50061bdf81",
+          "name": "Map a Volume to Block Hosts",
+          "request": {
+            "name": "Map a Volume to Block Hosts",
+            "description": {
+              "content": "This endpoint maps (set) a single volume (either it's current version or a snapshot) into multiple block hosts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ":id",
+                "set_hosts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"snapshot_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ffc2b6ff-779a-49dc-ab1f-1c1ebe3dcbcf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ":id",
+                    "set_hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"snapshot_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b89a4232-a62a-46b7-b11a-9df9efd29e7b",
+          "name": "Update Mapping of a Volume to Block Hosts",
+          "request": {
+            "name": "Update Mapping of a Volume to Block Hosts",
+            "description": {
+              "content": "This endpoint maps (update) a single volume (either it's current version or a snapshot) into multiple block hosts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "volumes",
+                ":id",
+                "update_hosts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids_to_add\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ids_to_remove\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"snapshot_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "33645bed-492d-487e-9a9d-8563d532cc2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "volumes",
+                    ":id",
+                    "update_hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids_to_add\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ids_to_remove\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"snapshot_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e3b57bd8-12c9-40ab-ad11-f9a70df897aa",
+    "name": "VAST API Swagger Schema activedirectory Volumes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

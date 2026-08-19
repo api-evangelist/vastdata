@@ -1,0 +1,248 @@
+{
+  "item": [
+    {
+      "id": "536fde96-f89d-4f55-8c6f-5bf55ce514de",
+      "name": "ports",
+      "description": {
+        "content": "Ports represent switch ports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a8f44fb4-1753-4029-83f3-c0f0061e2cdb",
+          "name": "List Switch Ports",
+          "request": {
+            "name": "List Switch Ports",
+            "description": {
+              "content": "This endpoint lists switch ports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ports",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by port state"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Filter by port model"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d14522a-784e-4f8a-8d11-f1dad5dc1e33",
+              "name": "Port information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ports",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cluster\": \"string\",\n    \"cluster_id\": 5098,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9496,\n    \"model\": \"string\",\n    \"mtu\": \"string\",\n    \"name\": \"string\",\n    \"sn\": \"string\",\n    \"speed\": \"string\",\n    \"state\": \"ACTIVE\",\n    \"switch\": \"string\",\n    \"title\": \"string\"\n  },\n  {\n    \"cluster\": \"string\",\n    \"cluster_id\": 8319,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8163,\n    \"model\": \"string\",\n    \"mtu\": \"string\",\n    \"name\": \"string\",\n    \"sn\": \"string\",\n    \"speed\": \"string\",\n    \"state\": \"ENTER_PHASING_OUT\",\n    \"switch\": \"string\",\n    \"title\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e92f172-fd2a-46be-b827-7a465d82a0b0",
+          "name": "Return Details of One Switch Port",
+          "request": {
+            "name": "Return Details of One Switch Port",
+            "description": {
+              "content": "This endpoint returns details of a specific switch port.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ports",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Port ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99b8d9eb-2fae-41b5-8e6e-e9f854e9fbfb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ports",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Port ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cluster_id\": 240,\n  \"display_name\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 3326,\n  \"model\": \"string\",\n  \"mtu\": \"string\",\n  \"name\": \"string\",\n  \"sn\": \"string\",\n  \"speed\": \"string\",\n  \"state\": \"ACTIVATING\",\n  \"switch\": \"string\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "292f49c6-118f-4719-bf13-03b1ff0de8e5",
+    "name": "VAST API Swagger Schema activedirectory ports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

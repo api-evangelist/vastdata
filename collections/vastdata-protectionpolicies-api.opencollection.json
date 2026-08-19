@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory protectionpolicies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "protectionpolicies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return Protection Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/protectionpolicies/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "target__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name of replication peer"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by protection policy name"
+              }
+            ]
+          },
+          "docs": "This endpoint lists protection policies."
+        },
+        {
+          "info": {
+            "name": "Create Protection Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/protectionpolicies/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a protection policy."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Protection Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/protectionpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Protection Policy ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified protection policy."
+        },
+        {
+          "info": {
+            "name": "Modify a Protection Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectionpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Protection Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a protection policy."
+        },
+        {
+          "info": {
+            "name": "Delete Protection Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/protectionpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Protection Policy ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a protection policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

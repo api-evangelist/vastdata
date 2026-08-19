@@ -1,0 +1,229 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory vastcatalogconfig API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vastcatalogconfig",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List VAST Catalog Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/bigcatalogconfig/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a list of VAST Catalog configurations."
+        },
+        {
+          "info": {
+            "name": "Create a VAST Catalog Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/bigcatalogconfig/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a schedule for periodic snapshot creation for VAST Catalog, with retention periods for the periodic snapshots and for the VAST Catalog table."
+        },
+        {
+          "info": {
+            "name": "Return VAST Catalog columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/bigcatalogconfig/columns/"
+          },
+          "docs": "Return VAST Catalog columns"
+        },
+        {
+          "info": {
+            "name": "Queries data based on provided params",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/bigcatalogconfig/query_data/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Target source path"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "snapshot",
+                "value": "",
+                "type": "query",
+                "description": "The name of the snapshot, the latest version is taken by default"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Defines which fields should be displayed"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+              }
+            ]
+          },
+          "docs": "Queries data based on provided params"
+        },
+        {
+          "info": {
+            "name": "Query VAST Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/bigcatalogconfig/query_data/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query VAST Catalog"
+        },
+        {
+          "info": {
+            "name": "Return VAST Catalog Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/bigcatalogconfig/stats/"
+          },
+          "docs": "Return VAST Catalog Stats"
+        },
+        {
+          "info": {
+            "name": "Return VAST Catalog Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/bigcatalogconfig/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Vastcatalogconfig ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of the VAST Catalog configuration."
+        },
+        {
+          "info": {
+            "name": "Modify VAST Catalog Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/bigcatalogconfig/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VAST Catalog Configuration ID"
+              }
+            ]
+          },
+          "docs": "Modify VAST Catalog Configuration"
+        },
+        {
+          "info": {
+            "name": "Delete VAST Catalog Configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/bigcatalogconfig/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Vastcatalogconfig ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes the VAST Catalog configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

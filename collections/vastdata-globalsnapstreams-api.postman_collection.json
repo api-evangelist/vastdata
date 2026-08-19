@@ -1,0 +1,883 @@
+{
+  "item": [
+    {
+      "id": "558c8181-034f-4614-bfb3-8827056413fc",
+      "name": "globalsnapstreams",
+      "description": {
+        "content": "Global snapshot streams create instantly writable directories cloned from snapshots. Clones can be created from any snapshot residing on the cluster itself or on a cluster that has a replication peer relationship with the local cluster. The cloned directory can be from any snapshot or subtree of a snapshot, such as a snapshot replicated from a third cluster to a remote peer.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b657acc-f8bb-4c70-9a45-4cf9fc07633a",
+          "name": "Return Global Snaphot Streams",
+          "request": {
+            "name": "Return Global Snaphot Streams",
+            "description": {
+              "content": "This endpoint lists global snapshot streams.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "globalsnapstreams",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by Global Snaphot Stream name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c88f13d-39f9-4e4b-85fc-4718903a61fe",
+              "name": "Global Snapshot Stream information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "globalsnapstreams",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"bw\": 5607,\n    \"direction\": \"string\",\n    \"enabled\": false,\n    \"eta\": \"string\",\n    \"external_state\": \"string\",\n    \"guid\": \"string\",\n    \"health\": \"string\",\n    \"id\": 5349,\n    \"loanee_root_path\": \"string\",\n    \"loanee_snapshot\": \"string\",\n    \"loanee_snapshot_id\": 5640,\n    \"loanee_tenant\": {\n      \"guid\": \"string\",\n      \"name\": \"string\"\n    },\n    \"name\": \"string\",\n    \"owner_root_snapshot\": {},\n    \"owner_tenant\": {\n      \"guid\": \"string\",\n      \"name\": \"string\"\n    },\n    \"remote_target\": \"string\",\n    \"remote_target_id\": 234,\n    \"restore_task\": 1508,\n    \"source_cluster\": \"string\",\n    \"source_path\": \"string\",\n    \"source_snapshot\": \"string\",\n    \"state\": \"string\",\n    \"status\": {},\n    \"sync_progress\": 3569,\n    \"target_cluster\": \"string\",\n    \"view_replication_enabled\": false\n  },\n  {\n    \"bw\": 432,\n    \"direction\": \"string\",\n    \"enabled\": false,\n    \"eta\": \"string\",\n    \"external_state\": \"string\",\n    \"guid\": \"string\",\n    \"health\": \"string\",\n    \"id\": 7989,\n    \"loanee_root_path\": \"string\",\n    \"loanee_snapshot\": \"string\",\n    \"loanee_snapshot_id\": 7652,\n    \"loanee_tenant\": {\n      \"guid\": \"string\",\n      \"name\": \"string\"\n    },\n    \"name\": \"string\",\n    \"owner_root_snapshot\": {},\n    \"owner_tenant\": {\n      \"guid\": \"string\",\n      \"name\": \"string\"\n    },\n    \"remote_target\": \"string\",\n    \"remote_target_id\": 9640,\n    \"restore_task\": 8193,\n    \"source_cluster\": \"string\",\n    \"source_path\": \"string\",\n    \"source_snapshot\": \"string\",\n    \"state\": \"string\",\n    \"status\": {},\n    \"sync_progress\": 5292,\n    \"target_cluster\": \"string\",\n    \"view_replication_enabled\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5a3668e-1c79-47b2-af85-3aa39b9a2ccd",
+          "name": "Create a Global Snapshot Stream",
+          "request": {
+            "name": "Create a Global Snapshot Stream",
+            "description": {
+              "content": "This endpoint creates a global snapshot stream. A global snapshot stream clones a remote or a local snapshot to a target path on the local cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "globalsnapstreams",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"loanee_root_path\": \"<string>\",\n  \"loanee_snapshot\": \"<string>\",\n  \"loanee_snapshot_id\": \"<integer>\",\n  \"loanee_tenant_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"owner_root_snapshot\": {\n    \"clone_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"parent_handle_ehandle\": \"<string>\"\n  },\n  \"owner_tenant\": \"<object>\",\n  \"remote_target\": \"<string>\",\n  \"remote_target_id\": \"<integer>\",\n  \"status\": \"<object>\",\n  \"view_replication_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c180ddb-b4ea-45d1-90e3-1a3670b12d72",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "globalsnapstreams",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"loanee_root_path\": \"<string>\",\n  \"loanee_snapshot\": \"<string>\",\n  \"loanee_snapshot_id\": \"<integer>\",\n  \"loanee_tenant_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"owner_root_snapshot\": {\n    \"clone_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"parent_handle_ehandle\": \"<string>\"\n  },\n  \"owner_tenant\": \"<object>\",\n  \"remote_target\": \"<string>\",\n  \"remote_target_id\": \"<integer>\",\n  \"status\": \"<object>\",\n  \"view_replication_enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bw\": 2744,\n  \"direction\": \"string\",\n  \"enabled\": false,\n  \"eta\": \"string\",\n  \"external_state\": \"string\",\n  \"guid\": \"string\",\n  \"health\": \"string\",\n  \"id\": 1331,\n  \"loanee_root_path\": \"string\",\n  \"loanee_snapshot\": \"string\",\n  \"loanee_snapshot_id\": 8786,\n  \"loanee_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"name\": \"string\",\n  \"owner_root_snapshot\": {},\n  \"owner_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"remote_target\": \"string\",\n  \"remote_target_id\": 4295,\n  \"restore_task\": 5250,\n  \"source_cluster\": \"string\",\n  \"source_path\": \"string\",\n  \"source_snapshot\": \"string\",\n  \"state\": \"string\",\n  \"status\": {},\n  \"sync_progress\": 4212,\n  \"target_cluster\": \"string\",\n  \"view_replication_enabled\": true,\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fd3a5bb-6028-46a5-96e0-5afb6fa42333",
+          "name": "Delete a Global Snapshot Stream",
+          "request": {
+            "name": "Delete a Global Snapshot Stream",
+            "description": {
+              "content": "This endpoint deletes a global snapshot stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "globalsnapstreams",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Global Snapshot Stream ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"remove_dir\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "7120f0b7-c0af-4f86-85ea-32d3e9eafb65",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "globalsnapstreams",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Global Snapshot Stream ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"remove_dir\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f61dda0-d293-451e-ac92-1a76b6c74a4e",
+          "name": "Return Details of a Global Snapshot Stream",
+          "request": {
+            "name": "Return Details of a Global Snapshot Stream",
+            "description": {
+              "content": "This endpoints returns details of a specified global snapshot stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "globalsnapstreams",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Global Snap Stream ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26885979-a468-46bc-b934-68adcadbe3a1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "globalsnapstreams",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Global Snap Stream ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bw\": 7568,\n  \"direction\": \"string\",\n  \"enabled\": false,\n  \"eta\": \"string\",\n  \"external_state\": \"string\",\n  \"guid\": \"string\",\n  \"health\": \"string\",\n  \"id\": 9264,\n  \"loanee_root_path\": \"string\",\n  \"loanee_snapshot\": \"string\",\n  \"loanee_snapshot_id\": 3267,\n  \"loanee_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"name\": \"string\",\n  \"owner_root_snapshot\": {},\n  \"owner_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"remote_target\": \"string\",\n  \"remote_target_id\": 3205,\n  \"restore_task\": 2282,\n  \"source_cluster\": \"string\",\n  \"source_path\": \"string\",\n  \"source_snapshot\": \"string\",\n  \"state\": \"string\",\n  \"status\": {},\n  \"sync_progress\": 2595,\n  \"target_cluster\": \"string\",\n  \"view_replication_enabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5731008-1df7-42fe-b407-f8310f8a8e91",
+          "name": "Modify a Global Snapshot Stream",
+          "request": {
+            "name": "Modify a Global Snapshot Stream",
+            "description": {
+              "content": "This endpoint modifies a global snaphot stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "globalsnapstreams",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Global Snapshot Stream ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "89ff5361-7ed0-42d8-a907-b64c18631d47",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "globalsnapstreams",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Global Snapshot Stream ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4606be3-cadd-426b-9d9e-bb1c0a178f31",
+          "name": "Pause a Global Snapshot Stream",
+          "request": {
+            "name": "Pause a Global Snapshot Stream",
+            "description": {
+              "content": "This endpoint pauses a global snapshot stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "globalsnapstreams",
+                ":id",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Global Snapshot Stream ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f648052-ed6f-42f3-909e-03982149eb7e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "globalsnapstreams",
+                    ":id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Global Snapshot Stream ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44fccefd-1781-4066-bc83-a12989e4da33",
+          "name": "Resume a Global Snapshot Stream",
+          "request": {
+            "name": "Resume a Global Snapshot Stream",
+            "description": {
+              "content": "This endpoint resumes a paused global snapshot stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "globalsnapstreams",
+                ":id",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Global Snaphot Stream ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "496fef8f-1a4b-4c6d-a14e-f6583fbc713a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "globalsnapstreams",
+                    ":id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Global Snaphot Stream ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf11fb23-6d14-4768-af24-fa67a71d8696",
+          "name": "Stop a Global Snapshot Stream",
+          "request": {
+            "name": "Stop a Global Snapshot Stream",
+            "description": {
+              "content": "This endpoint stops a global snapshot stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "globalsnapstreams",
+                ":id",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Global Snapshot Stream ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e73b3b6-b248-4311-af7e-87f270bb3747",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "globalsnapstreams",
+                    ":id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Global Snapshot Stream ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d3a4c0f5-2f53-4dd0-8291-bbd40a8468a3",
+    "name": "VAST API Swagger Schema activedirectory globalsnapstreams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

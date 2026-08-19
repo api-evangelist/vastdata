@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory replicationrestorepoints API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "replicationrestorepoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Replication Restore Points",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/replicationrestorepoints/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stream__id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stream__name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stream__name__contains",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists replication restore points."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Replication Restore Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/replicationrestorepoints/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "index of replication restore point"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a replication restore point."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

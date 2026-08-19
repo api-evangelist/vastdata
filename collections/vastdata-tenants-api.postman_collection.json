@@ -1,0 +1,4005 @@
+{
+  "item": [
+    {
+      "id": "d7d1ecd3-92ea-4168-bc98-bd4c73b49928",
+      "name": "Tenants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5459a9a-b0e9-4166-9621-d4273c37cc2c",
+          "name": "Get the number of views in the tenant",
+          "request": {
+            "name": "Get the number of views in the tenant",
+            "description": {
+              "content": "Returns the number of views in the tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "views_count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41d88168-4058-4979-9a33-dad32db10803",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "views_count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"current_views_count\": 3973,\n  \"max_views\": 3659\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03ff3e32-02e6-475d-b48f-538bb622e7d1",
+          "name": "List Tenants",
+          "request": {
+            "name": "List Tenants",
+            "description": {
+              "content": "This endpoint lists tenants.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name__icontains",
+                  "value": "<string>",
+                  "description": "Name to filter by"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "256c1336-73cb-4de7-a99c-1087f712eaa6",
+              "name": "Tenant information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name__icontains",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"access_ip_ranges\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ad_provider_id\": 3586,\n    \"ad_title\": \"string\",\n    \"allow_disabled_users\": true,\n    \"allow_locked_users\": true,\n    \"allowed_delegations\": \"NONE\",\n    \"application_users_group_name\": \"string\",\n    \"capacity_rules\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 2766,\n      \"hard_limit_inodes\": 7050,\n      \"notify_hard_limit\": false,\n      \"notify_soft_limit\": true,\n      \"soft_limit\": 930,\n      \"soft_limit_inodes\": 9274\n    },\n    \"client_ip_ranges\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"client_ip_ranges_summary\": \"string\",\n    \"data_engine_enabled\": false,\n    \"default_others_share_level_perm\": \"CHANGE\",\n    \"dir\": \"string\",\n    \"domain_name\": \"string\",\n    \"encryption_crn\": \"string\",\n    \"encryption_group\": \"string\",\n    \"encryption_group_id\": 6355,\n    \"encryption_group_state\": \"EKM_REVOKING_KEYS\",\n    \"grant_unrequested_delegations_by_default\": true,\n    \"guid\": \"string\",\n    \"id\": 6702,\n    \"identity_provider_name\": \"string\",\n    \"is_nfsv42_supported\": false,\n    \"krb_provider_id\": 2826,\n    \"krb_provider_title\": \"string\",\n    \"ldap_provider_id\": 231,\n    \"ldap_title\": \"string\",\n    \"local_provider\": {\n      \"id\": 7355,\n      \"name\": \"string\"\n    },\n    \"local_provider_id\": 7625,\n    \"local_provider_title\": \"string\",\n    \"login_name_primary_provider\": \"NONE\",\n    \"max_views\": 1274,\n    \"mtls_identifier\": \"string\",\n    \"nis_provider_id\": 797,\n    \"nis_title\": \"string\",\n    \"oidc_provider_id\": 8647,\n    \"oidc_provider_title\": \"string\",\n    \"posix_primary_provider\": \"LDAP\",\n    \"preferred_owning_group\": \"POSIX_GID\",\n    \"qos\": {\n      \"static_limits\": {\n        \"max_reads_bw_mbps\": 0,\n        \"max_writes_bw_mbps\": 0,\n        \"max_reads_iops\": 0,\n        \"max_writes_iops\": 0,\n        \"burst_reads_bw_mb\": 0,\n        \"burst_writes_bw_mb\": 0,\n        \"burst_reads_loan_mb\": 0,\n        \"burst_writes_loan_mb\": 0,\n        \"burst_reads_iops\": 0,\n        \"burst_writes_iops\": 0,\n        \"burst_reads_loan_iops\": 0,\n        \"burst_writes_loan_iops\": 0\n      }\n    },\n    \"require_smb_signing\": false,\n    \"smb_administrators_group_name\": \"string\",\n    \"smb_allowed\": true,\n    \"smb_encryption_state\": \"AVAILABLE\",\n    \"smb_privileged_group_full_access\": true,\n    \"smb_privileged_group_sid\": \"string\",\n    \"smb_privileged_user_name\": \"string\",\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"tenant_admins_group_name\": \"string\",\n    \"title\": \"string\",\n    \"trash_gid\": 5071,\n    \"url\": \"string\",\n    \"use_smb_native\": true,\n    \"use_smb_privileged_group\": false,\n    \"use_smb_privileged_user\": true,\n    \"vippool_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vippools\": [\n      {\n        \"id\": 9589,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 3726,\n        \"name\": \"string\"\n      }\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"access_ip_ranges\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ad_provider_id\": 702,\n    \"ad_title\": \"string\",\n    \"allow_disabled_users\": false,\n    \"allow_locked_users\": false,\n    \"allowed_delegations\": \"READ_WRITE\",\n    \"application_users_group_name\": \"string\",\n    \"capacity_rules\": {\n      \"grace_period\": \"string\",\n      \"hard_limit\": 4712,\n      \"hard_limit_inodes\": 6514,\n      \"notify_hard_limit\": false,\n      \"notify_soft_limit\": false,\n      \"soft_limit\": 1639,\n      \"soft_limit_inodes\": 5309\n    },\n    \"client_ip_ranges\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"client_ip_ranges_summary\": \"string\",\n    \"data_engine_enabled\": true,\n    \"default_others_share_level_perm\": \"READ\",\n    \"dir\": \"string\",\n    \"domain_name\": \"string\",\n    \"encryption_crn\": \"string\",\n    \"encryption_group\": \"string\",\n    \"encryption_group_id\": 8716,\n    \"encryption_group_state\": \"REINSTATE_UPDATING_AGENTS\",\n    \"grant_unrequested_delegations_by_default\": true,\n    \"guid\": \"string\",\n    \"id\": 7303,\n    \"identity_provider_name\": \"string\",\n    \"is_nfsv42_supported\": true,\n    \"krb_provider_id\": 5104,\n    \"krb_provider_title\": \"string\",\n    \"ldap_provider_id\": 5656,\n    \"ldap_title\": \"string\",\n    \"local_provider\": {\n      \"id\": 4872,\n      \"name\": \"string\"\n    },\n    \"local_provider_id\": 879,\n    \"local_provider_title\": \"string\",\n    \"login_name_primary_provider\": \"NIS\",\n    \"max_views\": 4158,\n    \"mtls_identifier\": \"string\",\n    \"nis_provider_id\": 1773,\n    \"nis_title\": \"string\",\n    \"oidc_provider_id\": 4206,\n    \"oidc_provider_title\": \"string\",\n    \"posix_primary_provider\": \"NONE\",\n    \"preferred_owning_group\": \"PROTOCOL_BASED\",\n    \"qos\": {\n      \"static_limits\": {\n        \"max_reads_bw_mbps\": 0,\n        \"max_writes_bw_mbps\": 0,\n        \"max_reads_iops\": 0,\n        \"max_writes_iops\": 0,\n        \"burst_reads_bw_mb\": 0,\n        \"burst_writes_bw_mb\": 0,\n        \"burst_reads_loan_mb\": 0,\n        \"burst_writes_loan_mb\": 0,\n        \"burst_reads_iops\": 0,\n        \"burst_writes_iops\": 0,\n        \"burst_reads_loan_iops\": 0,\n        \"burst_writes_loan_iops\": 0\n      }\n    },\n    \"require_smb_signing\": true,\n    \"smb_administrators_group_name\": \"string\",\n    \"smb_allowed\": false,\n    \"smb_encryption_state\": \"DESIRED\",\n    \"smb_privileged_group_full_access\": true,\n    \"smb_privileged_group_sid\": \"string\",\n    \"smb_privileged_user_name\": \"string\",\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"tenant_admins_group_name\": \"string\",\n    \"title\": \"string\",\n    \"trash_gid\": 6242,\n    \"url\": \"string\",\n    \"use_smb_native\": true,\n    \"use_smb_privileged_group\": false,\n    \"use_smb_privileged_user\": true,\n    \"vippool_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vippools\": [\n      {\n        \"id\": 8716,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 1199,\n        \"name\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea1659d3-fcd0-4389-bfb6-be545444c639",
+          "name": "Create Tenant",
+          "request": {
+            "name": "Create Tenant",
+            "description": {
+              "content": "This endpoint creates a tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"access_ip_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_provider_id\": \"<integer>\",\n  \"allow_disabled_users\": \"<boolean>\",\n  \"allow_locked_users\": \"<boolean>\",\n  \"allowed_delegations\": \"<string>\",\n  \"application_users_group_name\": \"<string>\",\n  \"capacity_rules\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"notify_hard_limit\": \"<boolean>\",\n    \"notify_soft_limit\": \"<boolean>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"client_ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"default_others_share_level_perm\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"encryption_crn\": \"<string>\",\n  \"encryption_group\": \"<string>\",\n  \"grant_unrequested_delegations_by_default\": \"<boolean>\",\n  \"identity_provider_name\": \"<string>\",\n  \"is_nfsv42_supported\": \"<boolean>\",\n  \"krb_provider_id\": \"<integer>\",\n  \"ldap_provider_id\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"login_name_primary_provider\": \"<string>\",\n  \"max_views\": \"<integer>\",\n  \"mtls_identifier\": \"<string>\",\n  \"nis_provider_id\": \"<integer>\",\n  \"oidc_provider_id\": \"<integer>\",\n  \"posix_primary_provider\": \"<string>\",\n  \"preferred_owning_group\": \"<string>\",\n  \"qos\": {\n    \"static_limits\": {\n      \"burst_reads_bw_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_writes_loan_iops\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"max_reads_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_writes_iops\": 0\n    }\n  },\n  \"require_smb_signing\": \"<boolean>\",\n  \"smb_administrators_group_name\": \"<string>\",\n  \"smb_encryption_state\": \"<string>\",\n  \"smb_privileged_group_full_access\": \"<boolean>\",\n  \"smb_privileged_group_sid\": \"<string>\",\n  \"smb_privileged_user_name\": \"<string>\",\n  \"tenant_admins_group_name\": \"<string>\",\n  \"trash_gid\": \"<integer>\",\n  \"use_smb_native\": \"<boolean>\",\n  \"use_smb_privileged_group\": \"<boolean>\",\n  \"use_smb_privileged_user\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c1a7914-42bd-47f6-81be-af749b23b54b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"access_ip_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_provider_id\": \"<integer>\",\n  \"allow_disabled_users\": \"<boolean>\",\n  \"allow_locked_users\": \"<boolean>\",\n  \"allowed_delegations\": \"<string>\",\n  \"application_users_group_name\": \"<string>\",\n  \"capacity_rules\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"notify_hard_limit\": \"<boolean>\",\n    \"notify_soft_limit\": \"<boolean>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"client_ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"default_others_share_level_perm\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"encryption_crn\": \"<string>\",\n  \"encryption_group\": \"<string>\",\n  \"grant_unrequested_delegations_by_default\": \"<boolean>\",\n  \"identity_provider_name\": \"<string>\",\n  \"is_nfsv42_supported\": \"<boolean>\",\n  \"krb_provider_id\": \"<integer>\",\n  \"ldap_provider_id\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"login_name_primary_provider\": \"<string>\",\n  \"max_views\": \"<integer>\",\n  \"mtls_identifier\": \"<string>\",\n  \"nis_provider_id\": \"<integer>\",\n  \"oidc_provider_id\": \"<integer>\",\n  \"posix_primary_provider\": \"<string>\",\n  \"preferred_owning_group\": \"<string>\",\n  \"qos\": {\n    \"static_limits\": {\n      \"burst_reads_bw_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_writes_loan_iops\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"max_reads_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_writes_iops\": 0\n    }\n  },\n  \"require_smb_signing\": \"<boolean>\",\n  \"smb_administrators_group_name\": \"<string>\",\n  \"smb_encryption_state\": \"<string>\",\n  \"smb_privileged_group_full_access\": \"<boolean>\",\n  \"smb_privileged_group_sid\": \"<string>\",\n  \"smb_privileged_user_name\": \"<string>\",\n  \"tenant_admins_group_name\": \"<string>\",\n  \"trash_gid\": \"<integer>\",\n  \"use_smb_native\": \"<boolean>\",\n  \"use_smb_privileged_group\": \"<boolean>\",\n  \"use_smb_privileged_user\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_ip_ranges\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ad_provider_id\": 8224,\n  \"ad_title\": \"string\",\n  \"allow_disabled_users\": true,\n  \"allow_locked_users\": false,\n  \"allowed_delegations\": \"READ_WRITE\",\n  \"application_users_group_name\": \"string\",\n  \"capacity_rules\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"notify_hard_limit\": \"<boolean>\",\n    \"notify_soft_limit\": \"<boolean>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"client_ip_ranges\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"client_ip_ranges_summary\": \"string\",\n  \"data_engine_enabled\": true,\n  \"default_others_share_level_perm\": \"READ\",\n  \"dir\": \"string\",\n  \"domain_name\": \"string\",\n  \"encryption_crn\": \"string\",\n  \"encryption_group\": \"string\",\n  \"encryption_group_id\": 6782,\n  \"encryption_group_state\": \"REINSTATE_UPDATING_AGENTS\",\n  \"grant_unrequested_delegations_by_default\": false,\n  \"guid\": \"string\",\n  \"id\": 2088,\n  \"identity_provider_name\": \"string\",\n  \"is_nfsv42_supported\": false,\n  \"krb_provider_id\": 9322,\n  \"krb_provider_title\": \"string\",\n  \"ldap_provider_id\": 6424,\n  \"ldap_title\": \"string\",\n  \"local_provider\": {\n    \"id\": 9956,\n    \"name\": \"string\"\n  },\n  \"local_provider_id\": 1280,\n  \"local_provider_title\": \"string\",\n  \"login_name_primary_provider\": \"NONE\",\n  \"max_views\": 9023,\n  \"mtls_identifier\": \"string\",\n  \"nis_provider_id\": 1537,\n  \"nis_title\": \"string\",\n  \"oidc_provider_id\": 2839,\n  \"oidc_provider_title\": \"string\",\n  \"posix_primary_provider\": \"NONE\",\n  \"preferred_owning_group\": \"POSIX_GID\",\n  \"qos\": {\n    \"static_limits\": {\n      \"max_reads_bw_mbps\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_iops\": 0,\n      \"burst_reads_bw_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_writes_loan_iops\": 0\n    }\n  },\n  \"require_smb_signing\": false,\n  \"smb_administrators_group_name\": \"string\",\n  \"smb_allowed\": true,\n  \"smb_encryption_state\": \"OFF\",\n  \"smb_privileged_group_full_access\": false,\n  \"smb_privileged_group_sid\": \"string\",\n  \"smb_privileged_user_name\": \"string\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_admins_group_name\": \"string\",\n  \"title\": \"string\",\n  \"trash_gid\": 7000,\n  \"url\": \"string\",\n  \"use_smb_native\": true,\n  \"use_smb_privileged_group\": false,\n  \"use_smb_privileged_user\": true,\n  \"vippool_names\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vippools\": [\n    {\n      \"id\": 7750,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 5479,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75fc8d42-a9f3-4218-bce5-745c8e353159",
+          "name": "Return Configured Identity Provider for Tenant",
+          "request": {
+            "name": "Return Configured Identity Provider for Tenant",
+            "description": {
+              "content": "This endpoint returns a tenant's configured SAML identity provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                "configured_idp",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Tenant name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59015ab7-4a15-42fe-9602-11618bd7359e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    "configured_idp",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity_provider_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60fb0a37-eeac-4568-99aa-e6b11ff42f08",
+          "name": "List Tenant Metric Labels",
+          "request": {
+            "name": "List Tenant Metric Labels",
+            "description": {
+              "content": "This endpoint lists all available tenant metric labels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                "metric_labels",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a8b0052-3bf7-4cb1-8126-6cf6b4b63ecc",
+              "name": "A list of tenant metric labels.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    "metric_labels",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key\": \"string\",\n    \"default_value\": \"string\",\n    \"description\": \"string\",\n    \"created_at\": \"1990-05-11T16:36:22.574Z\",\n    \"id\": 9012\n  },\n  {\n    \"key\": \"string\",\n    \"default_value\": \"string\",\n    \"description\": \"string\",\n    \"created_at\": \"1994-04-29T02:41:41.289Z\",\n    \"id\": 1375\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "715064b9-2064-456e-a163-0afe48258ae7",
+          "name": "Create Tenant Metric Label",
+          "request": {
+            "name": "Create Tenant Metric Label",
+            "description": {
+              "content": "This endpoint creates a new tenant metric label.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                "metric_labels",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"default_value\": \"<string>\",\n  \"description\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "e1b61621-09f1-4761-84bf-1101fa723d0f",
+              "name": "Metric label created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    "metric_labels",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"default_value\": \"<string>\",\n  \"description\": \"<string>\"\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"default_value\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1955-09-18T16:54:28.461Z\",\n  \"id\": 3093\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c056db47-a998-4fcf-88ea-85461c465353",
+          "name": "Delete Tenant Metric Label",
+          "request": {
+            "name": "Delete Tenant Metric Label",
+            "description": {
+              "content": "This endpoint deletes a tenant metric label.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                "metric_labels",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "795c99f9-7995-4cde-a51f-2252007390bc",
+              "name": "Metric label deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    "metric_labels",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b93c4fd2-c28f-40a1-b20e-c075a49061e4",
+          "name": "Get Tenant Metric Label",
+          "request": {
+            "name": "Get Tenant Metric Label",
+            "description": {
+              "content": "This endpoint retrieves a specific tenant metric label.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                "metric_labels",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20c9fd36-2b31-4b00-ad24-32c74ffc3eac",
+              "name": "Metric label details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    "metric_labels",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"default_value\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1955-09-18T16:54:28.461Z\",\n  \"id\": 3093\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20ad9591-f92e-4abc-b055-a4717cdb4306",
+          "name": "Return Details of Remote Tenants",
+          "request": {
+            "name": "Return Details of Remote Tenants",
+            "description": {
+              "content": "Returns details of remote tenants.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                "remote_objects",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter remote tenants by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "target_id",
+                  "value": "<string>",
+                  "description": "Filter remote tenants by target"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c678b70-afd6-44a6-9e6f-545f36cad54f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    "remote_objects",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "target_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1638102-b89b-4195-89d5-7729c1bfab7e",
+          "name": "Delete Tenant",
+          "request": {
+            "name": "Delete Tenant",
+            "description": {
+              "content": "Deletes a specified tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force_remove",
+                  "value": "<boolean>",
+                  "description": "Forces deletion of the tenant, even if files exist in the tenant directory."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f4e7359-b430-4e95-b633-dd4100d2c1c3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force_remove",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3351e8d7-9387-4173-957c-905ab794371d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force_remove",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c13759d2-2ab7-4ba6-92a6-dcf57ca1bf05",
+          "name": "Return Details of Tenant",
+          "request": {
+            "name": "Return Details of Tenant",
+            "description": {
+              "content": "Returns details of a specified tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c0d0254-5551-43ca-a55f-0dcda5e0c000",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_ip_ranges\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ad_provider_id\": 8224,\n  \"ad_title\": \"string\",\n  \"allow_disabled_users\": true,\n  \"allow_locked_users\": false,\n  \"allowed_delegations\": \"READ_WRITE\",\n  \"application_users_group_name\": \"string\",\n  \"capacity_rules\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"notify_hard_limit\": \"<boolean>\",\n    \"notify_soft_limit\": \"<boolean>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"client_ip_ranges\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"client_ip_ranges_summary\": \"string\",\n  \"data_engine_enabled\": true,\n  \"default_others_share_level_perm\": \"READ\",\n  \"dir\": \"string\",\n  \"domain_name\": \"string\",\n  \"encryption_crn\": \"string\",\n  \"encryption_group\": \"string\",\n  \"encryption_group_id\": 6782,\n  \"encryption_group_state\": \"REINSTATE_UPDATING_AGENTS\",\n  \"grant_unrequested_delegations_by_default\": false,\n  \"guid\": \"string\",\n  \"id\": 2088,\n  \"identity_provider_name\": \"string\",\n  \"is_nfsv42_supported\": false,\n  \"krb_provider_id\": 9322,\n  \"krb_provider_title\": \"string\",\n  \"ldap_provider_id\": 6424,\n  \"ldap_title\": \"string\",\n  \"local_provider\": {\n    \"id\": 9956,\n    \"name\": \"string\"\n  },\n  \"local_provider_id\": 1280,\n  \"local_provider_title\": \"string\",\n  \"login_name_primary_provider\": \"NONE\",\n  \"max_views\": 9023,\n  \"mtls_identifier\": \"string\",\n  \"nis_provider_id\": 1537,\n  \"nis_title\": \"string\",\n  \"oidc_provider_id\": 2839,\n  \"oidc_provider_title\": \"string\",\n  \"posix_primary_provider\": \"NONE\",\n  \"preferred_owning_group\": \"POSIX_GID\",\n  \"qos\": {\n    \"static_limits\": {\n      \"max_reads_bw_mbps\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_iops\": 0,\n      \"burst_reads_bw_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_writes_loan_iops\": 0\n    }\n  },\n  \"require_smb_signing\": false,\n  \"smb_administrators_group_name\": \"string\",\n  \"smb_allowed\": true,\n  \"smb_encryption_state\": \"OFF\",\n  \"smb_privileged_group_full_access\": false,\n  \"smb_privileged_group_sid\": \"string\",\n  \"smb_privileged_user_name\": \"string\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_admins_group_name\": \"string\",\n  \"title\": \"string\",\n  \"trash_gid\": 7000,\n  \"url\": \"string\",\n  \"use_smb_native\": true,\n  \"use_smb_privileged_group\": false,\n  \"use_smb_privileged_user\": true,\n  \"vippool_names\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vippools\": [\n    {\n      \"id\": 7750,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 5479,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ec4fb95-735c-4b7f-8455-b7a396ae2187",
+          "name": "Modify Tenant",
+          "request": {
+            "name": "Modify Tenant",
+            "description": {
+              "content": "Modifies a specified tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_ip_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_provider_id\": \"<integer>\",\n  \"allow_disabled_users\": \"<boolean>\",\n  \"allow_locked_users\": \"<boolean>\",\n  \"allowed_delegations\": \"<string>\",\n  \"application_users_group_name\": \"<string>\",\n  \"capacity_rules\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"notify_hard_limit\": \"<boolean>\",\n    \"notify_soft_limit\": \"<boolean>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"client_ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"data_engine_role_enabled\": \"<boolean>\",\n  \"data_engine_s3_policy_enabled\": \"<boolean>\",\n  \"default_others_share_level_perm\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"grant_unrequested_delegations_by_default\": \"<boolean>\",\n  \"identity_provider_name\": \"<string>\",\n  \"is_nfsv42_supported\": \"<boolean>\",\n  \"krb_provider_id\": \"<integer>\",\n  \"ldap_provider_id\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"login_name_primary_provider\": \"<string>\",\n  \"max_views\": \"<integer>\",\n  \"mtls_identifier\": \"<string>\",\n  \"nis_provider_id\": \"<integer>\",\n  \"oidc_provider_id\": \"<integer>\",\n  \"posix_primary_provider\": \"<string>\",\n  \"preferred_owning_group\": \"<string>\",\n  \"qos\": {\n    \"static_limits\": {\n      \"burst_reads_bw_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_writes_loan_iops\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"max_reads_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_writes_iops\": 0\n    }\n  },\n  \"require_smb_signing\": \"<boolean>\",\n  \"smb_administrators_group_name\": \"<string>\",\n  \"smb_encryption_state\": \"<string>\",\n  \"smb_privileged_group_full_access\": \"<boolean>\",\n  \"smb_privileged_group_sid\": \"<string>\",\n  \"smb_privileged_user_name\": \"<string>\",\n  \"tenant_admins_group_name\": \"<string>\",\n  \"trash_gid\": \"<integer>\",\n  \"use_smb_native\": \"<boolean>\",\n  \"use_smb_privileged_group\": \"<boolean>\",\n  \"use_smb_privileged_user\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5c282ad-69ce-46fd-851f-8934b5bb8d4d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_ip_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ad_provider_id\": \"<integer>\",\n  \"allow_disabled_users\": \"<boolean>\",\n  \"allow_locked_users\": \"<boolean>\",\n  \"allowed_delegations\": \"<string>\",\n  \"application_users_group_name\": \"<string>\",\n  \"capacity_rules\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"notify_hard_limit\": \"<boolean>\",\n    \"notify_soft_limit\": \"<boolean>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"client_ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"data_engine_role_enabled\": \"<boolean>\",\n  \"data_engine_s3_policy_enabled\": \"<boolean>\",\n  \"default_others_share_level_perm\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"grant_unrequested_delegations_by_default\": \"<boolean>\",\n  \"identity_provider_name\": \"<string>\",\n  \"is_nfsv42_supported\": \"<boolean>\",\n  \"krb_provider_id\": \"<integer>\",\n  \"ldap_provider_id\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"login_name_primary_provider\": \"<string>\",\n  \"max_views\": \"<integer>\",\n  \"mtls_identifier\": \"<string>\",\n  \"nis_provider_id\": \"<integer>\",\n  \"oidc_provider_id\": \"<integer>\",\n  \"posix_primary_provider\": \"<string>\",\n  \"preferred_owning_group\": \"<string>\",\n  \"qos\": {\n    \"static_limits\": {\n      \"burst_reads_bw_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_writes_loan_iops\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"max_reads_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_writes_iops\": 0\n    }\n  },\n  \"require_smb_signing\": \"<boolean>\",\n  \"smb_administrators_group_name\": \"<string>\",\n  \"smb_encryption_state\": \"<string>\",\n  \"smb_privileged_group_full_access\": \"<boolean>\",\n  \"smb_privileged_group_sid\": \"<string>\",\n  \"smb_privileged_user_name\": \"<string>\",\n  \"tenant_admins_group_name\": \"<string>\",\n  \"trash_gid\": \"<integer>\",\n  \"use_smb_native\": \"<boolean>\",\n  \"use_smb_privileged_group\": \"<boolean>\",\n  \"use_smb_privileged_user\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_ip_ranges\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ad_provider_id\": 8224,\n  \"ad_title\": \"string\",\n  \"allow_disabled_users\": true,\n  \"allow_locked_users\": false,\n  \"allowed_delegations\": \"READ_WRITE\",\n  \"application_users_group_name\": \"string\",\n  \"capacity_rules\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"notify_hard_limit\": \"<boolean>\",\n    \"notify_soft_limit\": \"<boolean>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"client_ip_ranges\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"client_ip_ranges_summary\": \"string\",\n  \"data_engine_enabled\": true,\n  \"default_others_share_level_perm\": \"READ\",\n  \"dir\": \"string\",\n  \"domain_name\": \"string\",\n  \"encryption_crn\": \"string\",\n  \"encryption_group\": \"string\",\n  \"encryption_group_id\": 6782,\n  \"encryption_group_state\": \"REINSTATE_UPDATING_AGENTS\",\n  \"grant_unrequested_delegations_by_default\": false,\n  \"guid\": \"string\",\n  \"id\": 2088,\n  \"identity_provider_name\": \"string\",\n  \"is_nfsv42_supported\": false,\n  \"krb_provider_id\": 9322,\n  \"krb_provider_title\": \"string\",\n  \"ldap_provider_id\": 6424,\n  \"ldap_title\": \"string\",\n  \"local_provider\": {\n    \"id\": 9956,\n    \"name\": \"string\"\n  },\n  \"local_provider_id\": 1280,\n  \"local_provider_title\": \"string\",\n  \"login_name_primary_provider\": \"NONE\",\n  \"max_views\": 9023,\n  \"mtls_identifier\": \"string\",\n  \"nis_provider_id\": 1537,\n  \"nis_title\": \"string\",\n  \"oidc_provider_id\": 2839,\n  \"oidc_provider_title\": \"string\",\n  \"posix_primary_provider\": \"NONE\",\n  \"preferred_owning_group\": \"POSIX_GID\",\n  \"qos\": {\n    \"static_limits\": {\n      \"max_reads_bw_mbps\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_iops\": 0,\n      \"burst_reads_bw_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_writes_loan_iops\": 0\n    }\n  },\n  \"require_smb_signing\": false,\n  \"smb_administrators_group_name\": \"string\",\n  \"smb_allowed\": true,\n  \"smb_encryption_state\": \"OFF\",\n  \"smb_privileged_group_full_access\": false,\n  \"smb_privileged_group_sid\": \"string\",\n  \"smb_privileged_user_name\": \"string\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_admins_group_name\": \"string\",\n  \"title\": \"string\",\n  \"trash_gid\": 7000,\n  \"url\": \"string\",\n  \"use_smb_native\": true,\n  \"use_smb_privileged_group\": false,\n  \"use_smb_privileged_user\": true,\n  \"vippool_names\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vippools\": [\n    {\n      \"id\": 7750,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 5479,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7bfd810-2136-44fd-a234-073d0da6a75f",
+          "name": "Update tenant Client IP ranges",
+          "request": {
+            "name": "Update tenant Client IP ranges",
+            "description": {
+              "content": "Updates Client IP ranges of a Tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "client_ip_ranges",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_ip_ranges_to_add\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"client_ip_ranges_to_remove\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "4c3f7741-a8a5-4c00-98be-2196219ec966",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "client_ip_ranges",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_ip_ranges_to_add\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"client_ip_ranges_to_remove\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ]\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_ip_ranges\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ad_provider_id\": 8224,\n  \"ad_title\": \"string\",\n  \"allow_disabled_users\": true,\n  \"allow_locked_users\": false,\n  \"allowed_delegations\": \"READ_WRITE\",\n  \"application_users_group_name\": \"string\",\n  \"capacity_rules\": {\n    \"grace_period\": \"<string>\",\n    \"hard_limit\": \"<integer>\",\n    \"hard_limit_inodes\": \"<integer>\",\n    \"notify_hard_limit\": \"<boolean>\",\n    \"notify_soft_limit\": \"<boolean>\",\n    \"soft_limit\": \"<integer>\",\n    \"soft_limit_inodes\": \"<integer>\"\n  },\n  \"client_ip_ranges\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"client_ip_ranges_summary\": \"string\",\n  \"data_engine_enabled\": true,\n  \"default_others_share_level_perm\": \"READ\",\n  \"dir\": \"string\",\n  \"domain_name\": \"string\",\n  \"encryption_crn\": \"string\",\n  \"encryption_group\": \"string\",\n  \"encryption_group_id\": 6782,\n  \"encryption_group_state\": \"REINSTATE_UPDATING_AGENTS\",\n  \"grant_unrequested_delegations_by_default\": false,\n  \"guid\": \"string\",\n  \"id\": 2088,\n  \"identity_provider_name\": \"string\",\n  \"is_nfsv42_supported\": false,\n  \"krb_provider_id\": 9322,\n  \"krb_provider_title\": \"string\",\n  \"ldap_provider_id\": 6424,\n  \"ldap_title\": \"string\",\n  \"local_provider\": {\n    \"id\": 9956,\n    \"name\": \"string\"\n  },\n  \"local_provider_id\": 1280,\n  \"local_provider_title\": \"string\",\n  \"login_name_primary_provider\": \"NONE\",\n  \"max_views\": 9023,\n  \"mtls_identifier\": \"string\",\n  \"nis_provider_id\": 1537,\n  \"nis_title\": \"string\",\n  \"oidc_provider_id\": 2839,\n  \"oidc_provider_title\": \"string\",\n  \"posix_primary_provider\": \"NONE\",\n  \"preferred_owning_group\": \"POSIX_GID\",\n  \"qos\": {\n    \"static_limits\": {\n      \"max_reads_bw_mbps\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_iops\": 0,\n      \"burst_reads_bw_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_writes_loan_iops\": 0\n    }\n  },\n  \"require_smb_signing\": false,\n  \"smb_administrators_group_name\": \"string\",\n  \"smb_allowed\": true,\n  \"smb_encryption_state\": \"OFF\",\n  \"smb_privileged_group_full_access\": false,\n  \"smb_privileged_group_sid\": \"string\",\n  \"smb_privileged_user_name\": \"string\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_admins_group_name\": \"string\",\n  \"title\": \"string\",\n  \"trash_gid\": 7000,\n  \"url\": \"string\",\n  \"use_smb_native\": true,\n  \"use_smb_privileged_group\": false,\n  \"use_smb_privileged_user\": true,\n  \"vippool_names\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vippools\": [\n    {\n      \"id\": 7750,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 5479,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9978522c-8d87-468c-9435-475087b3cc87",
+          "name": "get tenant client metrics settings",
+          "request": {
+            "name": "get tenant client metrics settings",
+            "description": {
+              "content": "this endpoint returns tenant client metrics settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "client_metrics",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c853cad-c6df-4699-931f-4bb79d67f06a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "client_metrics",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"config\": {\n    \"enabled\": false,\n    \"bucket_name\": \"string\",\n    \"bucket_owner\": \"string\",\n    \"max_capacity_mb\": 1837,\n    \"retention_time_sec\": 5906\n  },\n  \"default_columns\": [\n    {\n      \"name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      }\n    }\n  ],\n  \"user_defined_columns\": [\n    {\n      \"database_name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      },\n      \"name\": \"string\",\n      \"raw_field\": \"map<bool, bool>\",\n      \"schema_name\": \"string\",\n      \"table_name\": \"string\"\n    },\n    {\n      \"database_name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      },\n      \"name\": \"string\",\n      \"raw_field\": \"map<bool, bool>\",\n      \"schema_name\": \"string\",\n      \"table_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27d12123-987b-4af0-baf6-377e8cb614d7",
+          "name": "Update Tenant Client Metrics Settings",
+          "request": {
+            "name": "Update Tenant Client Metrics Settings",
+            "description": {
+              "content": "This endpoint updates client metrics settings for a tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "client_metrics",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"config\": {\n    \"enabled\": \"<boolean>\",\n    \"bucket_name\": \"<string>\",\n    \"bucket_owner\": \"<string>\",\n    \"max_capacity_mb\": \"<integer>\",\n    \"retention_time_sec\": \"<integer>\"\n  },\n  \"user_defined_columns\": [\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    }\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "329212c6-73bc-4f8a-8650-09686ff2dc65",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "client_metrics",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"enabled\": \"<boolean>\",\n    \"bucket_name\": \"<string>\",\n    \"bucket_owner\": \"<string>\",\n    \"max_capacity_mb\": \"<integer>\",\n    \"retention_time_sec\": \"<integer>\"\n  },\n  \"user_defined_columns\": [\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      }\n    }\n  ]\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"config\": {\n    \"enabled\": true,\n    \"bucket_name\": \"string\",\n    \"bucket_owner\": \"string\",\n    \"max_capacity_mb\": 854,\n    \"retention_time_sec\": 1755\n  },\n  \"default_columns\": [\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      }\n    }\n  ],\n  \"user_defined_columns\": [\n    {\n      \"database_name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      },\n      \"name\": \"string\",\n      \"raw_field\": \"map<bool, bool>\",\n      \"schema_name\": \"string\",\n      \"table_name\": \"string\"\n    },\n    {\n      \"database_name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      },\n      \"name\": \"string\",\n      \"raw_field\": \"map<bool, bool>\",\n      \"schema_name\": \"string\",\n      \"table_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "894faf6a-01d4-4898-a688-ca07f3f428bb",
+          "name": "Deactivate tenant's encryption group.",
+          "request": {
+            "name": "Deactivate tenant's encryption group.",
+            "description": {
+              "content": "This endpoint deactivates a tenant's encryption group. Deactivated keys are revoked and destroyed. They cannot be reinstated. The encrypted data becomes inaccessible forever.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "deactivate_encryption_group",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79c38146-fa9b-4504-8645-44aff122b9ef",
+              "name": "Tenant's encryption group was deactivated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "deactivate_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9fec0575-e852-4682-a863-4e9876d1904d",
+              "name": "The request could not be completed due to a conflict with the current state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "deactivate_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Encryption group was not found by its key <encryption_group>.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17afa370-0d86-4c88-849a-a9380d6dfef2",
+              "name": "Service temporarily unavailable, try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "deactivate_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to deactivate encryption group.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39af8ff5-8614-4b36-bbc8-1d31beb06260",
+          "name": "Check whether an operation may be successfully performed",
+          "request": {
+            "name": "Check whether an operation may be successfully performed",
+            "description": {
+              "content": "Returns warnings about the future state if operation is performed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "is_operation_healthy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "operation",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ad_provider_id\": \"<integer>\",\n  \"client_ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"default_others_share_level_perm\": \"<string>\",\n  \"ldap_provider_id\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"nis_provider_id\": \"<integer>\",\n  \"posix_primary_provider\": \"<string>\",\n  \"smb_administrators_group_name\": \"<string>\",\n  \"smb_privileged_group_full_access\": \"<boolean>\",\n  \"smb_privileged_group_sid\": \"<string>\",\n  \"smb_privileged_user_name\": \"<string>\",\n  \"trash_gid\": \"<integer>\",\n  \"use_smb_privileged_group\": \"<boolean>\",\n  \"use_smb_privileged_user\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d405e3ee-2559-46f1-9e44-6d57c6653046",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "is_operation_healthy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "operation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ad_provider_id\": \"<integer>\",\n  \"client_ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"default_others_share_level_perm\": \"<string>\",\n  \"ldap_provider_id\": \"<integer>\",\n  \"local_provider_id\": \"<integer>\",\n  \"nis_provider_id\": \"<integer>\",\n  \"posix_primary_provider\": \"<string>\",\n  \"smb_administrators_group_name\": \"<string>\",\n  \"smb_privileged_group_full_access\": \"<boolean>\",\n  \"smb_privileged_group_sid\": \"<string>\",\n  \"smb_privileged_user_name\": \"<string>\",\n  \"trash_gid\": \"<integer>\",\n  \"use_smb_privileged_group\": \"<boolean>\",\n  \"use_smb_privileged_user\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"warnings\": [\n    \"Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant='default', path='/test')\",\n    \"Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant='default', path='/test')\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71add4ae-e803-456e-90b5-29840c1fe858",
+          "name": "Remove NFSv4 delegation",
+          "request": {
+            "name": "Remove NFSv4 delegation",
+            "description": {
+              "content": "Remove NFSv4 delegation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "nfs4_deleg",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "file_path",
+                  "value": "<string>",
+                  "description": "(Required) File path"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<integer>",
+                  "description": "(Required) Client ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "delegation_stateid",
+                  "value": "<integer>",
+                  "description": "(Required) Delegation state ID"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6dcbd3f6-e2d9-49f1-8e2d-3ec1f4aca019",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "nfs4_deleg",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "delegation_stateid",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "73d35381-45a6-44b0-8986-9093e4c0d602",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "nfs4_deleg",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "delegation_stateid",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0e650d3-f88b-4bca-9eab-28e410a75937",
+          "name": "Query list of NFSv4 delegations",
+          "request": {
+            "name": "Query list of NFSv4 delegations",
+            "description": {
+              "content": "This endpoint queries list of NFSv4 delegations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "nfs4_delegs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "file_path",
+                  "value": "<string>",
+                  "description": "(Required) File path"
+                },
+                {
+                  "disabled": false,
+                  "key": "xeystore_pagination_next_client_id",
+                  "value": "<integer>",
+                  "description": "Xeystore pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ad1c896-4fe2-40a4-8a96-95c8c02207c3",
+              "name": "A list of tenant NFSv4 delegations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "nfs4_delegs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "xeystore_pagination_next_client_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"delegate_info\": [\n    {\n      \"client_id\": 826,\n      \"delegation_stateid\": 8171,\n      \"delegation_type\": \"READ\",\n      \"list_open_handles_task\": {\n        \"id\": 7572,\n        \"start_time\": \"2009-08-31T09:58:50.048Z\",\n        \"state\": \"string\"\n      },\n      \"revoke_in_progress\": false,\n      \"vip_addr\": \"string\"\n    },\n    {\n      \"client_id\": 6619,\n      \"delegation_stateid\": 9778,\n      \"delegation_type\": \"READ\",\n      \"list_open_handles_task\": {\n        \"id\": 8193,\n        \"start_time\": \"1980-02-29T20:49:35.507Z\",\n        \"state\": \"string\"\n      },\n      \"revoke_in_progress\": false,\n      \"vip_addr\": \"string\"\n    }\n  ],\n  \"delegate_info_count_total\": 4049,\n  \"xeystore_pagination\": true,\n  \"xeystore_pagination_next_client_id\": 2730\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c977d67-fe21-400b-9147-6d00e14937d8",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "nfs4_delegs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "xeystore_pagination_next_client_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3cdf0c3-31d1-4477-aa92-e82ab6fda08e",
+          "name": "Reinstate tenant's encryption group.",
+          "request": {
+            "name": "Reinstate tenant's encryption group.",
+            "description": {
+              "content": "Reinstate tenant's encryption group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "reinstate_encryption_group",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8df06fc3-0702-44a1-abc8-c627c373351a",
+              "name": "Tenant's encryption group was reinstated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "reinstate_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "132ec8a9-fcd8-44c4-9a75-b57fbad9fefd",
+              "name": "The request could not be completed due to a conflict with the current state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "reinstate_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Encryption group was not found by Encryption CRN <encryption_crn>.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "092f4fea-e696-43bf-b89b-6d5d8c68b933",
+              "name": "Service temporarily unavailable, try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "reinstate_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to reinstate encryption group.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6078356b-15bf-46e3-b70a-06e7ed7478d6",
+          "name": "Revoke tenant's encryption group.",
+          "request": {
+            "name": "Revoke tenant's encryption group.",
+            "description": {
+              "content": "Revoke tenant's encryption group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "revoke_encryption_group",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfba75cb-ec74-4905-9377-861ad683df8f",
+              "name": "Tenant's encryption group was revoked successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "revoke_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "af449488-a016-4449-a0a2-db1abe1e2714",
+              "name": "The request could not be completed due to a conflict with the current state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "revoke_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Encryption group was not found by its key <encryption_group>.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c77b8256-48c8-4614-a290-4f0e18dad11d",
+              "name": "Service temporarily unavailable, try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "revoke_encryption_group",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to revoke encryption group.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "990c881f-c95c-4cf2-8fca-78815cc78588",
+          "name": "Rotate tenant's encryption group key.",
+          "request": {
+            "name": "Rotate tenant's encryption group key.",
+            "description": {
+              "content": "This endpoint rotates the key encryption key for the encryption group to which the tenant belongs. This is applicable only if encryption is enabled with encryption type CIPHER_TRUST_KMIP, in which encryption keys are managed externally on Thales Group CipherTrust Data Security Platform. The key encryption key is used by the cluster to retrieve the data encryption key from the external key manager (EKM) when needed to encrypt data. Rotating the key encryption key generates a new version of the key encryption key, with the same key name and attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "rotate_encryption_group_key",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33789163-427f-4087-b4fa-a823e9f5a04b",
+              "name": "Tenant's encryption group key was rotated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "rotate_encryption_group_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a90ec88-a02a-4d47-b6a4-335812ab3c43",
+              "name": "The request could not be completed due to a conflict with the current state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "rotate_encryption_group_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Encryption group was not found by its key <encryption_group_key>.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5140941a-266a-4901-a6f5-33caca7a028a",
+              "name": "Service temporarily unavailable, try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "rotate_encryption_group_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da58f939-1bbd-4fd0-ba21-3941a677d581",
+          "name": "Get tenants with the same encryption group",
+          "request": {
+            "name": "Get tenants with the same encryption group",
+            "description": {
+              "content": "Returns names of tenants with the same encryption group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "same_encryption_group_tenants",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d746ab1f-3e8f-4fdd-ab0b-57115b23fb5f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "same_encryption_group_tenants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c29dcc4-d1d7-456f-9ab3-2bba8ae77dc2",
+              "name": "The request could not be completed due to a conflict with the current state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "same_encryption_group_tenants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Tenant has no Encryption Group.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae402ee7-f247-4da4-be02-6ca4179531b3",
+          "name": "Get tenant VIP pools IP ranges",
+          "request": {
+            "name": "Get tenant VIP pools IP ranges",
+            "description": {
+              "content": "Returns IP ranges of VIP Pools that can be used with the tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":id",
+                "vippool_ip_ranges",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Tenant ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db98b0f7-eb51-44b0-ad8b-4619c8a96a77",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":id",
+                    "vippool_ip_ranges",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Tenant ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vippool_ip_ranges\": [\n    \"172.20.16.1 - 172.20.16.16\",\n    \"172.20.16.1 - 172.20.16.16\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb807ad4-fd96-4f03-9a84-f5e5a50725a3",
+          "name": "List Tenant Metric Label Values",
+          "request": {
+            "name": "List Tenant Metric Label Values",
+            "description": {
+              "content": "This endpoint lists all metric label values for a specific tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id",
+                "metric_label_values",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) ID of a Tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f74efca9-01ea-4a4c-852a-4d91832fd2f3",
+              "name": "A list of tenant metric label values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "metric_label_values",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) ID of a Tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"value\": \"string\",\n    \"created_at\": \"2001-02-09T18:20:02.725Z\",\n    \"id\": 7350,\n    \"label\": {\n      \"id\": 304,\n      \"key\": \"string\"\n    }\n  },\n  {\n    \"value\": \"string\",\n    \"created_at\": \"1961-01-19T16:31:59.447Z\",\n    \"id\": 235,\n    \"label\": {\n      \"id\": 8628,\n      \"key\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ca7d560-8419-4ad6-a81e-301c40a0dffc",
+          "name": "Create Tenant Metric Label Value",
+          "request": {
+            "name": "Create Tenant Metric Label Value",
+            "description": {
+              "content": "This endpoint creates a new metric label value for a tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id",
+                "metric_label_values",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) ID of a Tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label_id\": \"<integer>\",\n  \"value\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "3b6df0d2-83ef-444c-804b-114db85fdb42",
+              "name": "Metric label value created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "metric_label_values",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) ID of a Tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label_id\": \"<integer>\",\n  \"value\": \"<string>\"\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"string\",\n  \"created_at\": \"2023-12-06T22:18:22.583Z\",\n  \"id\": 6971,\n  \"label\": {\n    \"id\": 1606,\n    \"key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8ffc625-84eb-4f0b-9a3e-781053133991",
+          "name": "Get All Tenant Metric Label Values",
+          "request": {
+            "name": "Get All Tenant Metric Label Values",
+            "description": {
+              "content": "This endpoint retrieves all metric label values for a tenant as a dictionary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id",
+                "metric_label_values",
+                "bulk",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) ID of a Tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71f4c82b-17fc-470d-9dc6-cd368e235c4c",
+              "name": "Dictionary of metric label keys to values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "metric_label_values",
+                    "bulk",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) ID of a Tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customer\": \"acme\",\n  \"region\": \"us-west\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8eb2a144-81ac-4d43-ba4f-e3326254b252",
+          "name": "Bulk Update Tenant Metric Label Values",
+          "request": {
+            "name": "Bulk Update Tenant Metric Label Values",
+            "description": {
+              "content": "This endpoint replaces all metric label values for a tenant with the provided dictionary.\nAll existing values are deleted and replaced with the new ones.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id",
+                "metric_label_values",
+                "bulk",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) ID of a Tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"<string>\",\n  \"key_1\": \"<string>\",\n  \"key_2\": \"<string>\",\n  \"key_3\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "611d4098-61c1-4a3d-81a1-0b45567e64f5",
+              "name": "Metric label values updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "metric_label_values",
+                    "bulk",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) ID of a Tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": \"acme\",\n  \"region\": \"us-west\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customer\": \"acme\",\n  \"region\": \"us-west\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d27ff5e7-41f5-4f85-bea3-b91299098a1d",
+          "name": "Delete Tenant Metric Label Value",
+          "request": {
+            "name": "Delete Tenant Metric Label Value",
+            "description": {
+              "content": "This endpoint deletes a metric label value for a tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id",
+                "metric_label_values",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) ID of a Tenant"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2533a82-89bd-4bc1-a7ee-1c84d80fc44a",
+              "name": "Metric label value deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "metric_label_values",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) ID of a Tenant"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15df94f8-a237-4dea-956c-643d3ca8d72b",
+          "name": "Get Tenant Metric Label Value",
+          "request": {
+            "name": "Get Tenant Metric Label Value",
+            "description": {
+              "content": "This endpoint retrieves a specific metric label value for a tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id",
+                "metric_label_values",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) ID of a Tenant"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a4ccff9-87d6-4504-b416-73fbe8678ce4",
+              "name": "Metric label value details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "metric_label_values",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) ID of a Tenant"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"string\",\n  \"created_at\": \"2023-12-06T22:18:22.583Z\",\n  \"id\": 6971,\n  \"label\": {\n    \"id\": 1606,\n    \"key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eaf5d06d-f156-441f-94c7-10f82486aa7a",
+          "name": "Update Tenant Metric Label Value",
+          "request": {
+            "name": "Update Tenant Metric Label Value",
+            "description": {
+              "content": "This endpoint updates a metric label value for a tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id",
+                "metric_label_values",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) ID of a Tenant"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "f480bdc6-4309-4613-9bfe-54fe9f94e681",
+              "name": "Metric label value updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "metric_label_values",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) ID of a Tenant"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"string\",\n  \"created_at\": \"2023-12-06T22:18:22.583Z\",\n  \"id\": 6971,\n  \"label\": {\n    \"id\": 1606,\n    \"key\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cff024c9-8522-4550-a0b8-eea6aa963905",
+    "name": "VAST API Swagger Schema activedirectory Tenants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

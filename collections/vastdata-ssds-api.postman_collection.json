@@ -1,0 +1,643 @@
+{
+  "item": [
+    {
+      "id": "3a15cea3-19ad-49a1-a3c0-c53fccf3837e",
+      "name": "ssds",
+      "description": {
+        "content": "SSDs represent flash SSDs resident in the cluster's DBoxes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1bdc93ac-84d6-40cc-923d-e067cc62b25c",
+          "name": "List SSDs",
+          "request": {
+            "name": "List SSDs",
+            "description": {
+              "content": "This endpoint lists SSDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssds",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by SSD state"
+                },
+                {
+                  "disabled": false,
+                  "key": "sn",
+                  "value": "<string>",
+                  "description": "Filter by SSD serial number"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Filter by SSD model"
+                },
+                {
+                  "disabled": false,
+                  "key": "dbox__name",
+                  "value": "<string>",
+                  "description": "Filter by parent DBox name"
+                },
+                {
+                  "disabled": false,
+                  "key": "dbox__id",
+                  "value": "<string>",
+                  "description": "Filter by parent DBox ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "fw_version",
+                  "value": "<string>",
+                  "description": "Filter by SSD firmware version"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "188f711b-4d5e-46ef-8e25-c3cafbfadc73",
+              "name": "SSD information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssds",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbox__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbox__id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fw_version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"arch_type\": \"string\",\n    \"attached_dnode_names\": \"string\",\n    \"carrier\": 6069,\n    \"carrier_hw_version\": \"string\",\n    \"carrier_serial\": \"string\",\n    \"carrier_sw_version\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 7954,\n    \"dbox\": \"string\",\n    \"dbox_id\": 7893,\n    \"display_name\": \"string\",\n    \"dnode1_attached\": false,\n    \"dnode2_attached\": false,\n    \"enabled\": true,\n    \"fail_reason\": \"IO_ERROR\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9109,\n    \"index_in_carrier\": 1296,\n    \"insertion_time\": \"1996-10-23T23:54:13.980Z\",\n    \"led_status\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"shelf\": \"REAR\",\n    \"size\": 3429,\n    \"slot\": 473,\n    \"sn\": \"string\",\n    \"space_in_use\": 7341,\n    \"state\": \"PHASING_OUT\",\n    \"title\": \"string\"\n  },\n  {\n    \"arch_type\": \"string\",\n    \"attached_dnode_names\": \"string\",\n    \"carrier\": 9753,\n    \"carrier_hw_version\": \"string\",\n    \"carrier_serial\": \"string\",\n    \"carrier_sw_version\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 9012,\n    \"dbox\": \"string\",\n    \"dbox_id\": 379,\n    \"display_name\": \"string\",\n    \"dnode1_attached\": true,\n    \"dnode2_attached\": false,\n    \"enabled\": false,\n    \"fail_reason\": \"SYSTEM_MISMATCH\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8611,\n    \"index_in_carrier\": 5982,\n    \"insertion_time\": \"1957-05-25T22:30:17.425Z\",\n    \"led_status\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"shelf\": \"LEFT\",\n    \"size\": 5195,\n    \"slot\": 5029,\n    \"sn\": \"string\",\n    \"space_in_use\": 788,\n    \"state\": \"PHASING_OUT\",\n    \"title\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50944c04-b617-4def-8527-b7afc90715d5",
+          "name": "Return Details of an SSD",
+          "request": {
+            "name": "Return Details of an SSD",
+            "description": {
+              "content": "This endpoint returns information about an SSD.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssds",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2efd043-9f54-4797-917f-ff3be8e47ee6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssds",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arch_type\": \"string\",\n  \"attached_dnode_names\": \"string\",\n  \"carrier\": 5527,\n  \"carrier_hw_version\": \"string\",\n  \"carrier_serial\": \"string\",\n  \"carrier_sw_version\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 1519,\n  \"dbox\": \"string\",\n  \"dbox_id\": 6451,\n  \"display_name\": \"string\",\n  \"dnode1_attached\": false,\n  \"dnode2_attached\": false,\n  \"enabled\": false,\n  \"fail_reason\": \"DNODE_FAILURE\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 3262,\n  \"index_in_carrier\": 2965,\n  \"insertion_time\": \"1967-04-30T04:45:12.622Z\",\n  \"led_status\": \"string\",\n  \"model\": \"string\",\n  \"name\": \"string\",\n  \"shelf\": \"FRONT\",\n  \"size\": 6014,\n  \"slot\": 990,\n  \"sn\": \"string\",\n  \"space_in_use\": 7376,\n  \"state\": \"ACTIVATING\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b62ff3f0-de4c-4694-a0a4-2b6678e35178",
+          "name": "Activate/Deactivate an SSD",
+          "request": {
+            "name": "Activate/Deactivate an SSD",
+            "description": {
+              "content": "This endpoint activates or deactivates an SSD.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssds",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) SSD ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78860f32-0e19-4ffb-9ff5-87bfe8505474",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssds",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) SSD ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc69346b-a798-4517-b894-790138112e0a",
+          "name": "Turn SSD identification LED on and off",
+          "request": {
+            "name": "Turn SSD identification LED on and off",
+            "description": {
+              "content": "This endpoint controls the ON/OFF state of the specified SSD's identification LED.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssds",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) SSD ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71f24a2b-905a-4cc2-862c-4ea198a564de",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssds",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) SSD ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca088a05-45dd-454c-a4ea-4c3c438b9423",
+          "name": "Format SSD",
+          "request": {
+            "name": "Format SSD",
+            "description": {
+              "content": "This endpoint formats an SSD.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ssds",
+                ":id",
+                "format",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) SSD ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0251dca6-912f-435e-a36a-4cbf68e2f9ea",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ssds",
+                    ":id",
+                    "format",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) SSD ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fc158b58-fe20-4c20-a65e-155ebf8e75c1",
+    "name": "VAST API Swagger Schema activedirectory ssds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory quotas API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "quotas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quotas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/quotas/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "hard_limit",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by hard capacity limit."
+              },
+              {
+                "name": "soft_limit",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by soft capacity limit."
+              },
+              {
+                "name": "soft_limit_inodes",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by soft limit on number of files and directories."
+              },
+              {
+                "name": "hard_limit_inodes",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by hard limit on number of files and directories"
+              },
+              {
+                "name": "system_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_user_rules",
+                "value": "",
+                "type": "query",
+                "description": "Include user and group quota rules in response."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "tenant_name__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Tenant name to filter by"
+              }
+            ]
+          },
+          "docs": "This endpoint lists quotas."
+        },
+        {
+          "info": {
+            "name": "Create a Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/quotas/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a quota that applies usage limits to a specified directory. A directory quota can limit the amount of storage and/or the number of files/objects that can be contained in the directory. The quota can also include quota limits on users and groups."
+        },
+        {
+          "info": {
+            "name": "Start recalculation flow all quotas",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotas/recalc/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Quota ID - if not given, will be applied to all quotas"
+              }
+            ]
+          },
+          "docs": "Start recalculation flow all quotas"
+        },
+        {
+          "info": {
+            "name": "Stop recalculation flow for all quotas",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotas/recalc_stop/"
+          },
+          "docs": "Stop recalculation flow for all quotas"
+        },
+        {
+          "info": {
+            "name": "Return Details of a Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/quotas/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified quota."
+        },
+        {
+          "info": {
+            "name": "Modify Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotas/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a quota."
+        },
+        {
+          "info": {
+            "name": "Delete Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/quotas/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a quota."
+        },
+        {
+          "info": {
+            "name": "Refresh a Quota's User Quotas",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotas/:id/refresh_user_quotas/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota ID"
+              }
+            ]
+          },
+          "docs": "Refresh a Quota's User Quotas"
+        },
+        {
+          "info": {
+            "name": "Reset the grace period countdown after soft limit is exceeded",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotas/:id/reset_grace_period/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota ID"
+              }
+            ]
+          },
+          "docs": "Reset the grace period countdown after soft limit is exceeded"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

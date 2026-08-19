@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "670682a5-6a1f-4870-9746-100baffeb438",
+      "name": "fans",
+      "description": {
+        "content": "Fans represent fans on the CBoxes and DBoxes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c3a5406-19dd-427e-85f8-d587680886ae",
+          "name": "List Fans",
+          "request": {
+            "name": "List Fans",
+            "description": {
+              "content": "This endpoint lists fans.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fans",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by fan state"
+                },
+                {
+                  "disabled": false,
+                  "key": "sn",
+                  "value": "<string>",
+                  "description": "Filter by fan serial number"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Filter by fan model"
+                },
+                {
+                  "disabled": false,
+                  "key": "box__name",
+                  "value": "<string>",
+                  "description": "Filter by parent CBox or DBox name"
+                },
+                {
+                  "disabled": false,
+                  "key": "box__id",
+                  "value": "<string>",
+                  "description": "Filter by parent CBox or DBox ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b409694-8eb3-444c-a1e6-e772daddd132",
+              "name": "Fan information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fans",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "box__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "box__id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"box\": \"string\",\n    \"box_id\": 5339,\n    \"box_uid\": \"string\",\n    \"cbox_id\": 1695,\n    \"cluster\": \"string\",\n    \"cluster_id\": 6416,\n    \"cnode\": \"string\",\n    \"dbox_id\": 3534,\n    \"display_name\": \"string\",\n    \"dnode\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 3127,\n    \"index\": 8649,\n    \"internal\": false,\n    \"location\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"psu\": \"string\",\n    \"sn\": \"string\",\n    \"speed\": 2894,\n    \"state\": \"INACTIVE\",\n    \"title\": \"string\"\n  },\n  {\n    \"box\": \"string\",\n    \"box_id\": 7215,\n    \"box_uid\": \"string\",\n    \"cbox_id\": 6334,\n    \"cluster\": \"string\",\n    \"cluster_id\": 2177,\n    \"cnode\": \"string\",\n    \"dbox_id\": 9889,\n    \"display_name\": \"string\",\n    \"dnode\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 2555,\n    \"index\": 3980,\n    \"internal\": true,\n    \"location\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"psu\": \"string\",\n    \"sn\": \"string\",\n    \"speed\": 2758,\n    \"state\": \"INACTIVE\",\n    \"title\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4772dc2-9fdf-4d45-a7c6-84a180ee5b4b",
+          "name": "Return Details of Fan",
+          "request": {
+            "name": "Return Details of Fan",
+            "description": {
+              "content": "This endpoint returns details of a specified fan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fans",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Fan ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2609072f-5b71-4e19-8abd-c85e577e2189",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fans",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Fan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"box\": \"string\",\n  \"box_id\": 9897,\n  \"box_uid\": \"string\",\n  \"cbox_id\": 3769,\n  \"cluster\": \"string\",\n  \"cluster_id\": 4062,\n  \"cnode\": \"string\",\n  \"dbox_id\": 6835,\n  \"display_name\": \"string\",\n  \"dnode\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 9506,\n  \"index\": 8096,\n  \"internal\": false,\n  \"location\": \"string\",\n  \"model\": \"string\",\n  \"name\": \"string\",\n  \"psu\": \"string\",\n  \"sn\": \"string\",\n  \"speed\": 6203,\n  \"state\": \"HEALTHY\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "68866c2e-2e71-4e44-85bb-1e71ef079b17",
+    "name": "VAST API Swagger Schema activedirectory fans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

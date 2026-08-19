@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory vips API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List VIPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vips/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "Filter by IP"
+              },
+              {
+                "name": "ip__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Filter IP by case-insensitive containment"
+              },
+              {
+                "name": "vippool__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by VIP Pool ID"
+              },
+              {
+                "name": "vippool__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by VIP Pool name"
+              },
+              {
+                "name": "cnode__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CNode name"
+              },
+              {
+                "name": "cnode__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CNode ID"
+              },
+              {
+                "name": "cluster__name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cluster__id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists VIPs."
+        },
+        {
+          "info": {
+            "name": "Return Details of a VIP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vips/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VIP ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specified VIP."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

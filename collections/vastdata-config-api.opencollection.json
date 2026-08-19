@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory config API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List dynamic configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/config/"
+          },
+          "docs": "List dynamic configs"
+        },
+        {
+          "info": {
+            "name": "Reset all dynamic configs to their default values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/config/reset/"
+          },
+          "docs": "Reset all dynamic configs to their default values"
+        },
+        {
+          "info": {
+            "name": "Show dynamic configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/config/:key/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Dynamic Config key to filter by"
+              }
+            ]
+          },
+          "docs": "Show dynamic configs"
+        },
+        {
+          "info": {
+            "name": "Modify dynamic configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/config/:key/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Dynamic Config key to filter by"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify dynamic configs"
+        },
+        {
+          "info": {
+            "name": "Restore dynamic config to its default by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/config/:key/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Dynamic Config key to filter by"
+              }
+            ]
+          },
+          "docs": "Restore dynamic config to its default by key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

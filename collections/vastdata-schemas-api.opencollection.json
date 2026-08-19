@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory schemas API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "schemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Database Schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/schemas/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by database in which the schemas reside"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Get list of schemas by schema_name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by exact match"
+              },
+              {
+                "name": "name__startswith",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by prefix match"
+              },
+              {
+                "name": "count_only",
+                "value": "",
+                "type": "query",
+                "description": "Whether to only return count of objects"
+              },
+              {
+                "name": "schema_name__startswith",
+                "value": "",
+                "type": "query",
+                "description": "Can be true or false.\nIf this by_level is true, the VMS will provide a list of all schemas of only one level.\nTo get the next level, make another request with the name of the parent scheme\n"
+              },
+              {
+                "name": "by_level",
+                "value": "",
+                "type": "query",
+                "description": "Can be true or false.\nIf this by_level is true, the VMS will provide a list of all schemas of only one level.\nto get the next level, need to make another request with the name of the parent scheme\n"
+              }
+            ]
+          },
+          "docs": "This endpoint lists Database Schemas."
+        },
+        {
+          "info": {
+            "name": "Create a Database Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/schemas/"
+          },
+          "docs": "This endpoint creates a database schema"
+        },
+        {
+          "info": {
+            "name": "Delete Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/schemas/delete/"
+          },
+          "docs": "This endpoint deletes a database schema."
+        },
+        {
+          "info": {
+            "name": "Rename a database schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/schemas/rename/"
+          },
+          "docs": "This endpoint renames a schema. The name must meet the requirements for S3 object names."
+        },
+        {
+          "info": {
+            "name": "Show a Database Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/schemas/show/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting object by exact match"
+              }
+            ]
+          },
+          "docs": "This endpoint shows a Database Schema."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

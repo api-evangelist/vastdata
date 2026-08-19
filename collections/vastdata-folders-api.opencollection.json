@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory folders API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/folders/create_folder/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a folder in the Element Store, under a specified tenant, owning group and user."
+        },
+        {
+          "info": {
+            "name": "Delete Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/folders/delete_folder/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint deletes a folder from the Element Store."
+        },
+        {
+          "info": {
+            "name": "Modify Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/folders/modify_folder/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a folder in the Element Store, including its path, tenant, owning group and user."
+        },
+        {
+          "info": {
+            "name": "Return Details of Read-Only Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/folders/read_only/",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Path to get read-only folder details"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of folders that are locked as read-only."
+        },
+        {
+          "info": {
+            "name": "Make a Folder Read-Only",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/folders/read_only/"
+          },
+          "docs": "This endpoint locks an existing path from writes, making it read-only for all users, regardless of permissions."
+        },
+        {
+          "info": {
+            "name": "Unlock Read-Only Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/folders/read_only/"
+          },
+          "docs": "This endpoint unlocks a folder that was made read-only."
+        },
+        {
+          "info": {
+            "name": "Get Owning User and Group for a Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/folders/stat_path/"
+          },
+          "docs": "This endpoint returns the owning user and group for a specified Element Store path."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

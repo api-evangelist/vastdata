@@ -1,0 +1,484 @@
+{
+  "item": [
+    {
+      "id": "7a2eab26-7474-4f26-b387-24465ec06e53",
+      "name": "vpntunnels",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0772a61a-4a3b-4809-b26f-4243d81e08c6",
+          "name": "List VPN Tunnels",
+          "request": {
+            "name": "List VPN Tunnels",
+            "description": {
+              "content": "This endpoint lists VPN tunnels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vpntunnels",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1aed59d-4ed6-4f3c-8834-89ce964438c8",
+              "name": "List of VPN tunnels",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vpntunnels",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cnode\": 853,\n    \"cnode_id\": 2340,\n    \"cnode_ip\": \"string\",\n    \"created_at\": \"1988-10-01T12:35:50.031Z\",\n    \"hostname\": \"string\",\n    \"id\": 707,\n    \"tunnel_end_date\": \"1963-06-01T00:24:11.439Z\",\n    \"tunnels_ips\": \"string\"\n  },\n  {\n    \"cnode\": 7436,\n    \"cnode_id\": 3049,\n    \"cnode_ip\": \"string\",\n    \"created_at\": \"1978-08-26T17:28:16.722Z\",\n    \"hostname\": \"string\",\n    \"id\": 422,\n    \"tunnel_end_date\": \"1973-06-24T12:21:30.539Z\",\n    \"tunnels_ips\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3b8d092-ec8f-4afc-8c0e-40d7344b65a2",
+          "name": "Create VPN Tunnel",
+          "request": {
+            "name": "Create VPN Tunnel",
+            "description": {
+              "content": "This endpoint creates a VPN tunnel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vpntunnels",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cnode\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"vpn_config\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31f89981-21f4-4a56-a180-d4fb9ef01562",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vpntunnels",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cnode\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"vpn_config\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cnode\": 5633,\n  \"cnode_id\": 3007,\n  \"cnode_ip\": \"string\",\n  \"created_at\": \"1978-05-11T14:08:07.468Z\",\n  \"hostname\": \"string\",\n  \"id\": 4524,\n  \"tunnel_end_date\": \"1960-01-28T14:03:48.426Z\",\n  \"tunnels_ips\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6e6f6d9-fe89-4f9a-b082-fe77d32f250a",
+          "name": "Close and Delete all available VPN Tunnels",
+          "request": {
+            "name": "Close and Delete all available VPN Tunnels",
+            "description": {
+              "content": "This endpoint closes and deletes all open VPN tunnels",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vpntunnels",
+                "delete_all",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10be90e8-9631-4d29-8a5b-b5bb068b7fd0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vpntunnels",
+                    "delete_all",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bee5ef07-fdf2-407e-892b-188ec003133e",
+          "name": "Close and Delete VPN Tunnel",
+          "request": {
+            "name": "Close and Delete VPN Tunnel",
+            "description": {
+              "content": "This endpoint closes and deletes an open VPN tunnel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vpntunnels",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VPN tunnel ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c930e957-cf82-44d6-b997-0ec4b2ede4df",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vpntunnels",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VPN tunnel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de8dd454-538d-4346-8c62-2f7b235180ba",
+          "name": "Return Details of a VPN Tunnel",
+          "request": {
+            "name": "Return Details of a VPN Tunnel",
+            "description": {
+              "content": "This endpoint returns details of a VPN tunnel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vpntunnels",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VPN tunnel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2db9f97d-4b73-4239-adf2-2012049ba8dc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vpntunnels",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VPN tunnel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cnode\": 5633,\n  \"cnode_id\": 3007,\n  \"cnode_ip\": \"string\",\n  \"created_at\": \"1978-05-11T14:08:07.468Z\",\n  \"hostname\": \"string\",\n  \"id\": 4524,\n  \"tunnel_end_date\": \"1960-01-28T14:03:48.426Z\",\n  \"tunnels_ips\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e7b45787-2e0a-4d23-9ed1-6d0cd6f4cd0f",
+    "name": "VAST API Swagger Schema activedirectory vpntunnels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

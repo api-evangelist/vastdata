@@ -1,0 +1,358 @@
+{
+  "item": [
+    {
+      "id": "6eced9bb-11e1-4266-bb20-951c562a42ee",
+      "name": "delta",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "084b11a8-64d2-4d43-81fd-7a5729b935e5",
+          "name": "Returns Delta Protocol records.",
+          "request": {
+            "name": "Returns Delta Protocol records.",
+            "description": {},
+            "url": {
+              "path": [
+                "delta",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sequence",
+                  "value": "<string>",
+                  "description": "(Required) Runtime sequence id for delta. Reset if HA happened. Example: '8f021a67-cfd6-4896-ad67-3e32a376c6f4' "
+                },
+                {
+                  "disabled": false,
+                  "key": "generation",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "op_type",
+                  "value": "<string>",
+                  "description": "Operation type"
+                },
+                {
+                  "disabled": false,
+                  "key": "object__type",
+                  "value": "<string>",
+                  "description": "Example: 'cluster'"
+                },
+                {
+                  "disabled": false,
+                  "key": "object__guid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "object__id",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cb7df16-aae0-43b5-8211-7cd74a1914ce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "delta",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sequence",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generation",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "op_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object__type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object__guid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object__id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"current_sequence\": \"8f021a67-cfd6-4896-ad67-3e32a376c6f4\",\n  \"current_generation\": 6744,\n  \"records\": [\n    {\n      \"generation\": 1962,\n      \"object\": {\n        \"type\": \"cluster\",\n        \"id\": 2081,\n        \"guid\": \"string\"\n      },\n      \"op_type\": \"deleted\",\n      \"changes\": {},\n      \"data\": {}\n    },\n    {\n      \"generation\": 4020,\n      \"object\": {\n        \"type\": \"cluster\",\n        \"id\": 4238,\n        \"guid\": \"string\"\n      },\n      \"op_type\": \"deleted\",\n      \"changes\": {},\n      \"data\": {}\n    }\n  ],\n  \"status\": \"reset\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "159d6c02-4417-4653-90fc-cb9c0d750cab",
+          "name": "Returns Delta Storage config.",
+          "request": {
+            "name": "Returns Delta Storage config.",
+            "description": {},
+            "url": {
+              "path": [
+                "delta",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80655266-dd75-4fb0-ae36-b873be4b09ea",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "delta",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"ignored_objects_prefix\": \"__ignore_\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8bd8545-8cb1-47c4-8059-585d1ad877d5",
+          "name": "Update Delta config",
+          "request": {
+            "name": "Update Delta config",
+            "description": {},
+            "url": {
+              "path": [
+                "delta",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"ignored_objects_prefix\": \"__ignore_\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cdee5617-0c0b-415f-970f-c39d856abb76",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "delta",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"ignored_objects_prefix\": \"__ignore_\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"ignored_objects_prefix\": \"__ignore_\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "485ec58c-44a6-4799-b793-bc9614534207",
+    "name": "VAST API Swagger Schema activedirectory delta API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

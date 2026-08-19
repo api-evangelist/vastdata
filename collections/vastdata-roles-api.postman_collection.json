@@ -1,0 +1,532 @@
+{
+  "item": [
+    {
+      "id": "f85012c5-dcd6-4967-a103-aa5d3c0a2b39",
+      "name": "roles",
+      "description": {
+        "content": "Roles are sets of VMS permissions. They can specify one or more LDAP groups. Mapping roles to LDAP groups gives LDAP group members the ability to log into VMS and be authorized with the aggregate of permissions belonging to all mapped roles.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "665fbba3-525f-446c-b670-c999b70ca4f4",
+          "name": "List Roles",
+          "request": {
+            "name": "List Roles",
+            "description": {
+              "content": "This endpoint lists the roles configured for manager users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7174947a-8ea9-4198-8d8c-0bd5ca84ea0e",
+              "name": "Role information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 2098,\n    \"is_admin\": false,\n    \"is_default\": true,\n    \"ldap_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"managers\": [\n      {\n        \"id\": 4954,\n        \"username\": \"string\"\n      },\n      {\n        \"id\": 3162,\n        \"username\": \"string\"\n      }\n    ],\n    \"permissions\": [\n      \"create_applications\",\n      \"create_applications\"\n    ],\n    \"tenant\": {\n      \"id\": 8455,\n      \"name\": \"string\"\n    },\n    \"tenant_id\": 7228,\n    \"tenant_names\": \"string\",\n    \"tenants\": [\n      2896,\n      8785\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 7579,\n    \"is_admin\": true,\n    \"is_default\": false,\n    \"ldap_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"managers\": [\n      {\n        \"id\": 3051,\n        \"username\": \"string\"\n      },\n      {\n        \"id\": 9139,\n        \"username\": \"string\"\n      }\n    ],\n    \"permissions\": [\n      \"create_applications\",\n      \"create_applications\"\n    ],\n    \"tenant\": {\n      \"id\": 418,\n      \"name\": \"string\"\n    },\n    \"tenant_id\": 2907,\n    \"tenant_names\": \"string\",\n    \"tenants\": [\n      9589,\n      7806\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c756df38-3077-4955-a52d-d9e9743b906f",
+          "name": "Create Manager Role",
+          "request": {
+            "name": "Create Manager Role",
+            "description": {},
+            "url": {
+              "path": [
+                "roles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"ldap_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"object_id\": \"<integer>\",\n  \"object_type\": \"<string>\",\n  \"permissions\": \"edit\",\n  \"permissions_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"tenant_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78eb0156-7dee-4a6b-8146-2efee9e499b6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"ldap_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"object_id\": \"<integer>\",\n  \"object_type\": \"<string>\",\n  \"permissions\": \"delete\",\n  \"permissions_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"tenant_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 4808,\n  \"is_admin\": false,\n  \"is_default\": true,\n  \"ldap_groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"managers\": [\n    {\n      \"id\": 7058,\n      \"username\": \"string\"\n    },\n    {\n      \"id\": 2338,\n      \"username\": \"string\"\n    }\n  ],\n  \"permissions\": [\n    \"create_applications\",\n    \"create_applications\"\n  ],\n  \"tenant\": {\n    \"id\": 6241,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 5751,\n  \"tenant_names\": \"string\",\n  \"tenants\": [\n    9883,\n    3578\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d80bbdc-58bb-4d9a-8d44-3c48c48148aa",
+          "name": "Delete Role",
+          "request": {
+            "name": "Delete Role",
+            "description": {
+              "content": "This endpoint deletes a role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Role ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "898d14c0-2579-4e6c-bae1-433f46c99bac",
+              "name": "The role was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Role ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1bb3cad-5805-4b99-859a-03b24bcb3615",
+          "name": "Return Details of a Role",
+          "request": {
+            "name": "Return Details of a Role",
+            "description": {
+              "content": "This endpoint returns details of a manager role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Role ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f77e41f-a2f4-4187-aa41-6a9edf3cb7c9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Role ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 4808,\n  \"is_admin\": false,\n  \"is_default\": true,\n  \"ldap_groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"managers\": [\n    {\n      \"id\": 7058,\n      \"username\": \"string\"\n    },\n    {\n      \"id\": 2338,\n      \"username\": \"string\"\n    }\n  ],\n  \"permissions\": [\n    \"create_applications\",\n    \"create_applications\"\n  ],\n  \"tenant\": {\n    \"id\": 6241,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 5751,\n  \"tenant_names\": \"string\",\n  \"tenants\": [\n    9883,\n    3578\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b458297-7556-4276-aac7-ae238c40a317",
+          "name": "Modify Role",
+          "request": {
+            "name": "Modify Role",
+            "description": {
+              "content": "This endpoint modifies a manager role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Role ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ldap_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"object_id\": \"<integer>\",\n  \"object_type\": \"<string>\",\n  \"permissions\": \"view\",\n  \"permissions_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"tenant_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "413f0621-cf9e-42de-997d-0b38da9c1d26",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Role ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ldap_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"object_id\": \"<integer>\",\n  \"object_type\": \"<string>\",\n  \"permissions\": \"view\",\n  \"permissions_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"tenant_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "21727314-a304-44e0-9b1c-ff5d67f5b526",
+    "name": "VAST API Swagger Schema activedirectory roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

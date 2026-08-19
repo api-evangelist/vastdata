@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory carriers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "carriers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Carriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/carriers/",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by carrier state"
+              },
+              {
+                "name": "dbox__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent DBox name"
+              },
+              {
+                "name": "dbox__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent DBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint lists carriers."
+        },
+        {
+          "info": {
+            "name": "Return Details of One Carrier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/carriers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specific carrier."
+        },
+        {
+          "info": {
+            "name": "Activate or Deactivate a Carrier",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/carriers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Carrier ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint activates or deactivates a carrier."
+        },
+        {
+          "info": {
+            "name": "Control Slot LED",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/carriers/:id/control_led/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Slot ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint controls a slot LED"
+        },
+        {
+          "info": {
+            "name": "Highlight the Control Slot",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/carriers/:id/highlight/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "slot ID"
+              }
+            ]
+          },
+          "docs": "This endpoint highlights the control slot."
+        },
+        {
+          "info": {
+            "name": "Power Cycles a Slot",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/carriers/:id/reset_pci/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "slot ID"
+              }
+            ]
+          },
+          "docs": "This endpoint power cycles a slot"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

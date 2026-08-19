@@ -1,0 +1,2302 @@
+{
+  "item": [
+    {
+      "id": "c62a1d82-e74b-4ed9-8b3b-460fb8483e55",
+      "name": "protectedpaths",
+      "description": {
+        "content": "A protected path is a data path in the Element Store (file/object system) that is protected by snapshots which may be replicated to an S3 replication peer or to an async replication peer. Scheduling and replication is controlled by an associated protection policy.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf723d89-946f-4bd4-afbd-612c998528c0",
+          "name": "List Protected Paths",
+          "request": {
+            "name": "List Protected Paths",
+            "description": {
+              "content": "This endpoint lists protected paths.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_dir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "replication_policy__name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<string>",
+                  "description": "start/pause protected path"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb1a76c8-8802-4e34-aa47-b4f9cd34469b",
+              "name": "Protected path information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_dir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "replication_policy__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"source_dir\": \"string\",\n    \"aggr_phys_estimation\": 9220,\n    \"bucket_name\": \"string\",\n    \"bw\": 6559,\n    \"capabilities\": \"string\",\n    \"enabled\": true,\n    \"estimated_read_only_time\": 5154.832832810474,\n    \"eta\": \"string\",\n    \"failback_allowed\": \"string\",\n    \"failover\": false,\n    \"failure_reason\": \"string\",\n    \"guid\": \"string\",\n    \"health\": \"string\",\n    \"id\": 7829,\n    \"inode_count\": \"string\",\n    \"internal\": true,\n    \"is_gn_enabled\": true,\n    \"is_local\": false,\n    \"last_restore_point_creation_time\": \"string\",\n    \"last_restore_point_time\": \"string\",\n    \"last_snapshot_creation_time\": \"string\",\n    \"last_uploading_restore_point_logical_size\": \"string\",\n    \"last_uploading_restore_point_physical_size\": \"string\",\n    \"last_uploading_restore_point_progress\": 108,\n    \"last_uploading_restore_point_state\": \"string\",\n    \"lease_expiry_time\": 1822,\n    \"logical_size\": 7481,\n    \"members_info\": {\n      \"key_0\": {\n        \"capabilities\": \"string\",\n        \"role\": \"string\",\n        \"state\": \"string\"\n      },\n      \"key_1\": {\n        \"capabilities\": \"string\",\n        \"role\": \"string\",\n        \"state\": \"string\"\n      }\n    },\n    \"peer_cluster_name\": \"string\",\n    \"peer_connection_state\": \"string\",\n    \"physical_size\": 9611,\n    \"progress\": \"string\",\n    \"protection_policy_id\": \"string\",\n    \"protection_policy_name\": \"string\",\n    \"remote_tenant_guid\": \"string\",\n    \"remote_tenant_name\": \"string\",\n    \"replication_policy\": \"string\",\n    \"replication_stream_roles\": {},\n    \"replication_target_name\": \"string\",\n    \"restore_progress\": {},\n    \"restore_task\": \"string\",\n    \"role\": \"string\",\n    \"role_change_eta_sec\": 8289,\n    \"role_change_progress_promil\": 5448,\n    \"state\": \"INVALID\",\n    \"state_description\": \"string\",\n    \"sync_disconnect_time\": 5044,\n    \"sync_interval\": 3287,\n    \"target_exported_dir\": \"string\",\n    \"tenant_id\": 7553,\n    \"tenant_name\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"source_dir\": \"string\",\n    \"aggr_phys_estimation\": 5316,\n    \"bucket_name\": \"string\",\n    \"bw\": 5807,\n    \"capabilities\": \"string\",\n    \"enabled\": true,\n    \"estimated_read_only_time\": 7068.73915429664,\n    \"eta\": \"string\",\n    \"failback_allowed\": \"string\",\n    \"failover\": true,\n    \"failure_reason\": \"string\",\n    \"guid\": \"string\",\n    \"health\": \"string\",\n    \"id\": 1374,\n    \"inode_count\": \"string\",\n    \"internal\": false,\n    \"is_gn_enabled\": true,\n    \"is_local\": true,\n    \"last_restore_point_creation_time\": \"string\",\n    \"last_restore_point_time\": \"string\",\n    \"last_snapshot_creation_time\": \"string\",\n    \"last_uploading_restore_point_logical_size\": \"string\",\n    \"last_uploading_restore_point_physical_size\": \"string\",\n    \"last_uploading_restore_point_progress\": 4836,\n    \"last_uploading_restore_point_state\": \"string\",\n    \"lease_expiry_time\": 4401,\n    \"logical_size\": 9513,\n    \"members_info\": {\n      \"key_0\": {\n        \"capabilities\": \"string\",\n        \"role\": \"string\",\n        \"state\": \"string\"\n      },\n      \"key_1\": {\n        \"capabilities\": \"string\",\n        \"role\": \"string\",\n        \"state\": \"string\"\n      },\n      \"key_2\": {\n        \"capabilities\": \"string\",\n        \"role\": \"string\",\n        \"state\": \"string\"\n      }\n    },\n    \"peer_cluster_name\": \"string\",\n    \"peer_connection_state\": \"string\",\n    \"physical_size\": 3308,\n    \"progress\": \"string\",\n    \"protection_policy_id\": \"string\",\n    \"protection_policy_name\": \"string\",\n    \"remote_tenant_guid\": \"string\",\n    \"remote_tenant_name\": \"string\",\n    \"replication_policy\": \"string\",\n    \"replication_stream_roles\": {},\n    \"replication_target_name\": \"string\",\n    \"restore_progress\": {},\n    \"restore_task\": \"string\",\n    \"role\": \"string\",\n    \"role_change_eta_sec\": 807,\n    \"role_change_progress_promil\": 3687,\n    \"state\": \"ERROR_DEPRECATED\",\n    \"state_description\": \"string\",\n    \"sync_disconnect_time\": 8218,\n    \"sync_interval\": 447,\n    \"target_exported_dir\": \"string\",\n    \"tenant_id\": 6774,\n    \"tenant_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca400ba9-4200-4e2c-9a33-c51576701906",
+          "name": "Create a Protected Path",
+          "request": {
+            "name": "Create a Protected Path",
+            "description": {
+              "content": "This endpoint creates a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source_dir\": \"<string>\",\n  \"target_exported_dir\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"capabilities\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"lease_expiry_time\": \"<integer>\",\n  \"policy_id\": \"<string>\",\n  \"protection_policy_id\": \"<string>\",\n  \"remote_target_id\": \"<integer>\",\n  \"remote_tenant_guid\": \"<string>\",\n  \"remote_tenant_name\": \"<string>\",\n  \"source_member_capabilities\": \"<string>\",\n  \"sync_disconnect_time\": \"<integer>\",\n  \"sync_interval\": \"<integer>\",\n  \"view_replication_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ecc58b0b-cc98-4fc8-b576-44d86d0a592b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source_dir\": \"<string>\",\n  \"target_exported_dir\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"capabilities\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"lease_expiry_time\": \"<integer>\",\n  \"policy_id\": \"<string>\",\n  \"protection_policy_id\": \"<string>\",\n  \"remote_target_id\": \"<integer>\",\n  \"remote_tenant_guid\": \"<string>\",\n  \"remote_tenant_name\": \"<string>\",\n  \"source_member_capabilities\": \"<string>\",\n  \"sync_disconnect_time\": \"<integer>\",\n  \"sync_interval\": \"<integer>\",\n  \"view_replication_enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"source_dir\": \"string\",\n  \"aggr_phys_estimation\": 6248,\n  \"bucket_name\": \"string\",\n  \"bw\": 3770,\n  \"capabilities\": \"string\",\n  \"enabled\": false,\n  \"estimated_read_only_time\": 5965.957425900463,\n  \"eta\": \"string\",\n  \"failback_allowed\": \"string\",\n  \"failover\": true,\n  \"failure_reason\": \"string\",\n  \"guid\": \"string\",\n  \"health\": \"string\",\n  \"id\": 2634,\n  \"inode_count\": \"string\",\n  \"internal\": true,\n  \"is_gn_enabled\": true,\n  \"is_local\": false,\n  \"last_restore_point_creation_time\": \"string\",\n  \"last_restore_point_time\": \"string\",\n  \"last_snapshot_creation_time\": \"string\",\n  \"last_uploading_restore_point_logical_size\": \"string\",\n  \"last_uploading_restore_point_physical_size\": \"string\",\n  \"last_uploading_restore_point_progress\": 8434,\n  \"last_uploading_restore_point_state\": \"string\",\n  \"lease_expiry_time\": 1427,\n  \"logical_size\": 7141,\n  \"members_info\": {\n    \"key_0\": {\n      \"capabilities\": \"string\",\n      \"role\": \"string\",\n      \"state\": \"string\"\n    },\n    \"key_1\": {\n      \"capabilities\": \"string\",\n      \"role\": \"string\",\n      \"state\": \"string\"\n    }\n  },\n  \"peer_cluster_name\": \"string\",\n  \"peer_connection_state\": \"string\",\n  \"physical_size\": 8307,\n  \"progress\": \"string\",\n  \"protection_policy_id\": \"string\",\n  \"protection_policy_name\": \"string\",\n  \"remote_tenant_guid\": \"string\",\n  \"remote_tenant_name\": \"string\",\n  \"replication_policy\": \"string\",\n  \"replication_stream_roles\": {},\n  \"replication_target_name\": \"string\",\n  \"restore_progress\": {},\n  \"restore_task\": \"string\",\n  \"role\": \"string\",\n  \"role_change_eta_sec\": 7302,\n  \"role_change_progress_promil\": 959,\n  \"state\": \"INITIAL_SCAN\",\n  \"state_description\": \"string\",\n  \"sync_disconnect_time\": 479,\n  \"sync_interval\": 7376,\n  \"target_exported_dir\": \"string\",\n  \"tenant_id\": 4397,\n  \"tenant_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fbd535c-0a48-4295-a479-6ccacd8b9f60",
+          "name": "Delete a Protected Path",
+          "request": {
+            "name": "Delete a Protected Path",
+            "description": {
+              "content": "This endpoint deletes a protected path.If the protected path has replication streams, it deletes all streams and all streams between members of the replication group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d8fa319-8562-45ae-8d38-040d2c08e6b4",
+              "name": "this endpoint deletes a protected path with its group and related streams.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fce7bdc-5767-4c95-8fdb-01e43156b69f",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dffa650f-8667-4396-a0bd-b0b2630ef69b",
+          "name": "Return Details of a Protected Path",
+          "request": {
+            "name": "Return Details of a Protected Path",
+            "description": {
+              "content": "This endpoint returns details of a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) index of protected path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd78b843-a24d-4183-9393-5a0a1959854f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) index of protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"source_dir\": \"string\",\n  \"aggr_phys_estimation\": 6248,\n  \"bucket_name\": \"string\",\n  \"bw\": 3770,\n  \"capabilities\": \"string\",\n  \"enabled\": false,\n  \"estimated_read_only_time\": 5965.957425900463,\n  \"eta\": \"string\",\n  \"failback_allowed\": \"string\",\n  \"failover\": true,\n  \"failure_reason\": \"string\",\n  \"guid\": \"string\",\n  \"health\": \"string\",\n  \"id\": 2634,\n  \"inode_count\": \"string\",\n  \"internal\": true,\n  \"is_gn_enabled\": true,\n  \"is_local\": false,\n  \"last_restore_point_creation_time\": \"string\",\n  \"last_restore_point_time\": \"string\",\n  \"last_snapshot_creation_time\": \"string\",\n  \"last_uploading_restore_point_logical_size\": \"string\",\n  \"last_uploading_restore_point_physical_size\": \"string\",\n  \"last_uploading_restore_point_progress\": 8434,\n  \"last_uploading_restore_point_state\": \"string\",\n  \"lease_expiry_time\": 1427,\n  \"logical_size\": 7141,\n  \"members_info\": {\n    \"key_0\": {\n      \"capabilities\": \"string\",\n      \"role\": \"string\",\n      \"state\": \"string\"\n    },\n    \"key_1\": {\n      \"capabilities\": \"string\",\n      \"role\": \"string\",\n      \"state\": \"string\"\n    }\n  },\n  \"peer_cluster_name\": \"string\",\n  \"peer_connection_state\": \"string\",\n  \"physical_size\": 8307,\n  \"progress\": \"string\",\n  \"protection_policy_id\": \"string\",\n  \"protection_policy_name\": \"string\",\n  \"remote_tenant_guid\": \"string\",\n  \"remote_tenant_name\": \"string\",\n  \"replication_policy\": \"string\",\n  \"replication_stream_roles\": {},\n  \"replication_target_name\": \"string\",\n  \"restore_progress\": {},\n  \"restore_task\": \"string\",\n  \"role\": \"string\",\n  \"role_change_eta_sec\": 7302,\n  \"role_change_progress_promil\": 959,\n  \"state\": \"INITIAL_SCAN\",\n  \"state_description\": \"string\",\n  \"sync_disconnect_time\": 479,\n  \"sync_interval\": 7376,\n  \"target_exported_dir\": \"string\",\n  \"tenant_id\": 4397,\n  \"tenant_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "544befd1-9f12-4150-b222-6d3960044dad",
+          "name": "Modify a Protected Path",
+          "request": {
+            "name": "Modify a Protected Path",
+            "description": {
+              "content": "This endpoint modifies a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"abort\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"failover\": \"<boolean>\",\n  \"graceful\": \"<boolean>\",\n  \"lease_expiry_time\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"protection_policy_id\": \"<string>\",\n  \"replication_policy_id\": \"<string>\",\n  \"source_dir\": \"<string>\",\n  \"state\": \"<string>\",\n  \"sync_disconnect_time\": \"<integer>\",\n  \"sync_interval\": \"<integer>\",\n  \"target_exported_dir\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f207f4f-383e-48fa-b55e-6f95d9940877",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"abort\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"failover\": \"<boolean>\",\n  \"graceful\": \"<boolean>\",\n  \"lease_expiry_time\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"protection_policy_id\": \"<string>\",\n  \"replication_policy_id\": \"<string>\",\n  \"source_dir\": \"<string>\",\n  \"state\": \"<string>\",\n  \"sync_disconnect_time\": \"<integer>\",\n  \"sync_interval\": \"<integer>\",\n  \"target_exported_dir\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfd21126-31ba-40aa-8ac6-ecb9c4db4bb8",
+          "name": "Add a Replication Stream to a Protected Path",
+          "request": {
+            "name": "Add a Replication Stream to a Protected Path",
+            "description": {
+              "content": "This endpoint adds a replication stream to a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "add_stream",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"target_exported_dir\": \"<string>\",\n  \"capabilities\": \"<string>\",\n  \"lease_expiry_time\": \"<integer>\",\n  \"protection_policy_id\": \"<string>\",\n  \"remote_target_id\": \"<integer>\",\n  \"remote_tenant_guid\": \"<string>\",\n  \"remote_tenant_name\": \"<string>\",\n  \"source_member_capabilities\": \"<string>\",\n  \"sync_disconnect_time\": \"<integer>\",\n  \"sync_interval\": \"<integer>\",\n  \"view_replication_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76d46089-cd52-4a2c-99f9-354ec466a7ad",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "add_stream",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"target_exported_dir\": \"<string>\",\n  \"capabilities\": \"<string>\",\n  \"lease_expiry_time\": \"<integer>\",\n  \"protection_policy_id\": \"<string>\",\n  \"remote_target_id\": \"<integer>\",\n  \"remote_tenant_guid\": \"<string>\",\n  \"remote_tenant_name\": \"<string>\",\n  \"source_member_capabilities\": \"<string>\",\n  \"sync_disconnect_time\": \"<integer>\",\n  \"sync_interval\": \"<integer>\",\n  \"view_replication_enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0451662-4ebf-4386-af28-5a5ebdd0a4c9",
+          "name": "Commit a Restored Protected Path",
+          "request": {
+            "name": "Commit a Restored Protected Path",
+            "description": {
+              "content": "This endpoint commits a path restore. Before calling This endpoint, call the /protectedpaths/{id}/restore operation to create a clone from a snapshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "commit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c468c85-8a95-4e82-87b0-70289aea2b7e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad875e9f-d154-4a20-89d6-f6e61e9ebe46",
+          "name": "Force failover on a protected path",
+          "request": {
+            "name": "Force failover on a protected path",
+            "description": {
+              "content": "This endpoint forces ungraceful fail-over of a group replication protected path. Run the operation from the cluster that you want to become the source peer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "force_failover"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81b1a434-7371-4aa5-a814-911a94c722dc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "force_failover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29a3bbe7-3ea8-4539-bc1f-08ea1ec07da6",
+          "name": "Modify Capability of a Replication Stream that Belongs to a Protected Path",
+          "request": {
+            "name": "Modify Capability of a Replication Stream that Belongs to a Protected Path",
+            "description": {
+              "content": "This endpoint modifies the capability of a specified stream of a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "modify_member",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path to which the stream belongs"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capabilities\": \"<string>\",\n  \"stream_id\": \"<string>\",\n  \"source_member_capabilities\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "746dadf2-fd79-48be-9a32-b219c3c4cfe7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "modify_member",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path to which the stream belongs"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"capabilities\": \"<string>\",\n  \"stream_id\": \"<string>\",\n  \"source_member_capabilities\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "512e0184-35e8-44b7-93db-285d05eb6cd4",
+          "name": "Pause Restore on a Protected Path",
+          "request": {
+            "name": "Pause Restore on a Protected Path",
+            "description": {
+              "content": "This endpoint pauses a restore operation on a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06126c9d-412c-46fa-a1dc-a9d5b466afda",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b78544ae-fc4f-4c30-8b4e-eca78dba7a87",
+          "name": "Delete Path Prefetch Task",
+          "request": {
+            "name": "Delete Path Prefetch Task",
+            "description": {
+              "content": "This endpoint deletes a prefetch task from the prefetch history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "prefetch_path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Protected path ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"task_id\": \"<integer>\",\n  \"stop_running_prefetch\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "6e9d9a32-d92e-40c5-a0ab-088669025306",
+              "name": "Prefetch delete succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "prefetch_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protected path ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"task_id\": \"<integer>\",\n  \"stop_running_prefetch\": \"<boolean>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4af65c9e-bc7e-47d3-8f04-f1631d742ff9",
+          "name": "Return Status for Prefetch Path",
+          "request": {
+            "name": "Return Status for Prefetch Path",
+            "description": {
+              "content": "This endpoint returns status for a prefetch path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "prefetch_path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "task_id",
+                  "value": "<integer>",
+                  "description": "(Required) ID of task for which to get the prefetch status"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Protected path ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d2bb4b1-1ced-4331-a81d-c075c0988b94",
+              "name": "Prefetch path status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "prefetch_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protected path ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"inodes_retrieved\": 3439,\n  \"path\": \"string\",\n  \"prefetch_type\": \"string\",\n  \"size_retrieved\": 8338,\n  \"task_id\": 3240\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d8771d0-0bde-4f22-8d78-6c9fc61b1eff",
+          "name": "Prefetch a Path to Global Access Cache",
+          "request": {
+            "name": "Prefetch a Path to Global Access Cache",
+            "description": {
+              "content": "This endpoint prefetches data from a specified path under a global access protected path. The data is copied from the source peer to the cache on the destination peer. The operation is initiated from the destination peer. It improves performance for accessing the cached data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "prefetch_path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "Force prefetch even if it is already running"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Protected path ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"prefetch_type\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "48bc95e8-7411-487b-9c65-13bb14cc2ae0",
+              "name": "Prefetch folder succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "prefetch_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protected path ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"prefetch_type\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"task_id\": 6237\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de378647-f740-448c-8c18-533571608247",
+              "name": "Prefetch is already running",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "prefetch_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protected path ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"prefetch_type\": \"<string>\"\n}"
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Conflict reason code.\",\n  \"detail\": \"The request could not be completed due to a conflict with the current state of the target resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3f1c576-35af-4531-8d01-f6c532f15cb4",
+          "name": "Reattach a Stream to a Protected Path",
+          "request": {
+            "name": "Reattach a Stream to a Protected Path",
+            "description": {
+              "content": "This endpoint re-attaches a replication stream to a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "reattach_stream",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stream_id\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "61fe80f1-0431-4fc1-9d13-24b55583c20f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "reattach_stream",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stream_id\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c034402-1a82-4a1b-ae24-a8d298d38a3d",
+          "name": "Remove a Stream from a Protected Path",
+          "request": {
+            "name": "Remove a Stream from a Protected Path",
+            "description": {
+              "content": "This endpoint removes a replication stream from the specified protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "remove_stream",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stream_id\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "caa51479-3a02-47b7-8476-eb674aa3cd5a",
+              "name": "Removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "remove_stream",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stream_id\": \"<string>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5e812fb-6139-4280-9001-f3711ff063d3",
+          "name": "Trigger Replication on all the Streams of a Protected Path",
+          "request": {
+            "name": "Trigger Replication on all the Streams of a Protected Path",
+            "description": {
+              "content": "This endpoint triggers replication on all streams of a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "replicate_now",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"time_expires_local\": \"<string>\",\n  \"time_expires_target\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1e65ea3-5e74-405d-8a75-b2e4e5637126",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "replicate_now",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time_expires_local\": \"<string>\",\n  \"time_expires_target\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b843940a-86b0-4413-993f-8b7be439fffa",
+          "name": "Create a Clone to Restore a Path.",
+          "request": {
+            "name": "Create a Clone to Restore a Path.",
+            "description": {
+              "content": "This endpoint creates a cloned directory of a path from a selected snapshot of a protected path, for the purpose of restoring the path. To complete the restore process, call the /protectedpaths/{id}/commit operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "restore"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"loanee_snapshot_id\": \"<integer>\",\n  \"name\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "365ab3d0-fd03-4a9d-a547-da94f84b165b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"loanee_snapshot_id\": \"<integer>\",\n  \"name\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bw\": 5420,\n  \"direction\": \"string\",\n  \"enabled\": true,\n  \"eta\": \"string\",\n  \"external_state\": \"string\",\n  \"guid\": \"string\",\n  \"health\": \"string\",\n  \"id\": 9004,\n  \"loanee_root_path\": \"string\",\n  \"loanee_snapshot\": \"string\",\n  \"loanee_snapshot_id\": 8985,\n  \"loanee_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"name\": \"string\",\n  \"owner_root_snapshot\": {},\n  \"owner_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"remote_target\": \"string\",\n  \"remote_target_id\": 4989,\n  \"restore_task\": 3433,\n  \"source_cluster\": \"string\",\n  \"source_path\": \"string\",\n  \"source_snapshot\": \"string\",\n  \"state\": \"string\",\n  \"status\": {},\n  \"sync_progress\": 1109,\n  \"target_cluster\": \"string\",\n  \"view_replication_enabled\": false,\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db3082af-edec-4040-b2ee-3e9e5fe0d382",
+          "name": "Resume Restore on a Protected Path",
+          "request": {
+            "name": "Resume Restore on a Protected Path",
+            "description": {
+              "content": "This endpoint resumes a restore operation that was paused on a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "92409849-1f60-4f3b-9e6c-65bf928a3ce9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a13e0e5-5c49-4640-82e7-640567dcce21",
+          "name": "Stops snapshot restore on protected path.",
+          "request": {
+            "name": "Stops snapshot restore on protected path.",
+            "description": {
+              "content": "This endpoint stops a restore on a protected path. It removes the snapshot clone created by the restore operation. It is available until the restore is committed. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the protected path"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77d764ce-b2a4-4be2-8c2d-02848dbc05e0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the protected path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66b126c5-173d-402b-b868-8559eb31c805",
+          "name": "Returns validations results for Protected Path.",
+          "request": {
+            "name": "Returns validations results for Protected Path.",
+            "description": {
+              "content": "This endpoint returns validation results for a protected path. The results returned can be used to warn users if a protected path has s3_versioning enabled and that restoring the path may lead to losing versions that aren't part of the restored snapshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protectedpaths",
+                ":id",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2409bbcd-68b6-4ca1-86d0-2d32dd5674d5",
+              "name": "Validations results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protectedpaths",
+                    ":id",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_gn_streams\": true,\n  \"is_dest_ppath\": false,\n  \"is_multi_tenant_system\": true,\n  \"is_source_ppath\": true,\n  \"s3_versioning\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d3968d41-066c-47c5-8412-d7f6e3b9df44",
+    "name": "VAST API Swagger Schema activedirectory protectedpaths API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

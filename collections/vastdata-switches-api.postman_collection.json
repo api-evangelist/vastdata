@@ -1,0 +1,646 @@
+{
+  "item": [
+    {
+      "id": "feb23162-690c-473e-b757-541c40600e02",
+      "name": "switches",
+      "description": {
+        "content": "Switches represent switches in the cluster.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9de269d9-39f3-4076-9e2c-ea7a9f1499cd",
+          "name": "List Switches",
+          "request": {
+            "name": "List Switches",
+            "description": {
+              "content": "This endpoint lists switches.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "switches",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by switch state"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "345364c8-a421-4813-94ba-d1a2ee2ab83c",
+              "name": "Switch information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "switches",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cluster\": \"string\",\n    \"cluster_id\": \"string\",\n    \"configuration_file\": \"string\",\n    \"configured\": false,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"hostname\": \"string\",\n    \"id\": 1964,\n    \"install\": false,\n    \"ip\": \"string\",\n    \"ipv6\": \"string\",\n    \"mgmt_gateway\": \"string\",\n    \"mgmt_ip\": \"string\",\n    \"mgmt_subnet\": 2591,\n    \"model\": \"string\",\n    \"mtu\": 5760,\n    \"name\": \"string\",\n    \"pair_id\": \"string\",\n    \"password\": \"string\",\n    \"peer_switch\": \"string\",\n    \"role\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"ACTIVATING\",\n    \"switch_id\": 3697,\n    \"switch_type\": \"cumulus\",\n    \"title\": \"string\",\n    \"username\": \"string\"\n  },\n  {\n    \"cluster\": \"string\",\n    \"cluster_id\": \"string\",\n    \"configuration_file\": \"string\",\n    \"configured\": true,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"hostname\": \"string\",\n    \"id\": 4801,\n    \"install\": true,\n    \"ip\": \"string\",\n    \"ipv6\": \"string\",\n    \"mgmt_gateway\": \"string\",\n    \"mgmt_ip\": \"string\",\n    \"mgmt_subnet\": 8896,\n    \"model\": \"string\",\n    \"mtu\": 4148,\n    \"name\": \"string\",\n    \"pair_id\": \"string\",\n    \"password\": \"string\",\n    \"peer_switch\": \"string\",\n    \"role\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"FAILING\",\n    \"switch_id\": 800,\n    \"switch_type\": \"aruba\",\n    \"title\": \"string\",\n    \"username\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb681d11-8925-47f2-8fa5-6f7fa08c1e82",
+          "name": "Add Switch",
+          "request": {
+            "name": "Add Switch",
+            "description": {
+              "content": "This endpoint adds a switch to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "switches",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ip\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ccd0b44-ad3e-40fb-97d3-13cbd7f3937d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "switches",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ip\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cluster_id\": \"string\",\n  \"configuration_file\": \"string\",\n  \"configured\": false,\n  \"display_name\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"hostname\": \"string\",\n  \"id\": 9557,\n  \"install\": false,\n  \"ip\": \"string\",\n  \"ipv6\": \"string\",\n  \"mgmt_gateway\": \"string\",\n  \"mgmt_ip\": \"string\",\n  \"mgmt_subnet\": 7875,\n  \"model\": \"string\",\n  \"mtu\": 542,\n  \"name\": \"string\",\n  \"pair_id\": \"string\",\n  \"password\": \"string\",\n  \"peer_switch\": \"string\",\n  \"role\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"HEALTHY\",\n  \"switch_id\": 8515,\n  \"switch_type\": \"mellanox\",\n  \"title\": \"string\",\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "287cee82-f922-47d4-976d-cec57438d410",
+          "name": "Bulk Update Switch Credentials",
+          "request": {
+            "name": "Bulk Update Switch Credentials",
+            "description": {
+              "content": "This endpoint updates credentials for multiple switches simultaneously.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "switches",
+                "bulk",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f9370e08-984d-4496-a4e9-b8ee7beeef76",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "switches",
+                    "bulk",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22c194f5-b575-46b7-bbb0-363110fb0abf",
+          "name": "Delete Switch",
+          "request": {
+            "name": "Delete Switch",
+            "description": {
+              "content": "This endpoint deletes a switch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "switches",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Switch ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "846d724b-37bd-423b-98d2-380f7041b8bd",
+              "name": "The switch was deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "switches",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Switch ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5df96b17-fe0c-484a-9024-35eda85356ac",
+          "name": "Return Details of a Switch",
+          "request": {
+            "name": "Return Details of a Switch",
+            "description": {
+              "content": "This endpoint returns details of a specified switch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "switches",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Switch ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f765605a-5671-4f7f-94ec-eaa95bfb53c4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "switches",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Switch ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cluster_id\": \"string\",\n  \"configuration_file\": \"string\",\n  \"configured\": false,\n  \"display_name\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"hostname\": \"string\",\n  \"id\": 9557,\n  \"install\": false,\n  \"ip\": \"string\",\n  \"ipv6\": \"string\",\n  \"mgmt_gateway\": \"string\",\n  \"mgmt_ip\": \"string\",\n  \"mgmt_subnet\": 7875,\n  \"model\": \"string\",\n  \"mtu\": 542,\n  \"name\": \"string\",\n  \"pair_id\": \"string\",\n  \"password\": \"string\",\n  \"peer_switch\": \"string\",\n  \"role\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"HEALTHY\",\n  \"switch_id\": 8515,\n  \"switch_type\": \"mellanox\",\n  \"title\": \"string\",\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "573984af-0359-4984-982e-1ec38e971cdc",
+          "name": "Change Switch User Credentials",
+          "request": {
+            "name": "Change Switch User Credentials",
+            "description": {
+              "content": "This endpoint modifies a switch username and password.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "switches",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Switch ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec54b4e8-39bc-497a-a40a-e79f3b9d0798",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "switches",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Switch ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"cluster_id\": \"string\",\n  \"configuration_file\": \"string\",\n  \"configured\": false,\n  \"display_name\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"hostname\": \"string\",\n  \"id\": 9557,\n  \"install\": false,\n  \"ip\": \"string\",\n  \"ipv6\": \"string\",\n  \"mgmt_gateway\": \"string\",\n  \"mgmt_ip\": \"string\",\n  \"mgmt_subnet\": 7875,\n  \"model\": \"string\",\n  \"mtu\": 542,\n  \"name\": \"string\",\n  \"pair_id\": \"string\",\n  \"password\": \"string\",\n  \"peer_switch\": \"string\",\n  \"role\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"HEALTHY\",\n  \"switch_id\": 8515,\n  \"switch_type\": \"mellanox\",\n  \"title\": \"string\",\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c23f7e66-694d-4341-96c5-c6ffed7a1941",
+    "name": "VAST API Swagger Schema activedirectory switches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1074 @@
+{
+  "item": [
+    {
+      "id": "e8f4a5b6-20f1-498c-a1f6-60db9073ed48",
+      "name": "vastcatalogconfig",
+      "description": {
+        "content": "The bigcatalogconfig endpoint enables you to manage the configuration of VAST Catalog and to query the VAST Catalog. VAST Catalog is a database that indexes metadata attributes of all data on the cluster, enabling high performance querying of files, objects and directories based on classification of data according to attributes used by multiple access protocols. VAST catalog indexes the metadata attributes of the cluster's data from periodic snapshots of the cluster's data. The database is stored on a dedicated S3 bucket on the cluster.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff86b328-f2ec-422d-b09c-f4784390299a",
+          "name": "List VAST Catalog Configuration",
+          "request": {
+            "name": "List VAST Catalog Configuration",
+            "description": {
+              "content": "This endpoint returns a list of VAST Catalog configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57505b19-4f7f-42e3-b443-fe2897d1499c",
+              "name": "VAST Catalog configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"prefix\": \"string\",\n    \"frames\": [\n      {\n        \"every\": \"30m\",\n        \"keep-local\": \"30m\",\n        \"keep-remote\": \"30m\",\n        \"start-at\": \"2021-02-03 01:02:03\"\n      },\n      {\n        \"every\": \"30m\",\n        \"keep-local\": \"30m\",\n        \"keep-remote\": \"30m\",\n        \"start-at\": \"2021-02-03 01:02:03\"\n      }\n    ],\n    \"clone_type\": \"CLOUD_REPLICATION\",\n    \"created\": \"string\",\n    \"guid\": \"string\",\n    \"handle\": \"string\",\n    \"id\": 622,\n    \"indestructible\": true,\n    \"internal\": true,\n    \"is_local\": true,\n    \"is_on_schedule\": false,\n    \"native_replication_remote_target\": \"string\",\n    \"pretty_schedules\": [\n      \"string\",\n      \"string\"\n    ],\n    \"remote_tenant\": {\n      \"guid\": \"string\",\n      \"name\": \"string\"\n    },\n    \"replication_target\": \"string\",\n    \"schedule_miss\": 7357,\n    \"state\": \"working\",\n    \"sync_interval\": 7947,\n    \"target_guid\": \"string\",\n    \"target_name\": \"string\",\n    \"target_object_id\": 7562,\n    \"tenant\": {\n      \"id\": 9123,\n      \"name\": \"string\"\n    },\n    \"tenant_id\": 1092,\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"enable\": false\n  },\n  {\n    \"name\": \"string\",\n    \"prefix\": \"string\",\n    \"frames\": [\n      {\n        \"every\": \"30m\",\n        \"keep-local\": \"30m\",\n        \"keep-remote\": \"30m\",\n        \"start-at\": \"2021-02-03 01:02:03\"\n      },\n      {\n        \"every\": \"30m\",\n        \"keep-local\": \"30m\",\n        \"keep-remote\": \"30m\",\n        \"start-at\": \"2021-02-03 01:02:03\"\n      }\n    ],\n    \"clone_type\": \"LOCAL\",\n    \"created\": \"string\",\n    \"guid\": \"string\",\n    \"handle\": \"string\",\n    \"id\": 2116,\n    \"indestructible\": true,\n    \"internal\": false,\n    \"is_local\": false,\n    \"is_on_schedule\": false,\n    \"native_replication_remote_target\": \"string\",\n    \"pretty_schedules\": [\n      \"string\",\n      \"string\"\n    ],\n    \"remote_tenant\": {\n      \"guid\": \"string\",\n      \"name\": \"string\"\n    },\n    \"replication_target\": \"string\",\n    \"schedule_miss\": 4155,\n    \"state\": \"DELETE_PENDING\",\n    \"sync_interval\": 2755,\n    \"target_guid\": \"string\",\n    \"target_name\": \"string\",\n    \"target_object_id\": 6907,\n    \"tenant\": {\n      \"id\": 2483,\n      \"name\": \"string\"\n    },\n    \"tenant_id\": 9484,\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"enable\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "935b80c1-dc82-44bb-90f4-d66366cde3e1",
+          "name": "Create a VAST Catalog Configuration",
+          "request": {
+            "name": "Create a VAST Catalog Configuration",
+            "description": {
+              "content": "This endpoint creates a schedule for periodic snapshot creation for VAST Catalog, with retention periods for the periodic snapshots and for the VAST Catalog table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"frames\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81af23cd-adf9-4fd1-ad2a-144708018898",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"frames\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"prefix\": \"string\",\n  \"frames\": [\n    {\n      \"every\": \"30m\",\n      \"keep-local\": \"30m\",\n      \"keep-remote\": \"30m\",\n      \"start-at\": \"2021-02-03 01:02:03\"\n    },\n    {\n      \"every\": \"30m\",\n      \"keep-local\": \"30m\",\n      \"keep-remote\": \"30m\",\n      \"start-at\": \"2021-02-03 01:02:03\"\n    }\n  ],\n  \"clone_type\": \"LOCAL\",\n  \"created\": \"string\",\n  \"guid\": \"string\",\n  \"handle\": \"string\",\n  \"id\": 8265,\n  \"indestructible\": true,\n  \"internal\": false,\n  \"is_local\": false,\n  \"is_on_schedule\": false,\n  \"native_replication_remote_target\": \"string\",\n  \"pretty_schedules\": [\n    \"string\",\n    \"string\"\n  ],\n  \"remote_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"replication_target\": \"string\",\n  \"schedule_miss\": 9613,\n  \"state\": \"DELETE_PENDING\",\n  \"sync_interval\": 5939,\n  \"target_guid\": \"string\",\n  \"target_name\": \"string\",\n  \"target_object_id\": 7929,\n  \"tenant\": {\n    \"id\": 2476,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 9463,\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"enable\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a747c7c4-6daf-41b5-9b7e-0971cbcda977",
+          "name": "Return VAST Catalog columns",
+          "request": {
+            "name": "Return VAST Catalog columns",
+            "description": {},
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                "columns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6097083-34c9-4fdd-8d79-374a9f3f11a6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    "columns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"database_name\": \"string\",\n    \"field\": {\n      \"column_type\": \"map\",\n      \"key_type\": {\n        \"column_type\": \"bool\"\n      },\n      \"value_type\": {\n        \"column_type\": \"bool\"\n      }\n    },\n    \"name\": \"string\",\n    \"raw_field\": \"map<bool, bool>\",\n    \"schema_name\": \"string\",\n    \"table_name\": \"string\"\n  },\n  {\n    \"database_name\": \"string\",\n    \"field\": {\n      \"column_type\": \"map\",\n      \"key_type\": {\n        \"column_type\": \"bool\"\n      },\n      \"value_type\": {\n        \"column_type\": \"bool\"\n      }\n    },\n    \"name\": \"string\",\n    \"raw_field\": \"map<bool, bool>\",\n    \"schema_name\": \"string\",\n    \"table_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "593a752c-14d7-4e47-a7cc-d60b231e68a0",
+          "name": "Queries data based on provided params",
+          "request": {
+            "name": "Queries data based on provided params",
+            "description": {},
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                "query_data",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Target source path"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "snapshot",
+                  "value": "<string>",
+                  "description": "The name of the snapshot, the latest version is taken by default"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "parent_path",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "name",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "size",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "mtime",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "owner_name",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "uid",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "owner_sid",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "group_owner_name",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "gid",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "group_owner_sid",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>",
+                  "description": "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f93a41d6-ee25-45d5-8e79-9116a5703acf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    "query_data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "snapshot",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "parent_path"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "size"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "mtime"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "owner_name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "uid"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "owner_sid"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "group_owner_name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "gid"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "group_owner_sid"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 55,\n  \"next\": \"string\",\n  \"prop_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"results\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5383e60-f751-45ab-a8bb-c5a9f6ffa3a7",
+          "name": "Query VAST Catalog",
+          "request": {
+            "name": "Query VAST Catalog",
+            "description": {},
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                "query_data",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": \"<object>\",\n  \"path\": \"<string>\",\n  \"fields\": [\n    \"parent_path\",\n    \"name\",\n    \"size\",\n    \"mtime\",\n    \"owner_name\",\n    \"uid\",\n    \"owner_sid\",\n    \"group_owner_name\",\n    \"gid\",\n    \"group_owner_sid\"\n  ],\n  \"snapshot\": \"<string>\",\n  \"tenant_id\": 0\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "f687c42c-bb0b-4be1-af3c-d562f79b6448",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    "query_data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8603,\n  \"next\": \"string\",\n  \"prop_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"results\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "caf7eb77-f380-41af-8e87-37152b7ce0e0",
+          "name": "Return VAST Catalog Stats",
+          "request": {
+            "name": "Return VAST Catalog Stats",
+            "description": {},
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                "stats",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a9dc0ee-f8f2-4ef0-b7da-2374aea00942",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    "stats",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count_columns\": 4999,\n  \"count_rows\": 4169\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c52e79e9-25e0-41de-b318-ad4e7896866a",
+          "name": "Delete VAST Catalog Configuration.",
+          "request": {
+            "name": "Delete VAST Catalog Configuration.",
+            "description": {
+              "content": "This endpoint deletes the VAST Catalog configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Vastcatalogconfig ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3d970c9-9f67-485c-aab7-e92d810e67ed",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Vastcatalogconfig ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5d6b1fa-c650-4a67-b50f-f21b2a81349b",
+          "name": "Return VAST Catalog Configuration",
+          "request": {
+            "name": "Return VAST Catalog Configuration",
+            "description": {
+              "content": "This endpoint returns details of the VAST Catalog configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Vastcatalogconfig ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1ecb5b0-b24c-446d-aa61-a3ffaa324cf5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Vastcatalogconfig ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"prefix\": \"string\",\n  \"frames\": [\n    {\n      \"every\": \"30m\",\n      \"keep-local\": \"30m\",\n      \"keep-remote\": \"30m\",\n      \"start-at\": \"2021-02-03 01:02:03\"\n    },\n    {\n      \"every\": \"30m\",\n      \"keep-local\": \"30m\",\n      \"keep-remote\": \"30m\",\n      \"start-at\": \"2021-02-03 01:02:03\"\n    }\n  ],\n  \"clone_type\": \"LOCAL\",\n  \"created\": \"string\",\n  \"guid\": \"string\",\n  \"handle\": \"string\",\n  \"id\": 8265,\n  \"indestructible\": true,\n  \"internal\": false,\n  \"is_local\": false,\n  \"is_on_schedule\": false,\n  \"native_replication_remote_target\": \"string\",\n  \"pretty_schedules\": [\n    \"string\",\n    \"string\"\n  ],\n  \"remote_tenant\": {\n    \"guid\": \"string\",\n    \"name\": \"string\"\n  },\n  \"replication_target\": \"string\",\n  \"schedule_miss\": 9613,\n  \"state\": \"DELETE_PENDING\",\n  \"sync_interval\": 5939,\n  \"target_guid\": \"string\",\n  \"target_name\": \"string\",\n  \"target_object_id\": 7929,\n  \"tenant\": {\n    \"id\": 2476,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 9463,\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"enable\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11c80062-6ce8-4b09-b6fb-986f18eb6406",
+          "name": "Modify VAST Catalog Configuration",
+          "request": {
+            "name": "Modify VAST Catalog Configuration",
+            "description": {},
+            "url": {
+              "path": [
+                "bigcatalogconfig",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VAST Catalog Configuration ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enable\": \"<boolean>\",\n  \"frames\": \"<object>\",\n  \"splits\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "806218f5-0dc1-4e31-af39-be9b9836b6ea",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogconfig",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VAST Catalog Configuration ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enable\": \"<boolean>\",\n  \"frames\": \"<object>\",\n  \"splits\": \"<integer>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "00f90099-5a55-4769-abe0-ca6280073c20",
+    "name": "VAST API Swagger Schema activedirectory vastcatalogconfig API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

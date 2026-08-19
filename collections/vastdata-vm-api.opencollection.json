@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory vm API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vm",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List virtual machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/virtual-machines/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all virtual machines that belong to the cluster and their details."
+        },
+        {
+          "info": {
+            "name": "Decommission ENODE VMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/virtual-machines/decommission"
+          },
+          "docs": "Decommission a specified number of ENODE VMs."
+        },
+        {
+          "info": {
+            "name": "Add Virtual Machines to the cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/virtual-machines/expand"
+          },
+          "docs": "Add Virtual Machines to the cluster."
+        },
+        {
+          "info": {
+            "name": "Remove Virtual Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/virtual-machines/remove"
+          },
+          "docs": "Remove Virtual Machine"
+        },
+        {
+          "info": {
+            "name": "Replace Virtual Machines.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/virtual-machines/replace"
+          },
+          "docs": "Replace Virtual Machines."
+        },
+        {
+          "info": {
+            "name": "Return Details of a virtual machine.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/virtual-machines/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "virtual machine ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specific virtual machine."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

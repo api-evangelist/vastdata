@@ -1,0 +1,1345 @@
+{
+  "item": [
+    {
+      "id": "25eff056-7976-435f-8033-3054d73eaf01",
+      "name": "activedirectory",
+      "description": {
+        "content": "Active Directory is supported as an external authorization and authentication provider. Active Directory may store and provide user and group attributes used by both NFS and SMB protocols. Active Directory can be used to enable Kerberos authentication with NFSv4 and with SMB. It is a requirement for enabling SMB access on VAST Cluster. Up to one Active Directory domain is supported. The configuration must specify an LDAP configuration for binding to the LDAP domain of the Active Directory server. Limitations apply to the combinations of external providers and protocol enablement.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "377cd153-f2bc-48a8-8897-b5a3293c51ba",
+          "name": "List Active Directory Configurations",
+          "request": {
+            "name": "List Active Directory Configurations",
+            "description": {
+              "content": "This endpoint lists Active Directory configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activedirectory",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9da5e94-da5a-4d9a-b243-2cfd5c936681",
+              "name": "Active Directory information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"domain_name\": \"string\",\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"id\": 2265,\n    \"last_ma_pwd_renewal_status\": {\n      \"is_during_change\": false,\n      \"last_change_attempt\": \"string\",\n      \"last_successful_change\": \"string\",\n      \"message\": \"string\",\n      \"next_scheduled_change\": \"string\"\n    },\n    \"ldap\": {\n      \"searchbase\": \"string\",\n      \"urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"abac_read_only_value_name\": \"string\",\n      \"abac_read_write_value_name\": \"string\",\n      \"active_directory\": \"string\",\n      \"active_directory_id\": 7078,\n      \"advanced_filter\": \"string\",\n      \"binddn\": \"string\",\n      \"bindpw\": \"string\",\n      \"domain_name\": \"string\",\n      \"domains_with_posix_attributes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"gid_number\": \"string\",\n      \"group_login_name\": \"string\",\n      \"group_searchbase\": \"string\",\n      \"guid\": \"string\",\n      \"id\": 6466,\n      \"is_abac_provider\": false,\n      \"is_vms_auth_provider\": true,\n      \"mail_property_name\": \"string\",\n      \"match_user\": \"string\",\n      \"method\": \"string\",\n      \"monitor_action\": \"PING\",\n      \"name\": \"string\",\n      \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n      \"port\": 8554,\n      \"posix_account\": \"string\",\n      \"posix_attributes_source\": \"ALL_DOMAINS\",\n      \"posix_group\": \"string\",\n      \"posix_primary_provider\": false,\n      \"query_groups_mode\": \"string\",\n      \"query_posix_attributes_from_gc\": true,\n      \"reverse_lookup\": false,\n      \"state\": \"NOT_FOUND\",\n      \"super_admin_groups\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tenant_id\": 3613,\n      \"title\": \"string\",\n      \"tls_certificate\": \"string\",\n      \"uid\": \"string\",\n      \"uid_member\": \"string\",\n      \"uid_member_value_property_name\": \"string\",\n      \"uid_number\": \"string\",\n      \"url\": \"string\",\n      \"use_auto_discovery\": true,\n      \"use_ldaps\": false,\n      \"use_multi_forest\": false,\n      \"use_posix\": true,\n      \"use_tls\": true,\n      \"user_login_name\": \"string\",\n      \"username_property_name\": \"string\"\n    },\n    \"ldap_id\": 2419,\n    \"ma_pwd_change_frequency\": \"string\",\n    \"ma_pwd_update_time\": \"string\",\n    \"machine_account_name\": \"string\",\n    \"monitor_action\": \"BIND\",\n    \"name\": \"string\",\n    \"ntlm_enabled\": true,\n    \"organizational_unit\": \"string\",\n    \"preferred_dc_list\": {},\n    \"scheduled_ma_pwd_change_enabled\": false,\n    \"smb_allowed\": true,\n    \"state\": \"JOINED\",\n    \"tenant_id\": 4611,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"domain_name\": \"string\",\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"id\": 1171,\n    \"last_ma_pwd_renewal_status\": {\n      \"is_during_change\": true,\n      \"last_change_attempt\": \"string\",\n      \"last_successful_change\": \"string\",\n      \"message\": \"string\",\n      \"next_scheduled_change\": \"string\"\n    },\n    \"ldap\": {\n      \"searchbase\": \"string\",\n      \"urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"abac_read_only_value_name\": \"string\",\n      \"abac_read_write_value_name\": \"string\",\n      \"active_directory\": \"string\",\n      \"active_directory_id\": 5751,\n      \"advanced_filter\": \"string\",\n      \"binddn\": \"string\",\n      \"bindpw\": \"string\",\n      \"domain_name\": \"string\",\n      \"domains_with_posix_attributes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"gid_number\": \"string\",\n      \"group_login_name\": \"string\",\n      \"group_searchbase\": \"string\",\n      \"guid\": \"string\",\n      \"id\": 4398,\n      \"is_abac_provider\": true,\n      \"is_vms_auth_provider\": true,\n      \"mail_property_name\": \"string\",\n      \"match_user\": \"string\",\n      \"method\": \"string\",\n      \"monitor_action\": \"BIND\",\n      \"name\": \"string\",\n      \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n      \"port\": 4896,\n      \"posix_account\": \"string\",\n      \"posix_attributes_source\": \"ALL_DOMAINS\",\n      \"posix_group\": \"string\",\n      \"posix_primary_provider\": true,\n      \"query_groups_mode\": \"string\",\n      \"query_posix_attributes_from_gc\": false,\n      \"reverse_lookup\": false,\n      \"state\": \"CONNECTING\",\n      \"super_admin_groups\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tenant_id\": 191,\n      \"title\": \"string\",\n      \"tls_certificate\": \"string\",\n      \"uid\": \"string\",\n      \"uid_member\": \"string\",\n      \"uid_member_value_property_name\": \"string\",\n      \"uid_number\": \"string\",\n      \"url\": \"string\",\n      \"use_auto_discovery\": false,\n      \"use_ldaps\": true,\n      \"use_multi_forest\": true,\n      \"use_posix\": true,\n      \"use_tls\": true,\n      \"user_login_name\": \"string\",\n      \"username_property_name\": \"string\"\n    },\n    \"ldap_id\": 3492,\n    \"ma_pwd_change_frequency\": \"string\",\n    \"ma_pwd_update_time\": \"string\",\n    \"machine_account_name\": \"string\",\n    \"monitor_action\": \"PING\",\n    \"name\": \"string\",\n    \"ntlm_enabled\": true,\n    \"organizational_unit\": \"string\",\n    \"preferred_dc_list\": {},\n    \"scheduled_ma_pwd_change_enabled\": false,\n    \"smb_allowed\": true,\n    \"state\": \"LEAVE_FAILED\",\n    \"tenant_id\": 4873,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bdd1982-2d5b-4609-b612-1737846c45dc",
+          "name": "Create Active Directory Configuration",
+          "request": {
+            "name": "Create Active Directory Configuration",
+            "description": {
+              "content": "This endpoint creates an Active Directory configuration. An Active Directory configuration specifies an external Active Directory server domain and defines the configuration of a machine account name to be added to that domain if and when the cluster is joined to the domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activedirectory",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"abac_read_only_value_name\": \"<string>\",\n  \"abac_read_write_value_name\": \"<string>\",\n  \"binddn\": \"<string>\",\n  \"bindpw\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"domains_with_posix_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"gid_number\": \"<string>\",\n  \"group_login_name\": \"<string>\",\n  \"group_searchbase\": \"<string>\",\n  \"is_abac_provider\": \"<boolean>\",\n  \"is_vms_auth_provider\": \"<boolean>\",\n  \"ldap_id\": \"<string>\",\n  \"ma_pwd_change_frequency\": \"<string>\",\n  \"ma_pwd_update_time\": \"<string>\",\n  \"machine_account_name\": \"<string>\",\n  \"mail_property_name\": \"<string>\",\n  \"match_user\": \"<string>\",\n  \"method\": \"<string>\",\n  \"monitor_action\": \"<string>\",\n  \"netgroup_searchbase\": \"<string>\",\n  \"ntlm_enabled\": true,\n  \"organizational_unit\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"posix_account\": \"<string>\",\n  \"posix_attributes_source\": \"<string>\",\n  \"posix_group\": \"<string>\",\n  \"preferred_dc_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query_groups_mode\": \"<string>\",\n  \"query_posix_attributes_from_gc\": \"<boolean>\",\n  \"reverse_lookup\": \"<boolean>\",\n  \"scheduled_ma_pwd_change_enabled\": \"<boolean>\",\n  \"searchbase\": \"<string>\",\n  \"smb_allowed\": true,\n  \"super_admin_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tls_certificate\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"uid_member\": \"<string>\",\n  \"uid_member_value_property_name\": \"<string>\",\n  \"uid_number\": \"<string>\",\n  \"url\": \"<string>\",\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_auto_discovery\": \"<boolean>\",\n  \"use_ldaps\": \"<boolean>\",\n  \"use_multi_forest\": \"<boolean>\",\n  \"use_posix\": \"<boolean>\",\n  \"use_tls\": \"<boolean>\",\n  \"user_login_name\": \"<string>\",\n  \"username_property_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e9153245-bd67-4a64-bea0-19c4d0274bd9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"abac_read_only_value_name\": \"<string>\",\n  \"abac_read_write_value_name\": \"<string>\",\n  \"binddn\": \"<string>\",\n  \"bindpw\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"domains_with_posix_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"gid_number\": \"<string>\",\n  \"group_login_name\": \"<string>\",\n  \"group_searchbase\": \"<string>\",\n  \"is_abac_provider\": \"<boolean>\",\n  \"is_vms_auth_provider\": \"<boolean>\",\n  \"ldap_id\": \"<string>\",\n  \"ma_pwd_change_frequency\": \"<string>\",\n  \"ma_pwd_update_time\": \"<string>\",\n  \"machine_account_name\": \"<string>\",\n  \"mail_property_name\": \"<string>\",\n  \"match_user\": \"<string>\",\n  \"method\": \"<string>\",\n  \"monitor_action\": \"<string>\",\n  \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n  \"ntlm_enabled\": true,\n  \"organizational_unit\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"posix_account\": \"<string>\",\n  \"posix_attributes_source\": \"<string>\",\n  \"posix_group\": \"<string>\",\n  \"preferred_dc_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query_groups_mode\": \"<string>\",\n  \"query_posix_attributes_from_gc\": \"<boolean>\",\n  \"reverse_lookup\": \"<boolean>\",\n  \"scheduled_ma_pwd_change_enabled\": \"<boolean>\",\n  \"searchbase\": \"<string>\",\n  \"smb_allowed\": true,\n  \"super_admin_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tls_certificate\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"uid_member\": \"<string>\",\n  \"uid_member_value_property_name\": \"<string>\",\n  \"uid_number\": \"<string>\",\n  \"url\": \"<string>\",\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_auto_discovery\": \"<boolean>\",\n  \"use_ldaps\": \"<boolean>\",\n  \"use_multi_forest\": \"<boolean>\",\n  \"use_posix\": \"<boolean>\",\n  \"use_tls\": \"<boolean>\",\n  \"user_login_name\": \"<string>\",\n  \"username_property_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain_name\": \"string\",\n  \"enabled\": false,\n  \"guid\": \"string\",\n  \"id\": 379,\n  \"last_ma_pwd_renewal_status\": {\n    \"is_during_change\": true,\n    \"last_change_attempt\": \"string\",\n    \"last_successful_change\": \"string\",\n    \"message\": \"string\",\n    \"next_scheduled_change\": \"string\"\n  },\n  \"ldap\": {\n    \"searchbase\": \"string\",\n    \"urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"abac_read_only_value_name\": \"string\",\n    \"abac_read_write_value_name\": \"string\",\n    \"active_directory\": \"string\",\n    \"active_directory_id\": 9277,\n    \"advanced_filter\": \"string\",\n    \"binddn\": \"string\",\n    \"bindpw\": \"string\",\n    \"domain_name\": \"string\",\n    \"domains_with_posix_attributes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gid_number\": \"string\",\n    \"group_login_name\": \"string\",\n    \"group_searchbase\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9792,\n    \"is_abac_provider\": true,\n    \"is_vms_auth_provider\": true,\n    \"mail_property_name\": \"string\",\n    \"match_user\": \"string\",\n    \"method\": \"string\",\n    \"monitor_action\": \"PING\",\n    \"name\": \"string\",\n    \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n    \"port\": 940,\n    \"posix_account\": \"string\",\n    \"posix_attributes_source\": \"SPECIFIC_DOMAINS\",\n    \"posix_group\": \"string\",\n    \"posix_primary_provider\": true,\n    \"query_groups_mode\": \"string\",\n    \"query_posix_attributes_from_gc\": false,\n    \"reverse_lookup\": true,\n    \"state\": \"CONNECTING\",\n    \"super_admin_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tenant_id\": 7544,\n    \"title\": \"string\",\n    \"tls_certificate\": \"string\",\n    \"uid\": \"string\",\n    \"uid_member\": \"string\",\n    \"uid_member_value_property_name\": \"string\",\n    \"uid_number\": \"string\",\n    \"url\": \"string\",\n    \"use_auto_discovery\": true,\n    \"use_ldaps\": false,\n    \"use_multi_forest\": true,\n    \"use_posix\": false,\n    \"use_tls\": false,\n    \"user_login_name\": \"string\",\n    \"username_property_name\": \"string\"\n  },\n  \"ldap_id\": 7736,\n  \"ma_pwd_change_frequency\": \"string\",\n  \"ma_pwd_update_time\": \"string\",\n  \"machine_account_name\": \"string\",\n  \"monitor_action\": \"PING\",\n  \"name\": \"string\",\n  \"ntlm_enabled\": true,\n  \"organizational_unit\": \"string\",\n  \"preferred_dc_list\": {},\n  \"scheduled_ma_pwd_change_enabled\": false,\n  \"smb_allowed\": true,\n  \"state\": \"LEAVING_IN_PROGRESS\",\n  \"tenant_id\": 9228,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb713501-60ca-4e9b-81f7-ae3007105fdd",
+          "name": "Delete Active Directory configuration",
+          "request": {
+            "name": "Delete Active Directory configuration",
+            "description": {
+              "content": "This endpoint deletes an Active Directory configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skip_ldap\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c61709e-d6b6-457f-b175-86841232c509",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip_ldap\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcdd2e77-ba5d-488c-ae4c-8caf3b8ba8af",
+          "name": "Return Active Directory Configuration Details",
+          "request": {
+            "name": "Return Active Directory Configuration Details",
+            "description": {
+              "content": "This endpoint returns details of a specified Active Directory configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd2929e7-1bdf-48da-b283-4156010e2745",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain_name\": \"string\",\n  \"enabled\": false,\n  \"guid\": \"string\",\n  \"id\": 379,\n  \"last_ma_pwd_renewal_status\": {\n    \"is_during_change\": true,\n    \"last_change_attempt\": \"string\",\n    \"last_successful_change\": \"string\",\n    \"message\": \"string\",\n    \"next_scheduled_change\": \"string\"\n  },\n  \"ldap\": {\n    \"searchbase\": \"string\",\n    \"urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"abac_read_only_value_name\": \"string\",\n    \"abac_read_write_value_name\": \"string\",\n    \"active_directory\": \"string\",\n    \"active_directory_id\": 9277,\n    \"advanced_filter\": \"string\",\n    \"binddn\": \"string\",\n    \"bindpw\": \"string\",\n    \"domain_name\": \"string\",\n    \"domains_with_posix_attributes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gid_number\": \"string\",\n    \"group_login_name\": \"string\",\n    \"group_searchbase\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9792,\n    \"is_abac_provider\": true,\n    \"is_vms_auth_provider\": true,\n    \"mail_property_name\": \"string\",\n    \"match_user\": \"string\",\n    \"method\": \"string\",\n    \"monitor_action\": \"PING\",\n    \"name\": \"string\",\n    \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n    \"port\": 940,\n    \"posix_account\": \"string\",\n    \"posix_attributes_source\": \"SPECIFIC_DOMAINS\",\n    \"posix_group\": \"string\",\n    \"posix_primary_provider\": true,\n    \"query_groups_mode\": \"string\",\n    \"query_posix_attributes_from_gc\": false,\n    \"reverse_lookup\": true,\n    \"state\": \"CONNECTING\",\n    \"super_admin_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tenant_id\": 7544,\n    \"title\": \"string\",\n    \"tls_certificate\": \"string\",\n    \"uid\": \"string\",\n    \"uid_member\": \"string\",\n    \"uid_member_value_property_name\": \"string\",\n    \"uid_number\": \"string\",\n    \"url\": \"string\",\n    \"use_auto_discovery\": true,\n    \"use_ldaps\": false,\n    \"use_multi_forest\": true,\n    \"use_posix\": false,\n    \"use_tls\": false,\n    \"user_login_name\": \"string\",\n    \"username_property_name\": \"string\"\n  },\n  \"ldap_id\": 7736,\n  \"ma_pwd_change_frequency\": \"string\",\n  \"ma_pwd_update_time\": \"string\",\n  \"machine_account_name\": \"string\",\n  \"monitor_action\": \"PING\",\n  \"name\": \"string\",\n  \"ntlm_enabled\": true,\n  \"organizational_unit\": \"string\",\n  \"preferred_dc_list\": {},\n  \"scheduled_ma_pwd_change_enabled\": false,\n  \"smb_allowed\": true,\n  \"state\": \"LEAVING_IN_PROGRESS\",\n  \"tenant_id\": 9228,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa55801f-9c4a-4720-87f0-1f0234bce5d5",
+          "name": "Join or Leave Active Directory",
+          "request": {
+            "name": "Join or Leave Active Directory",
+            "description": {
+              "content": "This endpoint joins or leaves an Active Directory domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the Active Directory configuration for the Active Directory server to join"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"admin_username\": \"<string>\",\n  \"admin_passwd\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"abac_read_only_value_name\": \"<string>\",\n  \"abac_read_write_value_name\": \"<string>\",\n  \"binddn\": \"<string>\",\n  \"bindpw\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"domains_with_posix_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"gid_number\": \"<string>\",\n  \"group_login_name\": \"<string>\",\n  \"group_searchbase\": \"<string>\",\n  \"is_abac_provider\": \"<boolean>\",\n  \"is_vms_auth_provider\": \"<boolean>\",\n  \"ma_pwd_change_frequency\": \"<string>\",\n  \"ma_pwd_update_time\": \"<string>\",\n  \"mail_property_name\": \"<string>\",\n  \"match_user\": \"<string>\",\n  \"method\": \"<string>\",\n  \"monitor_action\": \"<string>\",\n  \"netgroup_searchbase\": \"<string>\",\n  \"ntlm_enabled\": true,\n  \"port\": \"<integer>\",\n  \"posix_account\": \"<string>\",\n  \"posix_attributes_source\": \"<string>\",\n  \"posix_group\": \"<string>\",\n  \"query_groups_mode\": \"<string>\",\n  \"query_posix_attributes_from_gc\": \"<boolean>\",\n  \"reverse_lookup\": \"<boolean>\",\n  \"scheduled_ma_pwd_change_enabled\": \"<boolean>\",\n  \"searchbase\": \"<string>\",\n  \"smb_allowed\": true,\n  \"super_admin_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tls_certificate\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"uid_member\": \"<string>\",\n  \"uid_member_value_property_name\": \"<string>\",\n  \"uid_number\": \"<string>\",\n  \"url\": \"<string>\",\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_auto_discovery\": \"<boolean>\",\n  \"use_ldaps\": \"<boolean>\",\n  \"use_multi_forest\": \"<boolean>\",\n  \"use_posix\": \"<boolean>\",\n  \"use_tls\": \"<boolean>\",\n  \"user_login_name\": \"<string>\",\n  \"username_property_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0be3d02-2502-4489-b65c-77ca93795ed3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the Active Directory configuration for the Active Directory server to join"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"admin_username\": \"<string>\",\n  \"admin_passwd\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"abac_read_only_value_name\": \"<string>\",\n  \"abac_read_write_value_name\": \"<string>\",\n  \"binddn\": \"<string>\",\n  \"bindpw\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"domains_with_posix_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"gid_number\": \"<string>\",\n  \"group_login_name\": \"<string>\",\n  \"group_searchbase\": \"<string>\",\n  \"is_abac_provider\": \"<boolean>\",\n  \"is_vms_auth_provider\": \"<boolean>\",\n  \"ma_pwd_change_frequency\": \"<string>\",\n  \"ma_pwd_update_time\": \"<string>\",\n  \"mail_property_name\": \"<string>\",\n  \"match_user\": \"<string>\",\n  \"method\": \"<string>\",\n  \"monitor_action\": \"<string>\",\n  \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n  \"ntlm_enabled\": true,\n  \"port\": \"<integer>\",\n  \"posix_account\": \"<string>\",\n  \"posix_attributes_source\": \"<string>\",\n  \"posix_group\": \"<string>\",\n  \"query_groups_mode\": \"<string>\",\n  \"query_posix_attributes_from_gc\": \"<boolean>\",\n  \"reverse_lookup\": \"<boolean>\",\n  \"scheduled_ma_pwd_change_enabled\": \"<boolean>\",\n  \"searchbase\": \"<string>\",\n  \"smb_allowed\": true,\n  \"super_admin_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tls_certificate\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"uid_member\": \"<string>\",\n  \"uid_member_value_property_name\": \"<string>\",\n  \"uid_number\": \"<string>\",\n  \"url\": \"<string>\",\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_auto_discovery\": \"<boolean>\",\n  \"use_ldaps\": \"<boolean>\",\n  \"use_multi_forest\": \"<boolean>\",\n  \"use_posix\": \"<boolean>\",\n  \"use_tls\": \"<boolean>\",\n  \"user_login_name\": \"<string>\",\n  \"username_property_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f9714c6-c1b3-4ebf-8298-3d08bd653afa",
+          "name": "Change machine account password",
+          "request": {
+            "name": "Change machine account password",
+            "description": {},
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                "change_machine_account_password",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2e5537b-9712-40f7-b86b-5ead6fb26a29",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    "change_machine_account_password",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cace7e5c-bd0e-4444-8260-ead6acce6d84",
+          "name": "Get current Active Directory GC",
+          "request": {
+            "name": "Get current Active Directory GC",
+            "description": {},
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                "current_gc",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39681267-dbb0-4ab5-aff9-1fc9ddab2f0e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    "current_gc",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b74f358-bf9c-4917-905e-ccaff689af12",
+          "name": "Get Active Directory DCs",
+          "request": {
+            "name": "Get Active Directory DCs",
+            "description": {},
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                "dcs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_closest",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "uri",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "port",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b28f7f4-ae84-4058-a5cb-5dcdce650741",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    "dcs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_closest",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "port",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03e664f9-154f-4e3d-a754-53486d2b06f2",
+          "name": "Get Active Directory domains",
+          "request": {
+            "name": "Get Active Directory domains",
+            "description": {},
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                "domains",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "base_dn",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fqdn",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "557deaf5-7bb4-4290-a975-603d48259fce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    "domains",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base_dn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fqdn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5362a3ff-1a54-4d6d-adc1-2a91994e1e81",
+          "name": "Get Active Directory GCs",
+          "request": {
+            "name": "Get Active Directory GCs",
+            "description": {},
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                "gcs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_closest",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "uri",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "port",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2546ac1e-e690-420c-9111-356ee0b9fac4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    "gcs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_closest",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "port",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e66b16fb-d0d0-4207-8930-41e5b9f1ed1a",
+          "name": "Check whether an operation may be successfully performed",
+          "request": {
+            "name": "Check whether an operation may be successfully performed",
+            "description": {
+              "content": "Returns warnings about the future state if operation is performed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                "is_operation_healthy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "operation",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"admin_passwd\": \"<string>\",\n  \"admin_username\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"ntlm_enabled\": true,\n  \"smb_allowed\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5fa777bf-6251-4685-aab2-4332e37afa6b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    "is_operation_healthy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "operation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"admin_passwd\": \"<string>\",\n  \"admin_username\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"ntlm_enabled\": true,\n  \"smb_allowed\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"warnings\": [\n    \"Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant='default', path='/test')\",\n    \"Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant='default', path='/test')\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "616fa4fa-61eb-489d-80ff-72563e0cb5e6",
+          "name": "Refresh AD",
+          "request": {
+            "name": "Refresh AD",
+            "description": {},
+            "url": {
+              "path": [
+                "activedirectory",
+                ":id",
+                "refresh",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Active Directory ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8c8571a-2887-4000-8028-ca458b6c7a61",
+              "name": "Refreshed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activedirectory",
+                    ":id",
+                    "refresh",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Active Directory ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "491d7aac-f429-46a4-8386-148c32fd3550",
+    "name": "VAST API Swagger Schema activedirectory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

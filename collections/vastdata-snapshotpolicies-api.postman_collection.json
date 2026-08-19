@@ -1,0 +1,565 @@
+{
+  "item": [
+    {
+      "id": "b79912b5-9100-4601-9c6e-98ea02084d3e",
+      "name": "snapshotpolicies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "796b42b5-f906-4020-ba4c-2b9f6c8c23a7",
+          "name": "List Snapshot Policies (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "List Snapshot Policies (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint returns the list of snapshot policies. The list can be filtered. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshotpolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Filter by snapshot path"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_operation_state",
+                  "value": "<string>",
+                  "description": "Filter by last operation state"
+                },
+                {
+                  "disabled": false,
+                  "key": "schedule",
+                  "value": "<string>",
+                  "description": "Filter by schedule"
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<boolean>",
+                  "description": "Filter to return only enabled snapshots"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6ebb109-2cd2-4a7c-bfc1-8636f6cfe72d",
+              "name": "Snapshot policy information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshotpolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_operation_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schedule",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"path\": \"string\",\n    \"name\": \"string\",\n    \"schedule\": \"string\",\n    \"max_created_snapshots\": 7957,\n    \"cluster\": \"string\",\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"humanize_schedule\": \"string\",\n    \"id\": 8877,\n    \"last_operation_state\": \"string\",\n    \"prefix\": \"string\",\n    \"snapshot_expiration\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"path\": \"string\",\n    \"name\": \"string\",\n    \"schedule\": \"string\",\n    \"max_created_snapshots\": 3430,\n    \"cluster\": \"string\",\n    \"enabled\": false,\n    \"guid\": \"string\",\n    \"humanize_schedule\": \"string\",\n    \"id\": 9240,\n    \"last_operation_state\": \"string\",\n    \"prefix\": \"string\",\n    \"snapshot_expiration\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da224458-b1fb-408d-9e5d-41f818233519",
+          "name": "Create a Snapshot Policy (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "Create a Snapshot Policy (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint creates a snapshot policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshotpolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"name\": \"<string>\",\n  \"schedule\": \"<string>\",\n  \"max_created_snapshots\": \"<integer>\",\n  \"cluster_id\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"prefix\": \"<string>\",\n  \"snapshot_expiration\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af7c7664-a358-4ac9-b095-db7027e17782",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshotpolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"name\": \"<string>\",\n  \"schedule\": \"<string>\",\n  \"max_created_snapshots\": \"<integer>\",\n  \"cluster_id\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"prefix\": \"<string>\",\n  \"snapshot_expiration\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"string\",\n  \"name\": \"string\",\n  \"schedule\": \"string\",\n  \"max_created_snapshots\": 4933,\n  \"cluster\": \"string\",\n  \"enabled\": false,\n  \"guid\": \"string\",\n  \"humanize_schedule\": \"string\",\n  \"id\": 9267,\n  \"last_operation_state\": \"string\",\n  \"prefix\": \"string\",\n  \"snapshot_expiration\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bfe7ac5-47b4-4bf8-9ff8-9ef4fbafb220",
+          "name": "Delete a Snapshot Policy (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "Delete a Snapshot Policy (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint deletes a snapshot policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshotpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f266ccc2-73bb-44f4-86b2-72f3bbd97c69",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshotpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ac979ba-c69a-4f54-a6f7-70703226c567",
+          "name": "Return Details of a Snapshot Policy (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "Return Details of a Snapshot Policy (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint returns details of a snapshot policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshotpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "317a39e9-f50f-479f-979c-2228ab8bf912",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshotpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"string\",\n  \"name\": \"string\",\n  \"schedule\": \"string\",\n  \"max_created_snapshots\": 4933,\n  \"cluster\": \"string\",\n  \"enabled\": false,\n  \"guid\": \"string\",\n  \"humanize_schedule\": \"string\",\n  \"id\": 9267,\n  \"last_operation_state\": \"string\",\n  \"prefix\": \"string\",\n  \"snapshot_expiration\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "721cca73-3d1e-44b6-8115-f15e515d7f6e",
+          "name": "Modify a Snapshot Policy (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "Modify a Snapshot Policy (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint modifies a snapshot policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshotpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"max_created_snapshots\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"schedule\": \"<string>\",\n  \"snapshot_expiration\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b822e53e-11c5-4a52-a692-adb7e9f94a21",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshotpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"max_created_snapshots\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"prefix\": \"<string>\",\n  \"schedule\": \"<string>\",\n  \"snapshot_expiration\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "447d712e-b4de-4eab-a414-47a7a08435a9",
+    "name": "VAST API Swagger Schema activedirectory snapshotpolicies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

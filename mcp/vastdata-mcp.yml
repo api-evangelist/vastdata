@@ -4,35 +4,42 @@ status: published
 source: https://github.com/vast-data/vast-admin-mcp
 server:
   name: vast-admin-mcp
-  description: Official VAST Admin MCP Server — a Model Context Protocol server for
-    VAST Data cluster administration. Gives AI assistants tools to monitor, list, and
-    manage VAST clusters (views, tenants, snapshots, quotas, alerts, performance
-    metrics, support bundles). Supported for both cluster and tenant admins.
+  description: Official VAST Admin MCP Server — a Model Context Protocol server for VAST Data cluster
+    administration. Gives AI assistants tools to monitor, list, and manage VAST clusters (views, tenants,
+    snapshots, quotas, alerts, performance metrics, support bundles). Supported for both cluster and tenant
+    admins.
   vendor: VAST Data
   official: true
   license: Apache-2.0
-  transport: stdio        # local `vast-admin-mcp mcp`; HTTP transport for remote/K8s deployments
-  transports: [stdio, http]
+  transport: stdio
+  transports:
+  - stdio
+  - http
   distribution:
-    - registry: pypi
-      name: vast-admin-mcp
-      install: pip install vast-admin-mcp
-      url: https://pypi.org/project/vast-admin-mcp/
-    - registry: docker
-      name: vast-admin-mcp
-      url: https://github.com/vast-data/vast-admin-mcp
-  auth: VAST cluster credentials via keyring / K8s Secrets; bearer token and OAuth/OIDC
-    supported for network (HTTP) deployments.
+  - registry: pypi
+    name: vast-admin-mcp
+    install: pip install vast-admin-mcp
+    url: https://pypi.org/project/vast-admin-mcp/
+  - registry: docker
+    name: vast-admin-mcp
+    url: https://github.com/vast-data/vast-admin-mcp
+  auth: VAST cluster credentials via keyring / K8s Secrets; bearer token and OAuth/OIDC supported for
+    network (HTTP) deployments.
   modes:
-    - read-only (default)
-    - read-write (--read-write flag enables create/update operations)
+  - read-only (default)
+  - read-write (--read-write flag enables create/update operations)
   setup: vast-admin-mcp setup && vast-admin-mcp mcpsetup <cursor|claude-desktop|windsurf|vscode>
 capabilities:
-  - List and monitor VAST clusters, tenants, views, view policies
-  - Performance metrics for clusters, cnodes, and views (+ graph generation)
-  - Snapshots, clones, and quota management (read-write mode)
-  - Alerts, data-protection relationship health, hardware topology
-  - Mini support-bundle creation and upload
-  - Dynamic list functions generated from YAML templates
-notes: Tool surface is generated dynamically from YAML templates against the VMS REST
-  API, so the exact tool list depends on server version and admin scope.
+- List and monitor VAST clusters, tenants, views, view policies
+- Performance metrics for clusters, cnodes, and views (+ graph generation)
+- Snapshots, clones, and quota management (read-write mode)
+- Alerts, data-protection relationship health, hardware topology
+- Mini support-bundle creation and upload
+- Dynamic list functions generated from YAML templates
+notes: Tool surface is generated dynamically from YAML templates against the VMS REST API, so the exact
+  tool list depends on server version and admin scope.
+deployment:
+  mode: local-stdio
+  verified: searched
+  checked: '2026-08-12'
+  source: catalog MCP census

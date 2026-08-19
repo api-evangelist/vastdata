@@ -1,0 +1,881 @@
+{
+  "item": [
+    {
+      "id": "3720044b-113f-4f4c-8d5b-ddd229b351f4",
+      "name": "managers",
+      "description": {
+        "content": "VAST Management System (VMS) users are called managers. A manager has login credentials and must be assigned at least one role in order to have any VMS permissions. A manager can have multiple roles.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c6007df-ccab-4d1c-b0a7-5374bfffa4e2",
+          "name": "List Managers (VMS Users)",
+          "request": {
+            "name": "List Managers (VMS Users)",
+            "description": {
+              "content": "This endpoint lists the VMS manager users with the option to filter by user name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "Filter by username"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfe99cca-3754-4a27-b10b-3d243ca6961b",
+              "name": "Manager information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"username\": \"string\",\n    \"password\": \"string\",\n    \"roles\": {},\n    \"failed_logins\": 8287,\n    \"first_name\": \"string\",\n    \"full_name\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 1664,\n    \"is_active\": true,\n    \"is_default\": false,\n    \"is_temporary_password\": true,\n    \"last_login\": \"1991-04-01T02:44:21.970Z\",\n    \"last_name\": \"string\",\n    \"object_permissions\": {},\n    \"password_expiration\": \"1948-05-20T12:52:03.081Z\",\n    \"password_expiration_disabled\": false,\n    \"password_retype\": \"string\",\n    \"permissions\": {},\n    \"tenant\": {\n      \"id\": 2469,\n      \"name\": \"string\"\n    },\n    \"tenant_id\": 5167,\n    \"user_type\": \"TENANT_ADMIN\"\n  },\n  {\n    \"username\": \"string\",\n    \"password\": \"string\",\n    \"roles\": {},\n    \"failed_logins\": 2549,\n    \"first_name\": \"string\",\n    \"full_name\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 5053,\n    \"is_active\": true,\n    \"is_default\": true,\n    \"is_temporary_password\": true,\n    \"last_login\": \"1961-05-23T10:00:11.093Z\",\n    \"last_name\": \"string\",\n    \"object_permissions\": {},\n    \"password_expiration\": \"1973-06-16T17:14:29.266Z\",\n    \"password_expiration_disabled\": false,\n    \"password_retype\": \"string\",\n    \"permissions\": {},\n    \"tenant\": {\n      \"id\": 7179,\n      \"name\": \"string\"\n    },\n    \"tenant_id\": 7276,\n    \"user_type\": \"SUPER_ADMIN\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbbd1ec7-0339-4334-8f0e-7463207cf557",
+          "name": "Create Manager (VMS User)",
+          "request": {
+            "name": "Create Manager (VMS User)",
+            "description": {},
+            "url": {
+              "path": [
+                "managers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"roles\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"first_name\": \"<string>\",\n  \"is_temporary_password\": \"<boolean>\",\n  \"last_name\": \"<string>\",\n  \"password_expiration_disabled\": \"<boolean>\",\n  \"permissions_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tenant_id\": \"<integer>\",\n  \"user_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41baa487-5910-4b3f-bd79-aa6c81aafa88",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"roles\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"first_name\": \"<string>\",\n  \"is_temporary_password\": \"<boolean>\",\n  \"last_name\": \"<string>\",\n  \"password_expiration_disabled\": \"<boolean>\",\n  \"permissions_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tenant_id\": \"<integer>\",\n  \"user_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"roles\": {},\n  \"failed_logins\": 3853,\n  \"first_name\": \"string\",\n  \"full_name\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 6186,\n  \"is_active\": true,\n  \"is_default\": false,\n  \"is_temporary_password\": true,\n  \"last_login\": \"1956-06-28T02:55:17.627Z\",\n  \"last_name\": \"string\",\n  \"object_permissions\": {},\n  \"password_expiration\": \"2023-02-11T23:22:59.416Z\",\n  \"password_expiration_disabled\": true,\n  \"password_retype\": \"string\",\n  \"permissions\": {},\n  \"tenant\": {\n    \"id\": 6619,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 1715,\n  \"user_type\": \"SUPER_ADMIN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b56dc74f-0ccd-46a0-bbb7-ecc848921dc7",
+          "name": "Get authorized status for a user",
+          "request": {
+            "name": "Get authorized status for a user",
+            "description": {
+              "content": "This endpoint gets authorized status for requested user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managers",
+                "authorized_status",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "leading_vid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "bucket_name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "object_path",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_vid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb82ebee-cc11-43ab-a573-d99ce3fa8f12",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managers",
+                    "authorized_status",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "leading_vid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "bucket_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_vid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5863e42a-95d6-4ecf-9c6f-17a00d7b8878",
+          "name": "Change user's password",
+          "request": {
+            "name": "Change user's password",
+            "description": {
+              "content": "This operation changes password for the requesting user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managers",
+                "password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "a8c87c4b-bb25-4bac-97e1-11d45b9da979",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managers",
+                    "password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68e48391-4514-42c2-92df-6ca46ae981f2",
+          "name": "Delete Manager",
+          "request": {
+            "name": "Delete Manager",
+            "description": {
+              "content": "This endpoint deletes a VMS manager user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "760868c4-8424-4d37-804c-d99ad6b4f910",
+              "name": "The manager was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e2faf0e-3b4a-4f09-a37e-735beb26eb52",
+          "name": "Return Details of a Manager (VMS User)",
+          "request": {
+            "name": "Return Details of a Manager (VMS User)",
+            "description": {
+              "content": "This endpoint returns details of a manager user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Manager ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66984662-eaa4-4ed2-9da9-12264327ec2f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Manager ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"roles\": {},\n  \"failed_logins\": 3853,\n  \"first_name\": \"string\",\n  \"full_name\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 6186,\n  \"is_active\": true,\n  \"is_default\": false,\n  \"is_temporary_password\": true,\n  \"last_login\": \"1956-06-28T02:55:17.627Z\",\n  \"last_name\": \"string\",\n  \"object_permissions\": {},\n  \"password_expiration\": \"2023-02-11T23:22:59.416Z\",\n  \"password_expiration_disabled\": true,\n  \"password_retype\": \"string\",\n  \"permissions\": {},\n  \"tenant\": {\n    \"id\": 6619,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 1715,\n  \"user_type\": \"SUPER_ADMIN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4aebe3eb-45fd-4327-a430-81f79a87761c",
+          "name": "Modify Manager (VMS User)",
+          "request": {
+            "name": "Modify Manager (VMS User)",
+            "description": {
+              "content": "This endpoint modifies a manager user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Manager ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"is_temporary_password\": \"<boolean>\",\n  \"last_name\": \"<string>\",\n  \"object_id\": \"<integer>\",\n  \"object_type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"password_expiration_disabled\": \"<boolean>\",\n  \"permissions\": \"<string>\",\n  \"permissions_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"roles\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"user_type\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2874751-352d-414e-be36-e905a9cc0035",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Manager ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"is_temporary_password\": \"<boolean>\",\n  \"last_name\": \"<string>\",\n  \"object_id\": \"<integer>\",\n  \"object_type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"password_expiration_disabled\": \"<boolean>\",\n  \"permissions\": \"<string>\",\n  \"permissions_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"realm\": \"<string>\",\n  \"roles\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"user_type\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"roles\": {},\n  \"failed_logins\": 3853,\n  \"first_name\": \"string\",\n  \"full_name\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 6186,\n  \"is_active\": true,\n  \"is_default\": false,\n  \"is_temporary_password\": true,\n  \"last_login\": \"1956-06-28T02:55:17.627Z\",\n  \"last_name\": \"string\",\n  \"object_permissions\": {},\n  \"password_expiration\": \"2023-02-11T23:22:59.416Z\",\n  \"password_expiration_disabled\": true,\n  \"password_retype\": \"string\",\n  \"permissions\": {},\n  \"tenant\": {\n    \"id\": 6619,\n    \"name\": \"string\"\n  },\n  \"tenant_id\": 1715,\n  \"user_type\": \"SUPER_ADMIN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac72e0ae-53c8-4b71-90af-0658889fcf0f",
+          "name": "Unlock a Manager",
+          "request": {
+            "name": "Unlock a Manager",
+            "description": {
+              "content": "This endpoint unlocks a manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managers",
+                ":id",
+                "unlock",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Manager ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_temporary_password\": \"<boolean>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "569e91f7-cdd6-4a07-b45b-f26050e57bb3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managers",
+                    ":id",
+                    "unlock",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Manager ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_temporary_password\": \"<boolean>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42618174-617b-49ef-864c-d646920fb885",
+    "name": "VAST API Swagger Schema activedirectory managers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

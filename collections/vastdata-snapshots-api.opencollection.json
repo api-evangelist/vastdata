@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory snapshots API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snapshots/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Filter by snapshot path"
+              },
+              {
+                "name": "name__contains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by part of snapshot name"
+              },
+              {
+                "name": "expiration_time",
+                "value": "",
+                "type": "query",
+                "description": "Filter by expiration time"
+              },
+              {
+                "name": "protection_policy__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by snapshot policy name"
+              },
+              {
+                "name": "protection_policy__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by snapshot policy ID"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state"
+              },
+              {
+                "name": "created",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creation time"
+              },
+              {
+                "name": "locked",
+                "value": "",
+                "type": "query",
+                "description": "Filter for locked snapshots"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "tenant_name__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Tenant name to filter by"
+              },
+              {
+                "name": "volume_id",
+                "value": "",
+                "type": "query",
+                "description": "Mapped volume id to filter by."
+              }
+            ]
+          },
+          "docs": "This endpoint list snapshots. The list can be filtered."
+        },
+        {
+          "info": {
+            "name": "Create Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/snapshots/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a snapshot."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snapshots/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Snapshot ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a snapshot."
+        },
+        {
+          "info": {
+            "name": "Modify a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/snapshots/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Snapshot ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a snapshot."
+        },
+        {
+          "info": {
+            "name": "Delete a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/snapshots/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Specify the ID of the snapshot."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a snapshot."
+        },
+        {
+          "info": {
+            "name": "Clone a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/snapshots/:id/clone/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Snapshot ID"
+              }
+            ]
+          },
+          "docs": "This endpoint creates a clone of a specified snapshot at a specified path on a specified tenant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

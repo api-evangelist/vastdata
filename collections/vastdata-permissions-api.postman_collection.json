@@ -1,0 +1,246 @@
+{
+  "item": [
+    {
+      "id": "e220f323-1c9b-4dae-8d4f-da2942181c00",
+      "name": "permissions",
+      "description": {
+        "content": "The permissions endpoint returns permissions that can be assigned to VMS managers and roles. VMS Each permission enables a type of permission, such as create or read permission, on a realm. Each realm includes a set of resources. For example, the logical realm includes views, view policies, quotas, QoS policies and many more types of resources. The hardware realm includes infrastructure components such as CBoxes and DBoxes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2ab8805-b296-4605-a87f-c5caf947731d",
+          "name": "List Permissions",
+          "request": {
+            "name": "List Permissions",
+            "description": {
+              "content": "This endpoint lists the global permissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permissions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05d2833f-1c54-4652-975a-0f2bd8a96058",
+              "name": "Permission information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"codename\": \"string\",\n    \"id\": 5500,\n    \"name\": \"string\",\n    \"permission_type\": \"string\",\n    \"realm\": \"string\",\n    \"resources\": \"string\"\n  },\n  {\n    \"codename\": \"string\",\n    \"id\": 4586,\n    \"name\": \"string\",\n    \"permission_type\": \"string\",\n    \"realm\": \"string\",\n    \"resources\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2148b451-b2a7-4c6c-8706-dcd597bf1029",
+          "name": "Return Permissions Details",
+          "request": {
+            "name": "Return Permissions Details",
+            "description": {
+              "content": "This endpoint returns details of a specified permission.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permissions",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) permission ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98d92ace-2bb1-46a7-97c6-0bfb26143066",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) permission ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"codename\": \"string\",\n  \"id\": 6337,\n  \"name\": \"string\",\n  \"permission_type\": \"string\",\n  \"realm\": \"string\",\n  \"resources\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8004d736-5662-4dd5-a65d-152f3f562f61",
+    "name": "VAST API Swagger Schema activedirectory permissions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

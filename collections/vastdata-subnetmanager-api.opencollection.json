@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory subnetmanager API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subnetmanager",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subnet manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subnetmanager/"
+          },
+          "docs": "This endpoint returns subnet manager service information."
+        },
+        {
+          "info": {
+            "name": "Add Subnet manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subnetmanager/"
+          },
+          "docs": "This endpoint registers up to two CNodes running the subnet manager service. This is relevant to installations with Infiniband networks where the OpenSM service is installed on some of the CNodes."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Subnet manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subnetmanager/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subnet Manager ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns subnet manager service information."
+        },
+        {
+          "info": {
+            "name": "Manage Subnet Manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subnetmanager/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subnet manager ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies the registered subnet manager IPs."
+        },
+        {
+          "info": {
+            "name": "Remove a Subnet Manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subnetmanager/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subnet Manager ID"
+              }
+            ]
+          },
+          "docs": "This endpoint removes a subnet manager."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

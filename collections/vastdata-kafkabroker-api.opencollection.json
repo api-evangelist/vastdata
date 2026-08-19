@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory kafkabroker API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "kafkabroker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List of External Kafka Broker Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eventbrokers/"
+          },
+          "docs": "This endpoint list external kafka broker configuration"
+        },
+        {
+          "info": {
+            "name": "Create External Kafka Broker Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/eventbrokers/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an External Kafka Broker Configuration."
+        },
+        {
+          "info": {
+            "name": "kafkabroker_read",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eventbrokers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint show external kafka broker configuration"
+        },
+        {
+          "info": {
+            "name": "Manage external kafka broker configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/eventbrokers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies an External Kafka Broker Configuration."
+        },
+        {
+          "info": {
+            "name": "Delete external kafka broker configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/eventbrokers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an External Kafka Broker Configuration."
+        },
+        {
+          "info": {
+            "name": "Retrieve Kafka topics for the specified broker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eventbrokers/:id/list_topics",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic_name_filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint show custom action to retrieve Kafka topics for the specified broker. You can filter topics by name."
+        },
+        {
+          "info": {
+            "name": "List of External Kafka Broker Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kafkabrokers/"
+          },
+          "docs": "This endpoint lists external kafka broker configurations"
+        },
+        {
+          "info": {
+            "name": "Create External Kafka Broker Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kafkabrokers/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an external Kafka broker configuration."
+        },
+        {
+          "info": {
+            "name": "Return External Kafka Broker Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kafkabrokers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of an external kafka broker configuration."
+        },
+        {
+          "info": {
+            "name": "Modify External Kafka Broker Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/kafkabrokers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies an external Kafka broker configuration."
+        },
+        {
+          "info": {
+            "name": "Delete External Kafka Broker Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/kafkabrokers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an external kafka broker configuration."
+        },
+        {
+          "info": {
+            "name": "Retrieve Kafka Topics for a Kafka Broker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kafkabrokers/:id/list_topics",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic_name_filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves Kafka topics for a specified broker. You can filter topics by name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

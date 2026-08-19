@@ -1,0 +1,591 @@
+{
+  "item": [
+    {
+      "id": "734d23bf-0e8c-440c-861f-d97586c2c8b9",
+      "name": "alarms",
+      "description": {
+        "content": "Alarms can be raised by events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0215dca7-e19f-42d3-b906-25946f1bb582",
+          "name": "List Alarms",
+          "request": {
+            "name": "List Alarms",
+            "description": {
+              "content": "This endpoint lists alarms. The parameters filter the list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp__gte",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp__lte",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter by severity"
+                },
+                {
+                  "disabled": false,
+                  "key": "alarm_message__contains",
+                  "value": "<string>",
+                  "description": "Filter the list by text contained in the alarm message"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_guid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>",
+                  "description": "Filter the list by object type"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<string>",
+                  "description": "The ID of the affected object"
+                },
+                {
+                  "disabled": false,
+                  "key": "only_discovered_hosts",
+                  "value": "<string>",
+                  "description": "get only discovery related hosts"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a80ed32-efa1-4698-8518-97a22541fc27",
+              "name": "alarm information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp__gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp__lte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "alarm_message__contains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_guid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "only_discovered_hosts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"acknowledged\": false,\n    \"alarm_message\": \"string\",\n    \"cluster\": \"string\",\n    \"event\": \"string\",\n    \"event_definition\": \"string\",\n    \"event_name\": \"string\",\n    \"event_type\": \"string\",\n    \"id\": 3626,\n    \"last_updated\": \"2006-03-29T17:06:59.492Z\",\n    \"metadata\": {},\n    \"object_guid\": \"string\",\n    \"object_id\": 4583,\n    \"object_name\": \"string\",\n    \"object_type\": \"string\",\n    \"rel_obj_class\": \"string\",\n    \"rel_obj_id\": \"string\",\n    \"severity\": \"string\",\n    \"timestamp\": \"1986-03-08T15:28:08.324Z\"\n  },\n  {\n    \"acknowledged\": false,\n    \"alarm_message\": \"string\",\n    \"cluster\": \"string\",\n    \"event\": \"string\",\n    \"event_definition\": \"string\",\n    \"event_name\": \"string\",\n    \"event_type\": \"string\",\n    \"id\": 8494,\n    \"last_updated\": \"1970-12-15T07:33:29.434Z\",\n    \"metadata\": {},\n    \"object_guid\": \"string\",\n    \"object_id\": 6491,\n    \"object_name\": \"string\",\n    \"object_type\": \"string\",\n    \"rel_obj_class\": \"string\",\n    \"rel_obj_id\": \"string\",\n    \"severity\": \"string\",\n    \"timestamp\": \"2008-11-30T21:39:52.577Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67ed73b6-6e45-4dcd-a5c4-4126eca75997",
+          "name": "Clear Alarms",
+          "request": {
+            "name": "Clear Alarms",
+            "description": {
+              "content": "This endpoint clears all alarms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms",
+                "clear",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8264662a-e225-4a57-88bd-e8d74c93dc29",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms",
+                    "clear",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cb5fa74-4fc8-4ad5-95f2-5b237f91b289",
+          "name": "Delete Alarm",
+          "request": {
+            "name": "Delete Alarm",
+            "description": {
+              "content": "This endpoint deletes an alarm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Alarm ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "232936ce-e103-47e8-99ce-7853a66f8708",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Alarm ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c54694eb-ac7a-46cb-bc13-d985102df9cc",
+          "name": "Return Details of an Alarm",
+          "request": {
+            "name": "Return Details of an Alarm",
+            "description": {
+              "content": "This endpoint returns details of a specified alarm",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Alarm ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a798cdd-378d-48f1-9618-2bc44dfd8e1c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Alarm ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"acknowledged\": false,\n  \"alarm_message\": \"string\",\n  \"cluster\": \"string\",\n  \"event\": \"string\",\n  \"event_definition\": \"string\",\n  \"event_name\": \"string\",\n  \"event_type\": \"string\",\n  \"id\": 7126,\n  \"last_updated\": \"1962-07-17T07:14:06.928Z\",\n  \"metadata\": {},\n  \"object_guid\": \"string\",\n  \"object_id\": 7509,\n  \"object_name\": \"string\",\n  \"object_type\": \"string\",\n  \"rel_obj_class\": \"string\",\n  \"rel_obj_id\": \"string\",\n  \"severity\": \"string\",\n  \"timestamp\": \"1966-06-19T12:37:18.274Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f83a3a6-6896-448f-98a7-6af4047f926d",
+          "name": "Acknowledge Alarm",
+          "request": {
+            "name": "Acknowledge Alarm",
+            "description": {
+              "content": "This endpoint acknowledges an alarm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Alarm ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"acknowledged\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de5fda0c-1468-4271-973f-f02d18ae4c76",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Alarm ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"acknowledged\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4ebea514-0a0b-42b3-996a-d944af33efb0",
+    "name": "VAST API Swagger Schema activedirectory alarms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

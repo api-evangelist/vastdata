@@ -1,0 +1,1235 @@
+{
+  "item": [
+    {
+      "id": "8df08d3c-e995-4b2f-88aa-bc385797a374",
+      "name": "kafkabroker",
+      "description": {
+        "content": "Kafka Broker is the VAST Event Broker. Event publishing is available for S3 bucket views. In the context of event publishing, an event is a change that has occurred for an element in VAST Element Store, such as creation of a new object in an S3 bucket. When a certain event is encountered, the cluster can send a JSON record of it to the connected Kafka broker, where the information can be consumed by applications.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1da9e7b-96f6-4ff2-ab64-524ce87bd3fe",
+          "name": "List of External Kafka Broker Configuration",
+          "request": {
+            "name": "List of External Kafka Broker Configuration",
+            "description": {
+              "content": "This endpoint list external kafka broker configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventbrokers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40b1a1b0-6dbf-4875-b059-fa5f9862027a",
+              "name": "External Kafka Broker Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventbrokers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"addresses\": [\n      {\n        \"host\": \"string\",\n        \"port\": 2830\n      },\n      {\n        \"host\": \"string\",\n        \"port\": 786\n      }\n    ],\n    \"certificate_set_id\": 7948,\n    \"guid\": \"string\",\n    \"hostname_verification_enabled\": true,\n    \"id\": 7043,\n    \"name\": \"string\",\n    \"tenant_id\": 8361\n  },\n  {\n    \"addresses\": [\n      {\n        \"host\": \"string\",\n        \"port\": 7129\n      },\n      {\n        \"host\": \"string\",\n        \"port\": 4573\n      }\n    ],\n    \"certificate_set_id\": 8637,\n    \"guid\": \"string\",\n    \"hostname_verification_enabled\": true,\n    \"id\": 4819,\n    \"name\": \"string\",\n    \"tenant_id\": 4465\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca1eb0be-8cbf-414c-a97a-d2f45427c5c0",
+          "name": "Create External Kafka Broker Configuration",
+          "request": {
+            "name": "Create External Kafka Broker Configuration",
+            "description": {
+              "content": "This endpoint creates an External Kafka Broker Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventbrokers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1a92fa4-554c-4bcf-8c9f-51eac4910c7a",
+              "name": "External Kafka Broker Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventbrokers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": 4733,\n  \"guid\": \"string\",\n  \"hostname_verification_enabled\": true,\n  \"id\": 5231,\n  \"name\": \"string\",\n  \"tenant_id\": 9899\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f813c543-6292-4c35-b7bc-20721b501b76",
+          "name": "Delete external kafka broker configuration",
+          "request": {
+            "name": "Delete external kafka broker configuration",
+            "description": {
+              "content": "This endpoint deletes an External Kafka Broker Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventbrokers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a48f1ea-54e8-4da9-924a-956ad3827411",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventbrokers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7851054-52a4-438e-89b5-f3325d5ef52a",
+          "name": "kafkabroker read",
+          "request": {
+            "name": "kafkabroker read",
+            "description": {
+              "content": "This endpoint show external kafka broker configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventbrokers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f64bb5c-0e33-4be1-96c8-1273820b224f",
+              "name": "External Kafka Broker Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventbrokers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": 4733,\n  \"guid\": \"string\",\n  \"hostname_verification_enabled\": true,\n  \"id\": 5231,\n  \"name\": \"string\",\n  \"tenant_id\": 9899\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f9e40b6-5b79-4512-b4ef-d95b8bef2b11",
+          "name": "Manage external kafka broker configuration",
+          "request": {
+            "name": "Manage external kafka broker configuration",
+            "description": {
+              "content": "This endpoint modifies an External Kafka Broker Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventbrokers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3cf40742-d294-479d-a3c7-9eaae09c45b1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventbrokers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": 4733,\n  \"guid\": \"string\",\n  \"hostname_verification_enabled\": true,\n  \"id\": 5231,\n  \"name\": \"string\",\n  \"tenant_id\": 9899\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79d5240b-7dc3-4231-9548-8a735bbc75c2",
+          "name": "Retrieve Kafka topics for the specified broker",
+          "request": {
+            "name": "Retrieve Kafka topics for the specified broker",
+            "description": {
+              "content": "This endpoint show custom action to retrieve Kafka topics for the specified broker. You can filter topics by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventbrokers",
+                ":id",
+                "list_topics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "topic_name_filter",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f1bd041-2682-4ef2-b485-ed5cc0ad5293",
+              "name": "A list of Kafka topics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventbrokers",
+                    ":id",
+                    "list_topics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "topic_name_filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a696967d-65c2-4a7a-bd26-30597d31e536",
+          "name": "List of External Kafka Broker Configuration",
+          "request": {
+            "name": "List of External Kafka Broker Configuration",
+            "description": {
+              "content": "This endpoint lists external kafka broker configurations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kafkabrokers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b196208-35d9-46cb-9e03-9e6163e4c705",
+              "name": "External Kafka Broker Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kafkabrokers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"addresses\": [\n      {\n        \"host\": \"<string>\",\n        \"port\": \"<integer>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"port\": \"<integer>\"\n      }\n    ],\n    \"certificate_set_id\": 5898,\n    \"guid\": \"string\",\n    \"hostname_verification_enabled\": false,\n    \"id\": 7669,\n    \"name\": \"string\",\n    \"tenant_id\": 1933\n  },\n  {\n    \"addresses\": [\n      {\n        \"host\": \"<string>\",\n        \"port\": \"<integer>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"port\": \"<integer>\"\n      }\n    ],\n    \"certificate_set_id\": 2518,\n    \"guid\": \"string\",\n    \"hostname_verification_enabled\": true,\n    \"id\": 2115,\n    \"name\": \"string\",\n    \"tenant_id\": 7814\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e77ae7e-94b4-490a-81e0-301b7ed49b38",
+          "name": "Create External Kafka Broker Configuration",
+          "request": {
+            "name": "Create External Kafka Broker Configuration",
+            "description": {
+              "content": "This endpoint creates an external Kafka broker configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kafkabrokers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": \"<integer>\",\n  \"hostname_verification_enabled\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fdaecef6-9060-45ba-8a0e-19f4eb3f3fba",
+              "name": "External Kafka Broker Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kafkabrokers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": \"<integer>\",\n  \"hostname_verification_enabled\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"addresses\": [\n      {\n        \"host\": \"<string>\",\n        \"port\": \"<integer>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"port\": \"<integer>\"\n      }\n    ],\n    \"certificate_set_id\": 8766,\n    \"guid\": \"string\",\n    \"hostname_verification_enabled\": true,\n    \"id\": 5514,\n    \"name\": \"string\",\n    \"tenant_id\": 2499\n  },\n  {\n    \"addresses\": [\n      {\n        \"host\": \"<string>\",\n        \"port\": \"<integer>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"port\": \"<integer>\"\n      }\n    ],\n    \"certificate_set_id\": 3986,\n    \"guid\": \"string\",\n    \"hostname_verification_enabled\": false,\n    \"id\": 2868,\n    \"name\": \"string\",\n    \"tenant_id\": 6338\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddee38f9-d7d2-46b9-a9a7-68b33abcd416",
+          "name": "Delete External Kafka Broker Configuration",
+          "request": {
+            "name": "Delete External Kafka Broker Configuration",
+            "description": {
+              "content": "This endpoint deletes an external kafka broker configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kafkabrokers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac13020a-5940-416f-99e6-9621373615ad",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kafkabrokers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b538e1b-2af0-42c0-8ea3-0562c440f49b",
+          "name": "Return External Kafka Broker Configuration",
+          "request": {
+            "name": "Return External Kafka Broker Configuration",
+            "description": {
+              "content": "This endpoint returns details of an external kafka broker configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kafkabrokers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7def2974-2323-42d8-9fd7-acbb0e07362a",
+              "name": "External Kafka Broker Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kafkabrokers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": 4733,\n  \"guid\": \"string\",\n  \"hostname_verification_enabled\": true,\n  \"id\": 5231,\n  \"name\": \"string\",\n  \"tenant_id\": 9899\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3976ab99-9353-48d9-adda-05924ce0f16b",
+          "name": "Modify External Kafka Broker Configuration",
+          "request": {
+            "name": "Modify External Kafka Broker Configuration",
+            "description": {
+              "content": "This endpoint modifies an external Kafka broker configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kafkabrokers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": \"<integer>\",\n  \"hostname_verification_enabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a99bd23e-010b-495a-9ef6-53d36e172fae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kafkabrokers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": \"<integer>\",\n  \"hostname_verification_enabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addresses\": [\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    },\n    {\n      \"host\": \"<string>\",\n      \"port\": \"<integer>\"\n    }\n  ],\n  \"certificate_set_id\": 4733,\n  \"guid\": \"string\",\n  \"hostname_verification_enabled\": true,\n  \"id\": 5231,\n  \"name\": \"string\",\n  \"tenant_id\": 9899\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93a77493-ffec-499d-bf0c-b05b3adae9e0",
+          "name": "Retrieve Kafka Topics for a Kafka Broker",
+          "request": {
+            "name": "Retrieve Kafka Topics for a Kafka Broker",
+            "description": {
+              "content": "This endpoint retrieves Kafka topics for a specified broker. You can filter topics by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kafkabrokers",
+                ":id",
+                "list_topics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "topic_name_filter",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7794663a-e87b-4e5b-8946-bc5f01ffaea5",
+              "name": "A list of Kafka topics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kafkabrokers",
+                    ":id",
+                    "list_topics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "topic_name_filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b2b669bc-10bf-4f8a-8496-5b55e1ac4ddf",
+    "name": "VAST API Swagger Schema activedirectory kafkabroker API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

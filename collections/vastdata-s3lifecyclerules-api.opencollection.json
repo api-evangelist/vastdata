@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory s3lifecyclerules API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "s3lifecyclerules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List S3 life cycle rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/s3lifecyclerules/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "view__id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List S3 life cycle rules"
+        },
+        {
+          "info": {
+            "name": "Create an S3 Lifecycle Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/s3lifecyclerules/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an S3 Lifecycle Rule."
+        },
+        {
+          "info": {
+            "name": "Get Object Expiration Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/s3lifecyclerules/get_object_expiration/",
+            "params": [
+              {
+                "name": "object_name",
+                "value": "",
+                "type": "query",
+                "description": "Object name"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "query",
+                "description": "Bucket name"
+              }
+            ]
+          },
+          "docs": "If object expiration is configured in S3 lifecycle rule(s) for a specified object, This endpoint returns the object's expiration date and the ID of the lifecycle rule governing its expiration."
+        },
+        {
+          "info": {
+            "name": "Get an S3 Lifecycle Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/s3lifecyclerules/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of an S3 lifecycle rule"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a specified S3 lifecycle rule."
+        },
+        {
+          "info": {
+            "name": "Modify an S3 Lifecycle Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/s3lifecyclerules/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of an S3 lifecycle rule"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify an S3 Lifecycle Rule"
+        },
+        {
+          "info": {
+            "name": "Delete an S3 Lifecycle Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/s3lifecyclerules/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of an S3 lifecycle rule"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an S3 lifecycle rule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

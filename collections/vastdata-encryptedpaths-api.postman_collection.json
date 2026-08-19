@@ -1,0 +1,518 @@
+{
+  "item": [
+    {
+      "id": "7f11ec0e-283d-4ca8-aec5-26275bd1415a",
+      "name": "encryptedpaths",
+      "description": {
+        "content": "An encrypted path is a path that is encrypted with a dedicated encryption group which is a subgroup of the encryption group of the tenant on which the path resides. Encrypted paths can be created on a cluster that has EKM (external key manager) encryption enabled. It is not possible to encrypt an existing path with its own encryption group.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b686e1d-64a4-4f0e-90cb-6951d70555e0",
+          "name": "List Encrypted Paths",
+          "request": {
+            "name": "List Encrypted Paths",
+            "description": {
+              "content": "This endpoint lists encrypted paths.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "encryptedpaths",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac6a6bd9-c2ba-4e53-854c-66c1c9fb7e20",
+              "name": "Encrypted Paths information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "encryptedpaths",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"path\": \"string\",\n    \"encryption_group\": {\n      \"id\": 8871,\n      \"guid\": \"9f0bf0bf-7b36-413b-8278-9dd47b3f7cdb\",\n      \"state\": \"REINSTATE_IN_PROGRESS\",\n      \"crn\": \"INTERNAL_ENCRYPTION_GROUP_CRN\"\n    },\n    \"id\": 8638,\n    \"tenant_id\": 1267,\n    \"tenant_name\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"path\": \"string\",\n    \"encryption_group\": {\n      \"id\": 6920,\n      \"guid\": \"9f0bf0bf-7b36-413b-8278-9dd47b3f7cdb\",\n      \"state\": \"REINSTATE_IN_PROGRESS\",\n      \"crn\": \"INTERNAL_ENCRYPTION_GROUP_CRN\"\n    },\n    \"id\": 1110,\n    \"tenant_id\": 4590,\n    \"tenant_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85e2ec23-611f-4ffd-b8ec-b3fb09a78e3a",
+          "name": "Create an Encrypted Path",
+          "request": {
+            "name": "Create an Encrypted Path",
+            "description": {
+              "content": "This endpoint creates an encrypted path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "encryptedpaths",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "153f34e1-3db2-40b5-bf62-8ca8b07ba763",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "encryptedpaths",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "789cba3a-c38c-4a9d-90e9-1a4d86ffb401",
+          "name": "Delete Encrypted Path",
+          "request": {
+            "name": "Delete Encrypted Path",
+            "description": {
+              "content": "This endpoint deletes an encrypted path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "encryptedpaths",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Encrypted Path ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98150a6e-dd3a-45a4-987b-b3a09c1018d0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "encryptedpaths",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Encrypted Path ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fc72d77-cbb0-43e3-bfc8-e64655ee6998",
+          "name": "Return Details of a Encrypted Path",
+          "request": {
+            "name": "Return Details of a Encrypted Path",
+            "description": {
+              "content": "This endpoint returns information about a specific encrypted path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "encryptedpaths",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Encrypted Path ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eae5b06-1bf9-482e-9eeb-382713556af7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "encryptedpaths",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Encrypted Path ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"encryption_group\": {\n    \"id\": 623,\n    \"guid\": \"9f0bf0bf-7b36-413b-8278-9dd47b3f7cdb\",\n    \"state\": \"REVOKED\",\n    \"crn\": \"INTERNAL_ENCRYPTION_GROUP_CRN\"\n  },\n  \"id\": 1379,\n  \"tenant_id\": 7948,\n  \"tenant_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1121d4b6-498e-4d25-8efe-533e4fa58097",
+          "name": "Modify Encrypted Path Name",
+          "request": {
+            "name": "Modify Encrypted Path Name",
+            "description": {
+              "content": "This endpoint modifies the name of an encrypted path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "encryptedpaths",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Encrypted Path ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79074758-0fff-434e-b7cc-22189968b135",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "encryptedpaths",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Encrypted Path ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f31f1c26-4b08-4bbd-886c-6a298f4738e9",
+    "name": "VAST API Swagger Schema activedirectory encryptedpaths API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

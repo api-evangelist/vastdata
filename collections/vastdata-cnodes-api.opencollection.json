@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory Cnodes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cnodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get BGP Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cnodes/:id/bgpconfig",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CNode ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the BGP configuration of the CNode."
+        },
+        {
+          "info": {
+            "name": "Configure BGP on CNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/cnodes/:id/bgpconfig",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CNode ID"
+              }
+            ]
+          },
+          "docs": "This endpoint configures BGP on the CNode."
+        },
+        {
+          "info": {
+            "name": "List Cnodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cnodes/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CNode IP"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state"
+              },
+              {
+                "name": "cluster_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CNode name"
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Return only enabled CNodes"
+              },
+              {
+                "name": "vippool_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the list of cnodes already assigned to cluster."
+        },
+        {
+          "info": {
+            "name": "Add CNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cnodes/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds a CNode to the cluster."
+        },
+        {
+          "info": {
+            "name": "Add multiple CNodes to the cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cnodes/add_cnodes/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds multiple CNodes to the cluster."
+        },
+        {
+          "info": {
+            "name": "Attach tenants to a CNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cnodes/set_tenants/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint attaches tenants to a CNode."
+        },
+        {
+          "info": {
+            "name": "Return Details of a CNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cnodes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CNode ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a CNode."
+        },
+        {
+          "info": {
+            "name": "Activate/Deactivate/Replace/Power On/Off CNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/cnodes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CNode ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint activates, deactivates, replaces, powers off and powers on a CNode."
+        },
+        {
+          "info": {
+            "name": "Remove CNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/cnodes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CNode ID"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Force CNode removal"
+              }
+            ]
+          },
+          "docs": "This endpoint removes a CNode from the cluster."
+        },
+        {
+          "info": {
+            "name": "Control CNode LED",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/cnodes/:id/control_led/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CNode ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint controls the CNode LED"
+        },
+        {
+          "info": {
+            "name": "HighLight CNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/cnodes/:id/highlight/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CNode ID"
+              }
+            ]
+          },
+          "docs": "This endpoint highlights a CNode."
+        },
+        {
+          "info": {
+            "name": "Rename CNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/cnodes/:id/rename/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CNode ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint renames a CNode."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

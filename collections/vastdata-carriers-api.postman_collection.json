@@ -1,0 +1,687 @@
+{
+  "item": [
+    {
+      "id": "20bae4a3-8910-4ffc-b6cd-5fdb018518c6",
+      "name": "carriers",
+      "description": {
+        "content": "Carriers represent DBox slots that house SSDs and NVRAMs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3866ee3d-9f4e-483e-a1ad-e9696a2a6d82",
+          "name": "List Carriers",
+          "request": {
+            "name": "List Carriers",
+            "description": {
+              "content": "This endpoint lists carriers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by carrier state"
+                },
+                {
+                  "disabled": false,
+                  "key": "dbox__name",
+                  "value": "<string>",
+                  "description": "Filter by parent DBox name"
+                },
+                {
+                  "disabled": false,
+                  "key": "dbox__id",
+                  "value": "<string>",
+                  "description": "Filter by parent DBox ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d111a105-639b-480d-9f07-eed3dd318264",
+              "name": "carriers information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbox__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbox__id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"carrier_index\": \"string\",\n    \"carrier_type\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": \"string\",\n    \"dbox\": \"string\",\n    \"dbox_id\": 8707,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"hw_version\": \"string\",\n    \"id\": 9961,\n    \"insertion_time\": \"1968-08-13T08:41:12.963Z\",\n    \"led_status\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"nvrams\": {},\n    \"position\": \"string\",\n    \"shelf\": \"string\",\n    \"sn\": \"string\",\n    \"ssds\": {},\n    \"state\": \"ACTIVE\",\n    \"sw_version\": \"string\",\n    \"title\": \"string\"\n  },\n  {\n    \"carrier_index\": \"string\",\n    \"carrier_type\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": \"string\",\n    \"dbox\": \"string\",\n    \"dbox_id\": 2773,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"hw_version\": \"string\",\n    \"id\": 4830,\n    \"insertion_time\": \"1996-11-25T05:24:44.632Z\",\n    \"led_status\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"nvrams\": {},\n    \"position\": \"string\",\n    \"shelf\": \"string\",\n    \"sn\": \"string\",\n    \"ssds\": {},\n    \"state\": \"PHASING_OUT\",\n    \"sw_version\": \"string\",\n    \"title\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb42e231-3650-4212-834e-4bb582244701",
+          "name": "Return Details of One Carrier",
+          "request": {
+            "name": "Return Details of One Carrier",
+            "description": {
+              "content": "This endpoint returns details of a specific carrier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c2b180d-8fe2-4289-8631-ead0f62edc17",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"carrier_index\": \"string\",\n  \"carrier_type\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": \"string\",\n  \"dbox\": \"string\",\n  \"dbox_id\": 9898,\n  \"display_name\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"hw_version\": \"string\",\n  \"id\": 1877,\n  \"insertion_time\": \"1951-10-17T17:40:09.890Z\",\n  \"led_status\": \"string\",\n  \"model\": \"string\",\n  \"name\": \"string\",\n  \"nvrams\": {},\n  \"position\": \"string\",\n  \"shelf\": \"string\",\n  \"sn\": \"string\",\n  \"ssds\": {},\n  \"state\": \"ACTIVATING\",\n  \"sw_version\": \"string\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b65d9e0-a46a-469c-800c-c9cdcaa7d74d",
+          "name": "Activate or Deactivate a Carrier",
+          "request": {
+            "name": "Activate or Deactivate a Carrier",
+            "description": {
+              "content": "This endpoint activates or deactivates a carrier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Carrier ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d16b059d-d752-4678-abee-05790070e36c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Carrier ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31eb0e5b-94b5-429c-b61d-bd3249d395b4",
+          "name": "Control Slot LED",
+          "request": {
+            "name": "Control Slot LED",
+            "description": {
+              "content": "This endpoint controls a slot LED",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Slot ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a42b7ce7-9f16-4777-a603-880370b5f16b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Slot ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ced78c37-a058-4ab2-a88b-f435a52bcb4c",
+          "name": "Highlight the Control Slot",
+          "request": {
+            "name": "Highlight the Control Slot",
+            "description": {
+              "content": "This endpoint highlights the control slot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers",
+                ":id",
+                "highlight",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) slot ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b12d6aa2-33ba-4ae3-9b9a-ea5ce26756c0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers",
+                    ":id",
+                    "highlight",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) slot ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4c57874-52ad-4e16-83ab-e86fad5716e9",
+          "name": "Power Cycles a Slot",
+          "request": {
+            "name": "Power Cycles a Slot",
+            "description": {
+              "content": "This endpoint power cycles a slot",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers",
+                ":id",
+                "reset_pci",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) slot ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ef6adf6-e45b-4b03-9005-7004aebef276",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers",
+                    ":id",
+                    "reset_pci",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) slot ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e32f00b5-aea2-4e28-a2b0-b635f0e4624f",
+    "name": "VAST API Swagger Schema activedirectory carriers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

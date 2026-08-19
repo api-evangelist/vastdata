@@ -1,0 +1,649 @@
+{
+  "item": [
+    {
+      "id": "5f00f935-75db-4db5-9bbf-c0eb1c1e9793",
+      "name": "oidcs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa9aa786-5303-4f1d-9046-82690948a1fb",
+          "name": "List OIDC Providers",
+          "request": {
+            "name": "List OIDC Providers",
+            "description": {
+              "content": "This endpoint lists OIDC Providers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oidcs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a75ed561-6bed-4972-841f-ad6246bed7c5",
+              "name": "OIDC information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oidcs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"assigned_tenants_preview\": \"string\",\n    \"certificate\": \"string\",\n    \"discovery_url\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 2561,\n    \"last_keys_refresh_time\": \"string\",\n    \"name\": \"string\",\n    \"state\": \"string\",\n    \"user_jwt_attribute\": \"string\",\n    \"verify_peer\": true\n  },\n  {\n    \"assigned_tenants_preview\": \"string\",\n    \"certificate\": \"string\",\n    \"discovery_url\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8218,\n    \"last_keys_refresh_time\": \"string\",\n    \"name\": \"string\",\n    \"state\": \"string\",\n    \"user_jwt_attribute\": \"string\",\n    \"verify_peer\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bcef5f0-e602-4bb8-9b65-1bb79b109844",
+          "name": "Create OIDC Provider",
+          "request": {
+            "name": "Create OIDC Provider",
+            "description": {
+              "content": "This endpoint creates an OIDC Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oidcs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"discovery_url\": \"<string>\",\n  \"certificate\": \"<string>\",\n  \"user_jwt_attribute\": \"<string>\",\n  \"verify_peer\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "32980be9-7fad-476e-a823-44fded542630",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oidcs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"discovery_url\": \"<string>\",\n  \"certificate\": \"<string>\",\n  \"user_jwt_attribute\": \"<string>\",\n  \"verify_peer\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assigned_tenants_preview\": \"string\",\n  \"certificate\": \"string\",\n  \"discovery_url\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5323,\n  \"last_keys_refresh_time\": \"string\",\n  \"name\": \"string\",\n  \"state\": \"string\",\n  \"user_jwt_attribute\": \"string\",\n  \"verify_peer\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9897b0cd-1910-4a7a-becf-3fd4dfb6d3ed",
+          "name": "Delete OIDC Provider",
+          "request": {
+            "name": "Delete OIDC Provider",
+            "description": {
+              "content": "This endpoint deletes a specified OIDC Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oidcs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) OIDC Provider ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71740dd1-795c-4b9c-8c33-ecd48bf56a9f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oidcs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) OIDC Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7667ad35-d988-4547-90b7-10432f959121",
+          "name": "Return Details of a OIDC Provider",
+          "request": {
+            "name": "Return Details of a OIDC Provider",
+            "description": {
+              "content": "This endpoint returns details of a specified OIDC Provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oidcs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) OIDC ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "160fd613-a841-43ca-93e4-84be25ea44d9",
+              "name": "OIDC information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oidcs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) OIDC ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assigned_tenants_preview\": \"string\",\n  \"certificate\": \"string\",\n  \"discovery_url\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5323,\n  \"last_keys_refresh_time\": \"string\",\n  \"name\": \"string\",\n  \"state\": \"string\",\n  \"user_jwt_attribute\": \"string\",\n  \"verify_peer\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b4b1b52-7967-4d69-ba55-9db0fc834b8f",
+          "name": "Modify OIDC",
+          "request": {
+            "name": "Modify OIDC",
+            "description": {
+              "content": "This endpoint modifies a specified OIDC.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oidcs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) OIDC ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"certificate\": \"<string>\",\n  \"discovery_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"user_jwt_attribute\": \"<string>\",\n  \"verify_peer\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e9ccbfa-9154-4b74-b5f8-fdf569eeae2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oidcs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) OIDC ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"certificate\": \"<string>\",\n  \"discovery_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"user_jwt_attribute\": \"<string>\",\n  \"verify_peer\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assigned_tenants_preview\": \"string\",\n  \"certificate\": \"string\",\n  \"discovery_url\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5323,\n  \"last_keys_refresh_time\": \"string\",\n  \"name\": \"string\",\n  \"state\": \"string\",\n  \"user_jwt_attribute\": \"string\",\n  \"verify_peer\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e11b5ab-37be-4ddb-8c94-90551603cc98",
+          "name": "Refresh the keys from OIDC provider",
+          "request": {
+            "name": "Refresh the keys from OIDC provider",
+            "description": {
+              "content": "This endpoint refreshes the keys from OIDC provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oidcs",
+                ":id",
+                "refresh_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) OIDC ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8c77e83-5351-4cc9-b876-d28c42c49e96",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oidcs",
+                    ":id",
+                    "refresh_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) OIDC ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assigned_tenants_preview\": \"string\",\n  \"certificate\": \"string\",\n  \"discovery_url\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5323,\n  \"last_keys_refresh_time\": \"string\",\n  \"name\": \"string\",\n  \"state\": \"string\",\n  \"user_jwt_attribute\": \"string\",\n  \"verify_peer\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9642938b-4963-4b56-8985-1196d044fc28",
+    "name": "VAST API Swagger Schema activedirectory oidcs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

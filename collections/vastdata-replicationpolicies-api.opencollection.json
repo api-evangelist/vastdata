@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory replicationpolicies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "replicationpolicies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Replication Policies (deprecated from VAST Cluster 3.4)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/replicationpolicies/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "replication_target__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by replication peer"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by replication policy name"
+              }
+            ]
+          },
+          "docs": "This endpoint presents the replication policies. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/"
+        },
+        {
+          "info": {
+            "name": "Create Replication Policy (deprecated from VAST Cluster 3.4)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/replicationpolicies/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/"
+        },
+        {
+          "info": {
+            "name": "Return Details of a Replication Policy (deprecated from VAST Cluster 3.4)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/replicationpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "index of replication policy"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/"
+        },
+        {
+          "info": {
+            "name": "Modify a Replication Policy (deprecated from VAST Cluster 3.4)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/replicationpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/"
+        },
+        {
+          "info": {
+            "name": "Delete a Replication Policy (deprecated from VAST Cluster 3.4)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/replicationpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,500 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory vms API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vms/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists the Vast Management Service (VMS) settings."
+        },
+        {
+          "info": {
+            "name": "Return VMS Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vms/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint lists Vast Management Service (VMS) settings for a specified VMS object."
+        },
+        {
+          "info": {
+            "name": "Modify VMS Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies some VMS settings."
+        },
+        {
+          "info": {
+            "name": "Return Configured SAML Identify Providers (IdPs)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vms/:id/configured_idps/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns all configured SAML identify providers (IdPs). Authentication is not required for this endpoint."
+        },
+        {
+          "info": {
+            "name": "Return VMS login banner (Authentication Not Required)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vms/:id/login_banner/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the VMS login banner, without requiring authentication."
+        },
+        {
+          "info": {
+            "name": "Return the network settings of VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vms/:id/network_settings/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return the network settings of VMS"
+        },
+        {
+          "info": {
+            "name": "Modify the network settings of VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/network_settings/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint modifies some of the VMS network configuration settings."
+        },
+        {
+          "info": {
+            "name": "Preview summary of changes to the network settings of VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vms/:id/network_settings_summary/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint enables you to submit new values for VMS network settings and preview a summary of changes that would be made by modifying the settings to the values submitted."
+        },
+        {
+          "info": {
+            "name": "Return password settings of VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vms/:id/pwd_settings/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns VMS password settings."
+        },
+        {
+          "info": {
+            "name": "Modify password settings of VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/pwd_settings/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint modifies VMS password settings."
+        },
+        {
+          "info": {
+            "name": "Remove VMS SSL Client Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/remove_client_certificate/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ]
+          },
+          "docs": "This endpoint removes the SSL client certificate and client private key used by VMS for mTLS."
+        },
+        {
+          "info": {
+            "name": "Reset VMS SSL Certificate to Default",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/reset_certificate/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ]
+          },
+          "docs": "This endpoint resets the SSL certificate and private key used by VMS to default. The default is a pre-installed self signed certificate."
+        },
+        {
+          "info": {
+            "name": "Reset VMS SSL Ciphers to Default",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/reset_ssl_ciphers/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ]
+          },
+          "docs": "This endpoint resets the SSL Ciphers used by VMS to default."
+        },
+        {
+          "info": {
+            "name": "Returns a SAML configuration for a specified IdP. ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vms/:id/saml_config/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              },
+              {
+                "name": "idp_name",
+                "value": "",
+                "type": "query",
+                "description": "SAML IDP name"
+              }
+            ]
+          },
+          "docs": "Returns a SAML configuration for a specified IdP. "
+        },
+        {
+          "info": {
+            "name": "Modify or Create a SAML configuration for a specific IdP.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vms/:id/saml_config/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              },
+              {
+                "name": "idp_name",
+                "value": "",
+                "type": "query",
+                "description": "SAML IDP name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a SAML configuration to enable SSO using a given IdP, or modifies an existing SAML configuration."
+        },
+        {
+          "info": {
+            "name": "Remove SP sign response or assertions request from an IdP",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/saml_config/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              },
+              {
+                "name": "idp_name",
+                "value": "",
+                "type": "query",
+                "description": "SAML IDP name"
+              }
+            ]
+          },
+          "docs": "This endpoint removes all signed certificates from a SAML configuration."
+        },
+        {
+          "info": {
+            "name": "Delete SAML configuration for a specific IdP",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/vms/:id/saml_config/",
+            "params": [
+              {
+                "name": "idp_name",
+                "value": "",
+                "type": "query",
+                "description": "SAML IDP name"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a SAML configuration for a specific IdP."
+        },
+        {
+          "info": {
+            "name": "Install SSL certificate and key on VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/set_certificate/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint installs an authority-signed SSL certificate to secure HTTPS connections with VMS. When obtaining an SSL certificate from a Certificate Authority (CA), choose an X.509 output file format containing ASCII (Base64) encoded data. The CA will provide a certificate file and a private key file."
+        },
+        {
+          "info": {
+            "name": "Install SSL certificate and key on VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/set_client_certificate/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint installs a SSL client certificate and client private key for mTLS VMS"
+        },
+        {
+          "info": {
+            "name": "Set max API tokens per user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/set_max_api_tokens_per_user/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the VMS instance"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint sets the maximum number of API tokens per user (default is 5)."
+        },
+        {
+          "info": {
+            "name": "Set SSL ciphers use by VMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/set_ssl_ciphers/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint sets SSL ciphers used by VMS"
+        },
+        {
+          "info": {
+            "name": "Change VMS SSL Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/set_ssl_port/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint changes the SSL port used for accessing VMS. The default SSL port is 443."
+        },
+        {
+          "info": {
+            "name": "Toggle maintenance mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vms/:id/toggle_maintenance_mode/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VMS ID"
+              }
+            ]
+          },
+          "docs": "Change the system maintenance mode state"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

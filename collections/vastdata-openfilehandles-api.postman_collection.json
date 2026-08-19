@@ -1,0 +1,316 @@
+{
+  "item": [
+    {
+      "id": "91c7faa2-d4e9-46ec-9f40-fe07c87262d2",
+      "name": "openfilehandles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a328577-5774-406e-b64e-d328b8aee6c5",
+          "name": "Get all open files handles.",
+          "request": {
+            "name": "Get all open files handles.",
+            "description": {
+              "content": "This endpoint lists open files handles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfilehandles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "open_file__id",
+                  "value": "<integer>",
+                  "description": "Open File id to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_ip__startswith",
+                  "value": "<string>",
+                  "description": "Filter by client IP prefix"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_ip_subnet",
+                  "value": "<string>",
+                  "description": "Filter by CIDR subnet"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_locks",
+                  "value": "<boolean>",
+                  "description": "Filter by lock status"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_lease",
+                  "value": "<boolean>",
+                  "description": "Filter by lease status"
+                },
+                {
+                  "disabled": false,
+                  "key": "username__icontains",
+                  "value": "<string>",
+                  "description": "Filter by username substring"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "<string>",
+                  "description": "Filter by protocol"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3ec37b7-eb31-48a5-9484-a836705174ea",
+              "name": "open files handlesinformation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfilehandles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "open_file__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_ip__startswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_ip_subnet",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_locks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_lease",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "username__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"access_mask\": \"string\",\n    \"client_ip\": \"string\",\n    \"has_lease\": true,\n    \"has_locks\": true,\n    \"id\": 2612,\n    \"open_file_id\": 6808,\n    \"open_file_path\": \"string\",\n    \"protocol\": \"SMB\",\n    \"session_id\": \"string\",\n    \"share_access\": \"string\",\n    \"tenant_id\": 4860,\n    \"unique_id\": \"string\",\n    \"username\": \"string\"\n  },\n  {\n    \"access_mask\": \"string\",\n    \"client_ip\": \"string\",\n    \"has_lease\": false,\n    \"has_locks\": true,\n    \"id\": 6621,\n    \"open_file_id\": 1802,\n    \"open_file_path\": \"string\",\n    \"protocol\": \"SMB\",\n    \"session_id\": \"string\",\n    \"share_access\": \"string\",\n    \"tenant_id\": 2789,\n    \"unique_id\": \"string\",\n    \"username\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9b52c8c-333c-46fd-9503-74d5c5c0436f",
+          "name": "Return details of an open file handle.",
+          "request": {
+            "name": "Return details of an open file handle.",
+            "description": {
+              "content": "This endpoint returns information about a specific open file handle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfilehandles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca4b93a2-f160-431a-be2d-21fe35a8f823",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfilehandles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_mask\": \"string\",\n  \"client_ip\": \"string\",\n  \"has_lease\": true,\n  \"has_locks\": true,\n  \"id\": 6023,\n  \"open_file_id\": 530,\n  \"open_file_path\": \"string\",\n  \"protocol\": \"MOUNT\",\n  \"session_id\": \"string\",\n  \"share_access\": \"string\",\n  \"tenant_id\": 2978,\n  \"unique_id\": \"string\",\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6445a644-9d7b-44bb-a911-1ba295a8080c",
+    "name": "VAST API Swagger Schema activedirectory openfilehandles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

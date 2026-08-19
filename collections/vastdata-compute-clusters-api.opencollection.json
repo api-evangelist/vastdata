@@ -1,0 +1,612 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory Compute Clusters API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compute Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all existing Compute Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/"
+          },
+          "docs": "This endpoint lists Compute Clusters"
+        },
+        {
+          "info": {
+            "name": "Create a Compute Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a Compute Cluster."
+        },
+        {
+          "info": {
+            "name": "Get aggregated dashboard information for all compute clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/dashboard/"
+          },
+          "docs": "This endpoint provides system-wide aggregated resource counts for compute clusters.\nReturns counts of compute clusters, CNodes, pods, deployments, services, namespaces, and tenants,\nwith state-based breakdowns for each resource type.\n"
+        },
+        {
+          "info": {
+            "name": "Return Details of a Compute Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specific Compute Cluster."
+        },
+        {
+          "info": {
+            "name": "Modify Compute Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/computeclusters/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify Compute Cluster"
+        },
+        {
+          "info": {
+            "name": "Delete Compute Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/computeclusters/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Compute Cluster."
+        },
+        {
+          "info": {
+            "name": "Get full details of a specific deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/deployment_detail/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "resource_name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the deployment"
+              },
+              {
+                "name": "resource_namespace",
+                "value": "",
+                "type": "query",
+                "description": "Namespace of the deployment"
+              }
+            ]
+          },
+          "docs": "Returns the raw Kubernetes API object for a specific deployment."
+        },
+        {
+          "info": {
+            "name": "List deployments in the compute cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/deployments/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Filter deployments by namespace"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all deployments in the specified compute cluster."
+        },
+        {
+          "info": {
+            "name": "List events for a specific resource in the compute cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/events/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "resource_name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the resource"
+              },
+              {
+                "name": "resource_namespace",
+                "value": "",
+                "type": "query",
+                "description": "Namespace of the resource"
+              },
+              {
+                "name": "resource_kind",
+                "value": "",
+                "type": "query",
+                "description": "Kind of the resource (Pod, Deployment, Service, ReplicaSet)"
+              }
+            ]
+          },
+          "docs": "Returns Kubernetes events for the specified resource, filtered by involvedObject."
+        },
+        {
+          "info": {
+            "name": "Generate metric viewer certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/:id/metric_viewer_certificates/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "Generate metric viewer certificates for the compute cluster."
+        },
+        {
+          "info": {
+            "name": "List namespaces in the compute cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/namespaces/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all namespaces in the specified compute cluster."
+        },
+        {
+          "info": {
+            "name": "List nodes in the compute cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/nodes/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all nodes in the specified compute cluster."
+        },
+        {
+          "info": {
+            "name": "Get full details of a specific pod",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/pod_detail/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "resource_name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the pod"
+              },
+              {
+                "name": "resource_namespace",
+                "value": "",
+                "type": "query",
+                "description": "Namespace of the pod"
+              }
+            ]
+          },
+          "docs": "Returns the raw Kubernetes API object for a specific pod."
+        },
+        {
+          "info": {
+            "name": "List pods in the compute cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/pods/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Filter pods by namespace"
+              },
+              {
+                "name": "deployment",
+                "value": "",
+                "type": "query",
+                "description": "Filter pods by deployment name; namespace must also be provided"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all pods in the specified compute cluster."
+        },
+        {
+          "info": {
+            "name": "Reconcile Compute Cluster Creation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/:id/reconcile_create/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "Retry creation of a compute cluster whose initial creation did not complete successfully."
+        },
+        {
+          "info": {
+            "name": "List ReplicaSets for a specific deployment in the compute cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/replica_sets/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "resource_name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the deployment"
+              },
+              {
+                "name": "resource_namespace",
+                "value": "",
+                "type": "query",
+                "description": "Namespace of the deployment"
+              }
+            ]
+          },
+          "docs": "Returns all ReplicaSets owned by the specified deployment."
+        },
+        {
+          "info": {
+            "name": "Rotate root and/or intermediate certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/:id/rotate_base_certificates/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "keep_root",
+                "value": "",
+                "type": "query",
+                "description": "If true, keep the existing root certificate and only regenerate intermediate and leaf certificates"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rotate root and/or intermediate certificates for the compute cluster.\nThree modes are supported:\n1. Empty body (no keep_root) - regenerate all certificates (root + intermediate + leaf).\n2. Empty body with keep_root=true - keep root, regenerate intermediate + leaf.\n3. Provide all 3 certificate fields in body - use provided certs, generate leaf.\n"
+        },
+        {
+          "info": {
+            "name": "Rotate leaf certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/:id/rotate_leaf_certificates/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "Rotate only the leaf certificates for the compute cluster."
+        },
+        {
+          "info": {
+            "name": "Rotate service key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/:id/rotate_service_key/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "Rotate the service key for the compute cluster."
+        },
+        {
+          "info": {
+            "name": "Get full details of a specific service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/service_detail/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "resource_name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the service"
+              },
+              {
+                "name": "resource_namespace",
+                "value": "",
+                "type": "query",
+                "description": "Namespace of the service"
+              }
+            ]
+          },
+          "docs": "Returns the raw Kubernetes API object for a specific service."
+        },
+        {
+          "info": {
+            "name": "List services in the compute cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/services/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Filter services by namespace"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all services in the specified compute cluster."
+        },
+        {
+          "info": {
+            "name": "Start Compute Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/:id/start/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "Start a stopped compute cluster."
+        },
+        {
+          "info": {
+            "name": "Stop Compute Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/:id/stop/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "Stop a running compute cluster."
+        },
+        {
+          "info": {
+            "name": "List Compute Cluster Tenant Associations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/tenants/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of tenant associations for the specified compute cluster."
+        },
+        {
+          "info": {
+            "name": "Manage Compute Cluster Tenant Associations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/computeclusters/:id/tenants/bulk/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manage tenant associations with a compute cluster. You can add or remove tenants. Cannot be used when all_tenants is enabled on the compute cluster.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Compute Cluster Tenant Association",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/computeclusters/:id/tenants/:tenant_id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Compute Cluster ID"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "Tenant Association ID"
+              }
+            ]
+          },
+          "docs": "Returns a single tenant association for the specified compute cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

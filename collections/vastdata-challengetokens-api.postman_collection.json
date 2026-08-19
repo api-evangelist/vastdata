@@ -1,0 +1,226 @@
+{
+  "item": [
+    {
+      "id": "d49a5bf2-5a3c-4fc5-bf15-88cb899d93ba",
+      "name": "challengetokens",
+      "description": {
+        "content": "Challenge tokens are used to unlock the cluster's indestructibility mechanism.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "009e7a6a-d282-4c33-9f02-02afe70aca79",
+          "name": "List challenge tokens",
+          "request": {
+            "name": "List challenge tokens",
+            "description": {
+              "content": "This endpoint lists challenge tokens.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "challengetokens",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebb9f53b-bc07-45f4-874e-86fbd4607496",
+              "name": "Challenge tokens information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "challengetokens",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"expiration_time\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 9273,\n  \"password\": \"string\",\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0b5851e-585e-48c9-9046-74cb225da741",
+          "name": "Return Details of a challenge token",
+          "request": {
+            "name": "Return Details of a challenge token",
+            "description": {
+              "content": "This endpoint returns details of a specific challenge token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "challengetokens",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Challenge Token ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9b103cd-6ba1-4832-aff7-ea8931a68208",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "challengetokens",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Challenge Token ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"expiration_time\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 9273,\n  \"password\": \"string\",\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "052dcfb1-a6f0-4ed4-870b-035fb46749b1",
+    "name": "VAST API Swagger Schema activedirectory challengetokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

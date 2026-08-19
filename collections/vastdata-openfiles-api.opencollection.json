@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory openfiles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "openfiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all open files.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/openfiles/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "open_files_query__id",
+                "value": "",
+                "type": "query",
+                "description": "Open Files Query id to filter by."
+              },
+              {
+                "name": "path__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by file path substring"
+              },
+              {
+                "name": "has_locks",
+                "value": "",
+                "type": "query",
+                "description": "Filter by lock status"
+              }
+            ]
+          },
+          "docs": "This endpoint lists open files."
+        },
+        {
+          "info": {
+            "name": "Return details of an open file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/openfiles/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specific open file."
+        },
+        {
+          "info": {
+            "name": "List open handles for an open file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/openfiles/:id/list_open_handles/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint creates an async open handles listing task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

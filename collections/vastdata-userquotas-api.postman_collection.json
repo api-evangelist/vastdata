@@ -1,0 +1,611 @@
+{
+  "item": [
+    {
+      "id": "58e37dfe-1982-4c0a-875f-d7711a2deceb",
+      "name": "userquotas",
+      "description": {
+        "content": "A userquota object defines a user or group quota. A user or group quota limits the capacity and number of files or directories that a specified user or group can own within a directory. A userquota object doesn't specify any directory. A userquota object is effective when specified in a quota object.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ef3898d-d867-4695-ace6-9b5fc5acc4cf",
+          "name": "List User Quotas",
+          "request": {
+            "name": "List User Quotas",
+            "description": {
+              "content": "This endpoint lists user and group quotas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "userquotas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_accountable",
+                  "value": "<boolean>",
+                  "description": "Set to true to list only user and group quotas for users and groups that have defined user quotas. Set to false to list only user quotas for users and groups that wrote to the directory but have no defined user/group quota rules."
+                },
+                {
+                  "disabled": false,
+                  "key": "quota_system_id",
+                  "value": "<integer>",
+                  "description": "Filters the list to show only user quotas that belong to a quota with a specified system_id number. This is different to quota ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "quota_id",
+                  "value": "<integer>",
+                  "description": "Filter by specific directory quota"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity__is_group",
+                  "value": "<boolean>",
+                  "description": "Set to true to list only group quotas. Set to false to list user and group quotas."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity__is_iam_role",
+                  "value": "<boolean>",
+                  "description": "Set to true to list only IAM role quotas."
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh_data",
+                  "value": "<boolean>",
+                  "description": "Set to true to refresh data before returning a response, hence guaranteeing fresh data. If false, the data is fetched from the VMS database without refreshing. Response may be quicker with this parameter set to false."
+                },
+                {
+                  "disabled": false,
+                  "key": "quota_group_id",
+                  "value": "<integer>",
+                  "description": "Quota Group ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b609f109-ce40-47fd-a854-4df3f5172af0",
+              "name": "User Quota information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "userquotas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_accountable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "quota_system_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "quota_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entity__is_group",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "entity__is_iam_role",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "refresh_data",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "quota_group_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"entity_identifier\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 1686,\n    \"identifier\": \"string\",\n    \"identifier_type\": \"string\",\n    \"is_group\": false,\n    \"name\": \"string\",\n    \"path\": \"string\",\n    \"grace_period\": \"string\",\n    \"hard_limit\": 5621,\n    \"hard_limit_inodes\": 5333,\n    \"quota_system_id\": 6483,\n    \"soft_limit\": 272,\n    \"soft_limit_inodes\": 3260,\n    \"email\": \"string\",\n    \"is_accountable\": false,\n    \"is_iam_role\": false,\n    \"percent_capacity\": 7855,\n    \"percent_inodes\": 2520,\n    \"state\": \"string\",\n    \"time_to_block\": \"string\",\n    \"used_capacity\": 490,\n    \"used_inodes\": 8768,\n    \"vast_id\": 372\n  },\n  {\n    \"entity_identifier\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8411,\n    \"identifier\": \"string\",\n    \"identifier_type\": \"string\",\n    \"is_group\": true,\n    \"name\": \"string\",\n    \"path\": \"string\",\n    \"grace_period\": \"string\",\n    \"hard_limit\": 3008,\n    \"hard_limit_inodes\": 7459,\n    \"quota_system_id\": 6165,\n    \"soft_limit\": 5591,\n    \"soft_limit_inodes\": 8134,\n    \"email\": \"string\",\n    \"is_accountable\": true,\n    \"is_iam_role\": true,\n    \"percent_capacity\": 2027,\n    \"percent_inodes\": 8165,\n    \"state\": \"string\",\n    \"time_to_block\": \"string\",\n    \"used_capacity\": 7513,\n    \"used_inodes\": 8519,\n    \"vast_id\": 6496\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce54d204-b1f7-4d14-9f47-2431277d42e0",
+          "name": "Create a User Quota",
+          "request": {
+            "name": "Create a User Quota",
+            "description": {},
+            "url": {
+              "path": [
+                "userquotas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grace_period\": \"<string>\",\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"identifier\": \"<string>\",\n  \"identifier_type\": \"<string>\",\n  \"is_group\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"quota_group_id\": \"<integer>\",\n  \"quota_id\": \"<integer>\",\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "862d4fb2-1cfb-424a-b581-eb103101acd1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "userquotas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grace_period\": \"<string>\",\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"identifier\": \"<string>\",\n  \"identifier_type\": \"<string>\",\n  \"is_group\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"quota_group_id\": \"<integer>\",\n  \"quota_id\": \"<integer>\",\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entity_identifier\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 9124,\n  \"identifier\": \"string\",\n  \"identifier_type\": \"string\",\n  \"is_group\": true,\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"grace_period\": \"string\",\n  \"hard_limit\": 1658,\n  \"hard_limit_inodes\": 1925,\n  \"quota_system_id\": 1968,\n  \"soft_limit\": 3480,\n  \"soft_limit_inodes\": 3241,\n  \"email\": \"string\",\n  \"is_accountable\": false,\n  \"is_iam_role\": false,\n  \"percent_capacity\": 9518,\n  \"percent_inodes\": 6384,\n  \"state\": \"string\",\n  \"time_to_block\": \"string\",\n  \"used_capacity\": 2765,\n  \"used_inodes\": 6619,\n  \"vast_id\": 2804\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ec61e78-f4be-4ea3-84aa-7b31265dc389",
+          "name": "Delete User Quota",
+          "request": {
+            "name": "Delete User Quota",
+            "description": {
+              "content": "This endpoint deletes a user quota.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "userquotas",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) User Quota ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43b70be4-3f89-408a-aab5-6545f85bc19a",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "userquotas",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) User Quota ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43723f9d-c48c-4813-a39f-ee8676d5055b",
+          "name": "Return Details of a User Quota",
+          "request": {
+            "name": "Return Details of a User Quota",
+            "description": {
+              "content": "This endpoint returns details of a specified user quota.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "userquotas",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) User Quota ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b7a8e03-8217-438d-806f-1e8660fb62cb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "userquotas",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) User Quota ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entity_identifier\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 9124,\n  \"identifier\": \"string\",\n  \"identifier_type\": \"string\",\n  \"is_group\": true,\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"grace_period\": \"string\",\n  \"hard_limit\": 1658,\n  \"hard_limit_inodes\": 1925,\n  \"quota_system_id\": 1968,\n  \"soft_limit\": 3480,\n  \"soft_limit_inodes\": 3241,\n  \"email\": \"string\",\n  \"is_accountable\": false,\n  \"is_iam_role\": false,\n  \"percent_capacity\": 9518,\n  \"percent_inodes\": 6384,\n  \"state\": \"string\",\n  \"time_to_block\": \"string\",\n  \"used_capacity\": 2765,\n  \"used_inodes\": 6619,\n  \"vast_id\": 2804\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51b6feb5-08ae-4ec7-bc78-deff97cfa1b3",
+          "name": "Modify User Quota",
+          "request": {
+            "name": "Modify User Quota",
+            "description": {
+              "content": "This endpoint modifies a user quota.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "userquotas",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) User Quota ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grace_period\": \"<string>\",\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a0f9785-7878-4767-885a-156906974e5e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "userquotas",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) User Quota ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grace_period\": \"<string>\",\n  \"hard_limit\": \"<integer>\",\n  \"hard_limit_inodes\": \"<integer>\",\n  \"soft_limit\": \"<integer>\",\n  \"soft_limit_inodes\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c32829e6-099b-4c9c-8852-598d0b4281e2",
+    "name": "VAST API Swagger Schema activedirectory userquotas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

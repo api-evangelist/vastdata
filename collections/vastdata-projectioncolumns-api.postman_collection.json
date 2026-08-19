@@ -1,0 +1,373 @@
+{
+  "item": [
+    {
+      "id": "5a2e947f-0945-43fd-951a-ec7f27f25eb6",
+      "name": "projectioncolumns",
+      "description": {
+        "content": "Projection columns are columns that are included in a projection, either as the columns used to sort the projection or as additional columns included in a projection.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a54de937-949f-466b-9a75-925beea3d761",
+          "name": "List Database Table Semi-Sorted Projection Columns",
+          "request": {
+            "name": "List Database Table Semi-Sorted Projection Columns",
+            "description": {
+              "content": "This endpoint lists database table semi-sorted projection columns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projectioncolumns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "999"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "table_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by table_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "projection_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by projection_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Getting list of objects by exact match"
+                },
+                {
+                  "disabled": false,
+                  "key": "name__startswith",
+                  "value": "<string>",
+                  "description": "Getting list of objects by prefix match"
+                },
+                {
+                  "disabled": false,
+                  "key": "count_only",
+                  "value": "false",
+                  "description": "Whether to only return count of objects"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b390f64-05a3-43d0-9aa1-a15bcac71382",
+              "name": "Database Table Semi-Sorted Projection Columns",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectioncolumns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "999"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "table_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projection_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name__startswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"database_name\": \"string\",\n    \"field\": {\n      \"column_type\": \"map\",\n      \"key_type\": {\n        \"column_type\": \"bool\"\n      },\n      \"value_type\": {\n        \"column_type\": \"bool\"\n      }\n    },\n    \"is_sorted\": false,\n    \"name\": \"string\",\n    \"projection_name\": \"string\",\n    \"raw_field\": \"map<bool, bool>\",\n    \"schema_name\": \"string\",\n    \"table_name\": \"string\"\n  },\n  {\n    \"database_name\": \"string\",\n    \"field\": {\n      \"column_type\": \"map\",\n      \"key_type\": {\n        \"column_type\": \"bool\"\n      },\n      \"value_type\": {\n        \"column_type\": \"bool\"\n      }\n    },\n    \"is_sorted\": true,\n    \"name\": \"string\",\n    \"projection_name\": \"string\",\n    \"raw_field\": \"map<bool, bool>\",\n    \"schema_name\": \"string\",\n    \"table_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7851b03-aa5c-48c7-99ff-6c25a5a88fd7",
+          "name": "Return a Database Table Semi-Sorted Projection Column",
+          "request": {
+            "name": "Return a Database Table Semi-Sorted Projection Column",
+            "description": {
+              "content": "This endpoint shows a database table semi-sorted projection column.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projectioncolumns",
+                "show",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "table_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by table_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "projection_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by projection_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Getting object by exact match"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35d292ea-8abd-4c58-988c-e70d4d3b74f8",
+              "name": "Database Table Semi-Sorted Projection Column",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projectioncolumns",
+                    "show",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "table_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projection_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"database_name\": \"string\",\n  \"field\": {\n    \"column_type\": \"map\",\n    \"key_type\": {\n      \"column_type\": \"bool\"\n    },\n    \"value_type\": {\n      \"column_type\": \"bool\"\n    }\n  },\n  \"is_sorted\": true,\n  \"name\": \"string\",\n  \"projection_name\": \"string\",\n  \"raw_field\": \"map<bool, bool>\",\n  \"schema_name\": \"string\",\n  \"table_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "109493ec-1abe-4f38-bfce-1ac930e1761e",
+    "name": "VAST API Swagger Schema activedirectory projectioncolumns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

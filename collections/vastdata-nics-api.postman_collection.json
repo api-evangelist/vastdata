@@ -1,0 +1,238 @@
+{
+  "item": [
+    {
+      "id": "e79bd9b9-39e4-4690-bf3e-d5c6f3cfdd18",
+      "name": "nics",
+      "description": {
+        "content": "NICs represent interfaces on Network Interface Cards (NICs) in the CNodes and DNodes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4cc57e6c-e8f3-41f2-affb-dd228d60dffa",
+          "name": "List NICs.",
+          "request": {
+            "name": "List NICs.",
+            "description": {
+              "content": "This endpoint lists NICs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nics",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by state"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "543337b5-3c53-4b70-96a7-5ee0e800c3d3",
+              "name": "NIC information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nics",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"cbox_id\": 1753,\n    \"cluster\": \"string\",\n    \"cluster_id\": 32,\n    \"dbox_id\": 619,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"host\": \"string\",\n    \"host_id\": 9797,\n    \"hostname\": \"string\",\n    \"id\": 9657,\n    \"ipv6_address\": \"string\",\n    \"link_state\": \"string\",\n    \"link_type\": \"string\",\n    \"model\": \"string\",\n    \"mtu\": 8988,\n    \"name\": \"string\",\n    \"nic_location\": {},\n    \"nicport_id\": 8302,\n    \"node_id\": 2230,\n    \"port\": \"string\",\n    \"port_type\": \"string\",\n    \"rate\": \"string\",\n    \"rate_number\": 8078,\n    \"sn\": \"string\",\n    \"state\": \"UNKNOWN\",\n    \"title\": \"string\",\n    \"vippool_ids\": [\n      4736,\n      2468\n    ]\n  },\n  {\n    \"address\": \"string\",\n    \"cbox_id\": 1741,\n    \"cluster\": \"string\",\n    \"cluster_id\": 416,\n    \"dbox_id\": 2323,\n    \"display_name\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"host\": \"string\",\n    \"host_id\": 9184,\n    \"hostname\": \"string\",\n    \"id\": 6824,\n    \"ipv6_address\": \"string\",\n    \"link_state\": \"string\",\n    \"link_type\": \"string\",\n    \"model\": \"string\",\n    \"mtu\": 3230,\n    \"name\": \"string\",\n    \"nic_location\": {},\n    \"nicport_id\": 4585,\n    \"node_id\": 9527,\n    \"port\": \"string\",\n    \"port_type\": \"string\",\n    \"rate\": \"string\",\n    \"rate_number\": 8772,\n    \"sn\": \"string\",\n    \"state\": \"ACTIVE\",\n    \"title\": \"string\",\n    \"vippool_ids\": [\n      3183,\n      1988\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "203e666a-be00-473b-b33f-c0e0252c1cae",
+          "name": "Return Details of One NIC",
+          "request": {
+            "name": "Return Details of One NIC",
+            "description": {
+              "content": "This endpoint returns details of a specified NIC.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nics",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b48d43a3-4616-47cb-a0e1-31c2f890ec43",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nics",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"cbox_id\": 512,\n  \"cluster\": \"string\",\n  \"cluster_id\": 7396,\n  \"dbox_id\": 565,\n  \"display_name\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"host\": \"string\",\n  \"host_id\": 4438,\n  \"hostname\": \"string\",\n  \"id\": 901,\n  \"ipv6_address\": \"string\",\n  \"link_state\": \"string\",\n  \"link_type\": \"string\",\n  \"model\": \"string\",\n  \"mtu\": 7172,\n  \"name\": \"string\",\n  \"nic_location\": {},\n  \"nicport_id\": 4011,\n  \"node_id\": 9653,\n  \"port\": \"string\",\n  \"port_type\": \"string\",\n  \"rate\": \"string\",\n  \"rate_number\": 3370,\n  \"sn\": \"string\",\n  \"state\": \"down\",\n  \"title\": \"string\",\n  \"vippool_ids\": [\n    6466,\n    260\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6a38d643-318c-44fd-aab0-f9042b283a09",
+    "name": "VAST API Swagger Schema activedirectory nics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory iamroles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "iamroles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Identity and Access Management Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/iamroles/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "qos_policies__id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists IAM Roles"
+        },
+        {
+          "info": {
+            "name": "Create IAM Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/iamroles/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an IAM Role."
+        },
+        {
+          "info": {
+            "name": "Return Details of a IAM Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/iamroles/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "IAM Role ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified IAM Role."
+        },
+        {
+          "info": {
+            "name": "Modify IAM Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/iamroles/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "IAM Role ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a specified IAM Role."
+        },
+        {
+          "info": {
+            "name": "Delete IAM Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/iamroles/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "IAM Role ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a specified IAM Role."
+        },
+        {
+          "info": {
+            "name": "Get STS credentials of specified IAM Role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/iamroles/:id/credentials",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about STS credentials of specified IAM Role."
+        },
+        {
+          "info": {
+            "name": "Revoke access keys of  specified IAM Role. Keys will be revoked by the revoke_time on the IAM Role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/iamroles/:id/revoke_access_keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint revoke access keys of a specified IAM Role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

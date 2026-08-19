@@ -1,0 +1,321 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory tables API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Database Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tables/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by schema_name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by exact match"
+              },
+              {
+                "name": "name__startswith",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by prefix match"
+              },
+              {
+                "name": "count_only",
+                "value": "",
+                "type": "query",
+                "description": "Whether to only return count of objects"
+              },
+              {
+                "name": "table_name__startswith",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects starting with by table_name__startswith (deprecated since 5.0)"
+              }
+            ]
+          },
+          "docs": "This endpoint lists the Database Tables."
+        },
+        {
+          "info": {
+            "name": "Create a Database Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tables/"
+          },
+          "docs": "This endpoint creates a Database Table."
+        },
+        {
+          "info": {
+            "name": "Modify a Database Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tables/"
+          },
+          "docs": "This endpoint modifies a Database Table"
+        },
+        {
+          "info": {
+            "name": "Add Columns to a Database Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tables/add_columns/"
+          },
+          "docs": "This endpoint adds Columns to a Database Table."
+        },
+        {
+          "info": {
+            "name": "Delete a Database Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tables/delete/"
+          },
+          "docs": "This endpoint deletes a Database Table."
+        },
+        {
+          "info": {
+            "name": "Create a Database Table from a File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tables/load_from_file/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by schema_name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting object by exact match"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This endpoint creates a database table from a Parquet or CSV file."
+        },
+        {
+          "info": {
+            "name": "Rename a Database Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tables/rename/"
+          },
+          "docs": "This endpoint renames a Database Table."
+        },
+        {
+          "info": {
+            "name": "Show a Database Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tables/show/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by schema_name"
+              },
+              {
+                "name": "is_imports_table",
+                "value": "",
+                "type": "query",
+                "description": "Is table actually a sub-table to track imported .parquet files."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Getting object by exact match"
+              }
+            ]
+          },
+          "docs": "This endpoint shows a Database Table."
+        },
+        {
+          "info": {
+            "name": "Shows historical data for the table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vastdbtable/aggregate/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "database_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by database_name"
+              },
+              {
+                "name": "schema_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by schema_name"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "query",
+                "description": "Getting list of objects by table_name"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metrics to return for the dashboard. E.g. `?metrics=READ_BYTES,WRITE_COUNT`.\nAdditionally, following operations are supported for metrics: [+, -, *].\nUseful to aggregate over a \"custom/fake\" metric value (sum / diff / product of real metrics).\nE.g. `?metrics=READ_BYTES+WRITE_BYTES,READ_COUNT-WRITE_COUNT`.\nWhich means take a sum of READ_BYTES and WRITE_BYTES, take a diff between READ_COUNT and WRITE_COUNT.\n"
+              },
+              {
+                "name": "topn_by",
+                "value": "",
+                "type": "query",
+                "description": "What metric to do top N by. By default, sum of all the `?metrics` is taken.\nOnly applicable if sampling and/or sub-grouping is requested.\n"
+              },
+              {
+                "name": "aggregate_function",
+                "value": "",
+                "type": "query",
+                "description": "Function to use when aggregating the results."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+              },
+              {
+                "name": "sample_per",
+                "value": "",
+                "type": "query",
+                "description": "Which column to sample per (X-axis)."
+              },
+              {
+                "name": "sub_group_by",
+                "value": "",
+                "type": "query",
+                "description": "Which column to split the returning samples by (Y-axis)."
+              },
+              {
+                "name": "samples_count",
+                "value": "",
+                "type": "query",
+                "description": "Limit output amount of samples. Rest will be put into `\"__others__\"`.\nWhen sampling per time, affects granularity with which samples are collected.\n"
+              },
+              {
+                "name": "sub_groups_count",
+                "value": "",
+                "type": "query",
+                "description": "Limit output amount of sub-groups. Rest will be put into `\"__others__\"`."
+              }
+            ]
+          },
+          "docs": "Shows historical data for the table."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

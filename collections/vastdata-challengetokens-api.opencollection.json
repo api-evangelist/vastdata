@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory challengetokens API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "challengetokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List challenge tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/challengetokens/"
+          },
+          "docs": "This endpoint lists challenge tokens."
+        },
+        {
+          "info": {
+            "name": "Return Details of a challenge token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/challengetokens/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Challenge Token ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specific challenge token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

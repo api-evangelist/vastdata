@@ -1,0 +1,1370 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory clusters API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Clusters"
+        },
+        {
+          "info": {
+            "name": "Create Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates the cluster.\\ Ideally, VMS will auto-discover the nodes and its logic will be able to decide on\\ exact C/D nodes assignment for the cluster.\\ Therefore, in ideal case this command gets no node-related arguments.\\ Optionally specific C/D nodes list or C/D nodes number can be provided."
+        },
+        {
+          "info": {
+            "name": "Start Add Boxes procedure",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/add_boxes/"
+          },
+          "docs": "Start Add Boxes procedure"
+        },
+        {
+          "info": {
+            "name": "Return BGP Connections Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/bgp_table/"
+          },
+          "docs": "This endpoint returns the BGP connections table."
+        },
+        {
+          "info": {
+            "name": "Block Authentication Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/block_providers/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint temporarily blocks all authentication providers"
+        },
+        {
+          "info": {
+            "name": "Close open files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/close_open_files/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint closes specified files."
+        },
+        {
+          "info": {
+            "name": "Close open protocol filehandles",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/clusters/close_protocol_handle/",
+            "params": [
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path"
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query",
+                "description": "Session ID"
+              },
+              {
+                "name": "session_handle_unique_id",
+                "value": "",
+                "type": "query",
+                "description": "Handle ID"
+              },
+              {
+                "name": "tenant_guid",
+                "value": "",
+                "type": "query",
+                "description": "Tenant GUID"
+              }
+            ]
+          },
+          "docs": "This endpoint closes open protocol filehandles."
+        },
+        {
+          "info": {
+            "name": "Dbox migration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/dbox_migration/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint runs DBox migration."
+        },
+        {
+          "info": {
+            "name": "DBox migration status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/dbox_migration_status/",
+            "params": [
+              {
+                "name": "with_capacity",
+                "value": "",
+                "type": "query",
+                "description": "The flag to show the migration status with capacity"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the status of DBox migration."
+        },
+        {
+          "info": {
+            "name": "Dbox migration update source target info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/dbox_migration_update_source_target"
+          },
+          "docs": "This endpoint returns the status of DBox migration validation"
+        },
+        {
+          "info": {
+            "name": "Dbox migration update source target",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/dbox_migration_update_source_target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint runs DBox migration."
+        },
+        {
+          "info": {
+            "name": "DBox migration validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/dbox_migration_validate/"
+          },
+          "docs": "This endpoint run DBox validation."
+        },
+        {
+          "info": {
+            "name": "DBox migration validate state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/dbox_migration_validate_state/"
+          },
+          "docs": "This endpoint returns the status of DBox validation."
+        },
+        {
+          "info": {
+            "name": "DBoxes total capacity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/dboxes_total_capacity/",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "DBox ids separated by comma"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the total capacity with given dboxes ids"
+        },
+        {
+          "info": {
+            "name": "System shard expansion status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/get_shard_expansion_status/"
+          },
+          "docs": "This endpoint returns the status of system shard expansion."
+        },
+        {
+          "info": {
+            "name": "Return Paths that have Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/get_snapshoted_paths/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Tenant ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a list of paths that are protected by snapshots."
+        },
+        {
+          "info": {
+            "name": "List snapshots on a remote replication peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/list_clone_snapshoted_paths_remote/",
+            "params": [
+              {
+                "name": "remote_target_guid",
+                "value": "",
+                "type": "query",
+                "description": "remote target GUID"
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Provide the handle from a GET /cluster/list_snapshoted_paths_remote/ response"
+              },
+              {
+                "name": "start_snapshot_id",
+                "value": "",
+                "type": "query",
+                "description": "Start snapshot ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a list of snapshots for a path on a remote replication peer."
+        },
+        {
+          "info": {
+            "name": "Query open protocol filehandles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/list_open_protocol_handles/",
+            "params": [
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path"
+              },
+              {
+                "name": "tenant_guid",
+                "value": "",
+                "type": "query",
+                "description": "Tenant GUID"
+              }
+            ]
+          },
+          "docs": "This endpoint queries open protocol filehandles."
+        },
+        {
+          "info": {
+            "name": "List Prefetch Path Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/list_prefetch_paths_info/"
+          },
+          "docs": "This endpoint lists information about prefetch paths."
+        },
+        {
+          "info": {
+            "name": "Query SMB client connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/list_smb_client_connections/",
+            "params": [
+              {
+                "name": "client_ip",
+                "value": "",
+                "type": "query",
+                "description": "Client IP"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              }
+            ]
+          },
+          "docs": "Query SMB client connections"
+        },
+        {
+          "info": {
+            "name": "Query SMB open files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/list_smb_open_files/",
+            "params": [
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path"
+              },
+              {
+                "name": "tenant_guid",
+                "value": "",
+                "type": "query",
+                "description": "Tenant GUID"
+              }
+            ]
+          },
+          "docs": "Query SMB open files"
+        },
+        {
+          "info": {
+            "name": "List snapshoted paths on remote target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/list_snapshoted_paths_remote/",
+            "params": [
+              {
+                "name": "remote_target_guid",
+                "value": "",
+                "type": "query",
+                "description": "The GUID of the remote target, which you can obtain from a GET /replicationtargets/ request"
+              },
+              {
+                "name": "remote_tenant_guid",
+                "value": "",
+                "type": "query",
+                "description": "The GUID of the remote tenant"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a list of paths that have snapshots on a remote replication peer."
+        },
+        {
+          "info": {
+            "name": "List tenants on remote target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/list_tenants_remote/",
+            "params": [
+              {
+                "name": "remote_target_guid",
+                "value": "",
+                "type": "query",
+                "description": "remote target GUID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the list of tenants."
+        },
+        {
+          "info": {
+            "name": "Rotate master encryption group key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/rotate_master_encryption_group_key/"
+          },
+          "docs": "This endpoint rotates the master encryption group key, if encryption is enabled with encryption type CIPHER_TRUST_KMIP, in which  encryption keys are managed externally on Thales Group CipherTrust Data Security Platform. This command generates a new version of the master key. The master key is used by the cluster to encrypt the data encryption keys when they are retrieved from the EKM and distributed by the cluster node that hosts the encryption service client to other cluster nodes. The master "
+        },
+        {
+          "info": {
+            "name": "Run Hardware Validations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/run_hardware_check/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint runs the hardware upgrade validations."
+        },
+        {
+          "info": {
+            "name": "Shard expansion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/shard_expand/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint runs system shard expansion."
+        },
+        {
+          "info": {
+            "name": "Stop Cluster s/w on All Nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/wipe/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint stops the cluster s/w on all nodes."
+        },
+        {
+          "info": {
+            "name": "Detail Cluster Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of the cluster."
+        },
+        {
+          "info": {
+            "name": "Manage Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint can be used to change global settings on the cluster."
+        },
+        {
+          "info": {
+            "name": "Delete Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/clusters/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes the cluster."
+        },
+        {
+          "info": {
+            "name": "Add EKM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/add_ekm/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add EKM"
+        },
+        {
+          "info": {
+            "name": "Aggregated information about the cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/advanced/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns aggregated information about the cluster"
+        },
+        {
+          "info": {
+            "name": "Show Cluster Audit Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/auditing/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns cluster audit settings"
+        },
+        {
+          "info": {
+            "name": "Modify Cluster Audit Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/auditing/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint updates cluster audit settings"
+        },
+        {
+          "info": {
+            "name": "List celery queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/celery_queue/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_name",
+                "value": "",
+                "type": "query",
+                "description": "Task name"
+              }
+            ]
+          },
+          "docs": "This endpoint will query all or a specific task from the celery queue"
+        },
+        {
+          "info": {
+            "name": "Delete all tasks of a specific name from the celery queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/clusters/:id/celery_remove_queued_task/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_name",
+                "value": "",
+                "type": "query",
+                "description": "Task name"
+              }
+            ]
+          },
+          "docs": "This endpoint will delete waiting tasks that were not fetched by any worker from the celery queue"
+        },
+        {
+          "info": {
+            "name": "List celery reserved queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/celery_reserved/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint will query all tasks that are reserved by the main process"
+        },
+        {
+          "info": {
+            "name": "List celery scheduled queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/celery_scheduled/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint will query all tasks that are scheduled to a specific time"
+        },
+        {
+          "info": {
+            "name": "Show the full celery stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/celery_status/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint will show celery stats"
+        },
+        {
+          "info": {
+            "name": "Delete Cluster Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/clusters/:id/delete_folder/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint deletes a folder from the system."
+        },
+        {
+          "info": {
+            "name": "Expand Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/expand/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Expand Cluster"
+        },
+        {
+          "info": {
+            "name": "Generate Token to Unlock Indestructibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/generate_unfreeze_token/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "This endpoint generates a token for unlocking indestructibility."
+        },
+        {
+          "info": {
+            "name": "List NLM Locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/locks/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns all NLM locks on a file at a specified path."
+        },
+        {
+          "info": {
+            "name": "Deletes NLM Locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/clusters/:id/locks/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes NLM locks on a file."
+        },
+        {
+          "info": {
+            "name": "Notify of New Version Available for Download",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/notify_new_version/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Notify of New Version Available for Download"
+        },
+        {
+          "info": {
+            "name": "Run Pre-Upgrade Validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/pre_upgrade_validation_exceptions/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "Run Pre-Upgrade Validation"
+        },
+        {
+          "info": {
+            "name": "Deletes NLM Locks Recursively",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/clusters/:id/release_recursive_locks/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes NLM locks on a path recursively."
+        },
+        {
+          "info": {
+            "name": "Resume failed deploy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/resume_deploy/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "This endpoint resumes failed cluster deploy task."
+        },
+        {
+          "info": {
+            "name": "This endpoint runs cluster rpc.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/rpc/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint runs cluster rpc."
+        },
+        {
+          "info": {
+            "name": "Get S3 True IP Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/s3_true_ip_config/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "Get S3 True IP Configuration"
+        },
+        {
+          "info": {
+            "name": "Set S3 True IP Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/s3_true_ip_config/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint sets the S3 True IP configuration for the cluster, including true client IP and IP address ranges."
+        },
+        {
+          "info": {
+            "name": "Update EKM certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/set_certificates/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update EKM certificates"
+        },
+        {
+          "info": {
+            "name": "Set true/false to upgrade non-active drives fw",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/set_drive_fw_upgrade/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "Set true/false to upgrade non-active drives fw"
+        },
+        {
+          "info": {
+            "name": "Change Cluster Passwords",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/set_password/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint changes the cluster passwords."
+        },
+        {
+          "info": {
+            "name": "Detect Need for Bundle Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/should_upload/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Detect Need for Bundle Upload"
+        },
+        {
+          "info": {
+            "name": "Stop Running Upgrade",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/stop_upgrade/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint stops a running upgrade flow."
+        },
+        {
+          "info": {
+            "name": "Set Cluster System Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/system_settings/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint sets the cluster system settings."
+        },
+        {
+          "info": {
+            "name": "Unfreeze Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/unfreeze/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "This endpoint unlocks the cluster's indestructibility mechanism."
+        },
+        {
+          "info": {
+            "name": "Change interval for a polling task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/update_polling_interval/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change interval for a polling task"
+        },
+        {
+          "info": {
+            "name": "Upgrade Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/upgrade/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint upgrades the cluster s/w on the nodes"
+        },
+        {
+          "info": {
+            "name": "Upgrade Optane NVRAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/upgrade_optane/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upgrade Optane NVRAM"
+        },
+        {
+          "info": {
+            "name": "Upgrade SSD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/upgrade_ssd/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upgrade SSD"
+        },
+        {
+          "info": {
+            "name": "Upgrade Cluster from Pre-Uploaded Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/upgrade_without_file/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upgrade Cluster from Pre-Uploaded Bundle"
+        },
+        {
+          "info": {
+            "name": "Upload Upgrade Bundle to Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/upload_bundle/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "build_package",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "skip_prepare",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload Upgrade Bundle to Cluster"
+        },
+        {
+          "info": {
+            "name": "Delete Upgrade Bundle from Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/clusters/:id/upload_bundle/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ]
+          },
+          "docs": "Delete Upgrade Bundle from Cluster"
+        },
+        {
+          "info": {
+            "name": "Upload Upgrade Bundle from S3 URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/clusters/:id/upload_from_s3/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Cluster ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload Upgrade Bundle from S3 URL"
+        },
+        {
+          "info": {
+            "name": "Show Cluster Vast DB Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/clusters/:id/vast_db/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns cluster Vast DB settings"
+        },
+        {
+          "info": {
+            "name": "Modify Cluster Vast DB Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/clusters/:id/vast_db/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint updates cluster Vast DB settings"
+        },
+        {
+          "info": {
+            "name": "Return new discovered hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/hosts/discovered_hosts/",
+            "params": [
+              {
+                "name": "host_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return new discovered hosts"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

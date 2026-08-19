@@ -1,0 +1,195 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory blockhosts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "blockhosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Block Hosts per Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blockhosts/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "name of the blockhost"
+              },
+              {
+                "name": "nqn",
+                "value": "",
+                "type": "query",
+                "description": "NQN of the blockhost"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists all block storage hosts configured on the tenant."
+        },
+        {
+          "info": {
+            "name": "Create a Block Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/blockhosts/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a blockhost object with the properties of a block storage client host, to enable the assignment of volumes to the host. Block hosts are added per tenant. To serve block storage from multiple tenants, create a blockhost objec on each tennt separately."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Block Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blockhosts/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specific Block Host."
+        },
+        {
+          "info": {
+            "name": "Modifies a Block Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/blockhosts/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a block storage host."
+        },
+        {
+          "info": {
+            "name": "Delete a Block Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/blockhosts/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Forces removal of mappings of the host to volumes. A host can be deleted only if it is not mapped to any volume."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a block host."
+        },
+        {
+          "info": {
+            "name": "Mapping a block host to volumes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/blockhosts/:id/set_volumes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mapping a block host to volumes."
+        },
+        {
+          "info": {
+            "name": "Update Mapping of Block Host to Volumes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/blockhosts/:id/update_volumes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Mapping of Block Host to Volumes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory blockmappings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "blockmappings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return Mappings of Block Hosts to Volumes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blockmappings/",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "volume_id",
+                "value": "",
+                "type": "query",
+                "description": "Mapped volume id to filter by."
+              },
+              {
+                "name": "block_host_id",
+                "value": "",
+                "type": "query",
+                "description": "Mapped block host id to filter by."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists mappings of block storage hosts to volumes."
+        },
+        {
+          "info": {
+            "name": "Map Block Hosts to Volumes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/blockmappings/bulk/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Map Block Hosts to Volumes"
+        },
+        {
+          "info": {
+            "name": "Return Details of a block hosts-volume mappings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blockmappings/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specific mapping of block hosts to volumes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

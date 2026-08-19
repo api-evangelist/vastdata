@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory cboxes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List CBoxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cboxes/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "rack_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Rack"
+              }
+            ]
+          },
+          "docs": "This endpoint lists the CBoxes that belong to the cluster."
+        },
+        {
+          "info": {
+            "name": "Return Details of a CBox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cboxes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a CBox."
+        },
+        {
+          "info": {
+            "name": "Modify CBox",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/cboxes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CBox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a CBox description."
+        },
+        {
+          "info": {
+            "name": "Control CBox LEDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/cboxes/:id/control_led/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CBox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint controls CBox LEDs (on/off)"
+        },
+        {
+          "info": {
+            "name": "Refreshes cbox uid to match it's cnodes chassis serial",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/cboxes/:id/refresh_uid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint refreshes cbox uid to match it's cnodes chassis serial."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

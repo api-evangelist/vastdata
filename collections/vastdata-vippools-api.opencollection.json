@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory vippools API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vippools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": " List VIP Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vippools/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_ip",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start IP of VIP pool range"
+              },
+              {
+                "name": "end_ip",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end IP of VIP pool range"
+              },
+              {
+                "name": "cluster__name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cluster__id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "port_membership",
+                "value": "",
+                "type": "query",
+                "description": "Filters pools by port affinity"
+              },
+              {
+                "name": "cnode_ids__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "tenant_name__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Tenant name to filter by"
+              },
+              {
+                "name": "serves_tenant",
+                "value": "",
+                "type": "query",
+                "description": "Filter by served tenants. Accepts tenant ID or \"all\" for all served tenants."
+              }
+            ]
+          },
+          "docs": "This endpoint returns the VIP pools on the cluster."
+        },
+        {
+          "info": {
+            "name": "Create VIP Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vippools/"
+          },
+          "docs": "This endpoint creates a VIP pool."
+        },
+        {
+          "info": {
+            "name": "Allocate VIP Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vippools/allocate/"
+          },
+          "docs": "This endpoint allocates a VIP pool for client access or for native replication."
+        },
+        {
+          "info": {
+            "name": "Return Details of a VIP Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vippools/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VIP Pool ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a VIP pool."
+        },
+        {
+          "info": {
+            "name": "Modify VIP Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vippools/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VIP Pool ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a VIP pool."
+        },
+        {
+          "info": {
+            "name": "Delete VIP Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/vippools/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VIP Pool ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a VIP pool."
+        },
+        {
+          "info": {
+            "name": "Reallocate VIP Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vippools/:id/reallocate/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VIP Pool ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies IPs in a VIP pool."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

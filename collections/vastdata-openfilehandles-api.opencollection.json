@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory openfilehandles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "openfilehandles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all open files handles.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/openfilehandles/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "open_file__id",
+                "value": "",
+                "type": "query",
+                "description": "Open File id to filter by."
+              },
+              {
+                "name": "client_ip__startswith",
+                "value": "",
+                "type": "query",
+                "description": "Filter by client IP prefix"
+              },
+              {
+                "name": "client_ip_subnet",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CIDR subnet"
+              },
+              {
+                "name": "has_locks",
+                "value": "",
+                "type": "query",
+                "description": "Filter by lock status"
+              },
+              {
+                "name": "has_lease",
+                "value": "",
+                "type": "query",
+                "description": "Filter by lease status"
+              },
+              {
+                "name": "username__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by username substring"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Filter by protocol"
+              }
+            ]
+          },
+          "docs": "This endpoint lists open files handles."
+        },
+        {
+          "info": {
+            "name": "Return details of an open file handle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/openfilehandles/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns information about a specific open file handle."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

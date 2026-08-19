@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory ports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Switch Ports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ports/",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by port state"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by port model"
+              }
+            ]
+          },
+          "docs": "This endpoint lists switch ports."
+        },
+        {
+          "info": {
+            "name": "Return Details of One Switch Port",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ports/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Port ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specific switch port."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

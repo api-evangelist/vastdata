@@ -1,0 +1,629 @@
+{
+  "item": [
+    {
+      "id": "a380a94a-faed-4383-8a03-6f10844894d4",
+      "name": "vastauditlog",
+      "description": {
+        "content": "The VAST audit log is a database that can store VAST cluster protocol audits. If protocol auditing is enabled and configured to be logged to VAST audit log, the endpoint can be used to query the VAST audit log.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f13b7196-cee8-41c8-8572-4abfa959767c",
+          "name": "Returns VAST Audit Log columns",
+          "request": {
+            "name": "Returns VAST Audit Log columns",
+            "description": {},
+            "url": {
+              "path": [
+                "vastauditlog",
+                "columns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56c6ed3c-0db9-4f74-a223-537df8509427",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vastauditlog",
+                    "columns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"database_name\": \"string\",\n    \"field\": {\n      \"column_type\": \"map\",\n      \"key_type\": {\n        \"column_type\": \"bool\"\n      },\n      \"value_type\": {\n        \"column_type\": \"bool\"\n      }\n    },\n    \"name\": \"string\",\n    \"raw_field\": \"map<bool, bool>\",\n    \"schema_name\": \"string\",\n    \"table_name\": \"string\"\n  },\n  {\n    \"database_name\": \"string\",\n    \"field\": {\n      \"column_type\": \"map\",\n      \"key_type\": {\n        \"column_type\": \"bool\"\n      },\n      \"value_type\": {\n        \"column_type\": \"bool\"\n      }\n    },\n    \"name\": \"string\",\n    \"raw_field\": \"map<bool, bool>\",\n    \"schema_name\": \"string\",\n    \"table_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e81aa70-4de7-4249-9f6b-4fb8d2d9de4a",
+          "name": "Queries data based on provided params",
+          "request": {
+            "name": "Queries data based on provided params",
+            "description": {},
+            "url": {
+              "path": [
+                "vastauditlog",
+                "query_data",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "time",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "client_ip",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "cluster_vip",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "tenant",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "protocol",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "rpc_type",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "path",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "view_path",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "name",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "s3_bucket_name",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "login_name",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "uid",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "sid",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "s3_access_keys",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "status",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "num_ops",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "num_bytes",
+                  "description": "Defines which fields should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>",
+                  "description": "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f784c780-8cf8-4e12-8ad7-e0efe0d2206f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vastauditlog",
+                    "query_data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "time"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "client_ip"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "cluster_vip"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "tenant"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "protocol"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "rpc_type"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "path"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "view_path"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "s3_bucket_name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "login_name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "uid"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "sid"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "s3_access_keys"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "status"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "num_ops"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "num_bytes"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 194,\n  \"next\": \"string\",\n  \"prop_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"results\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d89c40ce-c1d2-4588-87a8-cfcbfccd7e10",
+          "name": "Queries the VAST Audit log.",
+          "request": {
+            "name": "Queries the VAST Audit log.",
+            "description": {},
+            "url": {
+              "path": [
+                "vastauditlog",
+                "query_data",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": \"<object>\",\n  \"fields\": [\n    \"time\",\n    \"client_ip\",\n    \"cluster_vip\",\n    \"tenant\",\n    \"protocol\",\n    \"rpc_type\",\n    \"path\",\n    \"view_path\",\n    \"name\",\n    \"s3_bucket_name\",\n    \"login_name\",\n    \"uid\",\n    \"sid\",\n    \"s3_access_keys\",\n    \"status\",\n    \"num_ops\",\n    \"num_bytes\"\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "62a2b810-d70d-4bfd-a3d3-44f545d59241",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vastauditlog",
+                    "query_data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3364,\n  \"next\": \"string\",\n  \"prop_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"results\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1cc72ac-7fea-427d-aee1-16470c13c09a",
+          "name": "Returns information about VAST Audit Log stats",
+          "request": {
+            "name": "Returns information about VAST Audit Log stats",
+            "description": {},
+            "url": {
+              "path": [
+                "vastauditlog",
+                "stats",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "731251a1-e47c-4287-aeb1-66177db3902e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vastauditlog",
+                    "stats",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count_columns\": 317,\n  \"count_rows\": 1550\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f37d4473-dba3-46e6-8880-06f041274aee",
+    "name": "VAST API Swagger Schema activedirectory vastauditlog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

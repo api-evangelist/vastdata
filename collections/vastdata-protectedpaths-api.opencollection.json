@@ -1,0 +1,472 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory protectedpaths API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "protectedpaths",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Protected Paths",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/protectedpaths/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "role",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "source_dir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "replication_policy__name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "start/pause protected path"
+              }
+            ]
+          },
+          "docs": "This endpoint lists protected paths."
+        },
+        {
+          "info": {
+            "name": "Create a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/protectedpaths/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a protected path."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/protectedpaths/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "index of protected path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a protected path."
+        },
+        {
+          "info": {
+            "name": "Modify a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a protected path."
+        },
+        {
+          "info": {
+            "name": "Delete a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/protectedpaths/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a protected path.If the protected path has replication streams, it deletes all streams and all streams between members of the replication group."
+        },
+        {
+          "info": {
+            "name": "Add a Replication Stream to a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/add_stream/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds a replication stream to a protected path."
+        },
+        {
+          "info": {
+            "name": "Commit a Restored Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/commit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint commits a path restore. Before calling This endpoint, call the /protectedpaths/{id}/restore operation to create a clone from a snapshot."
+        },
+        {
+          "info": {
+            "name": "Force failover on a protected path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/force_failover",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path"
+              }
+            ]
+          },
+          "docs": "This endpoint forces ungraceful fail-over of a group replication protected path. Run the operation from the cluster that you want to become the source peer."
+        },
+        {
+          "info": {
+            "name": "Modify Capability of a Replication Stream that Belongs to a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/modify_member/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path to which the stream belongs"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies the capability of a specified stream of a protected path."
+        },
+        {
+          "info": {
+            "name": "Pause Restore on a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/pause",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint pauses a restore operation on a protected path."
+        },
+        {
+          "info": {
+            "name": "Return Status for Prefetch Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/protectedpaths/:id/prefetch_path",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Protected path ID"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of task for which to get the prefetch status"
+              }
+            ]
+          },
+          "docs": "This endpoint returns status for a prefetch path."
+        },
+        {
+          "info": {
+            "name": "Prefetch a Path to Global Access Cache",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/protectedpaths/:id/prefetch_path",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Protected path ID"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Force prefetch even if it is already running"
+              }
+            ]
+          },
+          "docs": "This endpoint prefetches data from a specified path under a global access protected path. The data is copied from the source peer to the cache on the destination peer. The operation is initiated from the destination peer. It improves performance for accessing the cached data."
+        },
+        {
+          "info": {
+            "name": "Delete Path Prefetch Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/protectedpaths/:id/prefetch_path",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Protected path ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a prefetch task from the prefetch history."
+        },
+        {
+          "info": {
+            "name": "Reattach a Stream to a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/reattach_stream/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path"
+              }
+            ]
+          },
+          "docs": "This endpoint re-attaches a replication stream to a protected path."
+        },
+        {
+          "info": {
+            "name": "Remove a Stream from a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/remove_stream/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path"
+              }
+            ]
+          },
+          "docs": "This endpoint removes a replication stream from the specified protected path."
+        },
+        {
+          "info": {
+            "name": "Trigger Replication on all the Streams of a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/replicate_now/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint triggers replication on all streams of a protected path."
+        },
+        {
+          "info": {
+            "name": "Create a Clone to Restore a Path.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/protectedpaths/:id/restore",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint creates a cloned directory of a path from a selected snapshot of a protected path, for the purpose of restoring the path. To complete the restore process, call the /protectedpaths/{id}/commit operation."
+        },
+        {
+          "info": {
+            "name": "Resume Restore on a Protected Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/resume",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint resumes a restore operation that was paused on a protected path."
+        },
+        {
+          "info": {
+            "name": "Stops snapshot restore on protected path.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/protectedpaths/:id/stop",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the protected path"
+              }
+            ]
+          },
+          "docs": "This endpoint stops a restore on a protected path. It removes the snapshot clone created by the restore operation. It is available until the restore is committed. "
+        },
+        {
+          "info": {
+            "name": "Returns validations results for Protected Path.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/protectedpaths/:id/validate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns validation results for a protected path. The results returned can be used to warn users if a protected path has s3_versioning enabled and that restoring the path may lead to losing versions that aren't part of the restored snapshot."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

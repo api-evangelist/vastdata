@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory managers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "managers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Managers (VMS Users)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/managers/",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "Filter by username"
+              }
+            ]
+          },
+          "docs": "This endpoint lists the VMS manager users with the option to filter by user name."
+        },
+        {
+          "info": {
+            "name": "Create Manager (VMS User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/managers/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Manager (VMS User)"
+        },
+        {
+          "info": {
+            "name": "Get authorized status for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/managers/authorized_status/",
+            "params": [
+              {
+                "name": "leading_vid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object_path",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner_vid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              }
+            ]
+          },
+          "docs": "This endpoint gets authorized status for requested user"
+        },
+        {
+          "info": {
+            "name": "Change user's password",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/managers/password"
+          },
+          "docs": "This operation changes password for the requesting user."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Manager (VMS User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/managers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Manager ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a manager user."
+        },
+        {
+          "info": {
+            "name": "Modify Manager (VMS User)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/managers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Manager ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a manager user."
+        },
+        {
+          "info": {
+            "name": "Delete Manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/managers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a VMS manager user."
+        },
+        {
+          "info": {
+            "name": "Unlock a Manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/managers/:id/unlock/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Manager ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint unlocks a manager."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

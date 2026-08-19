@@ -1,0 +1,511 @@
+{
+  "item": [
+    {
+      "id": "08a7cd87-6d2a-4e8f-bace-aae9025bc3e0",
+      "name": "bgpconfigs",
+      "description": {
+        "content": "BGP Configs are Border Gateway Protocol (BGP) configurations. You can configure a virtual IP pool to use layer 3 connectivity, instead of the default layer 2 connectivity, by attaching a BGP configuration to the Virtual IP pool.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b64a34a-6e02-4897-bdf7-17a617e6b8d9",
+          "name": "List BGP Configurations",
+          "request": {
+            "name": "List BGP Configurations",
+            "description": {
+              "content": "This endpoint lists BGP configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bgpconfigs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93d69d78-3370-4f1d-b51c-4f0cb3485191",
+              "name": "BGP configurations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgpconfigs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"self_asn\": 4587,\n    \"external_asn\": 8306,\n    \"any_external_asn\": true,\n    \"bfd_enabled\": false,\n    \"guid\": \"string\",\n    \"id\": 8186,\n    \"ips_represent\": \"odd\",\n    \"md5_password\": \"string\",\n    \"method\": \"string\",\n    \"racks\": [\n      {\n        \"ip_ranges\": [\n          \"string\",\n          \"string\"\n        ],\n        \"rack_id\": 4368\n      },\n      {\n        \"ip_ranges\": [\n          \"string\",\n          \"string\"\n        ],\n        \"rack_id\": 6822\n      }\n    ],\n    \"status\": \"string\",\n    \"subnet_bits\": 5525,\n    \"vip_migration_grace_period_sec\": 5537,\n    \"vlan\": 3111\n  },\n  {\n    \"name\": \"string\",\n    \"self_asn\": 8202,\n    \"external_asn\": 5009,\n    \"any_external_asn\": false,\n    \"bfd_enabled\": true,\n    \"guid\": \"string\",\n    \"id\": 8203,\n    \"ips_represent\": \"even\",\n    \"md5_password\": \"string\",\n    \"method\": \"string\",\n    \"racks\": [\n      {\n        \"ip_ranges\": [\n          \"string\",\n          \"string\"\n        ],\n        \"rack_id\": 9466\n      },\n      {\n        \"ip_ranges\": [\n          \"string\",\n          \"string\"\n        ],\n        \"rack_id\": 8205\n      }\n    ],\n    \"status\": \"string\",\n    \"subnet_bits\": 1353,\n    \"vip_migration_grace_period_sec\": 3331,\n    \"vlan\": 5260\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93f8b7f1-3d79-4974-bb04-d74e7d030bf6",
+          "name": "Create BGP Config",
+          "request": {
+            "name": "Create BGP Config",
+            "description": {
+              "content": "This endpoint creates a BGP configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bgpconfigs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"self_asn\": \"<integer>\",\n  \"external_asn\": \"<integer>\",\n  \"any_external_asn\": \"<boolean>\",\n  \"bfd_enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"ips_represent\": \"<string>\",\n  \"md5_password\": \"<string>\",\n  \"method\": \"<string>\",\n  \"racks\": [\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    },\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"subnet_bits\": \"<integer>\",\n  \"vip_migration_grace_period_sec\": \"<integer>\",\n  \"vlan\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "46a48585-af09-4821-88c9-7f392b632606",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgpconfigs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"self_asn\": \"<integer>\",\n  \"external_asn\": \"<integer>\",\n  \"any_external_asn\": \"<boolean>\",\n  \"bfd_enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"ips_represent\": \"<string>\",\n  \"md5_password\": \"<string>\",\n  \"method\": \"<string>\",\n  \"racks\": [\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    },\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"subnet_bits\": \"<integer>\",\n  \"vip_migration_grace_period_sec\": \"<integer>\",\n  \"vlan\": \"<integer>\"\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"self_asn\": \"<integer>\",\n  \"external_asn\": \"<integer>\",\n  \"any_external_asn\": \"<boolean>\",\n  \"bfd_enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"ips_represent\": \"<string>\",\n  \"md5_password\": \"<string>\",\n  \"method\": \"<string>\",\n  \"racks\": [\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    },\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"subnet_bits\": \"<integer>\",\n  \"vip_migration_grace_period_sec\": \"<integer>\",\n  \"vlan\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f39cd07-2b74-44e4-a19b-24be33b37776",
+          "name": "Delete BGP Config",
+          "request": {
+            "name": "Delete BGP Config",
+            "description": {
+              "content": "This endpoint deletes a BGP configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bgpconfigs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) BGP Config ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96a279de-fc29-4dea-99c5-c03f8800821f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgpconfigs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) BGP Config ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4efa9b2-04d4-4908-a8ac-823ff0f0ff2e",
+          "name": "Return Details of a BGP Configuration",
+          "request": {
+            "name": "Return Details of a BGP Configuration",
+            "description": {
+              "content": "This endpoint returns details of a BGP configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bgpconfigs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) BGP configuration ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10fa215b-7069-4725-908b-fc57f6114de1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgpconfigs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) BGP configuration ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"self_asn\": \"<integer>\",\n  \"external_asn\": \"<integer>\",\n  \"any_external_asn\": \"<boolean>\",\n  \"bfd_enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"ips_represent\": \"<string>\",\n  \"md5_password\": \"<string>\",\n  \"method\": \"<string>\",\n  \"racks\": [\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    },\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"subnet_bits\": \"<integer>\",\n  \"vip_migration_grace_period_sec\": \"<integer>\",\n  \"vlan\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b4ba977-0bf9-4ae3-bb0a-71cb6545f14e",
+          "name": "Modify a BGP Configuration",
+          "request": {
+            "name": "Modify a BGP Configuration",
+            "description": {
+              "content": "This endpoint modifies a BGP configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bgpconfigs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) BGP Config ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"self_asn\": \"<integer>\",\n  \"external_asn\": \"<integer>\",\n  \"any_external_asn\": \"<boolean>\",\n  \"bfd_enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"ips_represent\": \"<string>\",\n  \"md5_password\": \"<string>\",\n  \"method\": \"<string>\",\n  \"racks\": [\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    },\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"subnet_bits\": \"<integer>\",\n  \"vip_migration_grace_period_sec\": \"<integer>\",\n  \"vlan\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "85c0ff36-3e80-4ff9-9aa9-b016f445c31d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bgpconfigs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) BGP Config ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"self_asn\": \"<integer>\",\n  \"external_asn\": \"<integer>\",\n  \"any_external_asn\": \"<boolean>\",\n  \"bfd_enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"ips_represent\": \"<string>\",\n  \"md5_password\": \"<string>\",\n  \"method\": \"<string>\",\n  \"racks\": [\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    },\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"subnet_bits\": \"<integer>\",\n  \"vip_migration_grace_period_sec\": \"<integer>\",\n  \"vlan\": \"<integer>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"self_asn\": \"<integer>\",\n  \"external_asn\": \"<integer>\",\n  \"any_external_asn\": \"<boolean>\",\n  \"bfd_enabled\": \"<boolean>\",\n  \"guid\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"ips_represent\": \"<string>\",\n  \"md5_password\": \"<string>\",\n  \"method\": \"<string>\",\n  \"racks\": [\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    },\n    {\n      \"ip_ranges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rack_id\": \"<integer>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"subnet_bits\": \"<integer>\",\n  \"vip_migration_grace_period_sec\": \"<integer>\",\n  \"vlan\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "039732f8-6d48-40cb-b6fe-09007905ac64",
+    "name": "VAST API Swagger Schema activedirectory bgpconfigs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

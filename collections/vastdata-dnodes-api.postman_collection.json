@@ -1,0 +1,738 @@
+{
+  "item": [
+    {
+      "id": "7d026e55-c364-4033-be3d-f6c083fa9e54",
+      "name": "dnodes",
+      "description": {
+        "content": "A DNode is an NVMe-oF controller card in a DBox. The dnodes path represents the DNodes in the cluster, exposes information about the DNodes and maintenance operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d74e7bc-5a8f-41ff-9f92-9103ad2bbdb9",
+          "name": "List DNodes",
+          "request": {
+            "name": "List DNodes",
+            "description": {
+              "content": "This endpoint returns a list of Dnodes in the cluster, with optional filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dnodes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>",
+                  "description": "Filter by DNode IP"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by DNode state"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by DNode name"
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<boolean>",
+                  "description": "List only enabled DNodes"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e17627f-5ad9-458e-9865-9cd9a0e39a87",
+              "name": "DNode information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dnodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"arch_type\": \"string\",\n    \"bios_version\": \"string\",\n    \"bmc_fw_version\": \"string\",\n    \"bmc_state\": \"string\",\n    \"bmc_state_reason\": \"string\",\n    \"box_rdma_port\": 4475,\n    \"build\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 9733,\n    \"cpld\": \"string\",\n    \"data_rdma_port\": 5460,\n    \"data_tcp_port\": 7901,\n    \"dbox\": \"string\",\n    \"dbox_id\": 6539,\n    \"display_name\": \"string\",\n    \"dtray\": \"string\",\n    \"ebox\": \"string\",\n    \"ebox_id\": 655,\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"host_label\": \"string\",\n    \"hostname\": \"string\",\n    \"id\": 2089,\n    \"ip\": \"string\",\n    \"ip1\": \"string\",\n    \"ip2\": \"string\",\n    \"ipmi_ip\": \"string\",\n    \"ipv6\": \"string\",\n    \"is_primary\": true,\n    \"led_status\": \"string\",\n    \"mgmt_ip\": \"string\",\n    \"new_name\": \"string\",\n    \"os_version\": \"string\",\n    \"platform_rdma_port\": 8383,\n    \"platform_tcp_port\": 7748,\n    \"position\": \"string\",\n    \"rpm\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"string\",\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"arch_type\": \"string\",\n    \"bios_version\": \"string\",\n    \"bmc_fw_version\": \"string\",\n    \"bmc_state\": \"string\",\n    \"bmc_state_reason\": \"string\",\n    \"box_rdma_port\": 5086,\n    \"build\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 6167,\n    \"cpld\": \"string\",\n    \"data_rdma_port\": 9343,\n    \"data_tcp_port\": 3964,\n    \"dbox\": \"string\",\n    \"dbox_id\": 9762,\n    \"display_name\": \"string\",\n    \"dtray\": \"string\",\n    \"ebox\": \"string\",\n    \"ebox_id\": 8830,\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"host_label\": \"string\",\n    \"hostname\": \"string\",\n    \"id\": 5449,\n    \"ip\": \"string\",\n    \"ip1\": \"string\",\n    \"ip2\": \"string\",\n    \"ipmi_ip\": \"string\",\n    \"ipv6\": \"string\",\n    \"is_primary\": false,\n    \"led_status\": \"string\",\n    \"mgmt_ip\": \"string\",\n    \"new_name\": \"string\",\n    \"os_version\": \"string\",\n    \"platform_rdma_port\": 4558,\n    \"platform_tcp_port\": 4352,\n    \"position\": \"string\",\n    \"rpm\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"string\",\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a99fa85d-d200-4f99-9055-66ad3e9c39fd",
+          "name": "Return Details of a DNode",
+          "request": {
+            "name": "Return Details of a DNode",
+            "description": {
+              "content": "This endpoint returns details of a DNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dnodes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fff02114-e510-49e4-858d-533410da289f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dnodes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"arch_type\": \"string\",\n  \"bios_version\": \"string\",\n  \"bmc_fw_version\": \"string\",\n  \"bmc_state\": \"string\",\n  \"bmc_state_reason\": \"string\",\n  \"box_rdma_port\": 2421,\n  \"build\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 9937,\n  \"cpld\": \"string\",\n  \"data_rdma_port\": 3056,\n  \"data_tcp_port\": 5584,\n  \"dbox\": \"string\",\n  \"dbox_id\": 577,\n  \"display_name\": \"string\",\n  \"dtray\": \"string\",\n  \"ebox\": \"string\",\n  \"ebox_id\": 8705,\n  \"enabled\": true,\n  \"guid\": \"string\",\n  \"host_label\": \"string\",\n  \"hostname\": \"string\",\n  \"id\": 9411,\n  \"ip\": \"string\",\n  \"ip1\": \"string\",\n  \"ip2\": \"string\",\n  \"ipmi_ip\": \"string\",\n  \"ipv6\": \"string\",\n  \"is_primary\": false,\n  \"led_status\": \"string\",\n  \"mgmt_ip\": \"string\",\n  \"new_name\": \"string\",\n  \"os_version\": \"string\",\n  \"platform_rdma_port\": 1564,\n  \"platform_tcp_port\": 6159,\n  \"position\": \"string\",\n  \"rpm\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"string\",\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e01a743-4486-4a80-8054-348b9ed6bb67",
+          "name": "Activate/Deactivate/Replace/Power On/Off DNode",
+          "request": {
+            "name": "Activate/Deactivate/Replace/Power On/Off DNode",
+            "description": {
+              "content": "This endpoint activates, deactivates, replaces, powers off and powers on a DNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dnodes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"erase_boot\": \"<boolean>\",\n  \"power_cycle\": \"<boolean>\",\n  \"power_off\": \"<boolean>\",\n  \"power_on\": \"<boolean>\",\n  \"replace\": \"<boolean>\",\n  \"skip_network_validation\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f8628c5-c7a2-465e-af76-5df20de260f9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dnodes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"erase_boot\": \"<boolean>\",\n  \"power_cycle\": \"<boolean>\",\n  \"power_off\": \"<boolean>\",\n  \"power_on\": \"<boolean>\",\n  \"replace\": \"<boolean>\",\n  \"skip_network_validation\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eeae6c64-25e3-4230-bae2-85b32b401123",
+          "name": "Control DNode LED",
+          "request": {
+            "name": "Control DNode LED",
+            "description": {
+              "content": "This endpoint controls a DNode LED",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dnodes",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1ae32e7-4076-49b2-8f42-4284a1df4f2c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dnodes",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b3b0f0a-6aaa-490d-a23b-d4eef9784913",
+          "name": "Highlight DNode",
+          "request": {
+            "name": "Highlight DNode",
+            "description": {
+              "content": "This endpoint highlights a DNode",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dnodes",
+                ":id",
+                "highlight",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83b14c98-e761-4c44-89d7-412861a3a0f4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dnodes",
+                    ":id",
+                    "highlight",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd14ac6a-f6b0-4eaf-9739-933ad4a9af73",
+          "name": "Rename DNode",
+          "request": {
+            "name": "Rename DNode",
+            "description": {
+              "content": "This endpoint renames a DNode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dnodes",
+                ":id",
+                "rename",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DNode ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "241cd38a-cd89-4115-8142-bea2c80c998e",
+              "name": "The DNode was renamed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dnodes",
+                    ":id",
+                    "rename",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNode ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8e8bc124-a0b0-4e1f-b246-1c26b06615c0",
+    "name": "VAST API Swagger Schema activedirectory dnodes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

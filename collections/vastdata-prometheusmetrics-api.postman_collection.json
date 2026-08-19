@@ -1,0 +1,1239 @@
+{
+  "item": [
+    {
+      "id": "7160a087-22e6-4fbf-9d31-1c4c9d150767",
+      "name": "prometheusmetrics",
+      "description": {
+        "content": "prometheusmetrics is VAST's Prometheus exporter resource. Prometheus is an open-source systems monitoring and alerting toolkit that provides a data model for describing and recording metrics over time and also provides a web application to display those metrics. Prometheus can be configured to fetch metrics from a third party system (such as in this case VAST Cluster) by means of a software entity called a Prometheus exporter. A Prometheus exporter collects metrics from a third party system, converts them to Prometheus metrics and exposes them via a resource path. The VAST prometheus exporter can fetch pre-defined metrics from the VMS database and return the data as a plain/text key-value format response.  You can configure the Prometheus server to scrape the metrics from the exporter at a chosen interval and display the VMS metrics through its display applications.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9dc6907b-bc9c-48ea-9123-0e4be4e1c88e",
+          "name": "prometheus metrics",
+          "request": {
+            "name": "prometheus metrics",
+            "description": {
+              "content": "This endpoint exports cluster and CNode metrics that are not exported by other prometheusmetrics endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73943c1d-e050-49af-9862-d0de603d0c90",
+              "name": "prometheus exporter metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9023d166-099a-4fe3-a501-c5561138a3aa",
+          "name": "prometheus alarms metrics",
+          "request": {
+            "name": "prometheus alarms metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter alarms metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "alarms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6be9493-100f-49cc-b23b-b83c552ed0a2",
+              "name": "prometheus exporter alarms metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "874df4f3-3682-4623-a2fc-89c4da1a0553",
+          "name": "all prometheus metrics",
+          "request": {
+            "name": "all prometheus metrics",
+            "description": {
+              "content": "This endpoint exports all VAST Cluster metrics. This includes each and every metric that can be exported by the other Prometheus exporter endpoints. Due to the large amount of data exported, using this endpoint to collect metrics from a very large cluster is not recommended.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6aa2bdce-5866-4bea-baea-e256ce1b76c9",
+              "name": "All prometheus exporter metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1c1e670-5521-4c1f-a0ce-12de6a6fdeb5",
+          "name": "prometheus defrag metrics",
+          "request": {
+            "name": "prometheus defrag metrics",
+            "description": {
+              "content": "This endpoint exports defragmentation metrics to the Prometheus exporter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "defrag"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4f31116-7fe4-418c-ad0c-748994aa6a11",
+              "name": "Prometheus exporter defrag metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "defrag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f953eb9-85a7-4d1b-9bcc-162897e3600d",
+          "name": "prometheus devices metrics",
+          "request": {
+            "name": "prometheus devices metrics",
+            "description": {
+              "content": "This endpoint returns information about the SSD or NVRAM physical state, such as presence of media errors or current temperature, and overall operational status (active or failed).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3aefb39b-124b-47ed-9c9f-44ab339b1da4",
+              "name": "prometheus exporter devices metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b08121e-2641-4398-8c54-b3ab6fd788f5",
+          "name": "prometheus nics metrics",
+          "request": {
+            "name": "prometheus nics metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter nics metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "nics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6e312e1-ec0a-43df-8e4b-173468c3c8d3",
+              "name": "prometheus exporter nics metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "nics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b4608bb-9e16-4ed8-84d1-b795d0895fec",
+          "name": "prometheus quotas metrics",
+          "request": {
+            "name": "prometheus quotas metrics",
+            "description": {
+              "content": "This endpoint returns information related to quotas configured on the cluster, such as the quota limits set and number of users who have exceeded the quota or who have been blocked due to quota exceeded condition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "quotas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "888219c8-d5fc-4db5-9c70-34265f646bb1",
+              "name": "prometheus exporter quotas metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "quotas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21b0bd18-69e5-41d7-a410-ba5e760b8fe6",
+          "name": "prometheus replications metrics",
+          "request": {
+            "name": "prometheus replications metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter replications metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "replications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9373f1a1-d61c-4369-8a43-61677ffb28d5",
+              "name": "prometheus exporter replications metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "replications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f64c212-7d42-4edb-a370-4f0c50606198",
+          "name": "prometheus switches metrics",
+          "request": {
+            "name": "prometheus switches metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter switches metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "switches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b18cf374-7e5c-4d00-a6e9-d6809f22166a",
+              "name": "prometheus exporter switches metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "switches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bacb720c-85ba-48ac-aa07-9a5917a7022f",
+          "name": "prometheus tenants metrics",
+          "request": {
+            "name": "prometheus tenants metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter tenants metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "tenants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8558720e-3bdd-410e-b23c-3bc026ee3dcb",
+              "name": "prometheus exporter tenants metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0521271-cb12-49a9-aae1-dc720fac9d3a",
+          "name": "prometheus user connections metrics",
+          "request": {
+            "name": "prometheus user connections metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter user connections metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "user_connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3da7c4b-69c8-4e5d-a621-20ce7a6e5242",
+              "name": "prometheus exporter user connections metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "user_connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41fec1fb-5500-4ead-8158-8cf5e248cc53",
+          "name": "prometheus user view metrics",
+          "request": {
+            "name": "prometheus user view metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter user view metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "user_view"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36564314-8ccb-4f3a-baa3-57fa00997855",
+              "name": "prometheus exporter user view metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "user_view"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0880fb8d-c320-4f5f-8102-508afc8735f8",
+          "name": "prometheus users metrics",
+          "request": {
+            "name": "prometheus users metrics",
+            "description": {
+              "content": "This endpoint exports user bandwidth, IOPS and metadata IOPS metrics on read and/or write operations to the Prometheus exporter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6d39358-1d34-477e-a481-326e84eed872",
+              "name": "prometheus exporter users metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a680ccab-7a1c-4306-916f-223410159c51",
+          "name": "prometheus views metrics",
+          "request": {
+            "name": "prometheus views metrics",
+            "description": {
+              "content": "This endpoint exports performance metrics per view, including bandwidth, IOPS, metadata IOPS, latency and QoS, and also view logical and physical capacity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6292bb6-5e32-4f99-9465-1b524c4ed5ec",
+              "name": "prometheus exporter views metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bdee849-c0d4-4ce1-93b4-0565724679d3",
+          "name": "prometheus vips metrics",
+          "request": {
+            "name": "prometheus vips metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter vips metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "vips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63a314de-1ed3-490a-8499-a9dd2e3b9a5b",
+              "name": "prometheus exporter vips metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "vips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71b13de7-10cc-4aad-9519-40e072c74c5d",
+          "name": "prometheus vms state metrics",
+          "request": {
+            "name": "prometheus vms state metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter vms state metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "vms_state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd3575ac-a758-434d-b710-82c468b24b28",
+              "name": "prometheus exporter vms state metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "vms_state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4d773ee-4381-4bae-81ed-2e58da117bc4",
+          "name": "prometheus volumes metrics",
+          "request": {
+            "name": "prometheus volumes metrics",
+            "description": {
+              "content": "This endpoint gives prometheus exporter volumes metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prometheusmetrics",
+                "volumes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1b0369e-b18b-4c19-9c7e-46213948754d",
+              "name": "prometheus exporter volumes metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prometheusmetrics",
+                    "volumes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4588c4b4-2f0e-45d4-a2e9-575834b27605",
+    "name": "VAST API Swagger Schema activedirectory prometheusmetrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

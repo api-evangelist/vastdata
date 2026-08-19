@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory QoS Policies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "QoS Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check whether an operation may be successfully performed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/qospolicies/is_operation_healthy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "QOS Policy id on is operation healthy for update requests"
+              },
+              {
+                "name": "operation",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns warnings about the future state if operation is performed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

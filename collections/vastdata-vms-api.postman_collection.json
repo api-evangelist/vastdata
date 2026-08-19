@@ -1,0 +1,2509 @@
+{
+  "item": [
+    {
+      "id": "780c72d3-9323-4921-b409-50b184657745",
+      "name": "vms",
+      "description": {
+        "content": "The VMS path represents VMS settings, such as the management VIP used to access the VMS interfaces, login banner text for the VMS CLI and Web UI, access token lifetimes for the REST API and more.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43d66ea4-9423-4570-a80d-bd3bd6cf8378",
+          "name": "List VMS",
+          "request": {
+            "name": "List VMS",
+            "description": {
+              "content": "This endpoint lists the Vast Management Service (VMS) settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f61ca392-77c0-469d-92c3-6a7f8e3dea70",
+              "name": "VMS information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"access_token_lifetime\": \"string\",\n    \"auto_logout_timeout\": 4943,\n    \"build\": \"string\",\n    \"capacity_base_10\": true,\n    \"capacity_usable\": false,\n    \"created\": \"2000-09-18T15:56:11.703Z\",\n    \"degraded_reason\": \"string\",\n    \"disable_mgmt_ha\": true,\n    \"disable_vms_metrics\": true,\n    \"enable_idle_timeout\": false,\n    \"guid\": \"string\",\n    \"id\": 3460,\n    \"ip\": \"string\",\n    \"ip1\": \"string\",\n    \"ip2\": \"string\",\n    \"ipv6_support\": true,\n    \"login_banner\": \"string\",\n    \"max_api_tokens_per_user\": 1095,\n    \"mgmt_cnode\": \"string\",\n    \"mgmt_data_interface\": \"string\",\n    \"mgmt_data_netmask\": \"string\",\n    \"mgmt_data_vip\": \"string\",\n    \"mgmt_data_vip_vlan\": \"string\",\n    \"mgmt_inner_vip\": \"string\",\n    \"mgmt_inner_vip_cnode\": \"string\",\n    \"mgmt_ip\": \"string\",\n    \"mgmt_vip\": \"string\",\n    \"mgmt_vip_ipv6\": \"string\",\n    \"min_pwd_length\": 5786,\n    \"min_qos_supported\": false,\n    \"min_tls_version\": \"string\",\n    \"performance_base_10\": true,\n    \"refresh_token_lifetime\": \"string\",\n    \"ssl_certificate\": \"string\",\n    \"ssl_keyfile\": \"string\",\n    \"ssl_port\": 6663,\n    \"state\": \"string\",\n    \"sw_version\": \"string\",\n    \"tabular_support\": \"string\",\n    \"title\": \"string\",\n    \"total_active_capacity\": 1108.4937407103002,\n    \"total_remaining_capacity\": 1911.1467462859223,\n    \"total_usage_capacity_percentage\": 9077.131735370982,\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"access_token_lifetime\": \"string\",\n    \"auto_logout_timeout\": 7686,\n    \"build\": \"string\",\n    \"capacity_base_10\": true,\n    \"capacity_usable\": false,\n    \"created\": \"1974-04-19T09:31:44.412Z\",\n    \"degraded_reason\": \"string\",\n    \"disable_mgmt_ha\": false,\n    \"disable_vms_metrics\": true,\n    \"enable_idle_timeout\": false,\n    \"guid\": \"string\",\n    \"id\": 4227,\n    \"ip\": \"string\",\n    \"ip1\": \"string\",\n    \"ip2\": \"string\",\n    \"ipv6_support\": true,\n    \"login_banner\": \"string\",\n    \"max_api_tokens_per_user\": 1228,\n    \"mgmt_cnode\": \"string\",\n    \"mgmt_data_interface\": \"string\",\n    \"mgmt_data_netmask\": \"string\",\n    \"mgmt_data_vip\": \"string\",\n    \"mgmt_data_vip_vlan\": \"string\",\n    \"mgmt_inner_vip\": \"string\",\n    \"mgmt_inner_vip_cnode\": \"string\",\n    \"mgmt_ip\": \"string\",\n    \"mgmt_vip\": \"string\",\n    \"mgmt_vip_ipv6\": \"string\",\n    \"min_pwd_length\": 1183,\n    \"min_qos_supported\": false,\n    \"min_tls_version\": \"string\",\n    \"performance_base_10\": true,\n    \"refresh_token_lifetime\": \"string\",\n    \"ssl_certificate\": \"string\",\n    \"ssl_keyfile\": \"string\",\n    \"ssl_port\": 8587,\n    \"state\": \"string\",\n    \"sw_version\": \"string\",\n    \"tabular_support\": \"string\",\n    \"title\": \"string\",\n    \"total_active_capacity\": 1195.2485049266859,\n    \"total_remaining_capacity\": 332.5396609153919,\n    \"total_usage_capacity_percentage\": 7076.436595726971,\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13e9006a-4061-4056-abdb-8c0b95c30ab6",
+          "name": "Return VMS Details",
+          "request": {
+            "name": "Return VMS Details",
+            "description": {
+              "content": "This endpoint lists Vast Management Service (VMS) settings for a specified VMS object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc1818bd-dc32-4267-aba2-26970d3fb866",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_token_lifetime\": \"string\",\n  \"auto_logout_timeout\": 2830,\n  \"build\": \"string\",\n  \"capacity_base_10\": false,\n  \"capacity_usable\": false,\n  \"created\": \"1981-12-29T10:07:45.431Z\",\n  \"degraded_reason\": \"string\",\n  \"disable_mgmt_ha\": true,\n  \"disable_vms_metrics\": true,\n  \"enable_idle_timeout\": true,\n  \"guid\": \"string\",\n  \"id\": 2016,\n  \"ip\": \"string\",\n  \"ip1\": \"string\",\n  \"ip2\": \"string\",\n  \"ipv6_support\": false,\n  \"login_banner\": \"string\",\n  \"max_api_tokens_per_user\": 2831,\n  \"mgmt_cnode\": \"string\",\n  \"mgmt_data_interface\": \"string\",\n  \"mgmt_data_netmask\": \"string\",\n  \"mgmt_data_vip\": \"string\",\n  \"mgmt_data_vip_vlan\": \"string\",\n  \"mgmt_inner_vip\": \"string\",\n  \"mgmt_inner_vip_cnode\": \"string\",\n  \"mgmt_ip\": \"string\",\n  \"mgmt_vip\": \"string\",\n  \"mgmt_vip_ipv6\": \"string\",\n  \"min_pwd_length\": 2828,\n  \"min_qos_supported\": false,\n  \"min_tls_version\": \"string\",\n  \"performance_base_10\": false,\n  \"refresh_token_lifetime\": \"string\",\n  \"ssl_certificate\": \"string\",\n  \"ssl_keyfile\": \"string\",\n  \"ssl_port\": 4808,\n  \"state\": \"string\",\n  \"sw_version\": \"string\",\n  \"tabular_support\": \"string\",\n  \"title\": \"string\",\n  \"total_active_capacity\": 5897.818035822647,\n  \"total_remaining_capacity\": 5978.07619044335,\n  \"total_usage_capacity_percentage\": 5663.365066663092,\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "684bd500-75a2-401b-8d63-c1b3093a43c0",
+          "name": "Modify VMS Settings",
+          "request": {
+            "name": "Modify VMS Settings",
+            "description": {
+              "content": "This endpoint modifies some VMS settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_token_lifetime\": \"<string>\",\n  \"capacity_base_10\": \"<boolean>\",\n  \"delete_mgmt_data_vip\": \"<boolean>\",\n  \"disable_vms_metrics\": \"<boolean>\",\n  \"enable_idle_timeout\": \"<boolean>\",\n  \"login_banner\": \"<string>\",\n  \"mgmt_data_interface\": \"<string>\",\n  \"mgmt_data_netmask\": \"<string>\",\n  \"mgmt_data_vip\": \"<string>\",\n  \"mgmt_data_vip_gateway\": \"<string>\",\n  \"mgmt_data_vip_gateway_ipv6\": \"<string>\",\n  \"mgmt_data_vip_ipv6\": \"<string>\",\n  \"mgmt_data_vip_prefix_ipv6\": \"<string>\",\n  \"mgmt_data_vip_vlan\": \"<string>\",\n  \"mgmt_inner_vip\": \"<string>\",\n  \"mgmt_vip\": \"<string>\",\n  \"min_pwd_length\": \"<integer>\",\n  \"min_tls_version\": \"<string>\",\n  \"performance_base_10\": \"<boolean>\",\n  \"preferred_cnode_ids\": \"<string>\",\n  \"refresh_token_lifetime\": \"<string>\",\n  \"vms_perf_debug_metrics_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1a92b00-5e57-44bd-bd76-c5d5cb8bf5f5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_token_lifetime\": \"<string>\",\n  \"capacity_base_10\": \"<boolean>\",\n  \"delete_mgmt_data_vip\": \"<boolean>\",\n  \"disable_vms_metrics\": \"<boolean>\",\n  \"enable_idle_timeout\": \"<boolean>\",\n  \"login_banner\": \"<string>\",\n  \"mgmt_data_interface\": \"<string>\",\n  \"mgmt_data_netmask\": \"<string>\",\n  \"mgmt_data_vip\": \"<string>\",\n  \"mgmt_data_vip_gateway\": \"<string>\",\n  \"mgmt_data_vip_gateway_ipv6\": \"<string>\",\n  \"mgmt_data_vip_ipv6\": \"<string>\",\n  \"mgmt_data_vip_prefix_ipv6\": \"<string>\",\n  \"mgmt_data_vip_vlan\": \"<string>\",\n  \"mgmt_inner_vip\": \"<string>\",\n  \"mgmt_vip\": \"<string>\",\n  \"min_pwd_length\": \"<integer>\",\n  \"min_tls_version\": \"<string>\",\n  \"performance_base_10\": \"<boolean>\",\n  \"preferred_cnode_ids\": \"<string>\",\n  \"refresh_token_lifetime\": \"<string>\",\n  \"vms_perf_debug_metrics_enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bcb592a-6030-4e56-b90a-aaea77fd28cf",
+          "name": "Return Configured SAML Identify Providers (IdPs)",
+          "request": {
+            "name": "Return Configured SAML Identify Providers (IdPs)",
+            "description": {
+              "content": "This endpoint returns all configured SAML identify providers (IdPs). Authentication is not required for this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "configured_idps",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2be56d6d-8fef-4e92-8041-e1152a1b6c28",
+              "name": "List of configured IdPs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "configured_idps",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b04196f-a9e8-4b6d-8a7a-76886ea946e4",
+          "name": "Return VMS login banner (Authentication Not Required)",
+          "request": {
+            "name": "Return VMS login banner (Authentication Not Required)",
+            "description": {
+              "content": "This endpoint returns the VMS login banner, without requiring authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "login_banner",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f80f04bf-7951-4ccd-b6e4-56387480ec2d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "login_banner",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_token_lifetime\": \"string\",\n  \"auto_logout_timeout\": 2830,\n  \"build\": \"string\",\n  \"capacity_base_10\": false,\n  \"capacity_usable\": false,\n  \"created\": \"1981-12-29T10:07:45.431Z\",\n  \"degraded_reason\": \"string\",\n  \"disable_mgmt_ha\": true,\n  \"disable_vms_metrics\": true,\n  \"enable_idle_timeout\": true,\n  \"guid\": \"string\",\n  \"id\": 2016,\n  \"ip\": \"string\",\n  \"ip1\": \"string\",\n  \"ip2\": \"string\",\n  \"ipv6_support\": false,\n  \"login_banner\": \"string\",\n  \"max_api_tokens_per_user\": 2831,\n  \"mgmt_cnode\": \"string\",\n  \"mgmt_data_interface\": \"string\",\n  \"mgmt_data_netmask\": \"string\",\n  \"mgmt_data_vip\": \"string\",\n  \"mgmt_data_vip_vlan\": \"string\",\n  \"mgmt_inner_vip\": \"string\",\n  \"mgmt_inner_vip_cnode\": \"string\",\n  \"mgmt_ip\": \"string\",\n  \"mgmt_vip\": \"string\",\n  \"mgmt_vip_ipv6\": \"string\",\n  \"min_pwd_length\": 2828,\n  \"min_qos_supported\": false,\n  \"min_tls_version\": \"string\",\n  \"performance_base_10\": false,\n  \"refresh_token_lifetime\": \"string\",\n  \"ssl_certificate\": \"string\",\n  \"ssl_keyfile\": \"string\",\n  \"ssl_port\": 4808,\n  \"state\": \"string\",\n  \"sw_version\": \"string\",\n  \"tabular_support\": \"string\",\n  \"title\": \"string\",\n  \"total_active_capacity\": 5897.818035822647,\n  \"total_remaining_capacity\": 5978.07619044335,\n  \"total_usage_capacity_percentage\": 5663.365066663092,\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aad81bc0-e9c1-4b55-903b-e8b628f373a7",
+          "name": "Return the network settings of VMS",
+          "request": {
+            "name": "Return the network settings of VMS",
+            "description": {},
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "network_settings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bbd527ee-a6d8-401c-82c8-d2637273d866",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "network_settings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"auto_ports_ext_iface\": \"bond\",\n  \"b2b_ipmi\": true,\n  \"boxes\": [\n    {\n      \"box_name\": \"string\",\n      \"hosts\": [\n        {\n          \"hostname\": \"string\",\n          \"id\": 3295,\n          \"ipmi_ip\": \"string\",\n          \"mgmt_ip\": \"string\",\n          \"nb_eth_mtu\": 7307,\n          \"nb_ib_mtu\": 7455\n        },\n        {\n          \"hostname\": \"string\",\n          \"id\": 9210,\n          \"ipmi_ip\": \"string\",\n          \"mgmt_ip\": \"string\",\n          \"nb_eth_mtu\": 5644,\n          \"nb_ib_mtu\": 8640\n        }\n      ]\n    },\n    {\n      \"box_name\": \"string\",\n      \"hosts\": [\n        {\n          \"hostname\": \"string\",\n          \"id\": 6211,\n          \"ipmi_ip\": \"string\",\n          \"mgmt_ip\": \"string\",\n          \"nb_eth_mtu\": 501,\n          \"nb_ib_mtu\": 339\n        },\n        {\n          \"hostname\": \"string\",\n          \"id\": 3992,\n          \"ipmi_ip\": \"string\",\n          \"mgmt_ip\": \"string\",\n          \"nb_eth_mtu\": 6936,\n          \"nb_ib_mtu\": 7659\n        }\n      ]\n    }\n  ],\n  \"dns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"eth_mtu\": 1105,\n  \"ext_netmask\": \"string\",\n  \"external_gateways\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ib_mtu\": 5787,\n  \"ipmi_gateway\": \"string\",\n  \"ipmi_netmask\": \"string\",\n  \"management_vips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ntp\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65d46846-2916-424d-aea8-a707524da595",
+          "name": "Modify the network settings of VMS",
+          "request": {
+            "name": "Modify the network settings of VMS",
+            "description": {
+              "content": "This endpoint modifies some of the VMS network configuration settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "network_settings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"auto_ports_ext_iface\": \"<string>\",\n  \"b2b_ipmi\": \"<boolean>\",\n  \"dns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"eth_mtu\": \"<integer>\",\n  \"ext_netmask\": \"<string>\",\n  \"external_gateways\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hosts\": [\n    {\n      \"hostname\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"ipmi_ip\": \"<string>\",\n      \"mgmt_ip\": \"<string>\",\n      \"nb_eth_mtu\": \"<integer>\",\n      \"nb_ib_mtu\": \"<integer>\"\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"ipmi_ip\": \"<string>\",\n      \"mgmt_ip\": \"<string>\",\n      \"nb_eth_mtu\": \"<integer>\",\n      \"nb_ib_mtu\": \"<integer>\"\n    }\n  ],\n  \"ib_mtu\": \"<integer>\",\n  \"ipmi_gateway\": \"<string>\",\n  \"ipmi_netmask\": \"<string>\",\n  \"management_vips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ntp\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "fd9e73ef-473b-4640-8312-75151947a2ae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "network_settings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"auto_ports_ext_iface\": \"<string>\",\n  \"b2b_ipmi\": \"<boolean>\",\n  \"dns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"eth_mtu\": \"<integer>\",\n  \"ext_netmask\": \"<string>\",\n  \"external_gateways\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hosts\": [\n    {\n      \"hostname\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"ipmi_ip\": \"<string>\",\n      \"mgmt_ip\": \"<string>\",\n      \"nb_eth_mtu\": \"<integer>\",\n      \"nb_ib_mtu\": \"<integer>\"\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"ipmi_ip\": \"<string>\",\n      \"mgmt_ip\": \"<string>\",\n      \"nb_eth_mtu\": \"<integer>\",\n      \"nb_ib_mtu\": \"<integer>\"\n    }\n  ],\n  \"ib_mtu\": \"<integer>\",\n  \"ipmi_gateway\": \"<string>\",\n  \"ipmi_netmask\": \"<string>\",\n  \"management_vips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ntp\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "adb4a4a7-74fc-4989-bfad-4fc65194bc15",
+          "name": "Preview summary of changes to the network settings of VMS",
+          "request": {
+            "name": "Preview summary of changes to the network settings of VMS",
+            "description": {
+              "content": "This endpoint enables you to submit new values for VMS network settings and preview a summary of changes that would be made by modifying the settings to the values submitted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "network_settings_summary",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"auto_ports_ext_iface\": \"<string>\",\n  \"b2b_ipmi\": \"<boolean>\",\n  \"dns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"eth_mtu\": \"<integer>\",\n  \"ext_netmask\": \"<string>\",\n  \"external_gateways\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hosts\": [\n    {\n      \"hostname\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"ipmi_ip\": \"<string>\",\n      \"mgmt_ip\": \"<string>\",\n      \"nb_eth_mtu\": \"<integer>\",\n      \"nb_ib_mtu\": \"<integer>\"\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"ipmi_ip\": \"<string>\",\n      \"mgmt_ip\": \"<string>\",\n      \"nb_eth_mtu\": \"<integer>\",\n      \"nb_ib_mtu\": \"<integer>\"\n    }\n  ],\n  \"ib_mtu\": \"<integer>\",\n  \"ipmi_gateway\": \"<string>\",\n  \"ipmi_netmask\": \"<string>\",\n  \"management_vips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ntp\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "56c27e5b-b6ca-475c-a9d6-793bfedb5bb0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "network_settings_summary",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"auto_ports_ext_iface\": \"<string>\",\n  \"b2b_ipmi\": \"<boolean>\",\n  \"dns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"eth_mtu\": \"<integer>\",\n  \"ext_netmask\": \"<string>\",\n  \"external_gateways\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hosts\": [\n    {\n      \"hostname\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"ipmi_ip\": \"<string>\",\n      \"mgmt_ip\": \"<string>\",\n      \"nb_eth_mtu\": \"<integer>\",\n      \"nb_ib_mtu\": \"<integer>\"\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"ipmi_ip\": \"<string>\",\n      \"mgmt_ip\": \"<string>\",\n      \"nb_eth_mtu\": \"<integer>\",\n      \"nb_ib_mtu\": \"<integer>\"\n    }\n  ],\n  \"ib_mtu\": \"<integer>\",\n  \"ipmi_gateway\": \"<string>\",\n  \"ipmi_netmask\": \"<string>\",\n  \"management_vips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ntp\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hosts\": [\n    {\n      \"changes\": {},\n      \"hostname\": \"string\",\n      \"id\": 8205\n    },\n    {\n      \"changes\": {},\n      \"hostname\": \"string\",\n      \"id\": 1290\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0c19473-7f71-45d7-97f6-d1a869bb6839",
+          "name": "Return password settings of VMS",
+          "request": {
+            "name": "Return password settings of VMS",
+            "description": {
+              "content": "This endpoint returns VMS password settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "pwd_settings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "114da7f5-c9c9-49fb-9c7b-61ecb2b941bc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "pwd_settings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"max_failed_login_attempts\": 8767,\n  \"max_failed_login_attempts_enabled\": false,\n  \"min_pwd_length\": 235,\n  \"pwd_change_timeout\": \"string\",\n  \"pwd_change_timeout_enabled\": true,\n  \"pwd_expiration_timeout\": \"string\",\n  \"pwd_expiration_timeout_enabled\": true,\n  \"pwd_history_no_reuse_count\": 6856,\n  \"pwd_history_no_reuse_count_enabled\": true,\n  \"pwd_requires_lowercase\": false,\n  \"pwd_requires_numeric\": true,\n  \"pwd_requires_special_chars\": false,\n  \"pwd_requires_uppercase\": true,\n  \"tmp_pwd_expiration_timeout\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a8eb30c-5a95-4aa2-a7ca-898a2a6e9ef6",
+          "name": "Modify password settings of VMS",
+          "request": {
+            "name": "Modify password settings of VMS",
+            "description": {
+              "content": "This endpoint modifies VMS password settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "pwd_settings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"max_failed_login_attempts\": \"<integer>\",\n  \"max_failed_login_attempts_enabled\": \"<boolean>\",\n  \"min_pwd_length\": \"<integer>\",\n  \"pwd_change_timeout\": \"<string>\",\n  \"pwd_change_timeout_enabled\": \"<boolean>\",\n  \"pwd_expiration_timeout\": \"<string>\",\n  \"pwd_expiration_timeout_enabled\": \"<boolean>\",\n  \"pwd_history_no_reuse_count\": \"<integer>\",\n  \"pwd_history_no_reuse_count_enabled\": \"<boolean>\",\n  \"pwd_requires_lowercase\": \"<boolean>\",\n  \"pwd_requires_numeric\": \"<boolean>\",\n  \"pwd_requires_special_chars\": \"<boolean>\",\n  \"pwd_requires_uppercase\": \"<boolean>\",\n  \"tmp_pwd_expiration_timeout\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "cc2c61b6-88d0-4fc8-8378-77daa450bc79",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "pwd_settings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"max_failed_login_attempts\": \"<integer>\",\n  \"max_failed_login_attempts_enabled\": \"<boolean>\",\n  \"min_pwd_length\": \"<integer>\",\n  \"pwd_change_timeout\": \"<string>\",\n  \"pwd_change_timeout_enabled\": \"<boolean>\",\n  \"pwd_expiration_timeout\": \"<string>\",\n  \"pwd_expiration_timeout_enabled\": \"<boolean>\",\n  \"pwd_history_no_reuse_count\": \"<integer>\",\n  \"pwd_history_no_reuse_count_enabled\": \"<boolean>\",\n  \"pwd_requires_lowercase\": \"<boolean>\",\n  \"pwd_requires_numeric\": \"<boolean>\",\n  \"pwd_requires_special_chars\": \"<boolean>\",\n  \"pwd_requires_uppercase\": \"<boolean>\",\n  \"tmp_pwd_expiration_timeout\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c9cde01-3480-4929-81be-461910456f59",
+          "name": "Remove VMS SSL Client Certificate",
+          "request": {
+            "name": "Remove VMS SSL Client Certificate",
+            "description": {
+              "content": "This endpoint removes the SSL client certificate and client private key used by VMS for mTLS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "remove_client_certificate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd2c1783-0d49-4aa8-92f4-a9010033c805",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "remove_client_certificate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ec7bebf-f69c-47a5-959a-b856a7ea9293",
+          "name": "Reset VMS SSL Certificate to Default",
+          "request": {
+            "name": "Reset VMS SSL Certificate to Default",
+            "description": {
+              "content": "This endpoint resets the SSL certificate and private key used by VMS to default. The default is a pre-installed self signed certificate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "reset_certificate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b48b8a5d-b848-4692-8744-e70f69aa7719",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "reset_certificate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db46818a-2fb1-4bd8-b9bb-257b768e8adf",
+          "name": "Reset VMS SSL Ciphers to Default",
+          "request": {
+            "name": "Reset VMS SSL Ciphers to Default",
+            "description": {
+              "content": "This endpoint resets the SSL Ciphers used by VMS to default.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "reset_ssl_ciphers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77d63dad-ad92-43fd-a65c-43f2c92202fd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "reset_ssl_ciphers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "899156eb-1ef9-4cfc-b630-a3be3f4886ca",
+          "name": "Delete SAML configuration for a specific IdP",
+          "request": {
+            "name": "Delete SAML configuration for a specific IdP",
+            "description": {
+              "content": "This endpoint deletes a SAML configuration for a specific IdP.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "saml_config",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idp_name",
+                  "value": "<string>",
+                  "description": "(Required) SAML IDP name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7d98100-9c64-45b2-ba2f-acbe4ea50762",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "saml_config",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idp_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb13089c-8092-4599-a4d6-1b0d81b7fb96",
+          "name": "Returns a SAML configuration for a specified IdP. ",
+          "request": {
+            "name": "Returns a SAML configuration for a specified IdP. ",
+            "description": {},
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "saml_config",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idp_name",
+                  "value": "<string>",
+                  "description": "(Required) SAML IDP name"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c69a212-0638-4ca3-add7-437bf7e7f3e2",
+              "name": "Returns the SAML configuration for a specific IdP",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "saml_config",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idp_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": 8598\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74b54853-b451-4323-b9b2-5035f52f653b",
+          "name": "Remove SP sign response or assertions request from an IdP",
+          "request": {
+            "name": "Remove SP sign response or assertions request from an IdP",
+            "description": {
+              "content": "This endpoint removes all signed certificates from a SAML configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "saml_config",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idp_name",
+                  "value": "<string>",
+                  "description": "(Required) SAML IDP name"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82d056f5-f072-47f5-8a97-dfc0f6fc0807",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "saml_config",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idp_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ce887d6-51bd-469a-98e8-2949c8d86702",
+          "name": "Modify or Create a SAML configuration for a specific IdP.",
+          "request": {
+            "name": "Modify or Create a SAML configuration for a specific IdP.",
+            "description": {
+              "content": "This endpoint creates a SAML configuration to enable SSO using a given IdP, or modifies an existing SAML configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "saml_config",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idp_name",
+                  "value": "<string>",
+                  "description": "(Required) SAML IDP name"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"saml_settings\": {\n    \"encrypt_assertion\": \"<boolean>\",\n    \"encryption_saml_crt\": \"<string>\",\n    \"encryption_saml_key\": \"<string>\",\n    \"force_authn\": \"<boolean>\",\n    \"idp_entityid\": \"<string>\",\n    \"idp_metadata\": \"<string>\",\n    \"idp_metadata_url\": \"<string>\",\n    \"signing_cert\": \"<string>\",\n    \"signing_key\": \"<string>\",\n    \"want_assertions_or_response_signed\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71fa3210-6fe5-4061-ba3b-9146abb3501e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "saml_config",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idp_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"saml_settings\": {\n    \"encrypt_assertion\": \"<boolean>\",\n    \"encryption_saml_crt\": \"<string>\",\n    \"encryption_saml_key\": \"<string>\",\n    \"force_authn\": \"<boolean>\",\n    \"idp_entityid\": \"<string>\",\n    \"idp_metadata\": \"<string>\",\n    \"idp_metadata_url\": \"<string>\",\n    \"signing_cert\": \"<string>\",\n    \"signing_key\": \"<string>\",\n    \"want_assertions_or_response_signed\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "905be0c4-1640-4fef-b100-32a89fb6939a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "saml_config",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idp_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"saml_settings\": {\n    \"encrypt_assertion\": \"<boolean>\",\n    \"encryption_saml_crt\": \"<string>\",\n    \"encryption_saml_key\": \"<string>\",\n    \"force_authn\": \"<boolean>\",\n    \"idp_entityid\": \"<string>\",\n    \"idp_metadata\": \"<string>\",\n    \"idp_metadata_url\": \"<string>\",\n    \"signing_cert\": \"<string>\",\n    \"signing_key\": \"<string>\",\n    \"want_assertions_or_response_signed\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6693132-24a3-4939-a9b2-31bef4655086",
+          "name": "Install SSL certificate and key on VMS",
+          "request": {
+            "name": "Install SSL certificate and key on VMS",
+            "description": {
+              "content": "This endpoint installs an authority-signed SSL certificate to secure HTTPS connections with VMS. When obtaining an SSL certificate from a Certificate Authority (CA), choose an X.509 output file format containing ASCII (Base64) encoded data. The CA will provide a certificate file and a private key file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "set_certificate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ssl_certificate\": \"<string>\",\n  \"ssl_keyfile\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51733fd8-b450-49aa-9bec-334d62ff21f0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "set_certificate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssl_certificate\": \"<string>\",\n  \"ssl_keyfile\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dcbe8a7-9d75-43d0-8c97-db31841ba616",
+          "name": "Install SSL certificate and key on VMS",
+          "request": {
+            "name": "Install SSL certificate and key on VMS",
+            "description": {
+              "content": "This endpoint installs a SSL client certificate and client private key for mTLS VMS",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "set_client_certificate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ssl_client_certificate\": \"<string>\",\n  \"ssl_client_keyfile\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8365e6fe-8f53-4c87-a6d1-8cdfe371d199",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "set_client_certificate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssl_client_certificate\": \"<string>\",\n  \"ssl_client_keyfile\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "384bd232-8fd0-4f51-8f19-46a0eba63755",
+          "name": "Set max API tokens per user",
+          "request": {
+            "name": "Set max API tokens per user",
+            "description": {
+              "content": "This endpoint sets the maximum number of API tokens per user (default is 5).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "set_max_api_tokens_per_user",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the VMS instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"max_api_tokens_per_user\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4572ce2b-a7de-47f7-bb03-4b8a8e883259",
+              "name": "Max API tokens per user set successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "set_max_api_tokens_per_user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the VMS instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"max_api_tokens_per_user\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f20f656-db87-4e03-9758-061989cfe34e",
+          "name": "Set SSL ciphers use by VMS",
+          "request": {
+            "name": "Set SSL ciphers use by VMS",
+            "description": {
+              "content": "This endpoint sets SSL ciphers used by VMS",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "set_ssl_ciphers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ssl_ciphers\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b0767be4-cb76-4e7c-b5d1-ce2e05dcd5a9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "set_ssl_ciphers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssl_ciphers\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bea6f9f7-2921-4527-bbc1-6dcf634e3153",
+          "name": "Change VMS SSL Port",
+          "request": {
+            "name": "Change VMS SSL Port",
+            "description": {
+              "content": "This endpoint changes the SSL port used for accessing VMS. The default SSL port is 443.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "set_ssl_port",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ssl_port\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "049db474-1caf-4c23-b06d-e0e82131764d",
+              "name": "SSL port has been changed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "set_ssl_port",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssl_port\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6c761dd-682d-475d-99c1-4553efb15c32",
+          "name": "Toggle maintenance mode",
+          "request": {
+            "name": "Toggle maintenance mode",
+            "description": {
+              "content": "Change the system maintenance mode state",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vms",
+                ":id",
+                "toggle_maintenance_mode",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) VMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf3c211e-0e18-4d18-a422-54267fb8d4cd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vms",
+                    ":id",
+                    "toggle_maintenance_mode",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) VMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f63feea2-a764-483a-8073-e8d6a38514a1",
+    "name": "VAST API Swagger Schema activedirectory vms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

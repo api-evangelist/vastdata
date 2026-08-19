@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory iodata API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "iodata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Data Flow Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/iodata/",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "query",
+                "description": "True returns data for graphical representation. False returns data as a time series."
+              },
+              {
+                "name": "protocol_filter",
+                "value": "",
+                "type": "query",
+                "description": "Queries analytics only for a specified protocol."
+              },
+              {
+                "name": "time_frame",
+                "value": "",
+                "type": "query",
+                "description": "Time frame over which to query. Specify as a whole integer followed by a unit: 's' or 'S' denotes seconds. 'm' = minutes, 'h' or 'H' = hours, 'd' or 'D' = days, 'w' or 'W' = weeks, 'M' = months, 'y' or 'Y' = years. Examples: for ten minutes, specify '10m'. For three months, specify '3M'."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start of time frame to query, in the format 2025-02-16T10:00:00.000Z."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End of time frame to query, in the format 2025-02-16T10:00:00.000Z."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint returns data flow analytics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

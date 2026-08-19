@@ -1,0 +1,1113 @@
+{
+  "item": [
+    {
+      "id": "b450ff5e-bee2-4dad-9968-ce14e19f416d",
+      "name": "tables",
+      "description": {
+        "content": "With VAST Database you can store, access and manage tabular data on a VAST cluster. The tables endpoint enables you to interface with the VAST Database tables. You can create tables, filter data, perform modifications and run ACID transactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b15f3ce0-749e-4db5-9027-1d3993fd7712",
+          "name": "List Database Tables",
+          "request": {
+            "name": "List Database Tables",
+            "description": {
+              "content": "This endpoint lists the Database Tables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "999"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Getting list of objects by exact match"
+                },
+                {
+                  "disabled": false,
+                  "key": "name__startswith",
+                  "value": "<string>",
+                  "description": "Getting list of objects by prefix match"
+                },
+                {
+                  "disabled": false,
+                  "key": "count_only",
+                  "value": "false",
+                  "description": "Whether to only return count of objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "table_name__startswith",
+                  "value": "<string>",
+                  "description": "Getting list of objects starting with by table_name__startswith (deprecated since 5.0)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a3d7648-3b48-4ac4-9109-ed43aef90791",
+              "name": "Database Tables",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "999"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name__startswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count_only",
+                      "value": "false"
+                    },
+                    {
+                      "key": "table_name__startswith",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"database_name\": \"string\",\n    \"name\": \"string\",\n    \"num_rows\": 9672,\n    \"schema_name\": \"string\",\n    \"size\": 8880,\n    \"sorting_key_enabled\": false,\n    \"acummulative_row_insertion_count\": 8970.404505902945,\n    \"properties\": \"string\",\n    \"sorting_done\": true,\n    \"sorting_label\": \"B\",\n    \"sorting_score\": 574.971740181941,\n    \"write_amplification\": 4743.729446010546\n  },\n  {\n    \"database_name\": \"string\",\n    \"name\": \"string\",\n    \"num_rows\": 3121,\n    \"schema_name\": \"string\",\n    \"size\": 8020,\n    \"sorting_key_enabled\": false,\n    \"acummulative_row_insertion_count\": 3152.328635705164,\n    \"properties\": \"string\",\n    \"sorting_done\": false,\n    \"sorting_label\": \"A+\",\n    \"sorting_score\": 2213.7126928571683,\n    \"write_amplification\": 8299.6628741386\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae2a651e-3bfc-4484-bd92-3b9357877fa7",
+          "name": "Modify a Database Table",
+          "request": {
+            "name": "Modify a Database Table",
+            "description": {
+              "content": "This endpoint modifies a Database Table",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"sorted_column_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "c12c741c-02f4-4efc-ae46-89ba8387bc55",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41521130-9917-4967-9a38-7a77fb10dad7",
+          "name": "Create a Database Table",
+          "request": {
+            "name": "Create a Database Table",
+            "description": {
+              "content": "This endpoint creates a Database Table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arrow_schema\": [\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"is_imports_table\": \"<boolean>\",\n  \"sorted_column_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "e680d531-e9c9-414d-9803-bcd4211948b8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fb22d98-5a6e-4354-afd0-77dcdf977773",
+          "name": "Add Columns to a Database Table",
+          "request": {
+            "name": "Add Columns to a Database Table",
+            "description": {
+              "content": "This endpoint adds Columns to a Database Table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                "add_columns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arrow_schema\": [\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"is_imports_table\": \"<boolean>\",\n  \"sorted_column_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "bc0d25ee-d615-45e8-9bc5-b925ce4c0d88",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    "add_columns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc4c7acb-ef00-4f9d-a97e-bf2157e5cd56",
+          "name": "Delete a Database Table",
+          "request": {
+            "name": "Delete a Database Table",
+            "description": {
+              "content": "This endpoint deletes a Database Table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                "delete",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"is_imports_table\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "e93697a2-8d0f-476d-a0ba-beb1e32d60a3",
+              "name": "OKOK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf155173-924a-447b-90eb-8d249b135d0c",
+          "name": "Create a Database Table from a File",
+          "request": {
+            "name": "Create a Database Table from a File",
+            "description": {
+              "content": "This endpoint creates a database table from a Parquet or CSV file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                "load_from_file",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Getting object by exact match"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ".parquet or .csv file to create table from."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3f32158-bb4b-4605-a8c2-3f144179ae00",
+              "name": "Database Table created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    "load_from_file",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": ".parquet or .csv file to create table from.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51b4f639-7d30-4033-b4e2-288a98963bbc",
+          "name": "Rename a Database Table",
+          "request": {
+            "name": "Rename a Database Table",
+            "description": {
+              "content": "This endpoint renames a Database Table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                "rename",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"new_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"new_table_name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "627b907d-b3e1-4101-8900-1bb18f44e5d7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    "rename",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "045f8fd6-1aa7-492c-9bd1-a052adb14723",
+          "name": "Show a Database Table",
+          "request": {
+            "name": "Show a Database Table",
+            "description": {
+              "content": "This endpoint shows a Database Table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                "show",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_imports_table",
+                  "value": "<boolean>",
+                  "description": "Is table actually a sub-table to track imported .parquet files."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Getting object by exact match"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "163ddcff-21a0-4f30-9911-a536ae21d01c",
+              "name": "Database Table",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    "show",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_imports_table",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"num_rows\": 2674,\n  \"schema_name\": \"<string>\",\n  \"size\": 8340,\n  \"sorting_key_enabled\": true,\n  \"acummulative_row_insertion_count\": 5401.762259674174,\n  \"properties\": \"string\",\n  \"sorting_done\": true,\n  \"sorting_label\": \"B\",\n  \"sorting_score\": 4939.1427131432,\n  \"write_amplification\": 5577.012336741252,\n  \"is_external_rowid_alloc\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0ab0371-9a7a-4807-a0e1-57c2d109ca13",
+          "name": "Shows historical data for the table.",
+          "request": {
+            "name": "Shows historical data for the table.",
+            "description": {},
+            "url": {
+              "path": [
+                "vastdbtable",
+                "aggregate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "table_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by table_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of metrics to return for the dashboard. E.g. `?metrics=READ_BYTES,WRITE_COUNT`.\nAdditionally, following operations are supported for metrics: [+, -, *].\nUseful to aggregate over a \"custom/fake\" metric value (sum / diff / product of real metrics).\nE.g. `?metrics=READ_BYTES+WRITE_BYTES,READ_COUNT-WRITE_COUNT`.\nWhich means take a sum of READ_BYTES and WRITE_BYTES, take a diff between READ_COUNT and WRITE_COUNT.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of metrics to return for the dashboard. E.g. `?metrics=READ_BYTES,WRITE_COUNT`.\nAdditionally, following operations are supported for metrics: [+, -, *].\nUseful to aggregate over a \"custom/fake\" metric value (sum / diff / product of real metrics).\nE.g. `?metrics=READ_BYTES+WRITE_BYTES,READ_COUNT-WRITE_COUNT`.\nWhich means take a sum of READ_BYTES and WRITE_BYTES, take a diff between READ_COUNT and WRITE_COUNT.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "topn_by",
+                  "value": "<string>",
+                  "description": "What metric to do top N by. By default, sum of all the `?metrics` is taken.\nOnly applicable if sampling and/or sub-grouping is requested.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregate_function",
+                  "value": "sum",
+                  "description": "Function to use when aggregating the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>",
+                  "description": "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sample_per",
+                  "value": "<string>",
+                  "description": "Which column to sample per (X-axis)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_group_by",
+                  "value": "<string>",
+                  "description": "Which column to split the returning samples by (Y-axis)."
+                },
+                {
+                  "disabled": false,
+                  "key": "samples_count",
+                  "value": "<integer>",
+                  "description": "Limit output amount of samples. Rest will be put into `\"__others__\"`.\nWhen sampling per time, affects granularity with which samples are collected.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_groups_count",
+                  "value": "<integer>",
+                  "description": "Limit output amount of sub-groups. Rest will be put into `\"__others__\"`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6198258-418d-4258-aa4c-3a519ba2b269",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vastdbtable",
+                    "aggregate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "table_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "topn_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregate_function",
+                      "value": "sum"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sample_per",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_group_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "samples_count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sub_groups_count",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"262537774\": {\n    \"/mnt/archive\": {\n      \"GETATTR\": 1337,\n      \"SETATTR\": 56\n    },\n    \"/mnt/spb\": {\n      \"GETATTR\": 359,\n      \"SETATTR\": 23\n    },\n    \"__others__\": {\n      \"GETATTR\": 1337,\n      \"SETATTR\": 56\n    }\n  },\n  \"262538880\": {\n    \"/mnt/db\": {\n      \"GETATTR\": 1337,\n      \"SETATTR\": 56\n    },\n    \"/mnt/leet\": {\n      \"GETATTR\": 359,\n      \"SETATTR\": 23\n    },\n    \"__others__\": {\n      \"GETATTR\": 324,\n      \"SETATTR\": 52\n    }\n  },\n  \"__others__\": {\n    \"/mnt/archive\": {\n      \"GETATTR\": 324,\n      \"SETATTR\": 52\n    },\n    \"/mnt/spb\": {\n      \"GETATTR\": 324,\n      \"SETATTR\": 52\n    },\n    \"__others__\": {\n      \"GETATTR\": 1337,\n      \"SETATTR\": 56\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d58b7e2a-f6aa-43d1-b977-0a84706c2b62",
+    "name": "VAST API Swagger Schema activedirectory tables API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

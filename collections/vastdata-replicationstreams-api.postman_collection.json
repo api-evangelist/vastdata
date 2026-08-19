@@ -1,0 +1,610 @@
+{
+  "item": [
+    {
+      "id": "9a94eedd-5ff1-4cee-8a14-cba199cfc8b8",
+      "name": "replicationstreams",
+      "description": {
+        "content": "This path enables you to manage replication streams. Note that for the general case, replication streams belong to protected paths and are managed as part of protected path management. However, for the use case where you configure replication to an S3 replication peer and to an aync replication peer on the same path, use this path instead.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5761a13a-afb5-4537-bdf7-322d964ef924",
+          "name": "List Replication Streams",
+          "request": {
+            "name": "List Replication Streams",
+            "description": {
+              "content": "This endpoint presents replication streams. Replication streams are associated with protected paths. Each replication stream replicates data on the protected path to a specific replication peer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationstreams",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_dir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "replication_policy__name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "start/pause replication stream"
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<string>",
+                  "description": "start/pause replication stream"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>",
+                  "description": "orders by some field"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9d6cff6-61a2-4764-9d7f-451c9468779d",
+              "name": "Replication stream information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationstreams",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_dir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "replication_policy__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"bw\": 4450,\n    \"capabilities\": \"string\",\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"id\": 6978,\n    \"internal\": false,\n    \"is_manual_priority_score\": true,\n    \"name\": \"string\",\n    \"priority_number\": 2824,\n    \"priority_score\": 4574.229520890825,\n    \"protected_path_guid\": \"string\",\n    \"protected_path_id\": 2641,\n    \"protection_policy\": \"string\",\n    \"remote_target_id\": 6469,\n    \"remote_target_name\": \"string\",\n    \"remote_tenant_guid\": \"string\",\n    \"remote_tenant_name\": \"string\",\n    \"replication_group_id\": 1821,\n    \"replication_policy\": \"string\",\n    \"role\": \"string\",\n    \"source_dir\": \"string\",\n    \"state\": \"Suspended\",\n    \"view_replication_enabled\": false\n  },\n  {\n    \"bw\": 397,\n    \"capabilities\": \"string\",\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"id\": 4571,\n    \"internal\": true,\n    \"is_manual_priority_score\": false,\n    \"name\": \"string\",\n    \"priority_number\": 5181,\n    \"priority_score\": 2240.0048852775135,\n    \"protected_path_guid\": \"string\",\n    \"protected_path_id\": 8044,\n    \"protection_policy\": \"string\",\n    \"remote_target_id\": 847,\n    \"remote_target_name\": \"string\",\n    \"remote_tenant_guid\": \"string\",\n    \"remote_tenant_name\": \"string\",\n    \"replication_group_id\": 8829,\n    \"replication_policy\": \"string\",\n    \"role\": \"string\",\n    \"source_dir\": \"string\",\n    \"state\": \"Finalizing\",\n    \"view_replication_enabled\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ec455f6-b46b-40c4-88ad-69a9ae2543d5",
+          "name": "Create Replication Stream",
+          "request": {
+            "name": "Create Replication Stream",
+            "description": {
+              "content": "This path enables you to create a replication stream. It is available for cases where you wish to configure replication to an S3 replication peer on the same path as you configure async replication. Otherwise, use /protectedpaths/{id}/add_stream/ to add a stream to a protected path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationstreams",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"is_manual_priority_score\": \"<boolean>\",\n  \"priority_score\": \"<number>\",\n  \"protected_path_id\": \"<string>\",\n  \"protection_policy_id\": \"<string>\",\n  \"remote_tenant_guid\": \"<string>\",\n  \"remote_tenant_name\": \"<string>\",\n  \"source_dir\": \"<string>\",\n  \"target_exported_dir\": \"<string>\",\n  \"tenant_id\": \"<number>\",\n  \"view_replication_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a139e90-3afc-41c2-b711-1fad86f16ead",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationstreams",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"is_manual_priority_score\": \"<boolean>\",\n  \"priority_score\": \"<number>\",\n  \"protected_path_id\": \"<string>\",\n  \"protection_policy_id\": \"<string>\",\n  \"remote_tenant_guid\": \"<string>\",\n  \"remote_tenant_name\": \"<string>\",\n  \"source_dir\": \"<string>\",\n  \"target_exported_dir\": \"<string>\",\n  \"tenant_id\": \"<number>\",\n  \"view_replication_enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bw\": 5871,\n  \"capabilities\": \"string\",\n  \"enabled\": true,\n  \"guid\": \"string\",\n  \"id\": 5040,\n  \"internal\": false,\n  \"is_manual_priority_score\": true,\n  \"name\": \"string\",\n  \"priority_number\": 2216,\n  \"priority_score\": 7783.265054439285,\n  \"protected_path_guid\": \"string\",\n  \"protected_path_id\": 8223,\n  \"protection_policy\": \"string\",\n  \"remote_target_id\": 7620,\n  \"remote_target_name\": \"string\",\n  \"remote_tenant_guid\": \"string\",\n  \"remote_tenant_name\": \"string\",\n  \"replication_group_id\": 1105,\n  \"replication_policy\": \"string\",\n  \"role\": \"string\",\n  \"source_dir\": \"string\",\n  \"state\": \"INCREMENTAL_SYNC_SUSPENDED\",\n  \"view_replication_enabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ea5258c-b5ca-4151-a8fa-62f374229cc9",
+          "name": "Delete a Replication Stream",
+          "request": {
+            "name": "Delete a Replication Stream",
+            "description": {
+              "content": "This endpoint deletes a replication stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationstreams",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf0fd1a4-8e94-4410-8c30-c66017042cb8",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationstreams",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d39c8e74-ab77-4918-a051-a124171dc14e",
+          "name": "Return Details of a Replication Stream",
+          "request": {
+            "name": "Return Details of a Replication Stream",
+            "description": {
+              "content": "This path returns details of a replication stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationstreams",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) index of replication stream"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "973b18a0-eee0-4c13-9f6a-1700ee36ed61",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationstreams",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) index of replication stream"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bw\": 5871,\n  \"capabilities\": \"string\",\n  \"enabled\": true,\n  \"guid\": \"string\",\n  \"id\": 5040,\n  \"internal\": false,\n  \"is_manual_priority_score\": true,\n  \"name\": \"string\",\n  \"priority_number\": 2216,\n  \"priority_score\": 7783.265054439285,\n  \"protected_path_guid\": \"string\",\n  \"protected_path_id\": 8223,\n  \"protection_policy\": \"string\",\n  \"remote_target_id\": 7620,\n  \"remote_target_name\": \"string\",\n  \"remote_tenant_guid\": \"string\",\n  \"remote_tenant_name\": \"string\",\n  \"replication_group_id\": 1105,\n  \"replication_policy\": \"string\",\n  \"role\": \"string\",\n  \"source_dir\": \"string\",\n  \"state\": \"INCREMENTAL_SYNC_SUSPENDED\",\n  \"view_replication_enabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4036a96f-96dd-4ce0-a1fe-4c76dd7a62c7",
+          "name": "Modify a Replication Stream",
+          "request": {
+            "name": "Modify a Replication Stream",
+            "description": {
+              "content": "This endpoint modifies a replication stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationstreams",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"is_manual_priority_score\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"priority_score\": \"<number>\",\n  \"protection_policy_id\": \"<string>\",\n  \"replication_policy_id\": \"<string>\",\n  \"source_dir\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ebbb3d5a-6310-42e3-a3a8-1a7ca0f023af",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationstreams",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"is_manual_priority_score\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"priority_score\": \"<number>\",\n  \"protection_policy_id\": \"<string>\",\n  \"replication_policy_id\": \"<string>\",\n  \"source_dir\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4aa7c65d-5fae-4474-a8c6-b9abddf30f23",
+    "name": "VAST API Swagger Schema activedirectory replicationstreams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

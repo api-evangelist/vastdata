@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory replicationstreams API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "replicationstreams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Replication Streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/replicationstreams/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "source_dir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "replication_policy__name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "start/pause replication stream"
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "start/pause replication stream"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query",
+                "description": "orders by some field"
+              }
+            ]
+          },
+          "docs": "This endpoint presents replication streams. Replication streams are associated with protected paths. Each replication stream replicates data on the protected path to a specific replication peer."
+        },
+        {
+          "info": {
+            "name": "Create Replication Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/replicationstreams/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This path enables you to create a replication stream. It is available for cases where you wish to configure replication to an S3 replication peer on the same path as you configure async replication. Otherwise, use /protectedpaths/{id}/add_stream/ to add a stream to a protected path."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Replication Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/replicationstreams/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "index of replication stream"
+              }
+            ]
+          },
+          "docs": "This path returns details of a replication stream."
+        },
+        {
+          "info": {
+            "name": "Modify a Replication Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/replicationstreams/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a replication stream."
+        },
+        {
+          "info": {
+            "name": "Delete a Replication Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/replicationstreams/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a replication stream."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

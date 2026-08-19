@@ -1,0 +1,184 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory eboxes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "eboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List EBoxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eboxes/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists the EBoxes that belong to the cluster."
+        },
+        {
+          "info": {
+            "name": "Add EBox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/eboxes/add/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds a EBox to the cluster."
+        },
+        {
+          "info": {
+            "name": "EBox Removal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/eboxes/decommission/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint removes multiple EBoxes from the cluster"
+        },
+        {
+          "info": {
+            "name": "Validate EBox Removal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/eboxes/decommission/dry-run/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint validates an EBox removal operation without executing it"
+        },
+        {
+          "info": {
+            "name": "Resume EBox Removal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/eboxes/decommission/resume/"
+          },
+          "docs": "This endpoint resumes a failed/stalled EBox removal operation"
+        },
+        {
+          "info": {
+            "name": "Return Details of a EBox.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eboxes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "EBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a EBox."
+        },
+        {
+          "info": {
+            "name": "Modify an EBox",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/eboxes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "EBox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify an EBox"
+        },
+        {
+          "info": {
+            "name": "Delete an EBox",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/eboxes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "EBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a EBox."
+        },
+        {
+          "info": {
+            "name": "Control EBox LEDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/eboxes/:id/control_led/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "EBox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint controls EBox LEDs (on/off)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

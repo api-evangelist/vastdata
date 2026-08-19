@@ -1,0 +1,564 @@
+{
+  "item": [
+    {
+      "id": "5ed49f28-145a-4961-a032-66b5f337a5ed",
+      "name": "cboxes",
+      "description": {
+        "content": "A CBox is a server chassis containing four CNodes. The cboxes path represents the CBoxes in the cluster, exposes information about the cBoxes and maintenance operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "104e6a77-be5e-4728-b37a-926852e08aa5",
+          "name": "List CBoxes",
+          "request": {
+            "name": "List CBoxes",
+            "description": {
+              "content": "This endpoint lists the CBoxes that belong to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cboxes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "rack_id",
+                  "value": "<integer>",
+                  "description": "Filter by Rack"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d876f32-b4fa-4755-8973-3cf777ee97c4",
+              "name": "CBox information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cboxes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rack_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 9486,\n    \"description\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 7673,\n    \"index_in_rack\": 9379,\n    \"rack_id\": 8027,\n    \"rack_name\": \"string\",\n    \"state\": \"string\",\n    \"subsystem\": 8597,\n    \"title\": \"string\",\n    \"uid\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 3005,\n    \"description\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 1499,\n    \"index_in_rack\": 5979,\n    \"rack_id\": 9321,\n    \"rack_name\": \"string\",\n    \"state\": \"string\",\n    \"subsystem\": 4814,\n    \"title\": \"string\",\n    \"uid\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71f1e309-fb49-4bc7-ac16-cec648c22572",
+          "name": "Return Details of a CBox",
+          "request": {
+            "name": "Return Details of a CBox",
+            "description": {
+              "content": "This endpoint returns details of a CBox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cboxes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdaee84e-1ff9-4deb-8470-013e15694874",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cboxes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 8765,\n  \"description\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 3476,\n  \"index_in_rack\": 4479,\n  \"rack_id\": 2220,\n  \"rack_name\": \"string\",\n  \"state\": \"string\",\n  \"subsystem\": 8905,\n  \"title\": \"string\",\n  \"uid\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec49bae2-44a4-4192-a32c-56a62dcd2bd1",
+          "name": "Modify CBox",
+          "request": {
+            "name": "Modify CBox",
+            "description": {
+              "content": "This endpoint modifies a CBox description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cboxes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b67932f-fe8f-4f7d-ae65-947e03a0838a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cboxes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "838adf31-15ac-4ede-8ff8-85b959eb79b1",
+          "name": "Control CBox LEDs",
+          "request": {
+            "name": "Control CBox LEDs",
+            "description": {
+              "content": "This endpoint controls CBox LEDs (on/off)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cboxes",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "427f85e9-87df-464e-b037-677d59539670",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cboxes",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36360801-cca4-486f-82d2-2736392c2bd4",
+          "name": "Refreshes cbox uid to match it's cnodes chassis serial",
+          "request": {
+            "name": "Refreshes cbox uid to match it's cnodes chassis serial",
+            "description": {
+              "content": "This endpoint refreshes cbox uid to match it's cnodes chassis serial.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cboxes",
+                ":id",
+                "refresh_uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CBox ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7afd8cbf-a5f4-4960-86f8-ad5eade6d56a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cboxes",
+                    ":id",
+                    "refresh_uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6230f8d7-4efd-43f6-b8f1-1347f1c0ceea",
+    "name": "VAST API Swagger Schema activedirectory cboxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

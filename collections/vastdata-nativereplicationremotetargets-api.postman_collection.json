@@ -1,0 +1,727 @@
+{
+  "item": [
+    {
+      "id": "439b7d18-b1f5-46cb-a7ce-f7ed1e99b461",
+      "name": "nativereplicationremotetargets",
+      "description": {
+        "content": "A replication peer is a remote cluster configured as a peer for async replication. A replication peer  also represents a configured and mirrored async replication relationship between two clusters.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26b3fb7b-3c37-4197-ae05-cd79b2e2e512",
+          "name": "List Async Replication Peers",
+          "request": {
+            "name": "List Async Replication Peers",
+            "description": {
+              "content": "This endpoint presents async replication peers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nativereplicationremotetargets",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "leading_vip",
+                  "value": "<string>",
+                  "description": "Filter by leading remote VIP, a VIP that is specified when creating the peer. It is one of the VIPs in the remote peer's replication VIP Pool."
+                },
+                {
+                  "disabled": false,
+                  "key": "pool",
+                  "value": "<string>",
+                  "description": "Filter by the name of the local cluster's replication VIP pool"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Filter by local cluster's software version"
+                },
+                {
+                  "disabled": false,
+                  "key": "remote_version",
+                  "value": "<string>",
+                  "description": "Filter by remote peer's software version"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_heart_beat",
+                  "value": "<string>",
+                  "description": "Filter by last heartbeat, the time of the last successful message sent, arrived and acknowledged by the peer."
+                },
+                {
+                  "disabled": false,
+                  "key": "space_left",
+                  "value": "<string>",
+                  "description": "Filter by logical capacity remaining available on the remote peer. "
+                },
+                {
+                  "disabled": false,
+                  "key": "remote_vips",
+                  "value": "<string>",
+                  "description": "remote vips"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by state"
+                },
+                {
+                  "disabled": false,
+                  "key": "secure_mode",
+                  "value": "<string>",
+                  "description": "Filter by secure_mode"
+                },
+                {
+                  "disabled": false,
+                  "key": "transport_mode",
+                  "value": "<string>",
+                  "description": "Filter by transport_mode"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19ca34ce-8f38-4f69-9294-af8f16ad6158",
+              "name": "Replication Peer information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nativereplicationremotetargets",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "leading_vip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "remote_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_heart_beat",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "space_left",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "remote_vips",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "secure_mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transport_mode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address_count\": 7262,\n    \"created\": \"string\",\n    \"guid\": \"string\",\n    \"health\": \"string\",\n    \"id\": 6271,\n    \"is_local\": false,\n    \"last_heart_beat\": \"string\",\n    \"leading_vip\": \"string\",\n    \"mss\": 5456,\n    \"name\": \"string\",\n    \"password\": \"string\",\n    \"peer_certificate\": \"string\",\n    \"peer_name\": \"string\",\n    \"pool\": \"string\",\n    \"pool_id\": 4852,\n    \"pool_name\": \"string\",\n    \"remote_version\": \"string\",\n    \"remote_vip_range\": \"string\",\n    \"remote_vips\": [\n      \"string\",\n      \"string\"\n    ],\n    \"secret\": \"string\",\n    \"secure_mode\": \"string\",\n    \"space_left\": \"string\",\n    \"state\": \"DELETING\",\n    \"state_description\": \"string\",\n    \"status\": \"string\",\n    \"sync_state\": \"string\",\n    \"transport_mode\": \"string\",\n    \"url\": \"string\",\n    \"version\": \"string\"\n  },\n  {\n    \"address_count\": 4338,\n    \"created\": \"string\",\n    \"guid\": \"string\",\n    \"health\": \"string\",\n    \"id\": 531,\n    \"is_local\": false,\n    \"last_heart_beat\": \"string\",\n    \"leading_vip\": \"string\",\n    \"mss\": 4884,\n    \"name\": \"string\",\n    \"password\": \"string\",\n    \"peer_certificate\": \"string\",\n    \"peer_name\": \"string\",\n    \"pool\": \"string\",\n    \"pool_id\": 578,\n    \"pool_name\": \"string\",\n    \"remote_version\": \"string\",\n    \"remote_vip_range\": \"string\",\n    \"remote_vips\": [\n      \"string\",\n      \"string\"\n    ],\n    \"secret\": \"string\",\n    \"secure_mode\": \"string\",\n    \"space_left\": \"string\",\n    \"state\": \"CONNECTING\",\n    \"state_description\": \"string\",\n    \"status\": \"string\",\n    \"sync_state\": \"string\",\n    \"transport_mode\": \"string\",\n    \"url\": \"string\",\n    \"version\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b08c039-8bcd-45ce-bf5a-e5fea72d951e",
+          "name": "Create an Async Replication Peer",
+          "request": {
+            "name": "Create an Async Replication Peer",
+            "description": {
+              "content": "This endpoint creates an async replication peer configuration between the local cluster and a remote cluster. Prerequisite: a VIP pool on each cluster with role=replication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nativereplicationremotetargets",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"leading_vip\": \"<string>\",\n  \"pool_id\": \"<integer>\",\n  \"mss\": \"<integer>\",\n  \"password\": \"<string>\",\n  \"peer_certificate\": \"<string>\",\n  \"secure_mode\": \"<string>\",\n  \"transport_mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2e5f4de-8302-441f-8ecb-c91911884f70",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nativereplicationremotetargets",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"leading_vip\": \"<string>\",\n  \"pool_id\": \"<integer>\",\n  \"mss\": \"<integer>\",\n  \"password\": \"<string>\",\n  \"peer_certificate\": \"<string>\",\n  \"secure_mode\": \"<string>\",\n  \"transport_mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address_count\": 9763,\n  \"created\": \"string\",\n  \"guid\": \"string\",\n  \"health\": \"string\",\n  \"id\": 791,\n  \"is_local\": true,\n  \"last_heart_beat\": \"string\",\n  \"leading_vip\": \"string\",\n  \"mss\": 2084,\n  \"name\": \"string\",\n  \"password\": \"string\",\n  \"peer_certificate\": \"string\",\n  \"peer_name\": \"string\",\n  \"pool\": \"string\",\n  \"pool_id\": 1520,\n  \"pool_name\": \"string\",\n  \"remote_version\": \"string\",\n  \"remote_vip_range\": \"string\",\n  \"remote_vips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"secret\": \"string\",\n  \"secure_mode\": \"string\",\n  \"space_left\": \"string\",\n  \"state\": \"CONNECTED\",\n  \"state_description\": \"string\",\n  \"status\": \"string\",\n  \"sync_state\": \"string\",\n  \"transport_mode\": \"string\",\n  \"url\": \"string\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dcb8e4a9-e237-4cf6-985a-edd720d3c003",
+          "name": "Get the mapping between replication peers and remote view policies",
+          "request": {
+            "name": "Get the mapping between replication peers and remote view policies",
+            "description": {
+              "content": "This endpoint returns a remote mapping between replication peers and remote view policies",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nativereplicationremotetargets",
+                "get_remote_mapping",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a2274e9-e068-430a-a126-3db092da1147",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nativereplicationremotetargets",
+                    "get_remote_mapping",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "200d10c7-c301-4eef-a14f-f9b39f32cf34",
+          "name": "Delete a Native Replication Peer",
+          "request": {
+            "name": "Delete a Native Replication Peer",
+            "description": {
+              "content": "This endpoint deletes an async replication peer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nativereplicationremotetargets",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "522c5eff-b067-4d29-a9ae-e0915256bd6f",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nativereplicationremotetargets",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "491fe6e4-dc55-4923-8b26-0bb684483f7b",
+          "name": "Return Details of an Async Replication Peer",
+          "request": {
+            "name": "Return Details of an Async Replication Peer",
+            "description": {
+              "content": "This endpoint returns details of an async replication peer, also known as a replication target.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nativereplicationremotetargets",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) index of replication target"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91eb5ea1-79b7-4930-946c-0050d8fe67ae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nativereplicationremotetargets",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) index of replication target"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address_count\": 9763,\n  \"created\": \"string\",\n  \"guid\": \"string\",\n  \"health\": \"string\",\n  \"id\": 791,\n  \"is_local\": true,\n  \"last_heart_beat\": \"string\",\n  \"leading_vip\": \"string\",\n  \"mss\": 2084,\n  \"name\": \"string\",\n  \"password\": \"string\",\n  \"peer_certificate\": \"string\",\n  \"peer_name\": \"string\",\n  \"pool\": \"string\",\n  \"pool_id\": 1520,\n  \"pool_name\": \"string\",\n  \"remote_version\": \"string\",\n  \"remote_vip_range\": \"string\",\n  \"remote_vips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"secret\": \"string\",\n  \"secure_mode\": \"string\",\n  \"space_left\": \"string\",\n  \"state\": \"CONNECTED\",\n  \"state_description\": \"string\",\n  \"status\": \"string\",\n  \"sync_state\": \"string\",\n  \"transport_mode\": \"string\",\n  \"url\": \"string\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "671e0761-18fd-4e07-87f3-0e9d95a1a1fe",
+          "name": "Modify an Async Replication Peer",
+          "request": {
+            "name": "Modify an Async Replication Peer",
+            "description": {
+              "content": "This endpoint modifies an async replication peer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nativereplicationremotetargets",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NativeReplicationRemoteTarget ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"leading_vip\": \"<string>\",\n  \"mss\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"peer_certificate\": \"<string>\",\n  \"pool_id\": \"<integer>\",\n  \"remote_vips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"secure_mode\": \"<string>\",\n  \"transport_mode\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3fac425-4c3f-44d6-9562-563e39b4e3dc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nativereplicationremotetargets",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NativeReplicationRemoteTarget ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"leading_vip\": \"<string>\",\n  \"mss\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"peer_certificate\": \"<string>\",\n  \"pool_id\": \"<integer>\",\n  \"remote_vips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"secure_mode\": \"<string>\",\n  \"transport_mode\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "62a59ca9-a868-4f35-bd0a-ffc79d706237",
+    "name": "VAST API Swagger Schema activedirectory nativereplicationremotetargets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

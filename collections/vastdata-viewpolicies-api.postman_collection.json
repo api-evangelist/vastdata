@@ -1,0 +1,954 @@
+{
+  "item": [
+    {
+      "id": "702d8bcf-cbe6-498c-909e-177d8bc0bcea",
+      "name": "viewpolicies",
+      "description": {
+        "content": "A view policy specifies view configuration parameters. A view policy can be used by multiple views. Every view is attached to one view policy.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ec7fa48-f40e-43fe-aec8-a390050e1a7e",
+          "name": "List View Policies",
+          "request": {
+            "name": "List View Policies",
+            "description": {
+              "content": "This endpoint lists view policies. By default, all view policies are returned. The list can be filtered using optional parameters. A view policy is a reusable set of configurations that apply to views. Every view has a view policy. A view policy may be used by multiple views.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "viewpolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "atime_frequency",
+                  "value": "<string>",
+                  "description": "Filter by atime frequency."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nfs_return_open_permissions",
+                  "value": "<boolean>",
+                  "description": "Filter by enabled nfs-return-open-permissions flag"
+                },
+                {
+                  "disabled": false,
+                  "key": "smb_file_mode",
+                  "value": "<integer>",
+                  "description": "Filter by smb_file_mode. smb_file_mode is the default unix permission bits applied to files created by SMB clients. It is relevant only to views that are exposed to both SMB and NFS access protocols and have NFS security flavor."
+                },
+                {
+                  "disabled": false,
+                  "key": "smb_directory_mode",
+                  "value": "<integer>",
+                  "description": "Filter by smb_directory_mode. smb_directory_mode is the default unix permission bits applied to directories created by SMB clients. It is relevant only to views that are exposed to both SMB and NFS access protocols and have NFS security flavor."
+                },
+                {
+                  "disabled": false,
+                  "key": "apple_sid",
+                  "value": "<boolean>",
+                  "description": "apple sid"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_name__icontains",
+                  "value": "<string>",
+                  "description": "Tenant name to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "serves_tenant",
+                  "value": "<string>",
+                  "description": "Filter by served tenants. Accepts tenant ID or \"all\" for all served tenants."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd550226-6a88-4ed1-9100-3a8a5d2e3d00",
+              "name": "View Policies information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "viewpolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "atime_frequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nfs_return_open_permissions",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "smb_file_mode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "smb_directory_mode",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "apple_sid",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant_name__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serves_tenant",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"access_flavor\": \"string\",\n    \"allowed_characters\": \"LCD\",\n    \"apple_sid\": true,\n    \"atime_frequency\": \"string\",\n    \"auth_source\": \"PROVIDERS\",\n    \"change\": [\n      \"string\",\n      \"string\"\n    ],\n    \"cluster\": \"string\",\n    \"cluster_id\": 9566,\n    \"count_views\": 5186,\n    \"created\": \"1975-08-03T10:44:40.432Z\",\n    \"data_create_delete\": false,\n    \"data_modify\": true,\n    \"data_read\": true,\n    \"disable_handle_lease\": false,\n    \"disable_read_lease\": false,\n    \"disable_write_lease\": true,\n    \"enable_access_to_snapshot_dir_in_subdirs\": true,\n    \"enable_listing_of_snapshot_dir\": true,\n    \"enable_snapshot_lookup\": false,\n    \"enable_visibility_of_snapshot_dir\": false,\n    \"expose_id_in_fsid\": true,\n    \"flavor\": \"NFS\",\n    \"full\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gid_inheritance\": \"BSD\",\n    \"guid\": \"string\",\n    \"id\": 7525,\n    \"inherit_parent_mode_bits\": false,\n    \"internal\": true,\n    \"is_block_default_policy\": true,\n    \"is_s3_default_policy\": false,\n    \"log_deleted\": false,\n    \"log_full_path\": false,\n    \"log_hostname\": true,\n    \"log_username\": false,\n    \"nfs_all_squash\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nfs_case_insensitive\": false,\n    \"nfs_enforce_mtls\": true,\n    \"nfs_enforce_tls\": true,\n    \"nfs_enforce_tls_relaxed\": false,\n    \"nfs_minimal_protection_level\": \"KRB_AUTH_ONLY\",\n    \"nfs_no_squash\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nfs_posix_acl\": true,\n    \"nfs_read_only\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nfs_read_write\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nfs_return_open_permissions\": false,\n    \"nfs_root_squash\": [\n      \"string\",\n      \"string\"\n    ],\n    \"path_length\": \"LCD\",\n    \"permission_per_vip_pool\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"pretty_atime_frequency\": \"string\",\n    \"pretty_auth_source\": \"string\",\n    \"protocols\": [\n      \"NFSv3\",\n      \"S3\"\n    ],\n    \"protocols_audit\": {\n      \"create_delete_files_dirs_objects\": false,\n      \"log_deleted_files_dirs\": true,\n      \"log_full_path\": true,\n      \"log_hostname\": true,\n      \"log_username\": false,\n      \"modify_data\": true,\n      \"modify_data_md\": true,\n      \"read_data\": false,\n      \"read_data_md\": false,\n      \"session_create_close\": true\n    },\n    \"read\": [\n      \"string\",\n      \"string\"\n    ],\n    \"read_only\": [\n      \"string\",\n      \"string\"\n    ],\n    \"read_write\": [\n      \"string\",\n      \"string\"\n    ],\n    \"remote_mapping\": {},\n    \"s3_bucket_listing\": \"string\",\n    \"s3_bucket_read\": \"string\",\n    \"s3_bucket_read_acp\": \"string\",\n    \"s3_bucket_write\": \"string\",\n    \"s3_bucket_write_acp\": \"string\",\n    \"s3_flavor_allow_free_listing\": true,\n    \"s3_flavor_detect_full_pathname\": false,\n    \"s3_object_full_control\": \"string\",\n    \"s3_object_read\": \"string\",\n    \"s3_object_read_acp\": \"string\",\n    \"s3_object_write\": \"string\",\n    \"s3_object_write_acp\": \"string\",\n    \"s3_read_only\": [\n      \"string\",\n      \"string\"\n    ],\n    \"s3_read_write\": [\n      \"string\",\n      \"string\"\n    ],\n    \"s3_special_chars_support\": true,\n    \"s3_visibility\": [\n      \"string\",\n      \"string\"\n    ],\n    \"s3_visibility_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"smb_directory_mode\": 6489,\n    \"smb_directory_mode_padded\": \"string\",\n    \"smb_file_mode\": 6958,\n    \"smb_file_mode_padded\": \"string\",\n    \"smb_is_ca\": true,\n    \"smb_read_only\": [\n      \"string\",\n      \"string\"\n    ],\n    \"smb_read_write\": [\n      \"string\",\n      \"string\"\n    ],\n    \"smb_recursive_change_notify\": false,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"tenant_id\": 1819,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"trash_access\": [\n      \"string\",\n      \"string\"\n    ],\n    \"url\": \"string\",\n    \"use_32bit_fileid\": true,\n    \"use_auth_provider\": false,\n    \"vip_pools\": [\n      5462,\n      3429\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"access_flavor\": \"string\",\n    \"allowed_characters\": \"NPL\",\n    \"apple_sid\": false,\n    \"atime_frequency\": \"string\",\n    \"auth_source\": \"RPC_AND_PROVIDERS\",\n    \"change\": [\n      \"string\",\n      \"string\"\n    ],\n    \"cluster\": \"string\",\n    \"cluster_id\": 5157,\n    \"count_views\": 772,\n    \"created\": \"1973-06-15T21:39:52.736Z\",\n    \"data_create_delete\": true,\n    \"data_modify\": false,\n    \"data_read\": true,\n    \"disable_handle_lease\": true,\n    \"disable_read_lease\": true,\n    \"disable_write_lease\": false,\n    \"enable_access_to_snapshot_dir_in_subdirs\": true,\n    \"enable_listing_of_snapshot_dir\": true,\n    \"enable_snapshot_lookup\": false,\n    \"enable_visibility_of_snapshot_dir\": true,\n    \"expose_id_in_fsid\": false,\n    \"flavor\": \"S3_NATIVE\",\n    \"full\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gid_inheritance\": \"LINUX\",\n    \"guid\": \"string\",\n    \"id\": 141,\n    \"inherit_parent_mode_bits\": true,\n    \"internal\": false,\n    \"is_block_default_policy\": true,\n    \"is_s3_default_policy\": true,\n    \"log_deleted\": true,\n    \"log_full_path\": false,\n    \"log_hostname\": true,\n    \"log_username\": false,\n    \"nfs_all_squash\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nfs_case_insensitive\": true,\n    \"nfs_enforce_mtls\": true,\n    \"nfs_enforce_tls\": true,\n    \"nfs_enforce_tls_relaxed\": false,\n    \"nfs_minimal_protection_level\": \"SYSTEM\",\n    \"nfs_no_squash\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nfs_posix_acl\": false,\n    \"nfs_read_only\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nfs_read_write\": [\n      \"string\",\n      \"string\"\n    ],\n    \"nfs_return_open_permissions\": false,\n    \"nfs_root_squash\": [\n      \"string\",\n      \"string\"\n    ],\n    \"path_length\": \"NPL\",\n    \"permission_per_vip_pool\": {\n      \"key_0\": \"string\"\n    },\n    \"pretty_atime_frequency\": \"string\",\n    \"pretty_auth_source\": \"string\",\n    \"protocols\": [\n      \"STS\",\n      \"SMB\"\n    ],\n    \"protocols_audit\": {\n      \"create_delete_files_dirs_objects\": false,\n      \"log_deleted_files_dirs\": true,\n      \"log_full_path\": false,\n      \"log_hostname\": false,\n      \"log_username\": false,\n      \"modify_data\": false,\n      \"modify_data_md\": false,\n      \"read_data\": false,\n      \"read_data_md\": true,\n      \"session_create_close\": false\n    },\n    \"read\": [\n      \"string\",\n      \"string\"\n    ],\n    \"read_only\": [\n      \"string\",\n      \"string\"\n    ],\n    \"read_write\": [\n      \"string\",\n      \"string\"\n    ],\n    \"remote_mapping\": {},\n    \"s3_bucket_listing\": \"string\",\n    \"s3_bucket_read\": \"string\",\n    \"s3_bucket_read_acp\": \"string\",\n    \"s3_bucket_write\": \"string\",\n    \"s3_bucket_write_acp\": \"string\",\n    \"s3_flavor_allow_free_listing\": true,\n    \"s3_flavor_detect_full_pathname\": true,\n    \"s3_object_full_control\": \"string\",\n    \"s3_object_read\": \"string\",\n    \"s3_object_read_acp\": \"string\",\n    \"s3_object_write\": \"string\",\n    \"s3_object_write_acp\": \"string\",\n    \"s3_read_only\": [\n      \"string\",\n      \"string\"\n    ],\n    \"s3_read_write\": [\n      \"string\",\n      \"string\"\n    ],\n    \"s3_special_chars_support\": true,\n    \"s3_visibility\": [\n      \"string\",\n      \"string\"\n    ],\n    \"s3_visibility_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"smb_directory_mode\": 7746,\n    \"smb_directory_mode_padded\": \"string\",\n    \"smb_file_mode\": 3094,\n    \"smb_file_mode_padded\": \"string\",\n    \"smb_is_ca\": false,\n    \"smb_read_only\": [\n      \"string\",\n      \"string\"\n    ],\n    \"smb_read_write\": [\n      \"string\",\n      \"string\"\n    ],\n    \"smb_recursive_change_notify\": false,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"tenant_id\": 7078,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"trash_access\": [\n      \"string\",\n      \"string\"\n    ],\n    \"url\": \"string\",\n    \"use_32bit_fileid\": true,\n    \"use_auth_provider\": false,\n    \"vip_pools\": [\n      2807,\n      5026\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5598e693-805c-4816-8f0f-5d251fde569a",
+          "name": "Create View Policy",
+          "request": {
+            "name": "Create View Policy",
+            "description": {
+              "content": "This endpoint creates a view policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "viewpolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"access_flavor\": \"<string>\",\n  \"allowed_characters\": \"<string>\",\n  \"apple_sid\": \"<boolean>\",\n  \"atime_frequency\": \"<string>\",\n  \"auth_source\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"disable_handle_lease\": \"<boolean>\",\n  \"disable_read_lease\": \"<boolean>\",\n  \"disable_write_lease\": \"<boolean>\",\n  \"enable_access_to_snapshot_dir_in_subdirs\": \"<boolean>\",\n  \"enable_visibility_of_snapshot_dir\": \"<boolean>\",\n  \"expose_id_in_fsid\": \"<boolean>\",\n  \"flavor\": \"<string>\",\n  \"gid_inheritance\": \"<string>\",\n  \"inherit_parent_mode_bits\": \"<boolean>\",\n  \"is_block_default_policy\": \"<boolean>\",\n  \"is_s3_default_policy\": \"<boolean>\",\n  \"nfs_all_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_case_insensitive\": \"<boolean>\",\n  \"nfs_enforce_mtls\": \"<boolean>\",\n  \"nfs_enforce_tls\": \"<boolean>\",\n  \"nfs_enforce_tls_relaxed\": \"<boolean>\",\n  \"nfs_minimal_protection_level\": \"<string>\",\n  \"nfs_no_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_posix_acl\": \"<boolean>\",\n  \"nfs_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_return_open_permissions\": \"<boolean>\",\n  \"nfs_root_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"path_length\": \"<string>\",\n  \"permission_per_vip_pool\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"protocols_audit\": {\n    \"create_delete_files_dirs_objects\": \"<boolean>\",\n    \"log_deleted_files_dirs\": \"<boolean>\",\n    \"log_full_path\": \"<boolean>\",\n    \"log_hostname\": \"<boolean>\",\n    \"log_username\": \"<boolean>\",\n    \"modify_data\": \"<boolean>\",\n    \"modify_data_md\": \"<boolean>\",\n    \"read_data\": \"<boolean>\",\n    \"read_data_md\": \"<boolean>\",\n    \"session_create_close\": \"<boolean>\"\n  },\n  \"read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_bucket_full_control\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"s3_flavor_allow_free_listing\": \"<boolean>\",\n  \"s3_flavor_detect_full_pathname\": \"<boolean>\",\n  \"s3_object_acl\": \"<object>\",\n  \"s3_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_special_chars_support\": \"<boolean>\",\n  \"s3_visibility\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_visibility_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_directory_mode\": \"<integer>\",\n  \"smb_file_mode\": \"<integer>\",\n  \"smb_is_ca\": \"<boolean>\",\n  \"smb_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_recursive_change_notify\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\",\n  \"trash_access\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_32bit_fileid\": \"<boolean>\",\n  \"use_auth_provider\": \"<boolean>\",\n  \"vip_pools\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "109ffb19-4ce1-4075-993a-8a2ee23c0ca7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "viewpolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"access_flavor\": \"<string>\",\n  \"allowed_characters\": \"<string>\",\n  \"apple_sid\": \"<boolean>\",\n  \"atime_frequency\": \"<string>\",\n  \"auth_source\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"disable_handle_lease\": \"<boolean>\",\n  \"disable_read_lease\": \"<boolean>\",\n  \"disable_write_lease\": \"<boolean>\",\n  \"enable_access_to_snapshot_dir_in_subdirs\": \"<boolean>\",\n  \"enable_visibility_of_snapshot_dir\": \"<boolean>\",\n  \"expose_id_in_fsid\": \"<boolean>\",\n  \"flavor\": \"<string>\",\n  \"gid_inheritance\": \"<string>\",\n  \"inherit_parent_mode_bits\": \"<boolean>\",\n  \"is_block_default_policy\": \"<boolean>\",\n  \"is_s3_default_policy\": \"<boolean>\",\n  \"nfs_all_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_case_insensitive\": \"<boolean>\",\n  \"nfs_enforce_mtls\": \"<boolean>\",\n  \"nfs_enforce_tls\": \"<boolean>\",\n  \"nfs_enforce_tls_relaxed\": \"<boolean>\",\n  \"nfs_minimal_protection_level\": \"<string>\",\n  \"nfs_no_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_posix_acl\": \"<boolean>\",\n  \"nfs_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_return_open_permissions\": \"<boolean>\",\n  \"nfs_root_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"path_length\": \"<string>\",\n  \"permission_per_vip_pool\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"protocols_audit\": {\n    \"create_delete_files_dirs_objects\": \"<boolean>\",\n    \"log_deleted_files_dirs\": \"<boolean>\",\n    \"log_full_path\": \"<boolean>\",\n    \"log_hostname\": \"<boolean>\",\n    \"log_username\": \"<boolean>\",\n    \"modify_data\": \"<boolean>\",\n    \"modify_data_md\": \"<boolean>\",\n    \"read_data\": \"<boolean>\",\n    \"read_data_md\": \"<boolean>\",\n    \"session_create_close\": \"<boolean>\"\n  },\n  \"read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_bucket_full_control\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"s3_flavor_allow_free_listing\": \"<boolean>\",\n  \"s3_flavor_detect_full_pathname\": \"<boolean>\",\n  \"s3_object_acl\": \"<object>\",\n  \"s3_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_special_chars_support\": \"<boolean>\",\n  \"s3_visibility\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_visibility_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_directory_mode\": \"<integer>\",\n  \"smb_file_mode\": \"<integer>\",\n  \"smb_is_ca\": \"<boolean>\",\n  \"smb_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_recursive_change_notify\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\",\n  \"trash_access\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_32bit_fileid\": \"<boolean>\",\n  \"use_auth_provider\": \"<boolean>\",\n  \"vip_pools\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_flavor\": \"string\",\n  \"allowed_characters\": \"NPL\",\n  \"apple_sid\": false,\n  \"atime_frequency\": \"string\",\n  \"auth_source\": \"RPC_AND_PROVIDERS\",\n  \"change\": [\n    \"string\",\n    \"string\"\n  ],\n  \"cluster\": \"string\",\n  \"cluster_id\": 7022,\n  \"count_views\": 5385,\n  \"created\": \"1980-07-14T08:06:39.768Z\",\n  \"data_create_delete\": false,\n  \"data_modify\": true,\n  \"data_read\": true,\n  \"disable_handle_lease\": true,\n  \"disable_read_lease\": false,\n  \"disable_write_lease\": false,\n  \"enable_access_to_snapshot_dir_in_subdirs\": true,\n  \"enable_listing_of_snapshot_dir\": false,\n  \"enable_snapshot_lookup\": false,\n  \"enable_visibility_of_snapshot_dir\": true,\n  \"expose_id_in_fsid\": false,\n  \"flavor\": \"S3_NATIVE\",\n  \"full\": [\n    \"string\",\n    \"string\"\n  ],\n  \"gid_inheritance\": \"BSD\",\n  \"guid\": \"string\",\n  \"id\": 6450,\n  \"inherit_parent_mode_bits\": false,\n  \"internal\": true,\n  \"is_block_default_policy\": true,\n  \"is_s3_default_policy\": false,\n  \"log_deleted\": false,\n  \"log_full_path\": true,\n  \"log_hostname\": false,\n  \"log_username\": true,\n  \"nfs_all_squash\": [\n    \"string\",\n    \"string\"\n  ],\n  \"nfs_case_insensitive\": false,\n  \"nfs_enforce_mtls\": false,\n  \"nfs_enforce_tls\": false,\n  \"nfs_enforce_tls_relaxed\": false,\n  \"nfs_minimal_protection_level\": \"KRB_INTEGRITY\",\n  \"nfs_no_squash\": [\n    \"string\",\n    \"string\"\n  ],\n  \"nfs_posix_acl\": false,\n  \"nfs_read_only\": [\n    \"string\",\n    \"string\"\n  ],\n  \"nfs_read_write\": [\n    \"string\",\n    \"string\"\n  ],\n  \"nfs_return_open_permissions\": true,\n  \"nfs_root_squash\": [\n    \"string\",\n    \"string\"\n  ],\n  \"path_length\": \"NPL\",\n  \"permission_per_vip_pool\": {\n    \"key_0\": \"<string>\"\n  },\n  \"pretty_atime_frequency\": \"string\",\n  \"pretty_auth_source\": \"string\",\n  \"protocols\": [\n    \"SMB\",\n    \"S3\"\n  ],\n  \"protocols_audit\": {\n    \"create_delete_files_dirs_objects\": true,\n    \"log_deleted_files_dirs\": true,\n    \"log_full_path\": true,\n    \"log_hostname\": false,\n    \"log_username\": false,\n    \"modify_data\": true,\n    \"modify_data_md\": false,\n    \"read_data\": true,\n    \"read_data_md\": false,\n    \"session_create_close\": false\n  },\n  \"read\": [\n    \"string\",\n    \"string\"\n  ],\n  \"read_only\": [\n    \"string\",\n    \"string\"\n  ],\n  \"read_write\": [\n    \"string\",\n    \"string\"\n  ],\n  \"remote_mapping\": {},\n  \"s3_bucket_listing\": \"string\",\n  \"s3_bucket_read\": \"string\",\n  \"s3_bucket_read_acp\": \"string\",\n  \"s3_bucket_write\": \"string\",\n  \"s3_bucket_write_acp\": \"string\",\n  \"s3_flavor_allow_free_listing\": false,\n  \"s3_flavor_detect_full_pathname\": false,\n  \"s3_object_full_control\": \"string\",\n  \"s3_object_read\": \"string\",\n  \"s3_object_read_acp\": \"string\",\n  \"s3_object_write\": \"string\",\n  \"s3_object_write_acp\": \"string\",\n  \"s3_read_only\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_read_write\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_special_chars_support\": true,\n  \"s3_visibility\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_visibility_groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"smb_directory_mode\": 3167,\n  \"smb_directory_mode_padded\": \"string\",\n  \"smb_file_mode\": 7182,\n  \"smb_file_mode_padded\": \"string\",\n  \"smb_is_ca\": true,\n  \"smb_read_only\": [\n    \"string\",\n    \"string\"\n  ],\n  \"smb_read_write\": [\n    \"string\",\n    \"string\"\n  ],\n  \"smb_recursive_change_notify\": true,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_id\": 8002,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"trash_access\": [\n    \"string\",\n    \"string\"\n  ],\n  \"url\": \"string\",\n  \"use_32bit_fileid\": true,\n  \"use_auth_provider\": true,\n  \"vip_pools\": [\n    1988,\n    9046\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "117e7bb5-814d-4f8b-8b65-6ec54c5ce5e1",
+          "name": "Delete View Policy",
+          "request": {
+            "name": "Delete View Policy",
+            "description": {
+              "content": "This endpoint deletes a view policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "viewpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the view policy to delete"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19b97647-8382-4867-b4cd-20ec393919df",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "viewpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the view policy to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08ca20f1-e0b5-419d-94d0-3d765b8b82d6",
+          "name": "Return Details of a View Policy",
+          "request": {
+            "name": "Return Details of a View Policy",
+            "description": {
+              "content": "This endpoint returns a specified view policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "viewpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the view policy"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d837903a-740c-4cef-af51-5ba69265e801",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "viewpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the view policy"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_flavor\": \"string\",\n  \"allowed_characters\": \"NPL\",\n  \"apple_sid\": false,\n  \"atime_frequency\": \"string\",\n  \"auth_source\": \"RPC_AND_PROVIDERS\",\n  \"change\": [\n    \"string\",\n    \"string\"\n  ],\n  \"cluster\": \"string\",\n  \"cluster_id\": 7022,\n  \"count_views\": 5385,\n  \"created\": \"1980-07-14T08:06:39.768Z\",\n  \"data_create_delete\": false,\n  \"data_modify\": true,\n  \"data_read\": true,\n  \"disable_handle_lease\": true,\n  \"disable_read_lease\": false,\n  \"disable_write_lease\": false,\n  \"enable_access_to_snapshot_dir_in_subdirs\": true,\n  \"enable_listing_of_snapshot_dir\": false,\n  \"enable_snapshot_lookup\": false,\n  \"enable_visibility_of_snapshot_dir\": true,\n  \"expose_id_in_fsid\": false,\n  \"flavor\": \"S3_NATIVE\",\n  \"full\": [\n    \"string\",\n    \"string\"\n  ],\n  \"gid_inheritance\": \"BSD\",\n  \"guid\": \"string\",\n  \"id\": 6450,\n  \"inherit_parent_mode_bits\": false,\n  \"internal\": true,\n  \"is_block_default_policy\": true,\n  \"is_s3_default_policy\": false,\n  \"log_deleted\": false,\n  \"log_full_path\": true,\n  \"log_hostname\": false,\n  \"log_username\": true,\n  \"nfs_all_squash\": [\n    \"string\",\n    \"string\"\n  ],\n  \"nfs_case_insensitive\": false,\n  \"nfs_enforce_mtls\": false,\n  \"nfs_enforce_tls\": false,\n  \"nfs_enforce_tls_relaxed\": false,\n  \"nfs_minimal_protection_level\": \"KRB_INTEGRITY\",\n  \"nfs_no_squash\": [\n    \"string\",\n    \"string\"\n  ],\n  \"nfs_posix_acl\": false,\n  \"nfs_read_only\": [\n    \"string\",\n    \"string\"\n  ],\n  \"nfs_read_write\": [\n    \"string\",\n    \"string\"\n  ],\n  \"nfs_return_open_permissions\": true,\n  \"nfs_root_squash\": [\n    \"string\",\n    \"string\"\n  ],\n  \"path_length\": \"NPL\",\n  \"permission_per_vip_pool\": {\n    \"key_0\": \"<string>\"\n  },\n  \"pretty_atime_frequency\": \"string\",\n  \"pretty_auth_source\": \"string\",\n  \"protocols\": [\n    \"SMB\",\n    \"S3\"\n  ],\n  \"protocols_audit\": {\n    \"create_delete_files_dirs_objects\": true,\n    \"log_deleted_files_dirs\": true,\n    \"log_full_path\": true,\n    \"log_hostname\": false,\n    \"log_username\": false,\n    \"modify_data\": true,\n    \"modify_data_md\": false,\n    \"read_data\": true,\n    \"read_data_md\": false,\n    \"session_create_close\": false\n  },\n  \"read\": [\n    \"string\",\n    \"string\"\n  ],\n  \"read_only\": [\n    \"string\",\n    \"string\"\n  ],\n  \"read_write\": [\n    \"string\",\n    \"string\"\n  ],\n  \"remote_mapping\": {},\n  \"s3_bucket_listing\": \"string\",\n  \"s3_bucket_read\": \"string\",\n  \"s3_bucket_read_acp\": \"string\",\n  \"s3_bucket_write\": \"string\",\n  \"s3_bucket_write_acp\": \"string\",\n  \"s3_flavor_allow_free_listing\": false,\n  \"s3_flavor_detect_full_pathname\": false,\n  \"s3_object_full_control\": \"string\",\n  \"s3_object_read\": \"string\",\n  \"s3_object_read_acp\": \"string\",\n  \"s3_object_write\": \"string\",\n  \"s3_object_write_acp\": \"string\",\n  \"s3_read_only\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_read_write\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_special_chars_support\": true,\n  \"s3_visibility\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_visibility_groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"smb_directory_mode\": 3167,\n  \"smb_directory_mode_padded\": \"string\",\n  \"smb_file_mode\": 7182,\n  \"smb_file_mode_padded\": \"string\",\n  \"smb_is_ca\": true,\n  \"smb_read_only\": [\n    \"string\",\n    \"string\"\n  ],\n  \"smb_read_write\": [\n    \"string\",\n    \"string\"\n  ],\n  \"smb_recursive_change_notify\": true,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_id\": 8002,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"trash_access\": [\n    \"string\",\n    \"string\"\n  ],\n  \"url\": \"string\",\n  \"use_32bit_fileid\": true,\n  \"use_auth_provider\": true,\n  \"vip_pools\": [\n    1988,\n    9046\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fb68ed6-c996-491b-8f73-c7523198b747",
+          "name": "Modify a View Policy",
+          "request": {
+            "name": "Modify a View Policy",
+            "description": {
+              "content": "This endpoint modifies a view policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "viewpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_flavor\": \"<string>\",\n  \"allowed_characters\": \"<string>\",\n  \"apple_sid\": \"<boolean>\",\n  \"atime_frequency\": \"<string>\",\n  \"auth_source\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"disable_handle_lease\": \"<boolean>\",\n  \"disable_read_lease\": \"<boolean>\",\n  \"disable_write_lease\": \"<boolean>\",\n  \"enable_access_to_snapshot_dir_in_subdirs\": \"<boolean>\",\n  \"enable_visibility_of_snapshot_dir\": \"<boolean>\",\n  \"expose_id_in_fsid\": \"<boolean>\",\n  \"flavor\": \"<string>\",\n  \"gid_inheritance\": \"<string>\",\n  \"inherit_parent_mode_bits\": \"<boolean>\",\n  \"is_block_default_policy\": \"<boolean>\",\n  \"is_s3_default_policy\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"nfs_all_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_case_insensitive\": \"<boolean>\",\n  \"nfs_enforce_mtls\": \"<boolean>\",\n  \"nfs_enforce_tls\": \"<boolean>\",\n  \"nfs_enforce_tls_relaxed\": \"<boolean>\",\n  \"nfs_minimal_protection_level\": \"<string>\",\n  \"nfs_no_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_posix_acl\": \"<boolean>\",\n  \"nfs_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_return_open_permissions\": \"<boolean>\",\n  \"nfs_root_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"path_length\": \"<string>\",\n  \"permission_per_vip_pool\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"protocols_audit\": {\n    \"create_delete_files_dirs_objects\": \"<boolean>\",\n    \"log_deleted_files_dirs\": \"<boolean>\",\n    \"log_full_path\": \"<boolean>\",\n    \"log_hostname\": \"<boolean>\",\n    \"log_username\": \"<boolean>\",\n    \"modify_data\": \"<boolean>\",\n    \"modify_data_md\": \"<boolean>\",\n    \"read_data\": \"<boolean>\",\n    \"read_data_md\": \"<boolean>\",\n    \"session_create_close\": \"<boolean>\"\n  },\n  \"read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_bucket_acl\": \"<object>\",\n  \"s3_flavor_allow_free_listing\": \"<boolean>\",\n  \"s3_flavor_detect_full_pathname\": \"<boolean>\",\n  \"s3_object_acl\": \"<object>\",\n  \"s3_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_special_chars_support\": \"<boolean>\",\n  \"s3_visibility\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_visibility_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_directory_mode\": \"<integer>\",\n  \"smb_file_mode\": \"<integer>\",\n  \"smb_is_ca\": \"<boolean>\",\n  \"smb_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_recursive_change_notify\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\",\n  \"trash_access\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_32bit_fileid\": \"<string>\",\n  \"use_auth_provider\": \"<boolean>\",\n  \"vip_pools\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79cf1d34-66d9-4e11-b655-cd350a3d703d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "viewpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_flavor\": \"<string>\",\n  \"allowed_characters\": \"<string>\",\n  \"apple_sid\": \"<boolean>\",\n  \"atime_frequency\": \"<string>\",\n  \"auth_source\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"disable_handle_lease\": \"<boolean>\",\n  \"disable_read_lease\": \"<boolean>\",\n  \"disable_write_lease\": \"<boolean>\",\n  \"enable_access_to_snapshot_dir_in_subdirs\": \"<boolean>\",\n  \"enable_visibility_of_snapshot_dir\": \"<boolean>\",\n  \"expose_id_in_fsid\": \"<boolean>\",\n  \"flavor\": \"<string>\",\n  \"gid_inheritance\": \"<string>\",\n  \"inherit_parent_mode_bits\": \"<boolean>\",\n  \"is_block_default_policy\": \"<boolean>\",\n  \"is_s3_default_policy\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"nfs_all_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_case_insensitive\": \"<boolean>\",\n  \"nfs_enforce_mtls\": \"<boolean>\",\n  \"nfs_enforce_tls\": \"<boolean>\",\n  \"nfs_enforce_tls_relaxed\": \"<boolean>\",\n  \"nfs_minimal_protection_level\": \"<string>\",\n  \"nfs_no_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_posix_acl\": \"<boolean>\",\n  \"nfs_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nfs_return_open_permissions\": \"<boolean>\",\n  \"nfs_root_squash\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"path_length\": \"<string>\",\n  \"permission_per_vip_pool\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"protocols_audit\": {\n    \"create_delete_files_dirs_objects\": \"<boolean>\",\n    \"log_deleted_files_dirs\": \"<boolean>\",\n    \"log_full_path\": \"<boolean>\",\n    \"log_hostname\": \"<boolean>\",\n    \"log_username\": \"<boolean>\",\n    \"modify_data\": \"<boolean>\",\n    \"modify_data_md\": \"<boolean>\",\n    \"read_data\": \"<boolean>\",\n    \"read_data_md\": \"<boolean>\",\n    \"session_create_close\": \"<boolean>\"\n  },\n  \"read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_bucket_acl\": \"<object>\",\n  \"s3_flavor_allow_free_listing\": \"<boolean>\",\n  \"s3_flavor_detect_full_pathname\": \"<boolean>\",\n  \"s3_object_acl\": \"<object>\",\n  \"s3_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_special_chars_support\": \"<boolean>\",\n  \"s3_visibility\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"s3_visibility_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_directory_mode\": \"<integer>\",\n  \"smb_file_mode\": \"<integer>\",\n  \"smb_is_ca\": \"<boolean>\",\n  \"smb_read_only\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_read_write\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"smb_recursive_change_notify\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\",\n  \"trash_access\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_32bit_fileid\": \"<string>\",\n  \"use_auth_provider\": \"<boolean>\",\n  \"vip_pools\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0535fe40-9c00-4a48-9586-f87835198306",
+          "name": "refresh View policy netgroups",
+          "request": {
+            "name": "refresh View policy netgroups",
+            "description": {
+              "content": "Refresh View policy netgroups",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "viewpolicies",
+                ":id",
+                "refresh_netgroups",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The view policy ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3036762-c671-4cfc-ae1b-06e2db19b019",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "viewpolicies",
+                    ":id",
+                    "refresh_netgroups",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The view policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8cc69a7-a17d-4bbc-b52f-00d4956d151f",
+          "name": "remove remote mapping",
+          "request": {
+            "name": "remove remote mapping",
+            "description": {
+              "content": "This endpoint removes a remote mapping.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "viewpolicies",
+                ":id",
+                "remote_mapping",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"peer\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3d3a3b5-4aaa-45fe-9c7f-4e2a22276464",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "viewpolicies",
+                    ":id",
+                    "remote_mapping",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"peer\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fa9c118-07e4-4b8a-b3b4-3389c4c6b3a5",
+          "name": "add remote mapping",
+          "request": {
+            "name": "add remote mapping",
+            "description": {},
+            "url": {
+              "path": [
+                "viewpolicies",
+                ":id",
+                "remote_mapping",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The view policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"peer\": \"<string>\",\n  \"remote_policy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ccf1f02-4982-49bb-8a8b-990c289f6cae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "viewpolicies",
+                    ":id",
+                    "remote_mapping",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The view policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"peer\": \"<string>\",\n  \"remote_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5f0b524e-3bd0-46ce-9b2e-e90aaa77eaf7",
+    "name": "VAST API Swagger Schema activedirectory viewpolicies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

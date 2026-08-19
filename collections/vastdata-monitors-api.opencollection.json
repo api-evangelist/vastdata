@@ -1,0 +1,270 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory monitors API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "monitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Monitors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/monitors/"
+          },
+          "docs": "This endpoint lists properties of predefined analytics reports."
+        },
+        {
+          "info": {
+            "name": "Create Custom Analytics Report (aka Monitor)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/monitors/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint defines a custom analytics report."
+        },
+        {
+          "info": {
+            "name": "Query Analytics with Ad Hoc Query Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/monitors/ad_hoc_query/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of object to monitor."
+              },
+              {
+                "name": "from_time",
+                "value": "",
+                "type": "query",
+                "description": "Start time of report. e.g. 2021-01-15T13:41:52Z"
+              },
+              {
+                "name": "to_time",
+                "value": "",
+                "type": "query",
+                "description": "End time of report. e.g. 2021-01-15T13:41:52Z"
+              },
+              {
+                "name": "time_frame",
+                "value": "",
+                "type": "query",
+                "description": "Time frame to report. Specify as an integer followed by 'm' (minutes) 'h' (hours), 'D' (days) ,'W' (weeks) or 'M' (months) 'Y' (years). e.g. 10m"
+              },
+              {
+                "name": "object_ids",
+                "value": "",
+                "type": "query",
+                "description": "Specify a list of IDs of objects of the specified object_type to filter the report on those specific objects."
+              },
+              {
+                "name": "prop_list",
+                "value": "",
+                "type": "query",
+                "description": "A list of metrics to query. To get the full list of metrics, use GET /metrics/."
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Data granularity: seconds (raw), minutes (five minute aggregated samples), hours (hourly aggregated samples), or days (daily aggregated samples)"
+              },
+              {
+                "name": "aggregation",
+                "value": "",
+                "type": "query",
+                "description": "If granularity is minutes, hours or days, the data is aggregated. This parameter selects which aggregation function to use."
+              },
+              {
+                "name": "format_data",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint queries VMS for analytics."
+        },
+        {
+          "info": {
+            "name": "Query Top Performer Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/monitors/topn/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Filters results by category of performers. Supported for users, clients and views only."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filters results by a specified performance metric"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of top performers in each category to return in the response"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp for which to display data. For example, 2023-12-06T13:10:03Z. If not passed, the most recent sampling is returned."
+              }
+            ]
+          },
+          "docs": "This endpoint queries VMS for top performer data. It can return performance metrics for the most active client users, views, client hosts, vips, vip pools and cnodes."
+        },
+        {
+          "info": {
+            "name": "Return Details of an Analytics Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/monitors/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Monitor ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the properties of a specified analytics report."
+        },
+        {
+          "info": {
+            "name": "Modify Analytics Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/monitors/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Monitor ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint partially modifies the specified monitor."
+        },
+        {
+          "info": {
+            "name": "Delete Monitor (aka Analytics Report)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/monitors/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Monitor ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an analytics report."
+        },
+        {
+          "info": {
+            "name": "Query Analytics using Defined Analytics Report (aka Monitor)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/monitors/:id/query/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Monitor ID, to specify the analytics you want to query."
+              },
+              {
+                "name": "from_time",
+                "value": "",
+                "type": "query",
+                "description": "Start time for the report. e.g. 2021-01-15T13:41:52Z"
+              },
+              {
+                "name": "to_time",
+                "value": "",
+                "type": "query",
+                "description": "End time for the report. e.g. 2021-01-15T13:41:52Z"
+              },
+              {
+                "name": "time_frame",
+                "value": "",
+                "type": "query",
+                "description": "Time frame to report. Specify as an integer followed by 'm' (minutes) 'h' (hours), 'D' (days) ,'W' (weeks) or 'M' (months) 'Y' (years). e.g. 10m"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Data granularity: seconds (raw), minutes (five minute aggregated samples), hours (hourly aggregated samples), or days (daily aggregated samples)"
+              },
+              {
+                "name": "aggregation",
+                "value": "",
+                "type": "query",
+                "description": "If granularity is minutes, hours or days, the data is aggregated. This parameter selects which aggregation function to use."
+              },
+              {
+                "name": "format_data",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint queries for analytics, based on a defined monitor."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

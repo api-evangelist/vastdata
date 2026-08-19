@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory bgpconfigs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bgpconfigs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List BGP Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/bgpconfigs/"
+          },
+          "docs": "This endpoint lists BGP configurations."
+        },
+        {
+          "info": {
+            "name": "Create BGP Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/bgpconfigs/"
+          },
+          "docs": "This endpoint creates a BGP configuration."
+        },
+        {
+          "info": {
+            "name": "Return Details of a BGP Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/bgpconfigs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "BGP configuration ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a BGP configuration."
+        },
+        {
+          "info": {
+            "name": "Modify a BGP Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/bgpconfigs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "BGP Config ID"
+              }
+            ]
+          },
+          "docs": "This endpoint modifies a BGP configuration."
+        },
+        {
+          "info": {
+            "name": "Delete BGP Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/bgpconfigs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "BGP Config ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a BGP configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

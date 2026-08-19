@@ -1,0 +1,521 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory Views API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get S3 CORS configuration for View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/views/:id/s3cors_configuration/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              },
+              {
+                "name": "aws_format",
+                "value": "",
+                "type": "query",
+                "description": "If true, return CORS rules in AWS camelCase format (aws_cors_rules). Default is false (cors_rules in snake_case)."
+              }
+            ]
+          },
+          "docs": "This endpoint returns all S3 CORS rules for a given view."
+        },
+        {
+          "info": {
+            "name": "Create multiple S3 CORS rules for View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/views/:id/s3cors_configuration/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ]
+          },
+          "docs": "Creates S3 CORS rules for a view. Accepts either 'cors_rules' array directly or 'aws_cors_rules' array in AWS format. Exactly one of these fields must be provided."
+        },
+        {
+          "info": {
+            "name": "Delete all S3 CORS rules for View",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/views/:id/s3cors_configuration/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ]
+          },
+          "docs": "This endpoint delete all S3 CORS rules for a given view."
+        },
+        {
+          "info": {
+            "name": "List Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/views/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by View name"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Element Store path"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "query",
+                "description": "Filter by NFS export alias"
+              },
+              {
+                "name": "bucket",
+                "value": "",
+                "type": "query",
+                "description": "Limit response by S3 bucket name"
+              },
+              {
+                "name": "share",
+                "value": "",
+                "type": "query",
+                "description": "Filter by share name"
+              },
+              {
+                "name": "policy__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by view policy name"
+              },
+              {
+                "name": "policy__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by view policy ID"
+              },
+              {
+                "name": "cluster__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter response by cluster name."
+              },
+              {
+                "name": "cluster__id",
+                "value": "",
+                "type": "query",
+                "description": "Limit response by cluster ID"
+              },
+              {
+                "name": "nqn",
+                "value": "",
+                "type": "query",
+                "description": "NVMe Qualified Name to filter by."
+              },
+              {
+                "name": "is_default_subsystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by whether View is a default Subsystem."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "tenant_name__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Tenant name to filter by"
+              }
+            ]
+          },
+          "docs": "This endpoint lists views. Parameters enable you to limit which views are returned based on various criteria."
+        },
+        {
+          "info": {
+            "name": "Create View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/views/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a view."
+        },
+        {
+          "info": {
+            "name": "Close open SMB filehandles",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/views/close_smb_handle/",
+            "params": [
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path"
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query",
+                "description": "Session ID"
+              },
+              {
+                "name": "session_handle_unique_id",
+                "value": "",
+                "type": "query",
+                "description": "Handle ID"
+              },
+              {
+                "name": "tenant_guid",
+                "value": "",
+                "type": "query",
+                "description": "Tenant GUID"
+              }
+            ]
+          },
+          "docs": "This endpoint queries open smb filehandles."
+        },
+        {
+          "info": {
+            "name": "Query open SMB filehandles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/views/list_open_smb_handles/",
+            "params": [
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path"
+              },
+              {
+                "name": "tenant_guid",
+                "value": "",
+                "type": "query",
+                "description": "Tenant GUID"
+              }
+            ]
+          },
+          "docs": "This endpoint queries open smb filehandles."
+        },
+        {
+          "info": {
+            "name": "Get a list of available seamless peers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/views/list_seamless_peers/",
+            "params": [
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path"
+              },
+              {
+                "name": "tenant_guid",
+                "value": "",
+                "type": "query",
+                "description": "Tenant's globally unique identifier"
+              }
+            ]
+          },
+          "docs": "This endpoint lists replication peers available for seamless replication."
+        },
+        {
+          "info": {
+            "name": "Return Details of a View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/views/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view to show"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a view."
+        },
+        {
+          "info": {
+            "name": "Modify View.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/views/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a view."
+        },
+        {
+          "info": {
+            "name": "Modify a View",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/views/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a view."
+        },
+        {
+          "info": {
+            "name": "Delete View",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/views/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Force View removal"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a view."
+        },
+        {
+          "info": {
+            "name": "Check Permissions Templates Before Bulk Permission Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/views/:id/check_permissions_templates/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ]
+          },
+          "docs": "This endpoint performs validation on a set of bulk permission update parameters and should be run before performing a bulk permission update (using the  /views/{id}/permissions_repair/ path). It also returns details of the owning users and groups of the template directory and, if applicable, template file, which will be applied to the target path if a bulk permission update is performed. For the template directory, the response verifies if the directory has default ACL, which is needed if no tem"
+        },
+        {
+          "info": {
+            "name": "Get legal hold",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/views/:id/legal_hold/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              },
+              {
+                "name": "legal_hold_path",
+                "value": "",
+                "type": "query",
+                "description": "Path to get legal hold"
+              }
+            ]
+          },
+          "docs": "This endpoint gets legal hold for provided path under specified view."
+        },
+        {
+          "info": {
+            "name": "Change legal hold",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/views/:id/legal_hold/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ]
+          },
+          "docs": "This endpoint sets or unsets legal hold from provided path under specified view."
+        },
+        {
+          "info": {
+            "name": "Get the current NFSv4 triggers state for a view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/views/:id/nfs4_triggers/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ]
+          },
+          "docs": "Get the current NFSv4 triggers state for a view"
+        },
+        {
+          "info": {
+            "name": "Register or unregister NFSv4 triggers for a view",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/views/:id/nfs4_triggers/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ]
+          },
+          "docs": "Register or unregister NFSv4 triggers for a view"
+        },
+        {
+          "info": {
+            "name": "Start Bulk Permission Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/views/:id/permissions_repair/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ]
+          },
+          "docs": "This endpoint starts a bulk permission update on a target path. In a bulk permission update, permissions of files and directory under the target path are overwritten with those of specified templates. A directory template is required.  If a template file is specified for a bulk permission update, VAST Cluster overwrites the permissions and ownership attributes of the target files and directories as follows: - Permissions of target files are overwritten with those of the template file. - Permissi"
+        },
+        {
+          "info": {
+            "name": "Stop Bulk Permission Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/views/:id/permissions_repair/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "View ID"
+              }
+            ]
+          },
+          "docs": "This endpoint stops a bulk permission update."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

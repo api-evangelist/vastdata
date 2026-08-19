@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory vastcatalogindexedcolumns API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vastcatalogindexedcolumns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List VAST Catalog Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/bigcatalogindexedcolumns/",
+            "params": [
+              {
+                "name": "column_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists VAST Catalog tags."
+        },
+        {
+          "info": {
+            "name": "Add Indexed Column to VAST Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/bigcatalogindexedcolumns/add/"
+          },
+          "docs": "This endpoint adds an indexed column to the VAST Catalog table."
+        },
+        {
+          "info": {
+            "name": "Remove VAST Catalog Indexed Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/bigcatalogindexedcolumns/remove/"
+          },
+          "docs": "This endpoint removes a user-added indexed column from VAST Catalog."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

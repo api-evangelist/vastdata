@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory psus API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "psus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List PSUs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/psus/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by PSU state"
+              },
+              {
+                "name": "sn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by PSU serial number"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by PSU model"
+              },
+              {
+                "name": "box__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent Box name"
+              },
+              {
+                "name": "box__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent Box ID"
+              }
+            ]
+          },
+          "docs": "This endpoint lists PSUs."
+        },
+        {
+          "info": {
+            "name": "Return Details of One PSU",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/psus/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "PSU ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified PSU."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

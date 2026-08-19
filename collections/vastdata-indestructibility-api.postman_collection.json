@@ -1,0 +1,694 @@
+{
+  "item": [
+    {
+      "id": "05d449ea-a228-4fa2-935b-44a6aa2818b0",
+      "name": "indestructibility",
+      "description": {
+        "content": "VAST Cluster enables you to create and maintain immutable backups using a feature called Indestructibility. Snapshots and protection policies can be flagged indestructible and they are then protected from accidental or malicious deletion and modification. The indestructibility path represents the configuration of the indestructibility mechanism on the cluster.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb37bf0e-dce2-463a-bd05-9cd03c2f4068",
+          "name": "List Indestructibility Configuration",
+          "request": {
+            "name": "List Indestructibility Configuration",
+            "description": {
+              "content": "This endpoint returns information about the indestructibility configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indestructibility",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfac3030-d352-4683-8cf0-5d72f2f79361",
+              "name": "indestructibility information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indestructibility",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"guid\": \"string\",\n    \"id\": 9064,\n    \"indestructibility_passwd\": \"string\",\n    \"is_locked\": false,\n    \"name\": \"string\",\n    \"new_indestructibility_passwd\": \"string\",\n    \"passwd_delay\": \"string\",\n    \"passwd_delay_eta\": \"string\",\n    \"title\": \"string\",\n    \"token\": \"string\",\n    \"token_time\": \"string\",\n    \"unlock_system_time\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"guid\": \"string\",\n    \"id\": 5896,\n    \"indestructibility_passwd\": \"string\",\n    \"is_locked\": false,\n    \"name\": \"string\",\n    \"new_indestructibility_passwd\": \"string\",\n    \"passwd_delay\": \"string\",\n    \"passwd_delay_eta\": \"string\",\n    \"title\": \"string\",\n    \"token\": \"string\",\n    \"token_time\": \"string\",\n    \"unlock_system_time\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f093bf7-2c89-4675-9956-241a93babdb5",
+          "name": "Return Indestructibility Details.",
+          "request": {
+            "name": "Return Indestructibility Details.",
+            "description": {
+              "content": "This endpoint returns details of an indestructibility configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indestructibility",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Indestructibility ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e12acb0-295a-4dec-9d5b-6b3076b29188",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indestructibility",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Indestructibility ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"guid\": \"string\",\n  \"id\": 1260,\n  \"indestructibility_passwd\": \"string\",\n  \"is_locked\": true,\n  \"name\": \"string\",\n  \"new_indestructibility_passwd\": \"string\",\n  \"passwd_delay\": \"string\",\n  \"passwd_delay_eta\": \"string\",\n  \"title\": \"string\",\n  \"token\": \"string\",\n  \"token_time\": \"string\",\n  \"unlock_system_time\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f2baf85-ac64-425e-b5d6-be8f89a9a718",
+          "name": "Modify Indestructibility Settings",
+          "request": {
+            "name": "Modify Indestructibility Settings",
+            "description": {
+              "content": "This endpoint can change the indestructibility password and/or the indestructibility password restore delay. The indestructibility mechanism must be unlocked before This endpoint can be done.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indestructibility",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"indestructibility_passwd\": \"<string>\",\n  \"new_indestructibility_passwd\": \"<string>\",\n  \"passwd_delay\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b5e508f-2e16-4a80-9f78-87938af5f2b4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indestructibility",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indestructibility_passwd\": \"<string>\",\n  \"new_indestructibility_passwd\": \"<string>\",\n  \"passwd_delay\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"guid\": \"string\",\n  \"id\": 1260,\n  \"indestructibility_passwd\": \"string\",\n  \"is_locked\": true,\n  \"name\": \"string\",\n  \"new_indestructibility_passwd\": \"string\",\n  \"passwd_delay\": \"string\",\n  \"passwd_delay_eta\": \"string\",\n  \"title\": \"string\",\n  \"token\": \"string\",\n  \"token_time\": \"string\",\n  \"unlock_system_time\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dcac777a-ee79-43e3-a2e7-9f7225d5370d",
+          "name": "Generate Indestructibility Token",
+          "request": {
+            "name": "Generate Indestructibility Token",
+            "description": {
+              "content": "This endpoint generates an indestructibility token that is valid for one hour.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indestructibility",
+                ":id",
+                "generate_token",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"indestructibility_passwd\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db2029b6-2043-47ba-a37d-ee2e9f0fe556",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indestructibility",
+                    ":id",
+                    "generate_token",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"indestructibility_passwd\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"guid\": \"string\",\n  \"id\": 1260,\n  \"indestructibility_passwd\": \"string\",\n  \"is_locked\": true,\n  \"name\": \"string\",\n  \"new_indestructibility_passwd\": \"string\",\n  \"passwd_delay\": \"string\",\n  \"passwd_delay_eta\": \"string\",\n  \"title\": \"string\",\n  \"token\": \"string\",\n  \"token_time\": \"string\",\n  \"unlock_system_time\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76f656c2-5bf9-4b45-b640-d49a8a197789",
+          "name": "Reset Indestructibility Password",
+          "request": {
+            "name": "Reset Indestructibility Password",
+            "description": {
+              "content": "This endpoint restores the indestructibility password to its default value. This is indented for the case of a forgotten indestructibility password, where restoring to default enables a user to change the password again to a new secure password. There is a configurable delay until the password restore takes effect. The delay provides additional security in case of a rogue admin using VMS to restore the password. Throughout the duration of the password restore delay period, an alarm is raised. The alarm is raised to alert VMS users that a password restore was initiated in case it was initiated by an unauthorized user. In case you suspect that a rogue admin has initiated a reset, please contact VAST Support and we will assist you.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indestructibility",
+                ":id",
+                "reset_passwd",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14e34489-d3d7-43e7-bbcb-04e8674b7718",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indestructibility",
+                    ":id",
+                    "reset_passwd",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"guid\": \"string\",\n  \"id\": 1260,\n  \"indestructibility_passwd\": \"string\",\n  \"is_locked\": true,\n  \"name\": \"string\",\n  \"new_indestructibility_passwd\": \"string\",\n  \"passwd_delay\": \"string\",\n  \"passwd_delay_eta\": \"string\",\n  \"title\": \"string\",\n  \"token\": \"string\",\n  \"token_time\": \"string\",\n  \"unlock_system_time\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5370af0e-4e36-4c1e-831e-97ceb7fa675c",
+          "name": "Unlock Indestructibility",
+          "request": {
+            "name": "Unlock Indestructibility",
+            "description": {
+              "content": "<p>This endpoint unlocks indestructibility for one hour. The following can only be done while indestructibility is unlocked:</p>\n  * Modifying an indestructible protection policy, including changing the snapshot schedule and shortening the retention period for snapshots.\n  * Modify a protected path that points to an indestructible protection policy, including pausing the path.\n  * Deleting indestructible snapshots.\n  * Shortening the expiration time of indestructible snapshots.\n  * Changing the indestructibility password.\n  * Changing the indestructibility password restore delay.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indestructibility",
+                ":id",
+                "unlock",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"challenge_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "556291bd-67d3-4488-9598-270eb77fbbd9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indestructibility",
+                    ":id",
+                    "unlock",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"challenge_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"guid\": \"string\",\n  \"id\": 1260,\n  \"indestructibility_passwd\": \"string\",\n  \"is_locked\": true,\n  \"name\": \"string\",\n  \"new_indestructibility_passwd\": \"string\",\n  \"passwd_delay\": \"string\",\n  \"passwd_delay_eta\": \"string\",\n  \"title\": \"string\",\n  \"token\": \"string\",\n  \"token_time\": \"string\",\n  \"unlock_system_time\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a91e3951-be79-4205-950d-3cbe6259d143",
+    "name": "VAST API Swagger Schema activedirectory indestructibility API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

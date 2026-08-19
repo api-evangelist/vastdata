@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory metrics API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query System Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/analytics/"
+          },
+          "docs": "This endpoint queries the cluster for all available analytics metrics. The response is identical to that of the /metrics/ endpoint. To create report featuring any of the metrics, use the /monitors/ endpoint."
+        },
+        {
+          "info": {
+            "name": "Query System Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/"
+          },
+          "docs": "This endpoint queries the cluster for all available analytics metrics. The response is identical to that of the /analytics/ endpoint. To create report featuring any of the metrics, use the /monitors/ endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

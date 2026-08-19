@@ -1,0 +1,543 @@
+{
+  "item": [
+    {
+      "id": "5c8f1996-e4e9-4f71-869d-7a5d280f0b2a",
+      "name": "s3policies",
+      "description": {
+        "content": "Identity policies comprise statements that grant or deny permissions for any combination of specific actions on any combination of specified resources. They are the primary access control method available with the VAST Cluster S3 service. Identity policies are manageable exclusively through VMS. They are written in JSON document structure. Multiple identity policies can be attached  to multiple users and to multiple groups. Permissions denied by identity policies override permissions allowed by identity policies. Permissions allowed or denied by identity policies override S3 ACLs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d086ec21-3c7c-458b-af97-114459b4e96a",
+          "name": "List S3 policies",
+          "request": {
+            "name": "List S3 policies",
+            "description": {
+              "content": "This endpoint lists all S3 identity policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3policies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "iam_roles__id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3740fc4e-6d20-4795-9f4e-0906d596ef91",
+              "name": "S3 identity policy information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3policies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "iam_roles__id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"policy\": \"string\",\n    \"enabled\": true,\n    \"groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"guid\": \"string\",\n    \"id\": 4860,\n    \"is_replicated\": true,\n    \"tenant_id\": 1974,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"users\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"policy\": \"string\",\n    \"enabled\": false,\n    \"groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"guid\": \"string\",\n    \"id\": 6357,\n    \"is_replicated\": false,\n    \"tenant_id\": 1045,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"users\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f48ed3f4-8b2c-45f9-9a91-e0ebc05b0696",
+          "name": "Create an Identity Policy",
+          "request": {
+            "name": "Create an Identity Policy",
+            "description": {
+              "content": "This endpoint creates an S3 identity policy. Multiple S3 identity policies may be created and they may be attached to multiple users and groups. Each user and group is denied all permissions denied by any attached S3 identity policy and is granted the aggregate of all permissions granted by all attached S3 identity policies that are not denied by any other attached policy. Creating an S3 identify policy involves writing the policy in a JSON document structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3policies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0fe015fd-242a-4836-8395-abbc3bab6682",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3policies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"policy\": \"string\",\n  \"enabled\": true,\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"guid\": \"string\",\n  \"id\": 1248,\n  \"is_replicated\": false,\n  \"tenant_id\": 7962,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"users\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b67dcf2e-05df-4adc-b658-fdf32fa4d0a7",
+          "name": "Delete an S3 Identity Policy",
+          "request": {
+            "name": "Delete an S3 Identity Policy",
+            "description": {
+              "content": "This endpoint deletes a specified S3 identity policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3policies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the S3 identity policy."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc8a77c9-e0f3-4fd2-baae-731ad8878e70",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3policies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the S3 identity policy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37247cd5-ef74-43f8-82c3-52af51829002",
+          "name": "Return details of an S3 identity policy",
+          "request": {
+            "name": "Return details of an S3 identity policy",
+            "description": {
+              "content": "This endpoint returns an S3 identity policy",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3policies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the S3 identity policy."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2bced952-197f-40dd-97cd-8387bb1fe497",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3policies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the S3 identity policy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"policy\": \"string\",\n  \"enabled\": true,\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"guid\": \"string\",\n  \"id\": 1248,\n  \"is_replicated\": false,\n  \"tenant_id\": 7962,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"users\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e882809-73fb-4c36-b06b-af24fc85ae58",
+          "name": "Modify an S3 Identity Policy",
+          "request": {
+            "name": "Modify an S3 Identity Policy",
+            "description": {
+              "content": "This endpoint modifies an S3 identity policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "s3policies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the S3 identity policy."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"policy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec7efff6-e45d-4200-b367-aada0f8297db",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "s3policies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the S3 identity policy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f990790-bc19-43c3-ad00-1bb4d6e5e1f0",
+    "name": "VAST API Swagger Schema activedirectory s3policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

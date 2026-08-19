@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory delta API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "delta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns Delta Protocol records.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/delta/",
+            "params": [
+              {
+                "name": "sequence",
+                "value": "",
+                "type": "query",
+                "description": "Runtime sequence id for delta. Reset if HA happened. Example: '8f021a67-cfd6-4896-ad67-3e32a376c6f4' "
+              },
+              {
+                "name": "generation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "op_type",
+                "value": "",
+                "type": "query",
+                "description": "Operation type"
+              },
+              {
+                "name": "object__type",
+                "value": "",
+                "type": "query",
+                "description": "Example: 'cluster'"
+              },
+              {
+                "name": "object__guid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object__id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Delta Protocol records."
+        },
+        {
+          "info": {
+            "name": "Returns Delta Storage config.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/delta/config"
+          },
+          "docs": "Returns Delta Storage config."
+        },
+        {
+          "info": {
+            "name": "Update Delta config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/delta/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Delta config"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

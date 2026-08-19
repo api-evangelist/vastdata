@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory dnodes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "dnodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List DNodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dnodes/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "Filter by DNode IP"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by DNode state"
+              },
+              {
+                "name": "cluster__name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cluster__id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by DNode name"
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "List only enabled DNodes"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a list of Dnodes in the cluster, with optional filtering."
+        },
+        {
+          "info": {
+            "name": "Return Details of a DNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dnodes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DNode ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a DNode."
+        },
+        {
+          "info": {
+            "name": "Activate/Deactivate/Replace/Power On/Off DNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dnodes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DNode ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint activates, deactivates, replaces, powers off and powers on a DNode."
+        },
+        {
+          "info": {
+            "name": "Control DNode LED",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dnodes/:id/control_led/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DNode ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint controls a DNode LED"
+        },
+        {
+          "info": {
+            "name": "Highlight DNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dnodes/:id/highlight/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DNode ID"
+              }
+            ]
+          },
+          "docs": "This endpoint highlights a DNode"
+        },
+        {
+          "info": {
+            "name": "Rename DNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dnodes/:id/rename/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DNode ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint renames a DNode."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

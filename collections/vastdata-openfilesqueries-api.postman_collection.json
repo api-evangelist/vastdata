@@ -1,0 +1,482 @@
+{
+  "item": [
+    {
+      "id": "4ffd47b8-1bba-42a6-918a-b9b60de196dd",
+      "name": "openfilesqueries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a68c1c4-a4cd-4f3d-8344-0b00d08b36bb",
+          "name": "Get all open files queries.",
+          "request": {
+            "name": "Get all open files queries.",
+            "description": {
+              "content": "This endpoint lists open files queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfilesqueries",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path_prefix__icontains",
+                  "value": "<string>",
+                  "description": "Filter by path prefix substring"
+                },
+                {
+                  "disabled": false,
+                  "key": "name__icontains",
+                  "value": "<string>",
+                  "description": "Filter by query name substring"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant__id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "created__gte",
+                  "value": "<string>",
+                  "description": "Filter queries created on or after date"
+                },
+                {
+                  "disabled": false,
+                  "key": "created__lte",
+                  "value": "<string>",
+                  "description": "Filter queries created on or before date"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by query state"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bc25368-0261-4995-8e97-e62148b85238",
+              "name": "open files queries information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfilesqueries",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path_prefix__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "created__gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created__lte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"async_task_id\": 4426,\n    \"created\": \"2011-06-07T13:57:09.856Z\",\n    \"filters\": {\n      \"return_only_locked_files\": true\n    },\n    \"guid\": \"string\",\n    \"id\": 5326,\n    \"name\": \"string\",\n    \"path_prefix\": \"string\",\n    \"state\": \"RUNNING\",\n    \"tenant_id\": 5989,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"async_task_id\": 9333,\n    \"created\": \"2007-11-14T07:17:06.493Z\",\n    \"filters\": {\n      \"return_only_locked_files\": true\n    },\n    \"guid\": \"string\",\n    \"id\": 9923,\n    \"name\": \"string\",\n    \"path_prefix\": \"string\",\n    \"state\": \"PARTIALLY_COMPLETED\",\n    \"tenant_id\": 4315,\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f69f7898-73c6-4c9b-8e3a-cab0e5c36744",
+          "name": "Create an open files query.",
+          "request": {
+            "name": "Create an open files query.",
+            "description": {
+              "content": "This endpoint creates an open files query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfilesqueries",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path_prefix\": \"<string>\",\n  \"protocol\": \"<string>\",\n  \"filters\": \"<object>\",\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "9dce937b-cdb8-4509-9ac9-b7ec22db97b1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfilesqueries",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task_id\": 1815,\n  \"created\": \"1995-02-07T07:06:50.051Z\",\n  \"filters\": {\n    \"return_only_locked_files\": false\n  },\n  \"guid\": \"string\",\n  \"id\": 9369,\n  \"name\": \"string\",\n  \"path_prefix\": \"string\",\n  \"state\": \"PARTIALLY_COMPLETED\",\n  \"tenant_id\": 1043,\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa67f411-acf2-4d4a-8559-531ec2a098d3",
+          "name": "Delete an open files query.",
+          "request": {
+            "name": "Delete an open files query.",
+            "description": {
+              "content": "Delete an open files query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfilesqueries",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d83dd95-6478-433e-a313-ec543f3463d3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfilesqueries",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0c8662b-4bf8-40e5-9642-d72a5edb2118",
+          "name": "Return details of an open files query.",
+          "request": {
+            "name": "Return details of an open files query.",
+            "description": {
+              "content": "This endpoint returns information about a specific open files query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfilesqueries",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a5e12f3-3e2c-4880-b6ea-b7a81d5ba77f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfilesqueries",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task_id\": 582,\n  \"created\": \"1952-11-07T23:00:55.635Z\",\n  \"filters\": {\n    \"return_only_locked_files\": true\n  },\n  \"guid\": \"string\",\n  \"id\": 461,\n  \"name\": \"string\",\n  \"path_prefix\": \"string\",\n  \"state\": \"COMPLETED\",\n  \"tenant_id\": 8917,\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "04e4d29a-c0af-408d-9f49-b256487c010b",
+    "name": "VAST API Swagger Schema activedirectory openfilesqueries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

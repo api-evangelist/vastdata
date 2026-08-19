@@ -1,0 +1,555 @@
+{
+  "item": [
+    {
+      "id": "5e5faf3b-4db7-4bc8-9575-8a0514633ef9",
+      "name": "replicationpolicies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d02c577e-1d97-4ad5-8176-9868cee37747",
+          "name": "List Replication Policies (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "List Replication Policies (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint presents the replication policies. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationpolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "replication_target__name",
+                  "value": "<string>",
+                  "description": "Filter by replication peer"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by replication policy name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26ec37fd-4c0f-44a4-96c6-a9534752ccc5",
+              "name": "Replication target information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationpolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "replication_target__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"aws_preferred_storage\": \"string\",\n    \"bandwidth_limitation_rules\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 2536,\n    \"name\": \"string\",\n    \"priority\": \"string\",\n    \"replication_target\": \"string\",\n    \"replication_target_name\": \"string\",\n    \"schedule_frequency\": \"1970-01-09T10:23:12.411Z\",\n    \"schedule_start_time\": \"2010-06-26T02:19:09.019Z\",\n    \"vip_pool\": \"string\"\n  },\n  {\n    \"aws_preferred_storage\": \"string\",\n    \"bandwidth_limitation_rules\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 5215,\n    \"name\": \"string\",\n    \"priority\": \"string\",\n    \"replication_target\": \"string\",\n    \"replication_target_name\": \"string\",\n    \"schedule_frequency\": \"1959-12-26T19:32:31.251Z\",\n    \"schedule_start_time\": \"1969-10-05T21:51:10.274Z\",\n    \"vip_pool\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e376fbaf-5b84-4dae-beb0-d51c77881a40",
+          "name": "Create Replication Policy (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "Create Replication Policy (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint creates a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationpolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"replication_target_id\": \"<integer>\",\n  \"aws_preferred_storage\": \"<string>\",\n  \"bandwidth_limitation_rules\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"schedule_frequency\": \"<dateTime>\",\n  \"schedule_start_time\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ceec3085-d01a-4982-b6de-783288faa053",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationpolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"replication_target_id\": \"<integer>\",\n  \"aws_preferred_storage\": \"<string>\",\n  \"bandwidth_limitation_rules\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"schedule_frequency\": \"<dateTime>\",\n  \"schedule_start_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aws_preferred_storage\": \"string\",\n  \"bandwidth_limitation_rules\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5616,\n  \"name\": \"string\",\n  \"priority\": \"string\",\n  \"replication_target\": \"string\",\n  \"replication_target_name\": \"string\",\n  \"schedule_frequency\": \"1959-04-28T04:31:55.560Z\",\n  \"schedule_start_time\": \"2026-06-08T19:14:28.017Z\",\n  \"vip_pool\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6528c75f-9224-4347-8521-076d8a95dfc1",
+          "name": "Delete a Replication Policy (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "Delete a Replication Policy (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint deletes a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c45ca332-c81d-41e8-b294-3a7966720856",
+              "name": "this endpoint deletes a replication policy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5113cee7-0668-4e25-8acc-357d08dc7f9c",
+          "name": "Return Details of a Replication Policy (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "Return Details of a Replication Policy (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint returns details of a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) index of replication policy"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "548431e1-e3ae-44e8-a583-bc46d58de1fc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) index of replication policy"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aws_preferred_storage\": \"string\",\n  \"bandwidth_limitation_rules\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5616,\n  \"name\": \"string\",\n  \"priority\": \"string\",\n  \"replication_target\": \"string\",\n  \"replication_target_name\": \"string\",\n  \"schedule_frequency\": \"1959-04-28T04:31:55.560Z\",\n  \"schedule_start_time\": \"2026-06-08T19:14:28.017Z\",\n  \"vip_pool\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65808fff-2faa-4cf7-b81b-a5dee61bbfa7",
+          "name": "Modify a Replication Policy (deprecated from VAST Cluster 3.4)",
+          "request": {
+            "name": "Modify a Replication Policy (deprecated from VAST Cluster 3.4)",
+            "description": {
+              "content": "This endpoint modifies a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationpolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aws_preferred_storage\": \"<string>\",\n  \"bandwidth_limitation_rules\": \"<string>\",\n  \"name\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"replication_target\": \"<string>\",\n  \"schedule_frequency\": \"<dateTime>\",\n  \"schedule_start_time\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c08bcdd9-c41b-4cad-81d0-b0967d20d96f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationpolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aws_preferred_storage\": \"<string>\",\n  \"bandwidth_limitation_rules\": \"<string>\",\n  \"name\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"replication_target\": \"<string>\",\n  \"schedule_frequency\": \"<dateTime>\",\n  \"schedule_start_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "25f63f3b-871d-49bd-9597-62e54dcc0b07",
+    "name": "VAST API Swagger Schema activedirectory replicationpolicies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

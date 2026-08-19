@@ -1,0 +1,587 @@
+{
+  "item": [
+    {
+      "id": "8e76b070-1b25-406e-ae82-6db611a9579d",
+      "name": "schemas",
+      "description": {
+        "content": "The schemas endpoint enables you to manage the schemas in a VAST database.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "96991aaf-b848-4011-b716-6638343741bb",
+          "name": "List Database Schemas",
+          "request": {
+            "name": "List Database Schemas",
+            "description": {
+              "content": "This endpoint lists Database Schemas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schemas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "999"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "Filter by database in which the schemas reside"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name",
+                  "value": "<string>",
+                  "description": "Get list of schemas by schema_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Getting list of objects by exact match"
+                },
+                {
+                  "disabled": false,
+                  "key": "name__startswith",
+                  "value": "<string>",
+                  "description": "Getting list of objects by prefix match"
+                },
+                {
+                  "disabled": false,
+                  "key": "count_only",
+                  "value": "false",
+                  "description": "Whether to only return count of objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "schema_name__startswith",
+                  "value": "<string>",
+                  "description": "Can be true or false.\nIf this by_level is true, the VMS will provide a list of all schemas of only one level.\nTo get the next level, make another request with the name of the parent scheme\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "by_level",
+                  "value": "<string>",
+                  "description": "Can be true or false.\nIf this by_level is true, the VMS will provide a list of all schemas of only one level.\nto get the next level, need to make another request with the name of the parent scheme\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55818d76-d8b1-4659-9929-134a8e8eabdb",
+              "name": "Database Schemas",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schemas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "999"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schema_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name__startswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count_only",
+                      "value": "false"
+                    },
+                    {
+                      "key": "schema_name__startswith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "by_level",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"database_name\": \"string\",\n    \"name\": \"string\",\n    \"properties\": \"string\"\n  },\n  {\n    \"database_name\": \"string\",\n    \"name\": \"string\",\n    \"properties\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3623210-bb4c-420b-9441-f90c30fac1ff",
+          "name": "Create a Database Schema",
+          "request": {
+            "name": "Create a Database Schema",
+            "description": {
+              "content": "This endpoint creates a database schema",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schemas",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "d0933241-e227-4805-b1d9-52dc2dc118a0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schemas",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc3d967c-2873-466a-9336-0534e97028ce",
+          "name": "Delete Schema",
+          "request": {
+            "name": "Delete Schema",
+            "description": {
+              "content": "This endpoint deletes a database schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schemas",
+                "delete",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "89325414-eb9d-46c5-be15-68cc0bcb0a9e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schemas",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af755532-5406-4338-8d33-a5d83132dab0",
+          "name": "Rename a database schema",
+          "request": {
+            "name": "Rename a database schema",
+            "description": {
+              "content": "This endpoint renames a schema. The name must meet the requirements for S3 object names.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schemas",
+                "rename",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"new_name\": \"<string>\",\n  \"new_schema_name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "f5e7fc98-f8b0-48d4-ab7d-6559696dcddf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schemas",
+                    "rename",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba2cd175-a8df-4e25-aff6-e1e1109ca1af",
+          "name": "Show a Database Schema",
+          "request": {
+            "name": "Show a Database Schema",
+            "description": {
+              "content": "This endpoint shows a Database Schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schemas",
+                "show",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Getting object by exact match"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8176dee1-3f19-4aeb-95e1-141490ab31f1",
+              "name": "Database Schema",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schemas",
+                    "show",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"properties\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9ea39eb7-4cf3-4e46-b361-54ca8dae86ae",
+    "name": "VAST API Swagger Schema activedirectory schemas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

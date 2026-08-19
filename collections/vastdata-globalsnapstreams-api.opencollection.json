@@ -1,0 +1,191 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory globalsnapstreams API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "globalsnapstreams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return Global Snaphot Streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/globalsnapstreams/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Global Snaphot Stream name"
+              }
+            ]
+          },
+          "docs": "This endpoint lists global snapshot streams."
+        },
+        {
+          "info": {
+            "name": "Create a Global Snapshot Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/globalsnapstreams/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a global snapshot stream. A global snapshot stream clones a remote or a local snapshot to a target path on the local cluster."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Global Snapshot Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/globalsnapstreams/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Global Snap Stream ID"
+              }
+            ]
+          },
+          "docs": "This endpoints returns details of a specified global snapshot stream."
+        },
+        {
+          "info": {
+            "name": "Modify a Global Snapshot Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/globalsnapstreams/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Global Snapshot Stream ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a global snaphot stream."
+        },
+        {
+          "info": {
+            "name": "Delete a Global Snapshot Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/globalsnapstreams/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Global Snapshot Stream ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a global snapshot stream."
+        },
+        {
+          "info": {
+            "name": "Pause a Global Snapshot Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/globalsnapstreams/:id/pause",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Global Snapshot Stream ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint pauses a global snapshot stream."
+        },
+        {
+          "info": {
+            "name": "Resume a Global Snapshot Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/globalsnapstreams/:id/resume",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Global Snaphot Stream ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint resumes a paused global snapshot stream."
+        },
+        {
+          "info": {
+            "name": "Stop a Global Snapshot Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/globalsnapstreams/:id/stop",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Global Snapshot Stream ID"
+              }
+            ]
+          },
+          "docs": "This endpoint stops a global snapshot stream."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

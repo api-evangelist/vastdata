@@ -1,0 +1,999 @@
+{
+  "item": [
+    {
+      "id": "e37d0a1c-858e-4573-884b-3c63e1a77760",
+      "name": "monitors",
+      "description": {
+        "content": "Monitors are analytics reports that can provide insight into capacity utilization and cluster performance. Top performer analytics are performance metrics of the n most active client users, views, client hosts, vips, vip pools and cnodes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c3f4ebd-ba26-4077-9adf-86b80306785b",
+          "name": "List Monitors",
+          "request": {
+            "name": "List Monitors",
+            "description": {
+              "content": "This endpoint lists properties of predefined analytics reports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitors",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe253158-e0d5-42d3-a498-521a48206733",
+              "name": "Monitor information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitors",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"aggregation\": \"string\",\n    \"exclude_patterns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"from_time\": \"2001-05-09T12:43:59.920Z\",\n    \"granularity\": \"string\",\n    \"id\": 7091,\n    \"limit\": 1694,\n    \"metrics_exposure\": \"string\",\n    \"monitor_type\": \"string\",\n    \"name\": \"string\",\n    \"object_ids\": {},\n    \"object_type\": \"string\",\n    \"prop_list\": {},\n    \"query_aggregation\": \"string\",\n    \"time_frame\": \"string\",\n    \"to_time\": \"1968-02-23T02:35:50.175Z\"\n  },\n  {\n    \"aggregation\": \"string\",\n    \"exclude_patterns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"from_time\": \"2003-08-21T09:54:28.407Z\",\n    \"granularity\": \"string\",\n    \"id\": 6223,\n    \"limit\": 2188,\n    \"metrics_exposure\": \"string\",\n    \"monitor_type\": \"string\",\n    \"name\": \"string\",\n    \"object_ids\": {},\n    \"object_type\": \"string\",\n    \"prop_list\": {},\n    \"query_aggregation\": \"string\",\n    \"time_frame\": \"string\",\n    \"to_time\": \"1979-05-08T23:09:34.983Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d76d0e04-82e6-49db-b450-1657660e357e",
+          "name": "Create Custom Analytics Report (aka Monitor)",
+          "request": {
+            "name": "Create Custom Analytics Report (aka Monitor)",
+            "description": {
+              "content": "This endpoint defines a custom analytics report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitors",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"object_type\": \"<string>\",\n  \"aggregation\": \"<string>\",\n  \"from_time\": \"<string>\",\n  \"granularity\": \"<string>\",\n  \"name\": \"<string>\",\n  \"object_ids\": \"<string>\",\n  \"prop_list\": \"<string>\",\n  \"time_frame\": \"<string>\",\n  \"to_time\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dcef2d2b-13e8-4adf-909d-f77bd38dc19f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitors",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object_type\": \"<string>\",\n  \"aggregation\": \"<string>\",\n  \"from_time\": \"<string>\",\n  \"granularity\": \"<string>\",\n  \"name\": \"<string>\",\n  \"object_ids\": \"<string>\",\n  \"prop_list\": \"<string>\",\n  \"time_frame\": \"<string>\",\n  \"to_time\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregation\": \"string\",\n  \"exclude_patterns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"from_time\": \"1988-05-23T22:12:53.973Z\",\n  \"granularity\": \"string\",\n  \"id\": 5458,\n  \"limit\": 5389,\n  \"metrics_exposure\": \"string\",\n  \"monitor_type\": \"string\",\n  \"name\": \"string\",\n  \"object_ids\": {},\n  \"object_type\": \"string\",\n  \"prop_list\": {},\n  \"query_aggregation\": \"string\",\n  \"time_frame\": \"string\",\n  \"to_time\": \"2012-03-03T15:05:46.624Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "163b8dce-aba0-4759-aab0-bbc975f13684",
+          "name": "Query Analytics with Ad Hoc Query Parameters",
+          "request": {
+            "name": "Query Analytics with Ad Hoc Query Parameters",
+            "description": {
+              "content": "This endpoint queries VMS for analytics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitors",
+                "ad_hoc_query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>",
+                  "description": "(Required) The type of object to monitor."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_time",
+                  "value": "<string>",
+                  "description": "Start time of report. e.g. 2021-01-15T13:41:52Z"
+                },
+                {
+                  "disabled": false,
+                  "key": "to_time",
+                  "value": "<string>",
+                  "description": "End time of report. e.g. 2021-01-15T13:41:52Z"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_frame",
+                  "value": "<string>",
+                  "description": "Time frame to report. Specify as an integer followed by 'm' (minutes) 'h' (hours), 'D' (days) ,'W' (weeks) or 'M' (months) 'Y' (years). e.g. 10m"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_ids",
+                  "value": "<integer>",
+                  "description": "Specify a list of IDs of objects of the specified object_type to filter the report on those specific objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "object_ids",
+                  "value": "<integer>",
+                  "description": "Specify a list of IDs of objects of the specified object_type to filter the report on those specific objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "prop_list",
+                  "value": "<string>",
+                  "description": "A list of metrics to query. To get the full list of metrics, use GET /metrics/."
+                },
+                {
+                  "disabled": false,
+                  "key": "prop_list",
+                  "value": "<string>",
+                  "description": "A list of metrics to query. To get the full list of metrics, use GET /metrics/."
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "<string>",
+                  "description": "Data granularity: seconds (raw), minutes (five minute aggregated samples), hours (hourly aggregated samples), or days (daily aggregated samples)"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation",
+                  "value": "<string>",
+                  "description": "If granularity is minutes, hours or days, the data is aggregated. This parameter selects which aggregation function to use."
+                },
+                {
+                  "disabled": false,
+                  "key": "format_data",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0eec7332-b08e-4420-af0d-a3d6109bb1a7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitors",
+                    "ad_hoc_query",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_frame",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_ids",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "object_ids",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "prop_list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prop_list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format_data",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"object_ids\": {},\n  \"prop_list\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d561e7b0-704d-4360-9135-1d5555d5884e",
+          "name": "Query Top Performer Data",
+          "request": {
+            "name": "Query Top Performer Data",
+            "description": {
+              "content": "This endpoint queries VMS for top performer data. It can return performance metrics for the most active client users, views, client hosts, vips, vip pools and cnodes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitors",
+                "topn",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Filters results by category of performers. Supported for users, clients and views only."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) Filters results by a specified performance metric"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "The maximum number of top performers in each category to return in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<string>",
+                  "description": "The timestamp for which to display data. For example, 2023-12-06T13:10:03Z. If not passed, the most recent sampling is returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04a9b52f-e700-4c02-87c2-a7e1f13a116a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitors",
+                    "topn",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d32816c-c03c-4293-b8d5-9ddf2df12562",
+          "name": "Delete Monitor (aka Analytics Report)",
+          "request": {
+            "name": "Delete Monitor (aka Analytics Report)",
+            "description": {
+              "content": "This endpoint deletes an analytics report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitors",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Monitor ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff124560-67cd-443b-aa3d-c9ad51ed1eae",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitors",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Monitor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87da7ccd-a356-4fa5-b4a5-e182fed88e62",
+          "name": "Return Details of an Analytics Report",
+          "request": {
+            "name": "Return Details of an Analytics Report",
+            "description": {
+              "content": "This endpoint returns the properties of a specified analytics report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitors",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Monitor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6316f5c2-f39f-46f9-80d8-d5efa27de644",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitors",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Monitor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregation\": \"string\",\n  \"exclude_patterns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"from_time\": \"1988-05-23T22:12:53.973Z\",\n  \"granularity\": \"string\",\n  \"id\": 5458,\n  \"limit\": 5389,\n  \"metrics_exposure\": \"string\",\n  \"monitor_type\": \"string\",\n  \"name\": \"string\",\n  \"object_ids\": {},\n  \"object_type\": \"string\",\n  \"prop_list\": {},\n  \"query_aggregation\": \"string\",\n  \"time_frame\": \"string\",\n  \"to_time\": \"2012-03-03T15:05:46.624Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07a8aeea-9a08-46d7-8a2a-27f0db19ac87",
+          "name": "Modify Analytics Report",
+          "request": {
+            "name": "Modify Analytics Report",
+            "description": {
+              "content": "This endpoint partially modifies the specified monitor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitors",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Monitor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aggregation\": \"<string>\",\n  \"from_time\": \"<string>\",\n  \"granularity\": \"<string>\",\n  \"object_ids\": \"<string>\",\n  \"prop_list\": \"<string>\",\n  \"to_time\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a919a1a-0953-4309-b77e-90077f0c4ca6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitors",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Monitor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aggregation\": \"<string>\",\n  \"from_time\": \"<string>\",\n  \"granularity\": \"<string>\",\n  \"object_ids\": \"<string>\",\n  \"prop_list\": \"<string>\",\n  \"to_time\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a6322a0-ab10-43b3-ab69-e3356a0a5c38",
+          "name": "Query Analytics using Defined Analytics Report (aka Monitor)",
+          "request": {
+            "name": "Query Analytics using Defined Analytics Report (aka Monitor)",
+            "description": {
+              "content": "This endpoint queries for analytics, based on a defined monitor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monitors",
+                ":id",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_time",
+                  "value": "<string>",
+                  "description": "Start time for the report. e.g. 2021-01-15T13:41:52Z"
+                },
+                {
+                  "disabled": false,
+                  "key": "to_time",
+                  "value": "<string>",
+                  "description": "End time for the report. e.g. 2021-01-15T13:41:52Z"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_frame",
+                  "value": "<string>",
+                  "description": "Time frame to report. Specify as an integer followed by 'm' (minutes) 'h' (hours), 'D' (days) ,'W' (weeks) or 'M' (months) 'Y' (years). e.g. 10m"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "<string>",
+                  "description": "Data granularity: seconds (raw), minutes (five minute aggregated samples), hours (hourly aggregated samples), or days (daily aggregated samples)"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregation",
+                  "value": "<string>",
+                  "description": "If granularity is minutes, hours or days, the data is aggregated. This parameter selects which aggregation function to use."
+                },
+                {
+                  "disabled": false,
+                  "key": "format_data",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Monitor ID, to specify the analytics you want to query."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50df1a22-7b02-46f6-8424-1c1f34aa4764",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monitors",
+                    ":id",
+                    "query",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_frame",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aggregation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format_data",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Monitor ID, to specify the analytics you want to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"object_ids\": {},\n  \"prop_list\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "225c0642-9502-4cb5-adcf-538a4c4385b8",
+    "name": "VAST API Swagger Schema activedirectory monitors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

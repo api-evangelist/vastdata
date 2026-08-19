@@ -1,0 +1,1105 @@
+{
+  "item": [
+    {
+      "id": "072f541e-9cd7-492b-9cc5-c911cf16ee15",
+      "name": "eboxes",
+      "description": {
+        "content": "An EBox is a VAST enclosure that contains a server and SSDs. The server runs a CNode and two DNodes in containers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bdb4980c-e2c7-4072-a2bd-030d4215ba85",
+          "name": "List EBoxes",
+          "request": {
+            "name": "List EBoxes",
+            "description": {
+              "content": "This endpoint lists the EBoxes that belong to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eboxes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ce3ea68-464e-49c3-a4c0-709269dea058",
+              "name": "EBox information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"arch_type\": \"string\",\n    \"box_vendor\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 3590,\n    \"description\": \"string\",\n    \"drive_type\": \"string\",\n    \"dtray\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 4101,\n    \"index_in_rack\": 6490,\n    \"is_conclude_possible\": false,\n    \"is_replace_possible\": false,\n    \"led_status\": \"string\",\n    \"rack_id\": 4053,\n    \"rack_name\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"string\",\n    \"subsystem\": 9669,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"uid\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"arch_type\": \"string\",\n    \"box_vendor\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 7905,\n    \"description\": \"string\",\n    \"drive_type\": \"string\",\n    \"dtray\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 253,\n    \"index_in_rack\": 6498,\n    \"is_conclude_possible\": false,\n    \"is_replace_possible\": false,\n    \"led_status\": \"string\",\n    \"rack_id\": 6860,\n    \"rack_name\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"string\",\n    \"subsystem\": 9653,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"uid\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4317782-b83e-42b2-8cb0-3cf87cdf9803",
+          "name": "Add EBox",
+          "request": {
+            "name": "Add EBox",
+            "description": {
+              "content": "This endpoint adds a EBox to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eboxes",
+                "add",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enode_ip\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"rack_name\": \"<string>\",\n  \"rack_unit\": \"<string>\",\n  \"skip_everything\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43e04446-0a57-45ac-a364-f4d69dead7eb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    "add",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enode_ip\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"rack_name\": \"<string>\",\n  \"rack_unit\": \"<string>\",\n  \"skip_everything\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45ba3799-3690-45d5-8fb5-856dade75fa6",
+          "name": "EBox Removal",
+          "request": {
+            "name": "EBox Removal",
+            "description": {
+              "content": "This endpoint removes multiple EBoxes from the cluster",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eboxes",
+                "decommission",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57c647e2-a16f-4f6c-96ef-4520a3c2148b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    "decommission",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74a12105-b6c6-4dac-8ebe-2e647846e836",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    "decommission",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95740106-583a-4e57-851d-4b5f3bbbd302",
+          "name": "Validate EBox Removal",
+          "request": {
+            "name": "Validate EBox Removal",
+            "description": {
+              "content": "This endpoint validates an EBox removal operation without executing it",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eboxes",
+                "decommission",
+                "dry-run",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e09699ab-2a8d-443c-b6ed-f3f6db80c2df",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    "decommission",
+                    "dry-run",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5be0df2-4ad5-48ca-9034-cf61cc7f6474",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    "decommission",
+                    "dry-run",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ba63d98-0f31-41b0-9591-2c690939548c",
+          "name": "Resume EBox Removal",
+          "request": {
+            "name": "Resume EBox Removal",
+            "description": {
+              "content": "This endpoint resumes a failed/stalled EBox removal operation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eboxes",
+                "decommission",
+                "resume",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "466b312c-3016-459f-8979-6b08c758d918",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    "decommission",
+                    "resume",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77f94959-36cd-4625-82f7-0cc6cbc60076",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    "decommission",
+                    "resume",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0eeb9b3b-bef7-4bd1-bed1-806bf077eccd",
+          "name": "Delete an EBox",
+          "request": {
+            "name": "Delete an EBox",
+            "description": {
+              "content": "This endpoint deletes a EBox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eboxes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) EBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94122399-172f-44db-8a9a-a33c6ca49398",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) EBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4449cfa-eb02-47b5-a2d1-5fff21681946",
+          "name": "Return Details of a EBox.",
+          "request": {
+            "name": "Return Details of a EBox.",
+            "description": {
+              "content": "This endpoint returns details of a EBox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eboxes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) EBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ce77884-ceec-4bab-be0a-aaaa7ffdf8eb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) EBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"arch_type\": \"string\",\n  \"box_vendor\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 8524,\n  \"description\": \"string\",\n  \"drive_type\": \"string\",\n  \"dtray\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 9714,\n  \"index_in_rack\": 4793,\n  \"is_conclude_possible\": false,\n  \"is_replace_possible\": false,\n  \"led_status\": \"string\",\n  \"rack_id\": 8600,\n  \"rack_name\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"string\",\n  \"subsystem\": 8361,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"title\": \"string\",\n  \"uid\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f69db141-9489-4dc7-9900-80711bbecbd1",
+          "name": "Modify an EBox",
+          "request": {
+            "name": "Modify an EBox",
+            "description": {},
+            "url": {
+              "path": [
+                "eboxes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) EBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"host_sn\": \"<string>\",\n  \"immediate_shutdown\": \"<boolean>\",\n  \"power_off\": \"<boolean>\",\n  \"power_on\": \"<boolean>\",\n  \"replace\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1cf826e1-a61d-4758-9142-fb99a65539f8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) EBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"host_sn\": \"<string>\",\n  \"immediate_shutdown\": \"<boolean>\",\n  \"power_off\": \"<boolean>\",\n  \"power_on\": \"<boolean>\",\n  \"replace\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "277b2cfc-82d1-4516-903d-03c6774f329a",
+          "name": "Control EBox LEDs",
+          "request": {
+            "name": "Control EBox LEDs",
+            "description": {
+              "content": "This endpoint controls EBox LEDs (on/off)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eboxes",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) EBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "081d69ef-7d0b-46bb-b7b5-26cd4d1bd2ce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eboxes",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) EBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b77533d0-6836-4994-8fa9-a723b943d257",
+    "name": "VAST API Swagger Schema activedirectory eboxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

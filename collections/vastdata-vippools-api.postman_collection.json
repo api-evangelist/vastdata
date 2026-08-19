@@ -1,0 +1,888 @@
+{
+  "item": [
+    {
+      "id": "8f9f202c-b1e1-465e-93e7-550ebb814f38",
+      "name": "vippools",
+      "description": {
+        "content": "A VIP pool is a pool of virtual IP operations (VIPs). VAST Cluster listens on VIPs for requests from data traffic. Each VIP pool is dedicated to one of two roles: PROTOCOLS or REPLICATION. Protocols VIP pools are used for client traffic from all of the supported access protocols (NFSv3, NFSv4.2, SMBv2, S3). Replication VIP Pools are used for connectivity with an async replication peer cluster.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "482c3652-df69-4b0e-a520-32dc6aef6df4",
+          "name": " List VIP Pools",
+          "request": {
+            "name": " List VIP Pools",
+            "description": {
+              "content": "This endpoint returns the VIP pools on the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vippools",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_ip",
+                  "value": "<string>",
+                  "description": "Filter by start IP of VIP pool range"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_ip",
+                  "value": "<string>",
+                  "description": "Filter by end IP of VIP pool range"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "port_membership",
+                  "value": "<string>",
+                  "description": "Filters pools by port affinity"
+                },
+                {
+                  "disabled": false,
+                  "key": "cnode_ids__icontains",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cnode_ids__icontains",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_name__icontains",
+                  "value": "<string>",
+                  "description": "Tenant name to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "serves_tenant",
+                  "value": "<string>",
+                  "description": "Filter by served tenants. Accepts tenant ID or \"all\" for all served tenants."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05287d35-e941-407d-b968-ec74f87cecfb",
+              "name": "VIP Pool information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vippools",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "port_membership",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cnode_ids__icontains",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cnode_ids__icontains",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tenant_name__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serves_tenant",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ip_ranges\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"subnet_cidr\": 5642,\n    \"active_cnode_ids\": [\n      8810,\n      1227\n    ],\n    \"active_interfaces\": 8029,\n    \"bgp_config_guid\": \"string\",\n    \"bgp_config_id\": 8084,\n    \"bgp_config_name\": \"string\",\n    \"client_monitoring_ips\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"cluster\": \"string\",\n    \"cluster_id\": 3011,\n    \"cnode_ids\": [\n      6482,\n      954\n    ],\n    \"cnodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"domain_name\": \"string\",\n    \"enable_l3\": false,\n    \"enable_weighted_balancing\": false,\n    \"enabled\": true,\n    \"end_ip\": \"string\",\n    \"guid\": \"string\",\n    \"gw_ip\": \"string\",\n    \"gw_ipv6\": \"string\",\n    \"id\": 7755,\n    \"name\": \"string\",\n    \"peer_asn\": 9313,\n    \"port_membership\": \"LEFT\",\n    \"ranges_summary\": \"string\",\n    \"role\": \"PROTOCOLS\",\n    \"start_ip\": \"string\",\n    \"state\": \"string\",\n    \"subnet_cidr_ipv6\": 2734,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"tenant_id\": 3132,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"vast_asn\": 1832,\n    \"vip_allocation\": \"string\",\n    \"vlan\": 6960,\n    \"vms_preferred\": true\n  },\n  {\n    \"ip_ranges\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"subnet_cidr\": 5253,\n    \"active_cnode_ids\": [\n      3108,\n      3558\n    ],\n    \"active_interfaces\": 4275,\n    \"bgp_config_guid\": \"string\",\n    \"bgp_config_id\": 263,\n    \"bgp_config_name\": \"string\",\n    \"client_monitoring_ips\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"cluster\": \"string\",\n    \"cluster_id\": 8992,\n    \"cnode_ids\": [\n      1269,\n      924\n    ],\n    \"cnodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"domain_name\": \"string\",\n    \"enable_l3\": false,\n    \"enable_weighted_balancing\": true,\n    \"enabled\": false,\n    \"end_ip\": \"string\",\n    \"guid\": \"string\",\n    \"gw_ip\": \"string\",\n    \"gw_ipv6\": \"string\",\n    \"id\": 8581,\n    \"name\": \"string\",\n    \"peer_asn\": 1647,\n    \"port_membership\": \"RIGHT\",\n    \"ranges_summary\": \"string\",\n    \"role\": \"REPLICATION\",\n    \"start_ip\": \"string\",\n    \"state\": \"string\",\n    \"subnet_cidr_ipv6\": 9308,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"tenant_id\": 6831,\n    \"tenant_name\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"vast_asn\": 5462,\n    \"vip_allocation\": \"string\",\n    \"vlan\": 6894,\n    \"vms_preferred\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b738afba-4163-4c5d-a6a9-651595be1d4e",
+          "name": "Create VIP Pool",
+          "request": {
+            "name": "Create VIP Pool",
+            "description": {
+              "content": "This endpoint creates a VIP pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vippools",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subnet_cidr\": \"<integer>\",\n  \"cluster_id\": \"<integer>\",\n  \"cnode_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cnode_names\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"enable_weighted_balancing\": \"<boolean>\",\n  \"enabled\": true,\n  \"name\": \"<string>\",\n  \"role\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"vms_preferred\": \"<boolean>\",\n  \"bgp_config_id\": \"<integer>\",\n  \"client_monitoring_ips\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"enable_l3\": \"<boolean>\",\n  \"end_ip\": \"<string>\",\n  \"gw_ip\": \"<string>\",\n  \"gw_ipv6\": \"<string>\",\n  \"ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"peer_asn\": \"<integer>\",\n  \"port_membership\": \"<string>\",\n  \"start_ip\": \"<string>\",\n  \"subnet_cidr_ipv6\": \"<integer>\",\n  \"vast_asn\": \"<integer>\",\n  \"vlan\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "de79e074-7635-43ef-8035-7a5809e895fb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vippools",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ip_ranges\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"subnet_cidr\": 5382,\n  \"active_cnode_ids\": [\n    1105,\n    9649\n  ],\n  \"active_interfaces\": 4017,\n  \"bgp_config_guid\": \"string\",\n  \"bgp_config_id\": 2492,\n  \"bgp_config_name\": \"string\",\n  \"client_monitoring_ips\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"cluster\": \"string\",\n  \"cluster_id\": 3769,\n  \"cnode_ids\": [\n    2871,\n    1018\n  ],\n  \"cnodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"domain_name\": \"string\",\n  \"enable_l3\": false,\n  \"enable_weighted_balancing\": false,\n  \"enabled\": true,\n  \"end_ip\": \"string\",\n  \"guid\": \"string\",\n  \"gw_ip\": \"string\",\n  \"gw_ipv6\": \"string\",\n  \"id\": 7717,\n  \"name\": \"string\",\n  \"peer_asn\": 1385,\n  \"port_membership\": \"ALL\",\n  \"ranges_summary\": \"string\",\n  \"role\": \"REPLICATION\",\n  \"start_ip\": \"string\",\n  \"state\": \"string\",\n  \"subnet_cidr_ipv6\": 3789,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_id\": 6138,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"vast_asn\": 7089,\n  \"vip_allocation\": \"string\",\n  \"vlan\": 1509,\n  \"vms_preferred\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "106feb39-faee-4afb-8b60-377a8662f1dc",
+          "name": "Allocate VIP Pool",
+          "request": {
+            "name": "Allocate VIP Pool",
+            "description": {
+              "content": "This endpoint allocates a VIP pool for client access or for native replication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vippools",
+                "allocate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cluster_id\": \"<integer>\",\n  \"cnode_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cnode_names\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"enable_weighted_balancing\": \"<boolean>\",\n  \"enabled\": true,\n  \"name\": \"<string>\",\n  \"role\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"vms_preferred\": \"<boolean>\",\n  \"ips_count\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "a6578a71-7fe3-4081-bdb0-a629e6223190",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vippools",
+                    "allocate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44d42c05-e3eb-4aab-ade0-0235e44af562",
+          "name": "Delete VIP Pool",
+          "request": {
+            "name": "Delete VIP Pool",
+            "description": {
+              "content": "This endpoint deletes a VIP pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vippools",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) VIP Pool ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05cf8044-6c64-4879-bb60-d78753b3bb34",
+              "name": "The VIP pool was deleted successfully. An asynchronous task was submitted to deallocate the IPs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vippools",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) VIP Pool ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3fcff49-b674-446d-a1cf-3aae4e4bffeb",
+              "name": "The VIP pool was deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vippools",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) VIP Pool ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38994802-306a-458a-8263-39bb42d9abf2",
+          "name": "Return Details of a VIP Pool",
+          "request": {
+            "name": "Return Details of a VIP Pool",
+            "description": {
+              "content": "This endpoint returns details of a VIP pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vippools",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) VIP Pool ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "160dd111-9fda-44dc-827d-2c2f8a499783",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vippools",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) VIP Pool ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ip_ranges\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"subnet_cidr\": 5382,\n  \"active_cnode_ids\": [\n    1105,\n    9649\n  ],\n  \"active_interfaces\": 4017,\n  \"bgp_config_guid\": \"string\",\n  \"bgp_config_id\": 2492,\n  \"bgp_config_name\": \"string\",\n  \"client_monitoring_ips\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"cluster\": \"string\",\n  \"cluster_id\": 3769,\n  \"cnode_ids\": [\n    2871,\n    1018\n  ],\n  \"cnodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"domain_name\": \"string\",\n  \"enable_l3\": false,\n  \"enable_weighted_balancing\": false,\n  \"enabled\": true,\n  \"end_ip\": \"string\",\n  \"guid\": \"string\",\n  \"gw_ip\": \"string\",\n  \"gw_ipv6\": \"string\",\n  \"id\": 7717,\n  \"name\": \"string\",\n  \"peer_asn\": 1385,\n  \"port_membership\": \"ALL\",\n  \"ranges_summary\": \"string\",\n  \"role\": \"REPLICATION\",\n  \"start_ip\": \"string\",\n  \"state\": \"string\",\n  \"subnet_cidr_ipv6\": 3789,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"tenant_id\": 6138,\n  \"tenant_name\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"vast_asn\": 7089,\n  \"vip_allocation\": \"string\",\n  \"vlan\": 1509,\n  \"vms_preferred\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "971125ab-3bb1-4d57-9bd1-2a94af28dc1f",
+          "name": "Modify VIP Pool",
+          "request": {
+            "name": "Modify VIP Pool",
+            "description": {
+              "content": "This endpoint modifies a VIP pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vippools",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) VIP Pool ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bgp_config_id\": \"<integer>\",\n  \"client_monitoring_ips\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"cnode_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cnode_names\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"enable_weighted_balancing\": \"<boolean>\",\n  \"enabled\": true,\n  \"end_ip\": \"<string>\",\n  \"gw_ip\": \"<string>\",\n  \"gw_ipv6\": \"<string>\",\n  \"ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"name\": \"<string>\",\n  \"peer_asn\": \"<integer>\",\n  \"port_membership\": \"<string>\",\n  \"role\": \"<string>\",\n  \"start_ip\": \"<string>\",\n  \"subnet_cidr\": \"<integer>\",\n  \"subnet_cidr_ipv6\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"vast_asn\": \"<integer>\",\n  \"vlan\": \"<integer>\",\n  \"vms_preferred\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "451ac09d-4123-4e7c-ba0b-6582adb958ae",
+              "name": "The VIP pool was modified successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vippools",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) VIP Pool ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bgp_config_id\": \"<integer>\",\n  \"client_monitoring_ips\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"cnode_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cnode_names\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"enable_weighted_balancing\": \"<boolean>\",\n  \"enabled\": true,\n  \"end_ip\": \"<string>\",\n  \"gw_ip\": \"<string>\",\n  \"gw_ipv6\": \"<string>\",\n  \"ip_ranges\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"name\": \"<string>\",\n  \"peer_asn\": \"<integer>\",\n  \"port_membership\": \"<string>\",\n  \"role\": \"<string>\",\n  \"start_ip\": \"<string>\",\n  \"subnet_cidr\": \"<integer>\",\n  \"subnet_cidr_ipv6\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"vast_asn\": \"<integer>\",\n  \"vlan\": \"<integer>\",\n  \"vms_preferred\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "211a5407-3e66-4f5d-ad97-8eec5a69f333",
+          "name": "Reallocate VIP Pool",
+          "request": {
+            "name": "Reallocate VIP Pool",
+            "description": {
+              "content": "This endpoint modifies IPs in a VIP pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vippools",
+                ":id",
+                "reallocate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) VIP Pool ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ip_ranges_to_remove\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"ips_count_to_add\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cdd14ac1-e4ec-4c1f-aab7-8f0360a08110",
+              "name": "An asynchronous task was submitted to reallocate IPs for VIPPool.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vippools",
+                    ":id",
+                    "reallocate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) VIP Pool ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ip_ranges_to_remove\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"ips_count_to_add\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "56521091-2406-424a-852c-7eb061dbe14d",
+    "name": "VAST API Swagger Schema activedirectory vippools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

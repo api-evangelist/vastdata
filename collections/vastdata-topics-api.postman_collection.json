@@ -1,0 +1,535 @@
+{
+  "item": [
+    {
+      "id": "f7bc90d7-5ef5-485c-baa8-d89793e31e38",
+      "name": "topics",
+      "description": {
+        "content": "Topics store categories of events collected by VAST Event Broker.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd3ef495-7dc1-4f3a-b21d-ebc2fec15565",
+          "name": "List Kafka Topics",
+          "request": {
+            "name": "List Kafka Topics",
+            "description": {
+              "content": "This endpoint lists Kafka Topics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topics",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "999"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Getting list of objects by exact match"
+                },
+                {
+                  "disabled": false,
+                  "key": "count_only",
+                  "value": "false",
+                  "description": "Whether to only return count of objects"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc1d6e35-1550-47f9-8497-3665f973d40b",
+              "name": "Kafka Topics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topics",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "999"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"database_name\": \"string\",\n    \"name\": \"string\"\n  },\n  {\n    \"database_name\": \"string\",\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "152d6aa2-b564-40d0-838c-0be4fa23719f",
+          "name": "Modify a Kafka Topic",
+          "request": {
+            "name": "Modify a Kafka Topic",
+            "description": {
+              "content": "This endpoint modifies a Kafka Topic",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topics",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message_timestamp_after_max_ms\": \"<long>\",\n  \"message_timestamp_before_max_ms\": \"<long>\",\n  \"message_timestamp_type\": \"<string>\",\n  \"new_name\": \"<string>\",\n  \"retention_ms\": \"<long>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "b8cb5e2a-5f4c-4b82-8a34-b25cb991d075",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topics",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84b75433-af38-4785-91ae-f28bc0988eb5",
+          "name": "Create a Kafka Topic",
+          "request": {
+            "name": "Create a Kafka Topic",
+            "description": {
+              "content": "This endpoint creates a Kafka Topic",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topics",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"topic_partitions\": \"<integer>\",\n  \"message_timestamp_after_max_ms\": \"<long>\",\n  \"message_timestamp_before_max_ms\": \"<long>\",\n  \"message_timestamp_type\": \"<string>\",\n  \"retention_ms\": \"<long>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "d717ddb7-8b31-401c-84ae-0c3483f1ce71",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topics",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5abe3f2a-3a4e-4b6f-ac35-8d2c97c81fa5",
+          "name": "Delete a Kafka Topic",
+          "request": {
+            "name": "Delete a Kafka Topic",
+            "description": {
+              "content": "This endpoint deletes a Kafka Topic.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topics",
+                "delete",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"is_imports_table\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "bd0999fc-b8ec-4157-af58-fa985c8186c5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topics",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af89c0b2-5898-4b5b-b8c0-c9b8f34bc0c6",
+          "name": "Show a Kafka Topic",
+          "request": {
+            "name": "Show a Kafka Topic",
+            "description": {
+              "content": "This endpoint shows a Kafka Topic.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topics",
+                "show",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Getting object by exact match"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bad6b1d-d8fb-4f2e-b91d-f679256f545a",
+              "name": "Kafka Topic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topics",
+                    "show",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"capacity\": 7156,\n  \"database_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"num_events\": 3851,\n  \"message_timestamp_after_max_ms\": 9545,\n  \"message_timestamp_before_max_ms\": 8646,\n  \"message_timestamp_type\": \"LogAppendTime\",\n  \"retention_ms\": 7964,\n  \"topic_partitions\": 4863\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3625e363-93fb-4766-9a4b-bdc9d388918e",
+    "name": "VAST API Swagger Schema activedirectory topics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

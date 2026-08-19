@@ -1,0 +1,625 @@
+{
+  "item": [
+    {
+      "id": "4e7e17ee-61e4-4dd7-a4a9-ec07eccd30b3",
+      "name": "ldaps",
+      "description": {
+        "content": "Lightweight Directory Access Protocol (LDAP)-based directory servers may store and provide POSIX user and group attributes, as used by the NFS client access protocol. Up to two LDAP configurations are supported, where one is used for binding to the LDAP domain of an Active Directory server and the other is used for connecting to a different LDAP-based server other than AD. Limitations apply to the combinations of external providers and protocol enablement.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "915746ca-c8ca-4cf0-a5cd-0cb809dda553",
+          "name": "List LDAP Configurations",
+          "request": {
+            "name": "List LDAP Configurations",
+            "description": {
+              "content": "This endpoint lists LDAP configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ldaps",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da8b85d3-f74d-426b-b20e-a923e3a5fc94",
+              "name": "LDAP information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ldaps",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"searchbase\": \"string\",\n    \"urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"abac_read_only_value_name\": \"string\",\n    \"abac_read_write_value_name\": \"string\",\n    \"active_directory\": \"string\",\n    \"active_directory_id\": 8866,\n    \"advanced_filter\": \"string\",\n    \"binddn\": \"string\",\n    \"bindpw\": \"string\",\n    \"domain_name\": \"string\",\n    \"domains_with_posix_attributes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gid_number\": \"string\",\n    \"group_login_name\": \"string\",\n    \"group_searchbase\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 5895,\n    \"is_abac_provider\": false,\n    \"is_vms_auth_provider\": true,\n    \"mail_property_name\": \"string\",\n    \"match_user\": \"string\",\n    \"method\": \"string\",\n    \"monitor_action\": \"BIND\",\n    \"name\": \"string\",\n    \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n    \"port\": 2263,\n    \"posix_account\": \"string\",\n    \"posix_attributes_source\": \"SPECIFIC_DOMAINS\",\n    \"posix_group\": \"string\",\n    \"posix_primary_provider\": true,\n    \"query_groups_mode\": \"string\",\n    \"query_posix_attributes_from_gc\": true,\n    \"reverse_lookup\": true,\n    \"state\": \"DEGRADED\",\n    \"super_admin_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tenant_id\": 9797,\n    \"title\": \"string\",\n    \"tls_certificate\": \"string\",\n    \"uid\": \"string\",\n    \"uid_member\": \"string\",\n    \"uid_member_value_property_name\": \"string\",\n    \"uid_number\": \"string\",\n    \"url\": \"string\",\n    \"use_auto_discovery\": false,\n    \"use_ldaps\": false,\n    \"use_multi_forest\": false,\n    \"use_posix\": true,\n    \"use_tls\": true,\n    \"user_login_name\": \"string\",\n    \"username_property_name\": \"string\"\n  },\n  {\n    \"searchbase\": \"string\",\n    \"urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"abac_read_only_value_name\": \"string\",\n    \"abac_read_write_value_name\": \"string\",\n    \"active_directory\": \"string\",\n    \"active_directory_id\": 4422,\n    \"advanced_filter\": \"string\",\n    \"binddn\": \"string\",\n    \"bindpw\": \"string\",\n    \"domain_name\": \"string\",\n    \"domains_with_posix_attributes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"gid_number\": \"string\",\n    \"group_login_name\": \"string\",\n    \"group_searchbase\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 7,\n    \"is_abac_provider\": true,\n    \"is_vms_auth_provider\": false,\n    \"mail_property_name\": \"string\",\n    \"match_user\": \"string\",\n    \"method\": \"string\",\n    \"monitor_action\": \"PING\",\n    \"name\": \"string\",\n    \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n    \"port\": 8526,\n    \"posix_account\": \"string\",\n    \"posix_attributes_source\": \"GC\",\n    \"posix_group\": \"string\",\n    \"posix_primary_provider\": true,\n    \"query_groups_mode\": \"string\",\n    \"query_posix_attributes_from_gc\": false,\n    \"reverse_lookup\": true,\n    \"state\": \"DEGRADED\",\n    \"super_admin_groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tenant_id\": 763,\n    \"title\": \"string\",\n    \"tls_certificate\": \"string\",\n    \"uid\": \"string\",\n    \"uid_member\": \"string\",\n    \"uid_member_value_property_name\": \"string\",\n    \"uid_number\": \"string\",\n    \"url\": \"string\",\n    \"use_auto_discovery\": false,\n    \"use_ldaps\": true,\n    \"use_multi_forest\": false,\n    \"use_posix\": true,\n    \"use_tls\": true,\n    \"user_login_name\": \"string\",\n    \"username_property_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a5fc8c9-6e0b-4271-9411-32e7b3233c6d",
+          "name": "Create LDAP Configuration",
+          "request": {
+            "name": "Create LDAP Configuration",
+            "description": {
+              "content": "This endpoint creates an LDAP configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ldaps",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"searchbase\": \"<string>\",\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"abac_read_only_value_name\": \"<string>\",\n  \"abac_read_write_value_name\": \"<string>\",\n  \"advanced_filter\": \"<string>\",\n  \"binddn\": \"<string>\",\n  \"bindpw\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"domains_with_posix_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"gid_number\": \"<string>\",\n  \"group_login_name\": \"<string>\",\n  \"group_searchbase\": \"<string>\",\n  \"is_abac_provider\": \"<boolean>\",\n  \"is_vms_auth_provider\": false,\n  \"mail_property_name\": \"<string>\",\n  \"match_user\": \"<string>\",\n  \"method\": \"<string>\",\n  \"monitor_action\": \"<string>\",\n  \"name\": \"<string>\",\n  \"netgroup_searchbase\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"posix_account\": \"<string>\",\n  \"posix_attributes_source\": \"<string>\",\n  \"posix_group\": \"<string>\",\n  \"query_groups_mode\": \"<string>\",\n  \"query_posix_attributes_from_gc\": \"<boolean>\",\n  \"reverse_lookup\": \"<boolean>\",\n  \"super_admin_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tls_certificate\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"uid_member\": \"<string>\",\n  \"uid_member_value_property_name\": \"<string>\",\n  \"uid_number\": \"<string>\",\n  \"url\": \"<string>\",\n  \"use_auto_discovery\": \"<boolean>\",\n  \"use_ldaps\": \"<boolean>\",\n  \"use_multi_forest\": \"<boolean>\",\n  \"use_posix\": \"<boolean>\",\n  \"use_tls\": \"<boolean>\",\n  \"user_login_name\": \"<string>\",\n  \"username_property_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72772dc3-131b-4ba5-b526-7dae733eccda",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ldaps",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"searchbase\": \"<string>\",\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"abac_read_only_value_name\": \"<string>\",\n  \"abac_read_write_value_name\": \"<string>\",\n  \"advanced_filter\": \"<string>\",\n  \"binddn\": \"<string>\",\n  \"bindpw\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"domains_with_posix_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"gid_number\": \"<string>\",\n  \"group_login_name\": \"<string>\",\n  \"group_searchbase\": \"<string>\",\n  \"is_abac_provider\": \"<boolean>\",\n  \"is_vms_auth_provider\": false,\n  \"mail_property_name\": \"<string>\",\n  \"match_user\": \"<string>\",\n  \"method\": \"<string>\",\n  \"monitor_action\": \"<string>\",\n  \"name\": \"<string>\",\n  \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n  \"port\": \"<integer>\",\n  \"posix_account\": \"<string>\",\n  \"posix_attributes_source\": \"<string>\",\n  \"posix_group\": \"<string>\",\n  \"query_groups_mode\": \"<string>\",\n  \"query_posix_attributes_from_gc\": \"<boolean>\",\n  \"reverse_lookup\": \"<boolean>\",\n  \"super_admin_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tls_certificate\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"uid_member\": \"<string>\",\n  \"uid_member_value_property_name\": \"<string>\",\n  \"uid_number\": \"<string>\",\n  \"url\": \"<string>\",\n  \"use_auto_discovery\": \"<boolean>\",\n  \"use_ldaps\": \"<boolean>\",\n  \"use_multi_forest\": \"<boolean>\",\n  \"use_posix\": \"<boolean>\",\n  \"use_tls\": \"<boolean>\",\n  \"user_login_name\": \"<string>\",\n  \"username_property_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"searchbase\": \"string\",\n  \"urls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"abac_read_only_value_name\": \"string\",\n  \"abac_read_write_value_name\": \"string\",\n  \"active_directory\": \"string\",\n  \"active_directory_id\": 6842,\n  \"advanced_filter\": \"string\",\n  \"binddn\": \"string\",\n  \"bindpw\": \"string\",\n  \"domain_name\": \"string\",\n  \"domains_with_posix_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"gid_number\": \"string\",\n  \"group_login_name\": \"string\",\n  \"group_searchbase\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 4050,\n  \"is_abac_provider\": true,\n  \"is_vms_auth_provider\": false,\n  \"mail_property_name\": \"string\",\n  \"match_user\": \"string\",\n  \"method\": \"string\",\n  \"monitor_action\": \"PING\",\n  \"name\": \"string\",\n  \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n  \"port\": 9071,\n  \"posix_account\": \"string\",\n  \"posix_attributes_source\": \"ALL_DOMAINS\",\n  \"posix_group\": \"string\",\n  \"posix_primary_provider\": false,\n  \"query_groups_mode\": \"string\",\n  \"query_posix_attributes_from_gc\": true,\n  \"reverse_lookup\": true,\n  \"state\": \"UNKNOWN\",\n  \"super_admin_groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenant_id\": 3245,\n  \"title\": \"string\",\n  \"tls_certificate\": \"string\",\n  \"uid\": \"string\",\n  \"uid_member\": \"string\",\n  \"uid_member_value_property_name\": \"string\",\n  \"uid_number\": \"string\",\n  \"url\": \"string\",\n  \"use_auto_discovery\": true,\n  \"use_ldaps\": true,\n  \"use_multi_forest\": true,\n  \"use_posix\": false,\n  \"use_tls\": false,\n  \"user_login_name\": \"string\",\n  \"username_property_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f610f88a-1af1-4a80-bc4e-c8c1564bf5fc",
+          "name": "Delete LDAP Configuration",
+          "request": {
+            "name": "Delete LDAP Configuration",
+            "description": {
+              "content": "This endpoint deletes an LDAP configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ldaps",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) LDAP ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b869c8fc-b813-4eee-b814-aba15b0c26bb",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ldaps",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) LDAP ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb478e35-66ea-4b3d-b79c-dd166e320762",
+          "name": "Return Details of an LDAP configuration.",
+          "request": {
+            "name": "Return Details of an LDAP configuration.",
+            "description": {
+              "content": "This endpoint returns details of an LDAP configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ldaps",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) LDAP ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "542073c5-a923-42af-badd-4950059d7b1b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ldaps",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) LDAP ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"searchbase\": \"string\",\n  \"urls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"abac_read_only_value_name\": \"string\",\n  \"abac_read_write_value_name\": \"string\",\n  \"active_directory\": \"string\",\n  \"active_directory_id\": 6842,\n  \"advanced_filter\": \"string\",\n  \"binddn\": \"string\",\n  \"bindpw\": \"string\",\n  \"domain_name\": \"string\",\n  \"domains_with_posix_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"gid_number\": \"string\",\n  \"group_login_name\": \"string\",\n  \"group_searchbase\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 4050,\n  \"is_abac_provider\": true,\n  \"is_vms_auth_provider\": false,\n  \"mail_property_name\": \"string\",\n  \"match_user\": \"string\",\n  \"method\": \"string\",\n  \"monitor_action\": \"PING\",\n  \"name\": \"string\",\n  \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n  \"port\": 9071,\n  \"posix_account\": \"string\",\n  \"posix_attributes_source\": \"ALL_DOMAINS\",\n  \"posix_group\": \"string\",\n  \"posix_primary_provider\": false,\n  \"query_groups_mode\": \"string\",\n  \"query_posix_attributes_from_gc\": true,\n  \"reverse_lookup\": true,\n  \"state\": \"UNKNOWN\",\n  \"super_admin_groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenant_id\": 3245,\n  \"title\": \"string\",\n  \"tls_certificate\": \"string\",\n  \"uid\": \"string\",\n  \"uid_member\": \"string\",\n  \"uid_member_value_property_name\": \"string\",\n  \"uid_number\": \"string\",\n  \"url\": \"string\",\n  \"use_auto_discovery\": true,\n  \"use_ldaps\": true,\n  \"use_multi_forest\": true,\n  \"use_posix\": false,\n  \"use_tls\": false,\n  \"user_login_name\": \"string\",\n  \"username_property_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5b4c401-1775-4c1a-a462-06f3f6a0c723",
+          "name": "Modify LDAP configuration",
+          "request": {
+            "name": "Modify LDAP configuration",
+            "description": {
+              "content": "This endpoint modifies an LDAP configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ldaps",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) LDAP ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"abac_read_only_value_name\": \"<string>\",\n  \"abac_read_write_value_name\": \"<string>\",\n  \"advanced_filter\": \"<string>\",\n  \"binddn\": \"<string>\",\n  \"bindpw\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"domains_with_posix_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"gid_number\": \"<string>\",\n  \"group_login_name\": \"<string>\",\n  \"group_searchbase\": \"<string>\",\n  \"is_abac_provider\": \"<boolean>\",\n  \"is_vms_auth_provider\": false,\n  \"mail_property_name\": \"<string>\",\n  \"match_user\": \"<string>\",\n  \"method\": \"<string>\",\n  \"monitor_action\": \"<string>\",\n  \"name\": \"<string>\",\n  \"netgroup_searchbase\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"posix_account\": \"<string>\",\n  \"posix_attributes_source\": \"<string>\",\n  \"posix_group\": \"<string>\",\n  \"query_groups_mode\": \"<string>\",\n  \"query_posix_attributes_from_gc\": \"<boolean>\",\n  \"reverse_lookup\": \"<boolean>\",\n  \"searchbase\": \"<string>\",\n  \"super_admin_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tls_certificate\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"uid_member\": \"<string>\",\n  \"uid_member_value_property_name\": \"<string>\",\n  \"uid_number\": \"<string>\",\n  \"url\": \"<string>\",\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_auto_discovery\": \"<boolean>\",\n  \"use_ldaps\": \"<boolean>\",\n  \"use_multi_forest\": \"<boolean>\",\n  \"use_posix\": \"<boolean>\",\n  \"use_tls\": \"<boolean>\",\n  \"user_login_name\": \"<string>\",\n  \"username_property_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa08f277-19b7-41e8-86c5-bc200a17db99",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ldaps",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) LDAP ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"abac_read_only_value_name\": \"<string>\",\n  \"abac_read_write_value_name\": \"<string>\",\n  \"advanced_filter\": \"<string>\",\n  \"binddn\": \"<string>\",\n  \"bindpw\": \"<string>\",\n  \"domain_name\": \"<string>\",\n  \"domains_with_posix_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"gid_number\": \"<string>\",\n  \"group_login_name\": \"<string>\",\n  \"group_searchbase\": \"<string>\",\n  \"is_abac_provider\": \"<boolean>\",\n  \"is_vms_auth_provider\": false,\n  \"mail_property_name\": \"<string>\",\n  \"match_user\": \"<string>\",\n  \"method\": \"<string>\",\n  \"monitor_action\": \"<string>\",\n  \"name\": \"<string>\",\n  \"netgroup_searchbase\": \"OU=netgroups,OU=system,DC=umiacs,DC=umd,DC=edu\",\n  \"port\": \"<integer>\",\n  \"posix_account\": \"<string>\",\n  \"posix_attributes_source\": \"<string>\",\n  \"posix_group\": \"<string>\",\n  \"query_groups_mode\": \"<string>\",\n  \"query_posix_attributes_from_gc\": \"<boolean>\",\n  \"reverse_lookup\": \"<boolean>\",\n  \"searchbase\": \"<string>\",\n  \"super_admin_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tls_certificate\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"uid_member\": \"<string>\",\n  \"uid_member_value_property_name\": \"<string>\",\n  \"uid_number\": \"<string>\",\n  \"url\": \"<string>\",\n  \"urls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"use_auto_discovery\": \"<boolean>\",\n  \"use_ldaps\": \"<boolean>\",\n  \"use_multi_forest\": \"<boolean>\",\n  \"use_posix\": \"<boolean>\",\n  \"use_tls\": \"<boolean>\",\n  \"user_login_name\": \"<string>\",\n  \"username_property_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18e9be6e-5844-4d87-b420-4f90bd30f2fd",
+          "name": "Set LDAP as POSIX Primary Provider",
+          "request": {
+            "name": "Set LDAP as POSIX Primary Provider",
+            "description": {
+              "content": "This endpoint sets the LDAP server as the primary POSIX provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ldaps",
+                ":id",
+                "set_posix_primary",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) LDAP ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d065c9c-bde1-437f-bc27-a981f45a39c8",
+              "name": "Set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ldaps",
+                    ":id",
+                    "set_posix_primary",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) LDAP ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6726b9dc-1ddb-496a-8c12-97dc5890a25a",
+    "name": "VAST API Swagger Schema activedirectory ldaps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

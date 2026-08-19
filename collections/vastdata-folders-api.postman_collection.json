@@ -1,0 +1,699 @@
+{
+  "item": [
+    {
+      "id": "b4d36479-fe43-4080-98a8-aeff0374e4ac",
+      "name": "folders",
+      "description": {
+        "content": "The folders endpoint enables the ability to manage directories and to set and get a directory's owner user and group attributes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "922a2591-1cc5-4ee0-b7b6-dc8c86cd63e6",
+          "name": "Create Folder",
+          "request": {
+            "name": "Create Folder",
+            "description": {
+              "content": "This endpoint creates a folder in the Element Store, under a specified tenant, owning group and user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                "create_folder",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"create_dir_mode\": \"<integer>\",\n  \"group\": \"<string>\",\n  \"inherit_acl\": \"<boolean>\",\n  \"owner_is_group\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\",\n  \"user\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2614950c-4dca-4c69-a659-50a1876fdfa9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    "create_folder",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"create_dir_mode\": \"<integer>\",\n  \"group\": \"<string>\",\n  \"inherit_acl\": \"<boolean>\",\n  \"owner_is_group\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\",\n  \"user\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d886c4b3-2c0b-4a70-b4c8-a6c35ab3c25a",
+          "name": "Delete Folder",
+          "request": {
+            "name": "Delete Folder",
+            "description": {
+              "content": "This endpoint deletes a folder from the Element Store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                "delete_folder",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31a7c4ad-4ad1-488e-a17f-132b0188c6eb",
+              "name": "The folder was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    "delete_folder",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92809c1a-c8cd-453b-a6f8-3ac4de493213",
+          "name": "Modify Folder",
+          "request": {
+            "name": "Modify Folder",
+            "description": {
+              "content": "This endpoint modifies a folder in the Element Store, including its path, tenant, owning group and user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                "modify_folder",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"owner_is_group\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\",\n  \"user\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0171aea4-05c3-44e2-aa28-91f26482126f",
+              "name": "The folder was successfully modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    "modify_folder",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"owner_is_group\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\",\n  \"user\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2591937e-bf5c-4c65-a60c-fc0360ab6d2c",
+          "name": "Unlock Read-Only Folder",
+          "request": {
+            "name": "Unlock Read-Only Folder",
+            "description": {
+              "content": "This endpoint unlocks a folder that was made read-only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                "read_only",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "169e84ed-c73d-4cd8-9fc0-b176bc80ce62",
+              "name": "Read-only folder was unlocked successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    "read_only",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24c6a1a3-16f3-4d0f-8c51-0de4a59d4759",
+          "name": "Return Details of Read-Only Folder",
+          "request": {
+            "name": "Return Details of Read-Only Folder",
+            "description": {
+              "content": "This endpoint returns details of folders that are locked as read-only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                "read_only",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Path to get read-only folder details"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "(Required) Tenant ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c16e11b-1b2f-494d-b39c-675a0c406e57",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    "read_only",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"state\": \"string\",\n  \"root_path\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3446813f-ac5b-4745-bf3b-f25a5adee81d",
+          "name": "Make a Folder Read-Only",
+          "request": {
+            "name": "Make a Folder Read-Only",
+            "description": {
+              "content": "This endpoint locks an existing path from writes, making it read-only for all users, regardless of permissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                "read_only",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "5a90624e-4e92-4010-b85b-4ff9650166ac",
+              "name": "Read-only folder was created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    "read_only",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62bf0e0b-4a0b-460a-a77a-31d7508388a1",
+          "name": "Get Owning User and Group for a Path",
+          "request": {
+            "name": "Get Owning User and Group for a Path",
+            "description": {
+              "content": "This endpoint returns the owning user and group for a specified Element Store path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                "stat_path",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "3a2a522f-6e97-437b-9b09-a026349a3262",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    "stat_path",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"path\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"abac_tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"atime\": \"string\",\n  \"children\": 5072,\n  \"ctime\": \"string\",\n  \"has_default_acl\": false,\n  \"indestructible_object_timeout\": \"string\",\n  \"is_directory\": true,\n  \"mtime\": \"string\",\n  \"owning_gid\": 5243,\n  \"owning_group\": \"string\",\n  \"owning_uid\": 1734,\n  \"owning_user\": \"string\",\n  \"smb_readonly_flag\": false,\n  \"worm_auto_commit_timeout\": \"string\",\n  \"worm_legal_hold_status\": \"string\",\n  \"worm_lock_status\": \"string\",\n  \"worm_retention_mode\": \"string\",\n  \"worm_retention_timeout\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1769ee91-235b-4b1e-bfc4-79d515616c09",
+    "name": "VAST API Swagger Schema activedirectory folders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

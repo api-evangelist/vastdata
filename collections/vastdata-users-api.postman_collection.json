@@ -1,0 +1,2138 @@
+{
+  "item": [
+    {
+      "id": "917add18-748f-4189-86ac-06ae6a7043eb",
+      "name": "users",
+      "description": {
+        "content": "Users who can be authorized to access any data on the cluster via any supported client protocol can be created on a local provider. They are more typically stored on external authorization providers (AD, LDAP and NIS). The users path provides: management of local provider users, querying of external provider users, and S3 access management for both local and external users.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c241910-ee49-4af1-ace3-30b468ed1e8b",
+          "name": "List Users",
+          "request": {
+            "name": "List Users",
+            "description": {
+              "content": "This endpoint lists users on the cluster's local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdd6d96e-dcee-4a75-8b1b-0e32846eb875",
+              "name": "Local Provider User information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"access_keys\": [\n      {\n        \"access_key\": \"string\",\n        \"creation_time\": \"string\",\n        \"enabled\": false,\n        \"tenant_id\": 3081\n      },\n      {\n        \"access_key\": \"string\",\n        \"creation_time\": \"string\",\n        \"enabled\": false,\n        \"tenant_id\": 3043\n      }\n    ],\n    \"allow_create_bucket\": true,\n    \"allow_delete_bucket\": true,\n    \"gids\": [\n      9874,\n      5663\n    ],\n    \"group_count\": 9072,\n    \"groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"guid\": \"string\",\n    \"id\": 3015,\n    \"is_temporary_password\": true,\n    \"leading_gid\": 6352,\n    \"leading_group_gid\": 1916,\n    \"leading_group_name\": \"string\",\n    \"local\": false,\n    \"local_provider\": {\n      \"id\": 1162,\n      \"name\": \"string\"\n    },\n    \"password_is_set\": true,\n    \"primary_group_sid\": \"string\",\n    \"s3_policies\": [\n      {\n        \"id\": 9347,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 4054,\n        \"name\": \"string\"\n      }\n    ],\n    \"s3_policies_ids\": [\n      706,\n      5706\n    ],\n    \"s3_superuser\": false,\n    \"sid\": \"string\",\n    \"sids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"title\": \"string\",\n    \"uid\": 8874,\n    \"url\": \"string\",\n    \"vid\": 2098\n  },\n  {\n    \"name\": \"string\",\n    \"access_keys\": [\n      {\n        \"access_key\": \"string\",\n        \"creation_time\": \"string\",\n        \"enabled\": true,\n        \"tenant_id\": 6907\n      },\n      {\n        \"access_key\": \"string\",\n        \"creation_time\": \"string\",\n        \"enabled\": false,\n        \"tenant_id\": 7070\n      }\n    ],\n    \"allow_create_bucket\": true,\n    \"allow_delete_bucket\": false,\n    \"gids\": [\n      7538,\n      7729\n    ],\n    \"group_count\": 3998,\n    \"groups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"guid\": \"string\",\n    \"id\": 8609,\n    \"is_temporary_password\": true,\n    \"leading_gid\": 9083,\n    \"leading_group_gid\": 4542,\n    \"leading_group_name\": \"string\",\n    \"local\": false,\n    \"local_provider\": {\n      \"id\": 1654,\n      \"name\": \"string\"\n    },\n    \"password_is_set\": false,\n    \"primary_group_sid\": \"string\",\n    \"s3_policies\": [\n      {\n        \"id\": 5375,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 9604,\n        \"name\": \"string\"\n      }\n    ],\n    \"s3_policies_ids\": [\n      3650,\n      4769\n    ],\n    \"s3_superuser\": false,\n    \"sid\": \"string\",\n    \"sids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"title\": \"string\",\n    \"uid\": 347,\n    \"url\": \"string\",\n    \"vid\": 8157\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3dfa339-9a43-42a3-a028-88811b5700b0",
+          "name": "Add User to a Local Provider",
+          "request": {
+            "name": "Add User to a Local Provider",
+            "description": {
+              "content": "This endpoint adds a user to a local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"local_provider_id\": \"<integer>\",\n  \"allow_create_bucket\": \"<boolean>\",\n  \"allow_delete_bucket\": \"<boolean>\",\n  \"gids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leading_gid\": \"<integer>\",\n  \"local\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"s3_superuser\": \"<boolean>\",\n  \"uid\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cab326ce-e7cf-480b-a937-678393341a61",
+              "name": "User details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"local_provider_id\": \"<integer>\",\n  \"allow_create_bucket\": \"<boolean>\",\n  \"allow_delete_bucket\": \"<boolean>\",\n  \"gids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leading_gid\": \"<integer>\",\n  \"local\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"s3_superuser\": \"<boolean>\",\n  \"uid\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_keys\": [\n    {\n      \"access_key\": \"string\",\n      \"creation_time\": \"string\",\n      \"enabled\": false,\n      \"tenant_id\": 7967\n    },\n    {\n      \"access_key\": \"string\",\n      \"creation_time\": \"string\",\n      \"enabled\": false,\n      \"tenant_id\": 7311\n    }\n  ],\n  \"allow_create_bucket\": false,\n  \"allow_delete_bucket\": true,\n  \"gids\": [\n    7558,\n    6826\n  ],\n  \"group_count\": 6457,\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"guid\": \"string\",\n  \"id\": 6199,\n  \"is_temporary_password\": false,\n  \"leading_gid\": 6274,\n  \"leading_group_gid\": 4287,\n  \"leading_group_name\": \"string\",\n  \"local\": false,\n  \"local_provider\": {\n    \"id\": 716,\n    \"name\": \"string\"\n  },\n  \"password_is_set\": false,\n  \"primary_group_sid\": \"string\",\n  \"s3_policies\": [\n    {\n      \"id\": 2030,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 9690,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_policies_ids\": [\n    1710,\n    5493\n  ],\n  \"s3_superuser\": true,\n  \"sid\": \"string\",\n  \"sids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"title\": \"string\",\n  \"uid\": 5427,\n  \"url\": \"string\",\n  \"vid\": 5892\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2f5793a-d352-41a5-a4a1-c3a56d99a137",
+          "name": "Copy Users with S3 Keys from one Local Provider to Another",
+          "request": {
+            "name": "Copy Users with S3 Keys from one Local Provider to Another",
+            "description": {
+              "content": "This endpoint copies users with S3 access key pairs from one local provider to another.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "copy",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination_provider_id\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87b45df5-2908-4a73-a5b5-7f28596c4642",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "copy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_provider_id\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfd8686f-6de7-435f-bb9a-7f729bca1786",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "copy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_provider_id\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Either `tenant_id` or `user_ids` can be given for copy.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06fe3358-86ec-4594-b413-431121f6bf08",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "copy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_provider_id\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Did not find users with following ids: 5, 2.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be3e3850-2aaa-4c2e-a02c-d7d60a009e19",
+              "name": "The request could not be completed due to a conflict with the current state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "copy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_provider_id\": \"<integer>\",\n  \"tenant_id\": \"<integer>\",\n  \"user_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Cannot copy users. Destination Local Provider has users with colliding names: Ido, Roy.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6ab124a-ac24-44a2-a144-d55d4c241701",
+          "name": "Find User by prefix and domain details",
+          "request": {
+            "name": "Find User by prefix and domain details",
+            "description": {
+              "content": "This endpoint queries a user by prefix and domain from ActiveDirectory domains",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "names",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "prefix",
+                  "value": "<string>",
+                  "description": "Prefix to find the user"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Domain details to find the user (ALL by default). Format: BASE_DN|FQDN|SID"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf2d72f7-1bf0-48a5-aaa5-714b62f7e3bb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "names",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cb05058-8287-45c3-a61d-0db10570b3ec",
+          "name": "Remove S3 Access Key Pair (Non-Local User)",
+          "request": {
+            "name": "Remove S3 Access Key Pair (Non-Local User)",
+            "description": {
+              "content": "This endpoint removes an S3 access key pair for a non local user whose attributes were already retrieved from an external provider. Specify the user by either NFS UID or SMB user SID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "non_local_keys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_key\": \"<string>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"uid\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7bbf20c6-3808-47bc-b4f8-5e327cb392ee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "non_local_keys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_key\": \"<string>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"uid\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c86fb576-dc01-407f-8a2c-f024a857fe24",
+          "name": "Enable or Disable S3 Access Key Pair (Non-Local User)",
+          "request": {
+            "name": "Enable or Disable S3 Access Key Pair (Non-Local User)",
+            "description": {
+              "content": "This endpoint enables or disables an S3 access key pair for a non local user whose attributes were already retrieved from an external provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "non_local_keys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_key\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"uid\": \"<integer>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "037f12a1-be9c-427e-a251-eb9d574da972",
+              "name": "Done",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "non_local_keys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_key\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"uid\": \"<integer>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9dbd0481-bec1-445a-88ae-b2f3c1a5ec01",
+          "name": "Generate S3 Access Key Pair (Non-Local User)",
+          "request": {
+            "name": "Generate S3 Access Key Pair (Non-Local User)",
+            "description": {
+              "content": "This endpoint generates an S3 access key pair for a non local user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "non_local_keys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login_name\": \"<string>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"uid\": \"<integer>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1588d80-a05f-405a-9428-8f3d0e013c4e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "non_local_keys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login_name\": \"<string>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"uid\": \"<integer>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_key\": \"string\",\n  \"secret_key\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61b1dc22-cea0-4c3b-80d6-e7bae51bb8aa",
+          "name": "Query User",
+          "request": {
+            "name": "Query User",
+            "description": {
+              "content": "This endpoint queries a user by an identifier. By default the query is aggregated across all contexts. Optionally, the query can be against any connected provider, against the local provider, or against the user database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uid",
+                  "value": "<integer>",
+                  "description": "NFS UID"
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "User legal name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sid",
+                  "value": "<string>",
+                  "description": "User SID"
+                },
+                {
+                  "disabled": false,
+                  "key": "vid",
+                  "value": "<integer>",
+                  "description": "Vast user ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "<string>",
+                  "description": "Specify the context for the user query. 'local' restricts the search to the local provider. 'udb' searches the cluster's user database for the user. The output in this case includes the VID (VAST ID) for the user, which can be used when specifying a grantee in S3 ACLs. 'aggregated' (default) searches all providers and returns a merged user entry. In case of conflicts between providers, attributes are resolved according to the following rules:\n  * In case of conflict between local and non local providers, the local provider's attributes override those of the other providers.\n  * In case of conflicting POSIX attributes on external providers, the POSIX primary provider overrules the other external provider.\n  * Users are merged if their match user attributes match. The match user attribute is configurable in that you can set which attribute on the POSIX primary provider is used to match the users.\n  * All groups found for the user on all providers with distinct group names are treated as distinct groups to which the user belongs. Groups are merged if they match according to a non-configurable group name attribute.\n'ad', 'nis' or 'ldap' searches the specific provider only. Each of these options appears only if a provider of that type is connected to the cluster.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "login_name",
+                  "value": "<string>",
+                  "description": "User login name"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c30630b-aa36-404c-bc81-166e82eef392",
+              "name": "Retrieved User Data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "query",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "context",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_keys\": [\n    {\n      \"access_key\": \"string\",\n      \"creation_time\": \"string\",\n      \"enabled\": true,\n      \"remote\": false\n    },\n    {\n      \"access_key\": \"string\",\n      \"creation_time\": \"string\",\n      \"enabled\": false,\n      \"remote\": false\n    }\n  ],\n  \"allow_create_bucket\": true,\n  \"allow_delete_bucket\": true,\n  \"group_count\": 6291,\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"historical_sids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"leading_group\": {},\n  \"leading_group_gid\": 8132,\n  \"leading_group_name\": \"string\",\n  \"login_name\": \"string\",\n  \"name\": \"string\",\n  \"object_type\": \"string\",\n  \"origins\": {},\n  \"primary_group_name\": \"string\",\n  \"primary_group_sid\": \"string\",\n  \"quotas\": [\n    {\n      \"id\": 8619,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1779,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_connections_count\": 9762,\n  \"s3_policies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_policies_ids\": [\n    9597,\n    6703\n  ],\n  \"s3_remote_policies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_superuser\": true,\n  \"s3_vid\": 9564,\n  \"sid\": \"string\",\n  \"uid\": 9724,\n  \"user_qos_policies\": [\n    {\n      \"id\": 7887,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 5954,\n      \"name\": \"string\"\n    }\n  ],\n  \"vid\": 4708,\n  \"vids\": [\n    1229,\n    9414\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a25515c1-ee2f-435c-ae38-5a8cd385e975",
+          "name": "Modify non-Local User",
+          "request": {
+            "name": "Modify non-Local User",
+            "description": {
+              "content": "This endpoint modifies a non-local user's S3 permissions. Specify the user by either NFS UID or SMB user SID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allow_create_bucket\": \"<boolean>\",\n  \"allow_delete_bucket\": \"<boolean>\",\n  \"login_name\": \"<string>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"s3_superuser\": \"<boolean>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"uid\": \"<integer>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4439e191-552d-47fc-8312-d6182b0e77f0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "query",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allow_create_bucket\": \"<boolean>\",\n  \"allow_delete_bucket\": \"<boolean>\",\n  \"login_name\": \"<string>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"s3_superuser\": \"<boolean>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"uid\": \"<integer>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_keys\": [\n    {\n      \"access_key\": \"string\",\n      \"creation_time\": \"string\",\n      \"enabled\": false,\n      \"remote\": false\n    },\n    {\n      \"access_key\": \"string\",\n      \"creation_time\": \"string\",\n      \"enabled\": true,\n      \"remote\": true\n    }\n  ],\n  \"allow_create_bucket\": true,\n  \"allow_delete_bucket\": false,\n  \"group_count\": 4018,\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"historical_sids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"leading_group\": {},\n  \"leading_group_gid\": 2767,\n  \"leading_group_name\": \"string\",\n  \"login_name\": \"string\",\n  \"name\": \"string\",\n  \"object_type\": \"string\",\n  \"origins\": {},\n  \"primary_group_name\": \"string\",\n  \"primary_group_sid\": \"string\",\n  \"quotas\": [\n    {\n      \"id\": 2723,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 5193,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_connections_count\": 4049,\n  \"s3_policies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_policies_ids\": [\n    8446,\n    286\n  ],\n  \"s3_remote_policies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"s3_superuser\": false,\n  \"s3_vid\": 6425,\n  \"sid\": \"string\",\n  \"uid\": 1693,\n  \"user_qos_policies\": [\n    {\n      \"id\": 5561,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1653,\n      \"name\": \"string\"\n    }\n  ],\n  \"vid\": 9821,\n  \"vids\": [\n    4304,\n    9501\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03f141ef-662e-4ba7-a241-1678aa75689e",
+          "name": "Refresh User",
+          "request": {
+            "name": "Refresh User",
+            "description": {
+              "content": "This endpoint triggers a fresh query of the user from external providers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "refresh",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login_name\": \"<string>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"uid\": \"<integer>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "351106f5-c2bd-47e3-8fcd-f4743568e2f3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "refresh",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login_name\": \"<string>\",\n  \"sid\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"uid\": \"<integer>\",\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6766fe1-5398-41e0-b9e6-669e0ccf18df",
+          "name": "Delete Local User",
+          "request": {
+            "name": "Delete Local User",
+            "description": {
+              "content": "This endpoint deletes a specified user from the local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c51ac72-623b-4dce-ac21-d2bac2147c16",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cc7e7f0-1c73-4ea6-b42b-5d0d939d8028",
+          "name": "Return Local User Details",
+          "request": {
+            "name": "Return Local User Details",
+            "description": {
+              "content": "This endpoint returns details of a specified user on the local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) user ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d216d34c-5f16-4610-8516-14f43dda279e",
+              "name": "User details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) user ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"access_keys\": [\n    {\n      \"access_key\": \"string\",\n      \"creation_time\": \"string\",\n      \"enabled\": false,\n      \"tenant_id\": 7967\n    },\n    {\n      \"access_key\": \"string\",\n      \"creation_time\": \"string\",\n      \"enabled\": false,\n      \"tenant_id\": 7311\n    }\n  ],\n  \"allow_create_bucket\": false,\n  \"allow_delete_bucket\": true,\n  \"gids\": [\n    7558,\n    6826\n  ],\n  \"group_count\": 6457,\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"guid\": \"string\",\n  \"id\": 6199,\n  \"is_temporary_password\": false,\n  \"leading_gid\": 6274,\n  \"leading_group_gid\": 4287,\n  \"leading_group_name\": \"string\",\n  \"local\": false,\n  \"local_provider\": {\n    \"id\": 716,\n    \"name\": \"string\"\n  },\n  \"password_is_set\": false,\n  \"primary_group_sid\": \"string\",\n  \"s3_policies\": [\n    {\n      \"id\": 2030,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 9690,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_policies_ids\": [\n    1710,\n    5493\n  ],\n  \"s3_superuser\": true,\n  \"sid\": \"string\",\n  \"sids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"title\": \"string\",\n  \"uid\": 5427,\n  \"url\": \"string\",\n  \"vid\": 5892\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f42f994-ef5f-4a3d-bad6-7e9b758a82d8",
+          "name": "Modify Local User",
+          "request": {
+            "name": "Modify Local User",
+            "description": {
+              "content": "This endpoint modifies a user on a local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allow_create_bucket\": \"<boolean>\",\n  \"allow_delete_bucket\": \"<boolean>\",\n  \"gids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leading_gid\": \"<integer>\",\n  \"local\": \"<boolean>\",\n  \"local_provider_id\": \"<integer>\",\n  \"password\": \"<string>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"s3_superuser\": \"<boolean>\",\n  \"uid\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "92dfd62e-0abc-4acc-893d-9166801e52b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allow_create_bucket\": \"<boolean>\",\n  \"allow_delete_bucket\": \"<boolean>\",\n  \"gids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"leading_gid\": \"<integer>\",\n  \"local\": \"<boolean>\",\n  \"local_provider_id\": \"<integer>\",\n  \"password\": \"<string>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"s3_superuser\": \"<boolean>\",\n  \"uid\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ad98afa-a2a9-48f8-85ed-06eb67849b10",
+          "name": "Remove S3 Access Key Pair (Local User)",
+          "request": {
+            "name": "Remove S3 Access Key Pair (Local User)",
+            "description": {
+              "content": "This endpoint removes a specified S3 access key pair from a user on the local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                "access_keys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad0b49d5-9d32-4010-8327-7651349e05ef",
+              "name": "Removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "access_keys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bce1316b-1023-4c48-afdb-ea7d73ec0fcc",
+          "name": "Enable/Disable S3 Access Key Pair (Local User)",
+          "request": {
+            "name": "Enable/Disable S3 Access Key Pair (Local User)",
+            "description": {
+              "content": "This endpoint enables/disables a specified S3 access key pair for a user on the local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                "access_keys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) user ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_key\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f089363d-a6fa-4d2e-b3a3-64840ef08e2b",
+              "name": "Done",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "access_keys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) user ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_key\": \"FXhvIdHZRhKHJdVnOawtHg==\",\n  \"enabled\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a851e3f-2733-4656-aad4-463482c68c8e",
+          "name": "Generate S3 Access Key Pair (Local User)",
+          "request": {
+            "name": "Generate S3 Access Key Pair (Local User)",
+            "description": {
+              "content": "This endpoint generates an S3 access key pair for a user on a local provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                "access_keys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) user ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb5e4e71-59db-4ab2-9e02-7fe5ea0fa80a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "access_keys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) user ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_key\": \"string\",\n  \"secret_key\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "862bbe07-4a84-4f9d-98da-b399150958d3",
+          "name": "Get tenant data for a User",
+          "request": {
+            "name": "Get tenant data for a User",
+            "description": {
+              "content": "This endpoint returns tenant data for a User.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                "tenant_data",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) user ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22c699cb-4470-4eef-b29f-6ed6b9bbde24",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "tenant_data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) user ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allow_create_bucket\": false,\n  \"allow_delete_bucket\": true,\n  \"s3_policies\": [\n    {\n      \"id\": 4521,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 5063,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_policies_ids\": [\n    7857,\n    5406\n  ],\n  \"s3_superuser\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85060590-ea01-473c-917d-ae174c7a0336",
+          "name": "Update Tenant Data for a User",
+          "request": {
+            "name": "Update Tenant Data for a User",
+            "description": {
+              "content": "This endpoint updates tenant data for a User.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id",
+                "tenant_data",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) user ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allow_create_bucket\": \"<boolean>\",\n  \"allow_delete_bucket\": \"<boolean>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"s3_superuser\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29c14d48-9aa9-4a20-a05f-ba6fae4a00a3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id",
+                    "tenant_data",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) user ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allow_create_bucket\": \"<boolean>\",\n  \"allow_delete_bucket\": \"<boolean>\",\n  \"s3_policies_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"s3_superuser\": \"<boolean>\",\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allow_create_bucket\": true,\n  \"allow_delete_bucket\": false,\n  \"s3_policies\": [\n    {\n      \"id\": 3893,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 660,\n      \"name\": \"string\"\n    }\n  ],\n  \"s3_policies_ids\": [\n    8657,\n    6167\n  ],\n  \"s3_superuser\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d29dd7eb-35cf-47a4-9d9c-f14e808fba70",
+    "name": "VAST API Swagger Schema activedirectory users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

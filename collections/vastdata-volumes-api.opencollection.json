@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory Volumes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Volumes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a Bulk Of Block Storage Volumes",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/volumes/bulk",
+            "params": [
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Forcefully removes mappings between hosts and volumes. A host can be deleted only if it is not mapped to any volume, and a volume can be deleted only if it is not mapped to any host."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes multiple block storage volumes."
+        },
+        {
+          "info": {
+            "name": "List Block Storage Volumes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/volumes/",
+            "params": [
+              {
+                "name": "view__id",
+                "value": "",
+                "type": "query",
+                "description": "View ID by which to filter"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Volume name to filter by."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "nguid",
+                "value": "",
+                "type": "query",
+                "description": "volume nguid to filter by."
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "volume uuid to filter by."
+              },
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "query",
+                "description": "Unmapped Volumes captured by snapshot — under snapshot’s path, created before the snapshot time."
+              },
+              {
+                "name": "mapped_snapshot_id",
+                "value": "",
+                "type": "query",
+                "description": "Volumes explicitly mapped to the snapshot."
+              },
+              {
+                "name": "namespace_id",
+                "value": "",
+                "type": "query",
+                "description": "Volume namespace ID to filter by."
+              },
+              {
+                "name": "block_hosts__id",
+                "value": "",
+                "type": "query",
+                "description": "Volume BlockHost ID to filter by."
+              },
+              {
+                "name": "qos_policy__id",
+                "value": "",
+                "type": "query",
+                "description": "Volume QOS Policy ID to filter by."
+              },
+              {
+                "name": "is_monitored",
+                "value": "",
+                "type": "query",
+                "description": "Filter by whether Volume is monitored."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists existing block storage volumes."
+        },
+        {
+          "info": {
+            "name": "Create a Block Storage Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/volumes/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a volume for block storage."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Block Storage Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/volumes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the properties of a block storage volume."
+        },
+        {
+          "info": {
+            "name": "Modify a Block Storage Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/volumes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies the name (path relative to subsystem) and/or size (expansion only) of a block storage volume."
+        },
+        {
+          "info": {
+            "name": "Delete a Block Storage Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/volumes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              },
+              {
+                "name": "force_unmap",
+                "value": "",
+                "type": "query",
+                "description": "Forces removal of mappings of the volume to hosts. A volume can be removed only if it is not mapped to any host."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Forces removal of mappings of the volume to hosts. A volume can be removed only if it is not mapped to any host."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a block storage volume."
+        },
+        {
+          "info": {
+            "name": "Fetches Capacity Usage of Block Storage Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/volumes/:id/fetch_capacity",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint fetches and returns the used capacity of a volume."
+        },
+        {
+          "info": {
+            "name": "Return Snapshots (IDs) of a Volume.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/volumes/:id/get_snapshots",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the snapshots taken on the volume."
+        },
+        {
+          "info": {
+            "name": "Map a Volume to Block Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/volumes/:id/set_hosts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint maps (set) a single volume (either it's current version or a snapshot) into multiple block hosts."
+        },
+        {
+          "info": {
+            "name": "Update Mapping of a Volume to Block Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/volumes/:id/update_hosts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Object ID specified in the path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint maps (update) a single volume (either it's current version or a snapshot) into multiple block hosts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

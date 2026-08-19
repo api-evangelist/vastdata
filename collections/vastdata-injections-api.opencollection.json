@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory injections API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "injections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List injections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/injections/",
+            "params": [
+              {
+                "name": "injection_type",
+                "value": "",
+                "type": "query",
+                "description": "Injection type"
+              }
+            ]
+          },
+          "docs": "This endpoint list injections with the option to filter by type."
+        },
+        {
+          "info": {
+            "name": "injections_create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/injections/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Delete Injections",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/injections/"
+          },
+          "docs": "This endpoint deletes all injections."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

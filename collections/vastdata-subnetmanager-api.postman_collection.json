@@ -1,0 +1,516 @@
+{
+  "item": [
+    {
+      "id": "6e717bbf-707b-4dc8-9f48-2cfd1e65b7ce",
+      "name": "subnetmanager",
+      "description": {
+        "content": "The subnetmanager monitors an OpenSM service. Clusters operating in larger IB networks must have an OpenSM service configured on some of the CNodes in the cluster. The OpenSM services running on those Cnodes are critical for the data network and need to be monitored. Monitoring is enabled when up to two IPs of CNodes hosting the OpenSM service are registered. The state and if applicable, failure reason, can be retrieved from the registered CNodes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "886464de-59a5-4045-a18a-f9dfa85f05c1",
+          "name": "List subnet manager",
+          "request": {
+            "name": "List subnet manager",
+            "description": {
+              "content": "This endpoint returns subnet manager service information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnetmanager",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebaf4785-46ad-4af0-981b-3a0cfca4ab2f",
+              "name": "Monitoring information about the Infiniband Subnet Manager service.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnetmanager",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"failure_reason\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9366,\n    \"ips\": [\n      \"string\",\n      \"string\"\n    ],\n    \"name\": \"string\",\n    \"state\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"failure_reason\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 1823,\n    \"ips\": [\n      \"string\",\n      \"string\"\n    ],\n    \"name\": \"string\",\n    \"state\": \"string\",\n    \"title\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20b0b453-414e-4b2f-b969-165756baee8a",
+          "name": "Add Subnet manager",
+          "request": {
+            "name": "Add Subnet manager",
+            "description": {
+              "content": "This endpoint registers up to two CNodes running the subnet manager service. This is relevant to installations with Infiniband networks where the OpenSM service is installed on some of the CNodes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnetmanager",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ips\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "555c5b9e-43c0-4fd9-95c3-decaaa24b7ac",
+              "name": "Subnet Manager information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnetmanager",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ips\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"failure_reason\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 8415,\n  \"ips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"state\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0612619-4259-419a-83f9-244b63d76630",
+          "name": "Remove a Subnet Manager",
+          "request": {
+            "name": "Remove a Subnet Manager",
+            "description": {
+              "content": "This endpoint removes a subnet manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnetmanager",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subnet Manager ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a87fa6b1-2c37-4fec-b458-a4ceffbb5d81",
+              "name": "The subnet manager was removed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnetmanager",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subnet Manager ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7dccbaf5-aed4-4d7a-9d03-03f096e4b153",
+          "name": "Return Details of a Subnet manager",
+          "request": {
+            "name": "Return Details of a Subnet manager",
+            "description": {
+              "content": "This endpoint returns subnet manager service information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnetmanager",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subnet Manager ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90748b83-9da0-46af-874c-aae91849f450",
+              "name": "Monitoring information about the Infiniband Subnet Manager service.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnetmanager",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subnet Manager ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"failure_reason\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 8415,\n  \"ips\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"state\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32ce0efb-ae07-4040-93ea-984371283e61",
+          "name": "Manage Subnet Manager",
+          "request": {
+            "name": "Manage Subnet Manager",
+            "description": {
+              "content": "This endpoint modifies the registered subnet manager IPs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subnetmanager",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subnet manager ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ips\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76867be7-aa51-447d-8f22-3e35541eeada",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subnetmanager",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subnet manager ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ips\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b8b1b729-f33a-48e7-8081-a9ddf41aed47",
+    "name": "VAST API Swagger Schema activedirectory subnetmanager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

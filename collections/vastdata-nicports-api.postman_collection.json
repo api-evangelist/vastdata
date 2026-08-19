@@ -1,0 +1,456 @@
+{
+  "item": [
+    {
+      "id": "dc10197f-a223-4021-91a7-860dab7e8074",
+      "name": "nicports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd38432d-6bbc-4336-8042-f072c95c4b8e",
+          "name": "List NIC Ports.",
+          "request": {
+            "name": "List NIC Ports.",
+            "description": {
+              "content": "This endpoint lists NIC Ports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nicports",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by state"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "972c4995-8797-4d68-8106-ba5dba67d2d3",
+              "name": "NICPort information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nicports",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 9000,\n    \"display_name\": \"string\",\n    \"enabled\": false,\n    \"external\": false,\n    \"failure_reason\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"host_id\": 1307,\n    \"id\": 4204,\n    \"interface\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"port_membership\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"string\",\n    \"title\": \"string\"\n  },\n  {\n    \"address\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 6888,\n    \"display_name\": \"string\",\n    \"enabled\": false,\n    \"external\": false,\n    \"failure_reason\": \"string\",\n    \"fw_version\": \"string\",\n    \"guid\": \"string\",\n    \"host_id\": 833,\n    \"id\": 5276,\n    \"interface\": \"string\",\n    \"model\": \"string\",\n    \"name\": \"string\",\n    \"port_membership\": \"string\",\n    \"sn\": \"string\",\n    \"state\": \"string\",\n    \"title\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "492019f0-aeec-4ed2-9ae3-7f7e603c9847",
+          "name": "Return Details of One NICPort.",
+          "request": {
+            "name": "Return Details of One NICPort.",
+            "description": {
+              "content": "This endpoint returns details of a specified NICPort.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nicports",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "abb86a65-61b3-4ef9-88e8-d6bdae577b8e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nicports",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 2546,\n  \"display_name\": \"string\",\n  \"enabled\": false,\n  \"external\": true,\n  \"failure_reason\": \"string\",\n  \"fw_version\": \"string\",\n  \"guid\": \"string\",\n  \"host_id\": 8289,\n  \"id\": 4484,\n  \"interface\": \"string\",\n  \"model\": \"string\",\n  \"name\": \"string\",\n  \"port_membership\": \"string\",\n  \"sn\": \"string\",\n  \"state\": \"string\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b28016f-1325-455e-a787-a9896e78dbfb",
+          "name": "Enable or Disable an NICPort",
+          "request": {
+            "name": "Enable or Disable an NICPort",
+            "description": {
+              "content": "This endpoint enables or disables a NICPort.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nicports",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NICPort ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b95a0c0d-4aa0-437d-85c5-279edea35020",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nicports",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NICPort ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72cd9776-697b-4465-8f21-f06bbb8c1021",
+          "name": "Get Related NICPorts",
+          "request": {
+            "name": "Get Related NICPorts",
+            "description": {
+              "content": "This endpoint returns IDs of all NICPorts that are logically the same physical port as the specified NICPort.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nicports",
+                ":id",
+                "related_nicports",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) NICPort ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "423115c7-7677-4765-8c5a-ff6225acef59",
+              "name": "Related NICPort IDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nicports",
+                    ":id",
+                    "related_nicports",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) NICPort ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  9964,\n  3416\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "40926c5d-3510-4d96-b803-20363c3fd5c9",
+    "name": "VAST API Swagger Schema activedirectory nicports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

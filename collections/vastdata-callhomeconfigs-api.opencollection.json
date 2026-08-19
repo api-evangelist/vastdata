@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory callhomeconfigs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "callhomeconfigs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Call Home Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/callhomeconfigs/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists Call Home configurations."
+        },
+        {
+          "info": {
+            "name": "Return Call Home Configuration Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/callhomeconfigs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Callhomeconfig ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns Call Home Configuration details."
+        },
+        {
+          "info": {
+            "name": "Modify the Call Home Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/callhomeconfigs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Call Home Configuration ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies the Call Home configuration."
+        },
+        {
+          "info": {
+            "name": "Register Cluster with Uplink",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/callhomeconfigs/:id/register-cluster/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID issued to the customer as customer_id. This is part of the Call Home configuration."
+              }
+            ]
+          },
+          "docs": "This endpoint registers a cluster with Uplink."
+        },
+        {
+          "info": {
+            "name": "Send a Call Home Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/callhomeconfigs/:id/send/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Call Home Configuration ID"
+              }
+            ]
+          },
+          "docs": "This endpoint sends a callhome message to the Support server to test the Call Home configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

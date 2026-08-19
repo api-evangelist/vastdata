@@ -1,0 +1,418 @@
+{
+  "item": [
+    {
+      "id": "aa793b24-47f4-491c-b1da-3c80aa792017",
+      "name": "hosts",
+      "description": {
+        "content": "Hosts are network discoverable CNodes and DNodes that can be included in a new cluster configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "008fc60c-87c7-47c9-9aa3-a5418ed45557",
+          "name": "List Hosts",
+          "request": {
+            "name": "List Hosts",
+            "description": {
+              "content": "This endpoint lists discovered hosts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hosts",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "auto",
+                  "value": "<boolean>",
+                  "description": "Specify auto or manually hosts"
+                },
+                {
+                  "disabled": false,
+                  "key": "ip_list",
+                  "value": "<string>",
+                  "description": "Comma-separated list of nodes IPs"
+                },
+                {
+                  "disabled": false,
+                  "key": "loopback",
+                  "value": "<boolean>",
+                  "description": "Loopback nodes"
+                },
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cluster__id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "install_state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "node_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sw_version",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "build",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e0a58f2-8684-422a-b4b1-555905b8a212",
+              "name": "Hosts information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hosts",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "auto",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ip_list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loopback",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cluster__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "install_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "node_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sw_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "build",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"hostname\": \"string\",\n    \"node_type\": \"string\",\n    \"auto\": true,\n    \"box_rdma_port\": 8902,\n    \"build\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 7165,\n    \"data_rdma_port\": 6115,\n    \"data_tcp_port\": 250,\n    \"dbox_uid\": \"string\",\n    \"deep_stripe\": true,\n    \"dmsetup\": false,\n    \"dr_hash_size\": 7392,\n    \"drive_size\": 829,\n    \"enable_dr\": false,\n    \"guid\": \"string\",\n    \"half_system\": false,\n    \"host_label\": \"string\",\n    \"hw_info\": {},\n    \"id\": 5055,\n    \"install\": false,\n    \"install_state\": \"string\",\n    \"ip\": \"string\",\n    \"ip1\": \"string\",\n    \"ip2\": \"string\",\n    \"ipv6\": \"string\",\n    \"led_status\": \"string\",\n    \"loopback\": true,\n    \"name\": \"string\",\n    \"net_type\": \"int_ib_ext_eth\",\n    \"node_guid\": \"string\",\n    \"nvram_size\": 6698,\n    \"os_version\": \"string\",\n    \"perf_check\": true,\n    \"platform_rdma_port\": 395,\n    \"platform_tcp_port\": 3396,\n    \"single_nic\": false,\n    \"sn\": \"string\",\n    \"ssh_user\": \"string\",\n    \"state\": \"string\",\n    \"sw_defined\": false,\n    \"sw_version\": \"string\",\n    \"system_name\": \"string\",\n    \"title\": \"string\",\n    \"upgrade_state\": \"string\",\n    \"url\": \"string\",\n    \"vast_install_info\": {\n      \"box_name\": \"string\",\n      \"box_uid\": \"string\",\n      \"box_vendor\": \"string\",\n      \"hostname\": \"string\",\n      \"ip\": \"string\",\n      \"is_ceres\": false,\n      \"is_ceres_v2\": true,\n      \"is_vms_host\": false,\n      \"node_type\": \"string\",\n      \"position\": \"string\",\n      \"vast_os\": \"string\"\n    }\n  },\n  {\n    \"hostname\": \"string\",\n    \"node_type\": \"string\",\n    \"auto\": false,\n    \"box_rdma_port\": 12,\n    \"build\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 1611,\n    \"data_rdma_port\": 181,\n    \"data_tcp_port\": 7262,\n    \"dbox_uid\": \"string\",\n    \"deep_stripe\": false,\n    \"dmsetup\": false,\n    \"dr_hash_size\": 9346,\n    \"drive_size\": 3277,\n    \"enable_dr\": false,\n    \"guid\": \"string\",\n    \"half_system\": true,\n    \"host_label\": \"string\",\n    \"hw_info\": {},\n    \"id\": 3070,\n    \"install\": true,\n    \"install_state\": \"string\",\n    \"ip\": \"string\",\n    \"ip1\": \"string\",\n    \"ip2\": \"string\",\n    \"ipv6\": \"string\",\n    \"led_status\": \"string\",\n    \"loopback\": false,\n    \"name\": \"string\",\n    \"net_type\": \"int_ib_ext_eth\",\n    \"node_guid\": \"string\",\n    \"nvram_size\": 1319,\n    \"os_version\": \"string\",\n    \"perf_check\": true,\n    \"platform_rdma_port\": 1928,\n    \"platform_tcp_port\": 7085,\n    \"single_nic\": false,\n    \"sn\": \"string\",\n    \"ssh_user\": \"string\",\n    \"state\": \"string\",\n    \"sw_defined\": false,\n    \"sw_version\": \"string\",\n    \"system_name\": \"string\",\n    \"title\": \"string\",\n    \"upgrade_state\": \"string\",\n    \"url\": \"string\",\n    \"vast_install_info\": {\n      \"box_name\": \"string\",\n      \"box_uid\": \"string\",\n      \"box_vendor\": \"string\",\n      \"hostname\": \"string\",\n      \"ip\": \"string\",\n      \"is_ceres\": false,\n      \"is_ceres_v2\": true,\n      \"is_vms_host\": true,\n      \"node_type\": \"string\",\n      \"position\": \"string\",\n      \"vast_os\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a8a5344-3a68-4efd-bdbd-96fb5c1fbd1a",
+          "name": "Discover Hosts",
+          "request": {
+            "name": "Discover Hosts",
+            "description": {
+              "content": "Discover hosts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hosts",
+                "discover"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "565a7ff7-57e8-424d-993f-fa5de1ed856b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hosts",
+                    "discover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00a55082-4835-49f5-8af5-ab2ab847a554",
+          "name": "Return Details of a Host",
+          "request": {
+            "name": "Return Details of a Host",
+            "description": {
+              "content": "This endpoint returns details of a host.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hosts",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50df401b-fd11-4ae9-88be-407b9b4e757a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hosts",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hostname\": \"string\",\n  \"node_type\": \"string\",\n  \"auto\": true,\n  \"box_rdma_port\": 1346,\n  \"build\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 3612,\n  \"data_rdma_port\": 9433,\n  \"data_tcp_port\": 3099,\n  \"dbox_uid\": \"string\",\n  \"deep_stripe\": true,\n  \"dmsetup\": true,\n  \"dr_hash_size\": 2460,\n  \"drive_size\": 3149,\n  \"enable_dr\": false,\n  \"guid\": \"string\",\n  \"half_system\": false,\n  \"host_label\": \"string\",\n  \"hw_info\": {},\n  \"id\": 9732,\n  \"install\": false,\n  \"install_state\": \"string\",\n  \"ip\": \"string\",\n  \"ip1\": \"string\",\n  \"ip2\": \"string\",\n  \"ipv6\": \"string\",\n  \"led_status\": \"string\",\n  \"loopback\": true,\n  \"name\": \"string\",\n  \"net_type\": \"ib\",\n  \"node_guid\": \"string\",\n  \"nvram_size\": 5364,\n  \"os_version\": \"string\",\n  \"perf_check\": true,\n  \"platform_rdma_port\": 1809,\n  \"platform_tcp_port\": 7171,\n  \"single_nic\": true,\n  \"sn\": \"string\",\n  \"ssh_user\": \"string\",\n  \"state\": \"string\",\n  \"sw_defined\": false,\n  \"sw_version\": \"string\",\n  \"system_name\": \"string\",\n  \"title\": \"string\",\n  \"upgrade_state\": \"string\",\n  \"url\": \"string\",\n  \"vast_install_info\": {\n    \"box_name\": \"string\",\n    \"box_uid\": \"string\",\n    \"box_vendor\": \"string\",\n    \"hostname\": \"string\",\n    \"ip\": \"string\",\n    \"is_ceres\": false,\n    \"is_ceres_v2\": false,\n    \"is_vms_host\": false,\n    \"node_type\": \"string\",\n    \"position\": \"string\",\n    \"vast_os\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d1493cf-7a47-4705-baae-e68a505890fc",
+    "name": "VAST API Swagger Schema activedirectory hosts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,507 @@
+{
+  "item": [
+    {
+      "id": "0dfdade0-1a8a-43a5-aa68-918230bc271f",
+      "name": "Blob Expansions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5452205-00a2-4999-8f83-871c5804486b",
+          "name": "Create a Blob Expansion",
+          "request": {
+            "name": "Create a Blob Expansion",
+            "description": {
+              "content": "This endpoint creates a Blob Expansion on a Kafka Topic.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blobexpansions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arrow_schema\": [\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"database_name\": \"<string>\",\n  \"expansion_format\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"target_table_name\": \"<string>\",\n  \"source_column_name\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"add_excessive_values_output\": \"<boolean>\",\n  \"add_missing_values_output\": \"<boolean>\",\n  \"copy_source_column\": \"<boolean>\",\n  \"flatten_delimiter\": \"<string>\",\n  \"flatten_path\": \"<boolean>\",\n  \"target_table_schema\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "72161c4a-9ec8-4074-a033-ffc0f98c1770",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blobexpansions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"add_excessive_values_output\": true,\n  \"add_missing_values_output\": false,\n  \"columns\": [\n    {\n      \"database_name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      },\n      \"name\": \"string\",\n      \"raw_field\": \"map<bool, bool>\",\n      \"schema_name\": \"string\",\n      \"table_name\": \"string\"\n    },\n    {\n      \"database_name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      },\n      \"name\": \"string\",\n      \"raw_field\": \"map<bool, bool>\",\n      \"schema_name\": \"string\",\n      \"table_name\": \"string\"\n    }\n  ],\n  \"copy_source_column\": true,\n  \"expansion_format\": \"json\",\n  \"source_column_name\": \"string\",\n  \"target_table_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffa0c678-39e4-4c8f-8a51-eee214c270d9",
+          "name": "Add columns to a Blob Expansion",
+          "request": {
+            "name": "Add columns to a Blob Expansion",
+            "description": {
+              "content": "This endpoint adds columns to an existing Blob Expansion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blobexpansions",
+                "add_columns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arrow_schema\": [\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"database_name\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"source_column_name\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"add_copy_source_column\": \"<boolean>\",\n  \"add_excessive_values_output\": \"<boolean>\",\n  \"add_missing_values_output\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "1f02a761-9a1d-462d-b5ab-21774309fb4b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blobexpansions",
+                    "add_columns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86db2c3c-ded4-4003-b8ff-d182e0a870e2",
+          "name": "Delete a Blob Expansion",
+          "request": {
+            "name": "Delete a Blob Expansion",
+            "description": {
+              "content": "This endpoint deletes a Blob Expansion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blobexpansions",
+                "delete",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database_name\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"source_column_name\": \"<string>\",\n  \"tenant_id\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "966a8c87-a538-4bc4-995c-265757168e20",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blobexpansions",
+                    "delete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b71a7d69-fdad-408a-ba61-1e3fdee7503a",
+          "name": "Drop columns from a Blob Expansion",
+          "request": {
+            "name": "Drop columns from a Blob Expansion",
+            "description": {
+              "content": "This endpoint drops columns from an existing Blob Expansion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blobexpansions",
+                "drop_columns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arrow_schema\": [\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"field\": {\n        \"column_type\": \"<string>\",\n        \"key_type\": {\n          \"column_type\": \"<string>\"\n        },\n        \"value_type\": {\n          \"column_type\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"database_name\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"source_column_name\": \"<string>\",\n  \"tenant_id\": \"<integer>\",\n  \"remove_copy_source_column\": \"<boolean>\",\n  \"remove_excessive_values_output\": \"<boolean>\",\n  \"remove_missing_values_output\": \"<boolean>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "8d77dd71-ad4f-4dc8-a0fb-d30adf0ca226",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blobexpansions",
+                    "drop_columns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df860669-f6d2-4af7-93bc-5730de82ee5d",
+          "name": "Show a Blob Expansion",
+          "request": {
+            "name": "Show a Blob Expansion",
+            "description": {
+              "content": "This endpoint shows a Blob Expansion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blobexpansions",
+                "show",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Filter by tenant. Specify tenant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "database_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by database_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "table_name",
+                  "value": "<string>",
+                  "description": "(Required) Getting list of objects by table_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_column_name",
+                  "value": "<string>",
+                  "description": "Source column name for blob expansion (defaults to \"value\" for Kafka topics)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6921b784-beab-4a8a-80a2-5e7e0c5acb18",
+              "name": "Blob Expansion",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blobexpansions",
+                    "show",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "database_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "table_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_column_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"add_excessive_values_output\": false,\n  \"add_missing_values_output\": true,\n  \"columns\": [\n    {\n      \"database_name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      },\n      \"name\": \"string\",\n      \"raw_field\": \"map<bool, bool>\",\n      \"schema_name\": \"string\",\n      \"table_name\": \"string\"\n    },\n    {\n      \"database_name\": \"string\",\n      \"field\": {\n        \"column_type\": \"map\",\n        \"key_type\": {\n          \"column_type\": \"bool\"\n        },\n        \"value_type\": {\n          \"column_type\": \"bool\"\n        }\n      },\n      \"name\": \"string\",\n      \"raw_field\": \"map<bool, bool>\",\n      \"schema_name\": \"string\",\n      \"table_name\": \"string\"\n    }\n  ],\n  \"copy_source_column\": true,\n  \"expansion_format\": \"json\",\n  \"source_column_name\": \"string\",\n  \"target_table_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eee81169-41cf-421e-a045-0fdf985d5c70",
+    "name": "VAST API Swagger Schema activedirectory Blob Expansions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory nativereplicationremotetargets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "nativereplicationremotetargets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Async Replication Peers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nativereplicationremotetargets/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name"
+              },
+              {
+                "name": "leading_vip",
+                "value": "",
+                "type": "query",
+                "description": "Filter by leading remote VIP, a VIP that is specified when creating the peer. It is one of the VIPs in the remote peer's replication VIP Pool."
+              },
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the name of the local cluster's replication VIP pool"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Filter by local cluster's software version"
+              },
+              {
+                "name": "remote_version",
+                "value": "",
+                "type": "query",
+                "description": "Filter by remote peer's software version"
+              },
+              {
+                "name": "last_heart_beat",
+                "value": "",
+                "type": "query",
+                "description": "Filter by last heartbeat, the time of the last successful message sent, arrived and acknowledged by the peer."
+              },
+              {
+                "name": "space_left",
+                "value": "",
+                "type": "query",
+                "description": "Filter by logical capacity remaining available on the remote peer. "
+              },
+              {
+                "name": "remote_vips",
+                "value": "",
+                "type": "query",
+                "description": "remote vips"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state"
+              },
+              {
+                "name": "secure_mode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by secure_mode"
+              },
+              {
+                "name": "transport_mode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transport_mode"
+              }
+            ]
+          },
+          "docs": "This endpoint presents async replication peers."
+        },
+        {
+          "info": {
+            "name": "Create an Async Replication Peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/nativereplicationremotetargets/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an async replication peer configuration between the local cluster and a remote cluster. Prerequisite: a VIP pool on each cluster with role=replication."
+        },
+        {
+          "info": {
+            "name": "Get the mapping between replication peers and remote view policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nativereplicationremotetargets/get_remote_mapping/"
+          },
+          "docs": "This endpoint returns a remote mapping between replication peers and remote view policies"
+        },
+        {
+          "info": {
+            "name": "Return Details of an Async Replication Peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nativereplicationremotetargets/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "index of replication target"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of an async replication peer, also known as a replication target."
+        },
+        {
+          "info": {
+            "name": "Modify an Async Replication Peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/nativereplicationremotetargets/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "NativeReplicationRemoteTarget ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies an async replication peer."
+        },
+        {
+          "info": {
+            "name": "Delete a Native Replication Peer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/nativereplicationremotetargets/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an async replication peer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

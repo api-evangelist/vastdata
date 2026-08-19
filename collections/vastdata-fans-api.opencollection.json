@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory fans API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "fans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Fans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/fans/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by fan state"
+              },
+              {
+                "name": "sn",
+                "value": "",
+                "type": "query",
+                "description": "Filter by fan serial number"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by fan model"
+              },
+              {
+                "name": "box__name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent CBox or DBox name"
+              },
+              {
+                "name": "box__id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent CBox or DBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint lists fans."
+        },
+        {
+          "info": {
+            "name": "Return Details of Fan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/fans/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Fan ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified fan."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

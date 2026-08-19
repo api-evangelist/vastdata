@@ -1,0 +1,1218 @@
+{
+  "item": [
+    {
+      "id": "30be2b4b-ce6f-455e-95a1-5331a0270313",
+      "name": "dboxes",
+      "description": {
+        "content": "A DBox is an NVMe-oF JBOF, otherwise known as a VAST enclosure, or an enclosure containing NVMe-oF controller cards and flash SSDs. The dboxes path represents the DBoxes in the cluster, exposes information about the DBoxes and maintenance operations. There are two types of DBoxes. The legacy type DBox has two DNodes. The CERES Dbox, newly introduced in some deployments, has two DTrays and four DNodes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "191ed580-f820-4ab2-9011-5f31362eb980",
+          "name": "List DBoxes",
+          "request": {
+            "name": "List DBoxes",
+            "description": {
+              "content": "This endpoint lists the DBoxes that belong to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "rack_id",
+                  "value": "<integer>",
+                  "description": "Filter by Rack"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e74edc8b-4833-4301-bb5b-ed6570d37dd2",
+              "name": "DBox information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rack_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"arch_type\": \"string\",\n    \"box_vendor\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 5417,\n    \"description\": \"string\",\n    \"drive_type\": \"string\",\n    \"dtray\": \"string\",\n    \"guid\": \"string\",\n    \"hardware_type\": \"string\",\n    \"id\": 9757,\n    \"index_in_rack\": 4264,\n    \"is_conclude_possible\": false,\n    \"is_migrate_source\": true,\n    \"is_migrate_target\": false,\n    \"is_replace_possible\": true,\n    \"rack_id\": 9733,\n    \"rack_name\": \"string\",\n    \"state\": \"string\",\n    \"subsystem\": 6320,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"uid\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"arch_type\": \"string\",\n    \"box_vendor\": \"string\",\n    \"cluster\": \"string\",\n    \"cluster_id\": 3770,\n    \"description\": \"string\",\n    \"drive_type\": \"string\",\n    \"dtray\": \"string\",\n    \"guid\": \"string\",\n    \"hardware_type\": \"string\",\n    \"id\": 7442,\n    \"index_in_rack\": 9929,\n    \"is_conclude_possible\": false,\n    \"is_migrate_source\": false,\n    \"is_migrate_target\": true,\n    \"is_replace_possible\": true,\n    \"rack_id\": 8337,\n    \"rack_name\": \"string\",\n    \"state\": \"string\",\n    \"subsystem\": 9539,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"uid\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef4fd674-fbe1-439a-a5b5-20c1f0df841e",
+          "name": "Add DBox",
+          "request": {
+            "name": "Add DBox",
+            "description": {
+              "content": "This endpoint adds a DBox to the cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                "add",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dnode_ips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster_id\": \"<integer>\",\n  \"drive_size\": \"<integer>\",\n  \"empty_box\": \"<boolean>\",\n  \"lab_deploy\": \"<boolean>\",\n  \"migrate_target\": \"<boolean>\",\n  \"nvram_size\": \"<integer>\",\n  \"rack_name\": \"<string>\",\n  \"rack_unit\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f3fa5f6-d258-4feb-b6f4-914101f2fc7c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    "add",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dnode_ips\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster_id\": \"<integer>\",\n  \"drive_size\": \"<integer>\",\n  \"empty_box\": \"<boolean>\",\n  \"lab_deploy\": \"<boolean>\",\n  \"migrate_target\": \"<boolean>\",\n  \"nvram_size\": \"<integer>\",\n  \"rack_name\": \"<string>\",\n  \"rack_unit\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "571b6995-e043-4dc8-80c4-eb1844de6595",
+          "name": "DBox Removal",
+          "request": {
+            "name": "DBox Removal",
+            "description": {
+              "content": "This endpoint removes multiple DBoxes from the cluster",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                "decommission",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "705e559a-b43f-4e89-9e1e-8e0dc59ef806",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    "decommission",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "867e34aa-e7d8-4662-8ab0-5d6075ce3421",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    "decommission",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73ea9b12-4285-4eaa-a4bb-0d3fc520f4c5",
+          "name": "Validate DBox Removal",
+          "request": {
+            "name": "Validate DBox Removal",
+            "description": {
+              "content": "This endpoint validates a DBox removal operation without executing it",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                "decommission",
+                "dry-run",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57382e03-6edb-47e3-85f5-b3eac2d61d0b",
+              "name": "Validation successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    "decommission",
+                    "dry-run",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be43c73e-f452-49cd-955f-d36c81d2c298",
+              "name": "Validation failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    "decommission",
+                    "dry-run",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"skip_raid_health_checks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94fdbc27-14e9-419f-9a61-0dc8f24c85e5",
+          "name": "Resume DBox Removal",
+          "request": {
+            "name": "Resume DBox Removal",
+            "description": {
+              "content": "This endpoint resumes a failed/stalled DBox removal operation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                "decommission",
+                "resume",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74f85136-d8ba-4571-b8eb-46fffe6f47b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    "decommission",
+                    "resume",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c2931bc-3cce-46dc-98e9-83be93315bf2",
+              "name": "The request contains invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    "decommission",
+                    "resume",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Failed to rotate encryption group key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8864a609-a807-415a-815a-8bf5d6f93cbb",
+          "name": "Delete a DBox",
+          "request": {
+            "name": "Delete a DBox",
+            "description": {
+              "content": "This endpoint deletes a DBox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4111c461-d327-4b67-8478-9b2154376b1f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42c78fa3-cb01-4981-990e-39d0c72cd96b",
+          "name": "Return Details of a DBox",
+          "request": {
+            "name": "Return Details of a DBox",
+            "description": {
+              "content": "This endpoint returns details of a DBox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89fcddcb-30b9-450c-9185-b09aca96fb8c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"arch_type\": \"string\",\n  \"box_vendor\": \"string\",\n  \"cluster\": \"string\",\n  \"cluster_id\": 458,\n  \"description\": \"string\",\n  \"drive_type\": \"string\",\n  \"dtray\": \"string\",\n  \"guid\": \"string\",\n  \"hardware_type\": \"string\",\n  \"id\": 2216,\n  \"index_in_rack\": 2276,\n  \"is_conclude_possible\": false,\n  \"is_migrate_source\": false,\n  \"is_migrate_target\": true,\n  \"is_replace_possible\": false,\n  \"rack_id\": 6171,\n  \"rack_name\": \"string\",\n  \"state\": \"string\",\n  \"subsystem\": 1537,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"title\": \"string\",\n  \"uid\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdbd737f-a454-4182-8bd8-4f99b4e226ca",
+          "name": "Modify a DBox Description",
+          "request": {
+            "name": "Modify a DBox Description",
+            "description": {
+              "content": "This endpoint modifies a DBox description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conclude\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"replace\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7372322-dead-4fea-b49e-0214768d2954",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conclude\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"replace\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9e6252d-ef19-423d-aa01-24d79e100b86",
+          "name": "Control DBox LEDs",
+          "request": {
+            "name": "Control DBox LEDs",
+            "description": {
+              "content": "This endpoint controls DBox LEDs (on/off)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d1b487a-751a-4c1d-841a-cc13fe3bd99b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ad4b3b2-8a39-4d9d-aaef-9f45f3ce1f1d",
+          "name": "Reset dp i2c",
+          "request": {
+            "name": "Reset dp i2c",
+            "description": {
+              "content": "This endpoint resets the dp i2c",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dboxes",
+                ":id",
+                "reset_dp_i2c",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DBox ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92491615-35e4-4b62-a823-ac0dd295338a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dboxes",
+                    ":id",
+                    "reset_dp_i2c",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DBox ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef751be3-07e9-40ee-8748-3425888c1897",
+    "name": "VAST API Swagger Schema activedirectory dboxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

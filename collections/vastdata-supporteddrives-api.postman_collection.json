@@ -1,0 +1,519 @@
+{
+  "item": [
+    {
+      "id": "37d3175f-f6f5-490d-99de-6bf99d6d8f44",
+      "name": "supporteddrives",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afedbd36-867f-4aee-8b46-2fc0aadb7908",
+          "name": "supporteddrives list",
+          "request": {
+            "name": "supporteddrives list",
+            "description": {},
+            "url": {
+              "path": [
+                "supporteddrives",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd674d83-2e6b-4e1a-a620-e94ab4e043c3",
+              "name": "List supported drives",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supporteddrives",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"drive_type\": \"string\",\n    \"id\": 5807,\n    \"model_name\": \"string\",\n    \"raw_data\": {\n      \"capacity_tb\": 8463,\n      \"fw\": [\n        {\n          \"latest\": true,\n          \"name\": \"string\"\n        },\n        {\n          \"latest\": true,\n          \"name\": \"string\"\n        }\n      ],\n      \"hw_platform\": [\n        \"string\",\n        \"string\"\n      ],\n      \"model\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"synced\": true\n  },\n  {\n    \"drive_type\": \"string\",\n    \"id\": 1975,\n    \"model_name\": \"string\",\n    \"raw_data\": {\n      \"capacity_tb\": 467,\n      \"fw\": [\n        {\n          \"latest\": false,\n          \"name\": \"string\"\n        },\n        {\n          \"latest\": false,\n          \"name\": \"string\"\n        }\n      ],\n      \"hw_platform\": [\n        \"string\",\n        \"string\"\n      ],\n      \"model\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"synced\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9362eb57-040b-4aa7-9b63-2f1605adef26",
+          "name": "supporteddrives add",
+          "request": {
+            "name": "supporteddrives add",
+            "description": {},
+            "url": {
+              "path": [
+                "supporteddrives",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"drives\": [\n    {\n      \"capacity_tb\": \"<integer>\",\n      \"fw\": [\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"hw_platform\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"model\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"capacity_tb\": \"<integer>\",\n      \"fw\": [\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"hw_platform\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"model\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"platforms\": [\n    {\n      \"default_section_layout\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ssd_capacity_tb\": \"<integer>\"\n    },\n    {\n      \"default_section_layout\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ssd_capacity_tb\": \"<integer>\"\n    }\n  ],\n  \"replace\": \"<boolean>\",\n  \"signature\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4402869d-5df2-4ae1-8ca8-c000526b636f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supporteddrives",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"drives\": [\n    {\n      \"capacity_tb\": \"<integer>\",\n      \"fw\": [\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"hw_platform\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"model\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"capacity_tb\": \"<integer>\",\n      \"fw\": [\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"hw_platform\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"model\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"platforms\": [\n    {\n      \"default_section_layout\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ssd_capacity_tb\": \"<integer>\"\n    },\n    {\n      \"default_section_layout\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ssd_capacity_tb\": \"<integer>\"\n    }\n  ],\n  \"replace\": \"<boolean>\",\n  \"signature\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drives\": [\n    {\n      \"capacity_tb\": \"<integer>\",\n      \"fw\": [\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"hw_platform\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"model\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"capacity_tb\": \"<integer>\",\n      \"fw\": [\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"latest\": \"<boolean>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"hw_platform\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"model\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"platforms\": [\n    {\n      \"default_section_layout\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ssd_capacity_tb\": \"<integer>\"\n    },\n    {\n      \"default_section_layout\": \"<string>\",\n      \"name\": \"<string>\",\n      \"ssd_capacity_tb\": \"<integer>\"\n    }\n  ],\n  \"replace\": false,\n  \"signature\": \"string\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16e255ee-9630-43b9-9178-8deb7d4c5ebe",
+          "name": "supporteddrives delete",
+          "request": {
+            "name": "supporteddrives delete",
+            "description": {},
+            "url": {
+              "path": [
+                "supporteddrives",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "990e3dac-0e03-40ea-bc3c-170d58c19741",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supporteddrives",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1af36235-4a27-4b63-8c4f-f4037306d46e",
+          "name": "supporteddrives get",
+          "request": {
+            "name": "supporteddrives get",
+            "description": {},
+            "url": {
+              "path": [
+                "supporteddrives",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c82329ea-ce04-4c50-8309-622d4b32c798",
+              "name": "Supported drive info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supporteddrives",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drive_type\": \"string\",\n  \"id\": 3695,\n  \"model_name\": \"string\",\n  \"raw_data\": {\n    \"capacity_tb\": \"<integer>\",\n    \"fw\": [\n      {\n        \"latest\": \"<boolean>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"latest\": \"<boolean>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"hw_platform\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"model\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"synced\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ec5cb1a-189b-48d5-ac98-648cb7bcce25",
+          "name": "supporteddrives update",
+          "request": {
+            "name": "supporteddrives update",
+            "description": {},
+            "url": {
+              "path": [
+                "supporteddrives",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capacity_tb\": \"<integer>\",\n  \"fw\": [\n    {\n      \"latest\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"latest\": \"<boolean>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"hw_platform\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"model\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e29fbfb-9c70-4b9a-adba-b0428bb9a8bc",
+              "name": "Updated drive data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supporteddrives",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"capacity_tb\": \"<integer>\",\n  \"fw\": [\n    {\n      \"latest\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"latest\": \"<boolean>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"hw_platform\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"model\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drive_type\": \"string\",\n  \"id\": 3695,\n  \"model_name\": \"string\",\n  \"raw_data\": {\n    \"capacity_tb\": \"<integer>\",\n    \"fw\": [\n      {\n        \"latest\": \"<boolean>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"latest\": \"<boolean>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"hw_platform\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"model\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"synced\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a96a299-3372-4a74-9ec8-ef701456c391",
+    "name": "VAST API Swagger Schema activedirectory supporteddrives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

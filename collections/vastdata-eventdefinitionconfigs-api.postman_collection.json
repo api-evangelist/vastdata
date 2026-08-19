@@ -1,0 +1,425 @@
+{
+  "item": [
+    {
+      "id": "ee9efb40-8812-4ce5-9df0-1dcadf3f1572",
+      "name": "eventdefinitionconfigs",
+      "description": {
+        "content": "The eventdefinitionconfigs path exposes event definition configurations that affect event definitions and quotas. These include default actions that apply globally to event definitions and are overridden by any conflicting settings in specific event definitions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22f2116f-77d4-4842-bd80-f3d094277d97",
+          "name": "List Event Definition Configurations",
+          "request": {
+            "name": "List Event Definition Configurations",
+            "description": {
+              "content": "This endpoint lists Event Definition configurations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventdefinitionconfigs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ec4387d-6ea7-4544-9e84-4f595d66f037",
+              "name": "Event Definition configurations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventdefinitionconfigs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"audit_logs_retention\": 9349,\n    \"critical_value\": \"string\",\n    \"disable_actions\": false,\n    \"email_recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"email_sender\": \"string\",\n    \"email_subject\": \"string\",\n    \"id\": 6343,\n    \"info_value\": \"string\",\n    \"major_value\": \"string\",\n    \"minor_value\": \"string\",\n    \"quota_email_hourly_limit\": 3752,\n    \"quota_email_interval\": \"string\",\n    \"quota_email_provider\": \"string\",\n    \"quota_email_suffix\": \"string\",\n    \"smtp_host\": \"string\",\n    \"smtp_password\": \"string\",\n    \"smtp_port\": 2537,\n    \"smtp_use_tls\": false,\n    \"smtp_user\": \"string\",\n    \"syslog_host\": \"string\",\n    \"syslog_ipmi_audit\": false,\n    \"syslog_port\": 3959,\n    \"syslog_protocol\": \"string\",\n    \"syslog_secure_audit\": true,\n    \"syslog_shell_audit\": true,\n    \"syslog_vms_audit\": false\n  },\n  {\n    \"audit_logs_retention\": 1383,\n    \"critical_value\": \"string\",\n    \"disable_actions\": false,\n    \"email_recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"email_sender\": \"string\",\n    \"email_subject\": \"string\",\n    \"id\": 7277,\n    \"info_value\": \"string\",\n    \"major_value\": \"string\",\n    \"minor_value\": \"string\",\n    \"quota_email_hourly_limit\": 1314,\n    \"quota_email_interval\": \"string\",\n    \"quota_email_provider\": \"string\",\n    \"quota_email_suffix\": \"string\",\n    \"smtp_host\": \"string\",\n    \"smtp_password\": \"string\",\n    \"smtp_port\": 4176,\n    \"smtp_use_tls\": true,\n    \"smtp_user\": \"string\",\n    \"syslog_host\": \"string\",\n    \"syslog_ipmi_audit\": true,\n    \"syslog_port\": 461,\n    \"syslog_protocol\": \"string\",\n    \"syslog_secure_audit\": false,\n    \"syslog_shell_audit\": false,\n    \"syslog_vms_audit\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54bee1a5-2242-4cad-a97b-a1fe18c4487d",
+          "name": "Return Details of Event Definition Configuration",
+          "request": {
+            "name": "Return Details of Event Definition Configuration",
+            "description": {
+              "content": "This endpoint returns the details of an Event Definition configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventdefinitionconfigs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Event Definition ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97b293ca-7e63-4af2-8ead-d26036194af8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventdefinitionconfigs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Event Definition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audit_logs_retention\": 8526,\n  \"critical_value\": \"string\",\n  \"disable_actions\": true,\n  \"email_recipients\": [\n    \"string\",\n    \"string\"\n  ],\n  \"email_sender\": \"string\",\n  \"email_subject\": \"string\",\n  \"id\": 8334,\n  \"info_value\": \"string\",\n  \"major_value\": \"string\",\n  \"minor_value\": \"string\",\n  \"quota_email_hourly_limit\": 6807,\n  \"quota_email_interval\": \"string\",\n  \"quota_email_provider\": \"string\",\n  \"quota_email_suffix\": \"string\",\n  \"smtp_host\": \"string\",\n  \"smtp_password\": \"string\",\n  \"smtp_port\": 3870,\n  \"smtp_use_tls\": false,\n  \"smtp_user\": \"string\",\n  \"syslog_host\": \"string\",\n  \"syslog_ipmi_audit\": false,\n  \"syslog_port\": 2086,\n  \"syslog_protocol\": \"string\",\n  \"syslog_secure_audit\": true,\n  \"syslog_shell_audit\": true,\n  \"syslog_vms_audit\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4107cd03-91e1-4ce5-a033-5882238e7f91",
+          "name": "Modify Event Definition Configuration",
+          "request": {
+            "name": "Modify Event Definition Configuration",
+            "description": {
+              "content": "This endpoint modifies the global event definition configuration which includes the default actions triggered by alarms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventdefinitionconfigs",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Event Definition Configuration ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audit_logs_retention\": \"<integer>\",\n  \"critical_value\": \"<string>\",\n  \"disable_actions\": \"<boolean>\",\n  \"email_recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email_sender\": \"<string>\",\n  \"email_subject\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"info_value\": \"<string>\",\n  \"major_value\": \"<string>\",\n  \"minor_value\": \"<string>\",\n  \"quota_email_hourly_limit\": \"<integer>\",\n  \"quota_email_interval\": \"<string>\",\n  \"quota_email_provider\": \"<string>\",\n  \"quota_email_suffix\": \"<string>\",\n  \"smtp_host\": \"<string>\",\n  \"smtp_password\": \"<string>\",\n  \"smtp_port\": \"<string>\",\n  \"smtp_use_tls\": \"<boolean>\",\n  \"smtp_user\": \"<string>\",\n  \"syslog_host\": \"<string>\",\n  \"syslog_ipmi_audit\": \"<boolean>\",\n  \"syslog_port\": \"<integer>\",\n  \"syslog_protocol\": \"<string>\",\n  \"syslog_secure_audit\": \"<boolean>\",\n  \"syslog_shell_audit\": \"<boolean>\",\n  \"syslog_vms_audit\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a25e115-a443-4ff8-93d5-e3c1e6acb065",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventdefinitionconfigs",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Event Definition Configuration ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audit_logs_retention\": \"<integer>\",\n  \"critical_value\": \"<string>\",\n  \"disable_actions\": \"<boolean>\",\n  \"email_recipients\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email_sender\": \"<string>\",\n  \"email_subject\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"info_value\": \"<string>\",\n  \"major_value\": \"<string>\",\n  \"minor_value\": \"<string>\",\n  \"quota_email_hourly_limit\": \"<integer>\",\n  \"quota_email_interval\": \"<string>\",\n  \"quota_email_provider\": \"<string>\",\n  \"quota_email_suffix\": \"<string>\",\n  \"smtp_host\": \"<string>\",\n  \"smtp_password\": \"<string>\",\n  \"smtp_port\": \"<string>\",\n  \"smtp_use_tls\": \"<boolean>\",\n  \"smtp_user\": \"<string>\",\n  \"syslog_host\": \"<string>\",\n  \"syslog_ipmi_audit\": \"<boolean>\",\n  \"syslog_port\": \"<integer>\",\n  \"syslog_protocol\": \"<string>\",\n  \"syslog_secure_audit\": \"<boolean>\",\n  \"syslog_shell_audit\": \"<boolean>\",\n  \"syslog_vms_audit\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "177d6631-bcff-45b6-8bff-aad45820483e",
+          "name": "Test Event Definition Configuration",
+          "request": {
+            "name": "Test Event Definition Configuration",
+            "description": {
+              "content": "This endpoint tests the global event definition configuration which includes the default actions triggered by alarms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventdefinitionconfigs",
+                ":id",
+                "test",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Event Definition Configuration ID"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a57646f-77d7-4da2-be36-42b04295d802",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventdefinitionconfigs",
+                    ":id",
+                    "test",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Event Definition Configuration ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb257963-e038-41ec-a524-1c4a3036f8ae",
+    "name": "VAST API Swagger Schema activedirectory eventdefinitionconfigs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

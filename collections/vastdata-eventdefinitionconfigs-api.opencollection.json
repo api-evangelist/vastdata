@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory eventdefinitionconfigs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "eventdefinitionconfigs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Event Definition Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eventdefinitionconfigs/"
+          },
+          "docs": "This endpoint lists Event Definition configurations"
+        },
+        {
+          "info": {
+            "name": "Return Details of Event Definition Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/eventdefinitionconfigs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Definition ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the details of an Event Definition configuration."
+        },
+        {
+          "info": {
+            "name": "Modify Event Definition Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/eventdefinitionconfigs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Definition Configuration ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies the global event definition configuration which includes the default actions triggered by alarms."
+        },
+        {
+          "info": {
+            "name": "Test Event Definition Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/eventdefinitionconfigs/:id/test/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Definition Configuration ID"
+              }
+            ]
+          },
+          "docs": "This endpoint tests the global event definition configuration which includes the default actions triggered by alarms."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,161 @@
+{
+  "item": [
+    {
+      "id": "2acafb9e-94e6-459b-a4e0-5318a9921ad7",
+      "name": "capacity",
+      "description": {
+        "content": "This endpoint enables you to query capacity details of any path on any tenant and its direct child paths.\"",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e1fcbad-d46f-4d05-b139-ba9494850963",
+          "name": "Query a Tenant for Capacity Details",
+          "request": {
+            "name": "Query a Tenant for Capacity Details",
+            "description": {
+              "content": "This endpoint queries a tenant for capacity details for a path on the tenant and its direct child paths.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "capacity",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Specifies a path. The query response includes details of the specified path and its direct child paths. By default, this is the root path."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Selects which capacity type is returned as sort_key in the response. Default: usable."
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<integer>",
+                  "description": "Specifies for which tenant to return a response. By default, this is the default tenant."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50225bdd-421e-4358-a53f-870c4644fb55",
+              "name": "Capacity details of a path and its children",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "capacity",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5c52cd55-7c5f-42bf-a21d-cd4b5fc31bfc",
+    "name": "VAST API Swagger Schema activedirectory capacity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

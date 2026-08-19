@@ -1,0 +1,264 @@
+{
+  "item": [
+    {
+      "id": "22332e04-e559-4560-ab36-197e46f3cf0b",
+      "name": "replicationrestorepoints",
+      "description": {
+        "content": "A replication restore point is a location to which a snapshot was replicated and from which files can be restored.A restore point may reside on an S3 replication peer or on an async replication peer.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d38436f3-c71a-44b5-8644-38c84652e6fd",
+          "name": "List Replication Restore Points",
+          "request": {
+            "name": "List Replication Restore Points",
+            "description": {
+              "content": "This endpoint lists replication restore points.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationrestorepoints",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stream__id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stream__name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stream__name__contains",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64d37fab-cb9e-4f80-a6b3-fd05dc3b31c4",
+              "name": "Replication restore points information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationrestorepoints",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stream__id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stream__name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stream__name__contains",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"crate_id\": 1441,\n    \"created\": \"1968-05-07T03:14:09.742Z\",\n    \"eta_sec\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 7711,\n    \"internal\": true,\n    \"is_local\": false,\n    \"logical_backlog\": 6630,\n    \"logical_size\": 2705,\n    \"name\": \"string\",\n    \"network_bw_per_sec\": 3756,\n    \"physical_backlog\": 3109,\n    \"physical_size\": 8017,\n    \"progress_promil\": \"string\",\n    \"protected_path_guid\": \"string\",\n    \"state\": \"string\",\n    \"stream\": \"string\",\n    \"stream_index\": 8780,\n    \"stream_name\": \"string\",\n    \"target_name\": \"string\",\n    \"upload_finish_time\": \"string\",\n    \"upload_start_time\": \"string\",\n    \"url\": \"string\"\n  },\n  {\n    \"crate_id\": 7625,\n    \"created\": \"1990-12-15T14:50:15.705Z\",\n    \"eta_sec\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 2033,\n    \"internal\": true,\n    \"is_local\": false,\n    \"logical_backlog\": 5580,\n    \"logical_size\": 4354,\n    \"name\": \"string\",\n    \"network_bw_per_sec\": 4556,\n    \"physical_backlog\": 9725,\n    \"physical_size\": 2131,\n    \"progress_promil\": \"string\",\n    \"protected_path_guid\": \"string\",\n    \"state\": \"string\",\n    \"stream\": \"string\",\n    \"stream_index\": 5596,\n    \"stream_name\": \"string\",\n    \"target_name\": \"string\",\n    \"upload_finish_time\": \"string\",\n    \"upload_start_time\": \"string\",\n    \"url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95a0e553-76d1-426d-8054-ecb649191b0a",
+          "name": "Return Details of a Replication Restore Point",
+          "request": {
+            "name": "Return Details of a Replication Restore Point",
+            "description": {
+              "content": "This endpoint returns details of a replication restore point.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "replicationrestorepoints",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) index of replication restore point"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85875b8f-65c1-4b4d-a8e5-2400e5c38beb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "replicationrestorepoints",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) index of replication restore point"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"crate_id\": 4421,\n  \"created\": \"1953-11-12T11:39:24.726Z\",\n  \"eta_sec\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 1023,\n  \"internal\": false,\n  \"is_local\": false,\n  \"logical_backlog\": 8140,\n  \"logical_size\": 7268,\n  \"name\": \"string\",\n  \"network_bw_per_sec\": 1185,\n  \"physical_backlog\": 5588,\n  \"physical_size\": 2428,\n  \"progress_promil\": \"string\",\n  \"protected_path_guid\": \"string\",\n  \"state\": \"string\",\n  \"stream\": \"string\",\n  \"stream_index\": 2556,\n  \"stream_name\": \"string\",\n  \"target_name\": \"string\",\n  \"upload_finish_time\": \"string\",\n  \"upload_start_time\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2ad39fac-5b33-4a65-9e5d-83106826e26a",
+    "name": "VAST API Swagger Schema activedirectory replicationrestorepoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

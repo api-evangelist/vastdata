@@ -1,0 +1,955 @@
+{
+  "item": [
+    {
+      "id": "1f081df4-af63-4045-9890-5b25b113a07e",
+      "name": "Racks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc2a6950-5314-4ece-8f0e-d2c8fd05ac7a",
+          "name": "Configure BGP on Rack",
+          "request": {
+            "name": "Configure BGP on Rack",
+            "description": {
+              "content": "Bulk update BGP configuration on all cnodes in the rack",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "racks",
+                ":id",
+                "bgpconfig",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Rack ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ip_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ips_represent\": \"<string>\",\n  \"self_asn\": \"<string>\",\n  \"subnet_bits\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "9d5ead7a-e703-4cea-9d53-963a0915b4be",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ":id",
+                    "bgpconfig",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Rack ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ip_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ips_represent\": \"<string>\",\n  \"self_asn\": \"<string>\",\n  \"subnet_bits\": \"<integer>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d19cc009-06f8-4297-b2b0-32ec42637b44",
+          "name": "Get all existing Racks",
+          "request": {
+            "name": "Get all existing Racks",
+            "description": {
+              "content": "This endpoint lists Racks",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "racks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04de459a-474c-47ae-8aea-9c616a580875",
+              "name": "Racks information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"available_capacity\": 1249,\n    \"cnode_ip_pool\": [\n      [\n        \"238.255.216.14\",\n        \"116.20.119.110\"\n      ],\n      [\n        \"26.198.177.68\",\n        \"115.164.69.54\"\n      ]\n    ],\n    \"cnode_ipmi_pool\": [\n      [\n        \"53.165.121.225\",\n        \"202.183.96.9\"\n      ],\n      [\n        \"43.126.63.130\",\n        \"8.95.155.51\"\n      ]\n    ],\n    \"description\": \"string\",\n    \"dnode_ip_pool\": [\n      [\n        \"107.195.12.52\",\n        \"66.188.44.213\"\n      ],\n      [\n        \"196.172.179.39\",\n        \"8.26.126.137\"\n      ]\n    ],\n    \"dnode_ipmi_pool\": [\n      [\n        \"162.176.133.32\",\n        \"227.155.41.25\"\n      ],\n      [\n        \"187.239.47.77\",\n        \"227.241.169.172\"\n      ]\n    ],\n    \"guid\": \"string\",\n    \"id\": 4936,\n    \"is_bgp_enabled\": true,\n    \"number_of_units\": 6916,\n    \"row\": \"string\",\n    \"total_capacity\": 8039\n  },\n  {\n    \"name\": \"string\",\n    \"available_capacity\": 8905,\n    \"cnode_ip_pool\": [\n      [\n        \"37.86.171.219\",\n        \"180.70.203.184\"\n      ],\n      [\n        \"72.74.230.41\",\n        \"28.112.79.245\"\n      ]\n    ],\n    \"cnode_ipmi_pool\": [\n      [\n        \"53.188.220.118\",\n        \"106.141.42.47\"\n      ],\n      [\n        \"8.135.233.74\",\n        \"146.123.42.31\"\n      ]\n    ],\n    \"description\": \"string\",\n    \"dnode_ip_pool\": [\n      [\n        \"119.6.27.110\",\n        \"129.6.162.235\"\n      ],\n      [\n        \"24.193.155.211\",\n        \"183.173.57.250\"\n      ]\n    ],\n    \"dnode_ipmi_pool\": [\n      [\n        \"144.42.136.45\",\n        \"43.123.161.120\"\n      ],\n      [\n        \"172.78.123.174\",\n        \"22.221.41.38\"\n      ]\n    ],\n    \"guid\": \"string\",\n    \"id\": 7203,\n    \"is_bgp_enabled\": true,\n    \"number_of_units\": 5799,\n    \"row\": \"string\",\n    \"total_capacity\": 9045\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99b7881e-3ee2-4de8-80f2-42685b544207",
+          "name": "Create a Rack",
+          "request": {
+            "name": "Create a Rack",
+            "description": {
+              "content": "This endpoint creates a Rack.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "racks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ip_range\": [\n    \"<ipv4>\",\n    \"<ipv4>\"\n  ],\n  \"number_of_units\": \"<integer>\",\n  \"rack_unit\": \"<string>\",\n  \"row\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e81329a3-7cc8-4720-9d97-ba194d13352c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"ip_range\": [\n    \"<ipv4>\",\n    \"<ipv4>\"\n  ],\n  \"number_of_units\": \"<integer>\",\n  \"rack_unit\": \"<string>\",\n  \"row\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"available_capacity\": 5289,\n  \"cnode_ip_pool\": [\n    [\n      \"156.39.1.79\",\n      \"46.227.168.171\"\n    ],\n    [\n      \"32.44.14.195\",\n      \"84.89.188.205\"\n    ]\n  ],\n  \"cnode_ipmi_pool\": [\n    [\n      \"91.76.67.209\",\n      \"101.255.19.41\"\n    ],\n    [\n      \"97.205.195.84\",\n      \"182.206.193.2\"\n    ]\n  ],\n  \"description\": \"string\",\n  \"dnode_ip_pool\": [\n    [\n      \"109.20.142.166\",\n      \"84.147.160.241\"\n    ],\n    [\n      \"244.64.110.1\",\n      \"120.217.57.187\"\n    ]\n  ],\n  \"dnode_ipmi_pool\": [\n    [\n      \"47.109.155.93\",\n      \"244.180.118.174\"\n    ],\n    [\n      \"80.183.195.55\",\n      \"72.46.53.148\"\n    ]\n  ],\n  \"guid\": \"string\",\n  \"id\": 283,\n  \"is_bgp_enabled\": true,\n  \"number_of_units\": 3676,\n  \"row\": \"string\",\n  \"total_capacity\": 1438,\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b43f3af7-d094-4eb8-8403-5386d9d47e19",
+          "name": "Delete a Rack",
+          "request": {
+            "name": "Delete a Rack",
+            "description": {},
+            "url": {
+              "path": [
+                "racks",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2882abe-e0ca-448d-b33c-957e7ed485e2",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "351894f6-58cc-49c6-a020-6eddea5f81ea",
+          "name": "Return Details of a Rack",
+          "request": {
+            "name": "Return Details of a Rack",
+            "description": {
+              "content": "This endpoint returns information about a specific Rack.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "racks",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cd5c95b-40aa-4ef1-bf8e-b0ade18a44d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"available_capacity\": 2018,\n  \"cnode_ip_pool\": [\n    [\n      \"106.141.109.8\",\n      \"167.179.2.194\"\n    ],\n    [\n      \"147.171.54.138\",\n      \"213.11.20.139\"\n    ]\n  ],\n  \"cnode_ipmi_pool\": [\n    [\n      \"56.123.212.57\",\n      \"98.233.255.188\"\n    ],\n    [\n      \"76.159.147.23\",\n      \"5.204.84.100\"\n    ]\n  ],\n  \"description\": \"string\",\n  \"dnode_ip_pool\": [\n    [\n      \"190.202.76.66\",\n      \"251.55.174.235\"\n    ],\n    [\n      \"222.102.53.26\",\n      \"119.139.154.239\"\n    ]\n  ],\n  \"dnode_ipmi_pool\": [\n    [\n      \"132.13.69.94\",\n      \"8.59.37.80\"\n    ],\n    [\n      \"4.147.240.200\",\n      \"39.151.15.30\"\n    ]\n  ],\n  \"guid\": \"string\",\n  \"id\": 2408,\n  \"is_bgp_enabled\": true,\n  \"number_of_units\": 9609,\n  \"row\": \"string\",\n  \"total_capacity\": 5236\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a815a91-0cbb-4bf5-a42e-ff6479409cc0",
+          "name": "Update a Rack",
+          "request": {
+            "name": "Update a Rack",
+            "description": {},
+            "url": {
+              "path": [
+                "racks",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"ip_range\": [\n    \"<ipv4>\",\n    \"<ipv4>\"\n  ],\n  \"name\": \"<string>\",\n  \"number_of_units\": \"<integer>\",\n  \"rack_unit\": \"<string>\",\n  \"row\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "a8a88b19-5878-45b6-b925-a64e857931d4",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"ip_range\": [\n    \"<ipv4>\",\n    \"<ipv4>\"\n  ],\n  \"name\": \"<string>\",\n  \"number_of_units\": \"<integer>\",\n  \"rack_unit\": \"<string>\",\n  \"row\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"available_capacity\": 2018,\n  \"cnode_ip_pool\": [\n    [\n      \"106.141.109.8\",\n      \"167.179.2.194\"\n    ],\n    [\n      \"147.171.54.138\",\n      \"213.11.20.139\"\n    ]\n  ],\n  \"cnode_ipmi_pool\": [\n    [\n      \"56.123.212.57\",\n      \"98.233.255.188\"\n    ],\n    [\n      \"76.159.147.23\",\n      \"5.204.84.100\"\n    ]\n  ],\n  \"description\": \"string\",\n  \"dnode_ip_pool\": [\n    [\n      \"190.202.76.66\",\n      \"251.55.174.235\"\n    ],\n    [\n      \"222.102.53.26\",\n      \"119.139.154.239\"\n    ]\n  ],\n  \"dnode_ipmi_pool\": [\n    [\n      \"132.13.69.94\",\n      \"8.59.37.80\"\n    ],\n    [\n      \"4.147.240.200\",\n      \"39.151.15.30\"\n    ]\n  ],\n  \"guid\": \"string\",\n  \"id\": 2408,\n  \"is_bgp_enabled\": true,\n  \"number_of_units\": 9609,\n  \"row\": \"string\",\n  \"total_capacity\": 5236\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ed1881d-1efb-43a9-a149-02ec29d0bf4e",
+          "name": "Add Boxes to a Rack",
+          "request": {
+            "name": "Add Boxes to a Rack",
+            "description": {
+              "content": "This endpoint adds Boxes to a Rack",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "racks",
+                ":id",
+                "add_boxes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Rack ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cbox\": [\n    {\n      \"id\": \"<integer>\",\n      \"rack_index\": \"<integer>\",\n      \"rack_unit\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"rack_index\": \"<integer>\",\n      \"rack_unit\": \"<string>\"\n    }\n  ],\n  \"dbox\": [\n    {\n      \"id\": \"<integer>\",\n      \"rack_index\": \"<integer>\",\n      \"rack_unit\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"rack_index\": \"<integer>\",\n      \"rack_unit\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "495f8575-3d10-46fd-bb90-34884c3d6fbd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ":id",
+                    "add_boxes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Rack ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cbox\": [\n    {\n      \"id\": \"<integer>\",\n      \"rack_index\": \"<integer>\",\n      \"rack_unit\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"rack_index\": \"<integer>\",\n      \"rack_unit\": \"<string>\"\n    }\n  ],\n  \"dbox\": [\n    {\n      \"id\": \"<integer>\",\n      \"rack_index\": \"<integer>\",\n      \"rack_unit\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"rack_index\": \"<integer>\",\n      \"rack_unit\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22e48637-0e01-40a5-9347-b7061daf1f2b",
+          "name": "Control Rack Boxes LED",
+          "request": {
+            "name": "Control Rack Boxes LED",
+            "description": {
+              "content": "This endpoint controls the Rack Boxes LED",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "racks",
+                ":id",
+                "control_led",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Rack ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"control\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e71963ab-5251-4222-8b8b-dcb214b6cc2a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ":id",
+                    "control_led",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Rack ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"control\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ba61c72-de17-47d8-add8-b37c609dc21b",
+          "name": "Rename Rack",
+          "request": {
+            "name": "Rename Rack",
+            "description": {
+              "content": "This endpoint renames a Rack.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "racks",
+                ":id",
+                "rename",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Rack ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4eac4970-34e7-424d-9759-d20bd81ba0a2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "racks",
+                    ":id",
+                    "rename",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Rack ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9745675f-357e-41d5-b5a9-63a1de40049f",
+    "name": "VAST API Swagger Schema activedirectory Racks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

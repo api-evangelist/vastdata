@@ -1,0 +1,314 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "activedirectory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Active Directory Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/activedirectory/"
+          },
+          "docs": "This endpoint lists Active Directory configurations."
+        },
+        {
+          "info": {
+            "name": "Create Active Directory Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/activedirectory/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates an Active Directory configuration. An Active Directory configuration specifies an external Active Directory server domain and defines the configuration of a machine account name to be added to that domain if and when the cluster is joined to the domain."
+        },
+        {
+          "info": {
+            "name": "Return Active Directory Configuration Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/activedirectory/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified Active Directory configuration"
+        },
+        {
+          "info": {
+            "name": "Join or Leave Active Directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/activedirectory/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Active Directory configuration for the Active Directory server to join"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint joins or leaves an Active Directory domain."
+        },
+        {
+          "info": {
+            "name": "Delete Active Directory configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/activedirectory/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint deletes an Active Directory configuration."
+        },
+        {
+          "info": {
+            "name": "Change machine account password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/activedirectory/:id/change_machine_account_password/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              }
+            ]
+          },
+          "docs": "Change machine account password"
+        },
+        {
+          "info": {
+            "name": "Get current Active Directory GC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/activedirectory/:id/current_gc/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              }
+            ]
+          },
+          "docs": "Get current Active Directory GC"
+        },
+        {
+          "info": {
+            "name": "Get Active Directory DCs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/activedirectory/:id/dcs/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_closest",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "port",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Active Directory DCs"
+        },
+        {
+          "info": {
+            "name": "Get Active Directory domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/activedirectory/:id/domains/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              },
+              {
+                "name": "base_dn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fqdn",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Active Directory domains"
+        },
+        {
+          "info": {
+            "name": "Get Active Directory GCs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/activedirectory/:id/gcs/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_closest",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "port",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Active Directory GCs"
+        },
+        {
+          "info": {
+            "name": "Check whether an operation may be successfully performed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/activedirectory/:id/is_operation_healthy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              },
+              {
+                "name": "operation",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns warnings about the future state if operation is performed."
+        },
+        {
+          "info": {
+            "name": "Refresh AD",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/activedirectory/:id/refresh/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Active Directory ID"
+              }
+            ]
+          },
+          "docs": "Refresh AD"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

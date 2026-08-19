@@ -1,0 +1,310 @@
+{
+  "item": [
+    {
+      "id": "3c8ec267-ff50-4bdb-a258-14b59eaa0b99",
+      "name": "vastcatalogindexedcolumns",
+      "description": {
+        "content": "The bigcatalogindexedcolumns endpoint enables you to add columns to the VAST Catalog table for S3 tags and S3 metadata attributes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "52a01222-4444-4080-b4a3-8b7aa6a82c2c",
+          "name": "List VAST Catalog Tags",
+          "request": {
+            "name": "List VAST Catalog Tags",
+            "description": {
+              "content": "This endpoint lists VAST Catalog tags.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bigcatalogindexedcolumns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "column_type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c3577c9-d8a2-44e3-ab36-9d2c8bbf1678",
+              "name": "VAST Catalog tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogindexedcolumns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "column_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"column_type\": \"string\",\n    \"name\": \"string\"\n  },\n  {\n    \"column_type\": \"string\",\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d742212-00ae-479f-9d67-9f9ce4fcedb7",
+          "name": "Add Indexed Column to VAST Catalog",
+          "request": {
+            "name": "Add Indexed Column to VAST Catalog",
+            "description": {
+              "content": "This endpoint adds an indexed column to the VAST Catalog table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bigcatalogindexedcolumns",
+                "add",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"column_type\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "a78080d7-ff26-439f-a07d-402686bfd336",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogindexedcolumns",
+                    "add",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"column_type\": \"<string>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "203fadfd-33ec-4e02-87b3-0e7f2bda9b1d",
+          "name": "Remove VAST Catalog Indexed Column",
+          "request": {
+            "name": "Remove VAST Catalog Indexed Column",
+            "description": {
+              "content": "This endpoint removes a user-added indexed column from VAST Catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bigcatalogindexedcolumns",
+                "remove",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"column_type\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "1d25ce99-f006-4fac-89c4-565f8fefe0e7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bigcatalogindexedcolumns",
+                    "remove",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"column_type\": \"<string>\"\n}"
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c4a16da4-72d3-4f92-b3d5-b74fa545617a",
+    "name": "VAST API Swagger Schema activedirectory vastcatalogindexedcolumns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

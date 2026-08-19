@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory Kerberos API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Kerberos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Kerberos Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kerberos/"
+          },
+          "docs": "This endpoint lists Kerberos Providers."
+        },
+        {
+          "info": {
+            "name": "Create a new Kerberos provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kerberos/"
+          },
+          "docs": "This endpoint creates a Kerberos Provider."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Kerberos Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kerberos/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Kerberos Provider ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified Kerberos Provider."
+        },
+        {
+          "info": {
+            "name": "Modify Kerberos Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/kerberos/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Kerberos Provider ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a specified Kerberos Provider."
+        },
+        {
+          "info": {
+            "name": "Delete an existing Kerberos Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/kerberos/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Kerberos Provider ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a specified Kerberos Provider."
+        },
+        {
+          "info": {
+            "name": "Generate keytab for the Kerberos Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kerberos/:id/keytab",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Kerberos Provider ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint generates a keytab file for the Kerberos Provider service principals."
+        },
+        {
+          "info": {
+            "name": "Upload keytab for the Kerberos Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/kerberos/:id/keytab",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Kerberos Provider ID"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "keytab_file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This endpoint uploads a keytab file for specified Kerberos Provider."
+        },
+        {
+          "info": {
+            "name": "Generate keytab for the Kerberos Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kerberos/:id/keytab/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Kerberos Provider ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint generates keytab for specified Kerberos Provider."
+        },
+        {
+          "info": {
+            "name": "Upload keytab for the Kerberos Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/kerberos/:id/keytab/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Kerberos Provider ID"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "keytab_file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This endpoint uploads keytab for specified Kerberos Provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

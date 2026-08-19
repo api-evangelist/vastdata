@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory hosts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/hosts/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "auto",
+                "value": "",
+                "type": "query",
+                "description": "Specify auto or manually hosts"
+              },
+              {
+                "name": "ip_list",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of nodes IPs"
+              },
+              {
+                "name": "loopback",
+                "value": "",
+                "type": "query",
+                "description": "Loopback nodes"
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cluster__name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cluster__id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "install_state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "node_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sw_version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists discovered hosts"
+        },
+        {
+          "info": {
+            "name": "Discover Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/hosts/discover"
+          },
+          "docs": "Discover hosts"
+        },
+        {
+          "info": {
+            "name": "Return Details of a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/hosts/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a host."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

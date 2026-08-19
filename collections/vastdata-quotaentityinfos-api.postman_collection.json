@@ -1,0 +1,178 @@
+{
+  "item": [
+    {
+      "id": "3b99644c-c4dc-418b-8c23-a24920f0dd3b",
+      "name": "quotaentityinfos",
+      "description": {
+        "content": "QuotaEntityInfo objects contain details of all users and groups that wrote to quota directories. Provides VAST-internal ID from the VAST Cluster user database and email address.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de66102d-1539-496a-b01a-00734cbe15c2",
+          "name": "List User and Group Information Associated with User and Group Quotas",
+          "request": {
+            "name": "List User and Group Information Associated with User and Group Quotas",
+            "description": {
+              "content": "This endpoint returns user/group names, emails and VAST ids for user/group quotas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotaentityinfos",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier_type",
+                  "value": "<string>",
+                  "description": "Filter list by user or group name"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter list by user or group name"
+                },
+                {
+                  "disabled": false,
+                  "key": "vast_id",
+                  "value": "<integer>",
+                  "description": "Filter list by user/group's vast ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b6e6f83-3638-4d44-8321-9aa1627bc48b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotaentityinfos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vast_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"email\": \"string\",\n    \"identifier\": \"string\",\n    \"identifier_type\": \"string\",\n    \"is_group\": false,\n    \"is_iam_role\": false,\n    \"name\": \"string\",\n    \"vast_id\": 2011,\n    \"id\": 7456\n  },\n  {\n    \"email\": \"string\",\n    \"identifier\": \"string\",\n    \"identifier_type\": \"string\",\n    \"is_group\": false,\n    \"is_iam_role\": true,\n    \"name\": \"string\",\n    \"vast_id\": 6287,\n    \"id\": 634\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2ba3e8a-7bda-4c19-8b07-353053adb909",
+    "name": "VAST API Swagger Schema activedirectory quotaentityinfos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

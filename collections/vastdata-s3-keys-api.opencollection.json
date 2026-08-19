@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory S3 Keys API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "S3 Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return S3 Access Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/s3keys/"
+          },
+          "docs": "This operation returns the access key of an S3 access key pair created by and for the requesting user"
+        },
+        {
+          "info": {
+            "name": "Create S3 Access Key Pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/s3keys/"
+          },
+          "docs": "This operation creates an S3 access key pair for the requesting user."
+        },
+        {
+          "info": {
+            "name": "Delete User's S3 Access Key Pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/s3keys/:access_key/",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "path",
+                "description": "The access key of the access key pair to be deleted"
+              }
+            ]
+          },
+          "docs": "This operation deletes an S3 access key pair belonging to the requesting user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

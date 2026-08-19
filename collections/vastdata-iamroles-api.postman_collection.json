@@ -1,0 +1,758 @@
+{
+  "item": [
+    {
+      "id": "b12c5c96-8561-48ac-b784-c80cc7ae9b10",
+      "name": "iamroles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23fa5823-42a2-46c8-af48-f2ffd6acacea",
+          "name": "List Identity and Access Management Roles",
+          "request": {
+            "name": "List Identity and Access Management Roles",
+            "description": {
+              "content": "This endpoint lists IAM Roles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "iamroles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "qos_policies__id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0d151d3-de1e-4b21-b5a1-15c7ca2b9088",
+              "name": "IAMRole information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "iamroles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "qos_policies__id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"description\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 7332,\n    \"max_session_duration\": 6789,\n    \"name\": \"string\",\n    \"tenant\": {\n      \"id\": 1761,\n      \"name\": \"string\"\n    },\n    \"trust_policy\": \"string\",\n    \"vid\": 2891\n  },\n  {\n    \"description\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 8121,\n    \"max_session_duration\": 1505,\n    \"name\": \"string\",\n    \"tenant\": {\n      \"id\": 4351,\n      \"name\": \"string\"\n    },\n    \"trust_policy\": \"string\",\n    \"vid\": 1873\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f090fb5-b411-4db7-bde8-4c7aff1b4bfe",
+          "name": "Create IAM Role",
+          "request": {
+            "name": "Create IAM Role",
+            "description": {
+              "content": "This endpoint creates an IAM Role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "iamroles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"trust_policy\": \"<string>\",\n  \"description\": \"<string>\",\n  \"max_session_duration\": \"<integer>\",\n  \"s3_policies\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tenant_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "318daf01-900b-498c-99fa-bab501890f4a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "iamroles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trust_policy\": \"<string>\",\n  \"description\": \"<string>\",\n  \"max_session_duration\": \"<integer>\",\n  \"s3_policies\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"tenant_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5821,\n  \"max_session_duration\": 8322,\n  \"name\": \"string\",\n  \"tenant\": {\n    \"id\": 4713,\n    \"name\": \"string\"\n  },\n  \"trust_policy\": \"string\",\n  \"vid\": 9684\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92c61598-127f-4c15-bf09-cb7ade6bc485",
+          "name": "Delete IAM Role",
+          "request": {
+            "name": "Delete IAM Role",
+            "description": {
+              "content": "This endpoint deletes a specified IAM Role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "iamroles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) IAM Role ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4fbf5d5e-7b28-48ef-9dcf-ffba70426895",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "iamroles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) IAM Role ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "442afe70-5b4a-459a-bcd2-0067d9691eb3",
+          "name": "Return Details of a IAM Role",
+          "request": {
+            "name": "Return Details of a IAM Role",
+            "description": {
+              "content": "This endpoint returns details of a specified IAM Role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "iamroles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) IAM Role ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "505eddda-952a-4bf5-b7a5-3e0ab0d67331",
+              "name": "IAM Role information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "iamroles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) IAM Role ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5821,\n  \"max_session_duration\": 8322,\n  \"name\": \"string\",\n  \"tenant\": {\n    \"id\": 4713,\n    \"name\": \"string\"\n  },\n  \"trust_policy\": \"string\",\n  \"vid\": 9684\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b618c2de-f68a-4030-b2f4-daadfe70a292",
+          "name": "Modify IAM Role",
+          "request": {
+            "name": "Modify IAM Role",
+            "description": {
+              "content": "This endpoint modifies a specified IAM Role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "iamroles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) IAM Role ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"max_session_duration\": \"<integer>\",\n  \"s3_policies\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"trust_policy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b7d5da37-2d70-4b17-bd03-9fa443eaefa2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "iamroles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) IAM Role ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"max_session_duration\": \"<integer>\",\n  \"s3_policies\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"trust_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 5821,\n  \"max_session_duration\": 8322,\n  \"name\": \"string\",\n  \"tenant\": {\n    \"id\": 4713,\n    \"name\": \"string\"\n  },\n  \"trust_policy\": \"string\",\n  \"vid\": 9684\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34dcd9cb-5be3-4237-a2a4-ac99b67e8d5f",
+          "name": "Get STS credentials of specified IAM Role.",
+          "request": {
+            "name": "Get STS credentials of specified IAM Role.",
+            "description": {
+              "content": "This endpoint returns information about STS credentials of specified IAM Role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "iamroles",
+                ":id",
+                "credentials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddd6778c-e27e-43e6-93c7-6c96a2a9f36d",
+              "name": "IAM Role information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "iamroles",
+                    ":id",
+                    "credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_expiration_sec\": 7123,\n  \"session_policy\": \"string\",\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b42a4f34-aa8d-4664-9043-29c31c1ffd90",
+          "name": "Revoke access keys of  specified IAM Role. Keys will be revoked by the revoke_time on the IAM Role.",
+          "request": {
+            "name": "Revoke access keys of  specified IAM Role. Keys will be revoked by the revoke_time on the IAM Role.",
+            "description": {
+              "content": "This endpoint revoke access keys of a specified IAM Role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "iamroles",
+                ":id",
+                "revoke_access_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4cea75d-f76c-4212-ab7c-7a411305de1d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "iamroles",
+                    ":id",
+                    "revoke_access_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bc9d5281-de41-43d6-b570-babcca9c8b6a",
+    "name": "VAST API Swagger Schema activedirectory iamroles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

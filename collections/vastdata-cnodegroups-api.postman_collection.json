@@ -1,0 +1,521 @@
+{
+  "item": [
+    {
+      "id": "a903285a-c4bf-4e69-a2b3-f00a599d7653",
+      "name": "cnodegroups",
+      "description": {
+        "content": "CNode groups are groups of CNodes that managed applications can run on. See also Managed Applications.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1218e943-3269-4e03-8a90-61399f677ebf",
+          "name": "Get all existing CNode Groups",
+          "request": {
+            "name": "Get all existing CNode Groups",
+            "description": {
+              "content": "This endpoint lists CNode Groups",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodegroups",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ba27f96-01b7-4066-8e75-d44872f30071",
+              "name": "CNode Group information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodegroups",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"application_type\": \"string\",\n    \"cnode_ids\": [\n      4127,\n      8260\n    ],\n    \"cnodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"guid\": \"string\",\n    \"id\": 2352,\n    \"name\": \"string\",\n    \"resources_percentage\": 3915.5550378055273,\n    \"state\": \"string\"\n  },\n  {\n    \"application_type\": \"string\",\n    \"cnode_ids\": [\n      6489,\n      8427\n    ],\n    \"cnodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"guid\": \"string\",\n    \"id\": 4009,\n    \"name\": \"string\",\n    \"resources_percentage\": 2763.0981091838726,\n    \"state\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "676bafe4-0b2c-4598-8816-a115dbd001c8",
+          "name": "Create a CNode Group",
+          "request": {
+            "name": "Create a CNode Group",
+            "description": {
+              "content": "This endpoint creates a CNode Group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodegroups",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application_type\": \"<string>\",\n  \"cnode_ids\": \"<string>\",\n  \"name\": \"<string>\",\n  \"resources_percentage\": \"<float>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dfd9a704-cdb6-49cd-830a-22c6370301ca",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodegroups",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"application_type\": \"<string>\",\n  \"cnode_ids\": \"<string>\",\n  \"name\": \"<string>\",\n  \"resources_percentage\": \"<float>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_type\": \"string\",\n  \"cnode_ids\": [\n    9546,\n    7570\n  ],\n  \"cnodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"guid\": \"string\",\n  \"id\": 616,\n  \"name\": \"string\",\n  \"resources_percentage\": 2438.1154806094464,\n  \"state\": \"string\",\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a614bf5-a1c9-493c-afde-99db90dd4641",
+          "name": "Delete CNodeGroup",
+          "request": {
+            "name": "Delete CNodeGroup",
+            "description": {
+              "content": "Delete CNode Group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodegroups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f5bd4d2-1a62-4478-9484-d66b968974a4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodegroups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb9ad614-43a8-49f2-a770-73d874b1871a",
+          "name": "Return Details of a CNode Group",
+          "request": {
+            "name": "Return Details of a CNode Group",
+            "description": {
+              "content": "This endpoint returns information about a specific CNode Group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cnodegroups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e3ea614-6772-470e-b4d2-e6ccbf7df9cf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodegroups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_type\": \"string\",\n  \"cnode_ids\": [\n    9726,\n    8636\n  ],\n  \"cnodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"guid\": \"string\",\n  \"id\": 6929,\n  \"name\": \"string\",\n  \"resources_percentage\": 5085.779238355675,\n  \"state\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8505780e-f65a-47df-8850-5d5d2e19f0b6",
+          "name": "Modify CNode Group",
+          "request": {
+            "name": "Modify CNode Group",
+            "description": {},
+            "url": {
+              "path": [
+                "cnodegroups",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CNodeGroup ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cnode_ids\": \"<string>\",\n  \"name\": \"<string>\",\n  \"resources_percentage\": \"<float>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82c072da-386a-46a6-8e56-9bdb04493cb9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cnodegroups",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CNodeGroup ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cnode_ids\": \"<string>\",\n  \"name\": \"<string>\",\n  \"resources_percentage\": \"<float>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a6ece8cd-2238-4e3f-b07e-62ca91dd7fba",
+    "name": "VAST API Swagger Schema activedirectory cnodegroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

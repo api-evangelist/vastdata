@@ -1,0 +1,383 @@
+{
+  "item": [
+    {
+      "id": "7a441a2c-c38d-426f-aae9-efa6f38a4012",
+      "name": "openfiles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb06ad31-7599-4eb9-9a23-5ca11c24be3c",
+          "name": "Get all open files.",
+          "request": {
+            "name": "Get all open files.",
+            "description": {
+              "content": "This endpoint lists open files.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfiles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "open_files_query__id",
+                  "value": "<integer>",
+                  "description": "Open Files Query id to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "path__icontains",
+                  "value": "<string>",
+                  "description": "Filter by file path substring"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_locks",
+                  "value": "<boolean>",
+                  "description": "Filter by lock status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bea57d7-34e9-4b9c-96f3-adfaaababfdc",
+              "name": "open files information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfiles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "open_files_query__id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "path__icontains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_locks",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"has_locks\": false,\n    \"id\": 7156,\n    \"list_open_handles_task\": {\n      \"id\": 4894,\n      \"start_time\": \"2000-03-28T16:53:34.733Z\",\n      \"state\": \"string\"\n    },\n    \"open_files_query_id\": 1030,\n    \"path\": \"string\",\n    \"tenant_id\": 4754\n  },\n  {\n    \"has_locks\": true,\n    \"id\": 1,\n    \"list_open_handles_task\": {\n      \"id\": 5396,\n      \"start_time\": \"1972-09-19T23:25:52.662Z\",\n      \"state\": \"string\"\n    },\n    \"open_files_query_id\": 467,\n    \"path\": \"string\",\n    \"tenant_id\": 8272\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a4289fb-f7c0-4802-b85f-1161963e99b5",
+          "name": "Return details of an open file.",
+          "request": {
+            "name": "Return details of an open file.",
+            "description": {
+              "content": "This endpoint returns information about a specific open file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfiles",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb1bcedd-4763-4a30-89e0-635b674a3bfb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfiles",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_locks\": false,\n  \"id\": 4103,\n  \"list_open_handles_task\": {\n    \"id\": 6454,\n    \"start_time\": \"1957-09-30T14:58:51.997Z\",\n    \"state\": \"string\"\n  },\n  \"open_files_query_id\": 9147,\n  \"path\": \"string\",\n  \"tenant_id\": 2921\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da353dbb-b30b-4ede-8c78-7d5fe74e7c7b",
+          "name": "List open handles for an open file.",
+          "request": {
+            "name": "List open handles for an open file.",
+            "description": {
+              "content": "This endpoint creates an async open handles listing task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openfiles",
+                ":id",
+                "list_open_handles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Object ID specified in the path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"protocol\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "20040023-c1fb-4784-8f61-f64399c77eb2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openfiles",
+                    ":id",
+                    "list_open_handles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Object ID specified in the path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "646b8dfc-4f1a-4fac-a8f1-966a92d45e4a",
+    "name": "VAST API Swagger Schema activedirectory openfiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

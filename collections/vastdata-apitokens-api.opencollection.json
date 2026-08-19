@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory apitokens API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "apitokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/apitokens/",
+            "params": [
+              {
+                "name": "archived",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query",
+                "description": "Filter by token owner username"
+              }
+            ]
+          },
+          "docs": "This endpoint lists API tokens. All users can list their own API tokens. Users with view permission for the security realm can list other users' API tokens."
+        },
+        {
+          "info": {
+            "name": "Create API Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/apitokens/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new API token to securely authenticate calls to the VMS REST API. Requires Create permissions for the Security realm."
+        },
+        {
+          "info": {
+            "name": "Return Properties of an API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/apitokens/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the token to show."
+              }
+            ]
+          },
+          "docs": "This endpoint returns properties of a specified API token."
+        },
+        {
+          "info": {
+            "name": "Modify an API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/apitokens/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the API token to modify"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies an existing API token."
+        },
+        {
+          "info": {
+            "name": "Revoke API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/apitokens/:id/revoke",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the API token to revoke."
+              }
+            ]
+          },
+          "docs": "This endpoint revokes an API token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

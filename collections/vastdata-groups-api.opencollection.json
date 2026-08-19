@@ -1,0 +1,219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory groups API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/groups/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint lists groups."
+        },
+        {
+          "info": {
+            "name": "Create Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/groups/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds a group to the local provider."
+        },
+        {
+          "info": {
+            "name": "Find Group by prefix and domain details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/groups/names/",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "Prefix to find the group"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Domain details to find the group (ALL by default). Format: BASE_DN|FQDN|SID"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              }
+            ]
+          },
+          "docs": "This endpoint queries a group by prefix and domain from ActiveDirectory domains"
+        },
+        {
+          "info": {
+            "name": "Query Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/groups/query/",
+            "params": [
+              {
+                "name": "gid",
+                "value": "",
+                "type": "query",
+                "description": "Group GID"
+              },
+              {
+                "name": "groupname",
+                "value": "",
+                "type": "query",
+                "description": "Groupname"
+              },
+              {
+                "name": "sid",
+                "value": "",
+                "type": "query",
+                "description": "Group SID"
+              },
+              {
+                "name": "vaid",
+                "value": "",
+                "type": "query",
+                "description": "Group VAID (a VAST identifier for groups)"
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "The provider to query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              }
+            ]
+          },
+          "docs": "This endpoint queries a specified provider for a group based on a group identifier attribute"
+        },
+        {
+          "info": {
+            "name": "Modify non-Local Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/groups/query/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a non-local group's S3 permissions. Specify the user by either NFS UID or SMB user SID."
+        },
+        {
+          "info": {
+            "name": "Return Details of a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/groups/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Group ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a group defined on the local provider"
+        },
+        {
+          "info": {
+            "name": "Modify Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/groups/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Group ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a group on the local provider."
+        },
+        {
+          "info": {
+            "name": "Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/groups/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a group from the local provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

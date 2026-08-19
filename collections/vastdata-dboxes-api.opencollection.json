@@ -1,0 +1,209 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory dboxes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "dboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List DBoxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dboxes/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "rack_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Rack"
+              }
+            ]
+          },
+          "docs": "This endpoint lists the DBoxes that belong to the cluster."
+        },
+        {
+          "info": {
+            "name": "Add DBox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dboxes/add/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds a DBox to the cluster."
+        },
+        {
+          "info": {
+            "name": "DBox Removal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dboxes/decommission/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint removes multiple DBoxes from the cluster"
+        },
+        {
+          "info": {
+            "name": "Validate DBox Removal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dboxes/decommission/dry-run/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint validates a DBox removal operation without executing it"
+        },
+        {
+          "info": {
+            "name": "Resume DBox Removal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dboxes/decommission/resume/"
+          },
+          "docs": "This endpoint resumes a failed/stalled DBox removal operation"
+        },
+        {
+          "info": {
+            "name": "Return Details of a DBox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dboxes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a DBox."
+        },
+        {
+          "info": {
+            "name": "Modify a DBox Description",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dboxes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DBox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a DBox description."
+        },
+        {
+          "info": {
+            "name": "Delete a DBox",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/dboxes/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a DBox."
+        },
+        {
+          "info": {
+            "name": "Control DBox LEDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dboxes/:id/control_led/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DBox ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint controls DBox LEDs (on/off)"
+        },
+        {
+          "info": {
+            "name": "Reset dp i2c",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dboxes/:id/reset_dp_i2c/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "DBox ID"
+              }
+            ]
+          },
+          "docs": "This endpoint resets the dp i2c"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,555 @@
+{
+  "item": [
+    {
+      "id": "aabe4c6e-7372-47f0-af6e-bacc4cb97cc4",
+      "name": "qospolicies",
+      "description": {
+        "content": "Quality of Service policies enable you to define quality of service per view. Quality of service policies can set maximum limits on read and write bandwidth and IOPS per view.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "280ca22f-2e9f-4155-b34f-77074e2e871b",
+          "name": "List QoS Policies",
+          "request": {
+            "name": "List QoS Policies",
+            "description": {
+              "content": "This endpoint lists QoS policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qospolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbd5ad66-b4ea-434a-a58d-dce4552ae2f4",
+              "name": "QoS Policies information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qospolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"attached_users\": [\n      {\n        \"name\": \"string\",\n        \"identifier_type\": \"uid\",\n        \"identifier_value\": \"string\",\n        \"fqdn\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"identifier_type\": \"username\",\n        \"identifier_value\": \"string\",\n        \"fqdn\": \"string\",\n        \"label\": \"string\"\n      }\n    ],\n    \"capacity_limits\": {\n      \"max_reads_bw_mbps_per_gb_capacity\": 0,\n      \"max_writes_bw_mbps_per_gb_capacity\": 0,\n      \"max_reads_iops_per_gb_capacity\": 0,\n      \"max_writes_iops_per_gb_capacity\": 0\n    },\n    \"capacity_total_limits\": {\n      \"max_bw_mbps_per_gb_capacity\": 0,\n      \"max_iops_per_gb_capacity\": 0\n    },\n    \"guid\": \"string\",\n    \"id\": 7708,\n    \"io_size_bytes\": 4084,\n    \"is_default\": true,\n    \"is_gold\": true,\n    \"limit_by\": \"BW_IOPS\",\n    \"mode\": \"PROVISIONED_CAPACITY\",\n    \"policy_type\": \"VOLUME\",\n    \"s3_connections_limit\": 4086,\n    \"static_limits\": {\n      \"burst_reads_bw_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_writes_loan_iops\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"max_reads_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_writes_iops\": 0,\n      \"min_reads_bw_mbps\": 0,\n      \"min_reads_iops\": 0,\n      \"min_writes_bw_mbps\": 0,\n      \"min_writes_iops\": 0\n    },\n    \"static_total_limits\": {\n      \"burst_bw_mb\": 0,\n      \"burst_iops\": 0,\n      \"burst_loan_iops\": 0,\n      \"burst_loan_mb\": 0,\n      \"max_bw_mbps\": 0,\n      \"max_iops\": 0,\n      \"min_bw_mbps\": 0,\n      \"min_iops\": 0\n    },\n    \"tenant_id\": 9758,\n    \"tenant_name\": \"string\",\n    \"use_total_limits\": true\n  },\n  {\n    \"name\": \"string\",\n    \"attached_users\": [\n      {\n        \"name\": \"string\",\n        \"identifier_type\": \"sid_str\",\n        \"identifier_value\": \"string\",\n        \"fqdn\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"identifier_type\": \"sid_str\",\n        \"identifier_value\": \"string\",\n        \"fqdn\": \"string\",\n        \"label\": \"string\"\n      }\n    ],\n    \"capacity_limits\": {\n      \"max_reads_bw_mbps_per_gb_capacity\": 0,\n      \"max_writes_bw_mbps_per_gb_capacity\": 0,\n      \"max_reads_iops_per_gb_capacity\": 0,\n      \"max_writes_iops_per_gb_capacity\": 0\n    },\n    \"capacity_total_limits\": {\n      \"max_bw_mbps_per_gb_capacity\": 0,\n      \"max_iops_per_gb_capacity\": 0\n    },\n    \"guid\": \"string\",\n    \"id\": 2224,\n    \"io_size_bytes\": 1127,\n    \"is_default\": true,\n    \"is_gold\": true,\n    \"limit_by\": \"IOPS\",\n    \"mode\": \"STATIC\",\n    \"policy_type\": \"VIEW\",\n    \"s3_connections_limit\": 363,\n    \"static_limits\": {\n      \"burst_reads_bw_mb\": 0,\n      \"burst_reads_iops\": 0,\n      \"burst_reads_loan_iops\": 0,\n      \"burst_reads_loan_mb\": 0,\n      \"burst_writes_bw_mb\": 0,\n      \"burst_writes_iops\": 0,\n      \"burst_writes_loan_iops\": 0,\n      \"burst_writes_loan_mb\": 0,\n      \"max_reads_bw_mbps\": 0,\n      \"max_reads_iops\": 0,\n      \"max_writes_bw_mbps\": 0,\n      \"max_writes_iops\": 0,\n      \"min_reads_bw_mbps\": 0,\n      \"min_reads_iops\": 0,\n      \"min_writes_bw_mbps\": 0,\n      \"min_writes_iops\": 0\n    },\n    \"static_total_limits\": {\n      \"burst_bw_mb\": 0,\n      \"burst_iops\": 0,\n      \"burst_loan_iops\": 0,\n      \"burst_loan_mb\": 0,\n      \"max_bw_mbps\": 0,\n      \"max_iops\": 0,\n      \"min_bw_mbps\": 0,\n      \"min_iops\": 0\n    },\n    \"tenant_id\": 8599,\n    \"tenant_name\": \"string\",\n    \"use_total_limits\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c30ad406-8ab7-4f70-afa7-e85f2c74eb3e",
+          "name": "Create QoS Policy",
+          "request": {
+            "name": "Create QoS Policy",
+            "description": {
+              "content": "This endpoint creates a QoS policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qospolicies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"attached_iam_roles\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"is_default\": \"<boolean>\",\n  \"is_gold\": \"<boolean>\",\n  \"limit_by\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"s3_connections_limit\": \"<integer>\",\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"tenant_id\": \"<integer>\",\n  \"use_total_limits\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "96592f30-6b51-42c3-ba90-a7341f9d8948",
+              "name": "Created QoS Policy information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qospolicies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"attached_iam_roles\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"is_default\": \"<boolean>\",\n  \"is_gold\": \"<boolean>\",\n  \"limit_by\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"s3_connections_limit\": \"<integer>\",\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"tenant_id\": \"<integer>\",\n  \"use_total_limits\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"guid\": \"string\",\n  \"id\": 6649,\n  \"io_size_bytes\": 578,\n  \"is_default\": true,\n  \"is_gold\": false,\n  \"limit_by\": \"IOPS\",\n  \"mode\": \"STATIC\",\n  \"policy_type\": \"VOLUME\",\n  \"s3_connections_limit\": 1988,\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"tenant_id\": 9293,\n  \"tenant_name\": \"string\",\n  \"use_total_limits\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3c63ddc-6846-43dd-9ece-58edcf0885f2",
+          "name": "Delete QoS Policy",
+          "request": {
+            "name": "Delete QoS Policy",
+            "description": {
+              "content": "This endpoint deletes a QoS policy",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qospolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d013a183-ca9a-4fd9-8370-7314de92f1c5",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qospolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebbd7e06-590e-4a2e-aa61-6d5a85305b9d",
+          "name": "Return Details of QoS Policy",
+          "request": {
+            "name": "Return Details of QoS Policy",
+            "description": {
+              "content": "This endpoint returns details of a specified QoS policy",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qospolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "804c986a-d9df-45ac-ba5e-0af4c6bf7c6a",
+              "name": "QoS Policy information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qospolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"guid\": \"string\",\n  \"id\": 6649,\n  \"io_size_bytes\": 578,\n  \"is_default\": true,\n  \"is_gold\": false,\n  \"limit_by\": \"IOPS\",\n  \"mode\": \"STATIC\",\n  \"policy_type\": \"VOLUME\",\n  \"s3_connections_limit\": 1988,\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"tenant_id\": 9293,\n  \"tenant_name\": \"string\",\n  \"use_total_limits\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b027a6cb-b066-4954-a811-d1b675ed3573",
+          "name": "Modify QoS Policy",
+          "request": {
+            "name": "Modify QoS Policy",
+            "description": {
+              "content": "This endpoint modifies a specified QoS policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qospolicies",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attached_iam_roles\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"is_default\": \"<boolean>\",\n  \"is_gold\": \"<boolean>\",\n  \"limit_by\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"s3_connections_limit\": \"<integer>\",\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"use_total_limits\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "992159a7-69c4-4ed8-8117-24eebeac78f2",
+              "name": "Updated QoS Policy information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qospolicies",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attached_iam_roles\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"is_default\": \"<boolean>\",\n  \"is_gold\": \"<boolean>\",\n  \"limit_by\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"s3_connections_limit\": \"<integer>\",\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"use_total_limits\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"attached_users\": [\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"identifier_type\": \"<string>\",\n      \"identifier_value\": \"<string>\",\n      \"fqdn\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"capacity_limits\": {\n    \"max_reads_bw_mbps_per_gb_capacity\": 0,\n    \"max_writes_bw_mbps_per_gb_capacity\": 0,\n    \"max_reads_iops_per_gb_capacity\": 0,\n    \"max_writes_iops_per_gb_capacity\": 0\n  },\n  \"capacity_total_limits\": {\n    \"max_bw_mbps_per_gb_capacity\": 0,\n    \"max_iops_per_gb_capacity\": 0\n  },\n  \"guid\": \"string\",\n  \"id\": 6649,\n  \"io_size_bytes\": 578,\n  \"is_default\": true,\n  \"is_gold\": false,\n  \"limit_by\": \"IOPS\",\n  \"mode\": \"STATIC\",\n  \"policy_type\": \"VOLUME\",\n  \"s3_connections_limit\": 1988,\n  \"static_limits\": {\n    \"burst_reads_bw_mb\": 0,\n    \"burst_reads_iops\": 0,\n    \"burst_reads_loan_iops\": 0,\n    \"burst_reads_loan_mb\": 0,\n    \"burst_writes_bw_mb\": 0,\n    \"burst_writes_iops\": 0,\n    \"burst_writes_loan_iops\": 0,\n    \"burst_writes_loan_mb\": 0,\n    \"max_reads_bw_mbps\": 0,\n    \"max_reads_iops\": 0,\n    \"max_writes_bw_mbps\": 0,\n    \"max_writes_iops\": 0,\n    \"min_reads_bw_mbps\": 0,\n    \"min_reads_iops\": 0,\n    \"min_writes_bw_mbps\": 0,\n    \"min_writes_iops\": 0\n  },\n  \"static_total_limits\": {\n    \"burst_bw_mb\": 0,\n    \"burst_iops\": 0,\n    \"burst_loan_iops\": 0,\n    \"burst_loan_mb\": 0,\n    \"max_bw_mbps\": 0,\n    \"max_iops\": 0,\n    \"min_bw_mbps\": 0,\n    \"min_iops\": 0\n  },\n  \"tenant_id\": 9293,\n  \"tenant_name\": \"string\",\n  \"use_total_limits\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "05ecf669-38f0-40b9-baf5-5da0c6617fb4",
+    "name": "VAST API Swagger Schema activedirectory qospolicies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

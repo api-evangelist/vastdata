@@ -1,0 +1,246 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory viewpolicies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "viewpolicies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List View Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/viewpolicies/",
+            "params": [
+              {
+                "name": "atime_frequency",
+                "value": "",
+                "type": "query",
+                "description": "Filter by atime frequency."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "cluster__name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cluster__id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nfs_return_open_permissions",
+                "value": "",
+                "type": "query",
+                "description": "Filter by enabled nfs-return-open-permissions flag"
+              },
+              {
+                "name": "smb_file_mode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by smb_file_mode. smb_file_mode is the default unix permission bits applied to files created by SMB clients. It is relevant only to views that are exposed to both SMB and NFS access protocols and have NFS security flavor."
+              },
+              {
+                "name": "smb_directory_mode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by smb_directory_mode. smb_directory_mode is the default unix permission bits applied to directories created by SMB clients. It is relevant only to views that are exposed to both SMB and NFS access protocols and have NFS security flavor."
+              },
+              {
+                "name": "apple_sid",
+                "value": "",
+                "type": "query",
+                "description": "apple sid"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "tenant_name__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Tenant name to filter by"
+              },
+              {
+                "name": "serves_tenant",
+                "value": "",
+                "type": "query",
+                "description": "Filter by served tenants. Accepts tenant ID or \"all\" for all served tenants."
+              }
+            ]
+          },
+          "docs": "This endpoint lists view policies. By default, all view policies are returned. The list can be filtered using optional parameters. A view policy is a reusable set of configurations that apply to views. Every view has a view policy. A view policy may be used by multiple views."
+        },
+        {
+          "info": {
+            "name": "Create View Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viewpolicies/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a view policy."
+        },
+        {
+          "info": {
+            "name": "Return Details of a View Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/viewpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view policy"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a specified view policy."
+        },
+        {
+          "info": {
+            "name": "Modify a View Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/viewpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a view policy."
+        },
+        {
+          "info": {
+            "name": "Delete View Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/viewpolicies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view policy to delete"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a view policy."
+        },
+        {
+          "info": {
+            "name": "refresh View policy netgroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/viewpolicies/:id/refresh_netgroups/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The view policy ID"
+              }
+            ]
+          },
+          "docs": "Refresh View policy netgroups"
+        },
+        {
+          "info": {
+            "name": "add_remote_mapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viewpolicies/:id/remote_mapping/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The view policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "remove_remote_mapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/viewpolicies/:id/remote_mapping/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint removes a remote mapping."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

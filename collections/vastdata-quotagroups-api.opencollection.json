@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory quotagroups API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "quotagroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quota Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/quotagroups/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "hard_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "soft_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "soft_limit_inodes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "hard_limit_inodes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "system_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_user_rules",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant. Specify tenant ID."
+              },
+              {
+                "name": "tenant_name__icontains",
+                "value": "",
+                "type": "query",
+                "description": "Tenant name to filter by"
+              }
+            ]
+          },
+          "docs": "This endpoint lists quota groups. The parameters enable you to filter the list."
+        },
+        {
+          "info": {
+            "name": "Create a Quota Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/quotagroups/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new quota group that can aggregate multiple quotas."
+        },
+        {
+          "info": {
+            "name": "Return details of a quota group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/quotagroups/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota Group ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified quota group."
+        },
+        {
+          "info": {
+            "name": "Modify Quota Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotagroups/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota Group ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint modifies a quota group."
+        },
+        {
+          "info": {
+            "name": "Delete Quota Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/quotagroups/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota Group ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes a quota group."
+        },
+        {
+          "info": {
+            "name": "Assign quotas to quota group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotagroups/:id/assign_quotas/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota Group ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint assigns quotas to a quota group"
+        },
+        {
+          "info": {
+            "name": "Refresh user quotas of a quota group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotagroups/:id/refresh_user_quotas/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota Group ID"
+              }
+            ]
+          },
+          "docs": "This endpoint refreshes the user quota rules for all quotas within the quota group."
+        },
+        {
+          "info": {
+            "name": "Reset the grace period countdown after soft limit is exceeded",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotagroups/:id/reset_grace_period/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quota Group ID"
+              }
+            ]
+          },
+          "docs": "This endpoint resets the countdown for a quota group whose soft limit was exceeded."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

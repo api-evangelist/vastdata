@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory alarms API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "alarms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/alarms/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timestamp__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timestamp__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity"
+              },
+              {
+                "name": "alarm_message__contains",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list by text contained in the alarm message"
+              },
+              {
+                "name": "object_guid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list by object type"
+              },
+              {
+                "name": "object_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the affected object"
+              },
+              {
+                "name": "only_discovered_hosts",
+                "value": "",
+                "type": "query",
+                "description": "get only discovery related hosts"
+              }
+            ]
+          },
+          "docs": "This endpoint lists alarms. The parameters filter the list."
+        },
+        {
+          "info": {
+            "name": "Clear Alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/alarms/clear/"
+          },
+          "docs": "This endpoint clears all alarms."
+        },
+        {
+          "info": {
+            "name": "Return Details of an Alarm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/alarms/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Alarm ID"
+              }
+            ]
+          },
+          "docs": "This endpoint returns details of a specified alarm"
+        },
+        {
+          "info": {
+            "name": "Acknowledge Alarm",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/alarms/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Alarm ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint acknowledges an alarm."
+        },
+        {
+          "info": {
+            "name": "Delete Alarm",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/alarms/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Alarm ID"
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an alarm."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

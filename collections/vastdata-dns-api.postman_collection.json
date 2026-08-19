@@ -1,0 +1,670 @@
+{
+  "item": [
+    {
+      "id": "6b961173-543f-4d18-8d05-bccb7ea5b20b",
+      "name": "dns",
+      "description": {
+        "content": "The DNS path represents a VAST Cluster DNS service. You can create one VAST Cluster DNS service per cluster. The VAST Cluster DNS service can distribute incoming DNS requests to specific VIP pools, according to subdomains. The service is updated of changes to VIP pool ranges. It works with a single DNS delegation record on an external DNS server.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6dfc987-d4e2-4453-8906-9e1fd6dfa4aa",
+          "name": "List VAST-DNS Configuration",
+          "request": {
+            "name": "List VAST-DNS Configuration",
+            "description": {
+              "content": "This endpoint lists the VAST-DNS server configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a124859-fe12-438e-8efb-63bbd95cfaf6",
+              "name": "DNS configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"vip\": \"string\",\n    \"bgp_config_id\": 9301,\n    \"cnode_ids\": [\n      2966,\n      8752\n    ],\n    \"cnodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"domain_suffix\": \"string\",\n    \"enable_l3\": true,\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"id\": 2356,\n    \"invalid_name_response\": \"string\",\n    \"invalid_type_response\": \"string\",\n    \"name\": \"string\",\n    \"net_type\": \"string\",\n    \"port\": 9192,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"ttl\": 9188,\n    \"url\": \"string\",\n    \"vip_allocation\": \"string\",\n    \"vip_gateway\": \"string\",\n    \"vip_ipv6\": \"string\",\n    \"vip_ipv6_gateway\": \"string\",\n    \"vip_ipv6_subnet_cidr\": 7304,\n    \"vip_subnet_cidr\": 6996,\n    \"vip_vlan\": 9921\n  },\n  {\n    \"vip\": \"string\",\n    \"bgp_config_id\": 5408,\n    \"cnode_ids\": [\n      824,\n      9961\n    ],\n    \"cnodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"domain_suffix\": \"string\",\n    \"enable_l3\": false,\n    \"enabled\": true,\n    \"guid\": \"string\",\n    \"id\": 9494,\n    \"invalid_name_response\": \"string\",\n    \"invalid_type_response\": \"string\",\n    \"name\": \"string\",\n    \"net_type\": \"string\",\n    \"port\": 8290,\n    \"sync\": \"string\",\n    \"sync_time\": \"string\",\n    \"title\": \"string\",\n    \"ttl\": 2711,\n    \"url\": \"string\",\n    \"vip_allocation\": \"string\",\n    \"vip_gateway\": \"string\",\n    \"vip_ipv6\": \"string\",\n    \"vip_ipv6_gateway\": \"string\",\n    \"vip_ipv6_subnet_cidr\": 6235,\n    \"vip_subnet_cidr\": 8781,\n    \"vip_vlan\": 6181\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f477052-2149-449d-a1c2-2a8bade03c9e",
+          "name": "Create a VAST-DNS Server Configuration",
+          "request": {
+            "name": "Create a VAST-DNS Server Configuration",
+            "description": {
+              "content": "This endpoint creates a configuration for the VAST DNS service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dns",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cnode_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"domain_suffix\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"invalid_name_response\": \"<string>\",\n  \"invalid_type_response\": \"<string>\",\n  \"name\": \"<string>\",\n  \"net_type\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"ttl\": \"<integer>\",\n  \"bgp_config_id\": \"<integer>\",\n  \"enable_l3\": \"<boolean>\",\n  \"vip\": \"<string>\",\n  \"vip_gateway\": \"<string>\",\n  \"vip_ipv6\": \"<string>\",\n  \"vip_ipv6_gateway\": \"<string>\",\n  \"vip_ipv6_subnet_cidr\": \"<integer>\",\n  \"vip_subnet_cidr\": \"<integer>\",\n  \"vip_vlan\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "0a7cb327-1f59-4d65-a1df-4387dc659444",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dns",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vip\": \"string\",\n  \"bgp_config_id\": 5752,\n  \"cnode_ids\": [\n    8203,\n    7666\n  ],\n  \"cnodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"domain_suffix\": \"string\",\n  \"enable_l3\": true,\n  \"enabled\": true,\n  \"guid\": \"string\",\n  \"id\": 1554,\n  \"invalid_name_response\": \"string\",\n  \"invalid_type_response\": \"string\",\n  \"name\": \"string\",\n  \"net_type\": \"string\",\n  \"port\": 7885,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"title\": \"string\",\n  \"ttl\": 7340,\n  \"url\": \"string\",\n  \"vip_allocation\": \"string\",\n  \"vip_gateway\": \"string\",\n  \"vip_ipv6\": \"string\",\n  \"vip_ipv6_gateway\": \"string\",\n  \"vip_ipv6_subnet_cidr\": 2412,\n  \"vip_subnet_cidr\": 36,\n  \"vip_vlan\": 5368\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c538755-d9cc-4178-a210-554b872c8784",
+          "name": "Allocate DNS",
+          "request": {
+            "name": "Allocate DNS",
+            "description": {
+              "content": "This endpoint allocates a configuration for the VAST DNS service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dns",
+                "allocate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cnode_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"domain_suffix\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"invalid_name_response\": \"<string>\",\n  \"invalid_type_response\": \"<string>\",\n  \"name\": \"<string>\",\n  \"net_type\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"ttl\": \"<integer>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "47329b69-80aa-45fc-91f6-a99f28374c9a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dns",
+                    "allocate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d062d0a2-fc4a-4ea1-a08a-b5f7d8658894",
+          "name": "Delete VAST-DNS Server Configuration.",
+          "request": {
+            "name": "Delete VAST-DNS Server Configuration.",
+            "description": {
+              "content": "This endpoint deletes a VAST-DNS server configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dns",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DNS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2ab132d-eb99-46c5-b9c9-cd03bbab1e93",
+              "name": "The DNS was deleted successfully. An asynchronous task was submitted to deallocate the IP.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dns",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"async_task\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b812d22-efc5-41cd-aeb3-ee2f6cd60c29",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dns",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f41dc5bf-fa53-4950-b6af-b68f2de6341a",
+          "name": "Return Details of VAST-DNS Configuration",
+          "request": {
+            "name": "Return Details of VAST-DNS Configuration",
+            "description": {
+              "content": "This endpoint returns details of a VAST-DNS server configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dns",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DNS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70118f14-f3c6-494e-8129-a09220d119c7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dns",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vip\": \"string\",\n  \"bgp_config_id\": 5752,\n  \"cnode_ids\": [\n    8203,\n    7666\n  ],\n  \"cnodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"domain_suffix\": \"string\",\n  \"enable_l3\": true,\n  \"enabled\": true,\n  \"guid\": \"string\",\n  \"id\": 1554,\n  \"invalid_name_response\": \"string\",\n  \"invalid_type_response\": \"string\",\n  \"name\": \"string\",\n  \"net_type\": \"string\",\n  \"port\": 7885,\n  \"sync\": \"string\",\n  \"sync_time\": \"string\",\n  \"title\": \"string\",\n  \"ttl\": 7340,\n  \"url\": \"string\",\n  \"vip_allocation\": \"string\",\n  \"vip_gateway\": \"string\",\n  \"vip_ipv6\": \"string\",\n  \"vip_ipv6_gateway\": \"string\",\n  \"vip_ipv6_subnet_cidr\": 2412,\n  \"vip_subnet_cidr\": 36,\n  \"vip_vlan\": 5368\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf6ffa7c-2193-47b1-a878-d66e91ee1853",
+          "name": "Modify VAST-DNS Server Configuration",
+          "request": {
+            "name": "Modify VAST-DNS Server Configuration",
+            "description": {
+              "content": "This endpoint modifies the VAST-DNS Server configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dns",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) DNS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bgp_config_id\": \"<integer>\",\n  \"cnode_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"domain_suffix\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"invalid_name_response\": \"<string>\",\n  \"invalid_type_response\": \"<string>\",\n  \"name\": \"<string>\",\n  \"net_type\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"ttl\": \"<integer>\",\n  \"vip\": \"<string>\",\n  \"vip_gateway\": \"<string>\",\n  \"vip_ipv6\": \"<string>\",\n  \"vip_ipv6_gateway\": \"<string>\",\n  \"vip_ipv6_subnet_cidr\": \"<integer>\",\n  \"vip_subnet_cidr\": \"<integer>\",\n  \"vip_vlan\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8588b4d-47f6-449e-9d6c-75d5bca3e312",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dns",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) DNS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bgp_config_id\": \"<integer>\",\n  \"cnode_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"domain_suffix\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"invalid_name_response\": \"<string>\",\n  \"invalid_type_response\": \"<string>\",\n  \"name\": \"<string>\",\n  \"net_type\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"ttl\": \"<integer>\",\n  \"vip\": \"<string>\",\n  \"vip_gateway\": \"<string>\",\n  \"vip_ipv6\": \"<string>\",\n  \"vip_ipv6_gateway\": \"<string>\",\n  \"vip_ipv6_subnet_cidr\": \"<integer>\",\n  \"vip_subnet_cidr\": \"<integer>\",\n  \"vip_vlan\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "342c4ae4-c236-4a41-8659-4cdbef184372",
+    "name": "VAST API Swagger Schema activedirectory dns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}

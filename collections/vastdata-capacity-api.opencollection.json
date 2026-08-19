@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VAST API Swagger Schema activedirectory capacity API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApiToken",
+      "value": "{{ApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "capacity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query a Tenant for Capacity Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/capacity/",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Specifies a path. The query response includes details of the specified path and its direct child paths. By default, this is the root path."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Selects which capacity type is returned as sort_key in the response. Default: usable."
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Specifies for which tenant to return a response. By default, this is the default tenant."
+              }
+            ]
+          },
+          "docs": "This endpoint queries a tenant for capacity details for a path on the tenant and its direct child paths."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

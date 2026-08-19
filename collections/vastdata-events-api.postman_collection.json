@@ -1,0 +1,463 @@
+{
+  "item": [
+    {
+      "id": "23bfd5d0-14bc-41cf-89cc-ee54af941ebd",
+      "name": "events",
+      "description": {
+        "content": "VMS logs system driven events, such as changes to object states and properties, and user driven events, such as the creation, modification or deletion of any object in the system.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "05aa695e-e5db-4e84-9f84-7aa4742c5a55",
+          "name": "List Events",
+          "request": {
+            "name": "List Events",
+            "description": {
+              "content": "This endpoint lists events. The parameters filter the list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp__gte",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp__lte",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type__in",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_origin",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_origin__in",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_message__contains",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_guid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_type__in",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity__in",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74d424ec-9ed1-43f8-bf78-7cde5012760d",
+              "name": "events information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp__gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timestamp__lte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_type__in",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_origin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_origin__in",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_message__contains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_guid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type__in",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity__in",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cluster\": \"string\",\n    \"event_definition\": \"string\",\n    \"event_message\": \"string\",\n    \"event_name\": \"string\",\n    \"event_origin\": \"string\",\n    \"event_type\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 9802,\n    \"metadata\": {},\n    \"object_guid\": \"string\",\n    \"object_id\": 2022,\n    \"object_name\": \"string\",\n    \"object_type\": \"string\",\n    \"severity\": \"string\",\n    \"timestamp\": \"2008-11-19T13:47:50.516Z\"\n  },\n  {\n    \"cluster\": \"string\",\n    \"event_definition\": \"string\",\n    \"event_message\": \"string\",\n    \"event_name\": \"string\",\n    \"event_origin\": \"string\",\n    \"event_type\": \"string\",\n    \"guid\": \"string\",\n    \"id\": 1684,\n    \"metadata\": {},\n    \"object_guid\": \"string\",\n    \"object_id\": 4085,\n    \"object_name\": \"string\",\n    \"object_type\": \"string\",\n    \"severity\": \"string\",\n    \"timestamp\": \"1992-05-29T18:13:22.608Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d68d270b-db08-4621-a5fe-34fe7e242b15",
+          "name": "Create Event",
+          "request": {
+            "name": "Create Event",
+            "description": {
+              "content": "This endpoint creates an event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"object_type\": \"<string>\",\n  \"object_id\": \"<integer>\",\n  \"event_message\": \"<string>\",\n  \"event_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "535f90b3-8a77-4205-b817-ee88b1beed93",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object_type\": \"<string>\",\n  \"object_id\": \"<integer>\",\n  \"event_message\": \"<string>\",\n  \"event_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"event_definition\": \"string\",\n  \"event_message\": \"string\",\n  \"event_name\": \"string\",\n  \"event_origin\": \"string\",\n  \"event_type\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 8781,\n  \"metadata\": {},\n  \"object_guid\": \"string\",\n  \"object_id\": 2544,\n  \"object_name\": \"string\",\n  \"object_type\": \"string\",\n  \"severity\": \"string\",\n  \"timestamp\": \"1965-05-08T22:11:15.356Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b633553-6cff-4bb7-ad26-9b0015b75173",
+          "name": "Return Details of an Event",
+          "request": {
+            "name": "Return Details of an Event",
+            "description": {
+              "content": "This endpoint returns details of a specified event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95257951-ac4b-4ecd-8e80-a532c5e66511",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The Event ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster\": \"string\",\n  \"event_definition\": \"string\",\n  \"event_message\": \"string\",\n  \"event_name\": \"string\",\n  \"event_origin\": \"string\",\n  \"event_type\": \"string\",\n  \"guid\": \"string\",\n  \"id\": 8781,\n  \"metadata\": {},\n  \"object_guid\": \"string\",\n  \"object_id\": 2544,\n  \"object_name\": \"string\",\n  \"object_type\": \"string\",\n  \"severity\": \"string\",\n  \"timestamp\": \"1965-05-08T22:11:15.356Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f80a8fc3-42aa-43f9-93d0-9c80fe92535c",
+    "name": "VAST API Swagger Schema activedirectory events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VAST Management API definition",
+      "type": "text/plain"
+    }
+  }
+}
