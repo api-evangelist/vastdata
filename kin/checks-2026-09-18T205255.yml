@@ -2,24 +2,21 @@
 kin_checks:
   slug: vastdata
   schema_version: 0.22.0
-  scored_at: '2026-09-15'
-  run_ts: 2026-09-15T230249
-  note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.22.0.yml; counts below let you verify that.
+  scored_at: '2026-09-18'
+  run_ts: 2026-09-18T205255
+  note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
+    apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
+    below let you verify that.
   counts:
     total: 136
-    earned: 37
-    partial: 11
-    missed: 63
+    earned: 40
+    partial: 10
+    missed: 61
     na: 25
   checks:
   - id: maintainer_present
     status: missed
   - id: multiple_apis
-    status: missed
-  - id: human_url_per_api
-    status: missed
-  - id: base_url_per_api
     status: missed
   - id: well_known_published
     status: missed
@@ -27,21 +24,21 @@ kin_checks:
     status: missed
   - id: openapi_3_1
     status: missed
-    detail: 0 of 126 openapi documents pass
+    detail: 0 of 123 openapi documents pass
   - id: openapi_3_0
     status: missed
-    detail: 0 of 126 openapi documents pass
+    detail: 0 of 123 openapi documents pass
   - id: info_complete
     status: missed
-    detail: 0 of 126 openapi documents pass
+    detail: 0 of 123 openapi documents pass
   - id: servers_defined
     status: missed
-    detail: 0 of 126 openapi documents pass
+    detail: 0 of 123 openapi documents pass
   - id: servers_resolvable
     status: missed
   - id: webhooks_or_callbacks
     status: missed
-    detail: 0 of 126 openapi documents pass
+    detail: 0 of 123 openapi documents pass
   - id: asyncapi_present
     status: missed
   - id: json_schema_present
@@ -144,29 +141,25 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
-  - id: operations_summary_coverage
-    status: partial
-    earned: 5.76
-    detail: 121 of 126 openapi documents pass
   - id: operations_description_coverage
     status: partial
-    earned: 5.24
-    detail: 110 of 126 openapi documents pass
+    earned: 5.22
+    detail: 107 of 123 openapi documents pass
   - id: operations_operation_ids
     status: partial
-    earned: 3.91
-    detail: 123 of 126 openapi documents pass
+    earned: 3.9
+    detail: 120 of 123 openapi documents pass
   - id: error_responses_documented
     status: partial
     earned: 0.13
-    detail: 4 of 126 openapi documents pass
+    detail: 4 of 123 openapi documents pass
   - id: examples_present
     status: partial
     earned: 0.16
   - id: components_reuse
     status: partial
-    earned: 0.6
-    detail: 25 of 126 openapi documents pass
+    earned: 0.59
+    detail: 24 of 123 openapi documents pass
   - id: conformance_declared
     status: partial
     earned: 1.5
@@ -186,3 +179,29 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: partial'
+  na:
+  - asyncapi_3_x
+  - channels_defined
+  - contract_self_operated
+  - fhir_capability_statement
+  - fhir_resource_coverage
+  - graphql_descriptions
+  - graphql_sdl_present
+  - graphql_type_depth
+  - messages_with_schema
+  - os_code_of_conduct
+  - os_contribution_guide
+  - os_releases
+  - os_security_policy
+  - reg_camara_conformance
+  - reg_certification_signal
+  - reg_consent_model
+  - reg_entitlement_terms
+  - reg_fapi_profile
+  - reg_mandate_verified
+  - reg_named_standard_conformance
+  - reg_pci_sca
+  - reg_smart_configuration
+  - reg_write_surface
+  - security_schemes
+  - server_bindings
