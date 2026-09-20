@@ -1,0 +1,449 @@
+slug: vastdata
+provider: VAST Data
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 45
+edges:
+- tag: iamroles
+  spec_file: vastdata-iamroles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: '''List Identity and Access Management Roles'', ''Get STS credentials of specified IAM Role.'',
+    ''Revoke access keys of specified IAM Role.'''
+  reason: Explicit IAM role lifecycle plus credential issuance and access-key revocation — unambiguously
+    Identity & Access Management.
+- tag: Racks
+  spec_file: vastdata-racks-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: '"Create a Rack"; "Add Boxes to a Rack"; "Control Rack Boxes LED"'
+  reason: Physical rack and chassis inventory and configuration in a data-centre cluster — unambiguously
+    IT infrastructure (hardware estate) management.
+- tag: Volumes
+  spec_file: vastdata-volumes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: '"Create a Block Storage Volume"; "Map a Volume to Block Hosts"; "Fetches Capacity Usage of
+    Block Storage Volume"'
+  reason: Provisioning, mapping and capacity inspection of block storage volumes is core storage infrastructure
+    management.
+- tag: ssds
+  spec_file: vastdata-ssds-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: GET /ssds/ List SSDs; PATCH /ssds/{id}/control_led/ Turn SSD identification LED on and off;
+    PATCH /ssds/{id}/format/ Format SSD
+  reason: Physical drive inventory and hardware control (LED, format, activate/deactivate) — clearly compute/storage
+    infrastructure management.
+- tag: switches
+  spec_file: vastdata-switches-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: POST /switches/ switches_create Add Switch; PATCH /switches/bulk/ Bulk Update Switch Credentials
+  reason: Registration and credential management of physical network switches in the cluster — network
+    infrastructure management.
+- tag: oidcs
+  spec_file: vastdata-oidcs-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.84
+  evidence: POST /oidcs/ 'Create OIDC Provider'; PATCH /oidcs/{id}/refresh_keys 'Refresh the keys from
+    OIDC provider'
+  reason: Manages OpenID Connect identity provider registrations and key refresh — federated authentication
+    configuration, squarely identity and access management.
+- tag: nicports
+  spec_file: vastdata-nicports-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.83
+  evidence: GET /nicports/ 'List NIC Ports.'; PATCH /nicports/{id}/ 'Enable or Disable an NICPort'; schema
+    NICPort
+  reason: Enumerates and enables/disables network interface card ports on the appliance — plainly network
+    infrastructure component management.
+- tag: nics
+  spec_file: vastdata-nics-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.82
+  evidence: GET /nics/ 'List NICs.'; GET /nics/{id}/ 'Return Details of One NIC'; schema NIC
+  reason: Read-only inventory of network interface cards in the storage hardware — network/compute infrastructure
+    management.
+- tag: nvrams
+  spec_file: vastdata-nvrams-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.82
+  evidence: PATCH /nvrams/{id}/format/ 'Format NVRAM'; 'Turn SCM SLED identification LED on and off';
+    'Activate or Deactivate an NVRAM'
+  reason: Manages physical NVRAM/SCM storage devices including formatting and LED identification — storage
+    hardware infrastructure management.
+- tag: users
+  spec_file: vastdata-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: POST /users/ users_add "Add User to a Local Provider"; "Generate S3 Access Key Pair (Non-Local
+    User)"; schema UserKeyPair
+  reason: Operations create/delete local users, query directory users and manage S3 access key pairs —
+    user account and credential administration for a storage platform, i.e. identity & access management,
+    not HR employee records.
+- tag: Cnodes
+  spec_file: vastdata-cnodes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: '"Add multiple CNodes to the cluster"; "Activate/Deactivate/Replace/Power On/Off CNode"; "Configure
+    BGP on CNode"'
+  reason: Operations provision, configure networking for, and power-cycle physical compute nodes in a
+    storage cluster — this is compute/network infrastructure lifecycle management, mapping to IT Infrastructure
+    Management rather than any business-domain capability.
+- tag: Compute Clusters
+  spec_file: vastdata-compute-clusters-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: '"Create a Compute Cluster"; "List nodes in the compute cluster"; "List namespaces in the
+    compute cluster"'
+  reason: CRUD plus deployment/namespace/node inspection over compute clusters is management of compute
+    infrastructure (Kubernetes-like cluster estate), i.e. IT Infrastructure Management.
+- tag: activedirectory
+  spec_file: vastdata-activedirectory-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '"Join or Leave Active Directory"; "Change machine account password"; "Get Active Directory
+    domains"'
+  reason: Directory-service integration — joining domains, managing machine accounts and domain controllers
+    — is identity federation/access management infrastructure for the storage platform.
+- tag: carriers
+  spec_file: vastdata-carriers-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: PATCH /carriers/{id}/control_led/ control_led Control Slot LED; PATCH /carriers/{id}/reset_pci/
+    reset_pci Power Cycles a Slot
+  reason: Physical drive-carrier/slot hardware control (LEDs, power cycling) is compute/storage hardware
+    infrastructure management, not logistics carriers.
+- tag: cboxes
+  spec_file: vastdata-cboxes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: GET /cboxes/ cboxes_list List CBoxes; PATCH /cboxes/{id}/control_led/ control_led Control
+    CBox LEDs
+  reason: CBoxes are VAST hardware enclosures/compute nodes; listing and controlling them is physical
+    infrastructure management.
+- tag: clusters
+  spec_file: vastdata-clusters-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: POST /clusters/ clusters_create Create Cluster; PATCH /clusters/add_boxes/ add_boxes Start
+    Add Boxes procedure; DBoxMigrationStatusResponse
+  reason: Creation, expansion, node/box migration and upgrade of storage clusters is management of compute/storage
+    infrastructure.
+- tag: dboxes
+  spec_file: vastdata-dboxes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: POST /dboxes/add/ Add DBox; POST /dboxes/decommission/ DBox Removal; PATCH /dboxes/{id}/control_led/
+    Control DBox LEDs
+  reason: Add/remove/decommission and LED control of physical storage enclosures is hardware infrastructure
+    lifecycle management.
+- tag: dnodes
+  spec_file: vastdata-dnodes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: PATCH /dnodes/{id}/ Activate/Deactivate/Replace/Power On/Off DNode; PATCH /dnodes/{id}/control_led/
+    Control DNode LED
+  reason: Power, activation, replacement and identification of physical data nodes is IT infrastructure
+    (compute/storage hardware) management.
+- tag: eboxes
+  spec_file: vastdata-eboxes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: POST /eboxes/add/ Add EBox; POST /eboxes/decommission/ EBox Removal; PATCH /eboxes/{id}/control_led/
+    Control EBox LEDs
+  reason: Add/decommission/modify physical enclosure hardware in the cluster — infrastructure asset lifecycle,
+    IT Infrastructure Management.
+- tag: ldaps
+  spec_file: vastdata-ldaps-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /ldaps/ 'Create LDAP Configuration' ... 'Set LDAP as POSIX Primary Provider'
+  reason: Configures LDAP directory integration for authenticating/authorising users of the platform —
+    identity and access management (directory federation).
+- tag: ports
+  spec_file: vastdata-ports-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: GET /ports/ 'List Switch Ports' ... 'Return Details of One Switch Port'
+  reason: Inventory of physical network switch ports in the appliance fabric — clearly compute/storage/network
+    infrastructure management, not a business capability.
+- tag: psus
+  spec_file: vastdata-psus-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: GET /psus/ 'List PSUs' ... 'Return Details of One PSU'
+  reason: Read-only inventory/health of power supply units in the hardware enclosure — physical infrastructure
+    component management.
+- tag: subnetmanager
+  spec_file: vastdata-subnetmanager-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: POST /subnetmanager/ subnetmanager_create Add Subnet manager
+  reason: Management of (InfiniBand/network) subnet managers for the cluster fabric — network infrastructure
+    management.
+- tag: bgpconfigs
+  spec_file: vastdata-bgpconfigs-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: GET /bgpconfigs/ bgp_configs_list List BGP Configurations; schema BGPConfig
+  reason: Configuration of BGP routing on the storage cluster is network infrastructure management.
+- tag: blockhosts
+  spec_file: vastdata-blockhosts-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: POST /blockhosts/ blockhosts_create Create a Block Host; PATCH /blockhosts/{id}/set_volumes
+    hosts_set_volumes Mapping a block host to volumes.
+  reason: Block storage host objects and their volume mappings are storage infrastructure provisioning,
+    squarely IT infrastructure management.
+- tag: blockmappings
+  spec_file: vastdata-blockmappings-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: PATCH /blockmappings/bulk/ blockmappings_bulk Map Block Hosts to Volumes
+  reason: Host-to-volume mapping administration for block storage — storage infrastructure configuration.
+- tag: dtrays
+  spec_file: vastdata-dtrays-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: GET /dtrays/ List DTrays; PATCH /dtrays/{id}/ Activate/Deactivate DTray; PATCH /dtrays/{id}/control_led/
+    Control DTray (DNode) LEDs
+  reason: Lifecycle and physical identification of storage tray hardware components — IT infrastructure
+    management.
+- tag: managers
+  spec_file: vastdata-managers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /managers/ 'Create Manager (VMS User)'; PATCH /managers/password 'Change user's password';
+    'Unlock a Manager'; 'Get authorized status for a user'
+  reason: Manages administrative user accounts of the VAST Management System — creation, password change,
+    lock/unlock, authorisation status. This is identity and access administration for an infrastructure
+    platform, not a business HR or customer capability.
+- tag: roles
+  spec_file: vastdata-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: '"Create Manager Role", "Modify Role", schema "Role"'
+  reason: Administrative role definitions governing management permissions on the platform — role-based
+    access control, i.e. Identity & Access Management.
+- tag: vm
+  spec_file: vastdata-vm-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: PATCH /virtual-machines/expand "Add Virtual Machines to the cluster."; POST /virtual-machines/decommission
+    "Decommission ENODE VMs"
+  reason: Lifecycle operations on compute nodes (add, replace, remove, decommission VMs in the cluster)
+    — compute infrastructure management.
+- tag: cnodegroups
+  spec_file: vastdata-cnodegroups-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: GET /cnodegroups/ cnodegroups_list Get all existing CNode Groups; POST /cnodegroups/ Create
+    a CNode Group
+  reason: Managing compute-node groups in a storage cluster is infrastructure (compute/storage) lifecycle
+    management, an IT Infrastructure Management capability.
+- tag: dns
+  spec_file: vastdata-dns-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: POST /dns/ Create a VAST-DNS Server Configuration; POST /dns/allocate/ Allocate DNS
+  reason: Configuring the cluster's DNS server service is network infrastructure configuration within
+    IT Infrastructure Management.
+- tag: fans
+  spec_file: vastdata-fans-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: '''List Fans'' / ''Return Details of Fan'' with schema ''Fan'''
+  reason: Cooling fans of the storage appliance hardware — read-only hardware component inventory, squarely
+    compute/storage infrastructure management. Not a business capability of any other domain.
+- tag: groups
+  spec_file: vastdata-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: '''List Groups'', ''Find Group by prefix and domain details'', ''Modify non-Local Group''
+    with schemas ''Group'', ''PartialS3PolicyInfo'', ''LocalProviderData'''
+  reason: Directory-backed user group administration with S3 policy attachment on a storage platform —
+    identity and access management of platform principals, not HR organisational groups (evidenced by
+    domain providers and S3 policy schemas).
+- tag: prometheusmetrics
+  spec_file: vastdata-prometheusmetrics-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.75
+  evidence: GET /prometheusmetrics/ 'prometheus metrics' ... '/prometheusmetrics/devices' 'prometheus
+    devices metrics'
+  reason: Prometheus-format telemetry endpoints for alarms, devices, NICs, switches, quotas and replication
+    — infrastructure monitoring feeds consumed by the operator's observability stack. Cross-industry IT
+    Operations Management (monitoring) is the honest fit for an infrastructure vendor.
+- tag: s3policies
+  spec_file: vastdata-s3policies-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: '"Create an Identity Policy", "Modify an S3 Identity Policy", schema "S3Policy"'
+  reason: S3 identity policies define access permissions for identities against object storage — access
+    management.
+- tag: vippools
+  spec_file: vastdata-vippools-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.72
+  evidence: POST /vippools/ "Create VIP Pool"; POST /vippools/allocate/ "Allocate VIP Pool"
+  reason: Creation and allocation of virtual IP pools for cluster network access — network/infrastructure
+    resource management within IT Infrastructure Management.
+- tag: Kerberos
+  spec_file: vastdata-kerberos-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"List Kerberos Providers"; "Generate keytab for the Kerberos Provider"; schema "KerberosPrincipalsInfo"'
+  reason: Configures Kerberos authentication providers, principals and keytabs used to authenticate clients
+    to the storage platform — authentication/identity infrastructure, best matched by Identity & Access
+    Management; confidence tempered because it is provider configuration rather than a full IAM lifecycle.
+- tag: S3 Keys
+  spec_file: vastdata-s3-keys-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"Create S3 Access Key Pair"; "Delete User''s S3 Access Key Pair"; schema "UserKeyPair"'
+  reason: Issuance and revocation of per-user S3 access credentials is access-credential management for
+    the platform, matching Identity & Access Management; could alternatively be read as developer credential
+    management, hence moderate confidence.
+- tag: encryptiongroups
+  spec_file: vastdata-encryptiongroups-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /encryptiongroups/{id}/rotate_encryption_group_key/ Rotate Encryption Group Key; revoke_encryption_group
+    Revoke Encryption Group
+  reason: Key rotation, revocation and reinstatement of encryption groups is a security control (encryption
+    key management) under Cybersecurity Management; no listed L2 matches encryption key management precisely.
+- tag: filesystem
+  spec_file: vastdata-filesystem-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /filesystem/clone/ 'Clone path'
+  reason: Filesystem path cloning on the VAST DataStore — storage infrastructure operation. Single operation
+    keeps confidence moderate.
+- tag: folders
+  spec_file: vastdata-folders-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: '''Create Folder'', ''Make a Folder Read-Only'', ''Get Owning User and Group for a Path'''
+  reason: Directory lifecycle and read-only locking on the storage platform's filesystem — storage infrastructure
+    administration, not document or content management in a business sense.
+- tag: hosts
+  spec_file: vastdata-hosts-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: '''List Hosts'', ''Discover Hosts'', schema ''Host'' and ''VastInstallInfo'''
+  reason: Discovery and inventory of physical/virtual hosts in the storage cluster — compute infrastructure
+    management.
+- tag: localproviders
+  spec_file: vastdata-localproviders-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /localproviders/ 'Create Local Provider' ... 'Modify a Local Provider'
+  reason: Local identity provider configuration for platform users/groups, alongside the LDAP/AD providers
+    — identity and access management. Slightly thinner evidence than the LDAP tag.
+- tag: userquotas
+  spec_file: vastdata-userquotas-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: 'POST /userquotas/ user_quotas_create Create a User Quota; schemas: DefaultQuota, UserQuota'
+  reason: Per-user storage capacity quotas on the storage cluster — storage infrastructure resource control,
+    not commercial entitlement or API rate limiting.
