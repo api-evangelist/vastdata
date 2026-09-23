@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory folders API
+  title: VAST API Swagger Schema Folders API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: The folders endpoint enables the ability to manage directories and to set and get a directory's owner user and group attributes.
-  name: folders
+  name: Folders
 paths:
   /folders/create_folder/:
     post:
@@ -48,7 +48,7 @@ paths:
           description: OK
       summary: Create Folder
       tags:
-      - folders
+      - Folders
   /folders/delete_folder/:
     delete:
       description: This endpoint deletes a folder from the Element Store.
@@ -73,7 +73,7 @@ paths:
           description: The folder was deleted.
       summary: Delete Folder
       tags:
-      - folders
+      - Folders
   /folders/modify_folder/:
     patch:
       description: This endpoint modifies a folder in the Element Store, including its path, tenant, owning group and user.
@@ -107,7 +107,7 @@ paths:
           description: The folder was successfully modified
       summary: Modify Folder
       tags:
-      - folders
+      - Folders
   /folders/read_only/:
     delete:
       description: This endpoint unlocks a folder that was made read-only.
@@ -123,7 +123,7 @@ paths:
           description: Read-only folder was unlocked successfully
       summary: Unlock Read-Only Folder
       tags:
-      - folders
+      - Folders
     get:
       description: This endpoint returns details of folders that are locked as read-only.
       operationId: get_read_only_folder
@@ -159,7 +159,7 @@ paths:
           description: ''
       summary: Return Details of Read-Only Folder
       tags:
-      - folders
+      - Folders
     post:
       description: This endpoint locks an existing path from writes, making it read-only for all users, regardless of permissions.
       operationId: create_read_only_folder
@@ -174,7 +174,7 @@ paths:
           description: Read-only folder was created successfully
       summary: Make a Folder Read-Only
       tags:
-      - folders
+      - Folders
   /folders/stat_path/:
     post:
       description: This endpoint returns the owning user and group for a specified Element Store path.
@@ -260,7 +260,7 @@ paths:
           description: ''
       summary: Get Owning User and Group for a Path
       tags:
-      - folders
+      - Folders
 components:
   schemas:
     ReadOnlyFolderParams:

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory Volumes API
+  title: VAST API Swagger Schema Volumes API
   version: '1.0'
 security:
 - ApiToken: []
@@ -202,7 +202,7 @@ paths:
                 title: Volume snapshots
                 type: array
           description: Volume snapshots information.
-      summary: Return Snapshots (IDs) of a Volume.
+      summary: Return Snapshots (IDs) of a Volume
       tags:
       - Volumes
   /volumes/{id}/set_hosts:
@@ -269,85 +269,28 @@ paths:
       - Volumes
 components:
   parameters:
-    VolumeNguidQP:
-      description: volume nguid to filter by.
-      in: query
-      name: nguid
-      schema:
-        type: string
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    VolumeBlockHostIdQP:
-      description: Volume BlockHost ID to filter by.
-      in: query
-      name: block_hosts__id
-      schema:
-        type: integer
-    SnapshotIdQP:
-      description: Unmapped Volumes captured by snapshot — under snapshot’s path, created before the snapshot time.
-      in: query
-      name: snapshot_id
-      schema:
-        type: integer
     BlockHostVolumeForce:
       description: Forcefully removes mappings between hosts and volumes. A host can be deleted only if it is not mapped to any volume, and a volume can be deleted only if it is not mapped to any host.
       in: query
       name: force
       schema:
         type: boolean
-    VolumeNamespaceIdQP:
-      description: Volume namespace ID to filter by.
+    VolumeNguidQP:
+      description: volume nguid to filter by.
       in: query
-      name: namespace_id
+      name: nguid
       schema:
-        type: integer
-    VolumeIsMonitoredQP:
-      description: Filter by whether Volume is monitored.
+        type: string
+    VolumeUuidQP:
+      description: volume uuid to filter by.
       in: query
-      name: is_monitored
+      name: uuid
       schema:
-        type: boolean
+        type: string
     VolumeQosPolicyIdQP:
       description: Volume QOS Policy ID to filter by.
       in: query
       name: qos_policy__id
-      schema:
-        minimum: 1
-        type: integer
-    MappedSnapshotIdQP:
-      description: Volumes explicitly mapped to the snapshot.
-      in: query
-      name: mapped_snapshot_id
-      schema:
-        type: integer
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    ViewIdQP:
-      description: View ID by which to filter
-      in: query
-      name: view__id
       schema:
         minimum: 1
         type: integer
@@ -357,12 +300,69 @@ components:
       name: name
       schema:
         type: string
-    VolumeUuidQP:
-      description: volume uuid to filter by.
+    Page:
       in: query
-      name: uuid
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    MappedSnapshotIdQP:
+      description: Volumes explicitly mapped to the snapshot.
+      in: query
+      name: mapped_snapshot_id
+      schema:
+        type: integer
+    ViewIdQP:
+      description: View ID by which to filter
+      in: query
+      name: view__id
+      schema:
+        minimum: 1
+        type: integer
+    VolumeIsMonitoredQP:
+      description: Filter by whether Volume is monitored.
+      in: query
+      name: is_monitored
+      schema:
+        type: boolean
+    VolumeNamespaceIdQP:
+      description: Volume namespace ID to filter by.
+      in: query
+      name: namespace_id
+      schema:
+        type: integer
+    SnapshotIdQP:
+      description: Unmapped Volumes captured by snapshot — under snapshot’s path, created before the snapshot time.
+      in: query
+      name: snapshot_id
+      schema:
+        type: integer
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
       schema:
         type: string
+    VolumeBlockHostIdQP:
+      description: Volume BlockHost ID to filter by.
+      in: query
+      name: block_hosts__id
+      schema:
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
   schemas:
     SnapshotData:
       properties:

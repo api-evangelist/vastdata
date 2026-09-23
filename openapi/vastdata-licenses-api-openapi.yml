@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory licenses API
+  title: VAST API Swagger Schema Licenses API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: A license entitles the VAST Cluster operator to an amount of storage capacity for a given period from a given start time. Licenses can be aggregated to increase the licensed capacity. Operating a VAST Cluster requires an installed license. An active valid license entitles the owner to new software releases, service packs and support.
-  name: licenses
+  name: Licenses
 paths:
   /licenses/:
     get:
@@ -30,11 +30,12 @@ paths:
           description: License information
       summary: List Licenses
       tags:
-      - licenses
+      - Licenses
     post:
-      description: '<p>This endpoint installs a VMS license.</p> <p>A license can be installed before, on or after its start date. The license key is decrypted and then validated. Initially, the license state is set to pending. If the expiration date has passed, the state changes to expired. If the expiration date is in the future and the start date has passed, the license is activated and it''s state changes to active. If the start date is in the future, the license state remains pending until the start date and is then activated on the start date.</p>
+      description: 'This endpoint installs a VMS license.
 
-        '
+
+        A license can be installed before, on or after its start date. The license key is decrypted and then validated. Initially, the license state is set to pending. If the expiration date has passed, the state changes to expired. If the expiration date is in the future and the start date has passed, the license is activated and it''s state changes to active. If the start date is in the future, the license state remains pending until the start date and is then activated on the start date.'
       operationId: licenses_create
       requestBody:
         content:
@@ -55,7 +56,7 @@ paths:
           description: ''
       summary: Add a license key
       tags:
-      - licenses
+      - Licenses
       x-cli-command: license
   /licenses/{id}/:
     delete:
@@ -73,7 +74,7 @@ paths:
           description: The license was removed successfully
       summary: Remove a License
       tags:
-      - licenses
+      - Licenses
     get:
       description: This endpoint returns details of a specific license.
       operationId: licenses_read
@@ -93,7 +94,7 @@ paths:
           description: ''
       summary: Return Details of a License
       tags:
-      - licenses
+      - Licenses
 components:
   schemas:
     License:

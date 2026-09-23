@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory managedapplications API
+  title: VAST API Swagger Schema Managedapplications API
   version: '1.0'
 security:
 - ApiToken: []
@@ -135,12 +135,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/ManagedApplication'
       - $ref: '#/components/schemas/AsyncTaskInResponse'
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
     ManagedApplication:
       properties:
         cnode_group_id:
@@ -163,6 +157,12 @@ components:
         state:
           description: Managed Application state
           type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   securitySchemes:
     ApiToken:

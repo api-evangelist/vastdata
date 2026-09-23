@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory topics API
+  title: VAST API Swagger Schema Topics API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Topics store categories of events collected by VAST Event Broker.
-  name: topics
+  name: Topics
 paths:
   /topics/:
     get:
@@ -32,7 +32,7 @@ paths:
           description: Kafka Topics
       summary: List Kafka Topics
       tags:
-      - topics
+      - Topics
     patch:
       description: This endpoint modifies a Kafka Topic
       operationId: topics_modify
@@ -43,7 +43,7 @@ paths:
           description: OK
       summary: Modify a Kafka Topic
       tags:
-      - topics
+      - Topics
     post:
       description: This endpoint creates a Kafka Topic
       operationId: topics_create
@@ -54,7 +54,7 @@ paths:
           description: OK
       summary: Create a Kafka Topic
       tags:
-      - topics
+      - Topics
   /topics/delete/:
     delete:
       description: This endpoint deletes a Kafka Topic.
@@ -66,7 +66,7 @@ paths:
           description: OK
       summary: Delete a Kafka Topic
       tags:
-      - topics
+      - Topics
   /topics/show/:
     get:
       description: This endpoint shows a Kafka Topic.
@@ -83,9 +83,83 @@ paths:
           description: Kafka Topic
       summary: Show a Kafka Topic
       tags:
-      - topics
+      - Topics
 components:
+  requestBodies:
+    TopicCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TopicCreateParams'
+      x-originalParamName: TopicCreateParamsBody
+    TopicModifyParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TopicModifyParams'
+      x-originalParamName: TopicModifyParamsBody
+    TableDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TableDeleteParams'
+      x-originalParamName: TableDeleteParamsBody
   schemas:
+    TopicCreateParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularTopicHierarchy'
+      - properties:
+          message_timestamp_after_max_ms:
+            description: Message timestamp 'after' threshold in milli-seconds
+            format: int64
+            type: integer
+          message_timestamp_before_max_ms:
+            description: Message timestamp 'before' threshold in milli-seconds
+            format: int64
+            type: integer
+          message_timestamp_type:
+            description: Message timestamp type
+            enum:
+            - LogAppendTime
+            - CreateTime
+            type: string
+          retention_ms:
+            description: Retention period in milli-seconds
+            format: int64
+            type: integer
+          topic_partitions:
+            description: Amount of Kafka Topic partitions
+            type: integer
+        required:
+        - topic_partitions
+        type: object
+    TabularSchemaHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - name
+      type: object
+    TableDeleteParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularSchemaHierarchy'
+      - properties:
+          is_imports_table:
+            description: Is table actually a sub-table to track imported .parquet files.
+            type: boolean
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
     Topic:
       allOf:
       - $ref: '#/components/schemas/TabularTopicHierarchy'
@@ -121,20 +195,16 @@ components:
         - num_events
         - capacity
         type: object
-    TabularSchemaHierarchy:
+    TabularTopicHierarchy:
       properties:
         database_name:
           description: Name of the Database
           type: string
         name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
+          description: Name of the Topic
           type: string
       required:
       - database_name
-      - schema_name
       - name
       type: object
     TopicModifyParams:
@@ -163,65 +233,7 @@ components:
             format: int64
             type: integer
         type: object
-    TableDeleteParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularSchemaHierarchy'
-      - properties:
-          is_imports_table:
-            description: Is table actually a sub-table to track imported .parquet files.
-            type: boolean
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        type: object
-    TabularTopicHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the Topic
-          type: string
-      required:
-      - database_name
-      - name
-      type: object
-    TopicCreateParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularTopicHierarchy'
-      - properties:
-          message_timestamp_after_max_ms:
-            description: Message timestamp 'after' threshold in milli-seconds
-            format: int64
-            type: integer
-          message_timestamp_before_max_ms:
-            description: Message timestamp 'before' threshold in milli-seconds
-            format: int64
-            type: integer
-          message_timestamp_type:
-            description: Message timestamp type
-            enum:
-            - LogAppendTime
-            - CreateTime
-            type: string
-          retention_ms:
-            description: Retention period in milli-seconds
-            format: int64
-            type: integer
-          topic_partitions:
-            description: Amount of Kafka Topic partitions
-            type: integer
-        required:
-        - topic_partitions
-        type: object
   parameters:
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
     TabularDatabaseNameQP:
       description: Getting list of objects by database_name
       in: query
@@ -244,6 +256,18 @@ components:
       schema:
         minimum: 1
         type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
     TabularCountOnlyQP:
       description: Whether to only return count of objects
       in: query
@@ -251,37 +275,13 @@ components:
       schema:
         default: false
         type: boolean
-    TabularNameQP:
-      description: Getting list of objects by exact match
+    TabularNameRequiredQP:
+      description: Getting object by exact match
       in: query
       name: name
+      required: true
       schema:
         type: string
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-  requestBodies:
-    TableDeleteParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TableDeleteParams'
-      x-originalParamName: TableDeleteParamsBody
-    TopicCreateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TopicCreateParams'
-      x-originalParamName: TopicCreateParamsBody
-    TopicModifyParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TopicModifyParams'
-      x-originalParamName: TopicModifyParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

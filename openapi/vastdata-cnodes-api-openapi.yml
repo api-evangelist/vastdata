@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory Cnodes API
+  title: VAST API Swagger Schema Cnodes API
   version: '1.0'
 security:
 - ApiToken: []
@@ -386,16 +386,6 @@ paths:
       - Cnodes
 components:
   schemas:
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    AsyncCNode:
-      allOf:
-      - $ref: '#/components/schemas/CNode'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
     CNodeBGPConfig:
       properties:
         enabled:
@@ -420,6 +410,10 @@ components:
           description: Subnet bits
           type: integer
       type: object
+    AsyncCNode:
+      allOf:
+      - $ref: '#/components/schemas/CNode'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
     CNode:
       properties:
         bios_version:
@@ -587,6 +581,12 @@ components:
           x-cli-header: VMS-Preferred
       required:
       - name
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   securitySchemes:
     ApiToken:

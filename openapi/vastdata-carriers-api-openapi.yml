@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory carriers API
+  title: VAST API Swagger Schema Carriers API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Carriers represent DBox slots that house SSDs and NVRAMs.
-  name: carriers
+  name: Carriers
 paths:
   /carriers/:
     get:
@@ -54,7 +54,7 @@ paths:
           description: carriers information
       summary: List Carriers
       tags:
-      - carriers
+      - Carriers
   /carriers/{id}/:
     get:
       description: This endpoint returns details of a specific carrier.
@@ -74,7 +74,7 @@ paths:
           description: ''
       summary: Return Details of One Carrier
       tags:
-      - carriers
+      - Carriers
     patch:
       description: This endpoint activates or deactivates a carrier.
       operationId: carriers_partial_update
@@ -104,7 +104,7 @@ paths:
           description: ''
       summary: Activate or Deactivate a Carrier
       tags:
-      - carriers
+      - Carriers
   /carriers/{id}/control_led/:
     patch:
       description: This endpoint controls a slot LED
@@ -131,7 +131,7 @@ paths:
           description: OK
       summary: Control Slot LED
       tags:
-      - carriers
+      - Carriers
   /carriers/{id}/highlight/:
     patch:
       description: This endpoint highlights the control slot.
@@ -152,7 +152,7 @@ paths:
           description: ''
       summary: Highlight the Control Slot
       tags:
-      - carriers
+      - Carriers
   /carriers/{id}/reset_pci/:
     patch:
       description: This endpoint power cycles a slot
@@ -173,7 +173,7 @@ paths:
           description: ''
       summary: Power Cycles a Slot
       tags:
-      - carriers
+      - Carriers
 components:
   schemas:
     Carrier:

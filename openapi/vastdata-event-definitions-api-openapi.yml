@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory eventdefinitions API
+  title: VAST API Swagger Schema Eventdefinitions API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Event definitions define the conditions that trigger events, the raising of alarms, alarm severity, and which actions are triggered on events, such as email notifications, webhooks and sending to syslog.
-  name: eventdefinitions
+  name: Event Definitions
 paths:
   /eventdefinitions/:
     get:
@@ -38,7 +38,7 @@ paths:
           description: Event Definition Information
       summary: List Event Definitions
       tags:
-      - eventdefinitions
+      - Event Definitions
   /eventdefinitions/{id}/:
     get:
       description: This endpoint returns details of a specified event definition.
@@ -59,7 +59,7 @@ paths:
           description: ''
       summary: Return Details of an Event Definition
       tags:
-      - eventdefinitions
+      - Event Definitions
     patch:
       description: This endpoint modifies an event definition.
       operationId: eventdefinitions_partial_update
@@ -126,7 +126,7 @@ paths:
           description: ''
       summary: Modify Event Definition
       tags:
-      - eventdefinitions
+      - Event Definitions
   /eventdefinitions/{id}/test/:
     patch:
       description: This endpoint tests an event definition.
@@ -147,15 +147,9 @@ paths:
           description: ''
       summary: Test Event Definition
       tags:
-      - eventdefinitions
+      - Event Definitions
 components:
   schemas:
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
     EventDefinition:
       properties:
         action_definitions:
@@ -225,6 +219,12 @@ components:
           items:
             type: integer
           type: array
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   securitySchemes:
     ApiToken:

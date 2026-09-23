@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory vastauditlog API
+  title: VAST API Swagger Schema Vastauditlog API
   version: '1.0'
 security:
 - ApiToken: []
@@ -58,7 +58,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/QueryDataOutputSchema'
           description: OK
-      summary: Queries the VAST Audit log.
+      summary: Queries the VAST Audit log
       tags:
       - vastauditlog
   /vastauditlog/stats/:
@@ -76,6 +76,40 @@ paths:
       - vastauditlog
 components:
   schemas:
+    VastAuditLogQueryDataInputSchema:
+      allOf:
+      - $ref: '#/components/schemas/BaseQueryDataInputSchema'
+      - properties:
+          fields:
+            default:
+            - time
+            - client_ip
+            - cluster_vip
+            - tenant
+            - protocol
+            - rpc_type
+            - path
+            - view_path
+            - name
+            - s3_bucket_name
+            - login_name
+            - uid
+            - sid
+            - s3_access_keys
+            - status
+            - num_ops
+            - num_bytes
+            description: Defines which fields should be displayed
+            items:
+              type: string
+            type: array
+    Stats:
+      properties:
+        count_columns:
+          type: integer
+        count_rows:
+          type: integer
+      type: object
     QueryDataOutputSchema:
       properties:
         count:
@@ -108,40 +142,6 @@ components:
       required:
       - filters
       type: object
-    Stats:
-      properties:
-        count_columns:
-          type: integer
-        count_rows:
-          type: integer
-      type: object
-    VastAuditLogQueryDataInputSchema:
-      allOf:
-      - $ref: '#/components/schemas/BaseQueryDataInputSchema'
-      - properties:
-          fields:
-            default:
-            - time
-            - client_ip
-            - cluster_vip
-            - tenant
-            - protocol
-            - rpc_type
-            - path
-            - view_path
-            - name
-            - s3_bucket_name
-            - login_name
-            - uid
-            - sid
-            - s3_access_keys
-            - status
-            - num_ops
-            - num_bytes
-            description: Defines which fields should be displayed
-            items:
-              type: string
-            type: array
     Column:
       allOf:
       - $ref: '#/components/schemas/TabularTableHierarchy'
@@ -184,6 +184,31 @@ components:
       - name
       type: object
   parameters:
+    VastDBFiltersQP:
+      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+      in: query
+      name: filters
+      schema:
+        type: string
+    Ordering:
+      in: query
+      name: ordering
+      schema:
+        items:
+          type: string
+        type: array
+    Limit:
+      in: query
+      name: limit
+      schema:
+        default: 1000
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
     VastAuditLogFieldsQP:
       description: Defines which fields should be displayed
       in: query
@@ -210,31 +235,6 @@ components:
         items:
           type: string
         type: array
-    Limit:
-      in: query
-      name: limit
-      schema:
-        default: 1000
-        type: integer
-    Ordering:
-      in: query
-      name: ordering
-      schema:
-        items:
-          type: string
-        type: array
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    VastDBFiltersQP:
-      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
-      in: query
-      name: filters
-      schema:
-        type: string
   requestBodies:
     VastAuditLogQueryDataParamsBody:
       content:

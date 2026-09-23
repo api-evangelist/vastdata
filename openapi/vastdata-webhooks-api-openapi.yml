@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory webhooks API
+  title: VAST API Swagger Schema Webhooks API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Webhooks send event information to external applications. Once defined, you can set them to be triggered by specific events.
-  name: webhooks
+  name: Webhooks
 paths:
   /webhooks/:
     get:
@@ -25,7 +25,7 @@ paths:
           description: Webhooks list
       summary: List Webhooks
       tags:
-      - webhooks
+      - Webhooks
     post:
       description: This endpoint creates a webhook.
       operationId: webhooks_create
@@ -69,7 +69,7 @@ paths:
           description: Webhook was created
       summary: Create Webhook
       tags:
-      - webhooks
+      - Webhooks
   /webhooks/{id}/:
     delete:
       description: This endpoint deletes a webhook.
@@ -81,7 +81,7 @@ paths:
           description: Webhook was deleted
       summary: Delete a Webhook
       tags:
-      - webhooks
+      - Webhooks
     get:
       description: This endpoint returns the details of a webhook.
       operationId: webhooks_read
@@ -96,7 +96,7 @@ paths:
           description: Webhook details
       summary: Return Details of a webhook
       tags:
-      - webhooks
+      - Webhooks
     patch:
       description: This endpoint modifies a webhook.
       operationId: webhooks_partial_update
@@ -140,7 +140,7 @@ paths:
           description: Webhook was modified
       summary: Modify Webhook
       tags:
-      - webhooks
+      - Webhooks
 components:
   schemas:
     ArbitraryStringsObject:

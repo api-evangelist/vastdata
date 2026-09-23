@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory openfiles API
+  title: VAST API Swagger Schema Openfiles API
   version: '1.0'
 security:
 - ApiToken: []
@@ -36,7 +36,7 @@ paths:
                 title: Open Files
                 type: array
           description: open files information
-      summary: Get all open files.
+      summary: Get all open files
       tags:
       - openfiles
   /openfiles/{id}/:
@@ -52,7 +52,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/OpenFile'
           description: ''
-      summary: Return details of an open file.
+      summary: Return details of an open file
       tags:
       - openfiles
   /openfiles/{id}/list_open_handles/:
@@ -70,7 +70,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AsyncTaskInResponse'
           description: ''
-      summary: List open handles for an open file.
+      summary: List open handles for an open file
       tags:
       - openfiles
 components:
@@ -110,6 +110,12 @@ components:
           type: integer
       type: object
       x-cli-pagination: true
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     OpenFileHandlesQueryParams:
       properties:
         protocol:
@@ -120,30 +126,17 @@ components:
       required:
       - protocol
       type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
   parameters:
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
+    PageSize:
+      in: query
+      name: page_size
       schema:
-        type: string
+        minimum: 1
+        type: integer
     OpenFilesQueryIdQP:
       description: Open Files Query id to filter by.
       in: query
       name: open_files_query__id
-      schema:
-        minimum: 1
-        type: integer
-    PageSize:
-      in: query
-      name: page_size
       schema:
         minimum: 1
         type: integer
@@ -153,6 +146,13 @@ components:
       schema:
         minimum: 1
         type: integer
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
   requestBodies:
     OpenFileHandlesQueryParamsBody:
       content:

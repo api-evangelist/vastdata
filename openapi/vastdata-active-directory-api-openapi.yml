@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory API
+  title: VAST API Swagger Schema Activedirectory API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
-- description: Active Directory is supported as an external authorization and authentication provider. Active Directory may store and provide user and group attributes used by both NFS and SMB protocols. Active Directory can be used to enable Kerberos authentication with NFSv4 and with SMB. It is a requirement for enabling SMB access on VAST Cluster. Up to one Active Directory domain is supported. The configuration must specify an LDAP configuration for binding to the LDAP domain of the Active Directory server. Limitations apply to the combinations of external providers and protocol enablement.
-  name: activedirectory
+- description: Active Directory is supported as an external authorization and authentication provider.
+  name: Active Directory
 paths:
   /activedirectory/:
     get:
@@ -25,7 +25,7 @@ paths:
           description: Active Directory information
       summary: List Active Directory Configurations
       tags:
-      - activedirectory
+      - Active Directory
     post:
       description: This endpoint creates an Active Directory configuration. An Active Directory configuration specifies an external Active Directory server domain and defines the configuration of a machine account name to be added to that domain if and when the cluster is joined to the domain.
       operationId: active_directory_create
@@ -229,7 +229,7 @@ paths:
           description: ''
       summary: Create Active Directory Configuration
       tags:
-      - activedirectory
+      - Active Directory
   /activedirectory/{id}/:
     delete:
       description: This endpoint deletes an Active Directory configuration.
@@ -256,7 +256,7 @@ paths:
           description: ''
       summary: Delete Active Directory configuration
       tags:
-      - activedirectory
+      - Active Directory
     get:
       description: This endpoint returns details of a specified Active Directory configuration
       operationId: active_directory_read
@@ -276,7 +276,7 @@ paths:
           description: ''
       summary: Return Active Directory Configuration Details
       tags:
-      - activedirectory
+      - Active Directory
     patch:
       description: This endpoint joins or leaves an Active Directory domain.
       operationId: active_directory_partial_update
@@ -492,7 +492,7 @@ paths:
           description: ''
       summary: Join or Leave Active Directory
       tags:
-      - activedirectory
+      - Active Directory
   /activedirectory/{id}/change_machine_account_password/:
     post:
       operationId: change_machine_account_password
@@ -503,7 +503,7 @@ paths:
           description: ''
       summary: Change machine account password
       tags:
-      - activedirectory
+      - Active Directory
   /activedirectory/{id}/current_gc/:
     get:
       operationId: active_directory_current_gc
@@ -518,7 +518,7 @@ paths:
           description: ''
       summary: Get current Active Directory GC
       tags:
-      - activedirectory
+      - Active Directory
   /activedirectory/{id}/dcs/:
     get:
       operationId: active_directory_dcs
@@ -549,7 +549,7 @@ paths:
           description: ''
       summary: Get Active Directory DCs
       tags:
-      - activedirectory
+      - Active Directory
   /activedirectory/{id}/domains/:
     get:
       operationId: active_directory_domains
@@ -576,7 +576,7 @@ paths:
           description: ''
       summary: Get Active Directory domains
       tags:
-      - activedirectory
+      - Active Directory
   /activedirectory/{id}/gcs/:
     get:
       operationId: active_directory_gcs
@@ -607,7 +607,7 @@ paths:
           description: ''
       summary: Get Active Directory GCs
       tags:
-      - activedirectory
+      - Active Directory
   /activedirectory/{id}/is_operation_healthy:
     post:
       description: Returns warnings about the future state if operation is performed.
@@ -654,7 +654,7 @@ paths:
           description: ''
       summary: Check whether an operation may be successfully performed
       tags:
-      - activedirectory
+      - Active Directory
   /activedirectory/{id}/refresh/:
     patch:
       operationId: active_directory_refresh
@@ -670,18 +670,99 @@ paths:
           description: Refreshed
       summary: Refresh AD
       tags:
-      - activedirectory
+      - Active Directory
 components:
-  parameters:
-    ActiveDirectoryId:
-      description: Active Directory ID
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
   schemas:
+    ActiveDirectory:
+      properties:
+        domain_name:
+          description: FQDN of the domain. This parameter is required unless ldap_id is provided
+          type: string
+          x-cli-header: Domain Name
+        enabled:
+          description: enabled/disabled
+          type: boolean
+          x-cli-header: Enabled State
+          x-example: --enabled/--disabled
+        guid:
+          description: GUID
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        last_ma_pwd_renewal_status:
+          $ref: '#/components/schemas/LastMaPwdRenewalStatus'
+        ldap:
+          $ref: '#/components/schemas/Ldap'
+        ldap_id:
+          description: ID of the LDAP configuration for binding to the LDAP domain of the Active Directory server. This parameter is required unless domain_name is provided.
+          type: integer
+        ma_pwd_change_frequency:
+          description: Frequency for scheduled password change for the VAST Cluster Active Directory machine account password.
+          type: string
+          x-cli-header: Machine Account password change frequency
+        ma_pwd_update_time:
+          description: Machine Account password update time.
+          type: string
+          x-cli-header: Machine Account password update time
+        machine_account_name:
+          description: Name of the computer object/machine account to add. Recommended to be the name of the cluster.
+          type: string
+          x-cli-header: Machine Account Name
+        monitor_action:
+          description: The type of periodic health check that VAST Cluster performs for the Active Directory provider. PING (default, less overhead and impact on the provider) = pings the provider. BIND = binds to the provider.
+          enum:
+          - PING
+          - BIND
+          type: string
+        name:
+          type: string
+          x-cli-header: Name
+        ntlm_enabled:
+          default: true
+          description: Manages support of NTLM authentication method for SMB protocol.
+          type: boolean
+        organizational_unit:
+          description: Organizational Unit within Active Directory where the Cluster Machine account will be created. If left empty, it will go into default Computers OU.
+          type: string
+          x-cli-header: Organizational Unit
+        preferred_dc_list:
+          description: 'List of Domain Controllers to prefer for authentication. DCs listed here will be queried
+
+            exclusively unless they fail or do not respond. In such a case, other DCs will be consulted.
+
+            Specify as a comma-separated list. Each entry can be a fully-qualified hostname or an IP address.
+
+            '
+          type: object
+          x-cli-header: Preferred dc list
+        scheduled_ma_pwd_change_enabled:
+          description: Enables scheduled password change for the VAST Cluster Active Directory machine account password.
+          type: boolean
+          x-cli-header: Scheduled Machine Account password change enabled
+        smb_allowed:
+          default: true
+          description: Indicates if the Active Directory server can service IO from SMB protocol.
+          type: boolean
+        state:
+          description: Active Directory state
+          enum:
+          - UNKNOWN
+          - NOT_A_MEMBER
+          - JOINED
+          - JOINING_IN_PROGRESS
+          - LEAVING_IN_PROGRESS
+          - JOINED_FAILED
+          - LEAVE_FAILED
+          type: string
+          x-cli-header: State
+        tenant_id:
+          type: integer
+        title:
+          type: string
+        url:
+          type: string
+      type: object
     LastMaPwdRenewalStatus:
       description: Last Active Directory machine account password renewal status
       properties:
@@ -700,6 +781,16 @@ components:
         next_scheduled_change:
           description: Next scheduled change time
           type: string
+      type: object
+    Warnings:
+      properties:
+        warnings:
+          items:
+            example: 'Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant=''default'', path=''/test'')'
+            type: string
+          type: array
+      required:
+      - warnings
       type: object
     Ldap:
       properties:
@@ -904,106 +995,15 @@ components:
           description: Creation Async task properties
           type: object
       type: object
-    Warnings:
-      properties:
-        warnings:
-          items:
-            example: 'Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant=''default'', path=''/test'')'
-            type: string
-          type: array
-      required:
-      - warnings
-      type: object
-    ActiveDirectory:
-      properties:
-        domain_name:
-          description: FQDN of the domain. This parameter is required unless ldap_id is provided
-          type: string
-          x-cli-header: Domain Name
-        enabled:
-          description: enabled/disabled
-          type: boolean
-          x-cli-header: Enabled State
-          x-example: --enabled/--disabled
-        guid:
-          description: GUID
-          type: string
-        id:
-          type: integer
-          x-cli-header: ID
-        last_ma_pwd_renewal_status:
-          $ref: '#/components/schemas/LastMaPwdRenewalStatus'
-        ldap:
-          $ref: '#/components/schemas/Ldap'
-        ldap_id:
-          description: ID of the LDAP configuration for binding to the LDAP domain of the Active Directory server. This parameter is required unless domain_name is provided.
-          type: integer
-        ma_pwd_change_frequency:
-          description: Frequency for scheduled password change for the VAST Cluster Active Directory machine account password.
-          type: string
-          x-cli-header: Machine Account password change frequency
-        ma_pwd_update_time:
-          description: Machine Account password update time.
-          type: string
-          x-cli-header: Machine Account password update time
-        machine_account_name:
-          description: Name of the computer object/machine account to add. Recommended to be the name of the cluster.
-          type: string
-          x-cli-header: Machine Account Name
-        monitor_action:
-          description: The type of periodic health check that VAST Cluster performs for the Active Directory provider. PING (default, less overhead and impact on the provider) = pings the provider. BIND = binds to the provider.
-          enum:
-          - PING
-          - BIND
-          type: string
-        name:
-          type: string
-          x-cli-header: Name
-        ntlm_enabled:
-          default: true
-          description: Manages support of NTLM authentication method for SMB protocol.
-          type: boolean
-        organizational_unit:
-          description: Organizational Unit within Active Directory where the Cluster Machine account will be created. If left empty, it will go into default Computers OU.
-          type: string
-          x-cli-header: Organizational Unit
-        preferred_dc_list:
-          description: 'List of Domain Controllers to prefer for authentication. DCs listed here will be queried
-
-            exclusively unless they fail or do not respond. In such a case, other DCs will be consulted.
-
-            Specify as a comma-separated list. Each entry can be a fully-qualified hostname or an IP address.
-
-            '
-          type: object
-          x-cli-header: Preferred dc list
-        scheduled_ma_pwd_change_enabled:
-          description: Enables scheduled password change for the VAST Cluster Active Directory machine account password.
-          type: boolean
-          x-cli-header: Scheduled Machine Account password change enabled
-        smb_allowed:
-          default: true
-          description: Indicates if the Active Directory server can service IO from SMB protocol.
-          type: boolean
-        state:
-          description: Active Directory state
-          enum:
-          - UNKNOWN
-          - NOT_A_MEMBER
-          - JOINED
-          - JOINING_IN_PROGRESS
-          - LEAVING_IN_PROGRESS
-          - JOINED_FAILED
-          - LEAVE_FAILED
-          type: string
-          x-cli-header: State
-        tenant_id:
-          type: integer
-        title:
-          type: string
-        url:
-          type: string
-      type: object
+  parameters:
+    ActiveDirectoryId:
+      description: Active Directory ID
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

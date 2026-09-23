@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory vsettings API
+  title: VAST API Swagger Schema Vsettings API
   version: '1.0'
 security:
 - ApiToken: []
@@ -58,6 +58,12 @@ paths:
       - vsettings
 components:
   parameters:
+    VsettingKey:
+      description: VSetting key
+      in: query
+      name: key
+      schema:
+        type: string
     ClusterId:
       in: path
       name: id
@@ -65,20 +71,10 @@ components:
       schema:
         minimum: 1
         type: integer
-    VsettingKey:
-      description: VSetting key
-      in: query
-      name: key
-      schema:
-        type: string
   schemas:
-    DeleteVsettingParams:
-      properties:
-        key:
-          description: vsetting key
-          type: string
-      required:
-      - key
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
       type: object
     ModifyVsettingsParams:
       properties:
@@ -87,9 +83,13 @@ components:
       required:
       - vsettings
       type: object
-    ArbitraryStringsObject:
-      additionalProperties:
-        type: string
+    DeleteVsettingParams:
+      properties:
+        key:
+          description: vsetting key
+          type: string
+      required:
+      - key
       type: object
   securitySchemes:
     ApiToken:

@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory clusters API
+  title: VAST API Swagger Schema Clusters API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: VMS manages configuration of a single VAST cluster. The clusters path provides access to many configurations and settings that apply to the cluster.
-  name: clusters
+  name: Clusters
 paths:
   /clusters/:
     get:
@@ -29,7 +29,7 @@ paths:
           description: Clusters information
       summary: List Clusters
       tags:
-      - clusters
+      - Clusters
     post:
       description: This endpoint creates the cluster.\ Ideally, VMS will auto-discover the nodes and its logic will be able to decide on\ exact C/D nodes assignment for the cluster.\ Therefore, in ideal case this command gets no node-related arguments.\ Optionally specific C/D nodes list or C/D nodes number can be provided.
       operationId: clusters_create
@@ -395,7 +395,7 @@ paths:
           description: ''
       summary: Create Cluster
       tags:
-      - clusters
+      - Clusters
       x-cli-command: cluster
       x-cli-subcommand: create
   /clusters/add_boxes/:
@@ -416,7 +416,7 @@ paths:
           description: ''
       summary: Start Add Boxes procedure
       tags:
-      - clusters
+      - Clusters
   /clusters/bgp_table/:
     get:
       description: This endpoint returns the BGP connections table.
@@ -438,7 +438,7 @@ paths:
           description: BGP connections table
       summary: Return BGP Connections Table
       tags:
-      - clusters
+      - Clusters
   /clusters/block_providers/:
     patch:
       description: This endpoint temporarily blocks all authentication providers
@@ -457,7 +457,7 @@ paths:
           description: ''
       summary: Block Authentication Providers
       tags:
-      - clusters
+      - Clusters
   /clusters/close_open_files/:
     post:
       description: This endpoint closes specified files.
@@ -498,7 +498,7 @@ paths:
           description: Close files tasks
       summary: Close open files
       tags:
-      - clusters
+      - Clusters
   /clusters/close_protocol_handle/:
     delete:
       description: This endpoint closes open protocol filehandles.
@@ -548,7 +548,7 @@ paths:
           description: Service temporarily unavailable, try again later.
       summary: Close open protocol filehandles
       tags:
-      - clusters
+      - Clusters
   /clusters/dbox_migration/:
     post:
       description: This endpoint runs DBox migration.
@@ -584,7 +584,7 @@ paths:
           description: ''
       summary: Dbox migration
       tags:
-      - clusters
+      - Clusters
   /clusters/dbox_migration_status/:
     get:
       description: This endpoint returns the status of DBox migration.
@@ -604,7 +604,7 @@ paths:
           description: ''
       summary: DBox migration status
       tags:
-      - clusters
+      - Clusters
   /clusters/dbox_migration_update_source_target:
     get:
       description: This endpoint returns the status of DBox migration validation
@@ -618,7 +618,7 @@ paths:
           description: ''
       summary: Dbox migration update source target info
       tags:
-      - clusters
+      - Clusters
     patch:
       description: This endpoint runs DBox migration.
       operationId: dbox_migration_update_source_target
@@ -650,7 +650,7 @@ paths:
           description: ''
       summary: Dbox migration update source target
       tags:
-      - clusters
+      - Clusters
   /clusters/dbox_migration_validate/:
     get:
       description: This endpoint run DBox validation.
@@ -664,7 +664,7 @@ paths:
           description: ''
       summary: DBox migration validate
       tags:
-      - clusters
+      - Clusters
   /clusters/dbox_migration_validate_state/:
     get:
       description: This endpoint returns the status of DBox validation.
@@ -678,7 +678,7 @@ paths:
           description: ''
       summary: DBox migration validate state
       tags:
-      - clusters
+      - Clusters
   /clusters/dboxes_total_capacity/:
     get:
       description: This endpoint returns the total capacity with given dboxes ids
@@ -699,7 +699,7 @@ paths:
           description: ''
       summary: DBoxes total capacity
       tags:
-      - clusters
+      - Clusters
   /clusters/get_shard_expansion_status/:
     get:
       description: This endpoint returns the status of system shard expansion.
@@ -713,7 +713,7 @@ paths:
           description: ''
       summary: System shard expansion status
       tags:
-      - clusters
+      - Clusters
   /clusters/get_snapshoted_paths/:
     get:
       description: This endpoint returns a list of paths that are protected by snapshots.
@@ -733,7 +733,7 @@ paths:
           description: OK
       summary: Return Paths that have Snapshots
       tags:
-      - clusters
+      - Clusters
   /clusters/list_clone_snapshoted_paths_remote/:
     get:
       description: This endpoint returns a list of snapshots for a path on a remote replication peer.
@@ -765,7 +765,7 @@ paths:
           description: ''
       summary: List snapshots on a remote replication peer
       tags:
-      - clusters
+      - Clusters
   /clusters/list_open_protocol_handles/:
     get:
       description: This endpoint queries open protocol filehandles.
@@ -803,7 +803,7 @@ paths:
           description: Service temporarily unavailable, try again later.
       summary: Query open protocol filehandles
       tags:
-      - clusters
+      - Clusters
   /clusters/list_prefetch_paths_info/:
     get:
       description: This endpoint lists information about prefetch paths.
@@ -826,7 +826,7 @@ paths:
           description: Prefetches info
       summary: List Prefetch Path Information
       tags:
-      - clusters
+      - Clusters
   /clusters/list_smb_client_connections/:
     get:
       operationId: list_smb_client_connections
@@ -847,7 +847,7 @@ paths:
           description: ''
       summary: Query SMB client connections
       tags:
-      - clusters
+      - Clusters
   /clusters/list_smb_open_files/:
     get:
       operationId: list_smb_open_files
@@ -872,7 +872,7 @@ paths:
           description: ''
       summary: Query SMB open files
       tags:
-      - clusters
+      - Clusters
   /clusters/list_snapshoted_paths_remote/:
     get:
       description: This endpoint returns a list of paths that have snapshots on a remote replication peer.
@@ -899,7 +899,7 @@ paths:
           description: ''
       summary: List snapshoted paths on remote target
       tags:
-      - clusters
+      - Clusters
   /clusters/list_tenants_remote/:
     get:
       description: This endpoint returns the list of tenants.
@@ -920,10 +920,10 @@ paths:
           description: ''
       summary: List tenants on remote target
       tags:
-      - clusters
+      - Clusters
   /clusters/rotate_master_encryption_group_key/:
     post:
-      description: This endpoint rotates the master encryption group key, if encryption is enabled with encryption type CIPHER_TRUST_KMIP, in which  encryption keys are managed externally on Thales Group CipherTrust Data Security Platform. This command generates a new version of the master key. The master key is used by the cluster to encrypt the data encryption keys when they are retrieved from the EKM and distributed by the cluster node that hosts the encryption service client to other cluster nodes. The master key is generated by the cluster and should not be rotated from the EKM itself.
+      description: This endpoint rotates the master encryption group key, if encryption is enabled with encryption type CIPHER_TRUST_KMIP, in which encryption keys are managed externally on Thales Group CipherTrust Data Security Platform. This command generates a new version of the master key. The master key is used by the cluster to encrypt the data encryption keys when they are retrieved from the EKM and distributed by the cluster node that hosts the encryption service client to other cluster nodes. The master key is generated by the cluster and should not be rotated from the EKM itself.
       operationId: rotate_master_encryption_group_key
       responses:
         '204':
@@ -948,9 +948,9 @@ paths:
                     type: string
                 type: object
           description: Service temporarily unavailable, try again later.
-      summary: Rotate master encryption group key.
+      summary: Rotate master encryption group key
       tags:
-      - clusters
+      - Clusters
   /clusters/run_hardware_check/:
     patch:
       description: This endpoint runs the hardware upgrade validations.
@@ -986,7 +986,7 @@ paths:
           description: cluster upgrade validations async response
       summary: Run Hardware Validations
       tags:
-      - clusters
+      - Clusters
   /clusters/shard_expand/:
     post:
       description: This endpoint runs system shard expansion.
@@ -1019,7 +1019,7 @@ paths:
           description: ''
       summary: Shard expansion
       tags:
-      - clusters
+      - Clusters
   /clusters/wipe/:
     post:
       description: This endpoint stops the cluster s/w on all nodes.
@@ -1059,7 +1059,7 @@ paths:
           description: Cluster wipe async response
       summary: Stop Cluster s/w on All Nodes
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/:
     delete:
       description: This endpoint deletes the cluster.
@@ -1076,7 +1076,7 @@ paths:
           description: Deleted
       summary: Delete Cluster
       tags:
-      - clusters
+      - Clusters
     get:
       description: This endpoint returns details of the cluster.
       operationId: clusters_read
@@ -1096,7 +1096,7 @@ paths:
           description: ''
       summary: Detail Cluster Properties
       tags:
-      - clusters
+      - Clusters
     patch:
       description: This endpoint can be used to change global settings on the cluster.
       operationId: clusters_partial_update
@@ -1384,7 +1384,7 @@ paths:
           description: ''
       summary: Manage Cluster
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/add_ekm/:
     post:
       operationId: cluster_add_ekm
@@ -1434,7 +1434,7 @@ paths:
           description: ''
       summary: Add EKM
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/advanced/:
     get:
       description: This endpoint returns aggregated information about the cluster
@@ -1450,7 +1450,7 @@ paths:
           description: OK
       summary: Aggregated information about the cluster
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/auditing/:
     get:
       description: This endpoint returns cluster audit settings
@@ -1466,7 +1466,7 @@ paths:
           description: OK
       summary: Show Cluster Audit Settings
       tags:
-      - clusters
+      - Clusters
     patch:
       description: This endpoint updates cluster audit settings
       operationId: cluster_auditing_modify
@@ -1483,7 +1483,7 @@ paths:
           description: OK
       summary: Modify Cluster Audit Settings
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/celery_queue/:
     get:
       description: This endpoint will query all or a specific task from the celery queue
@@ -1508,7 +1508,7 @@ paths:
           description: ''
       summary: List celery queue
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/celery_remove_queued_task/:
     delete:
       description: This endpoint will delete waiting tasks that were not fetched by any worker from the celery queue
@@ -1530,7 +1530,7 @@ paths:
           description: Task was removed from the celery queue
       summary: Delete all tasks of a specific name from the celery queue
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/celery_reserved/:
     get:
       description: This endpoint will query all tasks that are reserved by the main process
@@ -1550,7 +1550,7 @@ paths:
           description: ''
       summary: List celery reserved queue
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/celery_scheduled/:
     get:
       description: This endpoint will query all tasks that are scheduled to a specific time
@@ -1570,7 +1570,7 @@ paths:
           description: ''
       summary: List celery scheduled queue
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/celery_status/:
     get:
       description: This endpoint will show celery stats
@@ -1590,7 +1590,7 @@ paths:
           description: ''
       summary: Show the full celery stats
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/delete_folder/:
     delete:
       description: This endpoint deletes a folder from the system.
@@ -1621,7 +1621,7 @@ paths:
           description: Deleted
       summary: Delete Cluster Folder
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/expand/:
     post:
       operationId: clusters_expand
@@ -1660,7 +1660,7 @@ paths:
           description: ''
       summary: Expand Cluster
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/generate_unfreeze_token/:
     post:
       description: This endpoint generates a token for unlocking indestructibility.
@@ -1693,7 +1693,7 @@ paths:
           description: ''
       summary: Generate Token to Unlock Indestructibility
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/locks/:
     delete:
       description: This endpoint deletes NLM locks on a file.
@@ -1707,7 +1707,7 @@ paths:
           description: Deleted
       summary: Deletes NLM Locks
       tags:
-      - clusters
+      - Clusters
     post:
       description: This endpoint returns all NLM locks on a file at a specified path.
       operationId: cluster_locks_list
@@ -1726,7 +1726,7 @@ paths:
           description: Lock information
       summary: List NLM Locks
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/notify_new_version/:
     post:
       operationId: notify_new_version
@@ -1777,7 +1777,7 @@ paths:
           description: ''
       summary: Notify of New Version Available for Download
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/pre_upgrade_validation_exceptions/:
     get:
       operationId: pre_upgrade_validation_exceptions
@@ -1797,7 +1797,7 @@ paths:
           description: ''
       summary: Run Pre-Upgrade Validation
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/release_recursive_locks/:
     delete:
       description: This endpoint deletes NLM locks on a path recursively.
@@ -1815,7 +1815,7 @@ paths:
           description: ''
       summary: Deletes NLM Locks Recursively
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/resume_deploy/:
     patch:
       description: This endpoint resumes failed cluster deploy task.
@@ -1836,7 +1836,7 @@ paths:
           description: ''
       summary: Resume failed deploy
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/rpc/:
     patch:
       description: This endpoint runs cluster rpc.
@@ -1872,9 +1872,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Generic'
           description: ''
-      summary: This endpoint runs cluster rpc.
+      summary: This endpoint runs cluster rpc
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/s3_true_ip_config/:
     get:
       operationId: clusters_get_s3_true_ip_config
@@ -1910,7 +1910,7 @@ paths:
           description: S3 True IP configuration
       summary: Get S3 True IP Configuration
       tags:
-      - clusters
+      - Clusters
     patch:
       description: This endpoint sets the S3 True IP configuration for the cluster, including true client IP and IP address ranges.
       operationId: clusters_set_s3_true_ip_config
@@ -1954,7 +1954,7 @@ paths:
           description: ''
       summary: Set S3 True IP Configuration
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/set_certificates/:
     post:
       operationId: cluster_set_certificates
@@ -2005,10 +2005,9 @@ paths:
           description: ''
       summary: Update EKM certificates
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/set_drive_fw_upgrade/:
     post:
-      description: Set true/false to upgrade non-active drives fw
       operationId: set_drive_fw_upgrade
       parameters:
       - description: Cluster ID
@@ -2034,7 +2033,7 @@ paths:
           description: ''
       summary: Set true/false to upgrade non-active drives fw
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/set_password/:
     patch:
       description: This endpoint changes the cluster passwords.
@@ -2071,7 +2070,7 @@ paths:
           description: ''
       summary: Change Cluster Passwords
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/should_upload/:
     post:
       operationId: should_upload
@@ -2109,7 +2108,7 @@ paths:
           description: ''
       summary: Detect Need for Bundle Upload
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/stop_upgrade/:
     post:
       description: This endpoint stops a running upgrade flow.
@@ -2129,7 +2128,7 @@ paths:
           description: ''
       summary: Stop Running Upgrade
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/system_settings/:
     patch:
       description: This endpoint sets the cluster system settings.
@@ -2158,7 +2157,7 @@ paths:
           description: OK
       summary: Set Cluster System Settings
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/unfreeze/:
     post:
       description: This endpoint unlocks the cluster's indestructibility mechanism.
@@ -2187,7 +2186,7 @@ paths:
           description: Unfreeze ran succesfully
       summary: Unfreeze Cluster
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/update_polling_interval/:
     patch:
       operationId: update_polling_interval
@@ -2220,7 +2219,7 @@ paths:
           description: ''
       summary: Change interval for a polling task
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/upgrade/:
     patch:
       description: This endpoint upgrades the cluster s/w on the nodes
@@ -2277,7 +2276,7 @@ paths:
           description: ''
       summary: Upgrade Cluster
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/upgrade_optane/:
     post:
       operationId: upgrade_optane
@@ -2308,7 +2307,7 @@ paths:
           description: ''
       summary: Upgrade Optane NVRAM
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/upgrade_ssd/:
     post:
       operationId: upgrade_ssd
@@ -2339,7 +2338,7 @@ paths:
           description: ''
       summary: Upgrade SSD
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/upgrade_without_file/:
     post:
       operationId: upgrade_without_file
@@ -2423,7 +2422,7 @@ paths:
           description: ''
       summary: Upgrade Cluster from Pre-Uploaded Bundle
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/upload_bundle/:
     delete:
       operationId: delete_bundle
@@ -2439,7 +2438,7 @@ paths:
           description: ''
       summary: Delete Upgrade Bundle from Cluster
       tags:
-      - clusters
+      - Clusters
     post:
       operationId: upload_bundle
       parameters:
@@ -2476,7 +2475,7 @@ paths:
           description: ''
       summary: Upload Upgrade Bundle to Cluster
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/upload_from_s3/:
     post:
       operationId: upload_from_s3
@@ -2518,7 +2517,7 @@ paths:
           description: ''
       summary: Upload Upgrade Bundle from S3 URL
       tags:
-      - clusters
+      - Clusters
   /clusters/{id}/vast_db/:
     get:
       description: This endpoint returns cluster Vast DB settings
@@ -2534,7 +2533,7 @@ paths:
           description: OK
       summary: Show Cluster Vast DB Settings
       tags:
-      - clusters
+      - Clusters
     patch:
       description: This endpoint updates cluster Vast DB settings
       operationId: cluster_vast_db_modify
@@ -2551,7 +2550,7 @@ paths:
           description: OK
       summary: Modify Cluster Vast DB Settings
       tags:
-      - clusters
+      - Clusters
   /hosts/discovered_hosts/:
     get:
       operationId: discovered_hosts
@@ -2572,7 +2571,7 @@ paths:
           description: Hosts information
       summary: Return new discovered hosts
       tags:
-      - clusters
+      - Clusters
 components:
   schemas:
     CNode:
@@ -2743,429 +2742,35 @@ components:
       required:
       - name
       type: object
-    RequestTruncatedQOS:
-      properties:
-        static_limits:
-          $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
-      type: object
-    SmbClientConnection:
-      type: object
-    VastInstallInfo:
-      properties:
-        box_name:
-          description: Name of parent CBox/DBox
-          type: string
-        box_uid:
-          description: UID of the parent CBox/DBox
-          type: string
-        box_vendor:
-          description: Model description, including vendor
-          type: string
-        hostname:
-          description: Hostname
-          type: string
-        ip:
-          description: Management IP
-          type: string
-        is_ceres:
-          description: Whether the host is part of a CERES DBox
-          type: boolean
-        is_ceres_v2:
-          description: Whether the host is part of a CERES V2 DBox
-          type: boolean
-        is_vms_host:
-          description: Whether the host is the VMS CNode
-          type: boolean
-        node_type:
-          description: Type of Node (CNode or DNode)
-          type: string
-        position:
-          description: Position of node in chassis
-          type: string
-        vast_os:
-          description: VAST OS version running on the host
-          type: string
-      type: object
-    ClusterAuditingReadOnly:
+    ClusterLocksRequestParams:
       allOf:
-      - $ref: '#/components/schemas/ClusterAuditing'
+      - $ref: '#/components/schemas/ClusterLocksParams'
       - properties:
-          vast_audit_log_state:
-            description: State of the VAST DataBase table to which audit logs are saved, if enabled
+          direction:
+            description: Pagination direction.
             enum:
-            - NONE
-            - IN_CREATION
-            - CREATED
-            - FAILED
+            - prev
+            - next
             type: string
-        required:
-        - audit_dir_name
-        - read_access_users
-        - read_access_users_groups
-        - max_file_size
-        - max_retention_period
-        - max_retention_timeunit
-        - protocols_audit
-        - protocols
-        - max_audit_dir_size
-        - enable_json_audit
-        - enable_vast_db_audit
-        - vast_audit_log_state
-        type: object
-    DNode:
+    ClusterVastDBModify:
       properties:
-        arch_type:
-          type: string
-        bios_version:
-          type: string
-          x-cli-header: BIOS Version
-        bmc_fw_version:
-          description: BMC FW version
-          type: string
-          x-cli-header: BMC FW version
-        bmc_state:
-          type: string
-        bmc_state_reason:
-          type: string
-        box_rdma_port:
-          description: port for internal use
+        vast_db_splits:
+          description: The number of splits used for query_data scanning speed. Default 8.
           type: integer
-        build:
-          type: string
-          x-cli-header: Build
-        cluster:
-          description: Parent Cluster
-          type: string
-          x-cli-header: Cluster
-        cluster_id:
-          type: integer
-        cpld:
-          type: string
-        data_rdma_port:
-          description: port for internal use
-          type: integer
-        data_tcp_port:
-          description: port for internal use
-          type: integer
-        dbox:
-          description: Parent DBox
-          type: string
-          x-cli-header: DBox
-        dbox_id:
-          type: integer
-        display_name:
-          type: string
-        dtray:
-          description: Parent DTray
-          type: string
-          x-cli-header: DTray
-        ebox:
-          description: Parent EBox
-          type: string
-          x-cli-header: EBox
-        ebox_id:
-          type: integer
-        enabled:
-          description: True if Dnode is enabled
-          type: boolean
-        guid:
-          type: string
-        host_label:
-          description: Host label, used to label container, e.g. 11.0.0.1-4000
-          type: string
-        hostname:
-          description: Host Name
-          type: string
-          x-cli-header: Hostname
-        id:
-          type: integer
-          x-cli-header: ID
-        ip:
-          description: The IP of the bond interface of ip1 and ip2.
-          type: string
-          x-cli-header: IP
-        ip1:
-          description: 1st of two IP addresses on the cluster's internal network
-          type: string
-          x-cli-header: IP1
-        ip2:
-          description: 2nd of two IP addresses on the cluster's internal network
-          type: string
-          x-cli-header: IP2
-        ipmi_ip:
-          description: IPMI IP
-          type: string
-          x-cli-header: IPMI IP
-        ipv6:
-          description: External IPv6 Address
-          type: string
-          x-cli-header: IPv6
-        is_primary:
-          description: Indicates if node is the primary, aka master, dnode.
-          type: boolean
-          x-cli-header: Primary
-        led_status:
-          type: string
-          x-cli-header: LED Status
-        mgmt_ip:
-          description: IP address for management access
-          type: string
-          x-cli-header: MGMT IP
-        name:
-          type: string
-          x-cli-header: Name
-        new_name:
-          type: string
-        os_version:
-          description: Node OS version
-          type: string
-          x-cli-header: OS
-        platform_rdma_port:
-          description: port for internal use
-          type: integer
-        platform_tcp_port:
-          description: port for internal use
-          type: integer
-        position:
-          type: string
-        rpm:
-          description: VAST Utils Version
-          type: string
-          x-cli-header: VAST Utils Version
-        sn:
-          description: The host serial number
-          type: string
-          x-cli-header: Serial
-        state:
-          type: string
-          x-cli-header: State
-        sync:
-          description: Synchronization state with leader
-          type: string
-        sync_time:
-          description: Synchronization time with leader
-          type: string
-        title:
-          type: string
-        url:
-          type: string
-      required:
-      - name
-      type: object
-    AddBoxesCBoxesHostsParams:
-      items:
-        properties:
-          id:
-            type: integer
-          nb_eth_mtu:
-            description: relevant only for large subnet
-            type: integer
-          nb_ib_mode:
-            description: relevant only for large subnet
-            enum:
-            - datagram
-            - connected
-            type: string
-          nb_ib_mtu:
-            description: relevant only for large subnet
-            type: integer
-          net_type:
-            enum:
-            - eth
-            - ib
-            - int_eth_ext_ib
-            - int_ib_ext_eth
-            type: string
-          reverse_nics:
-            default: 'false'
-            type: boolean
-          skip_nic:
-            enum:
-            - int
-            - ext
-            - none
-            type: string
-        required:
-        - id
-        - net_type
-        - reverse_nics
-        - skip_nic
-        type: object
-      type: array
-    TruncatedQOSStaticLimits:
-      properties:
-        burst_reads_bw_mb:
-          default: 0
-          description: Burst reads BW Mb
-          minimum: 0
-          type: integer
-        burst_reads_iops:
-          default: 0
-          description: Burst reads IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_iops:
-          default: 0
-          description: Burst reads loan IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_mb:
-          default: 0
-          description: Burst reads loan Mb
-          minimum: 0
-          type: integer
-        burst_writes_bw_mb:
-          default: 0
-          description: Burst writes BW Mb
-          minimum: 0
-          type: integer
-        burst_writes_iops:
-          default: 0
-          description: Burst writes IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_iops:
-          default: 0
-          description: Burst writes loan IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_mb:
-          default: 0
-          description: Burst writes loan Mb
-          minimum: 0
-          type: integer
-        max_reads_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_reads_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-      required:
-      - max_reads_bw_mbps
-      - max_writes_bw_mbps
-      - max_reads_iops
-      - max_writes_iops
-      - burst_reads_bw_mb
-      - burst_writes_bw_mb
-      - burst_reads_loan_mb
-      - burst_writes_loan_mb
-      - burst_reads_iops
-      - burst_writes_iops
-      - burst_reads_loan_iops
-      - burst_writes_loan_iops
-      type: object
-    DBoxMigrationResponse:
-      type: object
-    RequestTruncatedQOSStaticLimits:
-      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
-      properties:
-        burst_reads_bw_mb:
-          default: 0
-          description: Burst reads BW Mb
-          minimum: 0
-          type: integer
-        burst_reads_iops:
-          default: 0
-          description: Burst reads IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_iops:
-          default: 0
-          description: Burst reads loan IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_mb:
-          default: 0
-          description: Burst reads loan Mb
-          minimum: 0
-          type: integer
-        burst_writes_bw_mb:
-          default: 0
-          description: Burst writes BW Mb
-          minimum: 0
-          type: integer
-        burst_writes_iops:
-          default: 0
-          description: Burst writes IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_iops:
-          default: 0
-          description: Burst writes loan IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_mb:
-          default: 0
-          description: Burst writes loan Mb
-          minimum: 0
-          type: integer
-        max_reads_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_reads_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
+        vast_db_sub_splits:
+          description: The number of sub-splits used for query_data scanning speed. Default 8.
           type: integer
       type: object
-    ClusterAdvanced:
+    ProtocolHandle:
       properties:
-        number_of_files_and_directories:
-          description: Number of files and directories
-          type: integer
-        number_of_protected_shares:
-          description: Number of protected shards
-          type: integer
-        number_of_shares:
-          description: Number of shards
-          type: integer
-        number_of_unprotected_shares:
-          description: Number of unprotected shares
-          type: integer
-        read_bandwidth_in_bytes_per_sec:
-          type: integer
-        read_iops_per_sec:
-          type: integer
-        read_latency_in_millisec:
-          type: number
-        total_capacity_in_gib:
-          description: Total cluster capacity in GiB
-          type: number
-        used_capacity_in_gib:
-          description: Used cluster capacity in GiB
-          type: number
-        write_bandwidth_in_bytes_per_sec:
-          type: integer
-        write_iops_per_sec:
-          type: integer
-        write_latency_in_millisec:
-          type: number
+        error:
+          type: string
+        file_handle:
+          $ref: '#/components/schemas/FileHandle'
+        open_protocol_handles:
+          items:
+            $ref: '#/components/schemas/OpenProtocolHandle'
+          type: array
       type: object
     ChallengeToken:
       properties:
@@ -3187,313 +2792,7 @@ components:
       required:
       - name
       type: object
-    SystemShardExpandResponse:
-      type: object
-    ListPrefetchItem:
-      properties:
-        paths:
-          items:
-            $ref: '#/components/schemas/ListPrefetchPathItem'
-          type: array
-        tenant:
-          properties:
-            name:
-              description: Tenant name
-              type: string
-          type: object
-      type: object
-    DBoxMigrationUpdateSourceTargetResponse:
-      properties:
-        source_ids:
-          items:
-            type: integer
-          type: array
-        target_ids:
-          items:
-            type: integer
-          type: array
-      type: object
-    ClusterLocksParams:
-      allOf:
-      - $ref: '#/components/schemas/TenantIdBody'
-      - properties:
-          lock_type:
-            description: Lock type. Specify if unlock_type is SINGLE.
-            enum:
-            - LOCK_TYPE_NLM4
-            - LOCK_TYPE_NFS4
-            - LOCK_TYPE_SMB2
-            type: string
-          path:
-            description: 'The full path to a locked file, formed as: VIEW_PATH/FILE_PATH, where VIEW_PATH is the VAST Cluster view path, and FILE_PATH is the client path to a locked file, relative to the mount point.'
-            type: string
-          unlock_id:
-            description: Unlock ID. Specify if unlock_type is SINGLE.
-            type: string
-          unlock_type:
-            description: The type of unlock operation to perform. 'SINGLE' unlocks a single specified lock, 'ALL' unlocks all locks.
-            enum:
-            - SINGLE
-            - ALL
-            type: string
-    PreUpgradeValidationExceptions:
-      properties:
-        exceptions:
-          description: Pre-upgrade validation exceptions
-          type: object
-      required:
-      - exceptions
-      type: object
-    CeleryInfo:
-      type: object
-    ErrorResponse:
-      properties:
-        detail:
-          example: Failed to rotate encryption group key.
-          type: string
-      type: object
-    AddBoxesParams:
-      properties:
-        cboxes:
-          properties:
-            hosts:
-              $ref: '#/components/schemas/AddBoxesCBoxesHostsParams'
-            order:
-              type: integer
-            subnet:
-              type: integer
-          required:
-          - hosts
-          - subnet
-          - order
-          type: object
-        cnode_ipmi_pool:
-          items:
-            type: string
-          type: array
-        cnode_management_ip_pool:
-          items:
-            type: string
-          type: array
-        cnode_start_index:
-          description: 'CNode start index valid range: [1, 99], for null value index will be selected automatically, as max_existed_index + 1'
-          type: integer
-        continue_migration:
-          type: boolean
-        dboxes:
-          properties:
-            hosts:
-              $ref: '#/components/schemas/AddBoxesDBoxesHostsParams'
-            order:
-              type: integer
-            subnet:
-              type: integer
-          required:
-          - hosts
-          - subnet
-          - order
-          type: object
-        dnode_ipmi_pool:
-          items:
-            type: string
-          type: array
-        dnode_management_ip_pool:
-          items:
-            type: string
-          type: array
-        dnode_start_index:
-          description: 'CNode start index valid range: [100, 254], for null value index will be selected automatically, as max_existed_index + 1'
-          type: integer
-        empty_dbox:
-          type: boolean
-        external_gateway:
-          items:
-            type: string
-          type: array
-        hostname_prefix:
-          type: string
-        ipv6_prefix:
-          type: integer
-        management_cidr:
-          type: integer
-        migrate_target:
-          type: boolean
-        rack_pools:
-          additionalProperties:
-            $ref: '#/components/schemas/ClusterCreateRackUpdate'
-          type: object
-      required:
-      - cboxes
-      - dboxes
-      - dnode_management_ip_pool
-      - cnode_management_ip_pool
-      - dnode_ipmi_pool
-      - cnode_ipmi_pool
-      - management_cidr
-      - external_gateway
-      - empty_dbox
-      - migrate_target
-      type: object
-    BGPTableItem:
-      properties:
-        cnode_id:
-          type: integer
-        cnode_name:
-          type: string
-        peer_address:
-          type: string
-        port:
-          type: string
-        rack_id:
-          type: integer
-        rack_name:
-          type: string
-        self_address:
-          type: string
-        state:
-          type: string
-      type: object
-    DBoxTotalCapacity:
-      properties:
-        nvram_capacity:
-          type: integer
-        nvram_number:
-          type: integer
-        ssd_capacity:
-          type: integer
-        ssd_number:
-          type: integer
-      type: object
-    ArbitraryFloatsObject:
-      additionalProperties:
-        format: float
-        type: number
-      type: object
-    FileHandle:
-      properties:
-        clone_id:
-          type: string
-          x-cli-header: Clone ID
-        delete_pending:
-          type: string
-          x-cli-header: Pending delete
-          x-format: str2yes_no
-        ehandle:
-          type: string
-          x-cli-header: eHandle
-        has_any_lease:
-          type: string
-          x-cli-header: Has lease
-          x-format: str2yes_no
-        lease_break_in_progress:
-          type: string
-          x-cli-header: Lease break in progress
-          x-format: str2yes_no
-        nfs4_only:
-          type: string
-          x-cli-header: NFSv4.1 only
-          x-format: str2yes_no
-        number_open_protocol_handles:
-          type: integer
-          x-cli-header: Number of open protocol handles
-        stream_key:
-          description: Global access path ID
-          type: string
-      type: object
-    ClusterVastDB:
-      properties:
-        vast_db_splits:
-          description: Number of splits used for query_data scanning speed. Default 8.
-          type: integer
-        vast_db_sub_splits:
-          description: Number of sub-splits used for query_data scanning speed. Default 8.
-          type: integer
-      required:
-      - vast_db_splits
-      - vast_db_sub_splits
-      type: object
-    ClusterLocksRequestParams:
-      allOf:
-      - $ref: '#/components/schemas/ClusterLocksParams'
-      - properties:
-          direction:
-            description: Pagination direction.
-            enum:
-            - prev
-            - next
-            type: string
-    ClusterAuditing:
-      properties:
-        audit_dir_name:
-          description: Name of the audit directory, which is located under the root directory.
-          type: string
-        enable_json_audit:
-          description: If enabled, audit logs are saved in JSON format into a file in the directory specified as audit_dir_name.  Can be enabled in addition to enable_vast_db_audit.
-          type: boolean
-        enable_vast_db_audit:
-          description: If enabled, audit logs are saved in a VAST DataBase table. Can be enabled in addition to enable_json_audit.
-          type: boolean
-        max_audit_dir_size:
-          description: Maximum audit directory size
-          type: string
-        max_file_size:
-          description: Maximum audit file size for each CNode core
-          type: integer
-          x-display-base-type: capacity
-          x-display-units: GB
-          x-display-units-alt: GiB
-          x-format: bytes2gb
-          x-raw-units: Bytes
-        max_retention_period:
-          description: Max retention period for audit files
-          type: integer
-        max_retention_timeunit:
-          description: Max retention period timeunit for audit files
-          type: string
-        protocols:
-          description: Protocols to audit
-          items:
-            type: string
-          type: array
-        protocols_audit:
-          description: Map of protocols audit configurations
-          type: object
-        read_access_users:
-          description: Enter users here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
-          items:
-            type: string
-          type: array
-        read_access_users_groups:
-          description: Enter groups here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
-          items:
-            type: string
-          type: array
-      type: object
     DBoxMigrationStatusResponse:
-      type: object
-    ClusterAuditingReadOnlyWithAsyncTask:
-      allOf:
-      - $ref: '#/components/schemas/ClusterAuditingReadOnly'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
-    AddBoxesDBoxesHostsParams:
-      items:
-        properties:
-          id:
-            type: integer
-        required:
-        - id
-        type: object
-      type: array
-    ProtocolHandle:
-      properties:
-        error:
-          type: string
-        file_handle:
-          $ref: '#/components/schemas/FileHandle'
-        open_protocol_handles:
-          items:
-            $ref: '#/components/schemas/OpenProtocolHandle'
-          type: array
       type: object
     Cluster:
       properties:
@@ -4617,124 +3916,142 @@ components:
       required:
       - name
       type: object
-    AsyncCluster:
-      allOf:
-      - $ref: '#/components/schemas/Cluster'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
-    Lock:
-      properties:
-        caller:
-          description: An identifier of the client that acquired the lock. This could be an IP or host name of the client.
-          type: string
-        client_id:
-          type: string
-          x-cli-header: Client ID
-        create_time_nano:
-          description: The time the lock was acquired.
-          type: integer
-          x-cli-header: Create-Time
-          x-format: nanosec2datetime
-        is_exclusive:
-          description: If true, the lock is an exclusive (write) lock. If false, the lock is a shared (read) lock.
-          type: boolean
-          x-cli-header: Exclusive
-          x-format: bool2str
-        length:
-          description: The number of bytes of the file locked by the lock. A length of 0 means the lock reaches until the end of the file.
-          type: integer
-          x-format: pretty_numbers
-        lock_granted_type:
-          description: The type of delegation granted to the client. READ=No other client has the ability to write to the file for the duration of the delegation. WRITE=no other client has read or write access to the file for the duration of the delegation.
-          type: string
-          x-cli-header: Granted Type
-          x-format: pretty_enum
-        lock_id:
-          type: string
-          x-cli-header: Lock ID
-        lock_path:
-          description: The path that the locks are taken on
-          type: string
-          x-cli-header: Lock Path
-        lock_type:
-          description: The type of lock
-          type: string
-          x-cli-header: Type
-          x-format: pretty_lock_type
-        offset:
-          description: The number of bytes from the beginning of the file's byte range from which the lock begins.
-          type: integer
-          x-format: pretty_numbers
-        open_id:
-          type: string
-          x-cli-header: Open ID
-        owner:
-          description: An identifier internal to the client kernel for the specific process that owns the lock.
-          type: string
-        path:
-          description: The path that the locks are taken on
-          type: string
-        state:
-          description: Lock state
-          type: string
-        svid:
-          description: A kernel identifier of the owning process on the client machine.
-          type: integer
-        tenant_id:
-          description: Tenant ID
-          type: integer
-        tenant_name:
-          description: Tenant Name
-          type: string
-          x-cli-header: Tenant
-        unlock_id:
-          description: ID to specify in order for unlocking the lock.
-          type: string
-          x-cli-header: Unlock ID
+    ArbitraryFloatsObject:
+      additionalProperties:
+        format: float
+        type: number
       type: object
-    OpenProtocolHandle:
+    VastInstallInfo:
       properties:
-        access_mask:
+        box_name:
+          description: Name of parent CBox/DBox
+          type: string
+        box_uid:
+          description: UID of the parent CBox/DBox
+          type: string
+        box_vendor:
+          description: Model description, including vendor
+          type: string
+        hostname:
+          description: Hostname
+          type: string
+        ip:
+          description: Management IP
+          type: string
+        is_ceres:
+          description: Whether the host is part of a CERES DBox
+          type: boolean
+        is_ceres_v2:
+          description: Whether the host is part of a CERES V2 DBox
+          type: boolean
+        is_vms_host:
+          description: Whether the host is the VMS CNode
+          type: boolean
+        node_type:
+          description: Type of Node (CNode or DNode)
+          type: string
+        position:
+          description: Position of node in chassis
+          type: string
+        vast_os:
+          description: VAST OS version running on the host
+          type: string
+      type: object
+    TruncatedQOSStaticLimits:
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      required:
+      - max_reads_bw_mbps
+      - max_writes_bw_mbps
+      - max_reads_iops
+      - max_writes_iops
+      - burst_reads_bw_mb
+      - burst_writes_bw_mb
+      - burst_reads_loan_mb
+      - burst_writes_loan_mb
+      - burst_reads_iops
+      - burst_writes_iops
+      - burst_reads_loan_iops
+      - burst_writes_loan_iops
+      type: object
+    DBoxMigrationValidateResponse:
+      properties:
+        deep_discovery_task:
+          type: object
+        is_valid:
+          type: boolean
+      type: object
+    DBoxMigrationUpdateSourceTargetResponse:
+      properties:
+        source_ids:
           items:
-            type: string
+            type: integer
           type: array
-          x-cli-header: Access Mask (hex)
-        access_mask_display:
-          description: Human readable access mask string values
-          type: string
-          x-cli-header: Access Mask
-        client_ip:
-          type: string
-          x-cli-header: Client IP
-        file_mode:
-          type: string
-          x-cli-header: File Mode
-          x-format: pretty_enum
-        has_lease:
-          type: string
-          x-cli-header: Lease
-          x-format: str2yes_no
-        is_nfs_expirable:
-          type: string
-        nfs4_seqid:
-          type: string
-          x-cli-header: NFSv4.1 Sequence ID
-        nfs_expiration_time:
-          type: string
-        proto_type:
-          type: string
-          x-cli-header: Protocol
-          x-format: pretty_protocol
-        session_id:
-          type: string
-          x-cli-header: Session ID
-        share_access:
-          type: string
-          x-cli-header: Share Access
-        unique_id:
-          type: string
-          x-cli-header: Unique ID
-        username:
-          type: string
+        target_ids:
+          items:
+            type: integer
+          type: array
+      type: object
+    SystemShardExpandResponse:
       type: object
     ClusterCreateRackUpdate:
       properties:
@@ -4759,16 +4076,126 @@ components:
             type: string
           type: array
       type: object
-    TruncatedQOS:
-      properties:
-        static_limits:
-          $ref: '#/components/schemas/TruncatedQOSStaticLimits'
-      required:
-      - static_limits
+    AddBoxesCBoxesHostsParams:
+      items:
+        properties:
+          id:
+            type: integer
+          nb_eth_mtu:
+            description: relevant only for large subnet
+            type: integer
+          nb_ib_mode:
+            description: relevant only for large subnet
+            enum:
+            - datagram
+            - connected
+            type: string
+          nb_ib_mtu:
+            description: relevant only for large subnet
+            type: integer
+          net_type:
+            enum:
+            - eth
+            - ib
+            - int_eth_ext_ib
+            - int_ib_ext_eth
+            type: string
+          reverse_nics:
+            default: 'false'
+            type: boolean
+          skip_nic:
+            enum:
+            - int
+            - ext
+            - none
+            type: string
+        required:
+        - id
+        - net_type
+        - reverse_nics
+        - skip_nic
+        type: object
+      type: array
+    DBoxMigrationResponse:
       type: object
-    ArbitraryStringsObject:
-      additionalProperties:
-        type: string
+    AsyncCluster:
+      allOf:
+      - $ref: '#/components/schemas/Cluster'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    RequestTruncatedQOSStaticLimits:
+      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
+    DBoxTotalCapacity:
+      properties:
+        nvram_capacity:
+          type: integer
+        nvram_number:
+          type: integer
+        ssd_capacity:
+          type: integer
+        ssd_number:
+          type: integer
       type: object
     Host:
       properties:
@@ -4934,27 +4361,121 @@ components:
       - hostname
       - node_type
       type: object
-    DBoxMigrationValidateResponse:
+    BGPTableItem:
       properties:
-        deep_discovery_task:
-          type: object
-        is_valid:
-          type: boolean
+        cnode_id:
+          type: integer
+        cnode_name:
+          type: string
+        peer_address:
+          type: string
+        port:
+          type: string
+        rack_id:
+          type: integer
+        rack_name:
+          type: string
+        self_address:
+          type: string
+        state:
+          type: string
       type: object
-    ListPrefetchPathItem:
+    AsyncTaskInResponse:
       properties:
-        code:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    ClusterAuditingReadOnly:
+      allOf:
+      - $ref: '#/components/schemas/ClusterAuditing'
+      - properties:
+          vast_audit_log_state:
+            description: State of the VAST DataBase table to which audit logs are saved, if enabled
+            enum:
+            - NONE
+            - IN_CREATION
+            - CREATED
+            - FAILED
+            type: string
+        required:
+        - audit_dir_name
+        - read_access_users
+        - read_access_users_groups
+        - max_file_size
+        - max_retention_period
+        - max_retention_timeunit
+        - protocols_audit
+        - protocols
+        - max_audit_dir_size
+        - enable_json_audit
+        - enable_vast_db_audit
+        - vast_audit_log_state
+        type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
           type: string
-        inodes_retrieved:
+      type: object
+    ClusterVastDB:
+      properties:
+        vast_db_splits:
+          description: Number of splits used for query_data scanning speed. Default 8.
           type: integer
-        path:
+        vast_db_sub_splits:
+          description: Number of sub-splits used for query_data scanning speed. Default 8.
+          type: integer
+      required:
+      - vast_db_splits
+      - vast_db_sub_splits
+      type: object
+    ClusterAuditing:
+      properties:
+        audit_dir_name:
+          description: Name of the audit directory, which is located under the root directory.
           type: string
-        prefetch_type:
+        enable_json_audit:
+          description: If enabled, audit logs are saved in JSON format into a file in the directory specified as audit_dir_name.  Can be enabled in addition to enable_vast_db_audit.
+          type: boolean
+        enable_vast_db_audit:
+          description: If enabled, audit logs are saved in a VAST DataBase table. Can be enabled in addition to enable_json_audit.
+          type: boolean
+        max_audit_dir_size:
+          description: Maximum audit directory size
           type: string
-        size_retrieved:
+        max_file_size:
+          description: Maximum audit file size for each CNode core
           type: integer
-        task_id:
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: bytes2gb
+          x-raw-units: Bytes
+        max_retention_period:
+          description: Max retention period for audit files
           type: integer
+        max_retention_timeunit:
+          description: Max retention period timeunit for audit files
+          type: string
+        protocols:
+          description: Protocols to audit
+          items:
+            type: string
+          type: array
+        protocols_audit:
+          description: Map of protocols audit configurations
+          type: object
+        read_access_users:
+          description: Enter users here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+          items:
+            type: string
+          type: array
+        read_access_users_groups:
+          description: Enter groups here to grant them read access to all files in the audit directory. To make the audit directory accessible to clients, create a view on the directory.
+          items:
+            type: string
+          type: array
       type: object
     ShouldUpgrade:
       properties:
@@ -4974,60 +4495,538 @@ components:
         tenant_id:
           type: integer
       type: object
+    CeleryInfo:
+      type: object
+    TruncatedQOS:
+      properties:
+        static_limits:
+          $ref: '#/components/schemas/TruncatedQOSStaticLimits'
+      required:
+      - static_limits
+      type: object
+    FileHandle:
+      properties:
+        clone_id:
+          type: string
+          x-cli-header: Clone ID
+        delete_pending:
+          type: string
+          x-cli-header: Pending delete
+          x-format: str2yes_no
+        ehandle:
+          type: string
+          x-cli-header: eHandle
+        has_any_lease:
+          type: string
+          x-cli-header: Has lease
+          x-format: str2yes_no
+        lease_break_in_progress:
+          type: string
+          x-cli-header: Lease break in progress
+          x-format: str2yes_no
+        nfs4_only:
+          type: string
+          x-cli-header: NFSv4.1 only
+          x-format: str2yes_no
+        number_open_protocol_handles:
+          type: integer
+          x-cli-header: Number of open protocol handles
+        stream_key:
+          description: Global access path ID
+          type: string
+      type: object
     Generic:
       type: object
-    ClusterVastDBModify:
+    DNode:
       properties:
-        vast_db_splits:
-          description: The number of splits used for query_data scanning speed. Default 8.
+        arch_type:
+          type: string
+        bios_version:
+          type: string
+          x-cli-header: BIOS Version
+        bmc_fw_version:
+          description: BMC FW version
+          type: string
+          x-cli-header: BMC FW version
+        bmc_state:
+          type: string
+        bmc_state_reason:
+          type: string
+        box_rdma_port:
+          description: port for internal use
           type: integer
-        vast_db_sub_splits:
-          description: The number of sub-splits used for query_data scanning speed. Default 8.
+        build:
+          type: string
+          x-cli-header: Build
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cluster_id:
           type: integer
+        cpld:
+          type: string
+        data_rdma_port:
+          description: port for internal use
+          type: integer
+        data_tcp_port:
+          description: port for internal use
+          type: integer
+        dbox:
+          description: Parent DBox
+          type: string
+          x-cli-header: DBox
+        dbox_id:
+          type: integer
+        display_name:
+          type: string
+        dtray:
+          description: Parent DTray
+          type: string
+          x-cli-header: DTray
+        ebox:
+          description: Parent EBox
+          type: string
+          x-cli-header: EBox
+        ebox_id:
+          type: integer
+        enabled:
+          description: True if Dnode is enabled
+          type: boolean
+        guid:
+          type: string
+        host_label:
+          description: Host label, used to label container, e.g. 11.0.0.1-4000
+          type: string
+        hostname:
+          description: Host Name
+          type: string
+          x-cli-header: Hostname
+        id:
+          type: integer
+          x-cli-header: ID
+        ip:
+          description: The IP of the bond interface of ip1 and ip2.
+          type: string
+          x-cli-header: IP
+        ip1:
+          description: 1st of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP1
+        ip2:
+          description: 2nd of two IP addresses on the cluster's internal network
+          type: string
+          x-cli-header: IP2
+        ipmi_ip:
+          description: IPMI IP
+          type: string
+          x-cli-header: IPMI IP
+        ipv6:
+          description: External IPv6 Address
+          type: string
+          x-cli-header: IPv6
+        is_primary:
+          description: Indicates if node is the primary, aka master, dnode.
+          type: boolean
+          x-cli-header: Primary
+        led_status:
+          type: string
+          x-cli-header: LED Status
+        mgmt_ip:
+          description: IP address for management access
+          type: string
+          x-cli-header: MGMT IP
+        name:
+          type: string
+          x-cli-header: Name
+        new_name:
+          type: string
+        os_version:
+          description: Node OS version
+          type: string
+          x-cli-header: OS
+        platform_rdma_port:
+          description: port for internal use
+          type: integer
+        platform_tcp_port:
+          description: port for internal use
+          type: integer
+        position:
+          type: string
+        rpm:
+          description: VAST Utils Version
+          type: string
+          x-cli-header: VAST Utils Version
+        sn:
+          description: The host serial number
+          type: string
+          x-cli-header: Serial
+        state:
+          type: string
+          x-cli-header: State
+        sync:
+          description: Synchronization state with leader
+          type: string
+        sync_time:
+          description: Synchronization time with leader
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - name
       type: object
-    AsyncTaskInResponse:
+    ClusterLocksParams:
+      allOf:
+      - $ref: '#/components/schemas/TenantIdBody'
+      - properties:
+          lock_type:
+            description: Lock type. Specify if unlock_type is SINGLE.
+            enum:
+            - LOCK_TYPE_NLM4
+            - LOCK_TYPE_NFS4
+            - LOCK_TYPE_SMB2
+            type: string
+          path:
+            description: 'The full path to a locked file, formed as: VIEW_PATH/FILE_PATH, where VIEW_PATH is the VAST Cluster view path, and FILE_PATH is the client path to a locked file, relative to the mount point.'
+            type: string
+          unlock_id:
+            description: Unlock ID. Specify if unlock_type is SINGLE.
+            type: string
+          unlock_type:
+            description: The type of unlock operation to perform. 'SINGLE' unlocks a single specified lock, 'ALL' unlocks all locks.
+            enum:
+            - SINGLE
+            - ALL
+            type: string
+    ClusterAuditingReadOnlyWithAsyncTask:
+      allOf:
+      - $ref: '#/components/schemas/ClusterAuditingReadOnly'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    AddBoxesDBoxesHostsParams:
+      items:
+        properties:
+          id:
+            type: integer
+        required:
+        - id
+        type: object
+      type: array
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
+    AddBoxesParams:
       properties:
-        async_task:
-          description: Creation Async task properties
+        cboxes:
+          properties:
+            hosts:
+              $ref: '#/components/schemas/AddBoxesCBoxesHostsParams'
+            order:
+              type: integer
+            subnet:
+              type: integer
+          required:
+          - hosts
+          - subnet
+          - order
+          type: object
+        cnode_ipmi_pool:
+          items:
+            type: string
+          type: array
+        cnode_management_ip_pool:
+          items:
+            type: string
+          type: array
+        cnode_start_index:
+          description: 'CNode start index valid range: [1, 99], for null value index will be selected automatically, as max_existed_index + 1'
+          type: integer
+        continue_migration:
+          type: boolean
+        dboxes:
+          properties:
+            hosts:
+              $ref: '#/components/schemas/AddBoxesDBoxesHostsParams'
+            order:
+              type: integer
+            subnet:
+              type: integer
+          required:
+          - hosts
+          - subnet
+          - order
+          type: object
+        dnode_ipmi_pool:
+          items:
+            type: string
+          type: array
+        dnode_management_ip_pool:
+          items:
+            type: string
+          type: array
+        dnode_start_index:
+          description: 'CNode start index valid range: [100, 254], for null value index will be selected automatically, as max_existed_index + 1'
+          type: integer
+        empty_dbox:
+          type: boolean
+        external_gateway:
+          items:
+            type: string
+          type: array
+        hostname_prefix:
+          type: string
+        ipv6_prefix:
+          type: integer
+        management_cidr:
+          type: integer
+        migrate_target:
+          type: boolean
+        rack_pools:
+          additionalProperties:
+            $ref: '#/components/schemas/ClusterCreateRackUpdate'
+          type: object
+      required:
+      - cboxes
+      - dboxes
+      - dnode_management_ip_pool
+      - cnode_management_ip_pool
+      - dnode_ipmi_pool
+      - cnode_ipmi_pool
+      - management_cidr
+      - external_gateway
+      - empty_dbox
+      - migrate_target
+      type: object
+    ListPrefetchItem:
+      properties:
+        paths:
+          items:
+            $ref: '#/components/schemas/ListPrefetchPathItem'
+          type: array
+        tenant:
+          properties:
+            name:
+              description: Tenant name
+              type: string
           type: object
       type: object
+    OpenProtocolHandle:
+      properties:
+        access_mask:
+          items:
+            type: string
+          type: array
+          x-cli-header: Access Mask (hex)
+        access_mask_display:
+          description: Human readable access mask string values
+          type: string
+          x-cli-header: Access Mask
+        client_ip:
+          type: string
+          x-cli-header: Client IP
+        file_mode:
+          type: string
+          x-cli-header: File Mode
+          x-format: pretty_enum
+        has_lease:
+          type: string
+          x-cli-header: Lease
+          x-format: str2yes_no
+        is_nfs_expirable:
+          type: string
+        nfs4_seqid:
+          type: string
+          x-cli-header: NFSv4.1 Sequence ID
+        nfs_expiration_time:
+          type: string
+        proto_type:
+          type: string
+          x-cli-header: Protocol
+          x-format: pretty_protocol
+        session_id:
+          type: string
+          x-cli-header: Session ID
+        share_access:
+          type: string
+          x-cli-header: Share Access
+        unique_id:
+          type: string
+          x-cli-header: Unique ID
+        username:
+          type: string
+      type: object
+    RequestTruncatedQOS:
+      properties:
+        static_limits:
+          $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
+      type: object
+    PreUpgradeValidationExceptions:
+      properties:
+        exceptions:
+          description: Pre-upgrade validation exceptions
+          type: object
+      required:
+      - exceptions
+      type: object
+    SmbClientConnection:
+      type: object
+    ListPrefetchPathItem:
+      properties:
+        code:
+          type: string
+        inodes_retrieved:
+          type: integer
+        path:
+          type: string
+        prefetch_type:
+          type: string
+        size_retrieved:
+          type: integer
+        task_id:
+          type: integer
+      type: object
+    ClusterAdvanced:
+      properties:
+        number_of_files_and_directories:
+          description: Number of files and directories
+          type: integer
+        number_of_protected_shares:
+          description: Number of protected shards
+          type: integer
+        number_of_shares:
+          description: Number of shards
+          type: integer
+        number_of_unprotected_shares:
+          description: Number of unprotected shares
+          type: integer
+        read_bandwidth_in_bytes_per_sec:
+          type: integer
+        read_iops_per_sec:
+          type: integer
+        read_latency_in_millisec:
+          type: number
+        total_capacity_in_gib:
+          description: Total cluster capacity in GiB
+          type: number
+        used_capacity_in_gib:
+          description: Used cluster capacity in GiB
+          type: number
+        write_bandwidth_in_bytes_per_sec:
+          type: integer
+        write_iops_per_sec:
+          type: integer
+        write_latency_in_millisec:
+          type: number
+      type: object
+    Lock:
+      properties:
+        caller:
+          description: An identifier of the client that acquired the lock. This could be an IP or host name of the client.
+          type: string
+        client_id:
+          type: string
+          x-cli-header: Client ID
+        create_time_nano:
+          description: The time the lock was acquired.
+          type: integer
+          x-cli-header: Create-Time
+          x-format: nanosec2datetime
+        is_exclusive:
+          description: If true, the lock is an exclusive (write) lock. If false, the lock is a shared (read) lock.
+          type: boolean
+          x-cli-header: Exclusive
+          x-format: bool2str
+        length:
+          description: The number of bytes of the file locked by the lock. A length of 0 means the lock reaches until the end of the file.
+          type: integer
+          x-format: pretty_numbers
+        lock_granted_type:
+          description: The type of delegation granted to the client. READ=No other client has the ability to write to the file for the duration of the delegation. WRITE=no other client has read or write access to the file for the duration of the delegation.
+          type: string
+          x-cli-header: Granted Type
+          x-format: pretty_enum
+        lock_id:
+          type: string
+          x-cli-header: Lock ID
+        lock_path:
+          description: The path that the locks are taken on
+          type: string
+          x-cli-header: Lock Path
+        lock_type:
+          description: The type of lock
+          type: string
+          x-cli-header: Type
+          x-format: pretty_lock_type
+        offset:
+          description: The number of bytes from the beginning of the file's byte range from which the lock begins.
+          type: integer
+          x-format: pretty_numbers
+        open_id:
+          type: string
+          x-cli-header: Open ID
+        owner:
+          description: An identifier internal to the client kernel for the specific process that owns the lock.
+          type: string
+        path:
+          description: The path that the locks are taken on
+          type: string
+        state:
+          description: Lock state
+          type: string
+        svid:
+          description: A kernel identifier of the owning process on the client machine.
+          type: integer
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_name:
+          description: Tenant Name
+          type: string
+          x-cli-header: Tenant
+        unlock_id:
+          description: ID to specify in order for unlocking the lock.
+          type: string
+          x-cli-header: Unlock ID
+      type: object
   requestBodies:
-    ClusterLocksParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ClusterLocksParams'
-      x-originalParamName: ClusterLocksParamsBody
-    ClusterLocksRequestParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ClusterLocksRequestParams'
-      x-originalParamName: ClusterLocksRequestParamsBody
-    ClusterAuditingParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ClusterAuditing'
-      x-originalParamName: ClusterAuditingParamsBody
     ClusterVastDBModifyParamsBody:
       content:
         '*/*':
           schema:
             $ref: '#/components/schemas/ClusterVastDBModify'
       x-originalParamName: ClusterVastDBModifyParamsBody
+    ClusterLocksRequestParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksRequestParams'
+      x-originalParamName: ClusterLocksRequestParamsBody
+    ClusterLocksParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksParams'
+      x-originalParamName: ClusterLocksParamsBody
+    ClusterAuditingParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterAuditing'
+      x-originalParamName: ClusterAuditingParamsBody
   parameters:
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
     ClusterId:
       in: path
       name: id
       required: true
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
       schema:
         minimum: 1
         type: integer

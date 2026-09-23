@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory columns API
+  title: VAST API Swagger Schema Columns API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: The columns endpoint enables you to manage the columns in tables in a schema in a VAST database.
-  name: columns
+  name: Columns
 paths:
   /columns/:
     get:
@@ -37,7 +37,7 @@ paths:
           description: Database Table Columns
       summary: List Database Table Columns
       tags:
-      - columns
+      - Columns
   /columns/delete/:
     delete:
       description: This endpoint deletes a Database Table Column.
@@ -49,7 +49,7 @@ paths:
           description: OK
       summary: Delete a Database Table Column
       tags:
-      - columns
+      - Columns
   /columns/rename/:
     patch:
       description: This endpoint renames column.
@@ -61,7 +61,7 @@ paths:
           description: OK
       summary: Rename a Database Table Column
       tags:
-      - columns
+      - Columns
   /columns/show/:
     get:
       description: This endpoint shows a Database Table Column.
@@ -82,9 +82,15 @@ paths:
           description: Database Table Column
       summary: Show a Database Table Column
       tags:
-      - columns
+      - Columns
 components:
   parameters:
+    TabularListSortedColumnsQP:
+      description: List only columns that are sorted.
+      in: query
+      name: list_sorted_columns
+      schema:
+        type: boolean
     TabularNameRequiredQP:
       description: Getting object by exact match
       in: query
@@ -92,16 +98,51 @@ components:
       required: true
       schema:
         type: string
-    TabularListSortedColumnsQP:
-      description: List only columns that are sorted.
+    TabularIsImportsTableQP:
+      description: Is table actually a sub-table to track imported .parquet files.
       in: query
-      name: list_sorted_columns
+      name: is_imports_table
       schema:
+        type: boolean
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
         type: boolean
     TabularTableNameQP:
       description: Getting list of objects by table_name
       in: query
       name: table_name
+      required: true
+      schema:
+        type: string
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularSchemaNameQP:
+      description: Getting list of objects by schema_name
+      in: query
+      name: schema_name
       required: true
       schema:
         type: string
@@ -118,51 +159,10 @@ components:
       name: name
       schema:
         type: string
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
     TabularNameStartswithQP:
       description: Getting list of objects by prefix match
       in: query
       name: name__startswith
-      schema:
-        type: string
-    TabularPageSize:
-      in: query
-      name: page_size
-      schema:
-        default: 999
-        maximum: 999
-        minimum: 1
-        type: integer
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
-      in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    TabularIsImportsTableQP:
-      description: Is table actually a sub-table to track imported .parquet files.
-      in: query
-      name: is_imports_table
-      schema:
-        type: boolean
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
-      in: query
-      name: database_name
-      required: true
-      schema:
-        type: string
-    TabularSchemaNameQP:
-      description: Getting list of objects by schema_name
-      in: query
-      name: schema_name
-      required: true
       schema:
         type: string
   schemas:
@@ -201,49 +201,6 @@ components:
       - name
       - field
       type: object
-    Column:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          field:
-            description: Column type
-            example:
-              column_type: map
-              key_type:
-                column_type: bool
-              value_type:
-                column_type: bool
-            type: object
-          raw_field:
-            description: Raw description of column type
-            example: map<bool, bool>
-            type: string
-        required:
-        - field
-        - raw_field
-        type: object
-    ColumnDeleteParams:
-      properties:
-        arrow_schema:
-          $ref: '#/components/schemas/TabularColumnArrowSchema'
-        database_name:
-          description: Name of the Database
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-        table_name:
-          description: Name of the Table
-          type: string
-        tenant_id:
-          description: Tenant ID
-          type: integer
-      required:
-      - database_name
-      - schema_name
-      - table_name
-      - arrow_schema
-      type: object
     TabularTableHierarchy:
       properties:
         database_name:
@@ -279,6 +236,49 @@ components:
             type: integer
         required:
         - new_name
+        type: object
+    ColumnDeleteParams:
+      properties:
+        arrow_schema:
+          $ref: '#/components/schemas/TabularColumnArrowSchema'
+        database_name:
+          description: Name of the Database
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - arrow_schema
+      type: object
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
         type: object
   requestBodies:
     ColumnDeleteParamsBody:

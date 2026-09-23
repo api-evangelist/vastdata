@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory dboxes API
+  title: VAST API Swagger Schema Dboxes API
   version: '1.0'
 security:
 - ApiToken: []
@@ -409,17 +409,17 @@ components:
       required:
       - name
       type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
     ErrorResponse:
       properties:
         detail:
           example: Failed to rotate encryption group key.
           type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   securitySchemes:
     ApiToken:

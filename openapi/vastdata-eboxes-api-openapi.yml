@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory eboxes API
+  title: VAST API Swagger Schema Eboxes API
   version: '1.0'
 security:
 - ApiToken: []
@@ -210,7 +210,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EBox'
           description: ''
-      summary: Return Details of a EBox.
+      summary: Return Details of a EBox
       tags:
       - eboxes
     patch:
@@ -289,12 +289,6 @@ paths:
       - eboxes
 components:
   schemas:
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
     EBox:
       properties:
         arch_type:
@@ -383,6 +377,12 @@ components:
         detail:
           example: Failed to rotate encryption group key.
           type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   securitySchemes:
     ApiToken:

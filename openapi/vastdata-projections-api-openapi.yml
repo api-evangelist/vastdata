@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory projections API
+  title: VAST API Swagger Schema Projections API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Projections are subsets of a full table in the VAST Database that allow for optimized queries that use only the columns included in the projection.
-  name: projections
+  name: Projections
 paths:
   /projections/:
     get:
@@ -35,7 +35,7 @@ paths:
           description: Database Table Semi-Sorted Projections
       summary: List Database Table Semi-Sorted Projections
       tags:
-      - projections
+      - Projections
     post:
       description: This endpoint creates a database table semi-sorted projection
       operationId: projections_create
@@ -46,7 +46,7 @@ paths:
           description: OK
       summary: Create a Database Table Semi-Sorted Projection
       tags:
-      - projections
+      - Projections
   /projections/delete/:
     delete:
       description: This endpoint deletes a database table semi-sorted projection.
@@ -58,7 +58,7 @@ paths:
           description: OK
       summary: Delete a Database Table Semi-Sorted Projection
       tags:
-      - projections
+      - Projections
   /projections/rename/:
     patch:
       description: This endpoint renames a database table semi-sorted projection.
@@ -70,7 +70,7 @@ paths:
           description: OK
       summary: Rename a Database Table Semi-Sorted Projection
       tags:
-      - projections
+      - Projections
   /projections/show/:
     get:
       description: This endpoint returns a database table semi-sorted projection.
@@ -90,78 +90,51 @@ paths:
           description: Database Table Semi-Sorted Projection
       summary: Return a Database Table Semi-Sorted Projection
       tags:
-      - projections
+      - Projections
 components:
-  parameters:
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
-    TabularTableNameQP:
-      description: Getting list of objects by table_name
-      in: query
-      name: table_name
-      required: true
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
-    TabularNameQP:
-      description: Getting list of objects by exact match
-      in: query
-      name: name
-      schema:
-        type: string
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    TabularNameStartswithQP:
-      description: Getting list of objects by prefix match
-      in: query
-      name: name__startswith
-      schema:
-        type: string
-    TabularPageSize:
-      in: query
-      name: page_size
-      schema:
-        default: 999
-        maximum: 999
-        minimum: 1
-        type: integer
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
-      in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
-      in: query
-      name: database_name
-      required: true
-      schema:
-        type: string
-    TabularSchemaNameQP:
-      description: Getting list of objects by schema_name
-      in: query
-      name: schema_name
-      required: true
-      schema:
-        type: string
   schemas:
+    DetailedProjection:
+      allOf:
+      - $ref: '#/components/schemas/Projection'
+      - properties:
+          initial_sync_progress:
+            description: Initial sync progress
+            type: integer
+            x-display-units: '%'
+            x-format: thousandths2percents
+        required:
+        - initial_sync_progress
+        type: object
+    ProjectionRenameParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          new_name:
+            description: New name of the Projection
+            type: string
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        required:
+        - new_name
+        type: object
+    Projection:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          num_rows:
+            description: Total number of rows
+            type: integer
+          properties:
+            description: Misc properties of the Projection
+            type: string
+          size:
+            description: Size of the Projection
+            type: integer
+        required:
+        - num_rows
+        - size
+        type: object
     ProjectionCreateParams:
       allOf:
       - $ref: '#/components/schemas/TabularTableHierarchy'
@@ -202,18 +175,6 @@ components:
       - table_name
       - name
       type: object
-    DetailedProjection:
-      allOf:
-      - $ref: '#/components/schemas/Projection'
-      - properties:
-          initial_sync_progress:
-            description: Initial sync progress
-            type: integer
-            x-display-units: '%'
-            x-format: thousandths2percents
-        required:
-        - initial_sync_progress
-        type: object
     ProjectionDeleteParams:
       allOf:
       - $ref: '#/components/schemas/TabularTableHierarchy'
@@ -222,43 +183,76 @@ components:
             description: Tenant ID
             type: integer
         type: object
-    Projection:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          num_rows:
-            description: Total number of rows
-            type: integer
-          properties:
-            description: Misc properties of the Projection
-            type: string
-          size:
-            description: Size of the Projection
-            type: integer
-        required:
-        - num_rows
-        - size
-        type: object
-    ProjectionRenameParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          new_name:
-            description: New name of the Projection
-            type: string
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        required:
-        - new_name
-        type: object
+  parameters:
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
+    TabularSchemaNameQP:
+      description: Getting list of objects by schema_name
+      in: query
+      name: schema_name
+      required: true
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    TabularNameStartswithQP:
+      description: Getting list of objects by prefix match
+      in: query
+      name: name__startswith
+      schema:
+        type: string
   requestBodies:
-    ProjectionCreateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ProjectionCreateParams'
-      x-originalParamName: ProjectionCreateParamsBody
     ProjectionRenameParamsBody:
       content:
         '*/*':
@@ -271,6 +265,12 @@ components:
           schema:
             $ref: '#/components/schemas/ProjectionDeleteParams'
       x-originalParamName: ProjectionDeleteParamsBody
+    ProjectionCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ProjectionCreateParams'
+      x-originalParamName: ProjectionCreateParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory switches API
+  title: VAST API Swagger Schema Switches API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Switches represent switches in the cluster.
-  name: switches
+  name: Switches
 paths:
   /switches/:
     get:
@@ -46,7 +46,7 @@ paths:
           description: Switch information
       summary: List Switches
       tags:
-      - switches
+      - Switches
     post:
       description: This endpoint adds a switch to the cluster.
       operationId: switches_create
@@ -75,7 +75,7 @@ paths:
           description: ''
       summary: Add Switch
       tags:
-      - switches
+      - Switches
   /switches/bulk/:
     patch:
       description: This endpoint updates credentials for multiple switches simultaneously.
@@ -111,7 +111,7 @@ paths:
           description: ''
       summary: Bulk Update Switch Credentials
       tags:
-      - switches
+      - Switches
   /switches/{id}/:
     delete:
       description: This endpoint deletes a switch.
@@ -128,7 +128,7 @@ paths:
           description: The switch was deleted successfully
       summary: Delete Switch
       tags:
-      - switches
+      - Switches
     get:
       description: This endpoint returns details of a specified switch.
       operationId: switches_read
@@ -148,7 +148,7 @@ paths:
           description: ''
       summary: Return Details of a Switch
       tags:
-      - switches
+      - Switches
     patch:
       description: This endpoint modifies a switch username and password.
       operationId: switches_partial_update
@@ -181,7 +181,7 @@ paths:
           description: ''
       summary: Change Switch User Credentials
       tags:
-      - switches
+      - Switches
 components:
   schemas:
     Switch:

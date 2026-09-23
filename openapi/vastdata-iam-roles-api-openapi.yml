@@ -1,12 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory iamroles API
+  title: VAST API Swagger Schema Iamroles API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
-- name: iamroles
+- name: IAM Roles
 paths:
   /iamroles/:
     get:
@@ -31,7 +31,7 @@ paths:
           description: IAMRole information
       summary: List Identity and Access Management Roles
       tags:
-      - iamroles
+      - IAM Roles
     post:
       description: This endpoint creates an IAM Role.
       operationId: iamroles_create
@@ -71,7 +71,7 @@ paths:
           description: ''
       summary: Create IAM Role
       tags:
-      - iamroles
+      - IAM Roles
   /iamroles/{id}/:
     delete:
       description: This endpoint deletes a specified IAM Role.
@@ -88,7 +88,7 @@ paths:
           description: ''
       summary: Delete IAM Role
       tags:
-      - iamroles
+      - IAM Roles
     get:
       description: This endpoint returns details of a specified IAM Role.
       operationId: iamroles_read
@@ -108,7 +108,7 @@ paths:
           description: IAM Role information
       summary: Return Details of a IAM Role
       tags:
-      - iamroles
+      - IAM Roles
     patch:
       description: This endpoint modifies a specified IAM Role.
       operationId: iamroles_partial_update
@@ -148,7 +148,7 @@ paths:
           description: ''
       summary: Modify IAM Role
       tags:
-      - iamroles
+      - IAM Roles
   /iamroles/{id}/credentials:
     get:
       description: This endpoint returns information about STS credentials of specified IAM Role.
@@ -167,9 +167,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/IAMRoleCredentialsInfo'
           description: IAM Role information
-      summary: Get STS credentials of specified IAM Role.
+      summary: Get STS credentials of specified IAM Role
       tags:
-      - iamroles
+      - IAM Roles
   /iamroles/{id}/revoke_access_keys:
     patch:
       description: This endpoint revoke access keys of a specified IAM Role.
@@ -179,11 +179,31 @@ paths:
       responses:
         '204':
           description: ''
-      summary: Revoke access keys of  specified IAM Role. Keys will be revoked by the revoke_time on the IAM Role.
+      summary: Revoke access keys of specified IAM Role.
       tags:
-      - iamroles
+      - IAM Roles
 components:
   schemas:
+    IAMRoleCredentialsInfo:
+      properties:
+        key_expiration_sec:
+          type: integer
+          x-cli-header: Key Expiration Datetime
+          x-format: timestamp2datetime
+        session_policy:
+          type: string
+        username:
+          type: string
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
     IAMRole:
       description: Identity and Access Management Role
       properties:
@@ -208,34 +228,7 @@ components:
         vid:
           type: integer
       type: object
-    IAMRoleCredentialsInfo:
-      properties:
-        key_expiration_sec:
-          type: integer
-          x-cli-header: Key Expiration Datetime
-          x-format: timestamp2datetime
-        session_policy:
-          type: string
-        username:
-          type: string
-      type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
-      type: object
   parameters:
-    PathId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
     PageSize:
       in: query
       name: page_size
@@ -245,6 +238,13 @@ components:
     Page:
       in: query
       name: page
+      schema:
+        minimum: 1
+        type: integer
+    PathId:
+      in: path
+      name: id
+      required: true
       schema:
         minimum: 1
         type: integer

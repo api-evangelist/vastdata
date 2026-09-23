@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory quotas API
+  title: VAST API Swagger Schema Quotas API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: A quota limits the amount of storage and/or the number of files or objects and directories that can be contained in a specified directory. A quota can include default limits on usage per user and group. It can also specify userquota objects which override default user and group limits for specified users and groups.
-  name: quotas
+  name: Quotas
 paths:
   /quotas/:
     get:
@@ -69,7 +69,7 @@ paths:
           description: Quota information
       summary: List Quotas
       tags:
-      - quotas
+      - Quotas
     post:
       description: This endpoint creates a quota that applies usage limits to a specified directory. A directory quota can limit the amount of storage and/or the number of files/objects that can be contained in the directory. The quota can also include quota limits on users and groups.
       operationId: quotas_create
@@ -161,7 +161,7 @@ paths:
           description: Quota information
       summary: Create a Quota
       tags:
-      - quotas
+      - Quotas
   /quotas/recalc/:
     patch:
       operationId: quotas_recalc
@@ -176,7 +176,7 @@ paths:
           description: ''
       summary: Start recalculation flow all quotas
       tags:
-      - quotas
+      - Quotas
   /quotas/recalc_stop/:
     patch:
       operationId: quotas_recalc_stop
@@ -185,7 +185,7 @@ paths:
           description: ''
       summary: Stop recalculation flow for all quotas
       tags:
-      - quotas
+      - Quotas
   /quotas/{id}/:
     delete:
       description: This endpoint deletes a quota.
@@ -202,7 +202,7 @@ paths:
           description: Deleted
       summary: Delete Quota
       tags:
-      - quotas
+      - Quotas
     get:
       description: This endpoint returns details of a specified quota.
       operationId: quotas_read
@@ -222,7 +222,7 @@ paths:
           description: Quota information
       summary: Return Details of a Quota
       tags:
-      - quotas
+      - Quotas
     patch:
       description: This endpoint modifies a quota.
       operationId: quotas_partial_update
@@ -295,7 +295,7 @@ paths:
           description: ''
       summary: Modify Quota
       tags:
-      - quotas
+      - Quotas
   /quotas/{id}/refresh_user_quotas/:
     patch:
       operationId: quota_refresh_user_quotas
@@ -311,7 +311,7 @@ paths:
           description: Refreshed
       summary: Refresh a Quota's User Quotas
       tags:
-      - quotas
+      - Quotas
   /quotas/{id}/reset_grace_period/:
     patch:
       operationId: quotas_reset_grace_period
@@ -327,7 +327,7 @@ paths:
           description: Stopped
       summary: Reset the grace period countdown after soft limit is exceeded
       tags:
-      - quotas
+      - Quotas
 components:
   schemas:
     Quota:
@@ -526,6 +526,39 @@ components:
       - name
       - path
       type: object
+    DefaultQuota:
+      properties:
+        grace_period:
+          description: 'Quota enforcement grace period in seconds, minutes, hours or days. Example: 90m'
+          type: string
+          x-example: 30d
+        hard_limit:
+          description: Hard quota limit
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        hard_limit_inodes:
+          description: Hard inodes quota limit
+          type: integer
+          x-cli-header: Hard limit Files/Directories
+        quota_system_id:
+          type: integer
+        soft_limit:
+          description: Soft quota limit
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        soft_limit_inodes:
+          description: Soft inodes quota limit
+          type: integer
+          x-cli-header: Soft limit Files/Directories
+      type: object
     PartialUserQuota:
       allOf:
       - $ref: '#/components/schemas/DefaultQuota'
@@ -578,40 +611,13 @@ components:
             description: VAST ID of the user or group with the listed user/group quota
             type: integer
         type: object
-    DefaultQuota:
-      properties:
-        grace_period:
-          description: 'Quota enforcement grace period in seconds, minutes, hours or days. Example: 90m'
-          type: string
-          x-example: 30d
-        hard_limit:
-          description: Hard quota limit
-          type: integer
-          x-display-base-type: capacity
-          x-display-units: GB
-          x-display-units-alt: GiB
-          x-format: capacity_bytes2gb
-          x-raw-units: Bytes
-        hard_limit_inodes:
-          description: Hard inodes quota limit
-          type: integer
-          x-cli-header: Hard limit Files/Directories
-        quota_system_id:
-          type: integer
-        soft_limit:
-          description: Soft quota limit
-          type: integer
-          x-display-base-type: capacity
-          x-display-units: GB
-          x-display-units-alt: GiB
-          x-format: capacity_bytes2gb
-          x-raw-units: Bytes
-        soft_limit_inodes:
-          description: Soft inodes quota limit
-          type: integer
-          x-cli-header: Soft limit Files/Directories
-      type: object
   parameters:
+    TenantNameIContainsQP:
+      description: Tenant name to filter by
+      in: query
+      name: tenant_name__icontains
+      schema:
+        type: string
     TenantIdQP:
       description: Filter by tenant. Specify tenant ID.
       in: query
@@ -619,12 +625,6 @@ components:
       schema:
         minimum: 1
         type: integer
-    TenantNameIContainsQP:
-      description: Tenant name to filter by
-      in: query
-      name: tenant_name__icontains
-      schema:
-        type: string
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory managers API
+  title: VAST API Swagger Schema Managers API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: VAST Management System (VMS) users are called managers. A manager has login credentials and must be assigned at least one role in order to have any VMS permissions. A manager can have multiple roles.
-  name: managers
+  name: Managers
 paths:
   /managers/:
     get:
@@ -31,7 +31,7 @@ paths:
           description: Manager information
       summary: List Managers (VMS Users)
       tags:
-      - managers
+      - Managers
     post:
       operationId: managers_create
       requestBody:
@@ -96,7 +96,7 @@ paths:
           description: ''
       summary: Create Manager (VMS User)
       tags:
-      - managers
+      - Managers
   /managers/authorized_status/:
     get:
       description: This endpoint gets authorized status for requested user
@@ -140,7 +140,7 @@ paths:
           description: ''
       summary: Get authorized status for a user
       tags:
-      - managers
+      - Managers
   /managers/password:
     patch:
       description: This operation changes password for the requesting user.
@@ -162,7 +162,7 @@ paths:
           description: OK
       summary: Change user's password
       tags:
-      - managers
+      - Managers
   /managers/{id}/:
     delete:
       description: This endpoint deletes a VMS manager user.
@@ -178,7 +178,7 @@ paths:
           description: The manager was deleted successfully.
       summary: Delete Manager
       tags:
-      - managers
+      - Managers
     get:
       description: This endpoint returns details of a manager user.
       operationId: managers_read
@@ -198,7 +198,7 @@ paths:
           description: ''
       summary: Return Details of a Manager (VMS User)
       tags:
-      - managers
+      - Managers
     patch:
       description: This endpoint modifies a manager user.
       operationId: managers_partial_update
@@ -275,7 +275,7 @@ paths:
           description: OK
       summary: Modify Manager (VMS User)
       tags:
-      - managers
+      - Managers
   /managers/{id}/unlock/:
     patch:
       description: This endpoint unlocks a manager.
@@ -305,7 +305,7 @@ paths:
           description: OK
       summary: Unlock a Manager
       tags:
-      - managers
+      - Managers
 components:
   schemas:
     Manager:

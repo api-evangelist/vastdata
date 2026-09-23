@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory dns API
+  title: VAST API Swagger Schema Dns API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: The DNS path represents a VAST Cluster DNS service. You can create one VAST Cluster DNS service per cluster. The VAST Cluster DNS service can distribute incoming DNS requests to specific VIP pools, according to subdomains. The service is updated of changes to VIP pool ranges. It works with a single DNS delegation record on an external DNS server.
-  name: dns
+  name: DNS
 paths:
   /dns/:
     get:
@@ -30,7 +30,7 @@ paths:
           description: DNS configuration
       summary: List VAST-DNS Configuration
       tags:
-      - dns
+      - DNS
     post:
       description: This endpoint creates a configuration for the VAST DNS service.
       operationId: dns_create
@@ -45,7 +45,7 @@ paths:
           description: ''
       summary: Create a VAST-DNS Server Configuration
       tags:
-      - dns
+      - DNS
   /dns/allocate/:
     post:
       description: This endpoint allocates a configuration for the VAST DNS service.
@@ -61,7 +61,7 @@ paths:
           description: ''
       summary: Allocate DNS
       tags:
-      - dns
+      - DNS
   /dns/{id}/:
     delete:
       description: This endpoint deletes a VAST-DNS server configuration.
@@ -82,9 +82,9 @@ paths:
           description: The DNS was deleted successfully. An asynchronous task was submitted to deallocate the IP.
         '204':
           description: Deleted
-      summary: Delete VAST-DNS Server Configuration.
+      summary: Delete VAST-DNS Server Configuration
       tags:
-      - dns
+      - DNS
     get:
       description: This endpoint returns details of a VAST-DNS server configuration.
       operationId: dns_read
@@ -104,7 +104,7 @@ paths:
           description: ''
       summary: Return Details of VAST-DNS Configuration
       tags:
-      - dns
+      - DNS
     patch:
       description: This endpoint modifies the VAST-DNS Server configuration.
       operationId: dns_partial_update
@@ -176,9 +176,12 @@ paths:
           description: ''
       summary: Modify VAST-DNS Server Configuration
       tags:
-      - dns
+      - DNS
 components:
   schemas:
+    DNSAllocateParams:
+      allOf:
+      - $ref: '#/components/schemas/BaseDNSCreateParams'
     DNS:
       properties:
         bgp_config_id:
@@ -269,6 +272,38 @@ components:
       required:
       - vip
       type: object
+    DNSCreateParams:
+      allOf:
+      - $ref: '#/components/schemas/BaseDNSCreateParams'
+      - properties:
+          bgp_config_id:
+            description: The ID of the BGP configuration to use for layer 3 connectivity configuration
+            type: integer
+          enable_l3:
+            description: Enable layer 3 connectivity
+            type: boolean
+          vip:
+            description: A virtual IP to assign to the DNS service. DNS requests from your external DNS server must be delegated to this IP.
+            type: string
+          vip_gateway:
+            description: 'If the external DNS server doesn''t reside on the same subnet as the DNS VIP, enter the IP of a gateway through which to connect to the DNS server. '
+            type: string
+          vip_ipv6:
+            description: Assigns an IPv6 to the DNS service.
+            type: string
+          vip_ipv6_gateway:
+            description: Specifies a gateway IPv6 to external DNS server if on different subnet.
+            type: string
+          vip_ipv6_subnet_cidr:
+            description: Specifies the subnet, as a CIDR index, on which the DNS resides. [1..128]
+            type: integer
+          vip_subnet_cidr:
+            description: The subnet, in CIDR format, on which the DNS VIP resides.
+            type: integer
+          vip_vlan:
+            description: If your external DNS server is only exposed to a specific VLAN, you can enter the VLAN here to enable communication with the DNS server.
+            type: integer
+        type: object
     BaseDNSCreateParams:
       properties:
         cnode_ids:
@@ -312,41 +347,6 @@ components:
           description: Specifies the TTL value for the DNS.
           type: integer
       type: object
-    DNSCreateParams:
-      allOf:
-      - $ref: '#/components/schemas/BaseDNSCreateParams'
-      - properties:
-          bgp_config_id:
-            description: The ID of the BGP configuration to use for layer 3 connectivity configuration
-            type: integer
-          enable_l3:
-            description: Enable layer 3 connectivity
-            type: boolean
-          vip:
-            description: A virtual IP to assign to the DNS service. DNS requests from your external DNS server must be delegated to this IP.
-            type: string
-          vip_gateway:
-            description: 'If the external DNS server doesn''t reside on the same subnet as the DNS VIP, enter the IP of a gateway through which to connect to the DNS server. '
-            type: string
-          vip_ipv6:
-            description: Assigns an IPv6 to the DNS service.
-            type: string
-          vip_ipv6_gateway:
-            description: Specifies a gateway IPv6 to external DNS server if on different subnet.
-            type: string
-          vip_ipv6_subnet_cidr:
-            description: Specifies the subnet, as a CIDR index, on which the DNS resides. [1..128]
-            type: integer
-          vip_subnet_cidr:
-            description: The subnet, in CIDR format, on which the DNS VIP resides.
-            type: integer
-          vip_vlan:
-            description: If your external DNS server is only exposed to a specific VLAN, you can enter the VLAN here to enable communication with the DNS server.
-            type: integer
-        type: object
-    DNSAllocateParams:
-      allOf:
-      - $ref: '#/components/schemas/BaseDNSCreateParams'
     AsyncTaskInResponse:
       properties:
         async_task:

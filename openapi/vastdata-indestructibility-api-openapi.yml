@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory indestructibility API
+  title: VAST API Swagger Schema Indestructibility API
   version: '1.0'
 security:
 - ApiToken: []
@@ -49,7 +49,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Indestructibility'
           description: ''
-      summary: Return Indestructibility Details.
+      summary: Return Indestructibility Details
       tags:
       - indestructibility
     patch:
@@ -118,9 +118,7 @@ paths:
       - indestructibility
   /indestructibility/{id}/reset_passwd/:
     patch:
-      description: 'This endpoint restores the indestructibility password to its default value. This is indented for the case of a forgotten indestructibility password, where restoring to default enables a user to change the password again to a new secure password. There is a configurable delay until the password restore takes effect. The delay provides additional security in case of a rogue admin using VMS to restore the password. Throughout the duration of the password restore delay period, an alarm is raised. The alarm is raised to alert VMS users that a password restore was initiated in case it was initiated by an unauthorized user. In case you suspect that a rogue admin has initiated a reset, please contact VAST Support and we will assist you.
-
-        '
+      description: This endpoint restores the indestructibility password to its default value. This is indented for the case of a forgotten indestructibility password, where restoring to default enables a user to change the password again to a new secure password. There is a configurable delay until the password restore takes effect. The delay provides additional security in case of a rogue admin using VMS to restore the password. Throughout the duration of the password restore delay period, an alarm is raised. The alarm is raised to alert VMS users that a password restore was initiated in case it was initiated by an unauthorized user. In case you suspect that a rogue admin has initiated a reset, please contact VAST Support and we will assist you.
       operationId: indestructibility_reset_passwd
       parameters:
       - in: path
@@ -140,7 +138,20 @@ paths:
       - indestructibility
   /indestructibility/{id}/unlock/:
     patch:
-      description: "<p>This endpoint unlocks indestructibility for one hour. The following can only be done while indestructibility is unlocked:</p>\n  * Modifying an indestructible protection policy, including changing the snapshot schedule and shortening the retention period for snapshots.\n  * Modify a protected path that points to an indestructible protection policy, including pausing the path.\n  * Deleting indestructible snapshots.\n  * Shortening the expiration time of indestructible snapshots.\n  * Changing the indestructibility password.\n  * Changing the indestructibility password restore delay.\n"
+      description: 'This endpoint unlocks indestructibility for one hour. The following can only be done while indestructibility is unlocked:
+
+
+        * Modifying an indestructible protection policy, including changing the snapshot schedule and shortening the retention period for snapshots.
+
+        * Modify a protected path that points to an indestructible protection policy, including pausing the path.
+
+        * Deleting indestructible snapshots.
+
+        * Shortening the expiration time of indestructible snapshots.
+
+        * Changing the indestructibility password.
+
+        * Changing the indestructibility password restore delay.'
       operationId: indestructibility_unlock
       parameters:
       - in: path

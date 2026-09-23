@@ -1,12 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory config API
+  title: VAST API Swagger Schema Config API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
-- name: config
+- name: Config
 paths:
   /config/:
     get:
@@ -23,7 +23,7 @@ paths:
           description: Dynamic configs information
       summary: List dynamic configs
       tags:
-      - config
+      - Config
   /config/reset/:
     post:
       operationId: config_reset
@@ -32,7 +32,7 @@ paths:
           description: OK
       summary: Reset all dynamic configs to their default values
       tags:
-      - config
+      - Config
   /config/{key}/:
     delete:
       operationId: config_delete
@@ -43,7 +43,7 @@ paths:
           description: OK
       summary: Restore dynamic config to its default by key
       tags:
-      - config
+      - Config
     get:
       operationId: config_read
       parameters:
@@ -57,7 +57,7 @@ paths:
           description: Dynamic configs information
       summary: Show dynamic configs
       tags:
-      - config
+      - Config
     patch:
       operationId: config_update
       parameters:
@@ -73,17 +73,9 @@ paths:
           description: OK
       summary: Modify dynamic configs
       tags:
-      - config
+      - Config
 components:
   schemas:
-    ModifyDynamicKeyParams:
-      properties:
-        value:
-          description: The equivalent JSON-serialized of the config value
-          type: string
-      required:
-      - value
-      type: object
     DynamicConfig:
       properties:
         is_modified:
@@ -101,6 +93,14 @@ components:
       required:
       - key
       - is_modified
+      type: object
+    ModifyDynamicKeyParams:
+      properties:
+        value:
+          description: The equivalent JSON-serialized of the config value
+          type: string
+      required:
+      - value
       type: object
   parameters:
     DynamicConfigKey:

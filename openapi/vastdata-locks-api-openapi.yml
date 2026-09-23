@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory locks API
+  title: VAST API Swagger Schema Locks API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
-- description: NLMv4 locks help NFSv3 clients protect NFS files from data consistency conflicts. NFS client applications can acquire read or write NLM locks on byte ranges or on whole files. VAST Cluster uses NSM to automatically remove NLM locks. Manual removal of locks should not be needed provided that every client host is configured to send sm_notify reboot notifications to NFS peers. The locks path feature can be used for manual lock removal in the event that a client OS is not configured to send sm_notify reboot notifications to NFS peers and crashes and leaves behind locks.
-  name: locks
+- description: NLMv4 locks help NFSv3 clients protect NFS files from data consistency conflicts.
+  name: Locks
 paths:
   /clusters/{id}/locks/:
     delete:
@@ -22,7 +22,7 @@ paths:
           description: Deleted
       summary: Deletes NLM Locks
       tags:
-      - locks
+      - Locks
     post:
       description: This endpoint returns all NLM locks on a file at a specified path.
       operationId: cluster_locks_list
@@ -41,7 +41,7 @@ paths:
           description: Lock information
       summary: List NLM Locks
       tags:
-      - locks
+      - Locks
   /clusters/{id}/release_recursive_locks/:
     delete:
       description: This endpoint deletes NLM locks on a path recursively.
@@ -59,30 +59,25 @@ paths:
           description: ''
       summary: Deletes NLM Locks Recursively
       tags:
-      - locks
+      - Locks
 components:
-  parameters:
-    ClusterId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
-  requestBodies:
-    ClusterLocksParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ClusterLocksParams'
-      x-originalParamName: ClusterLocksParamsBody
-    ClusterLocksRequestParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ClusterLocksRequestParams'
-      x-originalParamName: ClusterLocksRequestParamsBody
   schemas:
+    TenantIdBody:
+      minimum: 1
+      properties:
+        tenant_id:
+          type: integer
+      type: object
+    ClusterLocksRequestParams:
+      allOf:
+      - $ref: '#/components/schemas/ClusterLocksParams'
+      - properties:
+          direction:
+            description: Pagination direction.
+            enum:
+            - prev
+            - next
+            type: string
     ClusterLocksParams:
       allOf:
       - $ref: '#/components/schemas/TenantIdBody'
@@ -106,6 +101,12 @@ components:
             - SINGLE
             - ALL
             type: string
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     Lock:
       properties:
         caller:
@@ -176,28 +177,27 @@ components:
           type: string
           x-cli-header: Unlock ID
       type: object
-    TenantIdBody:
-      minimum: 1
-      properties:
-        tenant_id:
-          type: integer
-      type: object
-    ClusterLocksRequestParams:
-      allOf:
-      - $ref: '#/components/schemas/ClusterLocksParams'
-      - properties:
-          direction:
-            description: Pagination direction.
-            enum:
-            - prev
-            - next
-            type: string
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
+  parameters:
+    ClusterId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+  requestBodies:
+    ClusterLocksParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksParams'
+      x-originalParamName: ClusterLocksParamsBody
+    ClusterLocksRequestParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksRequestParams'
+      x-originalParamName: ClusterLocksRequestParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

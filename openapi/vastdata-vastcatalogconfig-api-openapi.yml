@@ -1,12 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory vastcatalogconfig API
+  title: VAST API Swagger Schema Vastcatalogconfig API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
-- description: The bigcatalogconfig endpoint enables you to manage the configuration of VAST Catalog and to query the VAST Catalog. VAST Catalog is a database that indexes metadata attributes of all data on the cluster, enabling high performance querying of files, objects and directories based on classification of data according to attributes used by multiple access protocols. VAST catalog indexes the metadata attributes of the cluster's data from periodic snapshots of the cluster's data. The database is stored on a dedicated S3 bucket on the cluster.
+- description: The bigcatalogconfig endpoint enables you to manage the configuration of VAST Catalog and to query the VAST Catalog.
   name: vastcatalogconfig
 paths:
   /bigcatalogconfig/:
@@ -146,7 +146,7 @@ paths:
       responses:
         '204':
           description: OK
-      summary: Delete VAST Catalog Configuration.
+      summary: Delete VAST Catalog Configuration
       tags:
       - vastcatalogconfig
     get:
@@ -204,18 +204,17 @@ paths:
       - vastcatalogconfig
 components:
   parameters:
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
+    Ordering:
       in: query
-      name: tenant_id
+      name: ordering
       schema:
-        minimum: 1
-        type: integer
-    VastCatalogPathQP:
-      description: Target source path
+        items:
+          type: string
+        type: array
+    VastCatalogSnapshotNameQP:
+      description: The name of the snapshot, the latest version is taken by default
       in: query
-      name: path
-      required: true
+      name: snapshot
       schema:
         type: string
     Page:
@@ -224,12 +223,6 @@ components:
       schema:
         minimum: 1
         type: integer
-    VastDBFiltersQP:
-      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
-      in: query
-      name: filters
-      schema:
-        type: string
     VastCatalogFieldsQP:
       description: Defines which fields should be displayed
       in: query
@@ -249,54 +242,40 @@ components:
         items:
           type: string
         type: array
-    Ordering:
+    VastDBFiltersQP:
+      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
       in: query
-      name: ordering
+      name: filters
       schema:
-        items:
-          type: string
-        type: array
+        type: string
+    VastCatalogPathQP:
+      description: Target source path
+      in: query
+      name: path
+      required: true
+      schema:
+        type: string
     Limit:
       in: query
       name: limit
       schema:
         default: 1000
         type: integer
-    VastCatalogSnapshotNameQP:
-      description: The name of the snapshot, the latest version is taken by default
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
       in: query
-      name: snapshot
+      name: tenant_id
       schema:
-        type: string
-  requestBodies:
-    VastCatalogConfigQueryData:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/VastCatalogQueryDataInputSchema'
-      x-originalParamName: VastCatalogConfigQueryData
+        minimum: 1
+        type: integer
   schemas:
-    Column:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          field:
-            description: Column type
-            example:
-              column_type: map
-              key_type:
-                column_type: bool
-              value_type:
-                column_type: bool
-            type: object
-          raw_field:
-            description: Raw description of column type
-            example: map<bool, bool>
-            type: string
-        required:
-        - field
-        - raw_field
-        type: object
+    Stats:
+      properties:
+        count_columns:
+          type: integer
+        count_rows:
+          type: integer
+      type: object
     QueryDataOutputSchema:
       properties:
         count:
@@ -316,26 +295,6 @@ components:
             type: string
           type: array
       type: object
-    TabularTableHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-        table_name:
-          description: Name of the Table
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - table_name
-      - name
-      type: object
     BaseQueryDataInputSchema:
       properties:
         fields:
@@ -349,19 +308,29 @@ components:
       required:
       - filters
       type: object
-    VastCatalogConfig:
-      allOf:
-      - $ref: '#/components/schemas/ProtectionPolicy'
-      - properties:
-          enable:
-            description: Flag indicating the status of vast catalog config
-            type: boolean
-    Stats:
+    Frame:
       properties:
-        count_columns:
+        every:
+          example: 30m
+          type: string
+        keep-local:
+          example: 30m
+          type: string
+        keep-remote:
+          example: 30m
+          type: string
+        start-at:
+          example: '2021-02-03 01:02:03'
+          type: string
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
           type: integer
-        count_rows:
-          type: integer
+        name:
+          description: Tenant Name
+          type: string
       type: object
     VastCatalogQueryDataInputSchema:
       allOf:
@@ -405,6 +374,54 @@ components:
           description: Remote Tenant name
           type: string
       type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+    VastCatalogConfig:
+      allOf:
+      - $ref: '#/components/schemas/ProtectionPolicy'
+      - properties:
+          enable:
+            description: Flag indicating the status of vast catalog config
+            type: boolean
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
     ProtectionPolicy:
       properties:
         clone_type:
@@ -494,30 +511,13 @@ components:
       - frames
       - clone_type
       type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
-      type: object
-    Frame:
-      properties:
-        every:
-          example: 30m
-          type: string
-        keep-local:
-          example: 30m
-          type: string
-        keep-remote:
-          example: 30m
-          type: string
-        start-at:
-          example: '2021-02-03 01:02:03'
-          type: string
-      type: object
+  requestBodies:
+    VastCatalogConfigQueryData:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/VastCatalogQueryDataInputSchema'
+      x-originalParamName: VastCatalogConfigQueryData
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

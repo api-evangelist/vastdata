@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory vippools API
+  title: VAST API Swagger Schema Vippools API
   version: '1.0'
 security:
 - ApiToken: []
@@ -64,7 +64,7 @@ paths:
                 title: VIPPools
                 type: array
           description: VIP Pool information
-      summary: ' List VIP Pools'
+      summary: List VIP Pools
       tags:
       - vippools
     post:
@@ -263,57 +263,80 @@ paths:
       tags:
       - vippools
 components:
+  requestBodies:
+    VippoolCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/VippoolCreateParams'
+      x-originalParamName: VippoolCreateParamsBody
+    VippoolAllocateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/VippoolAllocateParams'
+      x-originalParamName: VippoolAllocateParamsBody
   schemas:
-    BaseVippoolCreateParams:
-      properties:
-        cluster_id:
-          type: integer
-        cnode_ids:
-          description: Dedicates a specific group of CNodes to the VIP pool. List the IDs of the CNodes. Separate IDs by commas. This is a way to dedicate a specific set of CNodes to a specific set of client hosts or applications. Overridden if cnode_names is passed.
-          items:
-            type: integer
-          type: array
-        cnode_names:
-          description: Dedicates a specific group of CNodes to the VIP pool. List the names of the CNodes. Separate names by commas. This is a way to dedicate a specific set of CNodes to a specific set of client hosts or applications. Overrides cnode_ids.
-          type: string
-        domain_name:
-          description: Domain name for the VAST DNS server. If a DNS configuration exists, the domain suffix defined in the DNS server configuration is appended to this domain name to form a FQDN which the DNS server resolves to this VIP pool.
-          type: string
-        enable_weighted_balancing:
-          description: Enable weighted balancing
-          type: boolean
-        enabled:
-          default: true
-          description: Set to false to disable the pool
-          type: boolean
-        name:
-          type: string
-        role:
-          description: '''PROTOCOLS'' dedicates the VIP pool to client traffic from all of the supported access protocols (NFSv3, NFSv4.2, SMBv2, S3, Database). At least one VIP pool must be created to enable client access. ''REPLICATION'' dedicates the VIP pool for connectivity with an async replication peer cluster. This is needed for async  replication. ''BIG_CATALOG'' dedicates the VIP pool to VAST Catalog query access from the client network.'
-          enum:
-          - PROTOCOLS
-          - REPLICATION
-          type: string
-        tenant_id:
-          description: Tenant ID
-          type: integer
-        vms_preferred:
-          description: If true, CNodes participating in the vip pool are preferred in VMS host election
-          type: boolean
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    VippoolAllocateParams:
+    VippoolCreateParams:
       allOf:
       - $ref: '#/components/schemas/BaseVippoolCreateParams'
       - properties:
-          ips_count:
-            description: Number of IPs from the cloud
+          bgp_config_id:
+            description: The ID of the BGP configuration to use for layer 3 connectivity configuration
             type: integer
+          client_monitoring_ips:
+            description: External client monitoring IP ranges for VIP pool connectivity monitoring
+            items:
+              items:
+                type: string
+              type: array
+            type: array
+          enable_l3:
+            description: Enables L3 networking, in which the cluster's CNodes act as Border Gateway Protocol (BGP) peers belonging to a VAST Autonomous system (AS) which is  connected to the client network's AS
+            type: boolean
+          end_ip:
+            description: Not currently in use. Use ip_ranges instead.
+            type: string
+          gw_ip:
+            description: The IP address of a local gateway device if client traffic is routed through one
+            type: string
+          gw_ipv6:
+            description: The IP address of a local gateway device if client traffic is routed through one
+            type: string
+          ip_ranges:
+            description: Array of IP ranges to include in the vippool.
+            items:
+              items:
+                type: string
+              type: array
+            type: array
+          peer_asn:
+            description: The client network's ASN. Must not be equal to vast_asn. Applicable only if enable_ls is true.
+            type: integer
+          port_membership:
+            description: 'Allocates left, right or all CNode ports to the VIP pool. Allocating the left port and the right port in different VIP pools enables the CNodes to be connected to multiple networks simultaneously. Default: all'
+            enum:
+            - RIGHT
+            - LEFT
+            - ALL
+            type: string
+          start_ip:
+            description: Not currently in use. Use ip_ranges instead.
+            type: string
+          subnet_cidr:
+            description: The subnet expressed as a CIDR index (number of bits in each IP that belong to the subnet)
+            type: integer
+          subnet_cidr_ipv6:
+            description: The subnet expressed as a CIDR index (number of bits in each IP that belong to the subnet)
+            type: integer
+          vast_asn:
+            description: The cluster's ASN. Must not be equal to peer_asn. Applicable only if enable_ls is true.
+            type: integer
+          vlan:
+            description: To tag the VIP pool with a specific VLAN on the data network, specify the VLAN (0-4096). The VIP pool will be exposed only to the specified VLAN on the client network.
+            type: integer
+        required:
+        - subnet_cidr
         type: object
     VIPPool:
       properties:
@@ -487,80 +510,68 @@ components:
       - ip_ranges
       - subnet_cidr
       type: object
-    VippoolCreateParams:
+    VippoolAllocateParams:
       allOf:
       - $ref: '#/components/schemas/BaseVippoolCreateParams'
       - properties:
-          bgp_config_id:
-            description: The ID of the BGP configuration to use for layer 3 connectivity configuration
+          ips_count:
+            description: Number of IPs from the cloud
             type: integer
-          client_monitoring_ips:
-            description: External client monitoring IP ranges for VIP pool connectivity monitoring
-            items:
-              items:
-                type: string
-              type: array
-            type: array
-          enable_l3:
-            description: Enables L3 networking, in which the cluster's CNodes act as Border Gateway Protocol (BGP) peers belonging to a VAST Autonomous system (AS) which is  connected to the client network's AS
-            type: boolean
-          end_ip:
-            description: Not currently in use. Use ip_ranges instead.
-            type: string
-          gw_ip:
-            description: The IP address of a local gateway device if client traffic is routed through one
-            type: string
-          gw_ipv6:
-            description: The IP address of a local gateway device if client traffic is routed through one
-            type: string
-          ip_ranges:
-            description: Array of IP ranges to include in the vippool.
-            items:
-              items:
-                type: string
-              type: array
-            type: array
-          peer_asn:
-            description: The client network's ASN. Must not be equal to vast_asn. Applicable only if enable_ls is true.
-            type: integer
-          port_membership:
-            description: 'Allocates left, right or all CNode ports to the VIP pool. Allocating the left port and the right port in different VIP pools enables the CNodes to be connected to multiple networks simultaneously. Default: all'
-            enum:
-            - RIGHT
-            - LEFT
-            - ALL
-            type: string
-          start_ip:
-            description: Not currently in use. Use ip_ranges instead.
-            type: string
-          subnet_cidr:
-            description: The subnet expressed as a CIDR index (number of bits in each IP that belong to the subnet)
-            type: integer
-          subnet_cidr_ipv6:
-            description: The subnet expressed as a CIDR index (number of bits in each IP that belong to the subnet)
-            type: integer
-          vast_asn:
-            description: The cluster's ASN. Must not be equal to peer_asn. Applicable only if enable_ls is true.
-            type: integer
-          vlan:
-            description: To tag the VIP pool with a specific VLAN on the data network, specify the VLAN (0-4096). The VIP pool will be exposed only to the specified VLAN on the client network.
-            type: integer
-        required:
-        - subnet_cidr
         type: object
+    BaseVippoolCreateParams:
+      properties:
+        cluster_id:
+          type: integer
+        cnode_ids:
+          description: Dedicates a specific group of CNodes to the VIP pool. List the IDs of the CNodes. Separate IDs by commas. This is a way to dedicate a specific set of CNodes to a specific set of client hosts or applications. Overridden if cnode_names is passed.
+          items:
+            type: integer
+          type: array
+        cnode_names:
+          description: Dedicates a specific group of CNodes to the VIP pool. List the names of the CNodes. Separate names by commas. This is a way to dedicate a specific set of CNodes to a specific set of client hosts or applications. Overrides cnode_ids.
+          type: string
+        domain_name:
+          description: Domain name for the VAST DNS server. If a DNS configuration exists, the domain suffix defined in the DNS server configuration is appended to this domain name to form a FQDN which the DNS server resolves to this VIP pool.
+          type: string
+        enable_weighted_balancing:
+          description: Enable weighted balancing
+          type: boolean
+        enabled:
+          default: true
+          description: Set to false to disable the pool
+          type: boolean
+        name:
+          type: string
+        role:
+          description: '''PROTOCOLS'' dedicates the VIP pool to client traffic from all of the supported access protocols (NFSv3, NFSv4.2, SMBv2, S3, Database). At least one VIP pool must be created to enable client access. ''REPLICATION'' dedicates the VIP pool for connectivity with an async replication peer cluster. This is needed for async  replication. ''BIG_CATALOG'' dedicates the VIP pool to VAST Catalog query access from the client network.'
+          enum:
+          - PROTOCOLS
+          - REPLICATION
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        vms_preferred:
+          description: If true, CNodes participating in the vip pool are preferred in VMS host election
+          type: boolean
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
   parameters:
-    VIPPoolId:
-      description: VIP Pool ID
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
     ServesTenantQP:
       description: Filter by served tenants. Accepts tenant ID or "all" for all served tenants.
       in: query
       name: serves_tenant
+      schema:
+        type: string
+    TenantNameIContainsQP:
+      description: Tenant name to filter by
+      in: query
+      name: tenant_name__icontains
       schema:
         type: string
     TenantIdQP:
@@ -570,25 +581,14 @@ components:
       schema:
         minimum: 1
         type: integer
-    TenantNameIContainsQP:
-      description: Tenant name to filter by
-      in: query
-      name: tenant_name__icontains
+    VIPPoolId:
+      description: VIP Pool ID
+      in: path
+      name: id
+      required: true
       schema:
-        type: string
-  requestBodies:
-    VippoolAllocateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/VippoolAllocateParams'
-      x-originalParamName: VippoolAllocateParamsBody
-    VippoolCreateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/VippoolCreateParams'
-      x-originalParamName: VippoolCreateParamsBody
+        minimum: 1
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

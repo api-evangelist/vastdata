@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory viewpolicies API
+  title: VAST API Swagger Schema Viewpolicies API
   version: '1.0'
 security:
 - ApiToken: []
@@ -695,6 +695,8 @@ paths:
           description: ''
       tags:
       - viewpolicies
+      summary: Remove remote mapping
+      x-summary-source: derived
     post:
       operationId: add_remote_mapping
       parameters:
@@ -725,8 +727,14 @@ paths:
           description: ''
       tags:
       - viewpolicies
+      summary: Add remote mapping
+      x-summary-source: derived
 components:
   schemas:
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
     ViewPolicy:
       properties:
         access_flavor:
@@ -1136,15 +1144,17 @@ components:
       required:
       - name
       type: object
-    ArbitraryStringsObject:
-      additionalProperties:
-        type: string
-      type: object
   parameters:
     ServesTenantQP:
       description: Filter by served tenants. Accepts tenant ID or "all" for all served tenants.
       in: query
       name: serves_tenant
+      schema:
+        type: string
+    TenantNameIContainsQP:
+      description: Tenant name to filter by
+      in: query
+      name: tenant_name__icontains
       schema:
         type: string
     TenantIdQP:
@@ -1154,12 +1164,6 @@ components:
       schema:
         minimum: 1
         type: integer
-    TenantNameIContainsQP:
-      description: Tenant name to filter by
-      in: query
-      name: tenant_name__icontains
-      schema:
-        type: string
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory protectedpaths API
+  title: VAST API Swagger Schema Protectedpaths API
   version: '1.0'
 security:
 - ApiToken: []
@@ -629,7 +629,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AsyncGlobalSnapStream'
           description: ''
-      summary: Create a Clone to Restore a Path.
+      summary: Create a Clone to Restore a Path
       tags:
       - protectedpaths
   /protectedpaths/{id}/resume:
@@ -662,7 +662,7 @@ paths:
       - protectedpaths
   /protectedpaths/{id}/stop:
     patch:
-      description: 'This endpoint stops a restore on a protected path. It removes the snapshot clone created by the restore operation. It is available until the restore is committed. '
+      description: This endpoint stops a restore on a protected path. It removes the snapshot clone created by the restore operation. It is available until the restore is committed.
       operationId: protectedpaths_stop
       parameters:
       - description: The ID of the protected path
@@ -674,7 +674,7 @@ paths:
       responses:
         '200':
           description: ''
-      summary: Stops snapshot restore on protected path.
+      summary: Stops snapshot restore on protected path
       tags:
       - protectedpaths
   /protectedpaths/{id}/validate:
@@ -712,15 +712,11 @@ paths:
                     type: array
                 type: object
           description: Validations results
-      summary: Returns validations results for Protected Path.
+      summary: Returns validations results for Protected Path
       tags:
       - protectedpaths
 components:
   schemas:
-    AsyncGlobalSnapStream:
-      allOf:
-      - $ref: '#/components/schemas/GlobalSnapStream'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
     ConflictResponse:
       properties:
         code:
@@ -730,15 +726,40 @@ components:
           example: The request could not be completed due to a conflict with the current state of the target resource.
           type: string
       type: object
-    PrefetchFolderResponse:
+    PrefetchFolderStatusResponse:
       properties:
         code:
           description: Result code
           type: string
+        inodes_retrieved:
+          description: Number of retrieved inodes (files and directories)
+          type: integer
+        path:
+          description: Prefetched path
+          type: string
+        prefetch_type:
+          description: Prefetch type
+          type: string
+        size_retrieved:
+          description: Retrieved size
+          type: integer
         task_id:
           description: Prefetch task ID
           type: integer
       type: object
+    ReplicationMemberInfo:
+      properties:
+        capabilities:
+          type: string
+        role:
+          type: string
+        state:
+          type: string
+      type: object
+    AsyncGlobalSnapStream:
+      allOf:
+      - $ref: '#/components/schemas/GlobalSnapStream'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
     GlobalSnapStream:
       properties:
         bw:
@@ -829,27 +850,6 @@ components:
         view_replication_enabled:
           description: Whether view replication is enabled
           type: boolean
-      type: object
-    PrefetchFolderStatusResponse:
-      properties:
-        code:
-          description: Result code
-          type: string
-        inodes_retrieved:
-          description: Number of retrieved inodes (files and directories)
-          type: integer
-        path:
-          description: Prefetched path
-          type: string
-        prefetch_type:
-          description: Prefetch type
-          type: string
-        size_retrieved:
-          description: Retrieved size
-          type: integer
-        task_id:
-          description: Prefetch task ID
-          type: integer
       type: object
     ProtectedPath:
       properties:
@@ -1056,14 +1056,14 @@ components:
       - name
       - source_dir
       type: object
-    ReplicationMemberInfo:
+    PrefetchFolderResponse:
       properties:
-        capabilities:
+        code:
+          description: Result code
           type: string
-        role:
-          type: string
-        state:
-          type: string
+        task_id:
+          description: Prefetch task ID
+          type: integer
       type: object
     AsyncTaskInResponse:
       properties:

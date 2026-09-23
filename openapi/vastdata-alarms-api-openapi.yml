@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory alarms API
+  title: VAST API Swagger Schema Alarms API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Alarms can be raised by events.
-  name: alarms
+  name: Alarms
 paths:
   /alarms/:
     get:
@@ -76,7 +76,7 @@ paths:
           description: alarm information
       summary: List Alarms
       tags:
-      - alarms
+      - Alarms
   /alarms/clear/:
     patch:
       description: This endpoint clears all alarms.
@@ -86,7 +86,7 @@ paths:
           description: ''
       summary: Clear Alarms
       tags:
-      - alarms
+      - Alarms
   /alarms/{id}/:
     delete:
       description: This endpoint deletes an alarm.
@@ -103,7 +103,7 @@ paths:
           description: ''
       summary: Delete Alarm
       tags:
-      - alarms
+      - Alarms
     get:
       description: This endpoint returns details of a specified alarm
       operationId: alarms_read
@@ -123,7 +123,7 @@ paths:
           description: ''
       summary: Return Details of an Alarm
       tags:
-      - alarms
+      - Alarms
     patch:
       description: This endpoint acknowledges an alarm.
       operationId: alarms_partial_update
@@ -149,7 +149,7 @@ paths:
           description: ''
       summary: Acknowledge Alarm
       tags:
-      - alarms
+      - Alarms
 components:
   schemas:
     Alarm:

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory Tenants API
+  title: VAST API Swagger Schema Tenants API
   version: '1.0'
 security:
 - ApiToken: []
@@ -691,7 +691,7 @@ paths:
                     type: string
                 type: object
           description: Service temporarily unavailable, try again later.
-      summary: Deactivate tenant's encryption group.
+      summary: Deactivate tenant's encryption group
       tags:
       - Tenants
   /tenants/{id}/is_operation_healthy:
@@ -782,7 +782,6 @@ paths:
       - Tenants
   /tenants/{id}/nfs4_deleg/:
     delete:
-      description: Remove NFSv4 delegation
       operationId: tenant_remove_nfs4_deleg
       parameters:
       - $ref: '#/components/parameters/TenantId'
@@ -878,7 +877,7 @@ paths:
                     type: string
                 type: object
           description: Service temporarily unavailable, try again later.
-      summary: Reinstate tenant's encryption group.
+      summary: Reinstate tenant's encryption group
       tags:
       - Tenants
   /tenants/{id}/revoke_encryption_group/:
@@ -910,7 +909,7 @@ paths:
                     type: string
                 type: object
           description: Service temporarily unavailable, try again later.
-      summary: Revoke tenant's encryption group.
+      summary: Revoke tenant's encryption group
       tags:
       - Tenants
   /tenants/{id}/rotate_encryption_group_key/:
@@ -942,7 +941,7 @@ paths:
                     type: string
                 type: object
           description: Service temporarily unavailable, try again later.
-      summary: Rotate tenant's encryption group key.
+      summary: Rotate tenant's encryption group key
       tags:
       - Tenants
   /tenants/{id}/same_encryption_group_tenants/:
@@ -1061,9 +1060,7 @@ paths:
     post:
       description: 'This endpoint replaces all metric label values for a tenant with the provided dictionary.
 
-        All existing values are deleted and replaced with the new ones.
-
-        '
+        All existing values are deleted and replaced with the new ones.'
       operationId: tenant_metric_label_values_bulk_update
       parameters:
       - $ref: '#/components/parameters/NestedTenantId'
@@ -1141,17 +1138,18 @@ paths:
       - Tenants
 components:
   parameters:
+    TenantId:
+      description: Tenant ID
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
     NameIContainsQP:
       description: Name to filter by
       in: query
       name: name__icontains
-      schema:
-        type: string
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
       schema:
         type: string
     Page:
@@ -1160,11 +1158,16 @@ components:
       schema:
         minimum: 1
         type: integer
-    TenantId:
-      description: Tenant ID
+    PathObjectId:
+      description: Object ID specified in the path
       in: path
       name: id
       required: true
+      schema:
+        type: string
+    PageSize:
+      in: query
+      name: page_size
       schema:
         minimum: 1
         type: integer
@@ -1176,13 +1179,83 @@ components:
       schema:
         minimum: 1
         type: integer
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
   schemas:
+    TruncatedQOSStaticLimits:
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      required:
+      - max_reads_bw_mbps
+      - max_writes_bw_mbps
+      - max_reads_iops
+      - max_writes_iops
+      - burst_reads_bw_mb
+      - burst_writes_bw_mb
+      - burst_reads_loan_mb
+      - burst_writes_loan_mb
+      - burst_reads_iops
+      - burst_writes_iops
+      - burst_reads_loan_iops
+      - burst_writes_loan_iops
+      type: object
     TabularColumnArrowSchema:
       properties:
         field:
@@ -1218,6 +1291,112 @@ components:
       - name
       - field
       type: object
+    PartialVTask:
+      properties:
+        id:
+          description: Task ID
+          type: integer
+        start_time:
+          description: Task start time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        state:
+          description: Task state
+          type: string
+      type: object
+    TenantMetricLabel:
+      properties:
+        created_at:
+          description: Timestamp when the metric label was created.
+          format: date-time
+          readOnly: true
+          type: string
+          x-format: datetime2display
+        default_value:
+          description: The default value for this metric label.
+          maxLength: 64
+          type: string
+        description:
+          description: Description of the metric label purpose.
+          maxLength: 1024
+          type: string
+        id:
+          readOnly: true
+          type: integer
+        key:
+          description: The unique key for the metric label.
+          maxLength: 32
+          type: string
+      required:
+      - key
+      - default_value
+      - description
+      type: object
+    RequestTruncatedQOSStaticLimits:
+      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
     LocalProviderData:
       properties:
         id:
@@ -1228,19 +1407,59 @@ components:
           description: Name of the local provider
           type: string
       type: object
-    TenantMetricLabelValues:
-      additionalProperties:
-        maxLength: 64
-        type: string
-      description: Custom labels to be exposed in Prometheus metrics.
-      example:
-        customer: acme
-        region: us-west
+    PartialTenantMetricLabel:
+      properties:
+        id:
+          type: integer
+        key:
+          type: string
+      readOnly: true
       type: object
-    RequestTruncatedQOS:
+    CapacityRules:
+      properties:
+        grace_period:
+          description: Quota enforcement grace period for tenant capacity limit, in seconds
+          type: string
+        hard_limit:
+          description: Capacity hard limit for the tenant
+          type: integer
+        hard_limit_inodes:
+          description: Hard limit on the number of files or directories for the tenant
+          type: integer
+        notify_hard_limit:
+          description: Notify on reaching hard limit
+          type: boolean
+        notify_soft_limit:
+          description: Notify on reaching soft limit
+          type: boolean
+        soft_limit:
+          description: Capacity soft limit for the tenant
+          type: integer
+        soft_limit_inodes:
+          description: Soft limit on the number of files or directories for the tenant
+          type: integer
+      type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
+          type: string
+      type: object
+    TruncatedQOS:
       properties:
         static_limits:
-          $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
+          $ref: '#/components/schemas/TruncatedQOSStaticLimits'
+      required:
+      - static_limits
+      type: object
+    RemoteTenant:
+      properties:
+        guid:
+          description: Remote Tenant guid
+          type: string
+        name:
+          description: Remote Tenant name
+          type: string
       type: object
     Tenant:
       properties:
@@ -1507,191 +1726,6 @@ components:
       required:
       - name
       type: object
-    TruncatedQOSStaticLimits:
-      properties:
-        burst_reads_bw_mb:
-          default: 0
-          description: Burst reads BW Mb
-          minimum: 0
-          type: integer
-        burst_reads_iops:
-          default: 0
-          description: Burst reads IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_iops:
-          default: 0
-          description: Burst reads loan IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_mb:
-          default: 0
-          description: Burst reads loan Mb
-          minimum: 0
-          type: integer
-        burst_writes_bw_mb:
-          default: 0
-          description: Burst writes BW Mb
-          minimum: 0
-          type: integer
-        burst_writes_iops:
-          default: 0
-          description: Burst writes IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_iops:
-          default: 0
-          description: Burst writes loan IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_mb:
-          default: 0
-          description: Burst writes loan Mb
-          minimum: 0
-          type: integer
-        max_reads_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_reads_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-      required:
-      - max_reads_bw_mbps
-      - max_writes_bw_mbps
-      - max_reads_iops
-      - max_writes_iops
-      - burst_reads_bw_mb
-      - burst_writes_bw_mb
-      - burst_reads_loan_mb
-      - burst_writes_loan_mb
-      - burst_reads_iops
-      - burst_writes_iops
-      - burst_reads_loan_iops
-      - burst_writes_loan_iops
-      type: object
-    CapacityRules:
-      properties:
-        grace_period:
-          description: Quota enforcement grace period for tenant capacity limit, in seconds
-          type: string
-        hard_limit:
-          description: Capacity hard limit for the tenant
-          type: integer
-        hard_limit_inodes:
-          description: Hard limit on the number of files or directories for the tenant
-          type: integer
-        notify_hard_limit:
-          description: Notify on reaching hard limit
-          type: boolean
-        notify_soft_limit:
-          description: Notify on reaching soft limit
-          type: boolean
-        soft_limit:
-          description: Capacity soft limit for the tenant
-          type: integer
-        soft_limit_inodes:
-          description: Soft limit on the number of files or directories for the tenant
-          type: integer
-      type: object
-    Column:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          field:
-            description: Column type
-            example:
-              column_type: map
-              key_type:
-                column_type: bool
-              value_type:
-                column_type: bool
-            type: object
-          raw_field:
-            description: Raw description of column type
-            example: map<bool, bool>
-            type: string
-        required:
-        - field
-        - raw_field
-        type: object
-    RequestTruncatedQOSStaticLimits:
-      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
-      properties:
-        burst_reads_bw_mb:
-          default: 0
-          description: Burst reads BW Mb
-          minimum: 0
-          type: integer
-        burst_reads_iops:
-          default: 0
-          description: Burst reads IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_iops:
-          default: 0
-          description: Burst reads loan IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_mb:
-          default: 0
-          description: Burst reads loan Mb
-          minimum: 0
-          type: integer
-        burst_writes_bw_mb:
-          default: 0
-          description: Burst writes BW Mb
-          minimum: 0
-          type: integer
-        burst_writes_iops:
-          default: 0
-          description: Burst writes IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_iops:
-          default: 0
-          description: Burst writes loan IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_mb:
-          default: 0
-          description: Burst writes loan Mb
-          minimum: 0
-          type: integer
-        max_reads_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_reads_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-      type: object
     TenantClientMetrics:
       properties:
         config:
@@ -1727,52 +1761,15 @@ components:
       required:
       - config
       type: object
-    PartialTenantMetricLabel:
+    VIPPoolIPRanges:
+      description: Array of IP ranges of VIP Pools that can be used with the tenant.
       properties:
-        id:
-          type: integer
-        key:
-          type: string
-      readOnly: true
-      type: object
-    NFS4DelegateState:
-      properties:
-        delegate_info:
+        vippool_ip_ranges:
           items:
-            $ref: '#/components/schemas/NFS4DelegateInfo'
+            example: 172.20.16.1 - 172.20.16.16
+            type: string
           type: array
-        delegate_info_count_total:
-          type: integer
-        xeystore_pagination:
-          type: boolean
-        xeystore_pagination_next_client_id:
-          type: integer
-      type: object
-    ErrorResponse:
-      properties:
-        detail:
-          example: Failed to rotate encryption group key.
-          type: string
-      type: object
-    TenantMetricLabelValue:
-      properties:
-        created_at:
-          description: Timestamp when the metric label value was created.
-          format: date-time
-          readOnly: true
-          type: string
-          x-format: datetime2display
-        id:
-          readOnly: true
-          type: integer
-        label:
-          $ref: '#/components/schemas/PartialTenantMetricLabel'
-        value:
-          description: The value for this metric label for the tenant.
-          maxLength: 64
-          type: string
-      required:
-      - value
+          x-cli-header: VIP Pools IP ranges
       type: object
     TabularTableHierarchy:
       properties:
@@ -1793,6 +1790,15 @@ components:
       - schema_name
       - table_name
       - name
+      type: object
+    TenantMetricLabelValues:
+      additionalProperties:
+        maxLength: 64
+        type: string
+      description: Custom labels to be exposed in Prometheus metrics.
+      example:
+        customer: acme
+        region: us-west
       type: object
     NFS4DelegateInfo:
       properties:
@@ -1815,79 +1821,10 @@ components:
         vip_addr:
           type: string
       type: object
-    TruncatedQOS:
+    RequestTruncatedQOS:
       properties:
         static_limits:
-          $ref: '#/components/schemas/TruncatedQOSStaticLimits'
-      required:
-      - static_limits
-      type: object
-    RemoteTenant:
-      properties:
-        guid:
-          description: Remote Tenant guid
-          type: string
-        name:
-          description: Remote Tenant name
-          type: string
-      type: object
-    PartialVTask:
-      properties:
-        id:
-          description: Task ID
-          type: integer
-        start_time:
-          description: Task start time
-          format: date-time
-          type: string
-          x-format: datetime2display
-        state:
-          description: Task state
-          type: string
-      type: object
-    TenantMetricLabel:
-      properties:
-        created_at:
-          description: Timestamp when the metric label was created.
-          format: date-time
-          readOnly: true
-          type: string
-          x-format: datetime2display
-        default_value:
-          description: The default value for this metric label.
-          maxLength: 64
-          type: string
-        description:
-          description: Description of the metric label purpose.
-          maxLength: 1024
-          type: string
-        id:
-          readOnly: true
-          type: integer
-        key:
-          description: The unique key for the metric label.
-          maxLength: 32
-          type: string
-      required:
-      - key
-      - default_value
-      - description
-      type: object
-    VIPPoolIPRanges:
-      description: Array of IP ranges of VIP Pools that can be used with the tenant.
-      properties:
-        vippool_ip_ranges:
-          items:
-            example: 172.20.16.1 - 172.20.16.16
-            type: string
-          type: array
-          x-cli-header: VIP Pools IP ranges
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
+          $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
       type: object
     Warnings:
       properties:
@@ -1898,6 +1835,66 @@ components:
           type: array
       required:
       - warnings
+      type: object
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
+    NFS4DelegateState:
+      properties:
+        delegate_info:
+          items:
+            $ref: '#/components/schemas/NFS4DelegateInfo'
+          type: array
+        delegate_info_count_total:
+          type: integer
+        xeystore_pagination:
+          type: boolean
+        xeystore_pagination_next_client_id:
+          type: integer
+      type: object
+    TenantMetricLabelValue:
+      properties:
+        created_at:
+          description: Timestamp when the metric label value was created.
+          format: date-time
+          readOnly: true
+          type: string
+          x-format: datetime2display
+        id:
+          readOnly: true
+          type: integer
+        label:
+          $ref: '#/components/schemas/PartialTenantMetricLabel'
+        value:
+          description: The value for this metric label for the tenant.
+          maxLength: 64
+          type: string
+      required:
+      - value
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   securitySchemes:
     ApiToken:

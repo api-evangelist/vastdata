@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory Compute Clusters API
+  title: VAST API Swagger Schema Compute Clusters API
   version: '1.0'
 security:
 - ApiToken: []
@@ -51,9 +51,7 @@ paths:
 
         Returns counts of compute clusters, CNodes, pods, deployments, services, namespaces, and tenants,
 
-        with state-based breakdowns for each resource type.
-
-        '
+        with state-based breakdowns for each resource type.'
       operationId: computeclusters_dashboard
       responses:
         '200':
@@ -434,9 +432,7 @@ paths:
 
         2. Empty body with keep_root=true - keep root, regenerate intermediate + leaf.
 
-        3. Provide all 3 certificate fields in body - use provided certs, generate leaf.
-
-        '
+        3. Provide all 3 certificate fields in body - use provided certs, generate leaf.'
       operationId: computeclusters_rotate_base_certificates
       parameters:
       - description: Compute Cluster ID
@@ -642,9 +638,7 @@ paths:
       - Compute Clusters
   /computeclusters/{id}/tenants/bulk/:
     post:
-      description: 'Manage tenant associations with a compute cluster. You can add or remove tenants. Cannot be used when all_tenants is enabled on the compute cluster.
-
-        '
+      description: Manage tenant associations with a compute cluster. You can add or remove tenants. Cannot be used when all_tenants is enabled on the compute cluster.
       operationId: computeclusters_tenants_bulk
       parameters:
       - description: Compute Cluster ID
@@ -711,18 +705,6 @@ paths:
       - Compute Clusters
 components:
   schemas:
-    ComputeClusterNamespace:
-      properties:
-        created_at:
-          description: Namespace creation timestamp
-          type: string
-        name:
-          description: Namespace name
-          type: string
-        status:
-          description: Namespace status (Active, Terminating, etc.)
-          type: string
-      type: object
     RotateBaseCertificatesParams:
       properties:
         intermediate_certificate:
@@ -746,6 +728,218 @@ components:
 
             '
           type: string
+      type: object
+    ComputeClusterPodCondition:
+      properties:
+        last_transition_time:
+          description: Timestamp of the condition's last transition
+          type: string
+        message:
+          description: Human-readable message about the condition's last transition
+          type: string
+        reason:
+          description: Machine-readable reason for the condition's last transition
+          type: string
+        status:
+          description: Condition status (True, False, Unknown)
+          type: string
+        type:
+          description: Condition type (e.g. Ready, Initialized, ContainersReady, PodScheduled)
+          type: string
+      type: object
+    ComputeClusterPod:
+      properties:
+        conditions:
+          description: Pod status conditions reported by Kubernetes
+          items:
+            $ref: '#/components/schemas/ComputeClusterPodCondition'
+          type: array
+        created_at:
+          description: Pod creation timestamp
+          type: string
+        ip:
+          description: Pod IP address
+          type: string
+        name:
+          description: Pod name
+          type: string
+        namespace:
+          description: Pod namespace
+          type: string
+        node:
+          description: Node name where pod is scheduled
+          type: string
+        status:
+          description: Pod status (Running, Pending, Failed, etc.)
+          type: string
+      type: object
+    ComputeClusterService:
+      properties:
+        cluster_ip:
+          description: Cluster IP address
+          type: string
+        created_at:
+          description: Service creation timestamp
+          type: string
+        external_ip:
+          description: External IP address
+          type: string
+        name:
+          description: Service name
+          type: string
+        namespace:
+          description: Namespace where the service is located
+          type: string
+        service_type:
+          description: Service type (ClusterIP, NodePort, LoadBalancer, etc.)
+          type: string
+      type: object
+    ComputeClusterDashboard:
+      properties:
+        cnodes:
+          $ref: '#/components/schemas/ComputeClusterCNodeCountsPerState'
+        compute_clusters:
+          $ref: '#/components/schemas/ComputeClusterCountsPerState'
+        deployments:
+          $ref: '#/components/schemas/ComputeClusterDeploymentCountsPerState'
+        namespace_counts:
+          description: Total number of namespaces across all clusters
+          type: integer
+        pods:
+          $ref: '#/components/schemas/ComputeClusterPodCountsPerState'
+        service_counts:
+          description: Total number of services across all clusters
+          type: integer
+        tenant_counts:
+          description: Total number of tenants attached to compute clusters
+          type: integer
+      type: object
+    ComputeClusterPodCountsPerState:
+      additionalProperties:
+        enum:
+        - total
+        - failed
+        - running
+        - pending
+        - succeeded
+        - unknown
+        type: integer
+      example:
+        failed: 3
+        pending: 10
+        running: 180
+        succeeded: 5
+        total: 200
+        unknown: 2
+      type: object
+    ComputeClusterNamespace:
+      properties:
+        created_at:
+          description: Namespace creation timestamp
+          type: string
+        name:
+          description: Namespace name
+          type: string
+        status:
+          description: Namespace status (Active, Terminating, etc.)
+          type: string
+      type: object
+    ComputeClusterCountsPerState:
+      additionalProperties:
+        enum:
+        - total
+        - creating
+        - updating
+        - running
+        - deleting
+        - starting
+        - stopped
+        - error
+        - stopping
+        - degraded
+        - partially_provisioned
+        type: integer
+      example:
+        creating: 1
+        degraded: 1
+        deleting: 1
+        error: 1
+        partially_provisioned: 0
+        running: 14
+        starting: 2
+        stopped: 0
+        stopping: 0
+        total: 16
+        updating: 0
+      type: object
+    ComputeClusterTenant:
+      properties:
+        compute_cluster:
+          description: Compute Cluster ID
+          type: integer
+        de_compute_guid:
+          description: Data Engine compute GUID
+          type: string
+        de_mtls_cert_guid:
+          description: Data Engine mTLS certificate GUID
+          type: string
+        status:
+          description: 'Status of the tenant association.
+
+            - `INIT` means the tenant association has been created but not yet provisioned on the compute cluster.
+
+            - `PROVISIONED` means the tenant''s namespaces have been created on the compute cluster.
+
+            - `DE_ATTACHED` means the tenant is fully attached to the Data Engine with mTLS certificates and compute GUID assigned.
+
+            - `DELETING` means the tenant is being detached and removed from the compute cluster.
+
+            - `ROTATING` means the tenant''s mTLS certificates are being rotated.
+
+            - `PARTIALLY_PROVISIONED` means the tenant association is in an incomplete state, typically due to a failed operation or timeout.
+
+            '
+          enum:
+          - INIT
+          - PROVISIONED
+          - DE_ATTACHED
+          - DELETING
+          - ROTATING
+          - PARTIALLY_PROVISIONED
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      type: object
+    ComputeClusterModifyParams:
+      properties:
+        all_tenants:
+          description: When true, all existing and newly created tenants are automatically assigned to this compute cluster
+          type: boolean
+        backup_frequency:
+          description: Backup frequency in minutes
+          type: integer
+        cnodes:
+          description: List of CNode assignments with resource presets
+          items:
+            $ref: '#/components/schemas/ComputeClusterCNodeInput'
+          type: array
+        static_ip_ranges:
+          description: 'List of IP range pairs [[start1, end1], [start2, end2]] for static IP assignment to CNodes.
+
+            Must provide enough IPs for all CNodes.
+
+            '
+          items:
+            example:
+            - 10.0.0.10
+            - 10.0.0.20
+            items:
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
       type: object
     ComputeCluster:
       allOf:
@@ -790,338 +984,6 @@ components:
             readOnly: true
             type: array
         type: object
-    ComputeClusterTenant:
-      properties:
-        compute_cluster:
-          description: Compute Cluster ID
-          type: integer
-        de_compute_guid:
-          description: Data Engine compute GUID
-          type: string
-        de_mtls_cert_guid:
-          description: Data Engine mTLS certificate GUID
-          type: string
-        status:
-          description: 'Status of the tenant association.
-
-            - `INIT` means the tenant association has been created but not yet provisioned on the compute cluster.
-
-            - `PROVISIONED` means the tenant''s namespaces have been created on the compute cluster.
-
-            - `DE_ATTACHED` means the tenant is fully attached to the Data Engine with mTLS certificates and compute GUID assigned.
-
-            - `DELETING` means the tenant is being detached and removed from the compute cluster.
-
-            - `ROTATING` means the tenant''s mTLS certificates are being rotated.
-
-            - `PARTIALLY_PROVISIONED` means the tenant association is in an incomplete state, typically due to a failed operation or timeout.
-
-            '
-          enum:
-          - INIT
-          - PROVISIONED
-          - DE_ATTACHED
-          - DELETING
-          - ROTATING
-          - PARTIALLY_PROVISIONED
-          type: string
-        tenant_id:
-          description: Tenant ID
-          type: integer
-      type: object
-    ComputeClusterPodCountsPerState:
-      additionalProperties:
-        enum:
-        - total
-        - failed
-        - running
-        - pending
-        - succeeded
-        - unknown
-        type: integer
-      example:
-        failed: 3
-        pending: 10
-        running: 180
-        succeeded: 5
-        total: 200
-        unknown: 2
-      type: object
-    ComputeClusterCNodeCountsPerState:
-      additionalProperties:
-        enum:
-        - total
-        - ready
-        - disk_pressure
-        - memory_pressure
-        - pid_pressure
-        - network_unavailable
-        type: integer
-      example:
-        disk_pressure: 2
-        memory_pressure: 1
-        network_unavailable: 2
-        pid_pressure: 0
-        ready: 45
-        total: 50
-      type: object
-    ComputeClusterDeployment:
-      properties:
-        available:
-          description: Number of available replicas
-          type: integer
-        created_at:
-          description: Deployment creation timestamp
-          type: string
-        name:
-          description: Deployment name
-          type: string
-        namespace:
-          description: Namespace where the deployment is located
-          type: string
-        ready:
-          description: Ready replicas in "X/Y" format (like kubectl)
-          type: string
-        up_to_date:
-          description: Number of up-to-date replicas
-          type: integer
-      type: object
-    AsyncComputeCluster:
-      allOf:
-      - $ref: '#/components/schemas/ComputeCluster'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
-    ComputeClusterPodCondition:
-      properties:
-        last_transition_time:
-          description: Timestamp of the condition's last transition
-          type: string
-        message:
-          description: Human-readable message about the condition's last transition
-          type: string
-        reason:
-          description: Machine-readable reason for the condition's last transition
-          type: string
-        status:
-          description: Condition status (True, False, Unknown)
-          type: string
-        type:
-          description: Condition type (e.g. Ready, Initialized, ContainersReady, PodScheduled)
-          type: string
-      type: object
-    ComputeClusterService:
-      properties:
-        cluster_ip:
-          description: Cluster IP address
-          type: string
-        created_at:
-          description: Service creation timestamp
-          type: string
-        external_ip:
-          description: External IP address
-          type: string
-        name:
-          description: Service name
-          type: string
-        namespace:
-          description: Namespace where the service is located
-          type: string
-        service_type:
-          description: Service type (ClusterIP, NodePort, LoadBalancer, etc.)
-          type: string
-      type: object
-    ComputeClusterModifyParams:
-      properties:
-        all_tenants:
-          description: When true, all existing and newly created tenants are automatically assigned to this compute cluster
-          type: boolean
-        backup_frequency:
-          description: Backup frequency in minutes
-          type: integer
-        cnodes:
-          description: List of CNode assignments with resource presets
-          items:
-            $ref: '#/components/schemas/ComputeClusterCNodeInput'
-          type: array
-        static_ip_ranges:
-          description: 'List of IP range pairs [[start1, end1], [start2, end2]] for static IP assignment to CNodes.
-
-            Must provide enough IPs for all CNodes.
-
-            '
-          items:
-            example:
-            - 10.0.0.10
-            - 10.0.0.20
-            items:
-              type: string
-            maxItems: 2
-            minItems: 2
-            type: array
-          type: array
-      type: object
-    ComputeClusterCNodeInput:
-      properties:
-        id:
-          description: CNode ID
-          type: integer
-        resource_preset:
-          description: Resource allocation preset for this CNode
-          enum:
-          - LOW
-          - BALANCED
-          - MEM_HEAVY
-          - HIGH_COMPUTE
-          type: string
-      required:
-      - id
-      - resource_preset
-      type: object
-    ComputeClusterCNodeStats:
-      description: Statistics for a CNode in a compute cluster
-      properties:
-        cpu:
-          description: CPU usage statistics for this CNode, in cores
-          properties:
-            total:
-              description: CPU limit allocated to this CNode, in cores
-              format: float
-              type: number
-            used:
-              description: CPU cores currently consumed by this CNode.
-              format: float
-              type: number
-          type: object
-        memory:
-          description: Memory usage statistics for this CNode, in bytes
-          properties:
-            total:
-              description: Total memory available on the CNode, in bytes
-              format: float
-              type: number
-            used:
-              description: Memory currently used on the CNode, in bytes.
-              format: float
-              type: number
-          type: object
-        pods:
-          description: Number of pods running on this CNode
-          type: integer
-      type: object
-    ComputeClusterDeploymentCountsPerState:
-      additionalProperties:
-        enum:
-        - total
-        - running
-        - degraded
-        - error
-        type: integer
-      example:
-        degraded: 3
-        error: 2
-        running: 45
-        total: 50
-      type: object
-    ComputeClusterCreateParams:
-      properties:
-        all_tenants:
-          default: false
-          description: When true, all existing and newly created tenants are automatically assigned to this compute cluster
-          type: boolean
-        backup_frequency:
-          default: 60
-          description: Backup frequency in minutes
-          type: integer
-        cluster_cidr:
-          default: 10.42.0.0/16
-          description: Kubernetes cluster CIDR for pod networking (default is "10.42.0.0/16")
-          type: string
-        cnodes:
-          description: List of CNode assignments with resource presets
-          items:
-            $ref: '#/components/schemas/ComputeClusterCNodeInput'
-          type: array
-        default_gateway:
-          description: Default gateway IP address for the compute cluster network (e.g., "10.0.0.1"). Optional.
-          type: string
-        description:
-          description: User-defined description for the compute cluster
-          type: string
-        intermediate_certificate:
-          description: RKE2 intermediate certificate. If omitted, certificates will be generated automatically. Must be provided together with root_certificate and intermediate_key.
-          type: string
-        intermediate_key:
-          description: RKE2 intermediate private key. If omitted, certificates will be generated automatically. Must be provided together with root_certificate and intermediate_certificate.
-          type: string
-        name:
-          description: Compute Cluster name
-          type: string
-        netmask:
-          description: Network mask for the compute cluster network (e.g., "255.255.255.0" or "24")
-          type: string
-        root_certificate:
-          description: RKE2 root certificate. If omitted, certificates will be generated automatically. Must be provided together with intermediate_certificate and intermediate_key.
-          type: string
-        server_kube_vip_address:
-          description: Kubernetes VIP address for the API server
-          type: string
-        service_cidr:
-          default: 10.43.0.0/16
-          description: Kubernetes service CIDR for service networking (default is "10.43.0.0/16")
-          type: string
-        static_ip_ranges:
-          description: 'List of IP range pairs [[start1, end1], [start2, end2]] for static IP assignment to CNodes.
-
-            Must provide enough IPs for all CNodes.
-
-            '
-          items:
-            example:
-            - 10.0.0.10
-            - 10.0.0.20
-            items:
-              type: string
-            maxItems: 2
-            minItems: 2
-            type: array
-          type: array
-        tags:
-          description: User-defined tags for the compute cluster
-          items:
-            maxLength: 40
-            type: string
-          maxItems: 64
-          type: array
-        vlan:
-          description: VLAN ID for the compute cluster network (1-4095). Optional; omit or set to null to disable.
-          maximum: 4095
-          minimum: 1
-          type: integer
-      required:
-      - name
-      - cnodes
-      - static_ip_ranges
-      - netmask
-      type: object
-    ComputeClusterDashboard:
-      properties:
-        cnodes:
-          $ref: '#/components/schemas/ComputeClusterCNodeCountsPerState'
-        compute_clusters:
-          $ref: '#/components/schemas/ComputeClusterCountsPerState'
-        deployments:
-          $ref: '#/components/schemas/ComputeClusterDeploymentCountsPerState'
-        namespace_counts:
-          description: Total number of namespaces across all clusters
-          type: integer
-        pods:
-          $ref: '#/components/schemas/ComputeClusterPodCountsPerState'
-        service_counts:
-          description: Total number of services across all clusters
-          type: integer
-        tenant_counts:
-          description: Total number of tenants attached to compute clusters
-          type: integer
-      type: object
     ComputeClusterListItem:
       description: Compute Cluster object returned when listing Compute Clusters.
       properties:
@@ -1242,73 +1104,6 @@ components:
           minimum: 1
           type: integer
       type: object
-    ComputeClusterCountsPerState:
-      additionalProperties:
-        enum:
-        - total
-        - creating
-        - updating
-        - running
-        - deleting
-        - starting
-        - stopped
-        - error
-        - stopping
-        - degraded
-        - partially_provisioned
-        type: integer
-      example:
-        creating: 1
-        degraded: 1
-        deleting: 1
-        error: 1
-        partially_provisioned: 0
-        running: 14
-        starting: 2
-        stopped: 0
-        stopping: 0
-        total: 16
-        updating: 0
-      type: object
-    ComputeClusterPod:
-      properties:
-        conditions:
-          description: Pod status conditions reported by Kubernetes
-          items:
-            $ref: '#/components/schemas/ComputeClusterPodCondition'
-          type: array
-        created_at:
-          description: Pod creation timestamp
-          type: string
-        ip:
-          description: Pod IP address
-          type: string
-        name:
-          description: Pod name
-          type: string
-        namespace:
-          description: Pod namespace
-          type: string
-        node:
-          description: Node name where pod is scheduled
-          type: string
-        status:
-          description: Pod status (Running, Pending, Failed, etc.)
-          type: string
-      type: object
-    MetricViewerCertificates:
-      description: Certificates for authenticating and viewing the compute cluster's metrics
-      properties:
-        ca_cert:
-          description: PEM-encoded CA certificate
-          type: string
-        client_cert:
-          description: PEM-encoded client certificate
-          type: string
-        private_key:
-          description: PEM-encoded private key
-          type: string
-      type: object
     ComputeClusterNode:
       properties:
         architecture:
@@ -1338,6 +1133,205 @@ components:
         version:
           description: Kubernetes version running on the node
           type: string
+      type: object
+    ComputeClusterDeployment:
+      properties:
+        available:
+          description: Number of available replicas
+          type: integer
+        created_at:
+          description: Deployment creation timestamp
+          type: string
+        name:
+          description: Deployment name
+          type: string
+        namespace:
+          description: Namespace where the deployment is located
+          type: string
+        ready:
+          description: Ready replicas in "X/Y" format (like kubectl)
+          type: string
+        up_to_date:
+          description: Number of up-to-date replicas
+          type: integer
+      type: object
+    ComputeClusterCreateParams:
+      properties:
+        all_tenants:
+          default: false
+          description: When true, all existing and newly created tenants are automatically assigned to this compute cluster
+          type: boolean
+        backup_frequency:
+          default: 60
+          description: Backup frequency in minutes
+          type: integer
+        cluster_cidr:
+          default: 10.42.0.0/16
+          description: Kubernetes cluster CIDR for pod networking (default is "10.42.0.0/16")
+          type: string
+        cnodes:
+          description: List of CNode assignments with resource presets
+          items:
+            $ref: '#/components/schemas/ComputeClusterCNodeInput'
+          type: array
+        default_gateway:
+          description: Default gateway IP address for the compute cluster network (e.g., "10.0.0.1"). Optional.
+          type: string
+        description:
+          description: User-defined description for the compute cluster
+          type: string
+        intermediate_certificate:
+          description: RKE2 intermediate certificate. If omitted, certificates will be generated automatically. Must be provided together with root_certificate and intermediate_key.
+          type: string
+        intermediate_key:
+          description: RKE2 intermediate private key. If omitted, certificates will be generated automatically. Must be provided together with root_certificate and intermediate_certificate.
+          type: string
+        name:
+          description: Compute Cluster name
+          type: string
+        netmask:
+          description: Network mask for the compute cluster network (e.g., "255.255.255.0" or "24")
+          type: string
+        root_certificate:
+          description: RKE2 root certificate. If omitted, certificates will be generated automatically. Must be provided together with intermediate_certificate and intermediate_key.
+          type: string
+        server_kube_vip_address:
+          description: Kubernetes VIP address for the API server
+          type: string
+        service_cidr:
+          default: 10.43.0.0/16
+          description: Kubernetes service CIDR for service networking (default is "10.43.0.0/16")
+          type: string
+        static_ip_ranges:
+          description: 'List of IP range pairs [[start1, end1], [start2, end2]] for static IP assignment to CNodes.
+
+            Must provide enough IPs for all CNodes.
+
+            '
+          items:
+            example:
+            - 10.0.0.10
+            - 10.0.0.20
+            items:
+              type: string
+            maxItems: 2
+            minItems: 2
+            type: array
+          type: array
+        tags:
+          description: User-defined tags for the compute cluster
+          items:
+            maxLength: 40
+            type: string
+          maxItems: 64
+          type: array
+        vlan:
+          description: VLAN ID for the compute cluster network (1-4095). Optional; omit or set to null to disable.
+          maximum: 4095
+          minimum: 1
+          type: integer
+      required:
+      - name
+      - cnodes
+      - static_ip_ranges
+      - netmask
+      type: object
+    MetricViewerCertificates:
+      description: Certificates for authenticating and viewing the compute cluster's metrics
+      properties:
+        ca_cert:
+          description: PEM-encoded CA certificate
+          type: string
+        client_cert:
+          description: PEM-encoded client certificate
+          type: string
+        private_key:
+          description: PEM-encoded private key
+          type: string
+      type: object
+    AsyncComputeCluster:
+      allOf:
+      - $ref: '#/components/schemas/ComputeCluster'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    ComputeClusterCNodeInput:
+      properties:
+        id:
+          description: CNode ID
+          type: integer
+        resource_preset:
+          description: Resource allocation preset for this CNode
+          enum:
+          - LOW
+          - BALANCED
+          - MEM_HEAVY
+          - HIGH_COMPUTE
+          type: string
+      required:
+      - id
+      - resource_preset
+      type: object
+    ComputeClusterCNodeCountsPerState:
+      additionalProperties:
+        enum:
+        - total
+        - ready
+        - disk_pressure
+        - memory_pressure
+        - pid_pressure
+        - network_unavailable
+        type: integer
+      example:
+        disk_pressure: 2
+        memory_pressure: 1
+        network_unavailable: 2
+        pid_pressure: 0
+        ready: 45
+        total: 50
+      type: object
+    ComputeClusterCNodeStats:
+      description: Statistics for a CNode in a compute cluster
+      properties:
+        cpu:
+          description: CPU usage statistics for this CNode, in cores
+          properties:
+            total:
+              description: CPU limit allocated to this CNode, in cores
+              format: float
+              type: number
+            used:
+              description: CPU cores currently consumed by this CNode.
+              format: float
+              type: number
+          type: object
+        memory:
+          description: Memory usage statistics for this CNode, in bytes
+          properties:
+            total:
+              description: Total memory available on the CNode, in bytes
+              format: float
+              type: number
+            used:
+              description: Memory currently used on the CNode, in bytes.
+              format: float
+              type: number
+          type: object
+        pods:
+          description: Number of pods running on this CNode
+          type: integer
+      type: object
+    ComputeClusterDeploymentCountsPerState:
+      additionalProperties:
+        enum:
+        - total
+        - running
+        - degraded
+        - error
+        type: integer
+      example:
+        degraded: 3
+        error: 2
+        running: 45
+        total: 50
       type: object
     AsyncTaskInResponse:
       properties:

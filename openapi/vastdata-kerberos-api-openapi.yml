@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory Kerberos API
+  title: VAST API Swagger Schema Kerberos API
   version: '1.0'
 security:
 - ApiToken: []
@@ -338,15 +338,6 @@ components:
         state:
           $ref: '#/components/schemas/KerberosStateInfo'
       type: object
-    KerberosStateInfo:
-      properties:
-        kadmin_servers:
-          $ref: '#/components/schemas/KerberosServersInfo'
-        kdc:
-          $ref: '#/components/schemas/KerberosServersInfo'
-        service_principals:
-          $ref: '#/components/schemas/KerberosPrincipalsInfo'
-      type: object
     KerberosPrincipalsInfo:
       items:
         properties:
@@ -363,6 +354,15 @@ components:
             type: string
         type: object
       type: array
+    KerberosStateInfo:
+      properties:
+        kadmin_servers:
+          $ref: '#/components/schemas/KerberosServersInfo'
+        kdc:
+          $ref: '#/components/schemas/KerberosServersInfo'
+        service_principals:
+          $ref: '#/components/schemas/KerberosPrincipalsInfo'
+      type: object
     KerberosServersInfo:
       items:
         properties:

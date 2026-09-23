@@ -1,12 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory tlscertificates API
+  title: VAST API Swagger Schema Tlscertificates API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
-- name: tlscertificates
+- name: TLS Certificates
 paths:
   /tlscertificates/:
     get:
@@ -33,7 +33,7 @@ paths:
           description: ''
       summary: List of TLS certificates
       tags:
-      - tlscertificates
+      - TLS Certificates
     post:
       operationId: tlscertificates_create
       requestBody:
@@ -86,7 +86,7 @@ paths:
           description: ''
       summary: Creates TLS certificates
       tags:
-      - tlscertificates
+      - TLS Certificates
   /tlscertificates/is_operation_healthy:
     post:
       operationId: tlscertificates_is_operation_healthy
@@ -117,7 +117,7 @@ paths:
           description: ''
       summary: Check whether an operation may be successfully performed
       tags:
-      - tlscertificates
+      - TLS Certificates
   /tlscertificates/{id}/:
     delete:
       operationId: tlscertificates_delete
@@ -127,7 +127,9 @@ paths:
         '204':
           description: ''
       tags:
-      - tlscertificates
+      - TLS Certificates
+      summary: Tlscertificates delete
+      x-summary-source: derived
     get:
       operationId: tlscertificates_read
       parameters:
@@ -140,7 +142,9 @@ paths:
                 $ref: '#/components/schemas/TLSCertificate'
           description: ''
       tags:
-      - tlscertificates
+      - TLS Certificates
+      summary: Tlscertificates read
+      x-summary-source: derived
     patch:
       operationId: tlscertificates_partial_update
       parameters:
@@ -184,7 +188,9 @@ paths:
         '200':
           description: ''
       tags:
-      - tlscertificates
+      - TLS Certificates
+      summary: Tlscertificates partial update
+      x-summary-source: derived
   /tlscertificates/{id}/crl/:
     delete:
       operationId: tlscertificates_delete_crl
@@ -194,22 +200,14 @@ paths:
         '204':
           description: ''
       tags:
-      - tlscertificates
+      - TLS Certificates
+      summary: Tlscertificates delete crl
+      x-summary-source: derived
 components:
   parameters:
-    ProtocolsContain:
-      description: Protocol to see
+    PageSize:
       in: query
-      name: protocols__icontains
-      schema:
-        enum:
-        - NFS
-        - KAFKA
-        type: string
-    PathId:
-      in: path
-      name: id
-      required: true
+      name: page_size
       schema:
         minimum: 1
         type: integer
@@ -219,15 +217,25 @@ components:
       name: tenant__isnull
       schema:
         type: boolean
-    PageSize:
+    ProtocolsContain:
+      description: Protocol to see
       in: query
-      name: page_size
+      name: protocols__icontains
       schema:
-        minimum: 1
-        type: integer
+        enum:
+        - NFS
+        - KAFKA
+        type: string
     Page:
       in: query
       name: page
+      schema:
+        minimum: 1
+        type: integer
+    PathId:
+      in: path
+      name: id
+      required: true
       schema:
         minimum: 1
         type: integer

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory encryptiongroups API
+  title: VAST API Swagger Schema Encryptiongroups API
   version: '1.0'
 security:
 - ApiToken: []
@@ -58,7 +58,7 @@ paths:
                     type: string
                 type: object
           description: Service temporarily unavailable, try again later.
-      summary: Deactivate encryption group.
+      summary: Deactivate encryption group
       tags:
       - encryptiongroups
   /encryptiongroups/{id}/reinstate_encryption_group/:
@@ -158,6 +158,26 @@ paths:
       tags:
       - encryptiongroups
 components:
+  parameters:
+    EncryptionGroupId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
   schemas:
     EncryptionGroup:
       properties:
@@ -192,26 +212,6 @@ components:
       - state
       - crn
       type: object
-  parameters:
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    EncryptionGroupId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

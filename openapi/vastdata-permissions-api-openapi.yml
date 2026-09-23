@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory permissions API
+  title: VAST API Swagger Schema Permissions API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: The permissions endpoint returns permissions that can be assigned to VMS managers and roles. VMS Each permission enables a type of permission, such as create or read permission, on a realm. Each realm includes a set of resources. For example, the logical realm includes views, view policies, quotas, QoS policies and many more types of resources. The hardware realm includes infrastructure components such as CBoxes and DBoxes.
-  name: permissions
+  name: Permissions
 paths:
   /permissions/:
     get:
@@ -34,7 +34,7 @@ paths:
           description: Permission information
       summary: List Permissions
       tags:
-      - permissions
+      - Permissions
   /permissions/{id}/:
     get:
       description: This endpoint returns details of a specified permission.
@@ -55,7 +55,7 @@ paths:
           description: ''
       summary: Return Permissions Details
       tags:
-      - permissions
+      - Permissions
 components:
   schemas:
     Permission:

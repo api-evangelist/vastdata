@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory tables API
+  title: VAST API Swagger Schema Tables API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: With VAST Database you can store, access and manage tabular data on a VAST cluster. The tables endpoint enables you to interface with the VAST Database tables. You can create tables, filter data, perform modifications and run ACID transactions.
-  name: tables
+  name: Tables
 paths:
   /tables/:
     get:
@@ -39,7 +39,7 @@ paths:
           description: Database Tables
       summary: List Database Tables
       tags:
-      - tables
+      - Tables
     patch:
       description: This endpoint modifies a Database Table
       operationId: tables_modify
@@ -50,7 +50,7 @@ paths:
           description: OK
       summary: Modify a Database Table
       tags:
-      - tables
+      - Tables
     post:
       description: This endpoint creates a Database Table.
       operationId: tables_create
@@ -61,7 +61,7 @@ paths:
           description: OK
       summary: Create a Database Table
       tags:
-      - tables
+      - Tables
   /tables/add_columns/:
     patch:
       description: This endpoint adds Columns to a Database Table.
@@ -73,7 +73,7 @@ paths:
           description: OK
       summary: Add Columns to a Database Table
       tags:
-      - tables
+      - Tables
   /tables/delete/:
     delete:
       description: This endpoint deletes a Database Table.
@@ -85,7 +85,7 @@ paths:
           description: OKOK
       summary: Delete a Database Table
       tags:
-      - tables
+      - Tables
   /tables/load_from_file/:
     post:
       description: This endpoint creates a database table from a Parquet or CSV file.
@@ -129,7 +129,7 @@ paths:
           description: Database Table created
       summary: Create a Database Table from a File
       tags:
-      - tables
+      - Tables
   /tables/rename/:
     patch:
       description: This endpoint renames a Database Table.
@@ -141,7 +141,7 @@ paths:
           description: OK
       summary: Rename a Database Table
       tags:
-      - tables
+      - Tables
   /tables/show/:
     get:
       description: This endpoint shows a Database Table.
@@ -161,7 +161,7 @@ paths:
           description: Database Table
       summary: Show a Database Table
       tags:
-      - tables
+      - Tables
   /vastdbtable/aggregate/:
     get:
       operationId: vastdbtable_dashboard
@@ -185,225 +185,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/VastDBTableDashboardResponse'
           description: OK
-      summary: Shows historical data for the table.
+      summary: Shows historical data for the table
       tags:
-      - tables
+      - Tables
 components:
-  parameters:
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
-    SamplePerQP:
-      description: Which column to sample per (X-axis).
-      in: query
-      name: sample_per
-      schema:
-        type: string
-    TabularTableNameQP:
-      description: Getting list of objects by table_name
-      in: query
-      name: table_name
-      required: true
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
-    TabularNameQP:
-      description: Getting list of objects by exact match
-      in: query
-      name: name
-      schema:
-        type: string
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    VastDBFiltersQP:
-      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
-      in: query
-      name: filters
-      schema:
-        type: string
-    SubGroupsCountQP:
-      description: Limit output amount of sub-groups. Rest will be put into `"__others__"`.
-      in: query
-      name: sub_groups_count
-      schema:
-        type: integer
-    TopNByQP:
-      description: 'What metric to do top N by. By default, sum of all the `?metrics` is taken.
-
-        Only applicable if sampling and/or sub-grouping is requested.
-
-        '
-      in: query
-      name: topn_by
-      schema:
-        type: string
-    AggregateFunctionQP:
-      description: Function to use when aggregating the results.
-      in: query
-      name: aggregate_function
-      schema:
-        default: sum
-        enum:
-        - sum
-        - avg
-        type: string
-    TabularNameStartswithQP:
-      description: Getting list of objects by prefix match
-      in: query
-      name: name__startswith
-      schema:
-        type: string
-    TabularPageSize:
-      in: query
-      name: page_size
-      schema:
-        default: 999
-        maximum: 999
-        minimum: 1
-        type: integer
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
-      in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    TabularIsImportsTableQP:
-      description: Is table actually a sub-table to track imported .parquet files.
-      in: query
-      name: is_imports_table
-      schema:
-        type: boolean
-    SamplesCountQP:
-      description: 'Limit output amount of samples. Rest will be put into `"__others__"`.
-
-        When sampling per time, affects granularity with which samples are collected.
-
-        '
-      in: query
-      name: samples_count
-      schema:
-        type: integer
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
-      in: query
-      name: database_name
-      required: true
-      schema:
-        type: string
-    TabularSchemaNameQP:
-      description: Getting list of objects by schema_name
-      in: query
-      name: schema_name
-      required: true
-      schema:
-        type: string
-    SubGroupByQP:
-      description: Which column to split the returning samples by (Y-axis).
-      in: query
-      name: sub_group_by
-      schema:
-        type: string
-    MetricsQP:
-      description: 'Comma-separated list of metrics to return for the dashboard. E.g. `?metrics=READ_BYTES,WRITE_COUNT`.
-
-        Additionally, following operations are supported for metrics: [+, -, *].
-
-        Useful to aggregate over a "custom/fake" metric value (sum / diff / product of real metrics).
-
-        E.g. `?metrics=READ_BYTES+WRITE_BYTES,READ_COUNT-WRITE_COUNT`.
-
-        Which means take a sum of READ_BYTES and WRITE_BYTES, take a diff between READ_COUNT and WRITE_COUNT.
-
-        '
-      in: query
-      name: metrics
-      required: true
-      schema:
-        items:
-          type: string
-        type: array
   schemas:
-    TabularColumnArrowSchema:
-      properties:
-        field:
-          description: Column type
-          example:
-            column_type: map
-            key_type:
-              column_type: bool
-            value_type:
-              column_type: bool
-          properties:
-            column_type:
-              type: string
-            key_type:
-              description: Column type for the map key (only when `column_type` is "map")
-              properties:
-                column_type:
-                  description: The type of the key (e.g., "string", "bool")
-                  type: string
-              type: object
-            value_type:
-              description: Column type for the map value (only when `column_type` is "map")
-              properties:
-                column_type:
-                  description: The type of the value (e.g., "string", "bool")
-                  type: string
-              type: object
-          type: object
-        name:
-          description: Name of the object
-          type: string
-      required:
-      - name
-      - field
-      type: object
-    TableCreateParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularSchemaHierarchy'
-      - properties:
-          arrow_schema:
-            description: Description of table columns
-            items:
-              $ref: '#/components/schemas/TabularColumnArrowSchema'
-            type: array
-          is_imports_table:
-            description: Is table actually a sub-table to track imported .parquet files.
-            type: boolean
-          sorted_column_names:
-            description: Array of sorted column names
-            items:
-              type: string
-            type: array
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        required:
-        - arrow_schema
-        type: object
-    TableAddColumnsParams:
-      allOf:
-      - $ref: '#/components/schemas/TableCreateParams'
-      - properties:
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        type: object
     DetailedTable:
       allOf:
       - $ref: '#/components/schemas/Table'
@@ -412,61 +198,6 @@ components:
             description: Indicates whether table row IDs are user-defined (user-defined PK)
             type: boolean
         type: object
-    MetricsPerSubGroup:
-      additionalProperties:
-        $ref: '#/components/schemas/ValuePerMetric'
-      description: 'JSON mapping of metrics for each sub-group in the sample. Ordered by aggregated metric value.
-
-        When there was no sub-grouping requested includes a single fake sub-group `__all__`.
-
-        When there''s more sub-groups than can be displayed, includes "__others__".
-
-        Key is a category of a sub-group (sample''s name).
-
-        When sampled by continuous metric, name is group''s `<start_time>__<end_time>`
-
-        given as UNIX timestamps divided by dash.
-
-        In this case, sample''s width (`end_time - start_time`) depends on `?groups_count`.
-
-        '
-      example:
-        __all__:
-          GETATTR: 1337
-          SETATTR: 52
-      type: object
-    TabularSchemaHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - name
-      type: object
-    TableRenameParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularSchemaHierarchy'
-      - properties:
-          new_name:
-            description: New name of the Table
-            type: string
-          new_table_name:
-            description: New name of the Table (deprecated since 5.0)
-            type: string
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        required:
-        - new_name
-        type: object
     TableDeleteParams:
       allOf:
       - $ref: '#/components/schemas/TabularSchemaHierarchy'
@@ -474,70 +205,6 @@ components:
           is_imports_table:
             description: Is table actually a sub-table to track imported .parquet files.
             type: boolean
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        type: object
-    ValuePerMetric:
-      additionalProperties:
-        type: number
-      description: JSON mapping of value per each metric.
-      example:
-        GETATTR: 1337
-        LOOKUP: 1337
-        SETATTR: 52
-      type: object
-    Table:
-      allOf:
-      - $ref: '#/components/schemas/TabularSchemaHierarchy'
-      - properties:
-          acummulative_row_insertion_count:
-            description: Accumulative row insertion count.
-            type: number
-          num_rows:
-            description: Total number of rows
-            type: integer
-          properties:
-            description: Misc properties of the Table
-            type: string
-          size:
-            description: Size of the Table
-            type: integer
-          sorting_done:
-            description: Sorting done flag.
-            type: boolean
-          sorting_key_enabled:
-            description: Sorting key enabled
-            type: boolean
-          sorting_label:
-            description: Sorting label. Higher label means higher sorting quality.
-            enum:
-            - A+
-            - A
-            - B
-            - C
-            type: string
-            x-format: sorting_label_color
-          sorting_score:
-            description: Sorting score. Higher score means higher sorting quality.
-            type: number
-          write_amplification:
-            description: Write amplification.
-            type: number
-        required:
-        - num_rows
-        - size
-        - sorting_key_enabled
-        type: object
-    TableModifyParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularSchemaHierarchy'
-      - properties:
-          sorted_column_names:
-            description: Array of sorted column names
-            items:
-              type: string
-            type: array
           tenant_id:
             description: Tenant ID
             type: integer
@@ -592,6 +259,339 @@ components:
             GETATTR: 1337
             SETATTR: 56
       type: object
+    TableCreateParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularSchemaHierarchy'
+      - properties:
+          arrow_schema:
+            description: Description of table columns
+            items:
+              $ref: '#/components/schemas/TabularColumnArrowSchema'
+            type: array
+          is_imports_table:
+            description: Is table actually a sub-table to track imported .parquet files.
+            type: boolean
+          sorted_column_names:
+            description: Array of sorted column names
+            items:
+              type: string
+            type: array
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        required:
+        - arrow_schema
+        type: object
+    TabularColumnArrowSchema:
+      properties:
+        field:
+          description: Column type
+          example:
+            column_type: map
+            key_type:
+              column_type: bool
+            value_type:
+              column_type: bool
+          properties:
+            column_type:
+              type: string
+            key_type:
+              description: Column type for the map key (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the key (e.g., "string", "bool")
+                  type: string
+              type: object
+            value_type:
+              description: Column type for the map value (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the value (e.g., "string", "bool")
+                  type: string
+              type: object
+          type: object
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - name
+      - field
+      type: object
+    TabularSchemaHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - name
+      type: object
+    TableModifyParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularSchemaHierarchy'
+      - properties:
+          sorted_column_names:
+            description: Array of sorted column names
+            items:
+              type: string
+            type: array
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
+    MetricsPerSubGroup:
+      additionalProperties:
+        $ref: '#/components/schemas/ValuePerMetric'
+      description: 'JSON mapping of metrics for each sub-group in the sample. Ordered by aggregated metric value.
+
+        When there was no sub-grouping requested includes a single fake sub-group `__all__`.
+
+        When there''s more sub-groups than can be displayed, includes "__others__".
+
+        Key is a category of a sub-group (sample''s name).
+
+        When sampled by continuous metric, name is group''s `<start_time>__<end_time>`
+
+        given as UNIX timestamps divided by dash.
+
+        In this case, sample''s width (`end_time - start_time`) depends on `?groups_count`.
+
+        '
+      example:
+        __all__:
+          GETATTR: 1337
+          SETATTR: 52
+      type: object
+    TableAddColumnsParams:
+      allOf:
+      - $ref: '#/components/schemas/TableCreateParams'
+      - properties:
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
+    ValuePerMetric:
+      additionalProperties:
+        type: number
+      description: JSON mapping of value per each metric.
+      example:
+        GETATTR: 1337
+        LOOKUP: 1337
+        SETATTR: 52
+      type: object
+    TableRenameParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularSchemaHierarchy'
+      - properties:
+          new_name:
+            description: New name of the Table
+            type: string
+          new_table_name:
+            description: New name of the Table (deprecated since 5.0)
+            type: string
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        required:
+        - new_name
+        type: object
+    Table:
+      allOf:
+      - $ref: '#/components/schemas/TabularSchemaHierarchy'
+      - properties:
+          acummulative_row_insertion_count:
+            description: Accumulative row insertion count.
+            type: number
+          num_rows:
+            description: Total number of rows
+            type: integer
+          properties:
+            description: Misc properties of the Table
+            type: string
+          size:
+            description: Size of the Table
+            type: integer
+          sorting_done:
+            description: Sorting done flag.
+            type: boolean
+          sorting_key_enabled:
+            description: Sorting key enabled
+            type: boolean
+          sorting_label:
+            description: Sorting label. Higher label means higher sorting quality.
+            enum:
+            - A+
+            - A
+            - B
+            - C
+            type: string
+            x-format: sorting_label_color
+          sorting_score:
+            description: Sorting score. Higher score means higher sorting quality.
+            type: number
+          write_amplification:
+            description: Write amplification.
+            type: number
+        required:
+        - num_rows
+        - size
+        - sorting_key_enabled
+        type: object
+  parameters:
+    SubGroupByQP:
+      description: Which column to split the returning samples by (Y-axis).
+      in: query
+      name: sub_group_by
+      schema:
+        type: string
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    TabularIsImportsTableQP:
+      description: Is table actually a sub-table to track imported .parquet files.
+      in: query
+      name: is_imports_table
+      schema:
+        type: boolean
+    SamplesCountQP:
+      description: 'Limit output amount of samples. Rest will be put into `"__others__"`.
+
+        When sampling per time, affects granularity with which samples are collected.
+
+        '
+      in: query
+      name: samples_count
+      schema:
+        type: integer
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TopNByQP:
+      description: 'What metric to do top N by. By default, sum of all the `?metrics` is taken.
+
+        Only applicable if sampling and/or sub-grouping is requested.
+
+        '
+      in: query
+      name: topn_by
+      schema:
+        type: string
+    VastDBFiltersQP:
+      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+      in: query
+      name: filters
+      schema:
+        type: string
+    AggregateFunctionQP:
+      description: Function to use when aggregating the results.
+      in: query
+      name: aggregate_function
+      schema:
+        default: sum
+        enum:
+        - sum
+        - avg
+        type: string
+    SubGroupsCountQP:
+      description: Limit output amount of sub-groups. Rest will be put into `"__others__"`.
+      in: query
+      name: sub_groups_count
+      schema:
+        type: integer
+    MetricsQP:
+      description: 'Comma-separated list of metrics to return for the dashboard. E.g. `?metrics=READ_BYTES,WRITE_COUNT`.
+
+        Additionally, following operations are supported for metrics: [+, -, *].
+
+        Useful to aggregate over a "custom/fake" metric value (sum / diff / product of real metrics).
+
+        E.g. `?metrics=READ_BYTES+WRITE_BYTES,READ_COUNT-WRITE_COUNT`.
+
+        Which means take a sum of READ_BYTES and WRITE_BYTES, take a diff between READ_COUNT and WRITE_COUNT.
+
+        '
+      in: query
+      name: metrics
+      required: true
+      schema:
+        items:
+          type: string
+        type: array
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularSchemaNameQP:
+      description: Getting list of objects by schema_name
+      in: query
+      name: schema_name
+      required: true
+      schema:
+        type: string
+    SamplePerQP:
+      description: Which column to sample per (X-axis).
+      in: query
+      name: sample_per
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    TabularNameStartswithQP:
+      description: Getting list of objects by prefix match
+      in: query
+      name: name__startswith
+      schema:
+        type: string
   requestBodies:
     TableModifyParamsBody:
       content:
@@ -599,12 +599,12 @@ components:
           schema:
             $ref: '#/components/schemas/TableModifyParams'
       x-originalParamName: TableModifyParamsBody
-    TableRenameParamsBody:
+    TableDeleteParamsBody:
       content:
         '*/*':
           schema:
-            $ref: '#/components/schemas/TableRenameParams'
-      x-originalParamName: TableRenameParamsBody
+            $ref: '#/components/schemas/TableDeleteParams'
+      x-originalParamName: TableDeleteParamsBody
     TableCreateParamsBody:
       content:
         '*/*':
@@ -617,12 +617,12 @@ components:
           schema:
             $ref: '#/components/schemas/TableAddColumnsParams'
       x-originalParamName: TableAddColumnsParamsBody
-    TableDeleteParamsBody:
+    TableRenameParamsBody:
       content:
         '*/*':
           schema:
-            $ref: '#/components/schemas/TableDeleteParams'
-      x-originalParamName: TableDeleteParamsBody
+            $ref: '#/components/schemas/TableRenameParams'
+      x-originalParamName: TableRenameParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

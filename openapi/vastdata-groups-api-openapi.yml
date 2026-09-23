@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory groups API
+  title: VAST API Swagger Schema Groups API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: 'Groups are user groups that can be authorized to access any data on the cluster via any supported client protocol. The groups path provides: management of groups on the cluster''s local provider, querying of external provider groups, and S3 access management for both local and external groups.'
-  name: groups
+  name: Groups
 paths:
   /groups/:
     get:
@@ -28,7 +28,7 @@ paths:
           description: group information
       summary: List Groups
       tags:
-      - groups
+      - Groups
     post:
       description: This endpoint adds a group to the local provider.
       operationId: group_create
@@ -69,7 +69,7 @@ paths:
           description: ''
       summary: Create Group
       tags:
-      - groups
+      - Groups
   /groups/names/:
     get:
       description: This endpoint queries a group by prefix and domain from ActiveDirectory domains
@@ -95,7 +95,7 @@ paths:
           description: ''
       summary: Find Group by prefix and domain details
       tags:
-      - groups
+      - Groups
   /groups/query/:
     get:
       description: This endpoint queries a specified provider for a group based on a group identifier attribute
@@ -143,7 +143,7 @@ paths:
           description: ''
       summary: Query Group
       tags:
-      - groups
+      - Groups
     patch:
       description: This endpoint modifies a non-local group's S3 permissions. Specify the user by either NFS UID or SMB user SID.
       operationId: groups_query_modify
@@ -183,7 +183,7 @@ paths:
           description: ''
       summary: Modify non-Local Group
       tags:
-      - groups
+      - Groups
   /groups/{id}/:
     delete:
       description: This endpoint deletes a group from the local provider.
@@ -199,7 +199,7 @@ paths:
           description: Deleted
       summary: Delete Group
       tags:
-      - groups
+      - Groups
     get:
       description: This endpoint returns details of a group defined on the local provider
       operationId: group_read
@@ -219,7 +219,7 @@ paths:
           description: ''
       summary: Return Details of a Group
       tags:
-      - groups
+      - Groups
     patch:
       description: This endpoint modifies a group on the local provider.
       operationId: group_partial_update
@@ -265,38 +265,9 @@ paths:
           description: ''
       summary: Modify Group
       tags:
-      - groups
+      - Groups
 components:
   schemas:
-    LocalProviderData:
-      properties:
-        id:
-          description: ID of the local provider
-          type: integer
-          x-cli-header: ID
-        name:
-          description: Name of the local provider
-          type: string
-      type: object
-    GroupData:
-      properties:
-        gid:
-          type: integer
-        name:
-          type: string
-        provider_type:
-          type: string
-        s3_policies:
-          items:
-            type: string
-          type: array
-        s3_policies_ids:
-          items:
-            type: integer
-          type: array
-        sid:
-          type: string
-      type: object
     Group:
       properties:
         gid:
@@ -332,6 +303,35 @@ components:
       - name
       - gid
       type: object
+    GroupData:
+      properties:
+        gid:
+          type: integer
+        name:
+          type: string
+        provider_type:
+          type: string
+        s3_policies:
+          items:
+            type: string
+          type: array
+        s3_policies_ids:
+          items:
+            type: integer
+          type: array
+        sid:
+          type: string
+      type: object
+    LocalProviderData:
+      properties:
+        id:
+          description: ID of the local provider
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of the local provider
+          type: string
+      type: object
     PartialS3PolicyInfo:
       properties:
         id:
@@ -342,13 +342,6 @@ components:
           type: string
       type: object
   parameters:
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
     PageSize:
       in: query
       name: page_size
@@ -358,6 +351,13 @@ components:
     Page:
       in: query
       name: page
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
       schema:
         minimum: 1
         type: integer

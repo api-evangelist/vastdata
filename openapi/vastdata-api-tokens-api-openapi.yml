@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory apitokens API
+  title: VAST API Swagger Schema Apitokens API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: API tokens are tokens created by VMS that enable VMS users to securely authenticate REST API requests.
-  name: apitokens
+  name: API Tokens
 paths:
   /apitokens/:
     get:
@@ -35,7 +35,7 @@ paths:
           description: ApiToken information
       summary: List API Tokens
       tags:
-      - apitokens
+      - API Tokens
     post:
       description: This endpoint creates a new API token to securely authenticate calls to the VMS REST API. Requires Create permissions for the Security realm.
       operationId: apitokens_create
@@ -81,9 +81,9 @@ paths:
               schema:
                 type: string
           description: Service Unavailable - Max allowed API tokens reached
-      summary: Create API Token.
+      summary: Create API Token
       tags:
-      - apitokens
+      - API Tokens
   /apitokens/{id}/:
     get:
       description: This endpoint returns properties of a specified API token.
@@ -104,7 +104,7 @@ paths:
           description: ''
       summary: Return Properties of an API Token
       tags:
-      - apitokens
+      - API Tokens
     patch:
       description: This endpoint modifies an existing API token.
       operationId: apitokens_modify
@@ -149,7 +149,7 @@ paths:
           description: API key not found
       summary: Modify an API Token
       tags:
-      - apitokens
+      - API Tokens
   /apitokens/{id}/revoke:
     patch:
       description: This endpoint revokes an API token.
@@ -172,7 +172,7 @@ paths:
           description: Api token not found
       summary: Revoke API Token
       tags:
-      - apitokens
+      - API Tokens
 components:
   schemas:
     ApiToken:

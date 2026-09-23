@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory snapshots API
+  title: VAST API Swagger Schema Snapshots API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: A snapshot is an image of the data existing at a point in time under a specific Element Store path. Snapshots can be created on a one off basis or scheduled using a protected path. Scheduled snapshots can be retained locally, and/or backed up either to an S3 replication peer or to a replication peer.
-  name: snapshots
+  name: Snapshots
 paths:
   /snapshots/:
     get:
@@ -79,7 +79,7 @@ paths:
           description: Snapshot details
       summary: List Snapshots
       tags:
-      - snapshots
+      - Snapshots
     post:
       description: This endpoint creates a snapshot.
       operationId: snapshots_create
@@ -124,7 +124,7 @@ paths:
           description: ''
       summary: Create Snapshot
       tags:
-      - snapshots
+      - Snapshots
   /snapshots/{id}/:
     delete:
       description: This endpoint deletes a snapshot.
@@ -141,7 +141,7 @@ paths:
           description: The snapshot was deleted
       summary: Delete a Snapshot
       tags:
-      - snapshots
+      - Snapshots
     get:
       description: This endpoint returns details of a snapshot.
       operationId: snapshots_read
@@ -161,7 +161,7 @@ paths:
           description: ''
       summary: Return Details of a Snapshot
       tags:
-      - snapshots
+      - Snapshots
     patch:
       description: This endpoint modifies a snapshot.
       operationId: snapshots_partial_update
@@ -196,7 +196,7 @@ paths:
           description: ''
       summary: Modify a Snapshot
       tags:
-      - snapshots
+      - Snapshots
   /snapshots/{id}/clone/:
     post:
       description: This endpoint creates a clone of a specified snapshot at a specified path on a specified tenant.
@@ -237,100 +237,9 @@ paths:
           description: ''
       summary: Clone a Snapshot
       tags:
-      - snapshots
+      - Snapshots
 components:
   schemas:
-    GlobalSnapStream:
-      properties:
-        bw:
-          description: BW
-          type: integer
-          x-display-units: MB/s
-          x-format: bytes2mb
-          x-raw-units: Bytes/s
-        direction:
-          type: string
-        enabled:
-          description: Enabled
-          type: boolean
-          x-cli-header: Background sync
-        eta:
-          description: ETA
-          type: string
-        external_state:
-          description: Global Snapshot Clone state
-          type: string
-        guid:
-          description: unique identifier
-          type: string
-        health:
-          type: string
-        id:
-          type: integer
-          x-cli-header: ID
-        loanee_root_path:
-          description: Target path
-          type: string
-          x-cli-header: Target path
-        loanee_snapshot:
-          description: Loanee snapshot name
-          type: string
-        loanee_snapshot_id:
-          type: integer
-        loanee_tenant:
-          properties:
-            guid:
-              description: Loanee tenant guid
-              type: string
-            name:
-              description: Loanee tenant name
-              type: string
-          type: object
-        name:
-          type: string
-        owner_root_snapshot:
-          description: Owner root snapshot details
-          type: object
-        owner_tenant:
-          properties:
-            guid:
-              description: Owner tenant guid
-              type: string
-            name:
-              description: Owner tenant name
-              type: string
-          type: object
-        remote_target:
-          description: Remote cluster name
-          type: string
-          x-cli-header: Remote Cluster
-        remote_target_id:
-          type: integer
-        restore_task:
-          type: integer
-        source_cluster:
-          description: Source cluster
-          type: string
-        source_path:
-          description: Source path
-          type: string
-        source_snapshot:
-          description: Source snapshot
-          type: string
-        state:
-          type: string
-        status:
-          description: Status
-          type: object
-        sync_progress:
-          type: integer
-        target_cluster:
-          description: Target cluster
-          type: string
-        view_replication_enabled:
-          description: Whether view replication is enabled
-          type: boolean
-      type: object
     Snapshot:
       properties:
         aggr_phys_estimation:
@@ -427,6 +336,97 @@ components:
       allOf:
       - $ref: '#/components/schemas/GlobalSnapStream'
       - $ref: '#/components/schemas/AsyncTaskInResponse'
+    GlobalSnapStream:
+      properties:
+        bw:
+          description: BW
+          type: integer
+          x-display-units: MB/s
+          x-format: bytes2mb
+          x-raw-units: Bytes/s
+        direction:
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+          x-cli-header: Background sync
+        eta:
+          description: ETA
+          type: string
+        external_state:
+          description: Global Snapshot Clone state
+          type: string
+        guid:
+          description: unique identifier
+          type: string
+        health:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        loanee_root_path:
+          description: Target path
+          type: string
+          x-cli-header: Target path
+        loanee_snapshot:
+          description: Loanee snapshot name
+          type: string
+        loanee_snapshot_id:
+          type: integer
+        loanee_tenant:
+          properties:
+            guid:
+              description: Loanee tenant guid
+              type: string
+            name:
+              description: Loanee tenant name
+              type: string
+          type: object
+        name:
+          type: string
+        owner_root_snapshot:
+          description: Owner root snapshot details
+          type: object
+        owner_tenant:
+          properties:
+            guid:
+              description: Owner tenant guid
+              type: string
+            name:
+              description: Owner tenant name
+              type: string
+          type: object
+        remote_target:
+          description: Remote cluster name
+          type: string
+          x-cli-header: Remote Cluster
+        remote_target_id:
+          type: integer
+        restore_task:
+          type: integer
+        source_cluster:
+          description: Source cluster
+          type: string
+        source_path:
+          description: Source path
+          type: string
+        source_snapshot:
+          description: Source snapshot
+          type: string
+        state:
+          type: string
+        status:
+          description: Status
+          type: object
+        sync_progress:
+          type: integer
+        target_cluster:
+          description: Target cluster
+          type: string
+        view_replication_enabled:
+          description: Whether view replication is enabled
+          type: boolean
+      type: object
     AsyncTaskInResponse:
       properties:
         async_task:
@@ -434,16 +434,28 @@ components:
           type: object
       type: object
   parameters:
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
+    VolumeIdQP:
+      description: Mapped volume id to filter by.
       in: query
-      name: tenant_id
+      name: volume_id
       schema:
-        minimum: 1
         type: integer
     PageSize:
       in: query
       name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
       schema:
         minimum: 1
         type: integer
@@ -453,18 +465,6 @@ components:
       name: tenant_name__icontains
       schema:
         type: string
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    VolumeIdQP:
-      description: Mapped volume id to filter by.
-      in: query
-      name: volume_id
-      schema:
-        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

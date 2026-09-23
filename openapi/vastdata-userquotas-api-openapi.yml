@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory userquotas API
+  title: VAST API Swagger Schema Userquotas API
   version: '1.0'
 security:
 - ApiToken: []
@@ -198,58 +198,6 @@ paths:
       - userquotas
 components:
   schemas:
-    PartialUserQuota:
-      allOf:
-      - $ref: '#/components/schemas/DefaultQuota'
-      - properties:
-          email:
-            description: The email used to send the user or group notifications of exceeding quota limits.
-            type: string
-          identifier:
-            type: string
-          identifier_type:
-            type: string
-          is_accountable:
-            type: boolean
-          is_group:
-            description: True for a group quota. False for a user quota.
-            type: boolean
-          is_iam_role:
-            type: boolean
-          name:
-            description: A user or group name
-            type: string
-          percent_capacity:
-            type: integer
-          percent_inodes:
-            description: Percentage of files and directories limit in use
-            type: integer
-          state:
-            type: string
-          time_to_block:
-            description: Grace period expiration time
-            type: string
-            x-cli-header: Grace Period Expiration
-          used_capacity:
-            description: Used capacity in bytes
-            format: int64
-            type: integer
-            x-cli-header: Used-Capacity
-            x-display-base-type: capacity
-            x-display-units: TB
-            x-display-units-alt: TiB
-            x-format: bytes2tbext
-            x-metric: null
-            x-raw-units: Bytes
-            x-source-module: C
-          used_inodes:
-            description: Used inodes
-            type: integer
-            x-cli-header: Used Files/Directories
-          vast_id:
-            description: VAST ID of the user or group with the listed user/group quota
-            type: integer
-        type: object
     UserQuota:
       allOf:
       - $ref: '#/components/schemas/PartialUserQuota'
@@ -308,6 +256,58 @@ components:
           type: integer
           x-cli-header: Soft limit Files/Directories
       type: object
+    PartialUserQuota:
+      allOf:
+      - $ref: '#/components/schemas/DefaultQuota'
+      - properties:
+          email:
+            description: The email used to send the user or group notifications of exceeding quota limits.
+            type: string
+          identifier:
+            type: string
+          identifier_type:
+            type: string
+          is_accountable:
+            type: boolean
+          is_group:
+            description: True for a group quota. False for a user quota.
+            type: boolean
+          is_iam_role:
+            type: boolean
+          name:
+            description: A user or group name
+            type: string
+          percent_capacity:
+            type: integer
+          percent_inodes:
+            description: Percentage of files and directories limit in use
+            type: integer
+          state:
+            type: string
+          time_to_block:
+            description: Grace period expiration time
+            type: string
+            x-cli-header: Grace Period Expiration
+          used_capacity:
+            description: Used capacity in bytes
+            format: int64
+            type: integer
+            x-cli-header: Used-Capacity
+            x-display-base-type: capacity
+            x-display-units: TB
+            x-display-units-alt: TiB
+            x-format: bytes2tbext
+            x-metric: null
+            x-raw-units: Bytes
+            x-source-module: C
+          used_inodes:
+            description: Used inodes
+            type: integer
+            x-cli-header: Used Files/Directories
+          vast_id:
+            description: VAST ID of the user or group with the listed user/group quota
+            type: integer
+        type: object
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

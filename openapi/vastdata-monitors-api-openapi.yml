@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory monitors API
+  title: VAST API Swagger Schema Monitors API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Monitors are analytics reports that can provide insight into capacity utilization and cluster performance. Top performer analytics are performance metrics of the n most active client users, views, client hosts, vips, vip pools and cnodes.
-  name: monitors
+  name: Monitors
 paths:
   /monitors/:
     get:
@@ -25,7 +25,7 @@ paths:
           description: Monitor information
       summary: List Monitors
       tags:
-      - monitors
+      - Monitors
     post:
       description: This endpoint defines a custom analytics report.
       operationId: monitors_create
@@ -88,7 +88,7 @@ paths:
           description: ''
       summary: Create Custom Analytics Report (aka Monitor)
       tags:
-      - monitors
+      - Monitors
   /monitors/ad_hoc_query/:
     get:
       description: This endpoint queries VMS for analytics.
@@ -167,7 +167,7 @@ paths:
           description: ''
       summary: Query Analytics with Ad Hoc Query Parameters
       tags:
-      - monitors
+      - Monitors
   /monitors/topn/:
     get:
       description: This endpoint queries VMS for top performer data. It can return performance metrics for the most active client users, views, client hosts, vips, vip pools and cnodes.
@@ -218,7 +218,7 @@ paths:
           description: ''
       summary: Query Top Performer Data
       tags:
-      - monitors
+      - Monitors
   /monitors/{id}/:
     delete:
       description: This endpoint deletes an analytics report.
@@ -235,7 +235,7 @@ paths:
           description: Deleted
       summary: Delete Monitor (aka Analytics Report)
       tags:
-      - monitors
+      - Monitors
     get:
       description: This endpoint returns the properties of a specified analytics report.
       operationId: monitors_read
@@ -255,7 +255,7 @@ paths:
           description: ''
       summary: Return Details of an Analytics Report
       tags:
-      - monitors
+      - Monitors
     patch:
       description: This endpoint partially modifies the specified monitor.
       operationId: monitors_partial_update
@@ -303,7 +303,7 @@ paths:
           description: ''
       summary: Modify Analytics Report
       tags:
-      - monitors
+      - Monitors
   /monitors/{id}/query/:
     get:
       description: This endpoint queries for analytics, based on a defined monitor.
@@ -361,7 +361,7 @@ paths:
           description: ''
       summary: Query Analytics using Defined Analytics Report (aka Monitor)
       tags:
-      - monitors
+      - Monitors
 components:
   schemas:
     MonitorData:

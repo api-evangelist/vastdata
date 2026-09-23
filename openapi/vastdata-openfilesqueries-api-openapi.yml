@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory openfilesqueries API
+  title: VAST API Swagger Schema Openfilesqueries API
   version: '1.0'
 security:
 - ApiToken: []
@@ -55,7 +55,7 @@ paths:
                 title: Open Files Queries
                 type: array
           description: open files queries information
-      summary: Get all open files queries.
+      summary: Get all open files queries
       tags:
       - openfilesqueries
     post:
@@ -70,7 +70,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/OpenFilesQueryWithAsyncTask'
           description: OK
-      summary: Create an open files query.
+      summary: Create an open files query
       tags:
       - openfilesqueries
   /openfilesqueries/{id}/:
@@ -82,7 +82,7 @@ paths:
       responses:
         '204':
           description: OK
-      summary: Delete an open files query.
+      summary: Delete an open files query
       tags:
       - openfilesqueries
     get:
@@ -97,18 +97,54 @@ paths:
               schema:
                 $ref: '#/components/schemas/OpenFilesQuery'
           description: ''
-      summary: Return details of an open files query.
+      summary: Return details of an open files query
       tags:
       - openfilesqueries
 components:
-  requestBodies:
-    OpenFilesQueryParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/OpenFilesQueryParams'
-      x-originalParamName: OpenFilesQueryParamsBody
+  parameters:
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
   schemas:
+    OpenFilesQueryParams:
+      properties:
+        filters:
+          description: Filters to apply when creating the query
+          type: object
+        name:
+          description: Open files query name
+          type: string
+        path_prefix:
+          description: Path prefix
+          type: string
+        protocol:
+          description: Protocol type
+          enum:
+          - SMB
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      required:
+      - path_prefix
+      - protocol
+      type: object
     OpenFilesQueryWithAsyncTask:
       allOf:
       - $ref: '#/components/schemas/OpenFilesQuery'
@@ -155,55 +191,19 @@ components:
           type: string
       type: object
       x-cli-pagination: true
-    OpenFilesQueryParams:
-      properties:
-        filters:
-          description: Filters to apply when creating the query
-          type: object
-        name:
-          description: Open files query name
-          type: string
-        path_prefix:
-          description: Path prefix
-          type: string
-        protocol:
-          description: Protocol type
-          enum:
-          - SMB
-          type: string
-        tenant_id:
-          description: Tenant ID
-          type: integer
-      required:
-      - path_prefix
-      - protocol
-      type: object
     AsyncTaskInResponse:
       properties:
         async_task:
           description: Creation Async task properties
           type: object
       type: object
-  parameters:
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
+  requestBodies:
+    OpenFilesQueryParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/OpenFilesQueryParams'
+      x-originalParamName: OpenFilesQueryParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

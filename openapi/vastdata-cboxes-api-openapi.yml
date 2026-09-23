@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory cboxes API
+  title: VAST API Swagger Schema Cboxes API
   version: '1.0'
 security:
 - ApiToken: []
@@ -136,6 +136,12 @@ paths:
       - cboxes
 components:
   schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     CBox:
       properties:
         cluster:
@@ -178,12 +184,6 @@ components:
           type: string
       required:
       - name
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
       type: object
   securitySchemes:
     ApiToken:

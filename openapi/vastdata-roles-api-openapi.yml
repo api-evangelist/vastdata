@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory roles API
+  title: VAST API Swagger Schema Roles API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Roles are sets of VMS permissions. They can specify one or more LDAP groups. Mapping roles to LDAP groups gives LDAP group members the ability to log into VMS and be authorized with the aggregate of permissions belonging to all mapped roles.
-  name: roles
+  name: Roles
 paths:
   /roles/:
     get:
@@ -30,7 +30,7 @@ paths:
           description: Role information
       summary: List Roles
       tags:
-      - roles
+      - Roles
     post:
       operationId: roles_create
       requestBody:
@@ -106,7 +106,7 @@ paths:
           description: ''
       summary: Create Manager Role
       tags:
-      - roles
+      - Roles
   /roles/{id}/:
     delete:
       description: This endpoint deletes a role.
@@ -123,7 +123,7 @@ paths:
           description: The role was deleted successfully.
       summary: Delete Role
       tags:
-      - roles
+      - Roles
     get:
       description: This endpoint returns details of a manager role.
       operationId: roles_read
@@ -143,7 +143,7 @@ paths:
           description: ''
       summary: Return Details of a Role
       tags:
-      - roles
+      - Roles
     patch:
       description: This endpoint modifies a manager role.
       operationId: roles_partial_update
@@ -223,9 +223,18 @@ paths:
           description: ''
       summary: Modify Role
       tags:
-      - roles
+      - Roles
 components:
   schemas:
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
     Role:
       properties:
         guid:
@@ -286,15 +295,6 @@ components:
           type: array
       required:
       - name
-      type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
       type: object
   securitySchemes:
     ApiToken:

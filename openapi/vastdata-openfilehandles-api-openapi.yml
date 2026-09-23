@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory openfilehandles API
+  title: VAST API Swagger Schema Openfilehandles API
   version: '1.0'
 security:
 - ApiToken: []
@@ -56,7 +56,7 @@ paths:
                 title: Open Files
                 type: array
           description: open files handlesinformation
-      summary: Get all open files handles.
+      summary: Get all open files handles
       tags:
       - openfilehandles
   /openfilehandles/{id}/:
@@ -72,11 +72,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/OpenFileHandle'
           description: ''
-      summary: Return details of an open file handle.
+      summary: Return details of an open file handle
       tags:
       - openfilehandles
 components:
   parameters:
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
     PathObjectId:
       description: Object ID specified in the path
       in: path
@@ -88,18 +100,6 @@ components:
       description: Open File id to filter by.
       in: query
       name: open_file__id
-      schema:
-        minimum: 1
-        type: integer
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
       schema:
         minimum: 1
         type: integer

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory supporteddrives API
+  title: VAST API Swagger Schema Supporteddrives API
   version: '1.0'
 security:
 - ApiToken: []
@@ -23,6 +23,8 @@ paths:
       tags:
       - supporteddrives
       x-cli-command: supporteddrives
+      summary: Supporteddrives list
+      x-summary-source: derived
     post:
       operationId: supporteddrives_add
       requestBody:
@@ -81,6 +83,8 @@ paths:
       tags:
       - supporteddrives
       x-cli-command: supporteddrives
+      summary: Supporteddrives add
+      x-summary-source: derived
   /supporteddrives/{id}/:
     delete:
       operationId: supporteddrives_delete
@@ -96,6 +100,8 @@ paths:
       tags:
       - supporteddrives
       x-cli-command: supporteddrives
+      summary: Supporteddrives delete
+      x-summary-source: derived
     get:
       operationId: supporteddrives_get
       parameters:
@@ -114,6 +120,8 @@ paths:
       tags:
       - supporteddrives
       x-cli-command: supporteddrives
+      summary: Supporteddrives get
+      x-summary-source: derived
     put:
       operationId: supporteddrives_update
       parameters:
@@ -138,8 +146,32 @@ paths:
       tags:
       - supporteddrives
       x-cli-command: supporteddrives
+      summary: Supporteddrives update
+      x-summary-source: derived
 components:
   schemas:
+    SupportedDrive:
+      properties:
+        drive_type:
+          type: string
+        id:
+          type: integer
+        model_name:
+          type: string
+        raw_data:
+          $ref: '#/components/schemas/SupportedDriveInput'
+        synced:
+          type: boolean
+      type: object
+    SupportedPlatformInput:
+      properties:
+        default_section_layout:
+          type: string
+        name:
+          type: string
+        ssd_capacity_tb:
+          type: integer
+      type: object
     SupportedDriveInput:
       properties:
         capacity_tb:
@@ -163,28 +195,6 @@ components:
           type: string
         type:
           type: string
-      type: object
-    SupportedDrive:
-      properties:
-        drive_type:
-          type: string
-        id:
-          type: integer
-        model_name:
-          type: string
-        raw_data:
-          $ref: '#/components/schemas/SupportedDriveInput'
-        synced:
-          type: boolean
-      type: object
-    SupportedPlatformInput:
-      properties:
-        default_section_layout:
-          type: string
-        name:
-          type: string
-        ssd_capacity_tb:
-          type: integer
       type: object
   securitySchemes:
     ApiToken:

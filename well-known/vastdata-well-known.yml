@@ -1,7 +1,12 @@
 generated: '2026-07-21'
 method: searched
 host: https://www.vastdata.com
-documents:
+notes: The corporate site publishes an llms.txt but no /.well-known/ discovery documents. The VAST Management
+  System (VMS) API is an on-premises / in-cluster surface (https://<vms-host>/api/), so no public API
+  host exposes well-known documents to probe.
+hosts:
+- host: https://www.vastdata.com
+  documents:
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/openid-configuration
@@ -12,10 +17,8 @@ documents:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
-  - path: /llms.txt
-    status: 200
-    file: ../llms/vastdata-llms.txt
-notes: The corporate site publishes an llms.txt but no /.well-known/ discovery
-  documents. The VAST Management System (VMS) API is an on-premises / in-cluster
-  surface (https://<vms-host>/api/), so no public API host exposes well-known
-  documents to probe.
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

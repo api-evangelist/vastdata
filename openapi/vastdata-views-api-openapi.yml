@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory Views API
+  title: VAST API Swagger Schema Views API
   version: '1.0'
 security:
 - ApiToken: []
@@ -965,12 +965,12 @@ paths:
       responses:
         '200':
           description: ''
-      summary: Modify View.
+      summary: Modify View
       tags:
       - Views
   /views/{id}/check_permissions_templates/:
     post:
-      description: 'This endpoint performs validation on a set of bulk permission update parameters and should be run before performing a bulk permission update (using the  /views/{id}/permissions_repair/ path). It also returns details of the owning users and groups of the template directory and, if applicable, template file, which will be applied to the target path if a bulk permission update is performed. For the template directory, the response verifies if the directory has default ACL, which is needed if no template file is specified. The target directory is validated for the following conditions: - Is not and does not contain the cluster’s audit directory. - Does not have views with s3_versioning=True under it. - No paths under it are used in a running global snapshot stream. - Is a directory. - The length of its path does not exceed 1024 characters.'
+      description: 'This endpoint performs validation on a set of bulk permission update parameters and should be run before performing a bulk permission update (using the /views/{id}/permissions_repair/ path). It also returns details of the owning users and groups of the template directory and, if applicable, template file, which will be applied to the target path if a bulk permission update is performed. For the template directory, the response verifies if the directory has default ACL, which is needed if no template file is specified. The target directory is validated for the following conditions: - Is not and does not contain the cluster’s audit directory. - Does not have views with s3_versioning=True under it. - No paths under it are used in a running global snapshot stream. - Is a directory. - The length of its path does not exceed 1024 characters.'
       operationId: check_permissions_templates
       parameters:
       - description: View ID
@@ -1158,7 +1158,7 @@ paths:
       tags:
       - Views
     post:
-      description: 'This endpoint starts a bulk permission update on a target path. In a bulk permission update, permissions of files and directory under the target path are overwritten with those of specified templates. A directory template is required.  If a template file is specified for a bulk permission update, VAST Cluster overwrites the permissions and ownership attributes of the target files and directories as follows: - Permissions of target files are overwritten with those of the template file. - Permissions of target directories are overwritten with those of the template directory. If no template file is specified, VAST Cluster overwrites the permissions and ownership attributes of the target directory with those of the template directory, and nested directories and files inherit permissions and ownership attributes from their parent. In this case, the template directory must have a default ACL on it.'
+      description: 'This endpoint starts a bulk permission update on a target path. In a bulk permission update, permissions of files and directory under the target path are overwritten with those of specified templates. A directory template is required. If a template file is specified for a bulk permission update, VAST Cluster overwrites the permissions and ownership attributes of the target files and directories as follows: - Permissions of target files are overwritten with those of the template file. - Permissions of target directories are overwritten with those of the template directory. If no template file is specified, VAST Cluster overwrites the permissions and ownership attributes of the target directory with those of the template directory, and nested directories and files inherit permissions and ownership attributes from their parent. In this case, the template directory must have a default ACL on it.'
       operationId: start_permissions_repair
       parameters:
       - description: View ID
@@ -1202,6 +1202,156 @@ paths:
       - Views
 components:
   schemas:
+    S3CORSRuleData:
+      properties:
+        allowed_headers:
+          description: CORS allowed headers
+          items:
+            type: string
+          type: array
+        allowed_methods:
+          description: CORS allowed methods
+          items:
+            type: string
+          type: array
+        allowed_origins:
+          description: CORS allowed origins
+          items:
+            type: string
+          type: array
+        expose_headers:
+          description: Headers the browser can expose to client-side
+          items:
+            type: string
+          type: array
+        max_age_seconds:
+          description: Time in seconds to cache the preflight response
+          type: integer
+      required:
+      - allowed_origins
+      - allowed_methods
+      type: object
+    AWSS3CORSRuleData:
+      properties:
+        AllowedHeaders:
+          description: CORS allowed headers
+          items:
+            type: string
+          type: array
+        AllowedMethods:
+          description: CORS allowed methods
+          items:
+            type: string
+          type: array
+        AllowedOrigins:
+          description: CORS allowed origins
+          items:
+            type: string
+          type: array
+        ExposeHeaders:
+          description: Headers the browser can expose to client-side
+          items:
+            type: string
+          type: array
+        MaxAgeSeconds:
+          description: Time in seconds to cache the preflight response
+          type: integer
+      required:
+      - AllowedOrigins
+      - AllowedMethods
+      type: object
+    UserImpersonation:
+      properties:
+        enabled:
+          description: True if user impersonation is enabled
+          type: boolean
+        identifier:
+          description: Identifier of the user to impersonate
+          type: string
+        identifier_type:
+          description: The identifier type of the specified identifier.
+          type: string
+        login_name:
+          description: Full username of user to impersonate, including domain name
+          type: string
+        username:
+          description: The username of the user to impersonate
+          type: string
+      type: object
+    SeamlessPeer:
+      properties:
+        failure_reason:
+          description: Reason of failure during getting seamless info from the remote
+          type: string
+        name:
+          description: Name of seamless replication peer
+          type: string
+          x-cli-header: Peer name
+        remote_peer_name:
+          description: Remote peer name
+          type: string
+          x-cli-header: Cluster name
+        status:
+          description: The seamless status of the remote peer.
+          type: string
+          x-cli-header: Sync status
+        tenant_guid:
+          description: Globally unique identifier for the remote tenant
+          type: string
+        tenant_name:
+          description: Remote tenant name
+          type: string
+          x-cli-header: Tenant
+        view_name:
+          description: Remote view name
+          type: string
+        view_path:
+          description: Remote view path
+          type: string
+          x-cli-header: Path
+      type: object
+    EventNotification:
+      description: S3 bucket Event Notification
+      properties:
+        broker_id:
+          description: Event broker ID
+          type: integer
+          x-cli-header: Event broker ID
+        name:
+          description: Event unique name
+          type: string
+          x-cli-header: Event name
+        prefix_filter:
+          description: Event prefix filter
+          type: string
+          x-cli-header: Event prefix filter
+        suffix_filter:
+          description: Event suffix filter
+          type: string
+          x-cli-header: Event suffix filter
+        topic:
+          description: Event topic
+          type: string
+          x-cli-header: Event topic
+        triggers:
+          description: Event triggers
+          items:
+            enum:
+            - S3_OBJECT_CREATED_ALL
+            - S3_OBJECT_CREATED_PUT
+            - S3_OBJECT_CREATED_POST
+            - S3_OBJECT_CREATED_COPY
+            - S3_OBJECT_CREATED_COMPLETE_MULTIPART_UPLOAD
+            - S3_OBJECT_REMOVED_ALL
+            - S3_OBJECT_REMOVED_DELETE
+            - S3_OBJECT_REMOVED_DELETE_MARKER_CREATED
+            - S3_OBJECT_TAGGING_ALL
+            - S3_OBJECT_TAGGING_PUT
+            - S3_OBJECT_TAGGING_DELETE
+            type: string
+          type: array
+          x-cli-header: Event triggers
+      type: object
     ViewsCheckPermissionsTemplatesResponse:
       properties:
         template_dir_path:
@@ -1253,67 +1403,6 @@ components:
               type: object
           type: object
       type: object
-    SeamlessPeer:
-      properties:
-        failure_reason:
-          description: Reason of failure during getting seamless info from the remote
-          type: string
-        name:
-          description: Name of seamless replication peer
-          type: string
-          x-cli-header: Peer name
-        remote_peer_name:
-          description: Remote peer name
-          type: string
-          x-cli-header: Cluster name
-        status:
-          description: The seamless status of the remote peer.
-          type: string
-          x-cli-header: Sync status
-        tenant_guid:
-          description: Globally unique identifier for the remote tenant
-          type: string
-        tenant_name:
-          description: Remote tenant name
-          type: string
-          x-cli-header: Tenant
-        view_name:
-          description: Remote view name
-          type: string
-        view_path:
-          description: Remote view path
-          type: string
-          x-cli-header: Path
-      type: object
-    AWSS3CORSRuleData:
-      properties:
-        AllowedHeaders:
-          description: CORS allowed headers
-          items:
-            type: string
-          type: array
-        AllowedMethods:
-          description: CORS allowed methods
-          items:
-            type: string
-          type: array
-        AllowedOrigins:
-          description: CORS allowed origins
-          items:
-            type: string
-          type: array
-        ExposeHeaders:
-          description: Headers the browser can expose to client-side
-          items:
-            type: string
-          type: array
-        MaxAgeSeconds:
-          description: Time in seconds to cache the preflight response
-          type: integer
-      required:
-      - AllowedOrigins
-      - AllowedMethods
-      type: object
     ProtocolHandle:
       properties:
         error:
@@ -1325,76 +1414,86 @@ components:
             $ref: '#/components/schemas/OpenProtocolHandle'
           type: array
       type: object
-    EventNotification:
-      description: S3 bucket Event Notification
+    FileHandle:
       properties:
-        broker_id:
-          description: Event broker ID
+        clone_id:
+          type: string
+          x-cli-header: Clone ID
+        delete_pending:
+          type: string
+          x-cli-header: Pending delete
+          x-format: str2yes_no
+        ehandle:
+          type: string
+          x-cli-header: eHandle
+        has_any_lease:
+          type: string
+          x-cli-header: Has lease
+          x-format: str2yes_no
+        lease_break_in_progress:
+          type: string
+          x-cli-header: Lease break in progress
+          x-format: str2yes_no
+        nfs4_only:
+          type: string
+          x-cli-header: NFSv4.1 only
+          x-format: str2yes_no
+        number_open_protocol_handles:
           type: integer
-          x-cli-header: Event broker ID
-        name:
-          description: Event unique name
+          x-cli-header: Number of open protocol handles
+        stream_key:
+          description: Global access path ID
           type: string
-          x-cli-header: Event name
-        prefix_filter:
-          description: Event prefix filter
-          type: string
-          x-cli-header: Event prefix filter
-        suffix_filter:
-          description: Event suffix filter
-          type: string
-          x-cli-header: Event suffix filter
-        topic:
-          description: Event topic
-          type: string
-          x-cli-header: Event topic
-        triggers:
-          description: Event triggers
+      type: object
+    OpenProtocolHandle:
+      properties:
+        access_mask:
           items:
-            enum:
-            - S3_OBJECT_CREATED_ALL
-            - S3_OBJECT_CREATED_PUT
-            - S3_OBJECT_CREATED_POST
-            - S3_OBJECT_CREATED_COPY
-            - S3_OBJECT_CREATED_COMPLETE_MULTIPART_UPLOAD
-            - S3_OBJECT_REMOVED_ALL
-            - S3_OBJECT_REMOVED_DELETE
-            - S3_OBJECT_REMOVED_DELETE_MARKER_CREATED
-            - S3_OBJECT_TAGGING_ALL
-            - S3_OBJECT_TAGGING_PUT
-            - S3_OBJECT_TAGGING_DELETE
             type: string
           type: array
-          x-cli-header: Event triggers
+          x-cli-header: Access Mask (hex)
+        access_mask_display:
+          description: Human readable access mask string values
+          type: string
+          x-cli-header: Access Mask
+        client_ip:
+          type: string
+          x-cli-header: Client IP
+        file_mode:
+          type: string
+          x-cli-header: File Mode
+          x-format: pretty_enum
+        has_lease:
+          type: string
+          x-cli-header: Lease
+          x-format: str2yes_no
+        is_nfs_expirable:
+          type: string
+        nfs4_seqid:
+          type: string
+          x-cli-header: NFSv4.1 Sequence ID
+        nfs_expiration_time:
+          type: string
+        proto_type:
+          type: string
+          x-cli-header: Protocol
+          x-format: pretty_protocol
+        session_id:
+          type: string
+          x-cli-header: Session ID
+        share_access:
+          type: string
+          x-cli-header: Share Access
+        unique_id:
+          type: string
+          x-cli-header: Unique ID
+        username:
+          type: string
       type: object
     ErrorResponse:
       properties:
         detail:
           example: Failed to rotate encryption group key.
-          type: string
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    UserImpersonation:
-      properties:
-        enabled:
-          description: True if user impersonation is enabled
-          type: boolean
-        identifier:
-          description: Identifier of the user to impersonate
-          type: string
-        identifier_type:
-          description: The identifier type of the specified identifier.
-          type: string
-        login_name:
-          description: Full username of user to impersonate, including domain name
-          type: string
-        username:
-          description: The username of the user to impersonate
           type: string
       type: object
     View:
@@ -1758,119 +1857,13 @@ components:
       - path
       - policy_id
       type: object
-    FileHandle:
+    AsyncTaskInResponse:
       properties:
-        clone_id:
-          type: string
-          x-cli-header: Clone ID
-        delete_pending:
-          type: string
-          x-cli-header: Pending delete
-          x-format: str2yes_no
-        ehandle:
-          type: string
-          x-cli-header: eHandle
-        has_any_lease:
-          type: string
-          x-cli-header: Has lease
-          x-format: str2yes_no
-        lease_break_in_progress:
-          type: string
-          x-cli-header: Lease break in progress
-          x-format: str2yes_no
-        nfs4_only:
-          type: string
-          x-cli-header: NFSv4.1 only
-          x-format: str2yes_no
-        number_open_protocol_handles:
-          type: integer
-          x-cli-header: Number of open protocol handles
-        stream_key:
-          description: Global access path ID
-          type: string
-      type: object
-    OpenProtocolHandle:
-      properties:
-        access_mask:
-          items:
-            type: string
-          type: array
-          x-cli-header: Access Mask (hex)
-        access_mask_display:
-          description: Human readable access mask string values
-          type: string
-          x-cli-header: Access Mask
-        client_ip:
-          type: string
-          x-cli-header: Client IP
-        file_mode:
-          type: string
-          x-cli-header: File Mode
-          x-format: pretty_enum
-        has_lease:
-          type: string
-          x-cli-header: Lease
-          x-format: str2yes_no
-        is_nfs_expirable:
-          type: string
-        nfs4_seqid:
-          type: string
-          x-cli-header: NFSv4.1 Sequence ID
-        nfs_expiration_time:
-          type: string
-        proto_type:
-          type: string
-          x-cli-header: Protocol
-          x-format: pretty_protocol
-        session_id:
-          type: string
-          x-cli-header: Session ID
-        share_access:
-          type: string
-          x-cli-header: Share Access
-        unique_id:
-          type: string
-          x-cli-header: Unique ID
-        username:
-          type: string
-      type: object
-    S3CORSRuleData:
-      properties:
-        allowed_headers:
-          description: CORS allowed headers
-          items:
-            type: string
-          type: array
-        allowed_methods:
-          description: CORS allowed methods
-          items:
-            type: string
-          type: array
-        allowed_origins:
-          description: CORS allowed origins
-          items:
-            type: string
-          type: array
-        expose_headers:
-          description: Headers the browser can expose to client-side
-          items:
-            type: string
-          type: array
-        max_age_seconds:
-          description: Time in seconds to cache the preflight response
-          type: integer
-      required:
-      - allowed_origins
-      - allowed_methods
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   parameters:
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
     PageSize:
       in: query
       name: page_size
@@ -1883,24 +1876,31 @@ components:
       name: tenant_name__icontains
       schema:
         type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
     Page:
       in: query
       name: page
       schema:
         minimum: 1
         type: integer
-    IsDefaultSubsystemQP:
-      description: Filter by whether View is a default Subsystem.
-      in: query
-      name: is_default_subsystem
-      schema:
-        type: boolean
     NqnQP:
       description: NVMe Qualified Name to filter by.
       in: query
       name: nqn
       schema:
         type: string
+    IsDefaultSubsystemQP:
+      description: Filter by whether View is a default Subsystem.
+      in: query
+      name: is_default_subsystem
+      schema:
+        type: boolean
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

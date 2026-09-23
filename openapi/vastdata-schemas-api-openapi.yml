@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory schemas API
+  title: VAST API Swagger Schema Schemas API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: The schemas endpoint enables you to manage the schemas in a VAST database.
-  name: schemas
+  name: Schemas
 paths:
   /schemas/:
     get:
@@ -64,7 +64,7 @@ paths:
           description: Database Schemas
       summary: List Database Schemas
       tags:
-      - schemas
+      - Schemas
     post:
       description: This endpoint creates a database schema
       operationId: schemas_create
@@ -75,7 +75,7 @@ paths:
           description: OK
       summary: Create a Database Schema
       tags:
-      - schemas
+      - Schemas
   /schemas/delete/:
     delete:
       description: This endpoint deletes a database schema.
@@ -87,7 +87,7 @@ paths:
           description: OK
       summary: Delete Schema
       tags:
-      - schemas
+      - Schemas
   /schemas/rename/:
     patch:
       description: This endpoint renames a schema. The name must meet the requirements for S3 object names.
@@ -99,7 +99,7 @@ paths:
           description: OK
       summary: Rename a database schema
       tags:
-      - schemas
+      - Schemas
   /schemas/show/:
     get:
       description: This endpoint shows a Database Schema.
@@ -117,16 +117,9 @@ paths:
           description: Database Schema
       summary: Show a Database Schema
       tags:
-      - schemas
+      - Schemas
 components:
   parameters:
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
     TabularDatabaseNameQP:
       description: Getting list of objects by database_name
       in: query
@@ -134,12 +127,6 @@ components:
       required: true
       schema:
         type: string
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
     TabularPageSize:
       in: query
       name: page_size
@@ -155,6 +142,12 @@ components:
       schema:
         default: false
         type: boolean
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
     TenantIdQP:
       description: Filter by tenant. Specify tenant ID.
       in: query
@@ -174,26 +167,50 @@ components:
       name: name__startswith
       schema:
         type: string
-  requestBodies:
-    SchemaRenameParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/SchemaRenameParams'
-      x-originalParamName: SchemaRenameParamsBody
-    SchemaDeleteParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/SchemaDeleteParams'
-      x-originalParamName: SchemaDeleteParamsBody
-    SchemaCreateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/SchemaCreateParams'
-      x-originalParamName: SchemaCreateParamsBody
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
   schemas:
+    SchemaCreateParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
+      - properties:
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
+    Schema:
+      allOf:
+      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
+      - properties:
+          properties:
+            description: Misc properties of the Schema
+            type: string
+        type: object
+    SchemaDeleteParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
+      - properties:
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
+    TabularDatabaseHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - database_name
+      - name
+      type: object
     SchemaRenameParams:
       allOf:
       - $ref: '#/components/schemas/TabularDatabaseHierarchy'
@@ -210,42 +227,25 @@ components:
         required:
         - new_name
         type: object
-    TabularDatabaseHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-      required:
-      - database_name
-      - name
-      type: object
-    SchemaDeleteParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
-      - properties:
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        type: object
-    Schema:
-      allOf:
-      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
-      - properties:
-          properties:
-            description: Misc properties of the Schema
-            type: string
-        type: object
-    SchemaCreateParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
-      - properties:
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        type: object
+  requestBodies:
+    SchemaDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/SchemaDeleteParams'
+      x-originalParamName: SchemaDeleteParamsBody
+    SchemaCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/SchemaCreateParams'
+      x-originalParamName: SchemaCreateParamsBody
+    SchemaRenameParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/SchemaRenameParams'
+      x-originalParamName: SchemaRenameParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory token API
+  title: VAST API Swagger Schema Token API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Tokens are JSON Web Tokens (JWTs), which can be used instead of Apitokens to authenticate requests to the VMS REST API.
-  name: token
+  name: Token
 paths:
   /token/:
     post:
@@ -49,7 +49,7 @@ paths:
       security: []
       summary: Obtain Json Web Tokens
       tags:
-      - token
+      - Token
   /token/refresh/:
     post:
       description: This endpoint refreshes JWT tokens using the last generated refresh token.
@@ -82,7 +82,7 @@ paths:
           description: ''
       summary: Refresh JWT Tokens
       tags:
-      - token
+      - Token
 components:
   securitySchemes:
     ApiToken:

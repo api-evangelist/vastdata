@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory Certificates API
+  title: VAST API Swagger Schema Certificates API
   version: '1.0'
 security:
 - ApiToken: []
@@ -12,9 +12,7 @@ paths:
     post:
       description: 'Validates a compute cluster RKE2 certificate chain without creating any objects.
 
-        Checks PEM format, expiration, key-pair matching, chain signature, and CA constraints.
-
-        '
+        Checks PEM format, expiration, key-pair matching, chain signature, and CA constraints.'
       operationId: certificates_validate_compute_cluster_certificates
       requestBody:
         content:
@@ -114,6 +112,8 @@ paths:
           description: ''
       tags:
       - Certificates
+      summary: Certificates delete
+      x-summary-source: derived
     get:
       operationId: certificates_read
       parameters:
@@ -127,6 +127,8 @@ paths:
           description: ''
       tags:
       - Certificates
+      summary: Certificates read
+      x-summary-source: derived
     patch:
       operationId: certificates_partial_update
       parameters:
@@ -159,7 +161,17 @@ paths:
           description: ''
       tags:
       - Certificates
+      summary: Certificates partial update
+      x-summary-source: derived
 components:
+  parameters:
+    PathId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
   schemas:
     Certificate:
       properties:
@@ -191,14 +203,6 @@ components:
         state:
           type: string
       type: object
-  parameters:
-    PathId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

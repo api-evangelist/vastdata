@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory protectionpolicies API
+  title: VAST API Swagger Schema Protectionpolicies API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
-- description: A protection policy is a reusable configuration that defines a schedule for taking snapshots and optionally replicating them to a specified async  replication peer or S3 replication peer. It defines how long to retain local snapshots. If the purpose of a protection policy is remote backup to either S3 or an async replication peer without local snapshot retention, then this is achieved by defining no retention for local snapshots. Once defined, a protection policy can be specified in the configuration of a protected path.
-  name: protectionpolicies
+- description: A protection policy is a reusable configuration that defines a schedule for taking snapshots and optionally replicating them to a specified async replication peer or S3 replication peer.
+  name: Protection Policies
 paths:
   /protectionpolicies/:
     get:
@@ -40,7 +40,7 @@ paths:
           description: protection policy information
       summary: Return Protection Policies
       tags:
-      - protectionpolicies
+      - Protection Policies
     post:
       description: This endpoint creates a protection policy.
       operationId: protectionpolicies_create
@@ -108,7 +108,7 @@ paths:
           description: ''
       summary: Create Protection Policy
       tags:
-      - protectionpolicies
+      - Protection Policies
   /protectionpolicies/{id}/:
     delete:
       description: This endpoint deletes a protection policy.
@@ -125,7 +125,7 @@ paths:
           description: Deleted
       summary: Delete Protection Policy
       tags:
-      - protectionpolicies
+      - Protection Policies
     get:
       description: This endpoint returns details of a specified protection policy.
       operationId: protectionpolicies_read
@@ -145,7 +145,7 @@ paths:
           description: ''
       summary: Return Details of a Protection Policy
       tags:
-      - protectionpolicies
+      - Protection Policies
     patch:
       description: This endpoint modifies a protection policy.
       operationId: protectionpolicies_partial_update
@@ -206,7 +206,7 @@ paths:
           description: ''
       summary: Modify a Protection Policy
       tags:
-      - protectionpolicies
+      - Protection Policies
 components:
   schemas:
     RemoteTenant:
@@ -216,6 +216,15 @@ components:
           type: string
         name:
           description: Remote Tenant name
+          type: string
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
           type: string
       type: object
     ProtectionPolicy:
@@ -306,15 +315,6 @@ components:
       - prefix
       - frames
       - clone_type
-      type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
       type: object
     Frame:
       properties:

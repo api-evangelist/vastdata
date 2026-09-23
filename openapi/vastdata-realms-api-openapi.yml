@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory realms API
+  title: VAST API Swagger Schema Realms API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: Realms are user defined customized permission realms for VMS manager users. They define sets of object types and can be granted to managers and roles for VMS permissions.
-  name: realms
+  name: Realms
 paths:
   /realms/:
     get:
@@ -30,7 +30,7 @@ paths:
           description: Realm information
       summary: List Realms
       tags:
-      - realms
+      - Realms
     post:
       operationId: realms_create
       requestBody:
@@ -61,7 +61,7 @@ paths:
           description: ''
       summary: Create Realm
       tags:
-      - realms
+      - Realms
   /realms/{id}/:
     delete:
       description: This endpoint deletes a realm.
@@ -78,7 +78,7 @@ paths:
           description: ''
       summary: Delete Realm
       tags:
-      - realms
+      - Realms
     get:
       description: This endpoint returns details of a realm.
       operationId: realms_read
@@ -96,9 +96,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Realm'
           description: ''
-      summary: Return Details of a Realm.
+      summary: Return Details of a Realm
       tags:
-      - realms
+      - Realms
     patch:
       description: This endpoint modifies realm.
       operationId: realms_modify
@@ -124,7 +124,7 @@ paths:
           description: ''
       summary: Modify realm
       tags:
-      - realms
+      - Realms
   /realms/{id}/assign/:
     patch:
       description: This endpoint assign object to realm.
@@ -151,7 +151,7 @@ paths:
           description: ''
       summary: Assign object type to realm
       tags:
-      - realms
+      - Realms
   /realms/{id}/unassign/:
     patch:
       description: This endpoint unassign object from realm.
@@ -178,7 +178,7 @@ paths:
           description: ''
       summary: Unassign object type from realm
       tags:
-      - realms
+      - Realms
 components:
   schemas:
     PartialTenantInfo:

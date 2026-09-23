@@ -1,13 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory versions API
+  title: VAST API Swagger Schema Versions API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
 - description: The cluster platform and VMS software is installed and upgraded via packages that have a version number per release and a software build number. The versions path exposes the cluster's version history.
-  name: versions
+  name: Versions
 paths:
   /versions/:
     get:
@@ -30,7 +30,7 @@ paths:
           description: Versions History
       summary: List Versions
       tags:
-      - versions
+      - Versions
   /versions/{id}/:
     get:
       description: This endpoint lists the version deployment history.
@@ -50,7 +50,7 @@ paths:
           description: ''
       summary: List Version Deployment History
       tags:
-      - versions
+      - Versions
 components:
   schemas:
     Version:

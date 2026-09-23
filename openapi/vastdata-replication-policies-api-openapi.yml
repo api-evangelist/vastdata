@@ -1,12 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   description: VAST Management API definition
-  title: VAST API Swagger Schema activedirectory replicationpolicies API
+  title: VAST API Swagger Schema Replicationpolicies API
   version: '1.0'
 security:
 - ApiToken: []
 tags:
-- name: replicationpolicies
+- name: Replication Policies
 paths:
   /replicationpolicies/:
     get:
@@ -39,7 +39,7 @@ paths:
           description: Replication target information
       summary: List Replication Policies (deprecated from VAST Cluster 3.4)
       tags:
-      - replicationpolicies
+      - Replication Policies
     post:
       description: This endpoint creates a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/
       operationId: replicationpolicies_create
@@ -87,7 +87,7 @@ paths:
           description: ''
       summary: Create Replication Policy (deprecated from VAST Cluster 3.4)
       tags:
-      - replicationpolicies
+      - Replication Policies
   /replicationpolicies/{id}/:
     delete:
       description: This endpoint deletes a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/.
@@ -103,7 +103,7 @@ paths:
           description: this endpoint deletes a replication policy.
       summary: Delete a Replication Policy (deprecated from VAST Cluster 3.4)
       tags:
-      - replicationpolicies
+      - Replication Policies
     get:
       description: This endpoint returns details of a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/
       operationId: replicationpolicies_read
@@ -123,7 +123,7 @@ paths:
           description: ''
       summary: Return Details of a Replication Policy (deprecated from VAST Cluster 3.4)
       tags:
-      - replicationpolicies
+      - Replication Policies
     patch:
       description: This endpoint modifies a replication policy. It is deprecated from VAST Cluster 3.4. Use /protectionpolicies/
       operationId: replicationpolicies_partial_update
@@ -170,7 +170,7 @@ paths:
           description: ''
       summary: Modify a Replication Policy (deprecated from VAST Cluster 3.4)
       tags:
-      - replicationpolicies
+      - Replication Policies
 components:
   schemas:
     ReplicationPolicy:
