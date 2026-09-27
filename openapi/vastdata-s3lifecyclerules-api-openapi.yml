@@ -251,12 +251,6 @@ paths:
       - s3lifecyclerules
 components:
   schemas:
-    ArbitraryStringsObject:
-      additionalProperties:
-        type: string
-      type: object
-    S3BucketObjectData:
-      type: object
     S3LifeCycleRule:
       properties:
         abort_mpu_days_after_initiation:
@@ -320,6 +314,12 @@ components:
       required:
       - name
       - view_id
+      type: object
+    S3BucketObjectData:
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
       type: object
   securitySchemes:
     ApiToken:

@@ -74,6 +74,33 @@ paths:
       tags:
       - openfiles
 components:
+  parameters:
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    OpenFilesQueryIdQP:
+      description: Open Files Query id to filter by.
+      in: query
+      name: open_files_query__id
+      schema:
+        minimum: 1
+        type: integer
   schemas:
     PartialVTask:
       properties:
@@ -88,6 +115,16 @@ components:
         state:
           description: Task state
           type: string
+      type: object
+    OpenFileHandlesQueryParams:
+      properties:
+        protocol:
+          description: Protocol type
+          enum:
+          - SMB
+          type: string
+      required:
+      - protocol
       type: object
     OpenFile:
       properties:
@@ -116,43 +153,6 @@ components:
           description: Creation Async task properties
           type: object
       type: object
-    OpenFileHandlesQueryParams:
-      properties:
-        protocol:
-          description: Protocol type
-          enum:
-          - SMB
-          type: string
-      required:
-      - protocol
-      type: object
-  parameters:
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    OpenFilesQueryIdQP:
-      description: Open Files Query id to filter by.
-      in: query
-      name: open_files_query__id
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
   requestBodies:
     OpenFileHandlesQueryParamsBody:
       content:

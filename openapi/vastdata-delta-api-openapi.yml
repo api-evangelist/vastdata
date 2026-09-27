@@ -69,6 +69,31 @@ paths:
       - Delta
 components:
   schemas:
+    DeltaStorage:
+      properties:
+        current_generation:
+          minimum: 0
+          type: integer
+        current_sequence:
+          description: Runtime sequence id for delta. Reset if HA happened.
+          example: 8f021a67-cfd6-4896-ad67-3e32a376c6f4
+          type: string
+        records:
+          items:
+            $ref: '#/components/schemas/DeltaRecord'
+          type: array
+        status:
+          description: ok - all ok, reset - journal was reset
+          enum:
+          - ok
+          - reset
+          type: string
+      required:
+      - current_sequence
+      - current_generation
+      - records
+      - status
+      type: object
     DeltaConfig:
       properties:
         enabled:
@@ -121,31 +146,6 @@ components:
       - type
       - id
       type: object
-    DeltaStorage:
-      properties:
-        current_generation:
-          minimum: 0
-          type: integer
-        current_sequence:
-          description: Runtime sequence id for delta. Reset if HA happened.
-          example: 8f021a67-cfd6-4896-ad67-3e32a376c6f4
-          type: string
-        records:
-          items:
-            $ref: '#/components/schemas/DeltaRecord'
-          type: array
-        status:
-          description: ok - all ok, reset - journal was reset
-          enum:
-          - ok
-          - reset
-          type: string
-      required:
-      - current_sequence
-      - current_generation
-      - records
-      - status
-      type: object
   parameters:
     Generation:
       in: query
@@ -154,6 +154,11 @@ components:
       schema:
         minimum: 0
         type: integer
+    ObjectGuid:
+      in: query
+      name: object__guid
+      schema:
+        type: string
     OpType:
       description: Operation type
       in: query
@@ -164,9 +169,11 @@ components:
         - modified
         - deleted
         type: string
-    ObjectGuid:
+    Sequence:
+      description: 'Runtime sequence id for delta. Reset if HA happened. Example: ''8f021a67-cfd6-4896-ad67-3e32a376c6f4'' '
       in: query
-      name: object__guid
+      name: sequence
+      required: true
       schema:
         type: string
     ObjectId:
@@ -175,13 +182,6 @@ components:
       schema:
         minimum: 0
         type: integer
-    Sequence:
-      description: 'Runtime sequence id for delta. Reset if HA happened. Example: ''8f021a67-cfd6-4896-ad67-3e32a376c6f4'' '
-      in: query
-      name: sequence
-      required: true
-      schema:
-        type: string
     ObjectType:
       description: 'Example: ''cluster'''
       in: query

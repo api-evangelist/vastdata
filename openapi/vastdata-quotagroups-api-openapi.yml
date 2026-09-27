@@ -489,45 +489,6 @@ components:
             $ref: '#/components/schemas/PartialUserQuota'
           type: array
       type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    DefaultQuota:
-      properties:
-        grace_period:
-          description: 'Quota enforcement grace period in seconds, minutes, hours or days. Example: 90m'
-          type: string
-          x-example: 30d
-        hard_limit:
-          description: Hard quota limit
-          type: integer
-          x-display-base-type: capacity
-          x-display-units: GB
-          x-display-units-alt: GiB
-          x-format: capacity_bytes2gb
-          x-raw-units: Bytes
-        hard_limit_inodes:
-          description: Hard inodes quota limit
-          type: integer
-          x-cli-header: Hard limit Files/Directories
-        quota_system_id:
-          type: integer
-        soft_limit:
-          description: Soft quota limit
-          type: integer
-          x-display-base-type: capacity
-          x-display-units: GB
-          x-display-units-alt: GiB
-          x-format: capacity_bytes2gb
-          x-raw-units: Bytes
-        soft_limit_inodes:
-          description: Soft inodes quota limit
-          type: integer
-          x-cli-header: Soft limit Files/Directories
-      type: object
     PartialUserQuota:
       allOf:
       - $ref: '#/components/schemas/DefaultQuota'
@@ -580,6 +541,39 @@ components:
             description: VAST ID of the user or group with the listed user/group quota
             type: integer
         type: object
+    DefaultQuota:
+      properties:
+        grace_period:
+          description: 'Quota enforcement grace period in seconds, minutes, hours or days. Example: 90m'
+          type: string
+          x-example: 30d
+        hard_limit:
+          description: Hard quota limit
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        hard_limit_inodes:
+          description: Hard inodes quota limit
+          type: integer
+          x-cli-header: Hard limit Files/Directories
+        quota_system_id:
+          type: integer
+        soft_limit:
+          description: Soft quota limit
+          type: integer
+          x-display-base-type: capacity
+          x-display-units: GB
+          x-display-units-alt: GiB
+          x-format: capacity_bytes2gb
+          x-raw-units: Bytes
+        soft_limit_inodes:
+          description: Soft inodes quota limit
+          type: integer
+          x-cli-header: Soft limit Files/Directories
+      type: object
     QuotaGroup:
       allOf:
       - $ref: '#/components/schemas/BaseQuota'
@@ -592,6 +586,12 @@ components:
           quotas_count:
             type: integer
         type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     PartialGenericInfo:
       properties:
         id:

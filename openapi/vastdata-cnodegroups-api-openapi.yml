@@ -130,10 +130,12 @@ paths:
       - cnodegroups
 components:
   schemas:
-    AsyncCNodeGroup:
-      allOf:
-      - $ref: '#/components/schemas/CNodeGroup'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     CNodeGroup:
       properties:
         application_type:
@@ -165,12 +167,10 @@ components:
           description: CNode Group state
           type: string
       type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
+    AsyncCNodeGroup:
+      allOf:
+      - $ref: '#/components/schemas/CNodeGroup'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

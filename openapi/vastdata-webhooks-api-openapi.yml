@@ -143,10 +143,6 @@ paths:
       - Webhooks
 components:
   schemas:
-    ArbitraryStringsObject:
-      additionalProperties:
-        type: string
-      type: object
     Webhook:
       properties:
         certificate_id:
@@ -183,6 +179,10 @@ components:
           type: string
       required:
       - name
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
       type: object
   parameters:
     PathId:

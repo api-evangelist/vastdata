@@ -676,113 +676,6 @@ components:
   schemas:
     UserData:
       type: object
-    UserQueryData:
-      properties:
-        access_keys:
-          items:
-            properties:
-              access_key:
-                type: string
-              creation_time:
-                type: string
-              enabled:
-                type: boolean
-              remote:
-                type: boolean
-            type: object
-          type: array
-        allow_create_bucket:
-          type: boolean
-        allow_delete_bucket:
-          type: boolean
-        group_count:
-          type: integer
-        groups:
-          items:
-            type: string
-          type: array
-        historical_sids:
-          items:
-            type: string
-          type: array
-        leading_group:
-          type: object
-        leading_group_gid:
-          type: integer
-        leading_group_name:
-          type: string
-        login_name:
-          type: string
-        name:
-          type: string
-        object_type:
-          type: string
-        origins:
-          type: object
-        primary_group_name:
-          type: string
-        primary_group_sid:
-          type: string
-        quotas:
-          items:
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-            type: object
-          type: array
-          x-format: names_only
-        s3_connections_count:
-          type: integer
-        s3_policies:
-          items:
-            type: string
-          type: array
-        s3_policies_ids:
-          items:
-            type: integer
-          type: array
-        s3_remote_policies:
-          items:
-            type: string
-          type: array
-        s3_superuser:
-          type: boolean
-        s3_vid:
-          type: integer
-        sid:
-          type: string
-        uid:
-          type: integer
-        user_qos_policies:
-          items:
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-            type: object
-          type: array
-          x-format: names_only
-        vid:
-          type: integer
-        vids:
-          description: VAST IDs
-          items:
-            type: integer
-          type: array
-      type: object
-    LocalProviderData:
-      properties:
-        id:
-          description: ID of the local provider
-          type: integer
-          x-cli-header: ID
-        name:
-          description: Name of the local provider
-          type: string
-      type: object
     PartialS3PolicyInfo:
       properties:
         id:
@@ -791,39 +684,6 @@ components:
         name:
           description: Identity Policy name
           type: string
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    UserKeyPair:
-      properties:
-        access_key:
-          description: S3 access key, needed to authenticate S3 client requests
-          type: string
-        secret_key:
-          description: S3 secret key, needed to authenticate S3 client requests
-          type: string
-      type: object
-    UserTenantData:
-      properties:
-        allow_create_bucket:
-          type: boolean
-        allow_delete_bucket:
-          type: boolean
-        s3_policies:
-          items:
-            $ref: '#/components/schemas/PartialS3PolicyInfo'
-          type: array
-          x-format: names_only
-        s3_policies_ids:
-          items:
-            type: integer
-          type: array
-        s3_superuser:
-          type: boolean
       type: object
     User:
       properties:
@@ -937,6 +797,146 @@ components:
           type: integer
       required:
       - name
+      type: object
+    UserKeyPair:
+      properties:
+        access_key:
+          description: S3 access key, needed to authenticate S3 client requests
+          type: string
+        secret_key:
+          description: S3 secret key, needed to authenticate S3 client requests
+          type: string
+      type: object
+    UserQueryData:
+      properties:
+        access_keys:
+          items:
+            properties:
+              access_key:
+                type: string
+              creation_time:
+                type: string
+              enabled:
+                type: boolean
+              remote:
+                type: boolean
+            type: object
+          type: array
+        allow_create_bucket:
+          type: boolean
+        allow_delete_bucket:
+          type: boolean
+        group_count:
+          type: integer
+        groups:
+          items:
+            type: string
+          type: array
+        historical_sids:
+          items:
+            type: string
+          type: array
+        leading_group:
+          type: object
+        leading_group_gid:
+          type: integer
+        leading_group_name:
+          type: string
+        login_name:
+          type: string
+        name:
+          type: string
+        object_type:
+          type: string
+        origins:
+          type: object
+        primary_group_name:
+          type: string
+        primary_group_sid:
+          type: string
+        quotas:
+          items:
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+            type: object
+          type: array
+          x-format: names_only
+        s3_connections_count:
+          type: integer
+        s3_policies:
+          items:
+            type: string
+          type: array
+        s3_policies_ids:
+          items:
+            type: integer
+          type: array
+        s3_remote_policies:
+          items:
+            type: string
+          type: array
+        s3_superuser:
+          type: boolean
+        s3_vid:
+          type: integer
+        sid:
+          type: string
+        uid:
+          type: integer
+        user_qos_policies:
+          items:
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+            type: object
+          type: array
+          x-format: names_only
+        vid:
+          type: integer
+        vids:
+          description: VAST IDs
+          items:
+            type: integer
+          type: array
+      type: object
+    LocalProviderData:
+      properties:
+        id:
+          description: ID of the local provider
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of the local provider
+          type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    UserTenantData:
+      properties:
+        allow_create_bucket:
+          type: boolean
+        allow_delete_bucket:
+          type: boolean
+        s3_policies:
+          items:
+            $ref: '#/components/schemas/PartialS3PolicyInfo'
+          type: array
+          x-format: names_only
+        s3_policies_ids:
+          items:
+            type: integer
+          type: array
+        s3_superuser:
+          type: boolean
       type: object
   parameters:
     TenantIdQP:

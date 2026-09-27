@@ -150,6 +150,12 @@ paths:
       - Event Definitions
 components:
   schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     EventDefinition:
       properties:
         action_definitions:
@@ -219,12 +225,6 @@ components:
           items:
             type: integer
           type: array
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
       type: object
   securitySchemes:
     ApiToken:

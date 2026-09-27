@@ -87,13 +87,52 @@ paths:
       tags:
       - blockmappings
 components:
+  parameters:
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    VolumeIdQP:
+      description: Mapped volume id to filter by.
+      in: query
+      name: volume_id
+      schema:
+        type: integer
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    BlockHostIdQP:
+      description: Mapped block host id to filter by.
+      in: query
+      name: block_host_id
+      schema:
+        type: integer
   schemas:
-    PartialBlockHostInfo:
+    PartialVolumeInfo:
       properties:
         id:
           type: integer
         name:
-          description: Name of block host
+          description: Path (volume name)
           type: string
       required:
       - id
@@ -111,6 +150,17 @@ components:
       - volume_full_path
       - host_id
       type: object
+    PartialBlockHostInfo:
+      properties:
+        id:
+          type: integer
+        name:
+          description: Name of block host
+          type: string
+      required:
+      - id
+      - name
+      type: object
     SnapshotData:
       properties:
         created:
@@ -124,17 +174,6 @@ components:
           description: snapshot's name
           type: string
       type: object
-    PartialVolumeInfo:
-      properties:
-        id:
-          type: integer
-        name:
-          description: Path (volume name)
-          type: string
-      required:
-      - id
-      - name
-      type: object
     BlockMappingPair:
       properties:
         host_id:
@@ -146,12 +185,6 @@ components:
       required:
       - volume_id
       - host_id
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
       type: object
     BlockMapping:
       properties:
@@ -168,45 +201,12 @@ components:
       - volume
       - block_host
       type: object
-  parameters:
-    VolumeIdQP:
-      description: Mapped volume id to filter by.
-      in: query
-      name: volume_id
-      schema:
-        type: integer
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    BlockHostIdQP:
-      description: Mapped block host id to filter by.
-      in: query
-      name: block_host_id
-      schema:
-        type: integer
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

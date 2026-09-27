@@ -726,40 +726,6 @@ components:
           example: The request could not be completed due to a conflict with the current state of the target resource.
           type: string
       type: object
-    PrefetchFolderStatusResponse:
-      properties:
-        code:
-          description: Result code
-          type: string
-        inodes_retrieved:
-          description: Number of retrieved inodes (files and directories)
-          type: integer
-        path:
-          description: Prefetched path
-          type: string
-        prefetch_type:
-          description: Prefetch type
-          type: string
-        size_retrieved:
-          description: Retrieved size
-          type: integer
-        task_id:
-          description: Prefetch task ID
-          type: integer
-      type: object
-    ReplicationMemberInfo:
-      properties:
-        capabilities:
-          type: string
-        role:
-          type: string
-        state:
-          type: string
-      type: object
-    AsyncGlobalSnapStream:
-      allOf:
-      - $ref: '#/components/schemas/GlobalSnapStream'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
     GlobalSnapStream:
       properties:
         bw:
@@ -850,6 +816,45 @@ components:
         view_replication_enabled:
           description: Whether view replication is enabled
           type: boolean
+      type: object
+    ReplicationMemberInfo:
+      properties:
+        capabilities:
+          type: string
+        role:
+          type: string
+        state:
+          type: string
+      type: object
+    PrefetchFolderStatusResponse:
+      properties:
+        code:
+          description: Result code
+          type: string
+        inodes_retrieved:
+          description: Number of retrieved inodes (files and directories)
+          type: integer
+        path:
+          description: Prefetched path
+          type: string
+        prefetch_type:
+          description: Prefetch type
+          type: string
+        size_retrieved:
+          description: Retrieved size
+          type: integer
+        task_id:
+          description: Prefetch task ID
+          type: integer
+      type: object
+    PrefetchFolderResponse:
+      properties:
+        code:
+          description: Result code
+          type: string
+        task_id:
+          description: Prefetch task ID
+          type: integer
       type: object
     ProtectedPath:
       properties:
@@ -1056,31 +1061,26 @@ components:
       - name
       - source_dir
       type: object
-    PrefetchFolderResponse:
-      properties:
-        code:
-          description: Result code
-          type: string
-        task_id:
-          description: Prefetch task ID
-          type: integer
-      type: object
     AsyncTaskInResponse:
       properties:
         async_task:
           description: Creation Async task properties
           type: object
       type: object
+    AsyncGlobalSnapStream:
+      allOf:
+      - $ref: '#/components/schemas/GlobalSnapStream'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
   parameters:
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
     Page:
       in: query
       name: page
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
       schema:
         minimum: 1
         type: integer

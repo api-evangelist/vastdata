@@ -26,6 +26,15 @@ paths:
       - Login
 components:
   schemas:
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
     Manager:
       properties:
         failed_logins:
@@ -105,15 +114,6 @@ components:
       - username
       - password
       - roles
-      type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
       type: object
   securitySchemes:
     ApiToken:

@@ -278,6 +278,18 @@ components:
           description: Subnet bits
           type: integer
       type: object
+    BoxRackUpdate:
+      properties:
+        id:
+          type: integer
+          x-cli-header: ID
+        rack_index:
+          type: integer
+        rack_unit:
+          type: string
+      required:
+      - id
+      type: object
     AsyncTaskInResponse:
       properties:
         async_task:
@@ -346,18 +358,6 @@ components:
           type: integer
       required:
       - name
-      type: object
-    BoxRackUpdate:
-      properties:
-        id:
-          type: integer
-          x-cli-header: ID
-        rack_index:
-          type: integer
-        rack_unit:
-          type: string
-      required:
-      - id
       type: object
     AsyncRack:
       allOf:

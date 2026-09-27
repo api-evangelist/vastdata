@@ -204,42 +204,16 @@ paths:
       summary: Tlscertificates delete crl
       x-summary-source: derived
 components:
-  parameters:
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    NoneTenant:
-      description: Filter by global certificate
-      in: query
-      name: tenant__isnull
-      schema:
-        type: boolean
-    ProtocolsContain:
-      description: Protocol to see
-      in: query
-      name: protocols__icontains
-      schema:
-        enum:
-        - NFS
-        - KAFKA
-        type: string
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    PathId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
   schemas:
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
     TLSCertificate:
       properties:
         ca_certificate_name:
@@ -287,15 +261,6 @@ components:
         tenant_associate_param:
           type: string
       type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
-      type: object
     Warnings:
       properties:
         warnings:
@@ -306,6 +271,41 @@ components:
       required:
       - warnings
       type: object
+  parameters:
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    NoneTenant:
+      description: Filter by global certificate
+      in: query
+      name: tenant__isnull
+      schema:
+        type: boolean
+    ProtocolsContain:
+      description: Protocol to see
+      in: query
+      name: protocols__icontains
+      schema:
+        enum:
+        - NFS
+        - KAFKA
+        type: string
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    PathId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

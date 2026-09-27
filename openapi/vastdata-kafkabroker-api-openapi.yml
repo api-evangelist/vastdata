@@ -163,7 +163,7 @@ paths:
   /kafkabrokers/:
     get:
       description: This endpoint lists external kafka broker configurations
-      operationId: kafkabroker_list
+      operationId: getKafkabrokers
       responses:
         '200':
           content:
@@ -176,9 +176,11 @@ paths:
       summary: List of External Kafka Broker Configuration
       tags:
       - kafkabroker
+      x-operation-id-source: normalized
+      x-operation-id-original: kafkabroker_list
     post:
       description: This endpoint creates an external Kafka broker configuration.
-      operationId: kafkabroker_create
+      operationId: postKafkabrokers
       requestBody:
         content:
           application/json:
@@ -220,10 +222,12 @@ paths:
       summary: Create External Kafka Broker Configuration
       tags:
       - kafkabroker
+      x-operation-id-source: normalized
+      x-operation-id-original: kafkabroker_create
   /kafkabrokers/{id}/:
     delete:
       description: This endpoint deletes an external kafka broker configuration.
-      operationId: kafkabroker_delete
+      operationId: deleteKafkabrokersById
       parameters:
       - in: path
         name: id
@@ -236,9 +240,11 @@ paths:
       summary: Delete External Kafka Broker Configuration
       tags:
       - kafkabroker
+      x-operation-id-source: normalized
+      x-operation-id-original: kafkabroker_delete
     get:
       description: This endpoint returns details of an external kafka broker configuration.
-      operationId: kafkabroker_read
+      operationId: getKafkabrokersById
       parameters:
       - in: path
         name: id
@@ -255,9 +261,11 @@ paths:
       summary: Return External Kafka Broker Configuration
       tags:
       - kafkabroker
+      x-operation-id-source: normalized
+      x-operation-id-original: kafkabroker_read
     patch:
       description: This endpoint modifies an external Kafka broker configuration.
-      operationId: kafkabroker_partial_update
+      operationId: patchKafkabrokersById
       parameters:
       - in: path
         name: id
@@ -299,10 +307,12 @@ paths:
       summary: Modify External Kafka Broker Configuration
       tags:
       - kafkabroker
+      x-operation-id-source: normalized
+      x-operation-id-original: kafkabroker_partial_update
   /kafkabrokers/{id}/list_topics:
     get:
       description: This endpoint retrieves Kafka topics for a specified broker. You can filter topics by name.
-      operationId: kafkabroker_list_topics
+      operationId: getKafkabrokersByIdListTopics
       parameters:
       - in: path
         name: id
@@ -325,8 +335,21 @@ paths:
       summary: Retrieve Kafka Topics for a Kafka Broker
       tags:
       - kafkabroker
+      x-operation-id-source: normalized
+      x-operation-id-original: kafkabroker_list_topics
 components:
   schemas:
+    KafkaBrokerAddressParams:
+      properties:
+        host:
+          description: IP or hostname of a Kafka broker server
+          type: string
+          x-cli-header: Host
+        port:
+          description: Port of a Kafka broker server
+          type: integer
+          x-cli-header: Port
+      type: object
     KafkaBrokerConfig:
       properties:
         addresses:
@@ -356,17 +379,6 @@ components:
           description: Tenant ID. If missing, accessed by all tenants
           type: integer
           x-cli-header: Tenant-ID
-      type: object
-    KafkaBrokerAddressParams:
-      properties:
-        host:
-          description: IP or hostname of a Kafka broker server
-          type: string
-          x-cli-header: Host
-        port:
-          description: Port of a Kafka broker server
-          type: integer
-          x-cli-header: Port
       type: object
   securitySchemes:
     ApiToken:

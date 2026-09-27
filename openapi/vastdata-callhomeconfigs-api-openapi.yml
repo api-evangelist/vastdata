@@ -244,6 +244,12 @@ paths:
       - callhomeconfigs
 components:
   schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     CallhomeConfig:
       properties:
         aggregated:
@@ -372,12 +378,6 @@ components:
         verify_ssl:
           description: Enable/disable ssl certificate verification
           type: boolean
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
       type: object
   securitySchemes:
     ApiToken:

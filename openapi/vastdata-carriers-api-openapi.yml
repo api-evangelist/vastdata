@@ -176,6 +176,12 @@ paths:
       - Carriers
 components:
   schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     Carrier:
       properties:
         carrier_index:
@@ -255,12 +261,6 @@ components:
           x-cli-header: Software-Version
         title:
           type: string
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
       type: object
   securitySchemes:
     ApiToken:

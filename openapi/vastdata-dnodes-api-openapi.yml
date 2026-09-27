@@ -208,6 +208,12 @@ paths:
       - dnodes
 components:
   schemas:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     DNode:
       properties:
         arch_type:
@@ -347,12 +353,6 @@ components:
           type: string
       required:
       - name
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
       type: object
   securitySchemes:
     ApiToken:

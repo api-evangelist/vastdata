@@ -77,12 +77,6 @@ paths:
       - openfilehandles
 components:
   parameters:
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
     Page:
       in: query
       name: page
@@ -100,6 +94,12 @@ components:
       description: Open File id to filter by.
       in: query
       name: open_file__id
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
       schema:
         minimum: 1
         type: integer

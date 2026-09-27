@@ -227,7 +227,7 @@ paths:
   /kerberos/{id}/keytab/:
     post:
       description: This endpoint generates keytab for specified Kerberos Provider.
-      operationId: kerberos_keytab
+      operationId: postKerberosByIdKeytab
       parameters:
       - $ref: '#/components/parameters/KrbProviderId'
       requestBody:
@@ -260,9 +260,11 @@ paths:
       summary: Generate keytab for the Kerberos Provider
       tags:
       - Kerberos
+      x-operation-id-source: normalized
+      x-operation-id-original: kerberos_keytab
     put:
       description: This endpoint uploads keytab for specified Kerberos Provider.
-      operationId: kerberos_upload_keytab
+      operationId: putKerberosByIdKeytab
       parameters:
       - $ref: '#/components/parameters/KrbProviderId'
       requestBody:
@@ -301,16 +303,51 @@ paths:
       summary: Upload keytab for the Kerberos Provider
       tags:
       - Kerberos
+      x-operation-id-source: normalized
+      x-operation-id-original: kerberos_upload_keytab
 components:
-  parameters:
-    KrbProviderId:
-      description: Kerberos Provider ID
-      in: path
-      name: id
-      required: true
-      schema:
-        type: integer
   schemas:
+    KerberosServersInfo:
+      items:
+        properties:
+          location:
+            type: string
+          message:
+            type: string
+          status:
+            enum:
+            - SUCCESS
+            - PINGED_ONLY
+            - PARSED_ONLY
+            - FAILURE
+            type: string
+        type: object
+      type: array
+    KerberosStateInfo:
+      properties:
+        kadmin_servers:
+          $ref: '#/components/schemas/KerberosServersInfo'
+        kdc:
+          $ref: '#/components/schemas/KerberosServersInfo'
+        service_principals:
+          $ref: '#/components/schemas/KerberosPrincipalsInfo'
+      type: object
+    KerberosPrincipalsInfo:
+      items:
+        properties:
+          message:
+            type: string
+          name:
+            type: string
+          status:
+            enum:
+            - SUCCESS
+            - NO_KEYTAB_ENTRY
+            - NOT_AUTHENTICATED
+            - FAILURE
+            type: string
+        type: object
+      type: array
     Kerberos:
       properties:
         enabled:
@@ -338,47 +375,14 @@ components:
         state:
           $ref: '#/components/schemas/KerberosStateInfo'
       type: object
-    KerberosPrincipalsInfo:
-      items:
-        properties:
-          message:
-            type: string
-          name:
-            type: string
-          status:
-            enum:
-            - SUCCESS
-            - NO_KEYTAB_ENTRY
-            - NOT_AUTHENTICATED
-            - FAILURE
-            type: string
-        type: object
-      type: array
-    KerberosStateInfo:
-      properties:
-        kadmin_servers:
-          $ref: '#/components/schemas/KerberosServersInfo'
-        kdc:
-          $ref: '#/components/schemas/KerberosServersInfo'
-        service_principals:
-          $ref: '#/components/schemas/KerberosPrincipalsInfo'
-      type: object
-    KerberosServersInfo:
-      items:
-        properties:
-          location:
-            type: string
-          message:
-            type: string
-          status:
-            enum:
-            - SUCCESS
-            - PINGED_ONLY
-            - PARSED_ONLY
-            - FAILURE
-            type: string
-        type: object
-      type: array
+  parameters:
+    KrbProviderId:
+      description: Kerberos Provider ID
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

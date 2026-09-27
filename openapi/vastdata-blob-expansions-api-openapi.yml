@@ -80,101 +80,31 @@ paths:
       tags:
       - Blob Expansions
 components:
-  parameters:
-    TabularTableNameQP:
-      description: Getting list of objects by table_name
-      in: query
-      name: table_name
-      required: true
-      schema:
-        type: string
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
-      in: query
-      name: database_name
-      required: true
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
-    TabularSourceColumnNameQP:
-      description: Source column name for blob expansion (defaults to "value" for Kafka topics)
-      in: query
-      name: source_column_name
-      schema:
-        type: string
-  requestBodies:
-    BlobExpansionCreateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/BlobExpansionCreateParams'
-      x-originalParamName: BlobExpansionCreateParamsBody
-    BlobExpansionDropColumnsParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/BlobExpansionDropColumnsParams'
-      x-originalParamName: BlobExpansionDropColumnsParamsBody
-    BlobExpansionAddColumnsParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/BlobExpansionAddColumnsParams'
-      x-originalParamName: BlobExpansionAddColumnsParamsBody
-    BlobExpansionDeleteParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/BlobExpansionDeleteParams'
-      x-originalParamName: BlobExpansionDeleteParamsBody
   schemas:
-    BlobExpansionDropColumnsParams:
+    BlobExpansionDeleteParams:
       allOf:
       - $ref: '#/components/schemas/BlobExpansionHierarchy'
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
       - properties:
-          arrow_schema:
-            description: Schema of the columns to drop
-            items:
-              $ref: '#/components/schemas/TabularColumnArrowSchema'
-            type: array
-          remove_copy_source_column:
-            description: Remove copy of the raw source column from target table
-            type: boolean
-          remove_excessive_values_output:
-            description: Remove the excessive-values output column from the target table
-            type: boolean
-          remove_missing_values_output:
-            description: Remove the missing-values output column from the target table
-            type: boolean
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
         required:
-        - arrow_schema
+        - field
+        - raw_field
         type: object
-    TabularTableHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-        table_name:
-          description: Name of the Table
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - table_name
-      - name
-      type: object
     BlobExpansionOutput:
       properties:
         add_excessive_values_output:
@@ -203,24 +133,6 @@ components:
           description: Target table name for expanded data
           type: string
       type: object
-    BlobExpansionHierarchy:
-      properties:
-        database_name:
-          description: Kafka bucket name containing the source topic
-          type: string
-        source_column_name:
-          description: Source column name (defaults to "value" for Kafka topics)
-          type: string
-        table_name:
-          description: Source Kafka topic name
-          type: string
-        tenant_id:
-          description: Tenant ID
-          type: integer
-      required:
-      - database_name
-      - table_name
-      type: object
     BlobExpansionAddColumnsParams:
       allOf:
       - $ref: '#/components/schemas/BlobExpansionHierarchy'
@@ -239,6 +151,47 @@ components:
             items:
               $ref: '#/components/schemas/TabularColumnArrowSchema'
             type: array
+        required:
+        - arrow_schema
+        type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+    BlobExpansionDropColumnsParams:
+      allOf:
+      - $ref: '#/components/schemas/BlobExpansionHierarchy'
+      - properties:
+          arrow_schema:
+            description: Schema of the columns to drop
+            items:
+              $ref: '#/components/schemas/TabularColumnArrowSchema'
+            type: array
+          remove_copy_source_column:
+            description: Remove copy of the raw source column from target table
+            type: boolean
+          remove_excessive_values_output:
+            description: Remove the excessive-values output column from the target table
+            type: boolean
+          remove_missing_values_output:
+            description: Remove the missing-values output column from the target table
+            type: boolean
         required:
         - arrow_schema
         type: object
@@ -317,30 +270,77 @@ components:
       - name
       - field
       type: object
-    BlobExpansionDeleteParams:
-      allOf:
-      - $ref: '#/components/schemas/BlobExpansionHierarchy'
-    Column:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          field:
-            description: Column type
-            example:
-              column_type: map
-              key_type:
-                column_type: bool
-              value_type:
-                column_type: bool
-            type: object
-          raw_field:
-            description: Raw description of column type
-            example: map<bool, bool>
-            type: string
-        required:
-        - field
-        - raw_field
-        type: object
+    BlobExpansionHierarchy:
+      properties:
+        database_name:
+          description: Kafka bucket name containing the source topic
+          type: string
+        source_column_name:
+          description: Source column name (defaults to "value" for Kafka topics)
+          type: string
+        table_name:
+          description: Source Kafka topic name
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+      required:
+      - database_name
+      - table_name
+      type: object
+  parameters:
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularSourceColumnNameQP:
+      description: Source column name for blob expansion (defaults to "value" for Kafka topics)
+      in: query
+      name: source_column_name
+      schema:
+        type: string
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+  requestBodies:
+    BlobExpansionAddColumnsParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionAddColumnsParams'
+      x-originalParamName: BlobExpansionAddColumnsParamsBody
+    BlobExpansionCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionCreateParams'
+      x-originalParamName: BlobExpansionCreateParamsBody
+    BlobExpansionDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionDeleteParams'
+      x-originalParamName: BlobExpansionDeleteParamsBody
+    BlobExpansionDropColumnsParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionDropColumnsParams'
+      x-originalParamName: BlobExpansionDropColumnsParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

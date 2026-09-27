@@ -101,13 +101,14 @@ paths:
       tags:
       - openfilesqueries
 components:
+  requestBodies:
+    OpenFilesQueryParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/OpenFilesQueryParams'
+      x-originalParamName: OpenFilesQueryParamsBody
   parameters:
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
     Page:
       in: query
       name: page
@@ -121,7 +122,17 @@ components:
       required: true
       schema:
         type: string
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
   schemas:
+    OpenFilesQueryWithAsyncTask:
+      allOf:
+      - $ref: '#/components/schemas/OpenFilesQuery'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
     OpenFilesQueryParams:
       properties:
         filters:
@@ -145,10 +156,6 @@ components:
       - path_prefix
       - protocol
       type: object
-    OpenFilesQueryWithAsyncTask:
-      allOf:
-      - $ref: '#/components/schemas/OpenFilesQuery'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
     OpenFilesQuery:
       properties:
         async_task_id:
@@ -197,13 +204,6 @@ components:
           description: Creation Async task properties
           type: object
       type: object
-  requestBodies:
-    OpenFilesQueryParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/OpenFilesQueryParams'
-      x-originalParamName: OpenFilesQueryParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

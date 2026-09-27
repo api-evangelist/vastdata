@@ -205,6 +205,25 @@ components:
       name: force
       schema:
         type: boolean
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    BlockHostNqnQP:
+      description: NQN of the blockhost
+      in: query
+      name: nqn
+      schema:
+        type: string
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
     PageSize:
       in: query
       name: page_size
@@ -215,25 +234,6 @@ components:
       description: name of the blockhost
       in: query
       name: name
-      schema:
-        type: string
-    BlockHostNqnQP:
-      description: NQN of the blockhost
-      in: query
-      name: nqn
-      schema:
-        type: string
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
       schema:
         type: string
     TenantIdQP:

@@ -60,20 +60,26 @@ paths:
       - projectioncolumns
 components:
   parameters:
-    TabularTableNameQP:
-      description: Getting list of objects by table_name
+    TabularSchemaNameQP:
+      description: Getting list of objects by schema_name
       in: query
-      name: table_name
+      name: schema_name
       required: true
       schema:
         type: string
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
+    Page:
       in: query
-      name: database_name
-      required: true
+      name: page
       schema:
-        type: string
+        minimum: 1
+        type: integer
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
     TabularPageSize:
       in: query
       name: page_size
@@ -89,30 +95,31 @@ components:
       required: true
       schema:
         type: string
-    TabularSchemaNameQP:
-      description: Getting list of objects by schema_name
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
       in: query
-      name: schema_name
+      name: database_name
       required: true
       schema:
         type: string
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
-      in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
     TabularNameQP:
       description: Getting list of objects by exact match
       in: query
       name: name
+      schema:
+        type: string
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
       schema:
         type: string
     TenantIdQP:
@@ -128,38 +135,7 @@ components:
       name: name__startswith
       schema:
         type: string
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
   schemas:
-    TabularProjectionHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        projection_name:
-          description: Name of the Projection
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-        table_name:
-          description: Name of the Table
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - table_name
-      - projection_name
-      - name
-      type: object
     ProjectionColumn:
       allOf:
       - $ref: '#/components/schemas/TabularProjectionHierarchy'
@@ -185,6 +161,30 @@ components:
         - raw_field
         - is_sorted
         type: object
+    TabularProjectionHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        projection_name:
+          description: Name of the Projection
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - projection_name
+      - name
+      type: object
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

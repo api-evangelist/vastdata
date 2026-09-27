@@ -169,86 +169,11 @@ paths:
       - dtrays
 components:
   schemas:
-    DTray:
+    AsyncTaskInResponse:
       properties:
-        bmc_fw_version:
-          description: BMC FW version
-          type: string
-          x-cli-header: BMC-FW-Version
-        bmc_ip:
-          description: BMC IP
-          type: string
-          x-cli-header: BMC IP
-        bmc_state:
-          type: string
-        bmc_state_reason:
-          type: string
-        cluster:
-          description: Parent Cluster
-          type: string
-          x-cli-header: Cluster
-        cpld_version:
-          description: CPLD version
-          type: string
-          x-cli-header: CPLD version
-        dbox:
-          description: Parent DBox
-          type: string
-          x-cli-header: DBox
-        dbox_id:
-          type: integer
-        dnodes:
-          items:
-            $ref: '#/components/schemas/DNode'
-          type: array
-        enabled:
-          description: dtray enabled
-          type: boolean
-        guid:
-          type: string
-        id:
-          type: integer
-          x-cli-header: ID
-        led_status:
-          type: string
-        mcu_state:
-          description: MCU state
-          type: string
-          x-cli-header: MCU state
-        mcu_version:
-          description: MCU version
-          type: string
-          x-cli-header: MCU version
-        name:
-          type: string
-          x-cli-header: Name
-        pcie_switch_firmware_version:
-          description: PCIE switch firmware version
-          type: string
-          x-cli-header: PCIE switch firmware version
-        pcie_switch_mfg_version:
-          description: PCIE MFG version
-          type: string
-          x-cli-header: PCIE MFG version
-        position:
-          description: Position
-          type: string
-          x-cli-header: Position
-        serial_number:
-          description: DTray Serial Number
-          type: string
-          x-cli-header: Serial Number
-        state:
-          type: string
-        sync:
-          type: string
-        title:
-          type: string
-        url:
-          type: string
-      required:
-      - name
-      - dnodes
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
     DNode:
       properties:
@@ -390,11 +315,86 @@ components:
       required:
       - name
       type: object
-    AsyncTaskInResponse:
+    DTray:
       properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
+        bmc_fw_version:
+          description: BMC FW version
+          type: string
+          x-cli-header: BMC-FW-Version
+        bmc_ip:
+          description: BMC IP
+          type: string
+          x-cli-header: BMC IP
+        bmc_state:
+          type: string
+        bmc_state_reason:
+          type: string
+        cluster:
+          description: Parent Cluster
+          type: string
+          x-cli-header: Cluster
+        cpld_version:
+          description: CPLD version
+          type: string
+          x-cli-header: CPLD version
+        dbox:
+          description: Parent DBox
+          type: string
+          x-cli-header: DBox
+        dbox_id:
+          type: integer
+        dnodes:
+          items:
+            $ref: '#/components/schemas/DNode'
+          type: array
+        enabled:
+          description: dtray enabled
+          type: boolean
+        guid:
+          type: string
+        id:
+          type: integer
+          x-cli-header: ID
+        led_status:
+          type: string
+        mcu_state:
+          description: MCU state
+          type: string
+          x-cli-header: MCU state
+        mcu_version:
+          description: MCU version
+          type: string
+          x-cli-header: MCU version
+        name:
+          type: string
+          x-cli-header: Name
+        pcie_switch_firmware_version:
+          description: PCIE switch firmware version
+          type: string
+          x-cli-header: PCIE switch firmware version
+        pcie_switch_mfg_version:
+          description: PCIE MFG version
+          type: string
+          x-cli-header: PCIE MFG version
+        position:
+          description: Position
+          type: string
+          x-cli-header: Position
+        serial_number:
+          description: DTray Serial Number
+          type: string
+          x-cli-header: Serial Number
+        state:
+          type: string
+        sync:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      - dnodes
       type: object
   securitySchemes:
     ApiToken:

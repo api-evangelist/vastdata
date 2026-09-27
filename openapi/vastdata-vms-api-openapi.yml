@@ -643,28 +643,15 @@ paths:
       tags:
       - VMs
 components:
+  parameters:
+    VmsId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
   schemas:
-    HostNetworkSettings:
-      properties:
-        hostname:
-          description: The hostname of the CNode or DNode
-          type: string
-        id:
-          description: The ID of the CNode or DNode
-          type: integer
-        ipmi_ip:
-          description: The IPMI IP of the CNode or DNode
-          type: string
-        mgmt_ip:
-          description: The management IP of the CNode or DNode
-          type: string
-        nb_eth_mtu:
-          description: For dual-NIC CNodes where a NIC is directly connected to an external Ethernet network, use this field to set the MTU for that Ethernet network.
-          type: integer
-        nb_ib_mtu:
-          description: For dual-NIC CNodes where a NIC is directly connected to an external InfiniBand data network, use this field to set the MTU for that InfiniBand network. Default is 2044. If NB IB type is Connected, the maximum IB NB MTU is 65520. If NB IB type is Datagram, the maximum IB NB MTU is 4092.
-          type: integer
-      type: object
     VMSNetworkSettingsInput:
       properties:
         auto_ports_ext_iface:
@@ -716,80 +703,66 @@ components:
             type: string
           type: array
       type: object
+    VMSNetworkSettingsHostChanges:
+      properties:
+        changes:
+          type: object
+        hostname:
+          type: string
+        id:
+          type: integer
+      type: object
+    VmsPwdParams:
+      properties:
+        max_failed_login_attempts:
+          description: 'The number of failed login attempts after which password lockout occurs if enabled. Default: 10'
+          type: integer
+        max_failed_login_attempts_enabled:
+          description: Password lockout after failed log in attempts. The number of failed login attempts is configured by max_failed_login_attempts.
+          type: boolean
+        min_pwd_length:
+          description: Minimum password length for new VMS managers
+          type: integer
+        pwd_change_timeout:
+          description: 'The time frame within which VMS managers may not change their passwords again after setting a new password if password change timeout is enabled. Default: 24H'
+          type: string
+        pwd_change_timeout_enabled:
+          description: Prevents password change for VMS users (managers) for a period after the last password change. The period is configured by pwd_change_timeout.
+          type: boolean
+        pwd_expiration_timeout:
+          description: 'Password expiration timeout, which applies if password expiration timeout is enabled. Default: 180D'
+          type: string
+        pwd_expiration_timeout_enabled:
+          description: Password expiration, timeout configured by pwd_expiration_timeout.
+          type: boolean
+        pwd_history_no_reuse_count:
+          description: 'The number of previous passwords that VMS managers may not reuse if prevention of password reuse is enabled. Default: 8'
+          type: integer
+        pwd_history_no_reuse_count_enabled:
+          description: Prevention of reuse of previous passwords. Affects the number of previous passwords set by pwd_histor_no_reuse_count.
+          type: boolean
+        pwd_requires_lowercase:
+          description: Password requires at least one lowercase character
+          type: boolean
+        pwd_requires_numeric:
+          description: Password requires at least one numeric character
+          type: boolean
+        pwd_requires_special_chars:
+          description: Password requires at least one non-alphanumeric character
+          type: boolean
+        pwd_requires_uppercase:
+          description: Password requires at least one uppercase character
+          type: boolean
+        tmp_pwd_expiration_timeout:
+          description: 'Expiration timeout for new managers'' temporary passwords. Default: 7D'
+          type: string
+      type: object
     VMSNetworkSettingsSummary:
       properties:
         hosts:
           items:
             $ref: '#/components/schemas/VMSNetworkSettingsHostChanges'
           type: array
-      type: object
-    VMSNetworkSettings:
-      properties:
-        auto_ports_ext_iface:
-          description: 'Allocates the external management IP to one of the following: - Outband. Allocates the external management IP to the onboard left or right port, depending whether B2B is enabled or not. - Inband. Allocates the external management IP to the bond0 interface. - Bond. Creates a bond interface (bond1) on the two RJ45 ports, allowing for redundancy. Negates the ability to have a technician interface. - Northband. For clusters with dual NIC CNodes where one NIC on each CNode is directly connected to the an external client network, this option allocates the external management IP to the externally connected NIC. '
-          enum:
-          - inband
-          - outband
-          - bond
-          - northband
-          type: string
-        b2b_ipmi:
-          description: Enables auto configuring the IPMI ports on the nodes with IP addresses according to the B2B template.
-          type: boolean
-        boxes:
-          items:
-            properties:
-              box_name:
-                description: Name of CBox or DBox
-                type: string
-              hosts:
-                description: Configuration of each CNode or DNode in the CBox or DBox
-                items:
-                  $ref: '#/components/schemas/HostNetworkSettings'
-                type: array
-            type: object
-          type: array
-        dns:
-          items:
-            description: The IP address(es) of any DNS servers that will forward DNS queries to the cluster
-            type: string
-          type: array
-        eth_mtu:
-          description: The MTU size for the CNode and DNode internal network interfaces, for clusters with Ethernet internal network infrastructure. The MTU should be aligned with the switches. Default=9216.
-          type: integer
-        ext_netmask:
-          description: The subnet mask of the management subnet
-          type: string
-        external_gateways:
-          items:
-            description: Default gateway for VMS network
-            type: string
-          type: array
-        ib_mtu:
-          description: 'The MTU size for the CNode and DNode internal network interfaces, for clusters with IB internal network infrastructure. Default=2044. Set a supported MTU for the NIC mode: If IB type is Connected, the maximum IB NB MTU is 65520. If IB type is Datagram, the maximum IB NB MTU is 4092'
-          type: integer
-        ipmi_gateway:
-          description: The IP of a default gateway for the IPMI interfaces on the CNodes and DNodes, if different from the management network default gateway.
-          type: string
-        ipmi_netmask:
-          description: The subnet mask for the IPMI gateway.
-          type: string
-        management_vips:
-          items:
-            description: Virtual IP address configured on the management interfaces on all CNodes. VMS listens on this IP.
-            type: string
-          type: array
-        ntp:
-          items:
-            description: The IP(s) of any NTP server(s) that you want to use for time keeping
-            type: string
-          type: array
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
       type: object
     Vms:
       properties:
@@ -946,59 +919,94 @@ components:
       required:
       - name
       type: object
-    VMSNetworkSettingsHostChanges:
+    HostNetworkSettings:
       properties:
-        changes:
-          type: object
         hostname:
+          description: The hostname of the CNode or DNode
           type: string
         id:
+          description: The ID of the CNode or DNode
+          type: integer
+        ipmi_ip:
+          description: The IPMI IP of the CNode or DNode
+          type: string
+        mgmt_ip:
+          description: The management IP of the CNode or DNode
+          type: string
+        nb_eth_mtu:
+          description: For dual-NIC CNodes where a NIC is directly connected to an external Ethernet network, use this field to set the MTU for that Ethernet network.
+          type: integer
+        nb_ib_mtu:
+          description: For dual-NIC CNodes where a NIC is directly connected to an external InfiniBand data network, use this field to set the MTU for that InfiniBand network. Default is 2044. If NB IB type is Connected, the maximum IB NB MTU is 65520. If NB IB type is Datagram, the maximum IB NB MTU is 4092.
           type: integer
       type: object
-    VmsPwdParams:
+    VMSNetworkSettings:
       properties:
-        max_failed_login_attempts:
-          description: 'The number of failed login attempts after which password lockout occurs if enabled. Default: 10'
-          type: integer
-        max_failed_login_attempts_enabled:
-          description: Password lockout after failed log in attempts. The number of failed login attempts is configured by max_failed_login_attempts.
-          type: boolean
-        min_pwd_length:
-          description: Minimum password length for new VMS managers
-          type: integer
-        pwd_change_timeout:
-          description: 'The time frame within which VMS managers may not change their passwords again after setting a new password if password change timeout is enabled. Default: 24H'
+        auto_ports_ext_iface:
+          description: 'Allocates the external management IP to one of the following: - Outband. Allocates the external management IP to the onboard left or right port, depending whether B2B is enabled or not. - Inband. Allocates the external management IP to the bond0 interface. - Bond. Creates a bond interface (bond1) on the two RJ45 ports, allowing for redundancy. Negates the ability to have a technician interface. - Northband. For clusters with dual NIC CNodes where one NIC on each CNode is directly connected to the an external client network, this option allocates the external management IP to the externally connected NIC. '
+          enum:
+          - inband
+          - outband
+          - bond
+          - northband
           type: string
-        pwd_change_timeout_enabled:
-          description: Prevents password change for VMS users (managers) for a period after the last password change. The period is configured by pwd_change_timeout.
+        b2b_ipmi:
+          description: Enables auto configuring the IPMI ports on the nodes with IP addresses according to the B2B template.
           type: boolean
-        pwd_expiration_timeout:
-          description: 'Password expiration timeout, which applies if password expiration timeout is enabled. Default: 180D'
-          type: string
-        pwd_expiration_timeout_enabled:
-          description: Password expiration, timeout configured by pwd_expiration_timeout.
-          type: boolean
-        pwd_history_no_reuse_count:
-          description: 'The number of previous passwords that VMS managers may not reuse if prevention of password reuse is enabled. Default: 8'
+        boxes:
+          items:
+            properties:
+              box_name:
+                description: Name of CBox or DBox
+                type: string
+              hosts:
+                description: Configuration of each CNode or DNode in the CBox or DBox
+                items:
+                  $ref: '#/components/schemas/HostNetworkSettings'
+                type: array
+            type: object
+          type: array
+        dns:
+          items:
+            description: The IP address(es) of any DNS servers that will forward DNS queries to the cluster
+            type: string
+          type: array
+        eth_mtu:
+          description: The MTU size for the CNode and DNode internal network interfaces, for clusters with Ethernet internal network infrastructure. The MTU should be aligned with the switches. Default=9216.
           type: integer
-        pwd_history_no_reuse_count_enabled:
-          description: Prevention of reuse of previous passwords. Affects the number of previous passwords set by pwd_histor_no_reuse_count.
-          type: boolean
-        pwd_requires_lowercase:
-          description: Password requires at least one lowercase character
-          type: boolean
-        pwd_requires_numeric:
-          description: Password requires at least one numeric character
-          type: boolean
-        pwd_requires_special_chars:
-          description: Password requires at least one non-alphanumeric character
-          type: boolean
-        pwd_requires_uppercase:
-          description: Password requires at least one uppercase character
-          type: boolean
-        tmp_pwd_expiration_timeout:
-          description: 'Expiration timeout for new managers'' temporary passwords. Default: 7D'
+        ext_netmask:
+          description: The subnet mask of the management subnet
           type: string
+        external_gateways:
+          items:
+            description: Default gateway for VMS network
+            type: string
+          type: array
+        ib_mtu:
+          description: 'The MTU size for the CNode and DNode internal network interfaces, for clusters with IB internal network infrastructure. Default=2044. Set a supported MTU for the NIC mode: If IB type is Connected, the maximum IB NB MTU is 65520. If IB type is Datagram, the maximum IB NB MTU is 4092'
+          type: integer
+        ipmi_gateway:
+          description: The IP of a default gateway for the IPMI interfaces on the CNodes and DNodes, if different from the management network default gateway.
+          type: string
+        ipmi_netmask:
+          description: The subnet mask for the IPMI gateway.
+          type: string
+        management_vips:
+          items:
+            description: Virtual IP address configured on the management interfaces on all CNodes. VMS listens on this IP.
+            type: string
+          type: array
+        ntp:
+          items:
+            description: The IP(s) of any NTP server(s) that you want to use for time keeping
+            type: string
+          type: array
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   requestBodies:
     VmsPwdParamsBody:
@@ -1007,14 +1015,6 @@ components:
           schema:
             $ref: '#/components/schemas/VmsPwdParams'
       x-originalParamName: VmsPwdParamsBody
-  parameters:
-    VmsId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

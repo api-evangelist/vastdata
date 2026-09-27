@@ -234,169 +234,6 @@ paths:
       - QoS Policies
 components:
   schemas:
-    RequestQOSStaticLimits:
-      allOf:
-      - $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
-      - properties:
-          min_reads_bw_mbps:
-            default: 0
-            description: Minimal amount of performance to provide when there is resource contention
-            minimum: 0
-            type: integer
-          min_reads_iops:
-            default: 0
-            description: Minimal amount of performance to provide when there is resource contention
-            minimum: 0
-            type: integer
-          min_writes_bw_mbps:
-            default: 0
-            description: Minimal amount of performance to provide when there is resource contention
-            minimum: 0
-            type: integer
-          min_writes_iops:
-            default: 0
-            description: Minimal amount of performance to provide when there is resource contention
-            minimum: 0
-            type: integer
-        type: object
-    RequestQOSStaticTotalLimits:
-      properties:
-        burst_bw_mb:
-          default: 0
-          description: Burst BW Mb
-          minimum: 0
-          type: integer
-        burst_iops:
-          default: 0
-          description: Burst IOPS
-          minimum: 0
-          type: integer
-        burst_loan_iops:
-          default: 0
-          description: Burst loan IOPS
-          minimum: 0
-          type: integer
-        burst_loan_mb:
-          default: 0
-          description: Burst loan Mb
-          minimum: 0
-          type: integer
-        max_bw_mbps:
-          default: 0
-          description: Maximal BW Mb/s
-          minimum: 0
-          type: integer
-        max_iops:
-          default: 0
-          description: Maximal IOPS
-          minimum: 0
-          type: integer
-        min_bw_mbps:
-          default: 0
-          description: Minimal BW Mb/s
-          minimum: 0
-          type: integer
-        min_iops:
-          default: 0
-          description: Minimal IOPS
-          minimum: 0
-          type: integer
-      type: object
-    RequestTruncatedQOSStaticLimits:
-      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
-      properties:
-        burst_reads_bw_mb:
-          default: 0
-          description: Burst reads BW Mb
-          minimum: 0
-          type: integer
-        burst_reads_iops:
-          default: 0
-          description: Burst reads IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_iops:
-          default: 0
-          description: Burst reads loan IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_mb:
-          default: 0
-          description: Burst reads loan Mb
-          minimum: 0
-          type: integer
-        burst_writes_bw_mb:
-          default: 0
-          description: Burst writes BW Mb
-          minimum: 0
-          type: integer
-        burst_writes_iops:
-          default: 0
-          description: Burst writes IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_iops:
-          default: 0
-          description: Burst writes loan IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_mb:
-          default: 0
-          description: Burst writes loan Mb
-          minimum: 0
-          type: integer
-        max_reads_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_reads_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-      type: object
-    RequestQOSDynamicTotalLimits:
-      properties:
-        max_bw_mbps_per_gb_capacity:
-          default: 0
-          description: Maximal amount of performance per GB to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_iops_per_gb_capacity:
-          default: 0
-          description: Maximal amount of performance per GB to provide when there is no resource contention
-          minimum: 0
-          type: integer
-      type: object
-    QOSPolicyCreateParams:
-      allOf:
-      - properties:
-          name:
-            type: string
-          policy_type:
-            description: QOS Policy type
-            enum:
-            - VIEW
-            - USER
-            type: string
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        required:
-        - name
-        type: object
-      - $ref: '#/components/schemas/QOSPolicyModifyParams'
     AttachedUser:
       properties:
         fqdn:
@@ -467,6 +304,144 @@ components:
         use_total_limits:
           type: boolean
       type: object
+    QOSPolicyCreateParams:
+      allOf:
+      - properties:
+          name:
+            type: string
+          policy_type:
+            description: QOS Policy type
+            enum:
+            - VIEW
+            - USER
+            type: string
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        required:
+        - name
+        type: object
+      - $ref: '#/components/schemas/QOSPolicyModifyParams'
+    RequestQOSDynamicTotalLimits:
+      properties:
+        max_bw_mbps_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_iops_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
+    RequestTruncatedQOSStaticLimits:
+      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
+    RequestQOSStaticTotalLimits:
+      properties:
+        burst_bw_mb:
+          default: 0
+          description: Burst BW Mb
+          minimum: 0
+          type: integer
+        burst_iops:
+          default: 0
+          description: Burst IOPS
+          minimum: 0
+          type: integer
+        burst_loan_iops:
+          default: 0
+          description: Burst loan IOPS
+          minimum: 0
+          type: integer
+        burst_loan_mb:
+          default: 0
+          description: Burst loan Mb
+          minimum: 0
+          type: integer
+        max_bw_mbps:
+          default: 0
+          description: Maximal BW Mb/s
+          minimum: 0
+          type: integer
+        max_iops:
+          default: 0
+          description: Maximal IOPS
+          minimum: 0
+          type: integer
+        min_bw_mbps:
+          default: 0
+          description: Minimal BW Mb/s
+          minimum: 0
+          type: integer
+        min_iops:
+          default: 0
+          description: Minimal IOPS
+          minimum: 0
+          type: integer
+      type: object
     Warnings:
       properties:
         warnings:
@@ -501,6 +476,89 @@ components:
           minimum: 0
           type: integer
       type: object
+    RequestQOSStaticLimits:
+      allOf:
+      - $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
+      - properties:
+          min_reads_bw_mbps:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_reads_iops:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_writes_bw_mbps:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_writes_iops:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+        type: object
+    QOSDynamicLimits:
+      properties:
+        max_reads_bw_mbps_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      required:
+      - max_reads_bw_mbps_per_gb_capacity
+      - max_writes_bw_mbps_per_gb_capacity
+      - max_reads_iops_per_gb_capacity
+      - max_writes_iops_per_gb_capacity
+      type: object
+    QOSStaticLimits:
+      allOf:
+      - $ref: '#/components/schemas/TruncatedQOSStaticLimits'
+      - properties:
+          min_reads_bw_mbps:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_reads_iops:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_writes_bw_mbps:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+          min_writes_iops:
+            default: 0
+            description: Minimal amount of performance to provide when there is resource contention
+            minimum: 0
+            type: integer
+        required:
+        - min_reads_bw_mbps
+        - min_writes_bw_mbps
+        - min_reads_iops
+        - min_writes_iops
+        type: object
     QOSPolicy:
       properties:
         attached_users:
@@ -568,34 +626,6 @@ components:
           type: boolean
       required:
       - name
-      type: object
-    QOSDynamicLimits:
-      properties:
-        max_reads_bw_mbps_per_gb_capacity:
-          default: 0
-          description: Maximal amount of performance per GB to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_reads_iops_per_gb_capacity:
-          default: 0
-          description: Maximal amount of performance per GB to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_bw_mbps_per_gb_capacity:
-          default: 0
-          description: Maximal amount of performance per GB to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_iops_per_gb_capacity:
-          default: 0
-          description: Maximal amount of performance per GB to provide when there is no resource contention
-          minimum: 0
-          type: integer
-      required:
-      - max_reads_bw_mbps_per_gb_capacity
-      - max_writes_bw_mbps_per_gb_capacity
-      - max_reads_iops_per_gb_capacity
-      - max_writes_iops_per_gb_capacity
       type: object
     TruncatedQOSStaticLimits:
       properties:
@@ -673,36 +703,6 @@ components:
       - burst_reads_loan_iops
       - burst_writes_loan_iops
       type: object
-    QOSStaticLimits:
-      allOf:
-      - $ref: '#/components/schemas/TruncatedQOSStaticLimits'
-      - properties:
-          min_reads_bw_mbps:
-            default: 0
-            description: Minimal amount of performance to provide when there is resource contention
-            minimum: 0
-            type: integer
-          min_reads_iops:
-            default: 0
-            description: Minimal amount of performance to provide when there is resource contention
-            minimum: 0
-            type: integer
-          min_writes_bw_mbps:
-            default: 0
-            description: Minimal amount of performance to provide when there is resource contention
-            minimum: 0
-            type: integer
-          min_writes_iops:
-            default: 0
-            description: Minimal amount of performance to provide when there is resource contention
-            minimum: 0
-            type: integer
-        required:
-        - min_reads_bw_mbps
-        - min_writes_bw_mbps
-        - min_reads_iops
-        - min_writes_iops
-        type: object
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.
@@ -714,6 +714,12 @@ components:
       scheme: basic
       type: http
   parameters:
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
     PageSize:
       in: query
       name: page_size
@@ -724,12 +730,6 @@ components:
       in: path
       name: id
       required: true
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
       schema:
         minimum: 1
         type: integer

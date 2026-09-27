@@ -72,16 +72,16 @@ components:
         minimum: 1
         type: integer
   schemas:
-    ArbitraryStringsObject:
-      additionalProperties:
-        type: string
-      type: object
     ModifyVsettingsParams:
       properties:
         vsettings:
           $ref: '#/components/schemas/ArbitraryStringsObject'
       required:
       - vsettings
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
       type: object
     DeleteVsettingParams:
       properties:
