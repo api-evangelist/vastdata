@@ -489,16 +489,16 @@ components:
         volume_size:
           type: integer
       type: object
+    AsyncSupportBundle:
+      allOf:
+      - $ref: '#/components/schemas/SupportBundle'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
     AsyncTaskInResponse:
       properties:
         async_task:
           description: Creation Async task properties
           type: object
       type: object
-    AsyncSupportBundle:
-      allOf:
-      - $ref: '#/components/schemas/SupportBundle'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

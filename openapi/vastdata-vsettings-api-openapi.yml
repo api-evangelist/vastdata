@@ -58,12 +58,6 @@ paths:
       - vsettings
 components:
   parameters:
-    VsettingKey:
-      description: VSetting key
-      in: query
-      name: key
-      schema:
-        type: string
     ClusterId:
       in: path
       name: id
@@ -71,14 +65,13 @@ components:
       schema:
         minimum: 1
         type: integer
+    VsettingKey:
+      description: VSetting key
+      in: query
+      name: key
+      schema:
+        type: string
   schemas:
-    ModifyVsettingsParams:
-      properties:
-        vsettings:
-          $ref: '#/components/schemas/ArbitraryStringsObject'
-      required:
-      - vsettings
-      type: object
     ArbitraryStringsObject:
       additionalProperties:
         type: string
@@ -90,6 +83,13 @@ components:
           type: string
       required:
       - key
+      type: object
+    ModifyVsettingsParams:
+      properties:
+        vsettings:
+          $ref: '#/components/schemas/ArbitraryStringsObject'
+      required:
+      - vsettings
       type: object
   securitySchemes:
     ApiToken:

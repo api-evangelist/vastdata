@@ -32,16 +32,34 @@ paths:
       tags:
       - locals3keys
 components:
+  parameters:
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    UserIdQP:
+      description: User id to filter by.
+      in: query
+      name: user_id
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
   schemas:
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
-      type: object
     S3Key:
       properties:
         access_key:
@@ -70,33 +88,15 @@ components:
           description: User Name
           type: string
       type: object
-  parameters:
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    UserIdQP:
-      description: User id to filter by.
-      in: query
-      name: user_id
-      schema:
-        minimum: 1
-        type: integer
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

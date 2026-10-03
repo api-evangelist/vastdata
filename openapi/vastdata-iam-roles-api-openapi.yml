@@ -184,26 +184,6 @@ paths:
       - IAM Roles
 components:
   schemas:
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
-      type: object
-    IAMRoleCredentialsInfo:
-      properties:
-        key_expiration_sec:
-          type: integer
-          x-cli-header: Key Expiration Datetime
-          x-format: timestamp2datetime
-        session_policy:
-          type: string
-        username:
-          type: string
-      type: object
     IAMRole:
       description: Identity and Access Management Role
       properties:
@@ -228,16 +208,36 @@ components:
         vid:
           type: integer
       type: object
+    IAMRoleCredentialsInfo:
+      properties:
+        key_expiration_sec:
+          type: integer
+          x-cli-header: Key Expiration Datetime
+          x-format: timestamp2datetime
+        session_policy:
+          type: string
+        username:
+          type: string
+      type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
   parameters:
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
     PageSize:
       in: query
       name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
       schema:
         minimum: 1
         type: integer

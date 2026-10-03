@@ -119,68 +119,7 @@ paths:
       tags:
       - Schemas
 components:
-  parameters:
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
-      in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
-      in: query
-      name: database_name
-      required: true
-      schema:
-        type: string
-    TabularPageSize:
-      in: query
-      name: page_size
-      schema:
-        default: 999
-        maximum: 999
-        minimum: 1
-        type: integer
-    TabularNameQP:
-      description: Getting list of objects by exact match
-      in: query
-      name: name
-      schema:
-        type: string
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
-    TabularNameStartswithQP:
-      description: Getting list of objects by prefix match
-      in: query
-      name: name__startswith
-      schema:
-        type: string
   requestBodies:
-    SchemaRenameParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/SchemaRenameParams'
-      x-originalParamName: SchemaRenameParamsBody
     SchemaDeleteParamsBody:
       content:
         '*/*':
@@ -193,27 +132,68 @@ components:
           schema:
             $ref: '#/components/schemas/SchemaCreateParams'
       x-originalParamName: SchemaCreateParamsBody
+    SchemaRenameParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/SchemaRenameParams'
+      x-originalParamName: SchemaRenameParamsBody
+  parameters:
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    TabularNameStartswithQP:
+      description: Getting list of objects by prefix match
+      in: query
+      name: name__startswith
+      schema:
+        type: string
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
   schemas:
-    SchemaDeleteParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
-      - properties:
-          tenant_id:
-            description: Tenant ID
-            type: integer
-        type: object
-    TabularDatabaseHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-      required:
-      - database_name
-      - name
-      type: object
     SchemaCreateParams:
       allOf:
       - $ref: '#/components/schemas/TabularDatabaseHierarchy'
@@ -246,6 +226,26 @@ components:
             description: Misc properties of the Schema
             type: string
         type: object
+    SchemaDeleteParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularDatabaseHierarchy'
+      - properties:
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        type: object
+    TabularDatabaseHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - database_name
+      - name
+      type: object
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

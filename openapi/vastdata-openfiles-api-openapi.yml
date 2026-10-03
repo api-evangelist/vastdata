@@ -74,48 +74,7 @@ paths:
       tags:
       - openfiles
 components:
-  parameters:
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    OpenFilesQueryIdQP:
-      description: Open Files Query id to filter by.
-      in: query
-      name: open_files_query__id
-      schema:
-        minimum: 1
-        type: integer
   schemas:
-    PartialVTask:
-      properties:
-        id:
-          description: Task ID
-          type: integer
-        start_time:
-          description: Task start time
-          format: date-time
-          type: string
-          x-format: datetime2display
-        state:
-          description: Task state
-          type: string
-      type: object
     OpenFileHandlesQueryParams:
       properties:
         protocol:
@@ -125,6 +84,12 @@ components:
           type: string
       required:
       - protocol
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
     OpenFile:
       properties:
@@ -147,12 +112,47 @@ components:
           type: integer
       type: object
       x-cli-pagination: true
-    AsyncTaskInResponse:
+    PartialVTask:
       properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
+        id:
+          description: Task ID
+          type: integer
+        start_time:
+          description: Task start time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        state:
+          description: Task state
+          type: string
       type: object
+  parameters:
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    OpenFilesQueryIdQP:
+      description: Open Files Query id to filter by.
+      in: query
+      name: open_files_query__id
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
   requestBodies:
     OpenFileHandlesQueryParamsBody:
       content:

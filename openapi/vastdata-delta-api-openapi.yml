@@ -94,6 +94,20 @@ components:
       - records
       - status
       type: object
+    DeltaRecordObject:
+      properties:
+        guid:
+          type: string
+        id:
+          minimum: 1
+          type: integer
+        type:
+          example: cluster
+          type: string
+      required:
+      - type
+      - id
+      type: object
     DeltaConfig:
       properties:
         enabled:
@@ -132,21 +146,13 @@ components:
       - object
       - op_type
       type: object
-    DeltaRecordObject:
-      properties:
-        guid:
-          type: string
-        id:
-          minimum: 1
-          type: integer
-        type:
-          example: cluster
-          type: string
-      required:
-      - type
-      - id
-      type: object
   parameters:
+    ObjectType:
+      description: 'Example: ''cluster'''
+      in: query
+      name: object__type
+      schema:
+        type: string
     Generation:
       in: query
       name: generation
@@ -154,11 +160,24 @@ components:
       schema:
         minimum: 0
         type: integer
+    Sequence:
+      description: 'Runtime sequence id for delta. Reset if HA happened. Example: ''8f021a67-cfd6-4896-ad67-3e32a376c6f4'' '
+      in: query
+      name: sequence
+      required: true
+      schema:
+        type: string
     ObjectGuid:
       in: query
       name: object__guid
       schema:
         type: string
+    ObjectId:
+      in: query
+      name: object__id
+      schema:
+        minimum: 0
+        type: integer
     OpType:
       description: Operation type
       in: query
@@ -168,25 +187,6 @@ components:
         - created
         - modified
         - deleted
-        type: string
-    Sequence:
-      description: 'Runtime sequence id for delta. Reset if HA happened. Example: ''8f021a67-cfd6-4896-ad67-3e32a376c6f4'' '
-      in: query
-      name: sequence
-      required: true
-      schema:
-        type: string
-    ObjectId:
-      in: query
-      name: object__id
-      schema:
-        minimum: 0
-        type: integer
-    ObjectType:
-      description: 'Example: ''cluster'''
-      in: query
-      name: object__type
-      schema:
         type: string
   securitySchemes:
     ApiToken:

@@ -61,59 +61,15 @@ paths:
       tags:
       - Locks
 components:
-  requestBodies:
-    ClusterLocksParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ClusterLocksParams'
-      x-originalParamName: ClusterLocksParamsBody
-    ClusterLocksRequestParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ClusterLocksRequestParams'
-      x-originalParamName: ClusterLocksRequestParamsBody
+  parameters:
+    ClusterId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
   schemas:
-    TenantIdBody:
-      minimum: 1
-      properties:
-        tenant_id:
-          type: integer
-      type: object
-    ClusterLocksRequestParams:
-      allOf:
-      - $ref: '#/components/schemas/ClusterLocksParams'
-      - properties:
-          direction:
-            description: Pagination direction.
-            enum:
-            - prev
-            - next
-            type: string
-    ClusterLocksParams:
-      allOf:
-      - $ref: '#/components/schemas/TenantIdBody'
-      - properties:
-          lock_type:
-            description: Lock type. Specify if unlock_type is SINGLE.
-            enum:
-            - LOCK_TYPE_NLM4
-            - LOCK_TYPE_NFS4
-            - LOCK_TYPE_SMB2
-            type: string
-          path:
-            description: 'The full path to a locked file, formed as: VIEW_PATH/FILE_PATH, where VIEW_PATH is the VAST Cluster view path, and FILE_PATH is the client path to a locked file, relative to the mount point.'
-            type: string
-          unlock_id:
-            description: Unlock ID. Specify if unlock_type is SINGLE.
-            type: string
-          unlock_type:
-            description: The type of unlock operation to perform. 'SINGLE' unlocks a single specified lock, 'ALL' unlocks all locks.
-            enum:
-            - SINGLE
-            - ALL
-            type: string
     Lock:
       properties:
         caller:
@@ -190,14 +146,58 @@ components:
           description: Creation Async task properties
           type: object
       type: object
-  parameters:
-    ClusterId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
+    TenantIdBody:
+      minimum: 1
+      properties:
+        tenant_id:
+          type: integer
+      type: object
+    ClusterLocksRequestParams:
+      allOf:
+      - $ref: '#/components/schemas/ClusterLocksParams'
+      - properties:
+          direction:
+            description: Pagination direction.
+            enum:
+            - prev
+            - next
+            type: string
+    ClusterLocksParams:
+      allOf:
+      - $ref: '#/components/schemas/TenantIdBody'
+      - properties:
+          lock_type:
+            description: Lock type. Specify if unlock_type is SINGLE.
+            enum:
+            - LOCK_TYPE_NLM4
+            - LOCK_TYPE_NFS4
+            - LOCK_TYPE_SMB2
+            type: string
+          path:
+            description: 'The full path to a locked file, formed as: VIEW_PATH/FILE_PATH, where VIEW_PATH is the VAST Cluster view path, and FILE_PATH is the client path to a locked file, relative to the mount point.'
+            type: string
+          unlock_id:
+            description: Unlock ID. Specify if unlock_type is SINGLE.
+            type: string
+          unlock_type:
+            description: The type of unlock operation to perform. 'SINGLE' unlocks a single specified lock, 'ALL' unlocks all locks.
+            enum:
+            - SINGLE
+            - ALL
+            type: string
+  requestBodies:
+    ClusterLocksParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksParams'
+      x-originalParamName: ClusterLocksParamsBody
+    ClusterLocksRequestParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ClusterLocksRequestParams'
+      x-originalParamName: ClusterLocksRequestParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

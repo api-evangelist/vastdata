@@ -30,11 +30,12 @@ paths:
       - Health
 components:
   schemas:
-    HealthEntry:
+    Health:
       properties:
-        info:
-          description: Additional info regarding service status
-          type: string
+        cache:
+          $ref: '#/components/schemas/HealthEntry'
+        db:
+          $ref: '#/components/schemas/HealthEntry'
         status:
           enum:
           - ok
@@ -42,12 +43,11 @@ components:
           - error
           type: string
       type: object
-    Health:
+    HealthEntry:
       properties:
-        cache:
-          $ref: '#/components/schemas/HealthEntry'
-        db:
-          $ref: '#/components/schemas/HealthEntry'
+        info:
+          description: Additional info regarding service status
+          type: string
         status:
           enum:
           - ok

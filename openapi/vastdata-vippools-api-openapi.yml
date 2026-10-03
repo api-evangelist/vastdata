@@ -264,51 +264,6 @@ paths:
       - vippools
 components:
   schemas:
-    BaseVippoolCreateParams:
-      properties:
-        cluster_id:
-          type: integer
-        cnode_ids:
-          description: Dedicates a specific group of CNodes to the VIP pool. List the IDs of the CNodes. Separate IDs by commas. This is a way to dedicate a specific set of CNodes to a specific set of client hosts or applications. Overridden if cnode_names is passed.
-          items:
-            type: integer
-          type: array
-        cnode_names:
-          description: Dedicates a specific group of CNodes to the VIP pool. List the names of the CNodes. Separate names by commas. This is a way to dedicate a specific set of CNodes to a specific set of client hosts or applications. Overrides cnode_ids.
-          type: string
-        domain_name:
-          description: Domain name for the VAST DNS server. If a DNS configuration exists, the domain suffix defined in the DNS server configuration is appended to this domain name to form a FQDN which the DNS server resolves to this VIP pool.
-          type: string
-        enable_weighted_balancing:
-          description: Enable weighted balancing
-          type: boolean
-        enabled:
-          default: true
-          description: Set to false to disable the pool
-          type: boolean
-        name:
-          type: string
-        role:
-          description: '''PROTOCOLS'' dedicates the VIP pool to client traffic from all of the supported access protocols (NFSv3, NFSv4.2, SMBv2, S3, Database). At least one VIP pool must be created to enable client access. ''REPLICATION'' dedicates the VIP pool for connectivity with an async replication peer cluster. This is needed for async  replication. ''BIG_CATALOG'' dedicates the VIP pool to VAST Catalog query access from the client network.'
-          enum:
-          - PROTOCOLS
-          - REPLICATION
-          type: string
-        tenant_id:
-          description: Tenant ID
-          type: integer
-        vms_preferred:
-          description: If true, CNodes participating in the vip pool are preferred in VMS host election
-          type: boolean
-      type: object
-    VippoolAllocateParams:
-      allOf:
-      - $ref: '#/components/schemas/BaseVippoolCreateParams'
-      - properties:
-          ips_count:
-            description: Number of IPs from the cloud
-            type: integer
-        type: object
     VippoolCreateParams:
       allOf:
       - $ref: '#/components/schemas/BaseVippoolCreateParams'
@@ -370,12 +325,6 @@ components:
         required:
         - subnet_cidr
         type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
     VIPPool:
       properties:
         active_cnode_ids:
@@ -548,34 +497,57 @@ components:
       - ip_ranges
       - subnet_cidr
       type: object
-  parameters:
-    VIPPoolId:
-      description: VIP Pool ID
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
-    ServesTenantQP:
-      description: Filter by served tenants. Accepts tenant ID or "all" for all served tenants.
-      in: query
-      name: serves_tenant
-      schema:
-        type: string
-    TenantNameIContainsQP:
-      description: Tenant name to filter by
-      in: query
-      name: tenant_name__icontains
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
+    BaseVippoolCreateParams:
+      properties:
+        cluster_id:
+          type: integer
+        cnode_ids:
+          description: Dedicates a specific group of CNodes to the VIP pool. List the IDs of the CNodes. Separate IDs by commas. This is a way to dedicate a specific set of CNodes to a specific set of client hosts or applications. Overridden if cnode_names is passed.
+          items:
+            type: integer
+          type: array
+        cnode_names:
+          description: Dedicates a specific group of CNodes to the VIP pool. List the names of the CNodes. Separate names by commas. This is a way to dedicate a specific set of CNodes to a specific set of client hosts or applications. Overrides cnode_ids.
+          type: string
+        domain_name:
+          description: Domain name for the VAST DNS server. If a DNS configuration exists, the domain suffix defined in the DNS server configuration is appended to this domain name to form a FQDN which the DNS server resolves to this VIP pool.
+          type: string
+        enable_weighted_balancing:
+          description: Enable weighted balancing
+          type: boolean
+        enabled:
+          default: true
+          description: Set to false to disable the pool
+          type: boolean
+        name:
+          type: string
+        role:
+          description: '''PROTOCOLS'' dedicates the VIP pool to client traffic from all of the supported access protocols (NFSv3, NFSv4.2, SMBv2, S3, Database). At least one VIP pool must be created to enable client access. ''REPLICATION'' dedicates the VIP pool for connectivity with an async replication peer cluster. This is needed for async  replication. ''BIG_CATALOG'' dedicates the VIP pool to VAST Catalog query access from the client network.'
+          enum:
+          - PROTOCOLS
+          - REPLICATION
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        vms_preferred:
+          description: If true, CNodes participating in the vip pool are preferred in VMS host election
+          type: boolean
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    VippoolAllocateParams:
+      allOf:
+      - $ref: '#/components/schemas/BaseVippoolCreateParams'
+      - properties:
+          ips_count:
+            description: Number of IPs from the cloud
+            type: integer
+        type: object
   requestBodies:
     VippoolCreateParamsBody:
       content:
@@ -589,6 +561,34 @@ components:
           schema:
             $ref: '#/components/schemas/VippoolAllocateParams'
       x-originalParamName: VippoolAllocateParamsBody
+  parameters:
+    ServesTenantQP:
+      description: Filter by served tenants. Accepts tenant ID or "all" for all served tenants.
+      in: query
+      name: serves_tenant
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    VIPPoolId:
+      description: VIP Pool ID
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
+    TenantNameIContainsQP:
+      description: Tenant name to filter by
+      in: query
+      name: tenant_name__icontains
+      schema:
+        type: string
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

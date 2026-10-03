@@ -674,17 +674,6 @@ paths:
       - Users
 components:
   schemas:
-    UserData:
-      type: object
-    PartialS3PolicyInfo:
-      properties:
-        id:
-          description: Identity Policy ID
-          type: integer
-        name:
-          description: Identity Policy name
-          type: string
-      type: object
     User:
       properties:
         access_keys:
@@ -798,6 +787,51 @@ components:
       required:
       - name
       type: object
+    PartialS3PolicyInfo:
+      properties:
+        id:
+          description: Identity Policy ID
+          type: integer
+        name:
+          description: Identity Policy name
+          type: string
+      type: object
+    UserTenantData:
+      properties:
+        allow_create_bucket:
+          type: boolean
+        allow_delete_bucket:
+          type: boolean
+        s3_policies:
+          items:
+            $ref: '#/components/schemas/PartialS3PolicyInfo'
+          type: array
+          x-format: names_only
+        s3_policies_ids:
+          items:
+            type: integer
+          type: array
+        s3_superuser:
+          type: boolean
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    LocalProviderData:
+      properties:
+        id:
+          description: ID of the local provider
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of the local provider
+          type: string
+      type: object
+    UserData:
+      type: object
     UserKeyPair:
       properties:
         access_key:
@@ -903,40 +937,6 @@ components:
           items:
             type: integer
           type: array
-      type: object
-    LocalProviderData:
-      properties:
-        id:
-          description: ID of the local provider
-          type: integer
-          x-cli-header: ID
-        name:
-          description: Name of the local provider
-          type: string
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    UserTenantData:
-      properties:
-        allow_create_bucket:
-          type: boolean
-        allow_delete_bucket:
-          type: boolean
-        s3_policies:
-          items:
-            $ref: '#/components/schemas/PartialS3PolicyInfo'
-          type: array
-          x-format: names_only
-        s3_policies_ids:
-          items:
-            type: integer
-          type: array
-        s3_superuser:
-          type: boolean
       type: object
   parameters:
     TenantIdQP:

@@ -190,6 +190,66 @@ paths:
       - Tables
 components:
   parameters:
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    SamplesCountQP:
+      description: 'Limit output amount of samples. Rest will be put into `"__others__"`.
+
+        When sampling per time, affects granularity with which samples are collected.
+
+        '
+      in: query
+      name: samples_count
+      schema:
+        type: integer
+    TopNByQP:
+      description: 'What metric to do top N by. By default, sum of all the `?metrics` is taken.
+
+        Only applicable if sampling and/or sub-grouping is requested.
+
+        '
+      in: query
+      name: topn_by
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    SubGroupsCountQP:
+      description: Limit output amount of sub-groups. Rest will be put into `"__others__"`.
+      in: query
+      name: sub_groups_count
+      schema:
+        type: integer
+    SubGroupByQP:
+      description: Which column to split the returning samples by (Y-axis).
+      in: query
+      name: sub_group_by
+      schema:
+        type: string
+    SamplePerQP:
+      description: Which column to sample per (X-axis).
+      in: query
+      name: sample_per
+      schema:
+        type: string
     AggregateFunctionQP:
       description: Function to use when aggregating the results.
       in: query
@@ -200,49 +260,35 @@ components:
         - sum
         - avg
         type: string
-    TabularPageSize:
+    TabularNameQP:
+      description: Getting list of objects by exact match
       in: query
-      name: page_size
-      schema:
-        default: 999
-        maximum: 999
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
-      in: query
-      name: database_name
-      required: true
+      name: name
       schema:
         type: string
-    SubGroupsCountQP:
-      description: Limit output amount of sub-groups. Rest will be put into `"__others__"`.
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
       in: query
-      name: sub_groups_count
+      name: count_only
       schema:
-        type: integer
+        default: false
+        type: boolean
     TabularIsImportsTableQP:
       description: Is table actually a sub-table to track imported .parquet files.
       in: query
       name: is_imports_table
       schema:
         type: boolean
-    SubGroupByQP:
-      description: Which column to split the returning samples by (Y-axis).
+    Page:
       in: query
-      name: sub_group_by
+      name: page
       schema:
-        type: string
-    TabularSchemaNameQP:
-      description: Getting list of objects by schema_name
+        minimum: 1
+        type: integer
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
       in: query
-      name: schema_name
+      name: table_name
       required: true
       schema:
         type: string
@@ -265,46 +311,16 @@ components:
         items:
           type: string
         type: array
-    TabularNameQP:
-      description: Getting list of objects by exact match
-      in: query
-      name: name
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
     TabularNameStartswithQP:
       description: Getting list of objects by prefix match
       in: query
       name: name__startswith
       schema:
         type: string
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
+    TabularSchemaNameQP:
+      description: Getting list of objects by schema_name
       in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    SamplesCountQP:
-      description: 'Limit output amount of samples. Rest will be put into `"__others__"`.
-
-        When sampling per time, affects granularity with which samples are collected.
-
-        '
-      in: query
-      name: samples_count
-      schema:
-        type: integer
-    TabularTableNameQP:
-      description: Getting list of objects by table_name
-      in: query
-      name: table_name
+      name: schema_name
       required: true
       schema:
         type: string
@@ -314,96 +330,68 @@ components:
       name: filters
       schema:
         type: string
-    SamplePerQP:
-      description: Which column to sample per (X-axis).
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
       in: query
-      name: sample_per
-      schema:
-        type: string
-    TopNByQP:
-      description: 'What metric to do top N by. By default, sum of all the `?metrics` is taken.
-
-        Only applicable if sampling and/or sub-grouping is requested.
-
-        '
-      in: query
-      name: topn_by
-      schema:
-        type: string
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
+      name: database_name
       required: true
       schema:
         type: string
-  requestBodies:
-    TableCreateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TableCreateParams'
-      x-originalParamName: TableCreateParamsBody
-    TableDeleteParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TableDeleteParams'
-      x-originalParamName: TableDeleteParamsBody
-    TableModifyParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TableModifyParams'
-      x-originalParamName: TableModifyParamsBody
-    TableAddColumnsParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TableAddColumnsParams'
-      x-originalParamName: TableAddColumnsParamsBody
-    TableRenameParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TableRenameParams'
-      x-originalParamName: TableRenameParamsBody
   schemas:
-    TableDeleteParams:
+    Table:
       allOf:
       - $ref: '#/components/schemas/TabularSchemaHierarchy'
       - properties:
-          is_imports_table:
-            description: Is table actually a sub-table to track imported .parquet files.
+          acummulative_row_insertion_count:
+            description: Accumulative row insertion count.
+            type: number
+          num_rows:
+            description: Total number of rows
+            type: integer
+          properties:
+            description: Misc properties of the Table
+            type: string
+          size:
+            description: Size of the Table
+            type: integer
+          sorting_done:
+            description: Sorting done flag.
             type: boolean
-          tenant_id:
-            description: Tenant ID
-            type: integer
+          sorting_key_enabled:
+            description: Sorting key enabled
+            type: boolean
+          sorting_label:
+            description: Sorting label. Higher label means higher sorting quality.
+            enum:
+            - A+
+            - A
+            - B
+            - C
+            type: string
+            x-format: sorting_label_color
+          sorting_score:
+            description: Sorting score. Higher score means higher sorting quality.
+            type: number
+          write_amplification:
+            description: Write amplification.
+            type: number
+        required:
+        - num_rows
+        - size
+        - sorting_key_enabled
         type: object
-    ValuePerMetric:
-      additionalProperties:
-        type: number
-      description: JSON mapping of value per each metric.
-      example:
-        GETATTR: 1337
-        LOOKUP: 1337
-        SETATTR: 52
-      type: object
-    TableRenameParams:
+    TableModifyParams:
       allOf:
       - $ref: '#/components/schemas/TabularSchemaHierarchy'
       - properties:
-          new_name:
-            description: New name of the Table
-            type: string
-          new_table_name:
-            description: New name of the Table (deprecated since 5.0)
-            type: string
+          sorted_column_names:
+            description: Array of sorted column names
+            items:
+              type: string
+            type: array
           tenant_id:
             description: Tenant ID
             type: integer
-        required:
-        - new_name
         type: object
     MetricsPerSubGroup:
       additionalProperties:
@@ -428,54 +416,17 @@ components:
           GETATTR: 1337
           SETATTR: 52
       type: object
-    TableModifyParams:
+    TableDeleteParams:
       allOf:
       - $ref: '#/components/schemas/TabularSchemaHierarchy'
       - properties:
-          sorted_column_names:
-            description: Array of sorted column names
-            items:
-              type: string
-            type: array
+          is_imports_table:
+            description: Is table actually a sub-table to track imported .parquet files.
+            type: boolean
           tenant_id:
             description: Tenant ID
             type: integer
         type: object
-    TabularColumnArrowSchema:
-      properties:
-        field:
-          description: Column type
-          example:
-            column_type: map
-            key_type:
-              column_type: bool
-            value_type:
-              column_type: bool
-          properties:
-            column_type:
-              type: string
-            key_type:
-              description: Column type for the map key (only when `column_type` is "map")
-              properties:
-                column_type:
-                  description: The type of the key (e.g., "string", "bool")
-                  type: string
-              type: object
-            value_type:
-              description: Column type for the map value (only when `column_type` is "map")
-              properties:
-                column_type:
-                  description: The type of the value (e.g., "string", "bool")
-                  type: string
-              type: object
-          type: object
-        name:
-          description: Name of the object
-          type: string
-      required:
-      - name
-      - field
-      type: object
     TableCreateParams:
       allOf:
       - $ref: '#/components/schemas/TabularSchemaHierarchy'
@@ -499,14 +450,6 @@ components:
         required:
         - arrow_schema
         type: object
-    DetailedTable:
-      allOf:
-      - $ref: '#/components/schemas/Table'
-      - properties:
-          is_external_rowid_alloc:
-            description: Indicates whether table row IDs are user-defined (user-defined PK)
-            type: boolean
-        type: object
     TabularSchemaHierarchy:
       properties:
         database_name:
@@ -522,6 +465,15 @@ components:
       - database_name
       - schema_name
       - name
+      type: object
+    ValuePerMetric:
+      additionalProperties:
+        type: number
+      description: JSON mapping of value per each metric.
+      example:
+        GETATTR: 1337
+        LOOKUP: 1337
+        SETATTR: 52
       type: object
     VastDBTableDashboardResponse:
       additionalProperties:
@@ -581,48 +533,96 @@ components:
             description: Tenant ID
             type: integer
         type: object
-    Table:
+    TabularColumnArrowSchema:
+      properties:
+        field:
+          description: Column type
+          example:
+            column_type: map
+            key_type:
+              column_type: bool
+            value_type:
+              column_type: bool
+          properties:
+            column_type:
+              type: string
+            key_type:
+              description: Column type for the map key (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the key (e.g., "string", "bool")
+                  type: string
+              type: object
+            value_type:
+              description: Column type for the map value (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the value (e.g., "string", "bool")
+                  type: string
+              type: object
+          type: object
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - name
+      - field
+      type: object
+    DetailedTable:
+      allOf:
+      - $ref: '#/components/schemas/Table'
+      - properties:
+          is_external_rowid_alloc:
+            description: Indicates whether table row IDs are user-defined (user-defined PK)
+            type: boolean
+        type: object
+    TableRenameParams:
       allOf:
       - $ref: '#/components/schemas/TabularSchemaHierarchy'
       - properties:
-          acummulative_row_insertion_count:
-            description: Accumulative row insertion count.
-            type: number
-          num_rows:
-            description: Total number of rows
-            type: integer
-          properties:
-            description: Misc properties of the Table
+          new_name:
+            description: New name of the Table
             type: string
-          size:
-            description: Size of the Table
-            type: integer
-          sorting_done:
-            description: Sorting done flag.
-            type: boolean
-          sorting_key_enabled:
-            description: Sorting key enabled
-            type: boolean
-          sorting_label:
-            description: Sorting label. Higher label means higher sorting quality.
-            enum:
-            - A+
-            - A
-            - B
-            - C
+          new_table_name:
+            description: New name of the Table (deprecated since 5.0)
             type: string
-            x-format: sorting_label_color
-          sorting_score:
-            description: Sorting score. Higher score means higher sorting quality.
-            type: number
-          write_amplification:
-            description: Write amplification.
-            type: number
+          tenant_id:
+            description: Tenant ID
+            type: integer
         required:
-        - num_rows
-        - size
-        - sorting_key_enabled
+        - new_name
         type: object
+  requestBodies:
+    TableDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TableDeleteParams'
+      x-originalParamName: TableDeleteParamsBody
+    TableCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TableCreateParams'
+      x-originalParamName: TableCreateParamsBody
+    TableRenameParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TableRenameParams'
+      x-originalParamName: TableRenameParamsBody
+    TableModifyParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TableModifyParams'
+      x-originalParamName: TableModifyParamsBody
+    TableAddColumnsParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TableAddColumnsParams'
+      x-originalParamName: TableAddColumnsParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

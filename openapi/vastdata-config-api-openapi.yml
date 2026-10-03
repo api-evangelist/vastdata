@@ -75,14 +75,6 @@ paths:
       tags:
       - Config
 components:
-  parameters:
-    DynamicConfigKey:
-      description: Dynamic Config key to filter by
-      in: path
-      name: key
-      required: true
-      schema:
-        type: string
   schemas:
     DynamicConfig:
       properties:
@@ -110,6 +102,14 @@ components:
       required:
       - value
       type: object
+  parameters:
+    DynamicConfigKey:
+      description: Dynamic Config key to filter by
+      in: path
+      name: key
+      required: true
+      schema:
+        type: string
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

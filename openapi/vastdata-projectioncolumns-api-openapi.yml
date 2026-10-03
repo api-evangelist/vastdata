@@ -60,17 +60,12 @@ paths:
       - projectioncolumns
 components:
   parameters:
-    TabularSchemaNameQP:
-      description: Getting list of objects by schema_name
+    TabularPageSize:
       in: query
-      name: schema_name
-      required: true
+      name: page_size
       schema:
-        type: string
-    Page:
-      in: query
-      name: page
-      schema:
+        default: 999
+        maximum: 999
         minimum: 1
         type: integer
     TabularCountOnlyQP:
@@ -80,32 +75,10 @@ components:
       schema:
         default: false
         type: boolean
-    TabularPageSize:
+    TabularNameStartswithQP:
+      description: Getting list of objects by prefix match
       in: query
-      name: page_size
-      schema:
-        default: 999
-        maximum: 999
-        minimum: 1
-        type: integer
-    TabularProjectionNameQP:
-      description: Getting list of objects by projection_name
-      in: query
-      name: projection_name
-      required: true
-      schema:
-        type: string
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
-      in: query
-      name: database_name
-      required: true
-      schema:
-        type: string
-    TabularNameQP:
-      description: Getting list of objects by exact match
-      in: query
-      name: name
+      name: name__startswith
       schema:
         type: string
     TabularTableNameQP:
@@ -122,6 +95,13 @@ components:
       required: true
       schema:
         type: string
+    TabularSchemaNameQP:
+      description: Getting list of objects by schema_name
+      in: query
+      name: schema_name
+      required: true
+      schema:
+        type: string
     TenantIdQP:
       description: Filter by tenant. Specify tenant ID.
       in: query
@@ -129,10 +109,30 @@ components:
       schema:
         minimum: 1
         type: integer
-    TabularNameStartswithQP:
-      description: Getting list of objects by prefix match
+    TabularProjectionNameQP:
+      description: Getting list of objects by projection_name
       in: query
-      name: name__startswith
+      name: projection_name
+      required: true
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
       schema:
         type: string
   schemas:

@@ -717,14 +717,35 @@ paths:
       - protectedpaths
 components:
   schemas:
-    ConflictResponse:
+    ReplicationMemberInfo:
+      properties:
+        capabilities:
+          type: string
+        role:
+          type: string
+        state:
+          type: string
+      type: object
+    PrefetchFolderStatusResponse:
       properties:
         code:
-          example: Conflict reason code.
+          description: Result code
           type: string
-        detail:
-          example: The request could not be completed due to a conflict with the current state of the target resource.
+        inodes_retrieved:
+          description: Number of retrieved inodes (files and directories)
+          type: integer
+        path:
+          description: Prefetched path
           type: string
+        prefetch_type:
+          description: Prefetch type
+          type: string
+        size_retrieved:
+          description: Retrieved size
+          type: integer
+        task_id:
+          description: Prefetch task ID
+          type: integer
       type: object
     GlobalSnapStream:
       properties:
@@ -817,36 +838,6 @@ components:
           description: Whether view replication is enabled
           type: boolean
       type: object
-    ReplicationMemberInfo:
-      properties:
-        capabilities:
-          type: string
-        role:
-          type: string
-        state:
-          type: string
-      type: object
-    PrefetchFolderStatusResponse:
-      properties:
-        code:
-          description: Result code
-          type: string
-        inodes_retrieved:
-          description: Number of retrieved inodes (files and directories)
-          type: integer
-        path:
-          description: Prefetched path
-          type: string
-        prefetch_type:
-          description: Prefetch type
-          type: string
-        size_retrieved:
-          description: Retrieved size
-          type: integer
-        task_id:
-          description: Prefetch task ID
-          type: integer
-      type: object
     PrefetchFolderResponse:
       properties:
         code:
@@ -856,6 +847,16 @@ components:
           description: Prefetch task ID
           type: integer
       type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    AsyncGlobalSnapStream:
+      allOf:
+      - $ref: '#/components/schemas/GlobalSnapStream'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
     ProtectedPath:
       properties:
         aggr_phys_estimation:
@@ -1061,16 +1062,15 @@ components:
       - name
       - source_dir
       type: object
-    AsyncTaskInResponse:
+    ConflictResponse:
       properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
+        code:
+          example: Conflict reason code.
+          type: string
+        detail:
+          example: The request could not be completed due to a conflict with the current state of the target resource.
+          type: string
       type: object
-    AsyncGlobalSnapStream:
-      allOf:
-      - $ref: '#/components/schemas/GlobalSnapStream'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
   parameters:
     Page:
       in: query

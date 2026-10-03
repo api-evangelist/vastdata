@@ -76,33 +76,6 @@ paths:
       tags:
       - openfilehandles
 components:
-  parameters:
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
-    OpenFileIdQP:
-      description: Open File id to filter by.
-      in: query
-      name: open_file__id
-      schema:
-        minimum: 1
-        type: integer
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
   schemas:
     OpenFileHandle:
       properties:
@@ -158,6 +131,33 @@ components:
           type: string
       type: object
       x-cli-pagination: true
+  parameters:
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    OpenFileIdQP:
+      description: Open File id to filter by.
+      in: query
+      name: open_file__id
+      schema:
+        minimum: 1
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

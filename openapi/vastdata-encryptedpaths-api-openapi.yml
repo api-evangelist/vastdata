@@ -107,6 +107,14 @@ paths:
       tags:
       - encryptedpaths
 components:
+  parameters:
+    EncryptedPathId:
+      description: Encrypted Path ID
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
   schemas:
     EncryptedPath:
       properties:
@@ -164,14 +172,6 @@ components:
       - state
       - crn
       type: object
-  parameters:
-    EncryptedPathId:
-      description: Encrypted Path ID
-      in: path
-      name: id
-      required: true
-      schema:
-        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

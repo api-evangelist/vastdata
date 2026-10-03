@@ -410,6 +410,10 @@ components:
           description: Subnet bits
           type: integer
       type: object
+    AsyncCNode:
+      allOf:
+      - $ref: '#/components/schemas/CNode'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
     AsyncTaskInResponse:
       properties:
         async_task:
@@ -584,10 +588,6 @@ components:
       required:
       - name
       type: object
-    AsyncCNode:
-      allOf:
-      - $ref: '#/components/schemas/CNode'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

@@ -76,12 +76,19 @@ paths:
       - vastauditlog
 components:
   parameters:
-    Page:
+    Limit:
       in: query
-      name: page
+      name: limit
       schema:
-        minimum: 1
+        default: 1000
         type: integer
+    Ordering:
+      in: query
+      name: ordering
+      schema:
+        items:
+          type: string
+        type: array
     VastAuditLogFieldsQP:
       description: Defines which fields should be displayed
       in: query
@@ -114,75 +121,13 @@ components:
       name: filters
       schema:
         type: string
-    Ordering:
+    Page:
       in: query
-      name: ordering
+      name: page
       schema:
-        items:
-          type: string
-        type: array
-    Limit:
-      in: query
-      name: limit
-      schema:
-        default: 1000
+        minimum: 1
         type: integer
   schemas:
-    Stats:
-      properties:
-        count_columns:
-          type: integer
-        count_rows:
-          type: integer
-      type: object
-    Column:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          field:
-            description: Column type
-            example:
-              column_type: map
-              key_type:
-                column_type: bool
-              value_type:
-                column_type: bool
-            type: object
-          raw_field:
-            description: Raw description of column type
-            example: map<bool, bool>
-            type: string
-        required:
-        - field
-        - raw_field
-        type: object
-    VastAuditLogQueryDataInputSchema:
-      allOf:
-      - $ref: '#/components/schemas/BaseQueryDataInputSchema'
-      - properties:
-          fields:
-            default:
-            - time
-            - client_ip
-            - cluster_vip
-            - tenant
-            - protocol
-            - rpc_type
-            - path
-            - view_path
-            - name
-            - s3_bucket_name
-            - login_name
-            - uid
-            - sid
-            - s3_access_keys
-            - status
-            - num_ops
-            - num_bytes
-            description: Defines which fields should be displayed
-            items:
-              type: string
-            type: array
     TabularTableHierarchy:
       properties:
         database_name:
@@ -216,6 +161,13 @@ components:
       required:
       - filters
       type: object
+    Stats:
+      properties:
+        count_columns:
+          type: integer
+        count_rows:
+          type: integer
+      type: object
     QueryDataOutputSchema:
       properties:
         count:
@@ -235,6 +187,54 @@ components:
             type: string
           type: array
       type: object
+    VastAuditLogQueryDataInputSchema:
+      allOf:
+      - $ref: '#/components/schemas/BaseQueryDataInputSchema'
+      - properties:
+          fields:
+            default:
+            - time
+            - client_ip
+            - cluster_vip
+            - tenant
+            - protocol
+            - rpc_type
+            - path
+            - view_path
+            - name
+            - s3_bucket_name
+            - login_name
+            - uid
+            - sid
+            - s3_access_keys
+            - status
+            - num_ops
+            - num_bytes
+            description: Defines which fields should be displayed
+            items:
+              type: string
+            type: array
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
   requestBodies:
     VastAuditLogQueryDataParamsBody:
       content:

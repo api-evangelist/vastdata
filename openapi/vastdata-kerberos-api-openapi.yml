@@ -307,22 +307,6 @@ paths:
       x-operation-id-original: kerberos_upload_keytab
 components:
   schemas:
-    KerberosServersInfo:
-      items:
-        properties:
-          location:
-            type: string
-          message:
-            type: string
-          status:
-            enum:
-            - SUCCESS
-            - PINGED_ONLY
-            - PARSED_ONLY
-            - FAILURE
-            type: string
-        type: object
-      type: array
     KerberosStateInfo:
       properties:
         kadmin_servers:
@@ -332,22 +316,6 @@ components:
         service_principals:
           $ref: '#/components/schemas/KerberosPrincipalsInfo'
       type: object
-    KerberosPrincipalsInfo:
-      items:
-        properties:
-          message:
-            type: string
-          name:
-            type: string
-          status:
-            enum:
-            - SUCCESS
-            - NO_KEYTAB_ENTRY
-            - NOT_AUTHENTICATED
-            - FAILURE
-            type: string
-        type: object
-      type: array
     Kerberos:
       properties:
         enabled:
@@ -375,6 +343,38 @@ components:
         state:
           $ref: '#/components/schemas/KerberosStateInfo'
       type: object
+    KerberosPrincipalsInfo:
+      items:
+        properties:
+          message:
+            type: string
+          name:
+            type: string
+          status:
+            enum:
+            - SUCCESS
+            - NO_KEYTAB_ENTRY
+            - NOT_AUTHENTICATED
+            - FAILURE
+            type: string
+        type: object
+      type: array
+    KerberosServersInfo:
+      items:
+        properties:
+          location:
+            type: string
+          message:
+            type: string
+          status:
+            enum:
+            - SUCCESS
+            - PINGED_ONLY
+            - PARSED_ONLY
+            - FAILURE
+            type: string
+        type: object
+      type: array
   parameters:
     KrbProviderId:
       description: Kerberos Provider ID

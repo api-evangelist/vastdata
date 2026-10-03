@@ -275,9 +275,10 @@ components:
       name: force
       schema:
         type: boolean
-    Page:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
       in: query
-      name: page
+      name: tenant_id
       schema:
         minimum: 1
         type: integer
@@ -287,40 +288,28 @@ components:
       name: name
       schema:
         type: string
-    SnapshotIdQP:
-      description: Unmapped Volumes captured by snapshot — under snapshot’s path, created before the snapshot time.
-      in: query
-      name: snapshot_id
-      schema:
-        type: integer
     VolumeNguidQP:
       description: volume nguid to filter by.
       in: query
       name: nguid
       schema:
         type: string
-    VolumeBlockHostIdQP:
-      description: Volume BlockHost ID to filter by.
+    VolumeNamespaceIdQP:
+      description: Volume namespace ID to filter by.
       in: query
-      name: block_hosts__id
+      name: namespace_id
       schema:
         type: integer
-    VolumeIsMonitoredQP:
-      description: Filter by whether Volume is monitored.
-      in: query
-      name: is_monitored
-      schema:
-        type: boolean
     MappedSnapshotIdQP:
       description: Volumes explicitly mapped to the snapshot.
       in: query
       name: mapped_snapshot_id
       schema:
         type: integer
-    VolumeQosPolicyIdQP:
-      description: Volume QOS Policy ID to filter by.
+    ViewIdQP:
+      description: View ID by which to filter
       in: query
-      name: qos_policy__id
+      name: view__id
       schema:
         minimum: 1
         type: integer
@@ -330,26 +319,24 @@ components:
       name: uuid
       schema:
         type: string
-    ViewIdQP:
-      description: View ID by which to filter
+    SnapshotIdQP:
+      description: Unmapped Volumes captured by snapshot — under snapshot’s path, created before the snapshot time.
       in: query
-      name: view__id
+      name: snapshot_id
+      schema:
+        type: integer
+    Page:
+      in: query
+      name: page
       schema:
         minimum: 1
         type: integer
-    PageSize:
+    VolumeIsMonitoredQP:
+      description: Filter by whether Volume is monitored.
       in: query
-      name: page_size
+      name: is_monitored
       schema:
-        minimum: 1
-        type: integer
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
+        type: boolean
     PathObjectId:
       description: Object ID specified in the path
       in: path
@@ -357,46 +344,26 @@ components:
       required: true
       schema:
         type: string
-    VolumeNamespaceIdQP:
-      description: Volume namespace ID to filter by.
+    VolumeQosPolicyIdQP:
+      description: Volume QOS Policy ID to filter by.
       in: query
-      name: namespace_id
+      name: qos_policy__id
+      schema:
+        minimum: 1
+        type: integer
+    VolumeBlockHostIdQP:
+      description: Volume BlockHost ID to filter by.
+      in: query
+      name: block_hosts__id
       schema:
         type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
   schemas:
-    VolumeSnapshot:
-      properties:
-        created:
-          format: date-time
-          type: string
-          x-format: datetime2display
-        id:
-          type: integer
-          x-cli-header: ID
-        name:
-          type: string
-        path:
-          type: string
-      required:
-      - id
-      type: object
-    ArbitraryStringsObject:
-      additionalProperties:
-        type: string
-      type: object
-    SnapshotData:
-      properties:
-        created:
-          description: snapshot's creation time
-          format: date-time
-          type: string
-        id:
-          description: snapshot's ID
-          type: integer
-        name:
-          description: snapshot's name
-          type: string
-      type: object
     Volume:
       properties:
         capacity:
@@ -480,11 +447,18 @@ components:
       - name
       - size
       type: object
-    AsyncTaskInResponse:
+    SnapshotData:
       properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
+        created:
+          description: snapshot's creation time
+          format: date-time
+          type: string
+        id:
+          description: snapshot's ID
+          type: integer
+        name:
+          description: snapshot's name
+          type: string
       type: object
     PartialGenericInfo:
       properties:
@@ -494,6 +468,32 @@ components:
         name:
           description: Name
           type: string
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    VolumeSnapshot:
+      properties:
+        created:
+          format: date-time
+          type: string
+          x-format: datetime2display
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          type: string
+        path:
+          type: string
+      required:
+      - id
       type: object
   securitySchemes:
     ApiToken:

@@ -178,19 +178,6 @@ paths:
       tags:
       - DNS
 components:
-  requestBodies:
-    DNSCreateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/DNSCreateParams'
-      x-originalParamName: DNSCreateParamsBody
-    DNSAllocateParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/DNSAllocateParams'
-      x-originalParamName: DNSAllocateParamsBody
   schemas:
     BaseDNSCreateParams:
       properties:
@@ -235,38 +222,15 @@ components:
           description: Specifies the TTL value for the DNS.
           type: integer
       type: object
-    DNSCreateParams:
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    DNSAllocateParams:
       allOf:
       - $ref: '#/components/schemas/BaseDNSCreateParams'
-      - properties:
-          bgp_config_id:
-            description: The ID of the BGP configuration to use for layer 3 connectivity configuration
-            type: integer
-          enable_l3:
-            description: Enable layer 3 connectivity
-            type: boolean
-          vip:
-            description: A virtual IP to assign to the DNS service. DNS requests from your external DNS server must be delegated to this IP.
-            type: string
-          vip_gateway:
-            description: 'If the external DNS server doesn''t reside on the same subnet as the DNS VIP, enter the IP of a gateway through which to connect to the DNS server. '
-            type: string
-          vip_ipv6:
-            description: Assigns an IPv6 to the DNS service.
-            type: string
-          vip_ipv6_gateway:
-            description: Specifies a gateway IPv6 to external DNS server if on different subnet.
-            type: string
-          vip_ipv6_subnet_cidr:
-            description: Specifies the subnet, as a CIDR index, on which the DNS resides. [1..128]
-            type: integer
-          vip_subnet_cidr:
-            description: The subnet, in CIDR format, on which the DNS VIP resides.
-            type: integer
-          vip_vlan:
-            description: If your external DNS server is only exposed to a specific VLAN, you can enter the VLAN here to enable communication with the DNS server.
-            type: integer
-        type: object
     DNS:
       properties:
         bgp_config_id:
@@ -357,15 +321,51 @@ components:
       required:
       - vip
       type: object
-    DNSAllocateParams:
+    DNSCreateParams:
       allOf:
       - $ref: '#/components/schemas/BaseDNSCreateParams'
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
+      - properties:
+          bgp_config_id:
+            description: The ID of the BGP configuration to use for layer 3 connectivity configuration
+            type: integer
+          enable_l3:
+            description: Enable layer 3 connectivity
+            type: boolean
+          vip:
+            description: A virtual IP to assign to the DNS service. DNS requests from your external DNS server must be delegated to this IP.
+            type: string
+          vip_gateway:
+            description: 'If the external DNS server doesn''t reside on the same subnet as the DNS VIP, enter the IP of a gateway through which to connect to the DNS server. '
+            type: string
+          vip_ipv6:
+            description: Assigns an IPv6 to the DNS service.
+            type: string
+          vip_ipv6_gateway:
+            description: Specifies a gateway IPv6 to external DNS server if on different subnet.
+            type: string
+          vip_ipv6_subnet_cidr:
+            description: Specifies the subnet, as a CIDR index, on which the DNS resides. [1..128]
+            type: integer
+          vip_subnet_cidr:
+            description: The subnet, in CIDR format, on which the DNS VIP resides.
+            type: integer
+          vip_vlan:
+            description: If your external DNS server is only exposed to a specific VLAN, you can enter the VLAN here to enable communication with the DNS server.
+            type: integer
+        type: object
+  requestBodies:
+    DNSCreateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/DNSCreateParams'
+      x-originalParamName: DNSCreateParamsBody
+    DNSAllocateParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/DNSAllocateParams'
+      x-originalParamName: DNSAllocateParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.
