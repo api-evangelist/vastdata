@@ -107,38 +107,7 @@ paths:
       tags:
       - encryptedpaths
 components:
-  parameters:
-    EncryptedPathId:
-      description: Encrypted Path ID
-      in: path
-      name: id
-      required: true
-      schema:
-        type: integer
   schemas:
-    EncryptedPath:
-      properties:
-        encryption_group:
-          $ref: '#/components/schemas/EncryptionGroup'
-        id:
-          type: integer
-          x-cli-header: ID
-        name:
-          description: Name of Encrypted Path
-          type: string
-        path:
-          description: Encrypted path
-          type: string
-        tenant_id:
-          description: Tenant ID
-          type: integer
-        tenant_name:
-          description: Tenant name
-          type: string
-      required:
-      - name
-      - path
-      type: object
     EncryptionGroup:
       properties:
         crn:
@@ -172,6 +141,37 @@ components:
       - state
       - crn
       type: object
+    EncryptedPath:
+      properties:
+        encryption_group:
+          $ref: '#/components/schemas/EncryptionGroup'
+        id:
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of Encrypted Path
+          type: string
+        path:
+          description: Encrypted path
+          type: string
+        tenant_id:
+          description: Tenant ID
+          type: integer
+        tenant_name:
+          description: Tenant name
+          type: string
+      required:
+      - name
+      - path
+      type: object
+  parameters:
+    EncryptedPathId:
+      description: Encrypted Path ID
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

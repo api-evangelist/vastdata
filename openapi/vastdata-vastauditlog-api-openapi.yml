@@ -82,13 +82,6 @@ components:
       schema:
         default: 1000
         type: integer
-    Ordering:
-      in: query
-      name: ordering
-      schema:
-        items:
-          type: string
-        type: array
     VastAuditLogFieldsQP:
       description: Defines which fields should be displayed
       in: query
@@ -115,78 +108,26 @@ components:
         items:
           type: string
         type: array
-    VastDBFiltersQP:
-      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
-      in: query
-      name: filters
-      schema:
-        type: string
     Page:
       in: query
       name: page
       schema:
         minimum: 1
         type: integer
+    Ordering:
+      in: query
+      name: ordering
+      schema:
+        items:
+          type: string
+        type: array
+    VastDBFiltersQP:
+      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+      in: query
+      name: filters
+      schema:
+        type: string
   schemas:
-    TabularTableHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-        table_name:
-          description: Name of the Table
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - table_name
-      - name
-      type: object
-    BaseQueryDataInputSchema:
-      properties:
-        fields:
-          description: Defines which fields should be displayed
-          items:
-            type: string
-          type: array
-        filters:
-          description: Defines the filters
-          type: object
-      required:
-      - filters
-      type: object
-    Stats:
-      properties:
-        count_columns:
-          type: integer
-        count_rows:
-          type: integer
-      type: object
-    QueryDataOutputSchema:
-      properties:
-        count:
-          description: Number of rows in data
-          type: integer
-        next:
-          description: Link to the next page
-          type: string
-        prop_list:
-          description: List of column names
-          items:
-            type: string
-          type: array
-        results:
-          description: List of query data rows
-          items:
-            type: string
-          type: array
-      type: object
     VastAuditLogQueryDataInputSchema:
       allOf:
       - $ref: '#/components/schemas/BaseQueryDataInputSchema'
@@ -214,6 +155,65 @@ components:
             items:
               type: string
             type: array
+    Stats:
+      properties:
+        count_columns:
+          type: integer
+        count_rows:
+          type: integer
+      type: object
+    QueryDataOutputSchema:
+      properties:
+        count:
+          description: Number of rows in data
+          type: integer
+        next:
+          description: Link to the next page
+          type: string
+        prop_list:
+          description: List of column names
+          items:
+            type: string
+          type: array
+        results:
+          description: List of query data rows
+          items:
+            type: string
+          type: array
+      type: object
+    BaseQueryDataInputSchema:
+      properties:
+        fields:
+          description: Defines which fields should be displayed
+          items:
+            type: string
+          type: array
+        filters:
+          description: Defines the filters
+          type: object
+      required:
+      - filters
+      type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
     Column:
       allOf:
       - $ref: '#/components/schemas/TabularTableHierarchy'

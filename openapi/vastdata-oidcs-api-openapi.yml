@@ -157,6 +157,19 @@ paths:
       tags:
       - oidcs
 components:
+  parameters:
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
   schemas:
     OIDC:
       description: OpenID Connect
@@ -184,19 +197,6 @@ components:
         verify_peer:
           type: boolean
       type: object
-  parameters:
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

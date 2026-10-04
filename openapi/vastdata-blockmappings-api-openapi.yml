@@ -88,6 +88,52 @@ paths:
       - blockmappings
 components:
   schemas:
+    PartialVolumeInfo:
+      properties:
+        id:
+          type: integer
+        name:
+          description: Path (volume name)
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    BlockMappingByPathPair:
+      properties:
+        host_id:
+          description: ID of a block host
+          type: integer
+        volume_full_path:
+          description: Full path of the volume.
+          type: string
+      required:
+      - volume_full_path
+      - host_id
+      type: object
+    BlockMappingPair:
+      properties:
+        host_id:
+          description: ID of a block host
+          type: integer
+        volume_id:
+          description: ID of a volume
+          type: integer
+      required:
+      - volume_id
+      - host_id
+      type: object
+    PartialBlockHostInfo:
+      properties:
+        id:
+          type: integer
+        name:
+          description: Name of block host
+          type: string
+      required:
+      - id
+      - name
+      type: object
     SnapshotData:
       properties:
         created:
@@ -100,17 +146,6 @@ components:
         name:
           description: snapshot's name
           type: string
-      type: object
-    PartialBlockHostInfo:
-      properties:
-        id:
-          type: integer
-        name:
-          description: Name of block host
-          type: string
-      required:
-      - id
-      - name
       type: object
     AsyncTaskInResponse:
       properties:
@@ -133,48 +168,7 @@ components:
       - volume
       - block_host
       type: object
-    BlockMappingPair:
-      properties:
-        host_id:
-          description: ID of a block host
-          type: integer
-        volume_id:
-          description: ID of a volume
-          type: integer
-      required:
-      - volume_id
-      - host_id
-      type: object
-    BlockMappingByPathPair:
-      properties:
-        host_id:
-          description: ID of a block host
-          type: integer
-        volume_full_path:
-          description: Full path of the volume.
-          type: string
-      required:
-      - volume_full_path
-      - host_id
-      type: object
-    PartialVolumeInfo:
-      properties:
-        id:
-          type: integer
-        name:
-          description: Path (volume name)
-          type: string
-      required:
-      - id
-      - name
-      type: object
   parameters:
-    BlockHostIdQP:
-      description: Mapped block host id to filter by.
-      in: query
-      name: block_host_id
-      schema:
-        type: integer
     PathObjectId:
       description: Object ID specified in the path
       in: path
@@ -182,11 +176,23 @@ components:
       required: true
       schema:
         type: string
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
     VolumeIdQP:
       description: Mapped volume id to filter by.
       in: query
       name: volume_id
       schema:
+        type: integer
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
         type: integer
     TenantIdQP:
       description: Filter by tenant. Specify tenant ID.
@@ -195,17 +201,11 @@ components:
       schema:
         minimum: 1
         type: integer
-    PageSize:
+    BlockHostIdQP:
+      description: Mapped block host id to filter by.
       in: query
-      name: page_size
+      name: block_host_id
       schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
         type: integer
   securitySchemes:
     ApiToken:

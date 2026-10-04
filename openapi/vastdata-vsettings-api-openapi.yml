@@ -57,6 +57,26 @@ paths:
       tags:
       - vsettings
 components:
+  schemas:
+    ModifyVsettingsParams:
+      properties:
+        vsettings:
+          $ref: '#/components/schemas/ArbitraryStringsObject'
+      required:
+      - vsettings
+      type: object
+    DeleteVsettingParams:
+      properties:
+        key:
+          description: vsetting key
+          type: string
+      required:
+      - key
+      type: object
+    ArbitraryStringsObject:
+      additionalProperties:
+        type: string
+      type: object
   parameters:
     ClusterId:
       in: path
@@ -71,26 +91,6 @@ components:
       name: key
       schema:
         type: string
-  schemas:
-    ArbitraryStringsObject:
-      additionalProperties:
-        type: string
-      type: object
-    DeleteVsettingParams:
-      properties:
-        key:
-          description: vsetting key
-          type: string
-      required:
-      - key
-      type: object
-    ModifyVsettingsParams:
-      properties:
-        vsettings:
-          $ref: '#/components/schemas/ArbitraryStringsObject'
-      required:
-      - vsettings
-      type: object
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

@@ -75,7 +75,23 @@ paths:
       tags:
       - Config
 components:
+  parameters:
+    DynamicConfigKey:
+      description: Dynamic Config key to filter by
+      in: path
+      name: key
+      required: true
+      schema:
+        type: string
   schemas:
+    ModifyDynamicKeyParams:
+      properties:
+        value:
+          description: The equivalent JSON-serialized of the config value
+          type: string
+      required:
+      - value
+      type: object
     DynamicConfig:
       properties:
         is_modified:
@@ -94,22 +110,6 @@ components:
       - key
       - is_modified
       type: object
-    ModifyDynamicKeyParams:
-      properties:
-        value:
-          description: The equivalent JSON-serialized of the config value
-          type: string
-      required:
-      - value
-      type: object
-  parameters:
-    DynamicConfigKey:
-      description: Dynamic Config key to filter by
-      in: path
-      name: key
-      required: true
-      schema:
-        type: string
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

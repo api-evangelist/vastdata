@@ -159,6 +159,12 @@ paths:
       - encryptiongroups
 components:
   parameters:
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
     EncryptionGroupId:
       in: path
       name: id
@@ -169,12 +175,6 @@ components:
     PageSize:
       in: query
       name: page_size
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
       schema:
         minimum: 1
         type: integer

@@ -61,14 +61,6 @@ paths:
       tags:
       - Locks
 components:
-  parameters:
-    ClusterId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
   schemas:
     Lock:
       properties:
@@ -140,12 +132,6 @@ components:
           type: string
           x-cli-header: Unlock ID
       type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
     TenantIdBody:
       minimum: 1
       properties:
@@ -185,6 +171,12 @@ components:
             - SINGLE
             - ALL
             type: string
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
   requestBodies:
     ClusterLocksParamsBody:
       content:
@@ -198,6 +190,14 @@ components:
           schema:
             $ref: '#/components/schemas/ClusterLocksRequestParams'
       x-originalParamName: ClusterLocksRequestParamsBody
+  parameters:
+    ClusterId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

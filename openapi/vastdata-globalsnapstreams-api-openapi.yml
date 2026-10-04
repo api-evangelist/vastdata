@@ -268,6 +268,16 @@ paths:
       - globalsnapstreams
 components:
   schemas:
+    AsyncGlobalSnapStream:
+      allOf:
+      - $ref: '#/components/schemas/GlobalSnapStream'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
     GlobalSnapStream:
       properties:
         bw:
@@ -358,16 +368,6 @@ components:
         view_replication_enabled:
           description: Whether view replication is enabled
           type: boolean
-      type: object
-    AsyncGlobalSnapStream:
-      allOf:
-      - $ref: '#/components/schemas/GlobalSnapStream'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
       type: object
   securitySchemes:
     ApiToken:

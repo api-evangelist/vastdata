@@ -1146,23 +1146,23 @@ components:
       schema:
         minimum: 1
         type: integer
-    NestedTenantId:
-      description: ID of a Tenant
-      in: path
-      name: tenant_id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
     NameIContainsQP:
       description: Name to filter by
       in: query
       name: name__icontains
       schema:
         type: string
-    Page:
+    PageSize:
       in: query
-      name: page
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    NestedTenantId:
+      description: ID of a Tenant
+      in: path
+      name: tenant_id
+      required: true
       schema:
         minimum: 1
         type: integer
@@ -1173,167 +1173,19 @@ components:
       required: true
       schema:
         type: string
-    PageSize:
+    Page:
       in: query
-      name: page_size
+      name: page
       schema:
         minimum: 1
         type: integer
   schemas:
-    TenantMetricLabel:
-      properties:
-        created_at:
-          description: Timestamp when the metric label was created.
-          format: date-time
-          readOnly: true
-          type: string
-          x-format: datetime2display
-        default_value:
-          description: The default value for this metric label.
-          maxLength: 64
-          type: string
-        description:
-          description: Description of the metric label purpose.
-          maxLength: 1024
-          type: string
-        id:
-          readOnly: true
-          type: integer
-        key:
-          description: The unique key for the metric label.
-          maxLength: 32
-          type: string
-      required:
-      - key
-      - default_value
-      - description
-      type: object
-    NFS4DelegateInfo:
-      properties:
-        client_id:
-          description: Tenant ID
-          type: integer
-        delegation_stateid:
-          type: integer
-        delegation_type:
-          enum:
-          - NONE
-          - READ
-          - WRITE
-          - WRITE_ATTRS_DELEG
-          type: string
-        list_open_handles_task:
-          $ref: '#/components/schemas/PartialVTask'
-        revoke_in_progress:
-          type: boolean
-        vip_addr:
-          type: string
-      type: object
-    PartialTenantMetricLabel:
-      properties:
-        id:
-          type: integer
-        key:
-          type: string
-      readOnly: true
-      type: object
-    VIPPoolIPRanges:
-      description: Array of IP ranges of VIP Pools that can be used with the tenant.
-      properties:
-        vippool_ip_ranges:
-          items:
-            example: 172.20.16.1 - 172.20.16.16
-            type: string
-          type: array
-          x-cli-header: VIP Pools IP ranges
-      type: object
-    Column:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          field:
-            description: Column type
-            example:
-              column_type: map
-              key_type:
-                column_type: bool
-              value_type:
-                column_type: bool
-            type: object
-          raw_field:
-            description: Raw description of column type
-            example: map<bool, bool>
-            type: string
-        required:
-        - field
-        - raw_field
-        type: object
     TruncatedQOS:
       properties:
         static_limits:
           $ref: '#/components/schemas/TruncatedQOSStaticLimits'
       required:
       - static_limits
-      type: object
-    TenantMetricLabelValue:
-      properties:
-        created_at:
-          description: Timestamp when the metric label value was created.
-          format: date-time
-          readOnly: true
-          type: string
-          x-format: datetime2display
-        id:
-          readOnly: true
-          type: integer
-        label:
-          $ref: '#/components/schemas/PartialTenantMetricLabel'
-        value:
-          description: The value for this metric label for the tenant.
-          maxLength: 64
-          type: string
-      required:
-      - value
-      type: object
-    ErrorResponse:
-      properties:
-        detail:
-          example: Failed to rotate encryption group key.
-          type: string
-      type: object
-    LocalProviderData:
-      properties:
-        id:
-          description: ID of the local provider
-          type: integer
-          x-cli-header: ID
-        name:
-          description: Name of the local provider
-          type: string
-      type: object
-    CapacityRules:
-      properties:
-        grace_period:
-          description: Quota enforcement grace period for tenant capacity limit, in seconds
-          type: string
-        hard_limit:
-          description: Capacity hard limit for the tenant
-          type: integer
-        hard_limit_inodes:
-          description: Hard limit on the number of files or directories for the tenant
-          type: integer
-        notify_hard_limit:
-          description: Notify on reaching hard limit
-          type: boolean
-        notify_soft_limit:
-          description: Notify on reaching soft limit
-          type: boolean
-        soft_limit:
-          description: Capacity soft limit for the tenant
-          type: integer
-        soft_limit_inodes:
-          description: Soft limit on the number of files or directories for the tenant
-          type: integer
       type: object
     TenantClientMetrics:
       properties:
@@ -1382,167 +1234,6 @@ components:
           x-format: datetime2display
         state:
           description: Task state
-          type: string
-      type: object
-    TruncatedQOSStaticLimits:
-      properties:
-        burst_reads_bw_mb:
-          default: 0
-          description: Burst reads BW Mb
-          minimum: 0
-          type: integer
-        burst_reads_iops:
-          default: 0
-          description: Burst reads IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_iops:
-          default: 0
-          description: Burst reads loan IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_mb:
-          default: 0
-          description: Burst reads loan Mb
-          minimum: 0
-          type: integer
-        burst_writes_bw_mb:
-          default: 0
-          description: Burst writes BW Mb
-          minimum: 0
-          type: integer
-        burst_writes_iops:
-          default: 0
-          description: Burst writes IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_iops:
-          default: 0
-          description: Burst writes loan IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_mb:
-          default: 0
-          description: Burst writes loan Mb
-          minimum: 0
-          type: integer
-        max_reads_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_reads_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-      required:
-      - max_reads_bw_mbps
-      - max_writes_bw_mbps
-      - max_reads_iops
-      - max_writes_iops
-      - burst_reads_bw_mb
-      - burst_writes_bw_mb
-      - burst_reads_loan_mb
-      - burst_writes_loan_mb
-      - burst_reads_iops
-      - burst_writes_iops
-      - burst_reads_loan_iops
-      - burst_writes_loan_iops
-      type: object
-    Warnings:
-      properties:
-        warnings:
-          items:
-            example: 'Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant=''default'', path=''/test'')'
-            type: string
-          type: array
-      required:
-      - warnings
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    RequestTruncatedQOS:
-      properties:
-        static_limits:
-          $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
-      type: object
-    TabularColumnArrowSchema:
-      properties:
-        field:
-          description: Column type
-          example:
-            column_type: map
-            key_type:
-              column_type: bool
-            value_type:
-              column_type: bool
-          properties:
-            column_type:
-              type: string
-            key_type:
-              description: Column type for the map key (only when `column_type` is "map")
-              properties:
-                column_type:
-                  description: The type of the key (e.g., "string", "bool")
-                  type: string
-              type: object
-            value_type:
-              description: Column type for the map value (only when `column_type` is "map")
-              properties:
-                column_type:
-                  description: The type of the value (e.g., "string", "bool")
-                  type: string
-              type: object
-          type: object
-        name:
-          description: Name of the object
-          type: string
-      required:
-      - name
-      - field
-      type: object
-    TabularTableHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-        table_name:
-          description: Name of the Table
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - table_name
-      - name
-      type: object
-    RemoteTenant:
-      properties:
-        guid:
-          description: Remote Tenant guid
-          type: string
-        name:
-          description: Remote Tenant name
           type: string
       type: object
     Tenant:
@@ -1823,6 +1514,108 @@ components:
         xeystore_pagination_next_client_id:
           type: integer
       type: object
+    CapacityRules:
+      properties:
+        grace_period:
+          description: Quota enforcement grace period for tenant capacity limit, in seconds
+          type: string
+        hard_limit:
+          description: Capacity hard limit for the tenant
+          type: integer
+        hard_limit_inodes:
+          description: Hard limit on the number of files or directories for the tenant
+          type: integer
+        notify_hard_limit:
+          description: Notify on reaching hard limit
+          type: boolean
+        notify_soft_limit:
+          description: Notify on reaching soft limit
+          type: boolean
+        soft_limit:
+          description: Capacity soft limit for the tenant
+          type: integer
+        soft_limit_inodes:
+          description: Soft limit on the number of files or directories for the tenant
+          type: integer
+      type: object
+    TenantMetricLabelValues:
+      additionalProperties:
+        maxLength: 64
+        type: string
+      description: Custom labels to be exposed in Prometheus metrics.
+      example:
+        customer: acme
+        region: us-west
+      type: object
+    TenantMetricLabel:
+      properties:
+        created_at:
+          description: Timestamp when the metric label was created.
+          format: date-time
+          readOnly: true
+          type: string
+          x-format: datetime2display
+        default_value:
+          description: The default value for this metric label.
+          maxLength: 64
+          type: string
+        description:
+          description: Description of the metric label purpose.
+          maxLength: 1024
+          type: string
+        id:
+          readOnly: true
+          type: integer
+        key:
+          description: The unique key for the metric label.
+          maxLength: 32
+          type: string
+      required:
+      - key
+      - default_value
+      - description
+      type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    TabularColumnArrowSchema:
+      properties:
+        field:
+          description: Column type
+          example:
+            column_type: map
+            key_type:
+              column_type: bool
+            value_type:
+              column_type: bool
+          properties:
+            column_type:
+              type: string
+            key_type:
+              description: Column type for the map key (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the key (e.g., "string", "bool")
+                  type: string
+              type: object
+            value_type:
+              description: Column type for the map value (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the value (e.g., "string", "bool")
+                  type: string
+              type: object
+          type: object
+        name:
+          description: Name of the object
+          type: string
+      required:
+      - name
+      - field
+      type: object
     RequestTruncatedQOSStaticLimits:
       description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
       properties:
@@ -1887,14 +1680,221 @@ components:
           minimum: 0
           type: integer
       type: object
-    TenantMetricLabelValues:
-      additionalProperties:
-        maxLength: 64
-        type: string
-      description: Custom labels to be exposed in Prometheus metrics.
-      example:
-        customer: acme
-        region: us-west
+    RequestTruncatedQOS:
+      properties:
+        static_limits:
+          $ref: '#/components/schemas/RequestTruncatedQOSStaticLimits'
+      type: object
+    LocalProviderData:
+      properties:
+        id:
+          description: ID of the local provider
+          type: integer
+          x-cli-header: ID
+        name:
+          description: Name of the local provider
+          type: string
+      type: object
+    Warnings:
+      properties:
+        warnings:
+          items:
+            example: 'Are you sure you want to remove Active Directory allowed for SMB? There are views with SMB in the list of protocols attached to tenants using this AD: view (tenant=''default'', path=''/test'')'
+            type: string
+          type: array
+      required:
+      - warnings
+      type: object
+    TenantMetricLabelValue:
+      properties:
+        created_at:
+          description: Timestamp when the metric label value was created.
+          format: date-time
+          readOnly: true
+          type: string
+          x-format: datetime2display
+        id:
+          readOnly: true
+          type: integer
+        label:
+          $ref: '#/components/schemas/PartialTenantMetricLabel'
+        value:
+          description: The value for this metric label for the tenant.
+          maxLength: 64
+          type: string
+      required:
+      - value
+      type: object
+    VIPPoolIPRanges:
+      description: Array of IP ranges of VIP Pools that can be used with the tenant.
+      properties:
+        vippool_ip_ranges:
+          items:
+            example: 172.20.16.1 - 172.20.16.16
+            type: string
+          type: array
+          x-cli-header: VIP Pools IP ranges
+      type: object
+    NFS4DelegateInfo:
+      properties:
+        client_id:
+          description: Tenant ID
+          type: integer
+        delegation_stateid:
+          type: integer
+        delegation_type:
+          enum:
+          - NONE
+          - READ
+          - WRITE
+          - WRITE_ATTRS_DELEG
+          type: string
+        list_open_handles_task:
+          $ref: '#/components/schemas/PartialVTask'
+        revoke_in_progress:
+          type: boolean
+        vip_addr:
+          type: string
+      type: object
+    RemoteTenant:
+      properties:
+        guid:
+          description: Remote Tenant guid
+          type: string
+        name:
+          description: Remote Tenant name
+          type: string
+      type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
+          type: string
+      type: object
+    TruncatedQOSStaticLimits:
+      properties:
+        burst_reads_bw_mb:
+          default: 0
+          description: Burst reads BW Mb
+          minimum: 0
+          type: integer
+        burst_reads_iops:
+          default: 0
+          description: Burst reads IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_iops:
+          default: 0
+          description: Burst reads loan IOPS
+          minimum: 0
+          type: integer
+        burst_reads_loan_mb:
+          default: 0
+          description: Burst reads loan Mb
+          minimum: 0
+          type: integer
+        burst_writes_bw_mb:
+          default: 0
+          description: Burst writes BW Mb
+          minimum: 0
+          type: integer
+        burst_writes_iops:
+          default: 0
+          description: Burst writes IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_iops:
+          default: 0
+          description: Burst writes loan IOPS
+          minimum: 0
+          type: integer
+        burst_writes_loan_mb:
+          default: 0
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      required:
+      - max_reads_bw_mbps
+      - max_writes_bw_mbps
+      - max_reads_iops
+      - max_writes_iops
+      - burst_reads_bw_mb
+      - burst_writes_bw_mb
+      - burst_reads_loan_mb
+      - burst_writes_loan_mb
+      - burst_reads_iops
+      - burst_writes_iops
+      - burst_reads_loan_iops
+      - burst_writes_loan_iops
+      type: object
+    PartialTenantMetricLabel:
+      properties:
+        id:
+          type: integer
+        key:
+          type: string
+      readOnly: true
       type: object
   securitySchemes:
     ApiToken:

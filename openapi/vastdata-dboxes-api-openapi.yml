@@ -336,12 +336,6 @@ paths:
       - dboxes
 components:
   schemas:
-    ErrorResponse:
-      properties:
-        detail:
-          example: Failed to rotate encryption group key.
-          type: string
-      type: object
     AsyncTaskInResponse:
       properties:
         async_task:
@@ -420,6 +414,12 @@ components:
           type: string
       required:
       - name
+      type: object
+    ErrorResponse:
+      properties:
+        detail:
+          example: Failed to rotate encryption group key.
+          type: string
       type: object
   securitySchemes:
     ApiToken:

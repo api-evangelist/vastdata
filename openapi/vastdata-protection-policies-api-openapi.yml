@@ -218,6 +218,30 @@ components:
           description: Remote Tenant name
           type: string
       type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+    Frame:
+      properties:
+        every:
+          example: 30m
+          type: string
+        keep-local:
+          example: 30m
+          type: string
+        keep-remote:
+          example: 30m
+          type: string
+        start-at:
+          example: '2021-02-03 01:02:03'
+          type: string
+      type: object
     ProtectionPolicy:
       properties:
         clone_type:
@@ -306,30 +330,6 @@ components:
       - prefix
       - frames
       - clone_type
-      type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
-      type: object
-    Frame:
-      properties:
-        every:
-          example: 30m
-          type: string
-        keep-local:
-          example: 30m
-          type: string
-        keep-remote:
-          example: 30m
-          type: string
-        start-at:
-          example: '2021-02-03 01:02:03'
-          type: string
       type: object
   securitySchemes:
     ApiToken:

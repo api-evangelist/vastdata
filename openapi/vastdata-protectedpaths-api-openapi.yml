@@ -717,32 +717,24 @@ paths:
       - protectedpaths
 components:
   schemas:
-    ReplicationMemberInfo:
+    AsyncGlobalSnapStream:
+      allOf:
+      - $ref: '#/components/schemas/GlobalSnapStream'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    ConflictResponse:
       properties:
-        capabilities:
+        code:
+          example: Conflict reason code.
           type: string
-        role:
-          type: string
-        state:
+        detail:
+          example: The request could not be completed due to a conflict with the current state of the target resource.
           type: string
       type: object
-    PrefetchFolderStatusResponse:
+    PrefetchFolderResponse:
       properties:
         code:
           description: Result code
           type: string
-        inodes_retrieved:
-          description: Number of retrieved inodes (files and directories)
-          type: integer
-        path:
-          description: Prefetched path
-          type: string
-        prefetch_type:
-          description: Prefetch type
-          type: string
-        size_retrieved:
-          description: Retrieved size
-          type: integer
         task_id:
           description: Prefetch task ID
           type: integer
@@ -838,25 +830,36 @@ components:
           description: Whether view replication is enabled
           type: boolean
       type: object
-    PrefetchFolderResponse:
+    PrefetchFolderStatusResponse:
       properties:
         code:
           description: Result code
           type: string
+        inodes_retrieved:
+          description: Number of retrieved inodes (files and directories)
+          type: integer
+        path:
+          description: Prefetched path
+          type: string
+        prefetch_type:
+          description: Prefetch type
+          type: string
+        size_retrieved:
+          description: Retrieved size
+          type: integer
         task_id:
           description: Prefetch task ID
           type: integer
       type: object
-    AsyncTaskInResponse:
+    ReplicationMemberInfo:
       properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
+        capabilities:
+          type: string
+        role:
+          type: string
+        state:
+          type: string
       type: object
-    AsyncGlobalSnapStream:
-      allOf:
-      - $ref: '#/components/schemas/GlobalSnapStream'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
     ProtectedPath:
       properties:
         aggr_phys_estimation:
@@ -1062,25 +1065,22 @@ components:
       - name
       - source_dir
       type: object
-    ConflictResponse:
+    AsyncTaskInResponse:
       properties:
-        code:
-          example: Conflict reason code.
-          type: string
-        detail:
-          example: The request could not be completed due to a conflict with the current state of the target resource.
-          type: string
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   parameters:
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
     PageSize:
       in: query
       name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
       schema:
         minimum: 1
         type: integer

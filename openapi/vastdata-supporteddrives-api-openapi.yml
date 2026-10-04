@@ -150,6 +150,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SupportedDrive:
+      properties:
+        drive_type:
+          type: string
+        id:
+          type: integer
+        model_name:
+          type: string
+        raw_data:
+          $ref: '#/components/schemas/SupportedDriveInput'
+        synced:
+          type: boolean
+      type: object
+    SupportedPlatformInput:
+      properties:
+        default_section_layout:
+          type: string
+        name:
+          type: string
+        ssd_capacity_tb:
+          type: integer
+      type: object
     SupportedDriveInput:
       properties:
         capacity_tb:
@@ -173,28 +195,6 @@ components:
           type: string
         type:
           type: string
-      type: object
-    SupportedPlatformInput:
-      properties:
-        default_section_layout:
-          type: string
-        name:
-          type: string
-        ssd_capacity_tb:
-          type: integer
-      type: object
-    SupportedDrive:
-      properties:
-        drive_type:
-          type: string
-        id:
-          type: integer
-        model_name:
-          type: string
-        raw_data:
-          $ref: '#/components/schemas/SupportedDriveInput'
-        synced:
-          type: boolean
       type: object
   securitySchemes:
     ApiToken:

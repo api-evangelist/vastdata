@@ -205,18 +205,6 @@ components:
       name: force
       schema:
         type: boolean
-    BlockHostNqnQP:
-      description: NQN of the blockhost
-      in: query
-      name: nqn
-      schema:
-        type: string
-    BlockHostNameQP:
-      description: name of the blockhost
-      in: query
-      name: name
-      schema:
-        type: string
     PathObjectId:
       description: Object ID specified in the path
       in: path
@@ -224,22 +212,34 @@ components:
       required: true
       schema:
         type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
     PageSize:
       in: query
       name: page_size
       schema:
         minimum: 1
         type: integer
+    BlockHostNameQP:
+      description: name of the blockhost
+      in: query
+      name: name
+      schema:
+        type: string
     Page:
       in: query
       name: page
+      schema:
+        minimum: 1
+        type: integer
+    BlockHostNqnQP:
+      description: NQN of the blockhost
+      in: query
+      name: nqn
+      schema:
+        type: string
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
       schema:
         minimum: 1
         type: integer

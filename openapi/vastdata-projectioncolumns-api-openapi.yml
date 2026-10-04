@@ -60,41 +60,6 @@ paths:
       - projectioncolumns
 components:
   parameters:
-    TabularPageSize:
-      in: query
-      name: page_size
-      schema:
-        default: 999
-        maximum: 999
-        minimum: 1
-        type: integer
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
-      in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    TabularNameStartswithQP:
-      description: Getting list of objects by prefix match
-      in: query
-      name: name__startswith
-      schema:
-        type: string
-    TabularTableNameQP:
-      description: Getting list of objects by table_name
-      in: query
-      name: table_name
-      required: true
-      schema:
-        type: string
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
     TabularSchemaNameQP:
       description: Getting list of objects by schema_name
       in: query
@@ -102,17 +67,44 @@ components:
       required: true
       schema:
         type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
     TabularProjectionNameQP:
       description: Getting list of objects by projection_name
       in: query
       name: projection_name
+      required: true
+      schema:
+        type: string
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
+    TabularNameStartswithQP:
+      description: Getting list of objects by prefix match
+      in: query
+      name: name__startswith
+      schema:
+        type: string
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
       required: true
       schema:
         type: string
@@ -128,13 +120,21 @@ components:
       name: name
       schema:
         type: string
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
+    TabularPageSize:
       in: query
-      name: database_name
-      required: true
+      name: page_size
       schema:
-        type: string
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
   schemas:
     ProjectionColumn:
       allOf:

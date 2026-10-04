@@ -205,6 +205,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
     TLSCertificate:
       properties:
         ca_certificate_name:
@@ -262,25 +271,13 @@ components:
       required:
       - warnings
       type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
-      type: object
   parameters:
-    ProtocolsContain:
-      description: Protocol to see
+    NoneTenant:
+      description: Filter by global certificate
       in: query
-      name: protocols__icontains
+      name: tenant__isnull
       schema:
-        enum:
-        - NFS
-        - KAFKA
-        type: string
+        type: boolean
     PathId:
       in: path
       name: id
@@ -294,18 +291,21 @@ components:
       schema:
         minimum: 1
         type: integer
+    ProtocolsContain:
+      description: Protocol to see
+      in: query
+      name: protocols__icontains
+      schema:
+        enum:
+        - NFS
+        - KAFKA
+        type: string
     Page:
       in: query
       name: page
       schema:
         minimum: 1
         type: integer
-    NoneTenant:
-      description: Filter by global certificate
-      in: query
-      name: tenant__isnull
-      schema:
-        type: boolean
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

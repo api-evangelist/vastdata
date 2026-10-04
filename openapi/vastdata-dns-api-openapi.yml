@@ -179,58 +179,6 @@ paths:
       - DNS
 components:
   schemas:
-    BaseDNSCreateParams:
-      properties:
-        cnode_ids:
-          description: To dedicate a specific group of CNodes to the DNS, list the IDs of the CNodes.
-          items:
-            type: integer
-          type: array
-        domain_suffix:
-          description: A suffix for domain names. Requests for domain names with this suffix are resolved to the VIPs configured on the cluster.
-          type: string
-        enabled:
-          description: Set to true to enable the DNS service
-          type: boolean
-        invalid_name_response:
-          enum:
-          - NXDOMAIN
-          - REFUSED
-          - SERVFAIL
-          - NOERROR
-          type: string
-        invalid_type_response:
-          enum:
-          - NXDOMAIN
-          - REFUSED
-          - SERVFAIL
-          - NOERROR
-          type: string
-        name:
-          description: A name for the DNS server configuration
-          type: string
-        net_type:
-          enum:
-          - NORTH_PORT
-          - SOUTH_PORT
-          - EXTERNAL_PORT
-          type: string
-        port:
-          description: Specifies a port for the DNS
-          type: integer
-        ttl:
-          description: Specifies the TTL value for the DNS.
-          type: integer
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    DNSAllocateParams:
-      allOf:
-      - $ref: '#/components/schemas/BaseDNSCreateParams'
     DNS:
       properties:
         bgp_config_id:
@@ -321,6 +269,58 @@ components:
       required:
       - vip
       type: object
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    BaseDNSCreateParams:
+      properties:
+        cnode_ids:
+          description: To dedicate a specific group of CNodes to the DNS, list the IDs of the CNodes.
+          items:
+            type: integer
+          type: array
+        domain_suffix:
+          description: A suffix for domain names. Requests for domain names with this suffix are resolved to the VIPs configured on the cluster.
+          type: string
+        enabled:
+          description: Set to true to enable the DNS service
+          type: boolean
+        invalid_name_response:
+          enum:
+          - NXDOMAIN
+          - REFUSED
+          - SERVFAIL
+          - NOERROR
+          type: string
+        invalid_type_response:
+          enum:
+          - NXDOMAIN
+          - REFUSED
+          - SERVFAIL
+          - NOERROR
+          type: string
+        name:
+          description: A name for the DNS server configuration
+          type: string
+        net_type:
+          enum:
+          - NORTH_PORT
+          - SOUTH_PORT
+          - EXTERNAL_PORT
+          type: string
+        port:
+          description: Specifies a port for the DNS
+          type: integer
+        ttl:
+          description: Specifies the TTL value for the DNS.
+          type: integer
+      type: object
+    DNSAllocateParams:
+      allOf:
+      - $ref: '#/components/schemas/BaseDNSCreateParams'
     DNSCreateParams:
       allOf:
       - $ref: '#/components/schemas/BaseDNSCreateParams'

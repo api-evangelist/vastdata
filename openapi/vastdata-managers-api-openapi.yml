@@ -307,14 +307,6 @@ paths:
       tags:
       - Managers
 components:
-  parameters:
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
   schemas:
     PartialTenantInfo:
       properties:
@@ -405,6 +397,14 @@ components:
       - password
       - roles
       type: object
+  parameters:
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

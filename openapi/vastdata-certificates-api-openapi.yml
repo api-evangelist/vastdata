@@ -164,14 +164,6 @@ paths:
       summary: Certificates partial update
       x-summary-source: derived
 components:
-  parameters:
-    PathId:
-      in: path
-      name: id
-      required: true
-      schema:
-        minimum: 1
-        type: integer
   schemas:
     Certificate:
       properties:
@@ -203,6 +195,14 @@ components:
         state:
           type: string
       type: object
+  parameters:
+    PathId:
+      in: path
+      name: id
+      required: true
+      schema:
+        minimum: 1
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

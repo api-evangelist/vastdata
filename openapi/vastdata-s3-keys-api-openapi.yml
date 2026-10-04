@@ -55,6 +55,8 @@ paths:
       - S3 Keys
 components:
   schemas:
+    AccessKey:
+      type: object
     UserKeyPair:
       properties:
         access_key:
@@ -63,8 +65,6 @@ components:
         secret_key:
           description: S3 secret key, needed to authenticate S3 client requests
           type: string
-      type: object
-    AccessKey:
       type: object
   securitySchemes:
     ApiToken:

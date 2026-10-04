@@ -204,18 +204,16 @@ paths:
       - vastcatalogconfig
 components:
   parameters:
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
+    Limit:
       in: query
-      name: tenant_id
+      name: limit
       schema:
-        minimum: 1
+        default: 1000
         type: integer
-    VastCatalogPathQP:
-      description: Target source path
+    VastCatalogSnapshotNameQP:
+      description: The name of the snapshot, the latest version is taken by default
       in: query
-      name: path
-      required: true
+      name: snapshot
       schema:
         type: string
     Ordering:
@@ -225,10 +223,24 @@ components:
         items:
           type: string
         type: array
-    VastCatalogSnapshotNameQP:
-      description: The name of the snapshot, the latest version is taken by default
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
       in: query
-      name: snapshot
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
+    VastDBFiltersQP:
+      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
+      in: query
+      name: filters
+      schema:
+        type: string
+    VastCatalogPathQP:
+      description: Target source path
+      in: query
+      name: path
+      required: true
       schema:
         type: string
     Page:
@@ -237,18 +249,6 @@ components:
       schema:
         minimum: 1
         type: integer
-    Limit:
-      in: query
-      name: limit
-      schema:
-        default: 1000
-        type: integer
-    VastDBFiltersQP:
-      description: "URL-encoded JSON-string - actually an encoded mapping. Keys are column names.\nE.g. `{\"creation_time\": [{\"gt\": \"1727863200000\"}, {\"lt\": \"1729591200000\"}],\n       \"atime\": [{\"gt\": \"1727776800000\", \"lt\": \"1729591200000\"}]}'`.\nElements within a list per column are OR'ed, elements withing a map inside a list are AND'ed.\n"
-      in: query
-      name: filters
-      schema:
-        type: string
     VastCatalogFieldsQP:
       description: Defines which fields should be displayed
       in: query
@@ -268,78 +268,7 @@ components:
         items:
           type: string
         type: array
-  requestBodies:
-    VastCatalogConfigQueryData:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/VastCatalogQueryDataInputSchema'
-      x-originalParamName: VastCatalogConfigQueryData
   schemas:
-    Column:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          field:
-            description: Column type
-            example:
-              column_type: map
-              key_type:
-                column_type: bool
-              value_type:
-                column_type: bool
-            type: object
-          raw_field:
-            description: Raw description of column type
-            example: map<bool, bool>
-            type: string
-        required:
-        - field
-        - raw_field
-        type: object
-    QueryDataOutputSchema:
-      properties:
-        count:
-          description: Number of rows in data
-          type: integer
-        next:
-          description: Link to the next page
-          type: string
-        prop_list:
-          description: List of column names
-          items:
-            type: string
-          type: array
-        results:
-          description: List of query data rows
-          items:
-            type: string
-          type: array
-      type: object
-    PartialTenantInfo:
-      properties:
-        id:
-          description: Tenant ID
-          type: integer
-        name:
-          description: Tenant Name
-          type: string
-      type: object
-    Frame:
-      properties:
-        every:
-          example: 30m
-          type: string
-        keep-local:
-          example: 30m
-          type: string
-        keep-remote:
-          example: 30m
-          type: string
-        start-at:
-          example: '2021-02-03 01:02:03'
-          type: string
-      type: object
     VastCatalogConfig:
       allOf:
       - $ref: '#/components/schemas/ProtectionPolicy'
@@ -347,33 +276,6 @@ components:
           enable:
             description: Flag indicating the status of vast catalog config
             type: boolean
-    Stats:
-      properties:
-        count_columns:
-          type: integer
-        count_rows:
-          type: integer
-      type: object
-    TabularTableHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-        table_name:
-          description: Name of the Table
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - table_name
-      - name
-      type: object
     BaseQueryDataInputSchema:
       properties:
         fields:
@@ -387,13 +289,52 @@ components:
       required:
       - filters
       type: object
-    RemoteTenant:
+    VastCatalogQueryDataInputSchema:
+      allOf:
+      - $ref: '#/components/schemas/BaseQueryDataInputSchema'
+      - properties:
+          fields:
+            default:
+            - parent_path
+            - name
+            - size
+            - mtime
+            - owner_name
+            - uid
+            - owner_sid
+            - group_owner_name
+            - gid
+            - group_owner_sid
+            description: Defines which fields should be displayed
+            items:
+              type: string
+            type: array
+          path:
+            description: Target source path
+            type: string
+          snapshot:
+            description: The name of the snapshot, the latest version is taken by default
+            type: string
+          tenant_id:
+            default: 0
+            description: Tenant ID
+            type: integer
+        required:
+        - path
+        type: object
+    Frame:
       properties:
-        guid:
-          description: Remote Tenant guid
+        every:
+          example: 30m
           type: string
-        name:
-          description: Remote Tenant name
+        keep-local:
+          example: 30m
+          type: string
+        keep-remote:
+          example: 30m
+          type: string
+        start-at:
+          example: '2021-02-03 01:02:03'
           type: string
       type: object
     ProtectionPolicy:
@@ -485,39 +426,98 @@ components:
       - frames
       - clone_type
       type: object
-    VastCatalogQueryDataInputSchema:
+    RemoteTenant:
+      properties:
+        guid:
+          description: Remote Tenant guid
+          type: string
+        name:
+          description: Remote Tenant name
+          type: string
+      type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+    Column:
       allOf:
-      - $ref: '#/components/schemas/BaseQueryDataInputSchema'
+      - $ref: '#/components/schemas/TabularTableHierarchy'
       - properties:
-          fields:
-            default:
-            - parent_path
-            - name
-            - size
-            - mtime
-            - owner_name
-            - uid
-            - owner_sid
-            - group_owner_name
-            - gid
-            - group_owner_sid
-            description: Defines which fields should be displayed
-            items:
-              type: string
-            type: array
-          path:
-            description: Target source path
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
             type: string
-          snapshot:
-            description: The name of the snapshot, the latest version is taken by default
-            type: string
-          tenant_id:
-            default: 0
-            description: Tenant ID
-            type: integer
         required:
-        - path
+        - field
+        - raw_field
         type: object
+    PartialTenantInfo:
+      properties:
+        id:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Tenant Name
+          type: string
+      type: object
+    QueryDataOutputSchema:
+      properties:
+        count:
+          description: Number of rows in data
+          type: integer
+        next:
+          description: Link to the next page
+          type: string
+        prop_list:
+          description: List of column names
+          items:
+            type: string
+          type: array
+        results:
+          description: List of query data rows
+          items:
+            type: string
+          type: array
+      type: object
+    Stats:
+      properties:
+        count_columns:
+          type: integer
+        count_rows:
+          type: integer
+      type: object
+  requestBodies:
+    VastCatalogConfigQueryData:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/VastCatalogQueryDataInputSchema'
+      x-originalParamName: VastCatalogConfigQueryData
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

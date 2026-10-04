@@ -81,26 +81,27 @@ paths:
       - Blob Expansions
 components:
   schemas:
-    TabularTableHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-        table_name:
-          description: Name of the Table
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - table_name
-      - name
-      type: object
+    BlobExpansionAddColumnsParams:
+      allOf:
+      - $ref: '#/components/schemas/BlobExpansionHierarchy'
+      - properties:
+          add_copy_source_column:
+            description: Add copy of the raw source column to target table
+            type: boolean
+          add_excessive_values_output:
+            description: Add an output column tracking source-blob fields not declared in the schema
+            type: boolean
+          add_missing_values_output:
+            description: Add an output column tracking schema fields missing from the source blob
+            type: boolean
+          arrow_schema:
+            description: Schema of the columns to add
+            items:
+              $ref: '#/components/schemas/TabularColumnArrowSchema'
+            type: array
+        required:
+        - arrow_schema
+        type: object
     BlobExpansionDropColumnsParams:
       allOf:
       - $ref: '#/components/schemas/BlobExpansionHierarchy'
@@ -125,34 +126,82 @@ components:
     BlobExpansionDeleteParams:
       allOf:
       - $ref: '#/components/schemas/BlobExpansionHierarchy'
-    BlobExpansionOutput:
+    TabularColumnArrowSchema:
       properties:
-        add_excessive_values_output:
-          description: Whether the excessive-values output column is present in the target table
-          type: boolean
-        add_missing_values_output:
-          description: Whether the missing-values output column is present in the target table
-          type: boolean
-        columns:
-          description: List of expanded columns
-          items:
-            $ref: '#/components/schemas/Column'
-          type: array
-        copy_source_column:
-          description: Whether the source column is copied to the target table
-          type: boolean
-        expansion_format:
-          description: Expansion format
-          enum:
-          - json
+        field:
+          description: Column type
+          example:
+            column_type: map
+            key_type:
+              column_type: bool
+            value_type:
+              column_type: bool
+          properties:
+            column_type:
+              type: string
+            key_type:
+              description: Column type for the map key (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the key (e.g., "string", "bool")
+                  type: string
+              type: object
+            value_type:
+              description: Column type for the map value (only when `column_type` is "map")
+              properties:
+                column_type:
+                  description: The type of the value (e.g., "string", "bool")
+                  type: string
+              type: object
+          type: object
+        name:
+          description: Name of the object
           type: string
-        source_column_name:
-          description: Source column name
-          type: string
-        target_table_name:
-          description: Target table name for expanded data
-          type: string
+      required:
+      - name
+      - field
       type: object
+    TabularTableHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+        table_name:
+          description: Name of the Table
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - table_name
+      - name
+      type: object
+    Column:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          field:
+            description: Column type
+            example:
+              column_type: map
+              key_type:
+                column_type: bool
+              value_type:
+                column_type: bool
+            type: object
+          raw_field:
+            description: Raw description of column type
+            example: map<bool, bool>
+            type: string
+        required:
+        - field
+        - raw_field
+        type: object
     BlobExpansionCreateParams:
       allOf:
       - $ref: '#/components/schemas/BlobExpansionHierarchy'
@@ -193,48 +242,34 @@ components:
         - expansion_format
         - arrow_schema
         type: object
-    BlobExpansionAddColumnsParams:
-      allOf:
-      - $ref: '#/components/schemas/BlobExpansionHierarchy'
-      - properties:
-          add_copy_source_column:
-            description: Add copy of the raw source column to target table
-            type: boolean
-          add_excessive_values_output:
-            description: Add an output column tracking source-blob fields not declared in the schema
-            type: boolean
-          add_missing_values_output:
-            description: Add an output column tracking schema fields missing from the source blob
-            type: boolean
-          arrow_schema:
-            description: Schema of the columns to add
-            items:
-              $ref: '#/components/schemas/TabularColumnArrowSchema'
-            type: array
-        required:
-        - arrow_schema
-        type: object
-    Column:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          field:
-            description: Column type
-            example:
-              column_type: map
-              key_type:
-                column_type: bool
-              value_type:
-                column_type: bool
-            type: object
-          raw_field:
-            description: Raw description of column type
-            example: map<bool, bool>
-            type: string
-        required:
-        - field
-        - raw_field
-        type: object
+    BlobExpansionOutput:
+      properties:
+        add_excessive_values_output:
+          description: Whether the excessive-values output column is present in the target table
+          type: boolean
+        add_missing_values_output:
+          description: Whether the missing-values output column is present in the target table
+          type: boolean
+        columns:
+          description: List of expanded columns
+          items:
+            $ref: '#/components/schemas/Column'
+          type: array
+        copy_source_column:
+          description: Whether the source column is copied to the target table
+          type: boolean
+        expansion_format:
+          description: Expansion format
+          enum:
+          - json
+          type: string
+        source_column_name:
+          description: Source column name
+          type: string
+        target_table_name:
+          description: Target table name for expanded data
+          type: string
+      type: object
     BlobExpansionHierarchy:
       properties:
         database_name:
@@ -253,78 +288,49 @@ components:
       - database_name
       - table_name
       type: object
-    TabularColumnArrowSchema:
-      properties:
-        field:
-          description: Column type
-          example:
-            column_type: map
-            key_type:
-              column_type: bool
-            value_type:
-              column_type: bool
-          properties:
-            column_type:
-              type: string
-            key_type:
-              description: Column type for the map key (only when `column_type` is "map")
-              properties:
-                column_type:
-                  description: The type of the key (e.g., "string", "bool")
-                  type: string
-              type: object
-            value_type:
-              description: Column type for the map value (only when `column_type` is "map")
-              properties:
-                column_type:
-                  description: The type of the value (e.g., "string", "bool")
-                  type: string
-              type: object
-          type: object
-        name:
-          description: Name of the object
-          type: string
-      required:
-      - name
-      - field
-      type: object
   requestBodies:
-    BlobExpansionDropColumnsParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/BlobExpansionDropColumnsParams'
-      x-originalParamName: BlobExpansionDropColumnsParamsBody
-    BlobExpansionDeleteParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/BlobExpansionDeleteParams'
-      x-originalParamName: BlobExpansionDeleteParamsBody
     BlobExpansionAddColumnsParamsBody:
       content:
         '*/*':
           schema:
             $ref: '#/components/schemas/BlobExpansionAddColumnsParams'
       x-originalParamName: BlobExpansionAddColumnsParamsBody
+    BlobExpansionDropColumnsParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionDropColumnsParams'
+      x-originalParamName: BlobExpansionDropColumnsParamsBody
     BlobExpansionCreateParamsBody:
       content:
         '*/*':
           schema:
             $ref: '#/components/schemas/BlobExpansionCreateParams'
       x-originalParamName: BlobExpansionCreateParamsBody
+    BlobExpansionDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/BlobExpansionDeleteParams'
+      x-originalParamName: BlobExpansionDeleteParamsBody
   parameters:
-    TabularTableNameQP:
-      description: Getting list of objects by table_name
+    TabularSourceColumnNameQP:
+      description: Source column name for blob expansion (defaults to "value" for Kafka topics)
       in: query
-      name: table_name
-      required: true
+      name: source_column_name
       schema:
         type: string
     TabularDatabaseNameQP:
       description: Getting list of objects by database_name
       in: query
       name: database_name
+      required: true
+      schema:
+        type: string
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
       required: true
       schema:
         type: string
@@ -335,12 +341,6 @@ components:
       schema:
         minimum: 1
         type: integer
-    TabularSourceColumnNameQP:
-      description: Source column name for blob expansion (defaults to "value" for Kafka topics)
-      in: query
-      name: source_column_name
-      schema:
-        type: string
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

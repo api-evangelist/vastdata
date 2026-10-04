@@ -234,16 +234,46 @@ paths:
       - QoS Policies
 components:
   schemas:
-    RequestQOSDynamicTotalLimits:
+    RequestQOSStaticTotalLimits:
       properties:
-        max_bw_mbps_per_gb_capacity:
+        burst_bw_mb:
           default: 0
-          description: Maximal amount of performance per GB to provide when there is no resource contention
+          description: Burst BW Mb
           minimum: 0
           type: integer
-        max_iops_per_gb_capacity:
+        burst_iops:
           default: 0
-          description: Maximal amount of performance per GB to provide when there is no resource contention
+          description: Burst IOPS
+          minimum: 0
+          type: integer
+        burst_loan_iops:
+          default: 0
+          description: Burst loan IOPS
+          minimum: 0
+          type: integer
+        burst_loan_mb:
+          default: 0
+          description: Burst loan Mb
+          minimum: 0
+          type: integer
+        max_bw_mbps:
+          default: 0
+          description: Maximal BW Mb/s
+          minimum: 0
+          type: integer
+        max_iops:
+          default: 0
+          description: Maximal IOPS
+          minimum: 0
+          type: integer
+        min_bw_mbps:
+          default: 0
+          description: Minimal BW Mb/s
+          minimum: 0
+          type: integer
+        min_iops:
+          default: 0
+          description: Minimal IOPS
           minimum: 0
           type: integer
       type: object
@@ -271,6 +301,19 @@ components:
           minimum: 0
           type: integer
       type: object
+    RequestQOSDynamicTotalLimits:
+      properties:
+        max_bw_mbps_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_iops_per_gb_capacity:
+          default: 0
+          description: Maximal amount of performance per GB to provide when there is no resource contention
+          minimum: 0
+          type: integer
+      type: object
     Warnings:
       properties:
         warnings:
@@ -280,70 +323,6 @@ components:
           type: array
       required:
       - warnings
-      type: object
-    RequestTruncatedQOSStaticLimits:
-      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
-      properties:
-        burst_reads_bw_mb:
-          default: 0
-          description: Burst reads BW Mb
-          minimum: 0
-          type: integer
-        burst_reads_iops:
-          default: 0
-          description: Burst reads IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_iops:
-          default: 0
-          description: Burst reads loan IOPS
-          minimum: 0
-          type: integer
-        burst_reads_loan_mb:
-          default: 0
-          description: Burst reads loan Mb
-          minimum: 0
-          type: integer
-        burst_writes_bw_mb:
-          default: 0
-          description: Burst writes BW Mb
-          minimum: 0
-          type: integer
-        burst_writes_iops:
-          default: 0
-          description: Burst writes IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_iops:
-          default: 0
-          description: Burst writes loan IOPS
-          minimum: 0
-          type: integer
-        burst_writes_loan_mb:
-          default: 0
-          description: Burst writes loan Mb
-          minimum: 0
-          type: integer
-        max_reads_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_reads_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_bw_mbps:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
-        max_writes_iops:
-          default: 0
-          description: Maximal amount of performance to provide when there is no resource contention
-          minimum: 0
-          type: integer
       type: object
     QOSPolicyCreateParams:
       allOf:
@@ -363,33 +342,6 @@ components:
         - name
         type: object
       - $ref: '#/components/schemas/QOSPolicyModifyParams'
-    AttachedUser:
-      properties:
-        fqdn:
-          description: The Fully Qualified Domain Name (FQDN) of the user's domain.
-          type: string
-        identifier_type:
-          description: The attribute used to identify the user.
-          enum:
-          - sid_str
-          - uid
-          - username
-          type: string
-        identifier_value:
-          description: The value of the identifying attribute for the user. Must be of the attribute specified as identifier_type.
-          type: string
-        label:
-          description: A label for the user
-          type: string
-        name:
-          description: User's name
-          type: string
-      required:
-      - name
-      - identifier_type
-      - identifier_value
-      - fqdn
-      type: object
     QOSPolicyModifyParams:
       properties:
         attached_users:
@@ -458,46 +410,94 @@ components:
             minimum: 0
             type: integer
         type: object
-    RequestQOSStaticTotalLimits:
+    AttachedUser:
       properties:
-        burst_bw_mb:
+        fqdn:
+          description: The Fully Qualified Domain Name (FQDN) of the user's domain.
+          type: string
+        identifier_type:
+          description: The attribute used to identify the user.
+          enum:
+          - sid_str
+          - uid
+          - username
+          type: string
+        identifier_value:
+          description: The value of the identifying attribute for the user. Must be of the attribute specified as identifier_type.
+          type: string
+        label:
+          description: A label for the user
+          type: string
+        name:
+          description: User's name
+          type: string
+      required:
+      - name
+      - identifier_type
+      - identifier_value
+      - fqdn
+      type: object
+    RequestTruncatedQOSStaticLimits:
+      description: 'Performance limits per view. Maximum limits define maximum provisioning in the absence of resource contention. Valid values: 0-4294967296. 0 means unlimited.'
+      properties:
+        burst_reads_bw_mb:
           default: 0
-          description: Burst BW Mb
+          description: Burst reads BW Mb
           minimum: 0
           type: integer
-        burst_iops:
+        burst_reads_iops:
           default: 0
-          description: Burst IOPS
+          description: Burst reads IOPS
           minimum: 0
           type: integer
-        burst_loan_iops:
+        burst_reads_loan_iops:
           default: 0
-          description: Burst loan IOPS
+          description: Burst reads loan IOPS
           minimum: 0
           type: integer
-        burst_loan_mb:
+        burst_reads_loan_mb:
           default: 0
-          description: Burst loan Mb
+          description: Burst reads loan Mb
           minimum: 0
           type: integer
-        max_bw_mbps:
+        burst_writes_bw_mb:
           default: 0
-          description: Maximal BW Mb/s
+          description: Burst writes BW Mb
           minimum: 0
           type: integer
-        max_iops:
+        burst_writes_iops:
           default: 0
-          description: Maximal IOPS
+          description: Burst writes IOPS
           minimum: 0
           type: integer
-        min_bw_mbps:
+        burst_writes_loan_iops:
           default: 0
-          description: Minimal BW Mb/s
+          description: Burst writes loan IOPS
           minimum: 0
           type: integer
-        min_iops:
+        burst_writes_loan_mb:
           default: 0
-          description: Minimal IOPS
+          description: Burst writes loan Mb
+          minimum: 0
+          type: integer
+        max_reads_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_reads_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_bw_mbps:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
+          minimum: 0
+          type: integer
+        max_writes_iops:
+          default: 0
+          description: Maximal amount of performance to provide when there is no resource contention
           minimum: 0
           type: integer
       type: object
@@ -721,15 +721,15 @@ components:
       schema:
         minimum: 1
         type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
     PageSize:
       in: query
       name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    Page:
+      in: query
+      name: page
       schema:
         minimum: 1
         type: integer

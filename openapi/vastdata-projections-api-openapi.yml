@@ -93,6 +93,20 @@ paths:
       - Projections
 components:
   parameters:
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    TabularTableNameQP:
+      description: Getting list of objects by table_name
+      in: query
+      name: table_name
+      required: true
+      schema:
+        type: string
     TabularPageSize:
       in: query
       name: page_size
@@ -101,50 +115,16 @@ components:
         maximum: 999
         minimum: 1
         type: integer
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
-    TabularNameQP:
-      description: Getting list of objects by exact match
-      in: query
-      name: name
-      schema:
-        type: string
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
-      in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
     TabularNameStartswithQP:
       description: Getting list of objects by prefix match
       in: query
       name: name__startswith
       schema:
         type: string
-    TabularTableNameQP:
-      description: Getting list of objects by table_name
+    TabularNameQP:
+      description: Getting list of objects by exact match
       in: query
-      name: table_name
-      required: true
+      name: name
       schema:
         type: string
     TabularSchemaNameQP:
@@ -161,56 +141,46 @@ components:
       required: true
       schema:
         type: string
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
   schemas:
-    DetailedProjection:
-      allOf:
-      - $ref: '#/components/schemas/Projection'
-      - properties:
-          initial_sync_progress:
-            description: Initial sync progress
-            type: integer
-            x-display-units: '%'
-            x-format: thousandths2percents
-        required:
-        - initial_sync_progress
-        type: object
-    ProjectionRenameParams:
+    ProjectionCreateParams:
       allOf:
       - $ref: '#/components/schemas/TabularTableHierarchy'
       - properties:
-          new_name:
-            description: New name of the Projection
-            type: string
+          sorted_columns:
+            description: The names of the columns in the projection (from the table) to use to sort the projection. The rows of the projection are sorted by these columns, in order of their listing.
+            items:
+              type: string
+            type: array
           tenant_id:
             description: Tenant ID
             type: integer
+          unsorted_columns:
+            description: The names of additional columns in the projection (from the table) beside those specified as sorted columns. You can specify any number of unsorted columns for the projection. They cannot include columns included in the sorted columns list.
+            items:
+              type: string
+            type: array
         required:
-        - new_name
-        type: object
-    Projection:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          num_rows:
-            description: Total number of rows
-            type: integer
-          properties:
-            description: Misc properties of the Projection
-            type: string
-          size:
-            description: Size of the Projection
-            type: integer
-        required:
-        - num_rows
-        - size
-        type: object
-    ProjectionDeleteParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularTableHierarchy'
-      - properties:
-          tenant_id:
-            description: Tenant ID
-            type: integer
+        - sorted_columns
         type: object
     TabularTableHierarchy:
       properties:
@@ -232,25 +202,55 @@ components:
       - table_name
       - name
       type: object
-    ProjectionCreateParams:
+    ProjectionDeleteParams:
       allOf:
       - $ref: '#/components/schemas/TabularTableHierarchy'
       - properties:
-          sorted_columns:
-            description: The names of the columns in the projection (from the table) to use to sort the projection. The rows of the projection are sorted by these columns, in order of their listing.
-            items:
-              type: string
-            type: array
           tenant_id:
             description: Tenant ID
             type: integer
-          unsorted_columns:
-            description: The names of additional columns in the projection (from the table) beside those specified as sorted columns. You can specify any number of unsorted columns for the projection. They cannot include columns included in the sorted columns list.
-            items:
-              type: string
-            type: array
+        type: object
+    DetailedProjection:
+      allOf:
+      - $ref: '#/components/schemas/Projection'
+      - properties:
+          initial_sync_progress:
+            description: Initial sync progress
+            type: integer
+            x-display-units: '%'
+            x-format: thousandths2percents
         required:
-        - sorted_columns
+        - initial_sync_progress
+        type: object
+    Projection:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          num_rows:
+            description: Total number of rows
+            type: integer
+          properties:
+            description: Misc properties of the Projection
+            type: string
+          size:
+            description: Size of the Projection
+            type: integer
+        required:
+        - num_rows
+        - size
+        type: object
+    ProjectionRenameParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularTableHierarchy'
+      - properties:
+          new_name:
+            description: New name of the Projection
+            type: string
+          tenant_id:
+            description: Tenant ID
+            type: integer
+        required:
+        - new_name
         type: object
   requestBodies:
     ProjectionRenameParamsBody:
@@ -259,18 +259,18 @@ components:
           schema:
             $ref: '#/components/schemas/ProjectionRenameParams'
       x-originalParamName: ProjectionRenameParamsBody
-    ProjectionDeleteParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/ProjectionDeleteParams'
-      x-originalParamName: ProjectionDeleteParamsBody
     ProjectionCreateParamsBody:
       content:
         '*/*':
           schema:
             $ref: '#/components/schemas/ProjectionCreateParams'
       x-originalParamName: ProjectionCreateParamsBody
+    ProjectionDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ProjectionDeleteParams'
+      x-originalParamName: ProjectionDeleteParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

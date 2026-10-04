@@ -268,6 +268,25 @@ paths:
       - Groups
 components:
   schemas:
+    GroupData:
+      properties:
+        gid:
+          type: integer
+        name:
+          type: string
+        provider_type:
+          type: string
+        s3_policies:
+          items:
+            type: string
+          type: array
+        s3_policies_ids:
+          items:
+            type: integer
+          type: array
+        sid:
+          type: string
+      type: object
     PartialS3PolicyInfo:
       properties:
         id:
@@ -322,33 +341,7 @@ components:
       - name
       - gid
       type: object
-    GroupData:
-      properties:
-        gid:
-          type: integer
-        name:
-          type: string
-        provider_type:
-          type: string
-        s3_policies:
-          items:
-            type: string
-          type: array
-        s3_policies_ids:
-          items:
-            type: integer
-          type: array
-        sid:
-          type: string
-      type: object
   parameters:
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
     PageSize:
       in: query
       name: page_size
@@ -358,6 +351,13 @@ components:
     Page:
       in: query
       name: page
+      schema:
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
       schema:
         minimum: 1
         type: integer

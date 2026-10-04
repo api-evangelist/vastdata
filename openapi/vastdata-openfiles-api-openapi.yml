@@ -74,6 +74,13 @@ paths:
       tags:
       - openfiles
 components:
+  requestBodies:
+    OpenFileHandlesQueryParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/OpenFileHandlesQueryParams'
+      x-originalParamName: OpenFileHandlesQueryParamsBody
   schemas:
     OpenFileHandlesQueryParams:
       properties:
@@ -85,11 +92,19 @@ components:
       required:
       - protocol
       type: object
-    AsyncTaskInResponse:
+    PartialVTask:
       properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
+        id:
+          description: Task ID
+          type: integer
+        start_time:
+          description: Task start time
+          format: date-time
+          type: string
+          x-format: datetime2display
+        state:
+          description: Task state
+          type: string
       type: object
     OpenFile:
       properties:
@@ -112,34 +127,13 @@ components:
           type: integer
       type: object
       x-cli-pagination: true
-    PartialVTask:
+    AsyncTaskInResponse:
       properties:
-        id:
-          description: Task ID
-          type: integer
-        start_time:
-          description: Task start time
-          format: date-time
-          type: string
-          x-format: datetime2display
-        state:
-          description: Task state
-          type: string
+        async_task:
+          description: Creation Async task properties
+          type: object
       type: object
   parameters:
-    PathObjectId:
-      description: Object ID specified in the path
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
-    PageSize:
-      in: query
-      name: page_size
-      schema:
-        minimum: 1
-        type: integer
     OpenFilesQueryIdQP:
       description: Open Files Query id to filter by.
       in: query
@@ -147,19 +141,25 @@ components:
       schema:
         minimum: 1
         type: integer
+    PageSize:
+      in: query
+      name: page_size
+      schema:
+        minimum: 1
+        type: integer
+    PathObjectId:
+      description: Object ID specified in the path
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
     Page:
       in: query
       name: page
       schema:
         minimum: 1
         type: integer
-  requestBodies:
-    OpenFileHandlesQueryParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/OpenFileHandlesQueryParams'
-      x-originalParamName: OpenFileHandlesQueryParamsBody
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

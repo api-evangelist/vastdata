@@ -86,44 +86,6 @@ paths:
       - Topics
 components:
   schemas:
-    TabularTopicHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the Topic
-          type: string
-      required:
-      - database_name
-      - name
-      type: object
-    TopicModifyParams:
-      allOf:
-      - $ref: '#/components/schemas/TabularTopicHierarchy'
-      - properties:
-          message_timestamp_after_max_ms:
-            description: Message timestamp 'after' threshold in milli-seconds
-            format: int64
-            type: integer
-          message_timestamp_before_max_ms:
-            description: Message timestamp 'before' threshold in milli-seconds
-            format: int64
-            type: integer
-          message_timestamp_type:
-            description: Message timestamp type
-            enum:
-            - LogAppendTime
-            - CreateTime
-            type: string
-          new_name:
-            description: New name of the topic
-            type: string
-          retention_ms:
-            description: Retention period in milli-seconds
-            format: int64
-            type: integer
-        type: object
     Topic:
       allOf:
       - $ref: '#/components/schemas/TabularTopicHierarchy'
@@ -159,6 +121,60 @@ components:
         - num_events
         - capacity
         type: object
+    TopicModifyParams:
+      allOf:
+      - $ref: '#/components/schemas/TabularTopicHierarchy'
+      - properties:
+          message_timestamp_after_max_ms:
+            description: Message timestamp 'after' threshold in milli-seconds
+            format: int64
+            type: integer
+          message_timestamp_before_max_ms:
+            description: Message timestamp 'before' threshold in milli-seconds
+            format: int64
+            type: integer
+          message_timestamp_type:
+            description: Message timestamp type
+            enum:
+            - LogAppendTime
+            - CreateTime
+            type: string
+          new_name:
+            description: New name of the topic
+            type: string
+          retention_ms:
+            description: Retention period in milli-seconds
+            format: int64
+            type: integer
+        type: object
+    TabularSchemaHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the object
+          type: string
+        schema_name:
+          description: Name of the Schema
+          type: string
+      required:
+      - database_name
+      - schema_name
+      - name
+      type: object
+    TabularTopicHierarchy:
+      properties:
+        database_name:
+          description: Name of the Database
+          type: string
+        name:
+          description: Name of the Topic
+          type: string
+      required:
+      - database_name
+      - name
+      type: object
     TableDeleteParams:
       allOf:
       - $ref: '#/components/schemas/TabularSchemaHierarchy'
@@ -198,78 +214,7 @@ components:
         required:
         - topic_partitions
         type: object
-    TabularSchemaHierarchy:
-      properties:
-        database_name:
-          description: Name of the Database
-          type: string
-        name:
-          description: Name of the object
-          type: string
-        schema_name:
-          description: Name of the Schema
-          type: string
-      required:
-      - database_name
-      - schema_name
-      - name
-      type: object
-  parameters:
-    TabularPageSize:
-      in: query
-      name: page_size
-      schema:
-        default: 999
-        maximum: 999
-        minimum: 1
-        type: integer
-    TabularCountOnlyQP:
-      description: Whether to only return count of objects
-      in: query
-      name: count_only
-      schema:
-        default: false
-        type: boolean
-    TabularNameRequiredQP:
-      description: Getting object by exact match
-      in: query
-      name: name
-      required: true
-      schema:
-        type: string
-    TenantIdQP:
-      description: Filter by tenant. Specify tenant ID.
-      in: query
-      name: tenant_id
-      schema:
-        minimum: 1
-        type: integer
-    Page:
-      in: query
-      name: page
-      schema:
-        minimum: 1
-        type: integer
-    TabularNameQP:
-      description: Getting list of objects by exact match
-      in: query
-      name: name
-      schema:
-        type: string
-    TabularDatabaseNameQP:
-      description: Getting list of objects by database_name
-      in: query
-      name: database_name
-      required: true
-      schema:
-        type: string
   requestBodies:
-    TableDeleteParamsBody:
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/TableDeleteParams'
-      x-originalParamName: TableDeleteParamsBody
     TopicCreateParamsBody:
       content:
         '*/*':
@@ -282,6 +227,61 @@ components:
           schema:
             $ref: '#/components/schemas/TopicModifyParams'
       x-originalParamName: TopicModifyParamsBody
+    TableDeleteParamsBody:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/TableDeleteParams'
+      x-originalParamName: TableDeleteParamsBody
+  parameters:
+    TabularCountOnlyQP:
+      description: Whether to only return count of objects
+      in: query
+      name: count_only
+      schema:
+        default: false
+        type: boolean
+    TabularDatabaseNameQP:
+      description: Getting list of objects by database_name
+      in: query
+      name: database_name
+      required: true
+      schema:
+        type: string
+    TabularNameRequiredQP:
+      description: Getting object by exact match
+      in: query
+      name: name
+      required: true
+      schema:
+        type: string
+    Page:
+      in: query
+      name: page
+      schema:
+        minimum: 1
+        type: integer
+    TabularNameQP:
+      description: Getting list of objects by exact match
+      in: query
+      name: name
+      schema:
+        type: string
+    TabularPageSize:
+      in: query
+      name: page_size
+      schema:
+        default: 999
+        maximum: 999
+        minimum: 1
+        type: integer
+    TenantIdQP:
+      description: Filter by tenant. Specify tenant ID.
+      in: query
+      name: tenant_id
+      schema:
+        minimum: 1
+        type: integer
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.

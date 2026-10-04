@@ -114,6 +114,42 @@ paths:
       - Hosts
 components:
   schemas:
+    VastInstallInfo:
+      properties:
+        box_name:
+          description: Name of parent CBox/DBox
+          type: string
+        box_uid:
+          description: UID of the parent CBox/DBox
+          type: string
+        box_vendor:
+          description: Model description, including vendor
+          type: string
+        hostname:
+          description: Hostname
+          type: string
+        ip:
+          description: Management IP
+          type: string
+        is_ceres:
+          description: Whether the host is part of a CERES DBox
+          type: boolean
+        is_ceres_v2:
+          description: Whether the host is part of a CERES V2 DBox
+          type: boolean
+        is_vms_host:
+          description: Whether the host is the VMS CNode
+          type: boolean
+        node_type:
+          description: Type of Node (CNode or DNode)
+          type: string
+        position:
+          description: Position of node in chassis
+          type: string
+        vast_os:
+          description: VAST OS version running on the host
+          type: string
+      type: object
     Host:
       properties:
         auto:
@@ -283,42 +319,6 @@ components:
         async_task:
           description: Creation Async task properties
           type: object
-      type: object
-    VastInstallInfo:
-      properties:
-        box_name:
-          description: Name of parent CBox/DBox
-          type: string
-        box_uid:
-          description: UID of the parent CBox/DBox
-          type: string
-        box_vendor:
-          description: Model description, including vendor
-          type: string
-        hostname:
-          description: Hostname
-          type: string
-        ip:
-          description: Management IP
-          type: string
-        is_ceres:
-          description: Whether the host is part of a CERES DBox
-          type: boolean
-        is_ceres_v2:
-          description: Whether the host is part of a CERES V2 DBox
-          type: boolean
-        is_vms_host:
-          description: Whether the host is the VMS CNode
-          type: boolean
-        node_type:
-          description: Type of Node (CNode or DNode)
-          type: string
-        position:
-          description: Position of node in chassis
-          type: string
-        vast_os:
-          description: VAST OS version running on the host
-          type: string
       type: object
   securitySchemes:
     ApiToken:

@@ -278,6 +278,28 @@ components:
           description: Subnet bits
           type: integer
       type: object
+    AsyncRack:
+      allOf:
+      - $ref: '#/components/schemas/Rack'
+      - $ref: '#/components/schemas/AsyncTaskInResponse'
+    AsyncTaskInResponse:
+      properties:
+        async_task:
+          description: Creation Async task properties
+          type: object
+      type: object
+    BoxRackUpdate:
+      properties:
+        id:
+          type: integer
+          x-cli-header: ID
+        rack_index:
+          type: integer
+        rack_unit:
+          type: string
+      required:
+      - id
+      type: object
     Rack:
       properties:
         available_capacity:
@@ -341,28 +363,6 @@ components:
       required:
       - name
       type: object
-    BoxRackUpdate:
-      properties:
-        id:
-          type: integer
-          x-cli-header: ID
-        rack_index:
-          type: integer
-        rack_unit:
-          type: string
-      required:
-      - id
-      type: object
-    AsyncTaskInResponse:
-      properties:
-        async_task:
-          description: Creation Async task properties
-          type: object
-      type: object
-    AsyncRack:
-      allOf:
-      - $ref: '#/components/schemas/Rack'
-      - $ref: '#/components/schemas/AsyncTaskInResponse'
   securitySchemes:
     ApiToken:
       description: Send current valid API token in an Authorization header with format Api-Token <token>.
